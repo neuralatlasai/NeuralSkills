@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/evidence"
+      }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/control"
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/requirement"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/decision"
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/issue"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "evidence",
+    "controls",
+    "requirements",
+    "decisions",
+    "issues"
+  ],
+  "additionalProperties": false,
+  "title": "AI-SDLC ledger 2.0.0"
+}

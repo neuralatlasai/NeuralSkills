@@ -1,0 +1,421 @@
+{
+  "schema_version": "2.0.0",
+  "project_id": "UNRESOLVED",
+  "revision": "UNRESOLVED",
+  "parameters": {
+    "product_domain": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "PLAN baseline"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "stakeholder_roles": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "PLAN baseline",
+        "stage approvals"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "authorized_sources": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "intent attribution"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "scope_and_non_goals": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "PLAN baseline"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "acceptance_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "stage PASS",
+        "TEST acceptance"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "prioritization_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "priority approval"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "repository_state": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "BUILD mutation"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "technology_stack": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "DESIGN baseline",
+        "BUILD execution"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "toolchain": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "BUILD execution",
+        "TEST execution"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "deployment_environment": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "DEPLOY execution"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "release_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "DEPLOY authority"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "data_classification": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "sensitive access"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "privacy_retention_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "sensitive access",
+        "test data"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "jurisdiction": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "legal applicability"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "criticality": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "risk-based acceptance"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "risk_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "required review",
+        "release gate"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "security_requirements": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "DESIGN baseline",
+        "security acceptance"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "accessibility_applicability": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "DESIGN baseline",
+        "TEST exclusions"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "safety_applicability": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "DESIGN baseline",
+        "TEST exclusions"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "sector_requirements": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "regulated applicability"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "ai_product_applicability": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "AI-specific gates"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "ai_governance": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "applicable AI acceptance"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "service_objectives": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "operational health gate"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "metric_definitions": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "MAINTAIN diagnostics",
+        "health checks"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "alert_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "alert evaluation"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "resource_budgets": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "budget-sensitive execution"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "retry_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "automatic mutation retry"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "concurrency_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "parallel writes"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "tool_permissions": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "mutation"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "authorization_roles": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "mutation",
+        "approval"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "enforcement_inventory": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "mandatory gate reliance"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "standards_baseline": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "clause mapping",
+        "edition migration"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "freshness_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "evidence reuse"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    },
+    "evaluation_policy": {
+      "state": "UNRESOLVED",
+      "value": null,
+      "authority": "UNRESOLVED",
+      "evidence_ids": [],
+      "owner": "UNRESOLVED",
+      "blocks": [
+        "reliability claim"
+      ],
+      "rationale": "Template value; resolve from the active project before dependent execution"
+    }
+  },
+  "state_stores": {
+    "manifest": {
+      "id": "UNRESOLVED",
+      "revision": "UNRESOLVED",
+      "location": "UNRESOLVED"
+    },
+    "ledger": {
+      "id": "UNRESOLVED",
+      "revision": "UNRESOLVED",
+      "location": "UNRESOLVED"
+    },
+    "trace_graph": {
+      "id": "UNRESOLVED",
+      "revision": "UNRESOLVED",
+      "location": "UNRESOLVED"
+    },
+    "approval_registry": {
+      "id": "UNRESOLVED",
+      "revision": "UNRESOLVED",
+      "location": "UNRESOLVED"
+    },
+    "execution_journal": {
+      "id": "UNRESOLVED",
+      "revision": "UNRESOLVED",
+      "location": "UNRESOLVED"
+    }
+  },
+  "id": "UNRESOLVED"
+}

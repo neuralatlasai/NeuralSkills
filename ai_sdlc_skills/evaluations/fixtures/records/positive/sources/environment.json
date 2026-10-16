@@ -1,0 +1,10 @@
+{
+  "id": "SOURCE-ENVIRONMENT",
+  "revision": "r1",
+  "synthetic": true,
+  "payload": {
+    "id": "fixture-only",
+    "isolated": true,
+    "production": false
+  }
+}

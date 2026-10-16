@@ -1,0 +1,9 @@
+{
+  "id": "SOURCE-CONFIGURATION",
+  "revision": "r1",
+  "synthetic": true,
+  "payload": {
+    "mode": "fixture",
+    "network": false
+  }
+}

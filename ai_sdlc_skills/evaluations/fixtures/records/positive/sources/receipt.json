@@ -1,0 +1,10 @@
+{
+  "id": "SOURCE-RECEIPT",
+  "revision": "r1",
+  "synthetic": true,
+  "payload": {
+    "synthetic_observation": "fixture receipt; no real test or deployment was performed",
+    "result": "PASS",
+    "actual_product_execution": false
+  }
+}

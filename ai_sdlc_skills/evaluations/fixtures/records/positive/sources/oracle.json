@@ -1,0 +1,15 @@
+{
+  "id": "SOURCE-ORACLE",
+  "revision": "r1",
+  "synthetic": true,
+  "payload": {
+    "independent_example": {
+      "input": [
+        2,
+        3
+      ],
+      "expected": 5
+    },
+    "authority": "fixture-owner"
+  }
+}

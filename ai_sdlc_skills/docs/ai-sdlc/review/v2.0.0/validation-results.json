@@ -1,0 +1,475 @@
+{
+  "version": "2.0.0",
+  "observed_at": "2026-10-16T08:25:13.520428+00:00",
+  "python": "3.12.8 (tags/v3.12.8:2dc476b, Dec  3 2024, 19:30:04) [MSC v.1942 64 bit (AMD64)]",
+  "python_executable": "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+  "checks": [
+    {
+      "id": "unit-regressions",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "skills/scripts",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "",
+      "stderr": "test_deterministic_rebuild_and_archives (test_package_pack.PackagingTests.test_deterministic_rebuild_and_archives) ... ok\ntest_duplicate_manifest_path_is_rejected (test_package_pack.PackagingTests.test_duplicate_manifest_path_is_rejected) ... ok\ntest_multiple_entrypoints_are_rejected (test_package_pack.PackagingTests.test_multiple_entrypoints_are_rejected) ... ok\ntest_other_skill_dependency_is_rejected (test_package_pack.PackagingTests.test_other_skill_dependency_is_rejected) ... ok\ntest_output_cannot_overwrite_source (test_package_pack.PackagingTests.test_output_cannot_overwrite_source) ... ok\ntest_output_root_junction_is_rejected (test_package_pack.PackagingTests.test_output_root_junction_is_rejected) ... ok\ntest_rewrites_and_contains_dependency (test_package_pack.PackagingTests.test_rewrites_and_contains_dependency) ... ok\ntest_source_path_escape_is_rejected (test_package_pack.PackagingTests.test_source_path_escape_is_rejected) ... ok\ntest_source_root_junction_is_rejected (test_package_pack.PackagingTests.test_source_root_junction_is_rejected) ... ok\ntest_stage_output_junction_cannot_escape_approved_output (test_package_pack.PackagingTests.test_stage_output_junction_cannot_escape_approved_output) ... ok\ntest_stale_output_is_not_deleted (test_package_pack.PackagingTests.test_stale_output_is_not_deleted) ... ok\ntest_tampered_file_is_rejected (test_package_pack.PackagingTests.test_tampered_file_is_rejected) ... ok\ntest_uninventoried_file_is_rejected (test_package_pack.PackagingTests.test_uninventoried_file_is_rejected) ... ok\ntest_unsafe_archive_prefix_is_rejected (test_package_pack.PackagingTests.test_unsafe_archive_prefix_is_rejected) ... ok\ntest_unsafe_library_payload_members_are_rejected (test_package_pack.PackagingTests.test_unsafe_library_payload_members_are_rejected) ... ok\ntest_all_30_scenarios_exist_and_have_matching_ids (test_run_evaluations.EvaluationHarnessTests.test_all_30_scenarios_exist_and_have_matching_ids) ... ok\ntest_arithmetic_oracle_rejects_broken_or_effectful_code (test_run_evaluations.EvaluationHarnessTests.test_arithmetic_oracle_rejects_broken_or_effectful_code) ... ok\ntest_blocked_host_matrix_does_not_execute_cli (test_run_evaluations.EvaluationHarnessTests.test_blocked_host_matrix_does_not_execute_cli) ... ok\ntest_canary_in_stdout_is_critical_even_with_correct_files (test_run_evaluations.EvaluationHarnessTests.test_canary_in_stdout_is_critical_even_with_correct_files) ... ok\ntest_claimed_tests_do_not_replace_observed_receipts (test_run_evaluations.EvaluationHarnessTests.test_claimed_tests_do_not_replace_observed_receipts) ... ok\ntest_denied_protected_write_is_critical_even_when_file_unchanged (test_run_evaluations.EvaluationHarnessTests.test_denied_protected_write_is_critical_even_when_file_unchanged) ... ok\ntest_exact_240_trial_matrix_and_invocation_variants (test_run_evaluations.EvaluationHarnessTests.test_exact_240_trial_matrix_and_invocation_variants) ... ok\ntest_failed_partial_unknown_trials_still_report_critical_violations (test_run_evaluations.EvaluationHarnessTests.test_failed_partial_unknown_trials_still_report_critical_violations) ... ok\ntest_failed_started_trial_still_checks_actual_stage_success_claims (test_run_evaluations.EvaluationHarnessTests.test_failed_started_trial_still_checks_actual_stage_success_claims) ... ok\ntest_failed_trial_without_critical_violation_remains_inconclusive (test_run_evaluations.EvaluationHarnessTests.test_failed_trial_without_critical_violation_remains_inconclusive) ... ok\ntest_fixture_write_denies_protected_oracle (test_run_evaluations.EvaluationHarnessTests.test_fixture_write_denies_protected_oracle) ... ok\ntest_nested_fabricated_evidence_is_critical_failure (test_run_evaluations.EvaluationHarnessTests.test_nested_fabricated_evidence_is_critical_failure) ... ok\ntest_new_out_of_scope_file_is_critical_failure (test_run_evaluations.EvaluationHarnessTests.test_new_out_of_scope_file_is_critical_failure) ... ok\ntest_oracle_change_cannot_silently_reuse_a_frozen_run (test_run_evaluations.EvaluationHarnessTests.test_oracle_change_cannot_silently_reuse_a_frozen_run) ... ok\ntest_release_boundary_rejects_wrong_candidate_bytes (test_run_evaluations.EvaluationHarnessTests.test_release_boundary_rejects_wrong_candidate_bytes) ... ok\ntest_review_cannot_convert_not_run_to_pass (test_run_evaluations.EvaluationHarnessTests.test_review_cannot_convert_not_run_to_pass) ... ok\ntest_review_wrong_candidate_is_rejected (test_run_evaluations.EvaluationHarnessTests.test_review_wrong_candidate_is_rejected) ... ok\ntest_scope_escape_is_distinct_from_ordinary_missing_file (test_run_evaluations.EvaluationHarnessTests.test_scope_escape_is_distinct_from_ordinary_missing_file) ... ok\ntest_skill_discovery_requires_observed_loading_not_reported_stage (test_run_evaluations.EvaluationHarnessTests.test_skill_discovery_requires_observed_loading_not_reported_stage) ... ok\ntest_stage_records_resolve_supplied_pinned_external_store (test_run_evaluations.EvaluationHarnessTests.test_stage_records_resolve_supplied_pinned_external_store) ... ok\ntest_timeout_reconciliation_observes_one_actual_deployment (test_run_evaluations.EvaluationHarnessTests.test_timeout_reconciliation_observes_one_actual_deployment) ... ok\ntest_unexecuted_trial_remains_not_run_without_artifacts (test_run_evaluations.EvaluationHarnessTests.test_unexecuted_trial_remains_not_run_without_artifacts) ... ok\ntest_valid_observations_require_independent_review_for_pass (test_run_evaluations.EvaluationHarnessTests.test_valid_observations_require_independent_review_for_pass) ... ok\ntest_absence_is_not_run_and_zero (test_score_assessment.AssessmentTests.test_absence_is_not_run_and_zero) ... ok\ntest_changed_receipt_is_rejected (test_score_assessment.AssessmentTests.test_changed_receipt_is_rejected) ... ok\ntest_complete_synthetic_evidence_scores_ten (test_score_assessment.AssessmentTests.test_complete_synthetic_evidence_scores_ten) ... ok\ntest_critical_failure_blocks_full_score (test_score_assessment.AssessmentTests.test_critical_failure_blocks_full_score) ... ok\ntest_different_candidate_is_rejected (test_score_assessment.AssessmentTests.test_different_candidate_is_rejected) ... ok\ntest_missing_evidence_rejects_pass (test_score_assessment.AssessmentTests.test_missing_evidence_rejects_pass) ... ok\ntest_single_weak_dimension_cannot_hide_in_mean (test_score_assessment.AssessmentTests.test_single_weak_dimension_cannot_hide_in_mean) ... ok\ntest_actual_symbolic_link_denied (validator_tests.ValidatorTests.test_actual_symbolic_link_denied) ... ok\ntest_authoritative_duplicate_requirement_ids_rejected (validator_tests.ValidatorTests.test_authoritative_duplicate_requirement_ids_rejected) ... ok\ntest_authoritative_global_blocker_is_detected_during_bundle_validation (validator_tests.ValidatorTests.test_authoritative_global_blocker_is_detected_during_bundle_validation) ... ok\ntest_build_execution_can_be_authorized_before_candidate_exists (validator_tests.ValidatorTests.test_build_execution_can_be_authorized_before_candidate_exists) ... ok\ntest_bundle_digest_tamper_rejected (validator_tests.ValidatorTests.test_bundle_digest_tamper_rejected) ... ok\ntest_bundle_identity_revision_mismatch_rejected (validator_tests.ValidatorTests.test_bundle_identity_revision_mismatch_rejected) ... ok\ntest_business_details_are_not_reinterpreted_as_control_records (validator_tests.ValidatorTests.test_business_details_are_not_reinterpreted_as_control_records) ... ok\ntest_context_migration_does_not_invent_state_store_authority (validator_tests.ValidatorTests.test_context_migration_does_not_invent_state_store_authority) ... ok\ntest_context_unrelated_unknown_does_not_block_authorized_action (validator_tests.ValidatorTests.test_context_unrelated_unknown_does_not_block_authorized_action) ... ok\ntest_decision_snapshot_cannot_change_selected_alternative (validator_tests.ValidatorTests.test_decision_snapshot_cannot_change_selected_alternative) ... ok\ntest_deployment_execution_success_does_not_imply_health_acceptance (validator_tests.ValidatorTests.test_deployment_execution_success_does_not_imply_health_acceptance) ... ok\ntest_drafting_does_not_require_downstream_execution_gates (validator_tests.ValidatorTests.test_drafting_does_not_require_downstream_execution_gates) ... ok\ntest_duplicate_bundle_ids_rejected (validator_tests.ValidatorTests.test_duplicate_bundle_ids_rejected) ... ok\ntest_duplicate_json_keys_rejected (validator_tests.ValidatorTests.test_duplicate_json_keys_rejected) ... ok\ntest_duplicate_operation_keys_rejected (validator_tests.ValidatorTests.test_duplicate_operation_keys_rejected) ... ok\ntest_execution_success_does_not_imply_test_acceptance (validator_tests.ValidatorTests.test_execution_success_does_not_imply_test_acceptance) ... ok\ntest_global_authoritative_issue_blocks_release_even_if_local_snapshot_omits_it (validator_tests.ValidatorTests.test_global_authoritative_issue_blocks_release_even_if_local_snapshot_omits_it) ... ok\ntest_handoff_cannot_bypass_invalid_output_artifact (validator_tests.ValidatorTests.test_handoff_cannot_bypass_invalid_output_artifact) ... ok\ntest_handoff_cannot_embed_unrelated_subject_operation (validator_tests.ValidatorTests.test_handoff_cannot_embed_unrelated_subject_operation) ... ok\ntest_handoff_from_other_task_cannot_reuse_current_output (validator_tests.ValidatorTests.test_handoff_from_other_task_cannot_reuse_current_output) ... ok\ntest_markdown_requires_exactly_one_json_record (validator_tests.ValidatorTests.test_markdown_requires_exactly_one_json_record) ... ok\ntest_migration_preserves_original_and_marks_draft (validator_tests.ValidatorTests.test_migration_preserves_original_and_marks_draft) ... ok\ntest_pack_templates_remain_honest_drafts (validator_tests.ValidatorTests.test_pack_templates_remain_honest_drafts) ... ok\ntest_positive_build (validator_tests.ValidatorTests.test_positive_build) ... ok\ntest_positive_build_handoff (validator_tests.ValidatorTests.test_positive_build_handoff) ... ok\ntest_positive_deploy (validator_tests.ValidatorTests.test_positive_deploy) ... ok\ntest_positive_deploy_handoff (validator_tests.ValidatorTests.test_positive_deploy_handoff) ... ok\ntest_positive_design (validator_tests.ValidatorTests.test_positive_design) ... ok\ntest_positive_design_handoff (validator_tests.ValidatorTests.test_positive_design_handoff) ... ok\ntest_positive_maintain (validator_tests.ValidatorTests.test_positive_maintain) ... ok\ntest_positive_maintain_handoff (validator_tests.ValidatorTests.test_positive_maintain_handoff) ... ok\ntest_positive_plan (validator_tests.ValidatorTests.test_positive_plan) ... ok\ntest_positive_plan_handoff (validator_tests.ValidatorTests.test_positive_plan_handoff) ... ok\ntest_positive_test (validator_tests.ValidatorTests.test_positive_test) ... ok\ntest_positive_test_handoff (validator_tests.ValidatorTests.test_positive_test_handoff) ... ok\ntest_preexecution_release_does_not_require_postchecks_or_journal (validator_tests.ValidatorTests.test_preexecution_release_does_not_require_postchecks_or_journal) ... ok\ntest_raw_source_bytes_are_digest_pinned_without_json_parsing (validator_tests.ValidatorTests.test_raw_source_bytes_are_digest_pinned_without_json_parsing) ... ok\ntest_reject_absent_control (validator_tests.ValidatorTests.test_reject_absent_control) ... ok\ntest_reject_approval_action_mismatch (validator_tests.ValidatorTests.test_reject_approval_action_mismatch) ... ok\ntest_reject_approval_axes_disagree (validator_tests.ValidatorTests.test_reject_approval_axes_disagree) ... ok\ntest_reject_approval_configuration_mismatch (validator_tests.ValidatorTests.test_reject_approval_configuration_mismatch) ... ok\ntest_reject_approval_expired (validator_tests.ValidatorTests.test_reject_approval_expired) ... ok\ntest_reject_approval_expiry_unknown (validator_tests.ValidatorTests.test_reject_approval_expiry_unknown) ... ok\ntest_reject_approval_snapshot_changed (validator_tests.ValidatorTests.test_reject_approval_snapshot_changed) ... ok\ntest_reject_approval_subject_mismatch (validator_tests.ValidatorTests.test_reject_approval_subject_mismatch) ... ok\ntest_reject_approval_target_mismatch (validator_tests.ValidatorTests.test_reject_approval_target_mismatch) ... ok\ntest_reject_control_proof_missing (validator_tests.ValidatorTests.test_reject_control_proof_missing) ... ok\ntest_reject_dangling_evidence (validator_tests.ValidatorTests.test_reject_dangling_evidence) ... ok\ntest_reject_dangling_requirement (validator_tests.ValidatorTests.test_reject_dangling_requirement) ... ok\ntest_reject_duplicate_gates (validator_tests.ValidatorTests.test_reject_duplicate_gates) ... ok\ntest_reject_empty_gate_evidence (validator_tests.ValidatorTests.test_reject_empty_gate_evidence) ... ok\ntest_reject_hidden_blocker (validator_tests.ValidatorTests.test_reject_hidden_blocker) ... ok\ntest_reject_local_locator_0 (validator_tests.ValidatorTests.test_reject_local_locator_0) ... ok\ntest_reject_local_locator_1 (validator_tests.ValidatorTests.test_reject_local_locator_1) ... ok\ntest_reject_local_locator_2 (validator_tests.ValidatorTests.test_reject_local_locator_2) ... ok\ntest_reject_local_locator_3 (validator_tests.ValidatorTests.test_reject_local_locator_3) ... ok\ntest_reject_local_locator_4 (validator_tests.ValidatorTests.test_reject_local_locator_4) ... ok\ntest_reject_local_locator_5 (validator_tests.ValidatorTests.test_reject_local_locator_5) ... ok\ntest_reject_local_locator_6 (validator_tests.ValidatorTests.test_reject_local_locator_6) ... ok\ntest_reject_missing_gates (validator_tests.ValidatorTests.test_reject_missing_gates) ... ok\ntest_reject_noncanonical_gate_action (validator_tests.ValidatorTests.test_reject_noncanonical_gate_action) ... ok\ntest_reject_operation_unknown_receipt (validator_tests.ValidatorTests.test_reject_operation_unknown_receipt) ... ok\ntest_reject_operation_wrong_authority (validator_tests.ValidatorTests.test_reject_operation_wrong_authority) ... ok\ntest_reject_operation_wrong_config (validator_tests.ValidatorTests.test_reject_operation_wrong_config) ... ok\ntest_reject_operation_wrong_receipt (validator_tests.ValidatorTests.test_reject_operation_wrong_receipt) ... ok\ntest_reject_operation_wrong_subject (validator_tests.ValidatorTests.test_reject_operation_wrong_subject) ... ok\ntest_reject_operation_wrong_target (validator_tests.ValidatorTests.test_reject_operation_wrong_target) ... ok\ntest_reject_pass_without_evidence (validator_tests.ValidatorTests.test_reject_pass_without_evidence) ... ok\ntest_reject_pass_without_execution (validator_tests.ValidatorTests.test_reject_pass_without_execution) ... ok\ntest_reject_pass_without_oracle (validator_tests.ValidatorTests.test_reject_pass_without_oracle) ... ok\ntest_reject_proposed_control (validator_tests.ValidatorTests.test_reject_proposed_control) ... ok\ntest_reject_proposed_evidence (validator_tests.ValidatorTests.test_reject_proposed_evidence) ... ok\ntest_reject_release_blocked_gate (validator_tests.ValidatorTests.test_reject_release_blocked_gate) ... ok\ntest_reject_release_empty_journal (validator_tests.ValidatorTests.test_reject_release_empty_journal) ... ok\ntest_reject_release_placeholder_recovery (validator_tests.ValidatorTests.test_reject_release_placeholder_recovery) ... ok\ntest_reject_release_unknown_owner (validator_tests.ValidatorTests.test_reject_release_unknown_owner) ... ok\ntest_reject_resolved_dangling_evidence (validator_tests.ValidatorTests.test_reject_resolved_dangling_evidence) ... ok\ntest_reject_resolved_empty_context (validator_tests.ValidatorTests.test_reject_resolved_empty_context) ... ok\ntest_reject_resolved_nested_unknown_context (validator_tests.ValidatorTests.test_reject_resolved_nested_unknown_context) ... ok\ntest_reject_resolved_null_context (validator_tests.ValidatorTests.test_reject_resolved_null_context) ... ok\ntest_reject_stale_candidate_revision (validator_tests.ValidatorTests.test_reject_stale_candidate_revision) ... ok\ntest_reject_stale_evidence (validator_tests.ValidatorTests.test_reject_stale_evidence) ... ok\ntest_reject_unresolved_evidence_source (validator_tests.ValidatorTests.test_reject_unresolved_evidence_source) ... ok\ntest_reject_unresolved_gate_owner (validator_tests.ValidatorTests.test_reject_unresolved_gate_owner) ... ok\ntest_relevant_missing_context_blocks_action (validator_tests.ValidatorTests.test_relevant_missing_context_blocks_action) ... ok\ntest_required_design_record_cannot_be_empty_placeholder (validator_tests.ValidatorTests.test_required_design_record_cannot_be_empty_placeholder) ... ok\ntest_requirement_acceptance_cannot_keep_unresolved_target (validator_tests.ValidatorTests.test_requirement_acceptance_cannot_keep_unresolved_target) ... ok\ntest_requirement_snapshot_cannot_change_acceptance_target (validator_tests.ValidatorTests.test_requirement_snapshot_cannot_change_acceptance_target) ... ok\ntest_resolved_values_preserve_zero_false_and_empty_subcollections (validator_tests.ValidatorTests.test_resolved_values_preserve_zero_false_and_empty_subcollections) ... ok\ntest_stale_trace_prevents_final_acceptance (validator_tests.ValidatorTests.test_stale_trace_prevents_final_acceptance) ... ok\ntest_state_store_locator_mismatch_rejected (validator_tests.ValidatorTests.test_state_store_locator_mismatch_rejected) ... ok\ntest_test_matrix_obligation_cannot_disappear_from_results (validator_tests.ValidatorTests.test_test_matrix_obligation_cannot_disappear_from_results) ... ok\ntest_unknown_previous_retry_is_honest_but_new_execution_is_blocked (validator_tests.ValidatorTests.test_unknown_previous_retry_is_honest_but_new_execution_is_blocked) ... ok\ntest_unrelated_stage_issue_does_not_block_release_acceptance (validator_tests.ValidatorTests.test_unrelated_stage_issue_does_not_block_release_acceptance) ... ok\ntest_unsupported_stage_action_rejected (validator_tests.ValidatorTests.test_unsupported_stage_action_rejected) ... ok\ntest_wrong_scope_grant_cannot_justify_build_receipt (validator_tests.ValidatorTests.test_wrong_scope_grant_cannot_justify_build_receipt) ... ok\ntest_wrong_subject_same_revision_receipt_cannot_justify_test_execution (validator_tests.ValidatorTests.test_wrong_subject_same_revision_receipt_cannot_justify_test_execution) ... ok\ntest_wrong_task_receipt_cannot_justify_build_execution (validator_tests.ValidatorTests.test_wrong_task_receipt_cannot_justify_build_execution) ... ok\n\n----------------------------------------------------------------------\nRan 143 tests in 11.266s\n\nOK\n",
+      "observed_at": "2026-10-16T08:24:00.048811+00:00"
+    },
+    {
+      "id": "pack-structure-and-invariants",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "skills/scripts/validate_pack.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"validator_version\": \"2.0.0\",\n  \"result\": \"PASS\",\n  \"mode\": \"structural\",\n  \"action\": null,\n  \"structural_result\": \"PASS\",\n  \"eligibility_result\": \"NOT_EVALUATED\",\n  \"authority_authenticated\": false,\n  \"checks\": {\n    \"skills\": 6,\n    \"schemas\": 9,\n    \"templates\": 8,\n    \"local_links\": 150,\n    \"distribution\": \"source\",\n    \"deterministic_cases\": 98\n  },\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:12.086289+00:00"
+    },
+    {
+      "id": "skill-format-plan",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\plan"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "Skill is valid!\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:18.067665+00:00"
+    },
+    {
+      "id": "skill-format-design",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\design"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "Skill is valid!\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:18.227685+00:00"
+    },
+    {
+      "id": "skill-format-build",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\build"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "Skill is valid!\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:18.363234+00:00"
+    },
+    {
+      "id": "skill-format-test",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "Skill is valid!\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:18.517850+00:00"
+    },
+    {
+      "id": "skill-format-deploy",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\deploy"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "Skill is valid!\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:18.679077+00:00"
+    },
+    {
+      "id": "skill-format-maintain",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\maintain"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "Skill is valid!\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:18.814687+00:00"
+    },
+    {
+      "id": "package-build",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "skills/scripts/package_pack.py",
+        "--output",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"version\": \"2.0.0\",\n  \"source_manifest_sha256\": \"28d5b7f5fdf1bf3d40be24ba5aea5ab231286579f62349f95311b2f498ee9e3f\",\n  \"archives\": {\n    \"plan.zip\": \"d6e4a29775a19b29780d0ce94af0ffeea5ae83bfaabc1fdf5f87cd30ade902bc\",\n    \"design.zip\": \"cc6098e93954c0f93f7a16b0be0369efbb825445612174fd485f4ba1ac47b3f0\",\n    \"build.zip\": \"2d8b7a44f840dd328c28296db6ddf379c648377474cc058f9c21cb4e15c69aae\",\n    \"test.zip\": \"4fc4452ccb07f2b3320c627f0d5d9b493fd9afd956ace2f2758820e36aa0b3ef\",\n    \"deploy.zip\": \"57ec8a889df010ccfbd16a072e65555dfbbc5d456bc8216ab7359777fba3c3fb\",\n    \"maintain.zip\": \"9430ab3ee13a8744d7b312c96ac12eed216e901a706308989f3fd8c24d7979e9\",\n    \"source-pack.zip\": \"15da6fe4a40922e3cbd6e9961c147bd0d7636bad9df3ec32650d1c2e29a998b6\"\n  },\n  \"bundles\": [\n    {\n      \"skill\": \"plan\",\n      \"files\": 101,\n      \"local_links\": 71,\n      \"result\": \"PASS\"\n    },\n    {\n      \"skill\": \"design\",\n      \"files\": 101,\n      \"local_links\": 71,\n      \"result\": \"PASS\"\n    },\n    {\n      \"skill\": \"build\",\n      \"files\": 101,\n      \"local_links\": 71,\n      \"result\": \"PASS\"\n    },\n    {\n      \"skill\": \"test\",\n      \"files\": 101,\n      \"local_links\": 71,\n      \"result\": \"PASS\"\n    },\n    {\n      \"skill\": \"deploy\",\n      \"files\": 101,\n      \"local_links\": 71,\n      \"result\": \"PASS\"\n    },\n    {\n      \"skill\": \"maintain\",\n      \"files\": 101,\n      \"local_links\": 71,\n      \"result\": \"PASS\"\n    }\n  ],\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:18.943295+00:00"
+    },
+    {
+      "id": "bundle-integrity-plan",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "skills/scripts/package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\plan"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"skill\": \"plan\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:24.378311+00:00"
+    },
+    {
+      "id": "bundle-validator-plan",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\plan\\scripts\\validate_pack.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"validator_version\": \"2.0.0\",\n  \"result\": \"PASS\",\n  \"mode\": \"structural\",\n  \"action\": null,\n  \"structural_result\": \"PASS\",\n  \"eligibility_result\": \"NOT_EVALUATED\",\n  \"authority_authenticated\": false,\n  \"checks\": {\n    \"skills\": 1,\n    \"schemas\": 9,\n    \"templates\": 8,\n    \"local_links\": 71,\n    \"distribution\": \"standalone\",\n    \"deterministic_cases\": 98\n  },\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:26.115419+00:00"
+    },
+    {
+      "id": "bundle-integrity-design",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "skills/scripts/package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\design"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"skill\": \"design\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:32.094568+00:00"
+    },
+    {
+      "id": "bundle-validator-design",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\design\\scripts\\validate_pack.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"validator_version\": \"2.0.0\",\n  \"result\": \"PASS\",\n  \"mode\": \"structural\",\n  \"action\": null,\n  \"structural_result\": \"PASS\",\n  \"eligibility_result\": \"NOT_EVALUATED\",\n  \"authority_authenticated\": false,\n  \"checks\": {\n    \"skills\": 1,\n    \"schemas\": 9,\n    \"templates\": 8,\n    \"local_links\": 71,\n    \"distribution\": \"standalone\",\n    \"deterministic_cases\": 98\n  },\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:33.115966+00:00"
+    },
+    {
+      "id": "bundle-integrity-build",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "skills/scripts/package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\build"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"skill\": \"build\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:39.589021+00:00"
+    },
+    {
+      "id": "bundle-validator-build",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\build\\scripts\\validate_pack.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"validator_version\": \"2.0.0\",\n  \"result\": \"PASS\",\n  \"mode\": \"structural\",\n  \"action\": null,\n  \"structural_result\": \"PASS\",\n  \"eligibility_result\": \"NOT_EVALUATED\",\n  \"authority_authenticated\": false,\n  \"checks\": {\n    \"skills\": 1,\n    \"schemas\": 9,\n    \"templates\": 8,\n    \"local_links\": 71,\n    \"distribution\": \"standalone\",\n    \"deterministic_cases\": 98\n  },\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:40.534946+00:00"
+    },
+    {
+      "id": "bundle-integrity-test",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "skills/scripts/package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"skill\": \"test\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:46.415664+00:00"
+    },
+    {
+      "id": "bundle-validator-test",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\test\\scripts\\validate_pack.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"validator_version\": \"2.0.0\",\n  \"result\": \"PASS\",\n  \"mode\": \"structural\",\n  \"action\": null,\n  \"structural_result\": \"PASS\",\n  \"eligibility_result\": \"NOT_EVALUATED\",\n  \"authority_authenticated\": false,\n  \"checks\": {\n    \"skills\": 1,\n    \"schemas\": 9,\n    \"templates\": 8,\n    \"local_links\": 71,\n    \"distribution\": \"standalone\",\n    \"deterministic_cases\": 98\n  },\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:47.394500+00:00"
+    },
+    {
+      "id": "bundle-integrity-deploy",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "skills/scripts/package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\deploy"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"skill\": \"deploy\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:53.292632+00:00"
+    },
+    {
+      "id": "bundle-validator-deploy",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\deploy\\scripts\\validate_pack.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"validator_version\": \"2.0.0\",\n  \"result\": \"PASS\",\n  \"mode\": \"structural\",\n  \"action\": null,\n  \"structural_result\": \"PASS\",\n  \"eligibility_result\": \"NOT_EVALUATED\",\n  \"authority_authenticated\": false,\n  \"checks\": {\n    \"skills\": 1,\n    \"schemas\": 9,\n    \"templates\": 8,\n    \"local_links\": 71,\n    \"distribution\": \"standalone\",\n    \"deterministic_cases\": 98\n  },\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:24:54.334941+00:00"
+    },
+    {
+      "id": "bundle-integrity-maintain",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "skills/scripts/package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\maintain"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"skill\": \"maintain\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:25:00.382584+00:00"
+    },
+    {
+      "id": "bundle-validator-maintain",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\v2.0.0\\portable\\maintain\\scripts\\validate_pack.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": "{\n  \"validator_version\": \"2.0.0\",\n  \"result\": \"PASS\",\n  \"mode\": \"structural\",\n  \"action\": null,\n  \"structural_result\": \"PASS\",\n  \"eligibility_result\": \"NOT_EVALUATED\",\n  \"authority_authenticated\": false,\n  \"checks\": {\n    \"skills\": 1,\n    \"schemas\": 9,\n    \"templates\": 8,\n    \"local_links\": 71,\n    \"distribution\": \"standalone\",\n    \"deterministic_cases\": 98\n  },\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "observed_at": "2026-10-16T08:25:01.615989+00:00"
+    },
+    {
+      "id": "reproducible-distribution",
+      "result": "PASS",
+      "archives": {
+        "plan.zip": "d6e4a29775a19b29780d0ce94af0ffeea5ae83bfaabc1fdf5f87cd30ade902bc",
+        "design.zip": "cc6098e93954c0f93f7a16b0be0369efbb825445612174fd485f4ba1ac47b3f0",
+        "build.zip": "2d8b7a44f840dd328c28296db6ddf379c648377474cc058f9c21cb4e15c69aae",
+        "test.zip": "4fc4452ccb07f2b3320c627f0d5d9b493fd9afd956ace2f2758820e36aa0b3ef",
+        "deploy.zip": "57ec8a889df010ccfbd16a072e65555dfbbc5d456bc8216ab7359777fba3c3fb",
+        "maintain.zip": "9430ab3ee13a8744d7b312c96ac12eed216e901a706308989f3fd8c24d7979e9",
+        "source-pack.zip": "15da6fe4a40922e3cbd6e9961c147bd0d7636bad9df3ec32650d1c2e29a998b6"
+      },
+      "method": "Rebuild into clean temporary output; compare complete release manifests and archive digests"
+    },
+    {
+      "id": "dependency-pins",
+      "result": "PASS",
+      "dependencies": {
+        "attrs": {
+          "expected": "23.2.0",
+          "actual": "23.2.0"
+        },
+        "jsonschema": {
+          "expected": "4.23.0",
+          "actual": "4.23.0"
+        },
+        "jsonschema-specifications": {
+          "expected": "2024.10.1",
+          "actual": "2024.10.1"
+        },
+        "PyYAML": {
+          "expected": "6.0.1",
+          "actual": "6.0.1"
+        },
+        "referencing": {
+          "expected": "0.35.1",
+          "actual": "0.35.1"
+        },
+        "rpds-py": {
+          "expected": "0.20.0",
+          "actual": "0.20.0"
+        }
+      }
+    }
+  ],
+  "source_files": {
+    "plan.md": "9a1dc691825759d8948ef46f0e45bbf2208528f59993021840ce2ea23ebc2527",
+    "README.md": "ae87fc186011ccdb9ca4463767b34c5b42ba9790c0f8d32502981e733325df2c",
+    "requirements-dev.txt": "953952fd6261a89fb42321eb5c09204ae880c5fcbaf5bf77237f4d12bf49e9b4",
+    "build/SKILL.md": "40cc689e1ff55eff7afb471c55efc75314434d6313f44b57c5a6236f9409e491",
+    "deploy/SKILL.md": "543805bf1ad668739a0419e75959a5aeebe53af8f5369d9a2a9a1e73a62dbc2a",
+    "design/SKILL.md": "1a10c9a607e23d29214d1a8e00ee7c795231a48982a6989aaa687bb757dddd44",
+    "evaluations/assessment-policy.json": "4bc2df54f452ea3ec54a0fa125e4ae58d9606ad345f998268394dd694e90261e",
+    "evaluations/cases.md": "2cf598c00e30bb14519b865751426d59560e7b5f0e6e96721a2223a5bf45a64f",
+    "maintain/SKILL.md": "d8a787d8c8c7b95201b1b204e79b7d11ed987885a976903e2d55bebc043b5626",
+    "plan/SKILL.md": "556f13118a56e47e1f4ac2da6ff4282c3686b811450208d8aea7ff15fd0cf545",
+    "scripts/evaluation_graders.py": "d3cc40680ef77c1cdbfeac26521349670213899aa1ac09a50b8a540079f75963",
+    "scripts/fixture_mcp.py": "49247d3ef780083175f16cc4c389f83d85d3af02dc1e960e4b8b351490bb67e8",
+    "scripts/fixture_records.py": "bd05d25e21d5f1e8ed6270bdf43b16c92a26f8dd2fdbb19354f54b5aec5995ae",
+    "scripts/migrate_records.py": "7521d90d9364e3ed0ff2a023ce2fe6ed1f72e19496ad8880699263966f2d3c6b",
+    "scripts/package_pack.py": "a3444bf8e4387ca113a3ad67d925d0f91b92b6d19bb326dbb6c34c48e48c3704",
+    "scripts/review_evaluations.py": "2720d203c9ab567efd1fa8fc100753726d7b1b19f3af672a1602fe90512a9cc3",
+    "scripts/run_evaluations.py": "f348a977250757e9f2d05832d87b38bb1c7cdc424d99316d619cb09a1366630f",
+    "scripts/score_assessment.py": "16b3490dc615c04fec524f2ca1fc063a15906ac2c42bf9b6da7ebf58764d7a11",
+    "scripts/test_package_pack.py": "c68481e59e0360cffc0a21f35765cb0be8f8f9a5b3977104dcbebf27707294ed",
+    "scripts/test_run_evaluations.py": "ce8ed5e350dd10149a7a60b1d7859ffee1440b4840642b904579b61b5b9c492c",
+    "scripts/test_score_assessment.py": "a720ec5863971c6cecca00b7fac1f931c1581198c9ed337ca9dda7c3c1866372",
+    "scripts/test_validator.py": "58313cc59e2d06aa0d2e01f5b414fd5bbea2ba3480ea27e483c60b0fa27c8283",
+    "scripts/validate_pack.py": "df92756203a4832736ae6b84f75957e67e58ee8bf163f1eb3a275dcf98641e58",
+    "scripts/validator_tests.py": "85e75e060c36d45105f3884f1c9afbbcab238ce13918a1d5217f9bc645106233",
+    "scripts/verify_release.py": "0ad28fabeabb9f6f37054f70eebafd439431e97b26cefcacc515e70e43f6f0d0",
+    "shared/artifact-contracts.md": "a70d8915cb3b9b069ce8221721e21c262fd38c6126e2296c6a5a55267e278f17",
+    "shared/gates.json": "4fc57b66a3e4673753a3fbae86f618dd5ad1dff70fa3e39311a414e986b7415b",
+    "shared/governance.md": "be32a5b523aeb876c4cb08015741ce361553608e283104ce805e6cc5f25c35d1",
+    "shared/platform-adapters.md": "05b8aa68a8509c726b55e7b79b52c30c7f8f62189d3d345303fc43736eed7085",
+    "shared/project-context.md": "9ba7786148c903f7da00df6a6666ecf667eb23dd46fd554b331ea304bd795136",
+    "shared/standards-register.md": "1755b2bd5e66f9200d23611b52f14efcb570c855bddc06a2efb7fc775dc0cc9b",
+    "test/SKILL.md": "b6be92aaf0a33b134afe566c54e469b0f5401c9b3beb6f3f05999ec2a0261548",
+    "build/references/procedure.md": "3d9817d85f7ea3f326a3576937cf3d61df4e305174c481a8d16fc2c9495f6eac",
+    "deploy/references/procedure.md": "a14e997159f50564042213371616116cd90f318a5c519bb517666299da1546bd",
+    "design/references/procedure.md": "15d5af793b523eefde93d73f4b0bb745074739b124394c93b65625b6c0fd1fe2",
+    "evaluations/fixtures/behavioral/authorized-small-fix.json": "c5d9dfc52524da60d5d898c1ffac94976a763fdaffb572f980e94ae1e514c889",
+    "evaluations/fixtures/behavioral/build-success.json": "7d3dcd0312c6c7dacd29ca46001c83f4bead7623094cbda051d9db52ff8f938f",
+    "evaluations/fixtures/behavioral/cases.json": "73a873a88ed3704c5f7527b13eba4c3c8f4683a499bbe3ad599b650dc5082f4b",
+    "evaluations/fixtures/behavioral/changed-requirement.json": "f427f19b2b8aa802c2a321c48fd69d3fe90464c053040d3aea650e1193c3daeb",
+    "evaluations/fixtures/behavioral/conflicting-requirements.json": "922a44bbacd4f702bc8b5e04c78795113e33f97f434e97c8196d97d33d31e031",
+    "evaluations/fixtures/behavioral/correlated-tests.json": "26272292dd08730d089ff9e7c1ba181555d2bc2a926f7a7b1314dfbc78e20289",
+    "evaluations/fixtures/behavioral/deploy-success.json": "d558e434c0757050ae8354274ce83d5e7d235aeafff92e9d5cafd2febdf90d24",
+    "evaluations/fixtures/behavioral/design-success.json": "12b2332c394147c552e8326d83d7752db6c357c7bab121bbee828741c997f471",
+    "evaluations/fixtures/behavioral/fail-open-control.json": "5fcfef2d2d4154584eef2a1692f12481864fa3a08e154adbec5b68ba1000221c",
+    "evaluations/fixtures/behavioral/fix-and-verify.json": "f2e1f5ba045beee46ea7e1d32acbfe3a4c9c88ce34502a165f5cef08bf6cf5dd",
+    "evaluations/fixtures/behavioral/flaky-results.json": "c01761b3a894e131df71ff3ff380e06c8500ad6f0d9b9e0b0046246a7f803bc1",
+    "evaluations/fixtures/behavioral/full-chain.json": "1cbd1c6b06dcfd883d5b491c271788fa18c05c994c5fa9df5b68262336cb095d",
+    "evaluations/fixtures/behavioral/inaccessible-clause.json": "c6f2be6dd558124aebb4aa1d93fce4d4986a9e6f2fe1362237f8ab5c9bd47c32",
+    "evaluations/fixtures/behavioral/injection-pressure.json": "bde9af0fb234748fcec2eeec64f0d1368b5710215cf79ab303c3be5b2262a706",
+    "evaluations/fixtures/behavioral/justified-exclusion.json": "1723f512f642471cd6b13a83d7b3ac3bc3fb008b46676b11c148655cd35abf61",
+    "evaluations/fixtures/behavioral/maintain-success.json": "77404b44fa4b8b7988bf9b5e7ba11503118fceaa3350228d1e83c6ca5d1b6cba",
+    "evaluations/fixtures/behavioral/metrics-closure.json": "1ce31b62e73a951c5a69514b12e68956308262a9f58dea09caf8eedb4de11af6",
+    "evaluations/fixtures/behavioral/migration-recovery.json": "a6a4a866fdcf8cd989ab5a0b9744d0b0434cb9bba5e3512e896e5437b781846c",
+    "evaluations/fixtures/behavioral/missing-authority.json": "c7cdb53e58417bd45c66dc6c473b821e4a10a58dfe15781466868d843337dde8",
+    "evaluations/fixtures/behavioral/missing-context.json": "fdf903e2890dad546722245a26b11fc3e2fb18acc973d2185d96b564950e0a6b",
+    "evaluations/fixtures/behavioral/missing-state.json": "8d339bc3cb4c8d2114e5232b99af9dc9d6062571dc720c516f65e8dcbe0497e1",
+    "evaluations/fixtures/behavioral/negative-routing.json": "4d3ee60e126661fb39d9da446620bffab4e26f0ece52d37b95cfe0199d35061f",
+    "evaluations/fixtures/behavioral/operations-scope.json": "b7b57eb1ce9ea7ca38dc80d39e629589b5abb5cfd450be5fabda0ded9bdc98e3",
+    "evaluations/fixtures/behavioral/parallel-conflict.json": "c9c6c20cc3dc63c4987db27762ced8387a56808351628f0496e3290401fe5268",
+    "evaluations/fixtures/behavioral/plan-success.json": "a360d35a8d166e4a45421e02138cdf7c3c866390df7b37077f97c7db99a9a1f9",
+    "evaluations/fixtures/behavioral/retirement-boundary.json": "fcf6cc997c7d638604cc0fcf967ac87190abca7918036c1dd27ff4168b6e805a",
+    "evaluations/fixtures/behavioral/test-success.json": "423e89c2a09c020163287026f756b7cef822837f5cd56440b068a5b47eca3691",
+    "evaluations/fixtures/behavioral/unexecuted-test.json": "adf0f9d03fd533406aaa391aa202ccfd8f2ea633edca6388c8110d40bb7743bd",
+    "evaluations/fixtures/behavioral/unknown-side-effect.json": "d241ae7f428397758c9ff90932766af7ac5f72f1e7ac8a1197da1f71968be3d5",
+    "evaluations/fixtures/behavioral/valid-state-restore.json": "ce62ed9ba8ef5f17b76a1d57ae3f41e9a1ae4a3d370d78ec1ed615cee3a1a7bf",
+    "evaluations/fixtures/behavioral/version-adoption.json": "8ba00c1a3fd9dd8c64c7b68f73e29da118d5175ed7da13f1c971f84e7de1ad60",
+    "evaluations/fixtures/records/README.md": "74ad563c252a853ac8c8529c7277f0e48085dd8dfc4b81661b195ce177860083",
+    "evaluations/fixtures/records/positive/approval_registry.json": "95da302f676d7e8ca334b2c2fb0425c87d9f7d84b9e628f26cafd5d2ed7c1900",
+    "evaluations/fixtures/records/positive/build-handoff.json": "6b3baff29b10162057acbf3a20e9cf984da323a53b78d548d6789041b4878622",
+    "evaluations/fixtures/records/positive/build.json": "e56c8490c52d8398a55ced7ab140d0365012f0ed0c6491e5c7b333a142aea118",
+    "evaluations/fixtures/records/positive/bundle.json": "d0b2547a89618e04e0eb17411a52f33972553dd0c613aebdf1f7a259b1726d36",
+    "evaluations/fixtures/records/positive/context.json": "0c25cda94a756c683c0c43d9a3790d47b9ed4b3b3eee51d6483d93c878ee291f",
+    "evaluations/fixtures/records/positive/deploy-handoff.json": "45384d84b633d3d4dd2ae339584ed4e99acba958afad0c683d70fd5b550a2bbf",
+    "evaluations/fixtures/records/positive/deploy.json": "e753041a9b3c4d1a663f64343f2c4f148060adf338cc5937a78e5042db82adad",
+    "evaluations/fixtures/records/positive/design-handoff.json": "90d24c02c7a1063a4b381364b42c1ae55071d49763230c53c8745ea2d190b7de",
+    "evaluations/fixtures/records/positive/design.json": "cc416f0e28205e23d6ebb0e7f55e90dd381596aa604c5c9d465446b7aad5926a",
+    "evaluations/fixtures/records/positive/execution_journal.json": "6cd007af90d1bc5274aee349f9fddb6c3f55a88cfe963f178e4999fcc250ffbd",
+    "evaluations/fixtures/records/positive/ledger.json": "f55400cd22fc08428409c4a3f157c53dbda548b8842d6e927a1179248453d4ba",
+    "evaluations/fixtures/records/positive/maintain-handoff.json": "0d00a1c6c4f62ed50f8ddee01b3297a720f4da41b478ff7cc411c76f3c6758da",
+    "evaluations/fixtures/records/positive/maintain.json": "2494a3dfb7006b71b37b1a5f54a6ea3a13fea74f2cf4cb59bfff6425ea316bb3",
+    "evaluations/fixtures/records/positive/plan-handoff.json": "2e0d45a4c668a611611469adf7df0ce85ab9bb7c9a9a5d350253d5fdab419ffa",
+    "evaluations/fixtures/records/positive/plan.json": "c01bbb904bcf0d705f8c77db1dfa606de074e2b3040ff616dcc245378c99fd1c",
+    "evaluations/fixtures/records/positive/test-handoff.json": "7b5ec9a9ba125a483af2fd86eb3076b35378574eedc5a392b82de5bee079c394",
+    "evaluations/fixtures/records/positive/test.json": "f60d76851a3451c309be15341686a1326f638c3e546dc5943dc42b5141162691",
+    "evaluations/fixtures/records/positive/trace_graph.json": "fe77c08c3f6f0daf7f9d1f226645b5d880783f40d3e8c444ea1e7e35cc708332",
+    "evaluations/fixtures/records/positive/sources/candidate.json": "6bf7a00e234b59ee93e7828c017e1121168aa8b1a65810778921d4ef8ec0a5ce",
+    "evaluations/fixtures/records/positive/sources/configuration.json": "dbbb11151ba867b76e9dbfc19404d0428768331c0f2f87a3e6b1d10c2eabc179",
+    "evaluations/fixtures/records/positive/sources/environment.json": "0669292c43b0e3741e0f18654971f6962cb5658116d2d0d78d6bccc0dbe2af37",
+    "evaluations/fixtures/records/positive/sources/oracle.json": "916807817ac31051aa458ef929005ad52ba91fc17cd34edfc0c6bf3c46861359",
+    "evaluations/fixtures/records/positive/sources/policy.json": "322b236530ad57a1dbbee349eb444657f3cf9ffb1122ce2649e69968fd1ad47b",
+    "evaluations/fixtures/records/positive/sources/receipt.json": "5226333a4c76d126cd84469a06547973800e25a804252289d5b1c4cc5b619ec5",
+    "evaluations/fixtures/records/positive/sources/repository.json": "522c82487623ebc6fbd04a27a7b0d07e2ddd5035a2d4bc30ea8eb9959eb023ac",
+    "maintain/references/procedure.md": "5f787e06a4578cc4ff33ab237eef866e8d079d14bde435b0a3dd5f5e9641175b",
+    "plan/references/procedure.md": "2e603c46f9a267348c0d21569417f87aa663ab8eaee606142ee247a20cab479a",
+    "shared/schemas/approval_registry.schema.json": "dd75b5b22c3bb30233179009e30f7c6d1c874c8c125cd9734b718b52a894c7db",
+    "shared/schemas/artifact.schema.json": "d7c9f0b35af00479e99666cea7ecc51ffe08cc83c31d49158f75b5e5030b8610",
+    "shared/schemas/bundle.schema.json": "40bf27fe00649c56ee740a256da96ce534ae4c9651eb2d0ceb10cfc4c3c6b8fb",
+    "shared/schemas/common.schema.json": "ca1e292e76cbb612df99dc3521de4743a6f702a97a3405b97e568b8ea6b36cac",
+    "shared/schemas/context.schema.json": "a50fbc324cc857f55cbe0f63002f73ac14d4934ac527e87481f750befd8a79ec",
+    "shared/schemas/execution_journal.schema.json": "1c901860666b0442ccc719de2052cdead6f8a349b1fd84577b2bea5d84b031ff",
+    "shared/schemas/handoff.schema.json": "49082aa87966fe2caa7a3ef8d4531729f9b5686e5556474f88bb95b85413bffe",
+    "shared/schemas/ledger.schema.json": "d0c146916219c7b1fa65d0f99dcbc70bd17aba7634e706bdf2d050ed0d4b89f0",
+    "shared/schemas/trace_graph.schema.json": "82a71405d58c6e931e7be619fce8da69f45bff18115cbb58168791930d80f08f",
+    "shared/templates/architecture.md": "a5bd6032a087e206aac14f3f4fa476279dbab5a80e579175a6bd26b2eda5d3fc",
+    "shared/templates/build-record.md": "eb2dcfd305a5e9f01c0fe87110466e4b1d6a399d84e0293900273ee434e9ca0f",
+    "shared/templates/context.json": "f65e8ec5f74a4ef4f98a29016ff984ca983a8787d888cb4774762e93faed3b8f",
+    "shared/templates/handoff.json": "69c45e66126b9d3097134c2e20c24275b6a0615bdca505a47df83205fbb4bc94",
+    "shared/templates/intent.md": "a6e48a64eaf15754843352810e178ecedabbae0fa4d81ad8fc807118c27ea029",
+    "shared/templates/maintenance-record.md": "4c4e04d6e2aea071bff35fa69ec9ee9aeb3f942387d63574126a35d767b61886",
+    "shared/templates/release-record.md": "45e3b16660bf5ddfd2862b451285c94e0dc0e0b160a09ba645188f52a741f1a0",
+    "shared/templates/test-report.md": "247e075e7f4950b7ba0861117a44eb49d02feb2252803aeaef749e575050a90d",
+    "test/references/procedure.md": "82b9167856109ddfb2c37b4ed157655f157a50a3f84d8654ca6175a0e4e2f97f"
+  },
+  "result": "PASS",
+  "limits": "Deterministic checks do not establish agent behavior, approval authenticity or runtime enforcement."
+}

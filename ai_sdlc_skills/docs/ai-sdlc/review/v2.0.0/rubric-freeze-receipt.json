@@ -1,0 +1,5 @@
+{
+  "policy_sha256": "4bc2df54f452ea3ec54a0fa125e4ae58d9606ad345f998268394dd694e90261e",
+  "backup": "../../../../.dist/backups/20261016T074942Z/pre-v2.zip",
+  "state": "FROZEN_BEFORE_REMEDIATION"
+}

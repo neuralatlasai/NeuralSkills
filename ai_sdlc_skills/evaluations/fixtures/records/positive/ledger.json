@@ -1,0 +1,167 @@
+{
+  "schema_version": "2.0.0",
+  "id": "LEDGER-1",
+  "revision": "r1",
+  "evidence": [
+    {
+      "id": "E-SOURCE",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "SOURCE",
+      "source": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-APPROVAL",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "APPROVAL",
+      "source": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-EXECUTION",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "COMMAND",
+      "source": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-TEST",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "TEST",
+      "source": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    }
+  ],
+  "controls": [
+    {
+      "id": "CTRL-1",
+      "authority_type": "ORGANIZATIONAL",
+      "authority": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "applicability": "APPLICABLE",
+      "owner": "fixture-owner",
+      "enforcement": "synthetic fixture boundary; not installed host enforcement",
+      "coverage": [
+        "fixture operations"
+      ],
+      "bypass_paths": [
+        "No real external enforcement claimed"
+      ],
+      "timeout": "one fixture step",
+      "error_policy": "block",
+      "proof_ids": [
+        "E-SOURCE"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "revision": "r1",
+      "kind": "FUNCTIONAL",
+      "statement": "The fixture adds two numbers",
+      "claim_class": "PROVIDED_CONSTRAINT",
+      "source_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "rationale": "Independent arithmetic example",
+      "priority": "fixture-only",
+      "priority_authority": "fixture-owner",
+      "acceptance": [
+        {
+          "id": "AC-1",
+          "measure": "result of add(2,3)",
+          "operator": "equals",
+          "target": "5",
+          "test_method": "independent arithmetic assertion",
+          "authority": "fixture-owner",
+          "evidence_ids": [
+            "E-SOURCE"
+          ]
+        }
+      ],
+      "owner": "fixture-owner",
+      "status": "APPROVED"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "ADR-1",
+      "revision": "r1",
+      "question": "How to implement fixture addition?",
+      "alternatives": [
+        "direct addition",
+        "loop increments"
+      ],
+      "selection": "direct addition",
+      "rationale": "Exact operation; no loop cost or behavior ambiguity",
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ]
+    }
+  ],
+  "issues": []
+}

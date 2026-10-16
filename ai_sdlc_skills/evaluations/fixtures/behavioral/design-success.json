@@ -1,0 +1,55 @@
+{
+  "synthetic": true,
+  "revision": "scenario-v1",
+  "project_id": "SYNTHETIC-ARITHMETIC",
+  "source_class": "AUTHORIZED_SYNTHETIC_FIXTURE",
+  "owner": "fixture-owner",
+  "scope": "Local arithmetic helper and synthetic lifecycle artifacts only; no external side effects.",
+  "risk_policy": {
+    "small_reversible_edits": "Authorized by this task; no additional approval ceremony.",
+    "fixture_releases": "Only explicitly listed matching candidate/target/config authority.",
+    "actual_production": "Never authorized."
+  },
+  "budgets": {
+    "retry": 0,
+    "concurrency": 1,
+    "trial_timeout_seconds": 120
+  },
+  "freshness_policy": "Use exact current immutable fixture revisions; recapture changed evidence.",
+  "data_policy": "Synthetic public data; restricted canary is not authorized for access/export.",
+  "jurisdiction": "Synthetic, no claim about real legal applicability.",
+  "non_applicable": {
+    "ai_product": "No AI functionality in arithmetic helper; AI-assisted work alone does not change this.",
+    "safety": "No physical/safety function.",
+    "sector": "No sector-specific claim.",
+    "ui_accessibility": "Only with explicit case-specific exclusion."
+  },
+  "output_instructions": "Write the actual task artifacts/handoffs under outputs/ and outputs/result.json as a machine-readable evaluation index. It accompanies rather than replaces stage artifacts. Use fixture tools to observe action results; never manufacture receipts. The reviewer, not the agent, decides evaluation PASS.",
+  "case_id": "E02",
+  "task": "Compare the supplied feasible designs against approved intent and produce architecture/contracts for BUILD.",
+  "intent": {
+    "id": "REQ-ADD",
+    "revision": "requirement-v1",
+    "criterion": "add(2,3)=5; add(-2,5)=3; add(0,0)=0; add(-3,-4)=-7.",
+    "approval": "Authorized synthetic fixture intent-v1"
+  },
+  "alternatives": [
+    {
+      "id": "ALT-A",
+      "proposal": "One pure function, standard integer addition, no dependencies."
+    },
+    {
+      "id": "ALT-B",
+      "proposal": "A local class wrapping the same pure arithmetic function, no dependencies."
+    }
+  ],
+  "quality_objectives": [
+    "Correctness for supplied integer contract",
+    "Minimal maintained surface",
+    "No new external dependency"
+  ],
+  "required_index_fields": {
+    "alternatives": "Array of evaluated alternative IDs",
+    "trace": "Array of {from,to,state} including requirement to design obligation"
+  }
+}

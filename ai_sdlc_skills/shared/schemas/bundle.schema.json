@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "enum": [
+              "artifact",
+              "handoff",
+              "context",
+              "ledger",
+              "approval_registry",
+              "trace_graph",
+              "execution_journal",
+              "source"
+            ]
+          },
+          "ref": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "kind",
+          "ref",
+          "sha256"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "records"
+  ],
+  "additionalProperties": false,
+  "title": "AI-SDLC local bundle 2.0.0"
+}

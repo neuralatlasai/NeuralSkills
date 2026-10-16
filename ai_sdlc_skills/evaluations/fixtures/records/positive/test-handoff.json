@@ -1,0 +1,287 @@
+{
+  "schema_version": "2.0.0",
+  "task_id": "TASK-FIXTURE",
+  "stage": "TEST",
+  "input_refs": [
+    {
+      "id": "SOURCE-POLICY",
+      "revision": "r1",
+      "location": "sources/policy.json"
+    },
+    {
+      "id": "REQ-1",
+      "revision": "r1",
+      "location": "ledger.json"
+    }
+  ],
+  "output_refs": [
+    {
+      "id": "TEST-1",
+      "revision": "r1",
+      "location": "test.json"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-SOURCE",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "SOURCE",
+      "source": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-APPROVAL",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "APPROVAL",
+      "source": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-EXECUTION",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "COMMAND",
+      "source": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-TEST",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "TEST",
+      "source": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    }
+  ],
+  "controls": [
+    {
+      "id": "CTRL-1",
+      "authority_type": "ORGANIZATIONAL",
+      "authority": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "applicability": "APPLICABLE",
+      "owner": "fixture-owner",
+      "enforcement": "synthetic fixture boundary; not installed host enforcement",
+      "coverage": [
+        "fixture operations"
+      ],
+      "bypass_paths": [
+        "No real external enforcement claimed"
+      ],
+      "timeout": "one fixture step",
+      "error_policy": "block",
+      "proof_ids": [
+        "E-SOURCE"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "ADR-1",
+      "revision": "r1",
+      "question": "How to implement fixture addition?",
+      "alternatives": [
+        "direct addition",
+        "loop increments"
+      ],
+      "selection": "direct addition",
+      "rationale": "Exact operation; no loop cost or behavior ambiguity",
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ]
+    }
+  ],
+  "unresolved": [],
+  "gates": [
+    {
+      "id": "TEST-ENTRY",
+      "action": "execute",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented TEST-ENTRY criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    },
+    {
+      "id": "TEST-ORACLE",
+      "action": "accept",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented TEST-ORACLE criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    },
+    {
+      "id": "TEST-EXIT",
+      "action": "accept",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented TEST-EXIT criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    }
+  ],
+  "trace": [
+    {
+      "from": {
+        "id": "REQ-1",
+        "revision": "r1",
+        "location": "ledger.json"
+      },
+      "to": {
+        "id": "TEST-1",
+        "revision": "r1",
+        "location": "test.json"
+      },
+      "relation": "SATISFIES",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "state": "CURRENT",
+      "reason": "Synthetic arithmetic fixture mapping"
+    }
+  ],
+  "actions": [
+    {
+      "operation_key": "OP-TEST",
+      "action": "execute",
+      "target": "SOURCE-CANDIDATE",
+      "input_revision": "r1",
+      "execution": "SUCCEEDED",
+      "receipt": "sources/receipt.json",
+      "retries_used": 0,
+      "target_ref": {
+        "id": "SOURCE-CANDIDATE",
+        "revision": "r1",
+        "location": "sources/candidate.json"
+      },
+      "configuration_refs": [],
+      "authorization_ref": {
+        "id": "APPROVAL-TEST",
+        "revision": "r1",
+        "location": "approval_registry.json"
+      },
+      "evidence_ids": [
+        "E-EXECUTION"
+      ],
+      "stage": "TEST",
+      "task_id": "TASK-FIXTURE",
+      "subject_ref": {
+        "id": "SOURCE-CANDIDATE",
+        "revision": "r1",
+        "location": "sources/candidate.json"
+      }
+    }
+  ],
+  "next_consumer": "fixture-reviewer",
+  "next_authority": "fixture-owner",
+  "requested_action": "handoff",
+  "status": {
+    "artifact": "BASELINED",
+    "execution": "SUCCEEDED",
+    "verification": "VERIFIED",
+    "approval": "APPROVED"
+  },
+  "id": "HANDOFF-TEST",
+  "revision": "r1",
+  "synthetic": true
+}

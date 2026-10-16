@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/approval"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "approvals"
+  ],
+  "additionalProperties": false,
+  "title": "AI-SDLC approval_registry 2.0.0"
+}

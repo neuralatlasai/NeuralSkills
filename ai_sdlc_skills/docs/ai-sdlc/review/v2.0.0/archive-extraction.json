@@ -1,0 +1,103 @@
+{
+  "version": "2.0.0",
+  "checks": [
+    {
+      "stage": "plan",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\scripts\\package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\archive-extraction\\v2.0.0\\plan"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"skill\": \"plan\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "archive_digest_matches": true,
+      "exact_bytes_equal_to_validated_portable_tree": true,
+      "result": "PASS"
+    },
+    {
+      "stage": "design",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\scripts\\package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\archive-extraction\\v2.0.0\\design"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"skill\": \"design\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "archive_digest_matches": true,
+      "exact_bytes_equal_to_validated_portable_tree": true,
+      "result": "PASS"
+    },
+    {
+      "stage": "build",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\scripts\\package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\archive-extraction\\v2.0.0\\build"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"skill\": \"build\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "archive_digest_matches": true,
+      "exact_bytes_equal_to_validated_portable_tree": true,
+      "result": "PASS"
+    },
+    {
+      "stage": "test",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\scripts\\package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\archive-extraction\\v2.0.0\\test"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"skill\": \"test\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "archive_digest_matches": true,
+      "exact_bytes_equal_to_validated_portable_tree": true,
+      "result": "PASS"
+    },
+    {
+      "stage": "deploy",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\scripts\\package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\archive-extraction\\v2.0.0\\deploy"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"skill\": \"deploy\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "archive_digest_matches": true,
+      "exact_bytes_equal_to_validated_portable_tree": true,
+      "result": "PASS"
+    },
+    {
+      "stage": "maintain",
+      "command": [
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\scripts\\package_pack.py",
+        "--verify",
+        "C:\\Users\\heman\\Desktop\\Brain\\.dist\\archive-extraction\\v2.0.0\\maintain"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"skill\": \"maintain\",\n  \"files\": 101,\n  \"local_links\": 71,\n  \"result\": \"PASS\"\n}\n",
+      "stderr": "",
+      "archive_digest_matches": true,
+      "exact_bytes_equal_to_validated_portable_tree": true,
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS",
+  "limits": "Actual ZIP extraction and byte identity/link integrity; host installation remains NOT_RUN."
+}

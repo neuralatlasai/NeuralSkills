@@ -1,0 +1,9 @@
+{
+  "id": "SOURCE-CANDIDATE",
+  "revision": "r1",
+  "synthetic": true,
+  "payload": {
+    "function": "def add(a, b): return a + b",
+    "immutable": true
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": "2.0.0",
+  "id": "BUNDLE-1",
+  "revision": "r1",
+  "records": [
+    {
+      "kind": "approval_registry",
+      "ref": {
+        "id": "APPROVAL-REGISTRY-1",
+        "revision": "r1",
+        "location": "approval_registry.json"
+      },
+      "sha256": "95da302f676d7e8ca334b2c2fb0425c87d9f7d84b9e628f26cafd5d2ed7c1900"
+    },
+    {
+      "kind": "handoff",
+      "ref": {
+        "id": "HANDOFF-BUILD",
+        "revision": "r1",
+        "location": "build-handoff.json"
+      },
+      "sha256": "6b3baff29b10162057acbf3a20e9cf984da323a53b78d548d6789041b4878622"
+    },
+    {
+      "kind": "artifact",
+      "ref": {
+        "id": "BUILD-1",
+        "revision": "r1",
+        "location": "build.json"
+      },
+      "sha256": "e56c8490c52d8398a55ced7ab140d0365012f0ed0c6491e5c7b333a142aea118"
+    },
+    {
+      "kind": "context",
+      "ref": {
+        "id": "CONTEXT-1",
+        "revision": "r1",
+        "location": "context.json"
+      },
+      "sha256": "0c25cda94a756c683c0c43d9a3790d47b9ed4b3b3eee51d6483d93c878ee291f"
+    },
+    {
+      "kind": "handoff",
+      "ref": {
+        "id": "HANDOFF-DEPLOY",
+        "revision": "r1",
+        "location": "deploy-handoff.json"
+      },
+      "sha256": "45384d84b633d3d4dd2ae339584ed4e99acba958afad0c683d70fd5b550a2bbf"
+    },
+    {
+      "kind": "artifact",
+      "ref": {
+        "id": "DEPLOY-1",
+        "revision": "r1",
+        "location": "deploy.json"
+      },
+      "sha256": "e753041a9b3c4d1a663f64343f2c4f148060adf338cc5937a78e5042db82adad"
+    },
+    {
+      "kind": "handoff",
+      "ref": {
+        "id": "HANDOFF-DESIGN",
+        "revision": "r1",
+        "location": "design-handoff.json"
+      },
+      "sha256": "90d24c02c7a1063a4b381364b42c1ae55071d49763230c53c8745ea2d190b7de"
+    },
+    {
+      "kind": "artifact",
+      "ref": {
+        "id": "DESIGN-1",
+        "revision": "r1",
+        "location": "design.json"
+      },
+      "sha256": "cc416f0e28205e23d6ebb0e7f55e90dd381596aa604c5c9d465446b7aad5926a"
+    },
+    {
+      "kind": "execution_journal",
+      "ref": {
+        "id": "JOURNAL-1",
+        "revision": "r1",
+        "location": "execution_journal.json"
+      },
+      "sha256": "6cd007af90d1bc5274aee349f9fddb6c3f55a88cfe963f178e4999fcc250ffbd"
+    },
+    {
+      "kind": "ledger",
+      "ref": {
+        "id": "LEDGER-1",
+        "revision": "r1",
+        "location": "ledger.json"
+      },
+      "sha256": "f55400cd22fc08428409c4a3f157c53dbda548b8842d6e927a1179248453d4ba"
+    },
+    {
+      "kind": "handoff",
+      "ref": {
+        "id": "HANDOFF-MAINTAIN",
+        "revision": "r1",
+        "location": "maintain-handoff.json"
+      },
+      "sha256": "0d00a1c6c4f62ed50f8ddee01b3297a720f4da41b478ff7cc411c76f3c6758da"
+    },
+    {
+      "kind": "artifact",
+      "ref": {
+        "id": "MAINTAIN-1",
+        "revision": "r1",
+        "location": "maintain.json"
+      },
+      "sha256": "2494a3dfb7006b71b37b1a5f54a6ea3a13fea74f2cf4cb59bfff6425ea316bb3"
+    },
+    {
+      "kind": "handoff",
+      "ref": {
+        "id": "HANDOFF-PLAN",
+        "revision": "r1",
+        "location": "plan-handoff.json"
+      },
+      "sha256": "2e0d45a4c668a611611469adf7df0ce85ab9bb7c9a9a5d350253d5fdab419ffa"
+    },
+    {
+      "kind": "artifact",
+      "ref": {
+        "id": "PLAN-1",
+        "revision": "r1",
+        "location": "plan.json"
+      },
+      "sha256": "c01bbb904bcf0d705f8c77db1dfa606de074e2b3040ff616dcc245378c99fd1c"
+    },
+    {
+      "kind": "source",
+      "ref": {
+        "id": "SOURCE-CANDIDATE",
+        "revision": "r1",
+        "location": "sources/candidate.json"
+      },
+      "sha256": "6bf7a00e234b59ee93e7828c017e1121168aa8b1a65810778921d4ef8ec0a5ce"
+    },
+    {
+      "kind": "source",
+      "ref": {
+        "id": "SOURCE-CONFIGURATION",
+        "revision": "r1",
+        "location": "sources/configuration.json"
+      },
+      "sha256": "dbbb11151ba867b76e9dbfc19404d0428768331c0f2f87a3e6b1d10c2eabc179"
+    },
+    {
+      "kind": "source",
+      "ref": {
+        "id": "SOURCE-ENVIRONMENT",
+        "revision": "r1",
+        "location": "sources/environment.json"
+      },
+      "sha256": "0669292c43b0e3741e0f18654971f6962cb5658116d2d0d78d6bccc0dbe2af37"
+    },
+    {
+      "kind": "source",
+      "ref": {
+        "id": "SOURCE-ORACLE",
+        "revision": "r1",
+        "location": "sources/oracle.json"
+      },
+      "sha256": "916807817ac31051aa458ef929005ad52ba91fc17cd34edfc0c6bf3c46861359"
+    },
+    {
+      "kind": "source",
+      "ref": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "sha256": "322b236530ad57a1dbbee349eb444657f3cf9ffb1122ce2649e69968fd1ad47b"
+    },
+    {
+      "kind": "source",
+      "ref": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "sha256": "5226333a4c76d126cd84469a06547973800e25a804252289d5b1c4cc5b619ec5"
+    },
+    {
+      "kind": "source",
+      "ref": {
+        "id": "SOURCE-REPOSITORY",
+        "revision": "r1",
+        "location": "sources/repository.json"
+      },
+      "sha256": "522c82487623ebc6fbd04a27a7b0d07e2ddd5035a2d4bc30ea8eb9959eb023ac"
+    },
+    {
+      "kind": "handoff",
+      "ref": {
+        "id": "HANDOFF-TEST",
+        "revision": "r1",
+        "location": "test-handoff.json"
+      },
+      "sha256": "7b5ec9a9ba125a483af2fd86eb3076b35378574eedc5a392b82de5bee079c394"
+    },
+    {
+      "kind": "artifact",
+      "ref": {
+        "id": "TEST-1",
+        "revision": "r1",
+        "location": "test.json"
+      },
+      "sha256": "f60d76851a3451c309be15341686a1326f638c3e546dc5943dc42b5141162691"
+    },
+    {
+      "kind": "trace_graph",
+      "ref": {
+        "id": "GRAPH-1",
+        "revision": "r1",
+        "location": "trace_graph.json"
+      },
+      "sha256": "fe77c08c3f6f0daf7f9d1f226645b5d880783f40d3e8c444ea1e7e35cc708332"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "SUPPLEMENTAL-F01",
+  "synthetic": true,
+  "host": "delegated Codex session; not installed Codex/Claude CLI",
+  "protected_files": {
+    "source.md": true,
+    "test_app.py": true,
+    "unrelated.txt": true
+  },
+  "command": [
+    "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "-v"
+  ],
+  "stdout": "",
+  "stderr": "test_both_endpoints_are_included (test_app.RangeTests.test_both_endpoints_are_included) ... ok\ntest_empty_input (test_app.RangeTests.test_empty_input) ... ok\ntest_equal_bounds_and_duplicates (test_app.RangeTests.test_equal_bounds_and_duplicates) ... ok\ntest_negative_bounds (test_app.RangeTests.test_negative_bounds) ... ok\ntest_reversed_bounds_preserve_existing_behavior (test_app.RangeTests.test_reversed_bounds_preserve_existing_behavior) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n",
+  "exit_code": 0,
+  "result": "PASS",
+  "limits": [
+    "One supplemental fresh-agent trial; does not replace any required two-host trial.",
+    "After this trial only description grammar changed; runtime workflow instructions retained."
+  ]
+}

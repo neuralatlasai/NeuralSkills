@@ -1,0 +1,44 @@
+{
+  "id": "INDEPENDENT-V2-FINAL-ASSESSMENT",
+  "synthetic": true,
+  "receipts": [
+    "receipts-2026-10-16T082338.719882_0000.json",
+    "receipts-2026-10-16T082425.364037_0000.json"
+  ],
+  "remaining_material_findings_in_reviewed_scope": 0,
+  "original_defects_preserved": "initial-observations.json",
+  "source_digests_stable": true,
+  "source_candidate": {
+    "skills\\scripts\\evaluation_graders.py": "d3cc40680ef77c1cdbfeac26521349670213899aa1ac09a50b8a540079f75963",
+    "skills\\scripts\\fixture_mcp.py": "49247d3ef780083175f16cc4c389f83d85d3af02dc1e960e4b8b351490bb67e8",
+    "skills\\scripts\\fixture_records.py": "bd05d25e21d5f1e8ed6270bdf43b16c92a26f8dd2fdbb19354f54b5aec5995ae",
+    "skills\\scripts\\migrate_records.py": "7521d90d9364e3ed0ff2a023ce2fe6ed1f72e19496ad8880699263966f2d3c6b",
+    "skills\\scripts\\package_pack.py": "a3444bf8e4387ca113a3ad67d925d0f91b92b6d19bb326dbb6c34c48e48c3704",
+    "skills\\scripts\\review_evaluations.py": "2720d203c9ab567efd1fa8fc100753726d7b1b19f3af672a1602fe90512a9cc3",
+    "skills\\scripts\\run_evaluations.py": "f348a977250757e9f2d05832d87b38bb1c7cdc424d99316d619cb09a1366630f",
+    "skills\\scripts\\score_assessment.py": "16b3490dc615c04fec524f2ca1fc063a15906ac2c42bf9b6da7ebf58764d7a11",
+    "skills\\scripts\\test_package_pack.py": "c68481e59e0360cffc0a21f35765cb0be8f8f9a5b3977104dcbebf27707294ed",
+    "skills\\scripts\\test_run_evaluations.py": "ce8ed5e350dd10149a7a60b1d7859ffee1440b4840642b904579b61b5b9c492c",
+    "skills\\scripts\\test_score_assessment.py": "a720ec5863971c6cecca00b7fac1f931c1581198c9ed337ca9dda7c3c1866372",
+    "skills\\scripts\\test_validator.py": "58313cc59e2d06aa0d2e01f5b414fd5bbea2ba3480ea27e483c60b0fa27c8283",
+    "skills\\scripts\\validate_pack.py": "df92756203a4832736ae6b84f75957e67e58ee8bf163f1eb3a275dcf98641e58",
+    "skills\\scripts\\validator_tests.py": "85e75e060c36d45105f3884f1c9afbbcab238ce13918a1d5217f9bc645106233",
+    "skills\\scripts\\verify_release.py": "0ad28fabeabb9f6f37054f70eebafd439431e97b26cefcacc515e70e43f6f0d0",
+    "skills\\shared\\gates.json": "4fc57b66a3e4673753a3fbae86f618dd5ad1dff70fa3e39311a414e986b7415b",
+    "skills\\shared\\schemas\\approval_registry.schema.json": "dd75b5b22c3bb30233179009e30f7c6d1c874c8c125cd9734b718b52a894c7db",
+    "skills\\shared\\schemas\\artifact.schema.json": "d7c9f0b35af00479e99666cea7ecc51ffe08cc83c31d49158f75b5e5030b8610",
+    "skills\\shared\\schemas\\bundle.schema.json": "40bf27fe00649c56ee740a256da96ce534ae4c9651eb2d0ceb10cfc4c3c6b8fb",
+    "skills\\shared\\schemas\\common.schema.json": "ca1e292e76cbb612df99dc3521de4743a6f702a97a3405b97e568b8ea6b36cac",
+    "skills\\shared\\schemas\\context.schema.json": "a50fbc324cc857f55cbe0f63002f73ac14d4934ac527e87481f750befd8a79ec",
+    "skills\\shared\\schemas\\execution_journal.schema.json": "1c901860666b0442ccc719de2052cdead6f8a349b1fd84577b2bea5d84b031ff",
+    "skills\\shared\\schemas\\handoff.schema.json": "49082aa87966fe2caa7a3ef8d4531729f9b5686e5556474f88bb95b85413bffe",
+    "skills\\shared\\schemas\\ledger.schema.json": "d0c146916219c7b1fa65d0f99dcbc70bd17aba7634e706bdf2d050ed0d4b89f0",
+    "skills\\shared\\schemas\\trace_graph.schema.json": "82a71405d58c6e931e7be619fce8da69f45bff18115cbb58168791930d80f08f"
+  },
+  "assessment": "IR-1 through IR-7 and unsafe manifest path API probe corrected in observed final candidate",
+  "limitations": [
+    "File symlink creation NOT_RUN due Windows privilege; actual directory junction ran",
+    "Finite isolated probes only; no CLI host, network, model reliability or production qualification",
+    "Standalone artifacts still need external stores; current grader now correctly supplies pinned bundle"
+  ]
+}

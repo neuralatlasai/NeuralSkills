@@ -1,0 +1,1153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-SDLC common records 2.0.0",
+  "$defs": {
+    "ref": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "location"
+      ],
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "artifact": {
+          "enum": [
+            "DRAFT",
+            "IN_REVIEW",
+            "BASELINED",
+            "SUPERSEDED"
+          ]
+        },
+        "execution": {
+          "enum": [
+            "NOT_RUN",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "verification": {
+          "enum": [
+            "NOT_RUN",
+            "VERIFIED",
+            "FAILED",
+            "INCONCLUSIVE",
+            "STALE",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "approval": {
+          "enum": [
+            "NOT_REQUESTED",
+            "PENDING",
+            "APPROVED",
+            "REJECTED",
+            "EXPIRED",
+            "NOT_REQUIRED"
+          ]
+        }
+      },
+      "required": [
+        "artifact",
+        "execution",
+        "verification",
+        "approval"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_class": {
+          "enum": [
+            "VERIFIED_FACT",
+            "PROVIDED_CONSTRAINT",
+            "DESIGN_PROPOSAL",
+            "UNRESOLVED"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "SOURCE",
+            "COMMAND",
+            "TEST",
+            "REVIEW",
+            "APPROVAL",
+            "TELEMETRY",
+            "DOCUMENT",
+            "CONFIGURATION"
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/ref"
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "const": "UNRESOLVED"
+            }
+          ]
+        },
+        "observer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "execution": {
+          "enum": [
+            "NOT_RUN",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN",
+            "ERROR",
+            "INCONCLUSIVE",
+            "STALE",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "classification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retention_policy": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "claim_class",
+        "kind",
+        "source",
+        "observed_at",
+        "observer",
+        "method",
+        "execution",
+        "result",
+        "limitations",
+        "classification",
+        "retention_policy"
+      ],
+      "additionalProperties": false
+    },
+    "issue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "resolution": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "owner",
+        "blocks",
+        "resolution",
+        "evidence_ids"
+      ],
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "selection": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "question",
+        "alternatives",
+        "selection",
+        "rationale",
+        "authority",
+        "evidence_ids"
+      ],
+      "additionalProperties": false
+    },
+    "control": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority_type": {
+          "enum": [
+            "PACK_CONTRACT",
+            "ORGANIZATIONAL",
+            "CONTRACTUAL",
+            "LEGAL",
+            "NORMATIVE",
+            "INFORMATIVE",
+            "VENDOR",
+            "PROPOSED"
+          ]
+        },
+        "authority": {
+          "$ref": "#/$defs/ref"
+        },
+        "applicability": {
+          "enum": [
+            "APPLICABLE",
+            "NOT_APPLICABLE",
+            "UNRESOLVED"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "enforcement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "coverage": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "bypass_paths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "timeout": {
+          "type": "string",
+          "minLength": 1
+        },
+        "error_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proof_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "authority_type",
+        "authority",
+        "applicability",
+        "owner",
+        "enforcement",
+        "coverage",
+        "bypass_paths",
+        "timeout",
+        "error_policy",
+        "proof_ids"
+      ],
+      "additionalProperties": false
+    },
+    "gate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outcome": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "BLOCKED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "input_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          }
+        },
+        "control_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicability_authority": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "action",
+        "outcome",
+        "criteria",
+        "input_refs",
+        "control_ids",
+        "evidence_ids",
+        "owner",
+        "rationale",
+        "applicability_authority"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "PASS"
+              }
+            },
+            "required": [
+              "outcome"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              },
+              "criteria": {
+                "minItems": 1
+              },
+              "control_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "NOT_APPLICABLE"
+              }
+            },
+            "required": [
+              "outcome"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              },
+              "applicability_authority": {
+                "not": {
+                  "const": "UNRESOLVED"
+                }
+              },
+              "rationale": {
+                "not": {
+                  "const": "UNRESOLVED"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "approval": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "NOT_REQUESTED",
+            "PENDING",
+            "APPROVED",
+            "REJECTED",
+            "EXPIRED",
+            "NOT_REQUIRED"
+          ]
+        },
+        "authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policy": {
+          "$ref": "#/$defs/ref"
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "artifact_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          }
+        },
+        "expires_at": {
+          "anyOf": [
+            {
+              "const": "UNRESOLVED"
+            },
+            {
+              "const": "NONE"
+            },
+            {
+              "type": "string",
+              "format": "date-time"
+            }
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "target_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          }
+        },
+        "configuration_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "authority",
+        "policy",
+        "scope",
+        "artifact_refs",
+        "expires_at",
+        "evidence_ids",
+        "id",
+        "revision",
+        "actions",
+        "target_refs",
+        "configuration_refs"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "APPROVED",
+                  "NOT_REQUIRED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authority": {
+                "not": {
+                  "const": "UNRESOLVED"
+                }
+              },
+              "evidence_ids": {
+                "minItems": 1
+              },
+              "scope": {
+                "minItems": 1
+              },
+              "policy": {
+                "properties": {
+                  "revision": {
+                    "not": {
+                      "const": "UNRESOLVED"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "trace": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/ref"
+        },
+        "to": {
+          "$ref": "#/$defs/ref"
+        },
+        "relation": {
+          "enum": [
+            "DERIVED_FROM",
+            "SATISFIES",
+            "DECIDES",
+            "IMPLEMENTS",
+            "VERIFIES",
+            "PACKAGES",
+            "OBSERVES",
+            "PROPOSES_CHANGE"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "state": {
+          "enum": [
+            "CURRENT",
+            "STALE",
+            "GAP"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "relation",
+        "evidence_ids",
+        "state",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "operation_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "execution": {
+          "enum": [
+            "NOT_RUN",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "receipt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retries_used": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "target_ref": {
+          "$ref": "#/$defs/ref"
+        },
+        "authorization_ref": {
+          "$ref": "#/$defs/ref"
+        },
+        "configuration_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "stage": {
+          "enum": [
+            "PLAN",
+            "DESIGN",
+            "BUILD",
+            "TEST",
+            "DEPLOY",
+            "MAINTAIN"
+          ]
+        },
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subject_ref": {
+          "$ref": "#/$defs/ref"
+        }
+      },
+      "required": [
+        "operation_key",
+        "action",
+        "target",
+        "input_revision",
+        "execution",
+        "receipt",
+        "retries_used",
+        "target_ref",
+        "authorization_ref",
+        "configuration_refs",
+        "evidence_ids",
+        "stage",
+        "task_id",
+        "subject_ref"
+      ],
+      "additionalProperties": false
+    },
+    "history": {
+      "type": "object",
+      "properties": {
+        "old_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "new_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "$ref": "#/$defs/ref"
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "old_revision",
+        "new_revision",
+        "reason",
+        "source",
+        "owner"
+      ],
+      "additionalProperties": false
+    },
+    "record": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_class": {
+          "enum": [
+            "VERIFIED_FACT",
+            "PROVIDED_CONSTRAINT",
+            "DESIGN_PROPOSAL",
+            "UNRESOLVED"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "requirement_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "details": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "claim_class",
+        "summary",
+        "owner",
+        "evidence_ids",
+        "requirement_ids",
+        "details"
+      ],
+      "additionalProperties": false
+    },
+    "criterion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "measure": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "test_method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "measure",
+        "operator",
+        "target",
+        "test_method",
+        "authority",
+        "evidence_ids"
+      ],
+      "additionalProperties": false
+    },
+    "requirement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "FUNCTIONAL",
+            "QUALITY",
+            "CONSTRAINT"
+          ]
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_class": {
+          "enum": [
+            "VERIFIED_FACT",
+            "PROVIDED_CONSTRAINT",
+            "DESIGN_PROPOSAL",
+            "UNRESOLVED"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority_authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/criterion"
+          }
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "APPROVED",
+            "CONFLICTED",
+            "RETIRED"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "kind",
+        "statement",
+        "claim_class",
+        "source_refs",
+        "evidence_ids",
+        "rationale",
+        "priority",
+        "priority_authority",
+        "acceptance",
+        "owner",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "check": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requirement_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "environment": {
+          "$ref": "#/$defs/ref"
+        },
+        "oracle": {
+          "$ref": "#/$defs/ref"
+        },
+        "execution": {
+          "enum": [
+            "NOT_RUN",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN",
+            "ERROR",
+            "INCONCLUSIVE",
+            "STALE",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "requirement_ids",
+        "method",
+        "environment",
+        "oracle",
+        "execution",
+        "result",
+        "evidence_ids",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "parameter": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "enum": [
+            "RESOLVED",
+            "UNRESOLVED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {},
+        "authority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "state",
+        "value",
+        "authority",
+        "evidence_ids",
+        "owner",
+        "blocks",
+        "rationale"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "enum": [
+                  "RESOLVED",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authority": {
+                "not": {
+                  "const": "UNRESOLVED"
+                }
+              },
+              "evidence_ids": {
+                "minItems": 1
+              },
+              "rationale": {
+                "not": {
+                  "const": "UNRESOLVED"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

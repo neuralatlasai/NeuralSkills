@@ -1,0 +1,667 @@
+{
+  "schema_version": "2.0.0",
+  "id": "DESIGN-1",
+  "revision": "r1",
+  "task_id": "TASK-FIXTURE",
+  "stage": "DESIGN",
+  "synthetic": true,
+  "status": {
+    "artifact": "BASELINED",
+    "execution": "SUCCEEDED",
+    "verification": "VERIFIED",
+    "approval": "APPROVED"
+  },
+  "input_refs": [
+    {
+      "id": "SOURCE-POLICY",
+      "revision": "r1",
+      "location": "sources/policy.json"
+    },
+    {
+      "id": "REQ-1",
+      "revision": "r1",
+      "location": "ledger.json"
+    }
+  ],
+  "approval": {
+    "id": "APPROVAL-DESIGN",
+    "revision": "r1",
+    "status": "APPROVED",
+    "authority": "fixture-owner",
+    "policy": {
+      "id": "SOURCE-POLICY",
+      "revision": "r1",
+      "location": "sources/policy.json"
+    },
+    "scope": [
+      "isolated arithmetic fixture"
+    ],
+    "artifact_refs": [
+      {
+        "id": "DESIGN-1",
+        "revision": "r1",
+        "location": "design.json"
+      }
+    ],
+    "expires_at": "NONE",
+    "evidence_ids": [
+      "E-APPROVAL"
+    ],
+    "actions": [
+      "draft",
+      "baseline",
+      "handoff"
+    ],
+    "target_refs": [
+      {
+        "id": "DESIGN-1",
+        "revision": "r1",
+        "location": "design.json"
+      }
+    ],
+    "configuration_refs": []
+  },
+  "evidence": [
+    {
+      "id": "E-SOURCE",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "SOURCE",
+      "source": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-APPROVAL",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "APPROVAL",
+      "source": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-EXECUTION",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "COMMAND",
+      "source": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-TEST",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "TEST",
+      "source": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    }
+  ],
+  "controls": [
+    {
+      "id": "CTRL-1",
+      "authority_type": "ORGANIZATIONAL",
+      "authority": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "applicability": "APPLICABLE",
+      "owner": "fixture-owner",
+      "enforcement": "synthetic fixture boundary; not installed host enforcement",
+      "coverage": [
+        "fixture operations"
+      ],
+      "bypass_paths": [
+        "No real external enforcement claimed"
+      ],
+      "timeout": "one fixture step",
+      "error_policy": "block",
+      "proof_ids": [
+        "E-SOURCE"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "ADR-1",
+      "revision": "r1",
+      "question": "How to implement fixture addition?",
+      "alternatives": [
+        "direct addition",
+        "loop increments"
+      ],
+      "selection": "direct addition",
+      "rationale": "Exact operation; no loop cost or behavior ambiguity",
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ]
+    }
+  ],
+  "unresolved": [],
+  "gates": [
+    {
+      "id": "DESIGN-DRAFT",
+      "action": "draft",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented DESIGN-DRAFT criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    },
+    {
+      "id": "DESIGN-TO-BUILD",
+      "action": "baseline",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented DESIGN-TO-BUILD criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    },
+    {
+      "id": "DESIGN-CONDITIONAL",
+      "action": "baseline",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented DESIGN-CONDITIONAL criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    }
+  ],
+  "trace": [
+    {
+      "from": {
+        "id": "REQ-1",
+        "revision": "r1",
+        "location": "ledger.json"
+      },
+      "to": {
+        "id": "DESIGN-1",
+        "revision": "r1",
+        "location": "design.json"
+      },
+      "relation": "SATISFIES",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "state": "CURRENT",
+      "reason": "Synthetic arithmetic fixture mapping"
+    }
+  ],
+  "history": [],
+  "data": {
+    "system_boundary": "isolated arithmetic fixture",
+    "stakeholder_concerns": [
+      {
+        "id": "DESIGN-STAKEHOLDER_CONCERNS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic stakeholder concerns for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "components": [
+      {
+        "id": "DESIGN-COMPONENTS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic components for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "interfaces": [
+      {
+        "id": "DESIGN-INTERFACES-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic interfaces for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "data_contracts": [
+      {
+        "id": "DESIGN-DATA_CONTRACTS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic data contracts for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "trust_boundaries": [
+      {
+        "id": "DESIGN-TRUST_BOUNDARIES-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic trust boundaries for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "failure_behavior": [
+      {
+        "id": "DESIGN-FAILURE_BEHAVIOR-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic failure behavior for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "dependencies": [],
+    "deployment_topology": [
+      {
+        "id": "DESIGN-DEPLOYMENT_TOPOLOGY-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic deployment topology for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "DESIGN-OPERATIONS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic operations for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "quality_scenarios": [
+      {
+        "id": "DESIGN-QUALITY_SCENARIOS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic quality scenarios for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "threat_assessment": [
+      {
+        "id": "DESIGN-THREAT_ASSESSMENT-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic threat assessment for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "accessibility_assessment": [
+      {
+        "id": "DESIGN-ACCESSIBILITY_ASSESSMENT-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic accessibility assessment for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "safety_assessment": [
+      {
+        "id": "DESIGN-SAFETY_ASSESSMENT-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic safety assessment for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "decision_refs": [
+      {
+        "id": "ADR-1",
+        "revision": "r1",
+        "location": "ledger.json"
+      }
+    ]
+  }
+}

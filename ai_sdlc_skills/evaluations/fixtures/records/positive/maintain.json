@@ -1,0 +1,667 @@
+{
+  "schema_version": "2.0.0",
+  "id": "MAINTAIN-1",
+  "revision": "r1",
+  "task_id": "TASK-FIXTURE",
+  "stage": "MAINTAIN",
+  "synthetic": true,
+  "status": {
+    "artifact": "BASELINED",
+    "execution": "SUCCEEDED",
+    "verification": "VERIFIED",
+    "approval": "APPROVED"
+  },
+  "input_refs": [
+    {
+      "id": "SOURCE-POLICY",
+      "revision": "r1",
+      "location": "sources/policy.json"
+    },
+    {
+      "id": "REQ-1",
+      "revision": "r1",
+      "location": "ledger.json"
+    }
+  ],
+  "approval": {
+    "id": "APPROVAL-MAINTAIN",
+    "revision": "r1",
+    "status": "APPROVED",
+    "authority": "fixture-owner",
+    "policy": {
+      "id": "SOURCE-POLICY",
+      "revision": "r1",
+      "location": "sources/policy.json"
+    },
+    "scope": [
+      "isolated arithmetic fixture"
+    ],
+    "artifact_refs": [
+      {
+        "id": "MAINTAIN-1",
+        "revision": "r1",
+        "location": "maintain.json"
+      }
+    ],
+    "expires_at": "NONE",
+    "evidence_ids": [
+      "E-APPROVAL"
+    ],
+    "actions": [
+      "draft",
+      "execute",
+      "close",
+      "handoff"
+    ],
+    "target_refs": [
+      {
+        "id": "SOURCE-ENVIRONMENT",
+        "revision": "r1",
+        "location": "sources/environment.json"
+      }
+    ],
+    "configuration_refs": []
+  },
+  "evidence": [
+    {
+      "id": "E-SOURCE",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "SOURCE",
+      "source": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-APPROVAL",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "APPROVAL",
+      "source": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-EXECUTION",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "COMMAND",
+      "source": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    },
+    {
+      "id": "E-TEST",
+      "claim_class": "VERIFIED_FACT",
+      "kind": "TEST",
+      "source": {
+        "id": "SOURCE-RECEIPT",
+        "revision": "r1",
+        "location": "sources/receipt.json"
+      },
+      "observed_at": "2026-10-16T07:00:00+00:00",
+      "observer": "synthetic-fixture-author",
+      "method": "deterministic synthetic record construction",
+      "execution": "SUCCEEDED",
+      "result": "PASS",
+      "limitations": [
+        "Synthetic data, not observed behavioral or product evidence"
+      ],
+      "classification": "public synthetic",
+      "retention_policy": "retain fixture version"
+    }
+  ],
+  "controls": [
+    {
+      "id": "CTRL-1",
+      "authority_type": "ORGANIZATIONAL",
+      "authority": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "applicability": "APPLICABLE",
+      "owner": "fixture-owner",
+      "enforcement": "synthetic fixture boundary; not installed host enforcement",
+      "coverage": [
+        "fixture operations"
+      ],
+      "bypass_paths": [
+        "No real external enforcement claimed"
+      ],
+      "timeout": "one fixture step",
+      "error_policy": "block",
+      "proof_ids": [
+        "E-SOURCE"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "ADR-1",
+      "revision": "r1",
+      "question": "How to implement fixture addition?",
+      "alternatives": [
+        "direct addition",
+        "loop increments"
+      ],
+      "selection": "direct addition",
+      "rationale": "Exact operation; no loop cost or behavior ambiguity",
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ]
+    }
+  ],
+  "unresolved": [],
+  "gates": [
+    {
+      "id": "MNT-DATA",
+      "action": "draft",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented MNT-DATA criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    },
+    {
+      "id": "MNT-DIAG",
+      "action": "draft",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented MNT-DIAG criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    },
+    {
+      "id": "MNT-ACTION",
+      "action": "execute",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented MNT-ACTION criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    },
+    {
+      "id": "MNT-CLOSE",
+      "action": "close",
+      "outcome": "PASS",
+      "criteria": [
+        "Apply the documented MNT-CLOSE criterion to the active task"
+      ],
+      "input_refs": [
+        {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        }
+      ],
+      "control_ids": [
+        "CTRL-1"
+      ],
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "rationale": "Supported synthetic consistency fixture",
+      "applicability_authority": "fixture-owner"
+    }
+  ],
+  "trace": [
+    {
+      "from": {
+        "id": "REQ-1",
+        "revision": "r1",
+        "location": "ledger.json"
+      },
+      "to": {
+        "id": "MAINTAIN-1",
+        "revision": "r1",
+        "location": "maintain.json"
+      },
+      "relation": "SATISFIES",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "state": "CURRENT",
+      "reason": "Synthetic arithmetic fixture mapping"
+    }
+  ],
+  "history": [],
+  "data": {
+    "release": {
+      "id": "SOURCE-CANDIDATE",
+      "revision": "r1",
+      "location": "sources/candidate.json"
+    },
+    "service": {
+      "id": "SOURCE-ENVIRONMENT",
+      "revision": "r1",
+      "location": "sources/environment.json"
+    },
+    "metric_definitions": [
+      {
+        "id": "MAINTAIN-METRIC_DEFINITIONS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic metric definitions for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "objectives": [
+      {
+        "id": "MAINTAIN-OBJECTIVES-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic objectives for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "control_limits": [
+      {
+        "id": "MAINTAIN-CONTROL_LIMITS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic control limits for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "alert_thresholds": [
+      {
+        "id": "MAINTAIN-ALERT_THRESHOLDS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic alert thresholds for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "windows": [
+      {
+        "id": "MAINTAIN-WINDOWS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic windows for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "data_quality": [
+      {
+        "id": "MAINTAIN-DATA_QUALITY-CHECK",
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "method": "synthetic arithmetic assertion",
+        "environment": {
+          "id": "SOURCE-ENVIRONMENT",
+          "revision": "r1",
+          "location": "sources/environment.json"
+        },
+        "oracle": {
+          "id": "SOURCE-ORACLE",
+          "revision": "r1",
+          "location": "sources/oracle.json"
+        },
+        "execution": "SUCCEEDED",
+        "result": "PASS",
+        "evidence_ids": [
+          "E-TEST"
+        ],
+        "limitations": [
+          "Fixture consistency only; no real test was run"
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "id": "MAINTAIN-OBSERVATIONS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic observations for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "severity": [
+      {
+        "id": "MAINTAIN-SEVERITY-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic severity for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "diagnostics": [
+      {
+        "id": "MAINTAIN-DIAGNOSTICS-1",
+        "revision": "r1",
+        "claim_class": "VERIFIED_FACT",
+        "summary": "Synthetic diagnostics for arithmetic fixture",
+        "owner": "fixture-owner",
+        "evidence_ids": [
+          "E-SOURCE"
+        ],
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "details": {
+          "synthetic": true,
+          "scope": "isolated arithmetic only",
+          "criterion": "add(2,3)=5",
+          "alternatives": [
+            "direct addition",
+            "loop increments"
+          ],
+          "failure_behavior": "raise for unsupported operands",
+          "window": "one deterministic observation",
+          "independence": "owner supplied arithmetic example",
+          "compatibility": "no persistent schema",
+          "recovery": "restore pinned fixture snapshot",
+          "receiver": "fixture-owner",
+          "accepted": true
+        }
+      }
+    ],
+    "remediation_authority": {
+      "id": "APPROVAL-MAINTAIN",
+      "revision": "r1",
+      "status": "APPROVED",
+      "authority": "fixture-owner",
+      "policy": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "scope": [
+        "isolated arithmetic fixture"
+      ],
+      "artifact_refs": [
+        {
+          "id": "MAINTAIN-1",
+          "revision": "r1",
+          "location": "maintain.json"
+        }
+      ],
+      "expires_at": "NONE",
+      "evidence_ids": [
+        "E-APPROVAL"
+      ],
+      "actions": [
+        "draft",
+        "execute",
+        "close",
+        "handoff"
+      ],
+      "target_refs": [
+        {
+          "id": "SOURCE-ENVIRONMENT",
+          "revision": "r1",
+          "location": "sources/environment.json"
+        }
+      ],
+      "configuration_refs": []
+    },
+    "verification": [
+      {
+        "id": "MAINTAIN-VERIFICATION-CHECK",
+        "requirement_ids": [
+          "REQ-1"
+        ],
+        "method": "synthetic arithmetic assertion",
+        "environment": {
+          "id": "SOURCE-ENVIRONMENT",
+          "revision": "r1",
+          "location": "sources/environment.json"
+        },
+        "oracle": {
+          "id": "SOURCE-ORACLE",
+          "revision": "r1",
+          "location": "sources/oracle.json"
+        },
+        "execution": "SUCCEEDED",
+        "result": "PASS",
+        "evidence_ids": [
+          "E-TEST"
+        ],
+        "limitations": [
+          "Fixture consistency only; no real test was run"
+        ]
+      }
+    ],
+    "vulnerabilities": [],
+    "dependencies": [],
+    "change_proposals": [],
+    "retirement": [],
+    "ownership_transfer": []
+  }
+}

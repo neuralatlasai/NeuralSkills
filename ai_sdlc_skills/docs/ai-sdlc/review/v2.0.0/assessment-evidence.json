@@ -1,0 +1,468 @@
+{
+  "schema_version": "2.0.0",
+  "policy_sha256": "4bc2df54f452ea3ec54a0fa125e4ae58d9606ad345f998268394dd694e90261e",
+  "candidate_sha256": "28d5b7f5fdf1bf3d40be24ba5aea5ab231286579f62349f95311b2f498ee9e3f",
+  "release_manifest": {
+    "path": ".dist/v2.0.0/release-manifest.json",
+    "sha256": "1f8d3edd008463c43653506870b5de7ce62d76283993179831547526fe1cd02f",
+    "locator": "source_manifest_sha256 and all archives"
+  },
+  "assertions": [
+    {
+      "scope": "ALL",
+      "assertion_id": "routing.explicit",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "routing.implicit",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "routing.boundaries",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "completion.outcomes",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "completion.proportion",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "completion.continuation",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "instructions.review",
+      "result": "PASS",
+      "evidence": [
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/assessment-review.md",
+          "sha256": "8d16c3abba124f10e142d1aa9f57e1e86aad31ded1783945caa88af9bb8e8492",
+          "locator": "Completed local evidence"
+        },
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/independent-review/final-assessment.json",
+          "sha256": "3e70c33547247a7a6398b072870915b3fa72f02c038204304b2888bcbe17f4cf",
+          "locator": "remaining_material_findings_in_reviewed_scope=0"
+        }
+      ],
+      "rationale": "Independent source/procedure review and final bounded adversarial probes found no remaining material contradictions in reviewed scope.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "instructions.references",
+      "result": "PASS",
+      "evidence": [
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/validation-results.json",
+          "sha256": "7e289cca17d90e1c6fffdcc1b459e3cc87ecae483993db09fa1de09d3567be15",
+          "locator": "bundle-integrity-* and bundle-validator-*"
+        },
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/archive-extraction.json",
+          "sha256": "cac7d5a0fc5ff5a8b86a4283ff36940bba0bea5ccef296e7091bba7e5f2401f8",
+          "locator": "checks[0..5]"
+        }
+      ],
+      "rationale": "All six standalone dependency closures resolve and their extracted bytes match validated distributions.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "instructions.use",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "standards.sources",
+      "result": "PASS",
+      "evidence": [
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/assessment-review.md",
+          "sha256": "8d16c3abba124f10e142d1aa9f57e1e86aad31ded1783945caa88af9bb8e8492",
+          "locator": "Standards/source review"
+        },
+        {
+          "path": "skills/shared/standards-register.md",
+          "sha256": "1755b2bd5e66f9200d23611b52f14efcb570c855bddc06a2efb7fc775dc0cc9b",
+          "locator": "Evidence rules, source register and v2 authoring baseline"
+        }
+      ],
+      "rationale": "Primary-source attribution and applicability/inspection limits reviewed; inaccessible ISO clauses remain unverified.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "standards.limits",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "standards.claims",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "security.scope",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "security.controls",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "security.criteria",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "contracts.fixtures",
+      "result": "PASS",
+      "evidence": [
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/validation-results.json",
+          "sha256": "7e289cca17d90e1c6fffdcc1b459e3cc87ecae483993db09fa1de09d3567be15",
+          "locator": "unit-regressions: 98 validator cases, six positive stages and handoffs"
+        }
+      ],
+      "rationale": "Complete positive records and independent negative mutations pass the deterministic regression suite.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "contracts.references",
+      "result": "PASS",
+      "evidence": [
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/validation-results.json",
+          "sha256": "7e289cca17d90e1c6fffdcc1b459e3cc87ecae483993db09fa1de09d3567be15",
+          "locator": "unit-regressions and pack-structure-and-invariants"
+        },
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/independent-review/final-assessment.json",
+          "sha256": "3e70c33547247a7a6398b072870915b3fa72f02c038204304b2888bcbe17f4cf",
+          "locator": "IR-1, IR-2, IR-4 corrected"
+        }
+      ],
+      "rationale": "Missing, duplicate, stale or inconsistent snapshots, references and task bindings are rejected in recorded probes.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "contracts.chain",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "evidence.truth",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "evidence.binding",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "evidence.status",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "recovery.retry",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "recovery.conflict",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "recovery.restore",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "packaging.bundles",
+      "result": "PASS",
+      "evidence": [
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/validation-results.json",
+          "sha256": "7e289cca17d90e1c6fffdcc1b459e3cc87ecae483993db09fa1de09d3567be15",
+          "locator": "reproducible-distribution"
+        },
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/archive-extraction.json",
+          "sha256": "cac7d5a0fc5ff5a8b86a4283ff36940bba0bea5ccef296e7091bba7e5f2401f8",
+          "locator": "all six checks PASS"
+        }
+      ],
+      "rationale": "Six complete distributions validate independently; rebuild archive hashes match and actual extracted bytes are identical.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "packaging.hosts",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "packaging.environment",
+      "result": "PASS",
+      "evidence": [
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/validation-results.json",
+          "sha256": "7e289cca17d90e1c6fffdcc1b459e3cc87ecae483993db09fa1de09d3567be15",
+          "locator": "python, python_executable, dependency-pins, unit-regressions"
+        }
+      ],
+      "rationale": "Isolated clean Python environment matches all six pinned development dependency versions and reproduces checks on Windows.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "maintenance.coverage",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "maintenance.grading",
+      "result": "NOT_RUN",
+      "evidence": [
+        {
+          "path": ".dist/evaluation-runs/v2.0.0-blocked/report.json",
+          "sha256": "b9d352e4efd412a31bac8b325a87397405c9946ed5ada6f9c51ac0fc1ce3a51b",
+          "locator": "actual_behavioral_executions=0; counts.NOT_RUN=240; preflight HTTP400/403"
+        }
+      ],
+      "rationale": "Required current-candidate two-host runtime or repeated behavioral evidence is unavailable; four separate access preflights failed.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    },
+    {
+      "scope": "ALL",
+      "assertion_id": "maintenance.upgrade",
+      "result": "PASS",
+      "evidence": [
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/migration-probe.json",
+          "sha256": "a85ad89c4da1ec7d8cb58ae8151d09d290c727e207c07b81d1c2f285f7647190",
+          "locator": "original_preserved and structural result"
+        },
+        {
+          "path": "docs/ai-sdlc/review/v2.0.0/rollback-probe.json",
+          "sha256": "7653a475f3bd4c47e13a67283dbcac08d1d8adc22a46b7f066ae1676db866a81",
+          "locator": "all_original_digests_match and historical validator result"
+        }
+      ],
+      "rationale": "Isolated sample migration preserves original bytes and unqualified status; rollback restores all 32 original files and compatible checks.",
+      "reviewer": "root evidence assessment; separate independent review retained"
+    }
+  ],
+  "critical_failures": [],
+  "limits": [
+    "Shared static evidence reused across seven scorecards; no behavioral PASS inferred.",
+    "Historical defects retained; final repaired candidate has no reproduced critical defect in finite reviewed scope.",
+    "240 required trials remain NOT_RUN; no 9/10 award."
+  ]
+}

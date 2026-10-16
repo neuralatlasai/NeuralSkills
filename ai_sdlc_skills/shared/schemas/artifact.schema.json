@@ -1,0 +1,831 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage": {
+      "enum": [
+        "PLAN",
+        "DESIGN",
+        "BUILD",
+        "TEST",
+        "DEPLOY",
+        "MAINTAIN"
+      ]
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "input_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/ref"
+      }
+    },
+    "approval": {
+      "$ref": "common.schema.json#/$defs/approval"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/evidence"
+      }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/control"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/decision"
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/issue"
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/gate"
+      }
+    },
+    "trace": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/trace"
+      }
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/history"
+      }
+    },
+    "data": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "task_id",
+    "stage",
+    "synthetic",
+    "status",
+    "input_refs",
+    "approval",
+    "evidence",
+    "controls",
+    "decisions",
+    "unresolved",
+    "gates",
+    "trace",
+    "history",
+    "data"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-SDLC stage artifact 2.0.0",
+  "$defs": {
+    "PLAN": {
+      "type": "object",
+      "properties": {
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          }
+        },
+        "observed_pain_points": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "inferred_needs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "proposed_solutions": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "non_goals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "stakeholders": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "approval_owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/requirement"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "prioritization_policy": {
+          "$ref": "common.schema.json#/$defs/ref"
+        }
+      },
+      "required": [
+        "source_refs",
+        "observed_pain_points",
+        "inferred_needs",
+        "proposed_solutions",
+        "scope",
+        "non_goals",
+        "stakeholders",
+        "approval_owner",
+        "requirements",
+        "constraints",
+        "risks",
+        "conflicts",
+        "prioritization_policy"
+      ],
+      "additionalProperties": false
+    },
+    "DESIGN": {
+      "type": "object",
+      "properties": {
+        "system_boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stakeholder_concerns": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "interfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "data_contracts": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "trust_boundaries": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "failure_behavior": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "deployment_topology": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "quality_scenarios": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "threat_assessment": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "accessibility_assessment": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "safety_assessment": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "decision_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          }
+        }
+      },
+      "required": [
+        "system_boundary",
+        "stakeholder_concerns",
+        "components",
+        "interfaces",
+        "data_contracts",
+        "trust_boundaries",
+        "failure_behavior",
+        "dependencies",
+        "deployment_topology",
+        "operations",
+        "quality_scenarios",
+        "threat_assessment",
+        "accessibility_assessment",
+        "safety_assessment",
+        "decision_refs"
+      ],
+      "additionalProperties": false
+    },
+    "BUILD": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "base": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "head": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "change_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "implementation_links": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "dependency_license_review": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/check"
+          }
+        },
+        "generated_artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          }
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "documentation": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          }
+        },
+        "defects": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        }
+      },
+      "required": [
+        "repository",
+        "base",
+        "head",
+        "change_scope",
+        "implementation_links",
+        "dependency_license_review",
+        "versions",
+        "checks",
+        "generated_artifacts",
+        "provenance",
+        "documentation",
+        "defects"
+      ],
+      "additionalProperties": false
+    },
+    "TEST": {
+      "type": "object",
+      "properties": {
+        "candidate": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "environment": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "acceptance_policy": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "test_matrix": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "oracles": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "test_data": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "measurement_policy": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/check"
+          }
+        },
+        "agent_evaluation": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "defects": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "requirement_coverage": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        }
+      },
+      "required": [
+        "candidate",
+        "environment",
+        "acceptance_policy",
+        "test_matrix",
+        "exclusions",
+        "oracles",
+        "test_data",
+        "measurement_policy",
+        "results",
+        "agent_evaluation",
+        "defects",
+        "requirement_coverage"
+      ],
+      "additionalProperties": false
+    },
+    "DEPLOY": {
+      "type": "object",
+      "properties": {
+        "candidate": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "target": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "configuration_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          }
+        },
+        "secret_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          }
+        },
+        "infrastructure_changes": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "migrations": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "authorization": {
+          "$ref": "common.schema.json#/$defs/approval"
+        },
+        "rollout": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "health_criteria": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "recovery": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "prechecks": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/check"
+          }
+        },
+        "postchecks": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/check"
+          }
+        },
+        "journal": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/action"
+          }
+        },
+        "operating_owner": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "candidate",
+        "provenance",
+        "target",
+        "configuration_refs",
+        "secret_refs",
+        "infrastructure_changes",
+        "migrations",
+        "authorization",
+        "rollout",
+        "health_criteria",
+        "recovery",
+        "prechecks",
+        "postchecks",
+        "journal",
+        "operating_owner"
+      ],
+      "additionalProperties": false
+    },
+    "MAINTAIN": {
+      "type": "object",
+      "properties": {
+        "release": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "service": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "metric_definitions": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "control_limits": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "alert_thresholds": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "windows": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "data_quality": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/check"
+          }
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "severity": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "remediation_authority": {
+          "$ref": "common.schema.json#/$defs/approval"
+        },
+        "verification": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/check"
+          }
+        },
+        "vulnerabilities": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "change_proposals": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "retirement": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        },
+        "ownership_transfer": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/record"
+          }
+        }
+      },
+      "required": [
+        "release",
+        "service",
+        "metric_definitions",
+        "objectives",
+        "control_limits",
+        "alert_thresholds",
+        "windows",
+        "data_quality",
+        "observations",
+        "severity",
+        "diagnostics",
+        "remediation_authority",
+        "verification",
+        "vulnerabilities",
+        "dependencies",
+        "change_proposals",
+        "retirement",
+        "ownership_transfer"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "stage": {
+            "const": "PLAN"
+          }
+        },
+        "required": [
+          "stage"
+        ]
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "#/$defs/PLAN"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "stage": {
+            "const": "DESIGN"
+          }
+        },
+        "required": [
+          "stage"
+        ]
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "#/$defs/DESIGN"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "stage": {
+            "const": "BUILD"
+          }
+        },
+        "required": [
+          "stage"
+        ]
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "#/$defs/BUILD"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "stage": {
+            "const": "TEST"
+          }
+        },
+        "required": [
+          "stage"
+        ]
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "#/$defs/TEST"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "stage": {
+            "const": "DEPLOY"
+          }
+        },
+        "required": [
+          "stage"
+        ]
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "#/$defs/DEPLOY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "stage": {
+            "const": "MAINTAIN"
+          }
+        },
+        "required": [
+          "stage"
+        ]
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "#/$defs/MAINTAIN"
+          }
+        }
+      }
+    }
+  ]
+}

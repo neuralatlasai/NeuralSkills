@@ -1,0 +1,131 @@
+{
+  "pack_version": "1.0.0",
+  "report_date": "2026-10-16",
+  "timezone": "Asia/Calcutta",
+  "status": "PASS_STRUCTURAL_VALIDATION",
+  "environment": {
+    "python": "3.12.8",
+    "jsonschema": "4.23.0",
+    "PyYAML": "6.0.1",
+    "referencing": "0.35.1"
+  },
+  "pack_validation": {
+    "command": [
+      "C:\\Users\\heman\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-B",
+      "C:\\Users\\heman\\Desktop\\Brain\\skills\\scripts\\validate_pack.py",
+      "--self-test"
+    ],
+    "exit_code": 0,
+    "receipt": {
+      "result": "PASS",
+      "checks": {
+        "skills": 6,
+        "schemas": 4,
+        "templates": 8,
+        "local_links": 140,
+        "synthetic_invariant_cases": 13
+      },
+      "errors": []
+    }
+  },
+  "skill_format_validation": [
+    {
+      "stage": "plan",
+      "command": [
+        "C:\\Users\\heman\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\plan"
+      ],
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "stage": "design",
+      "command": [
+        "C:\\Users\\heman\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\design"
+      ],
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "stage": "build",
+      "command": [
+        "C:\\Users\\heman\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\build"
+      ],
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "stage": "test",
+      "command": [
+        "C:\\Users\\heman\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\test"
+      ],
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "stage": "deploy",
+      "command": [
+        "C:\\Users\\heman\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\deploy"
+      ],
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "stage": "maintain",
+      "command": [
+        "C:\\Users\\heman\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "C:\\Users\\heman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+        "C:\\Users\\heman\\Desktop\\Brain\\skills\\maintain"
+      ],
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    }
+  ],
+  "core_content_digests": {
+    "build/SKILL.md": "4d9c054ada35ee4c38999c876593ba99e9e09c3ce460e7af1fa3e648bf788eed",
+    "deploy/SKILL.md": "5a932aafe0c1255d04eee74c117047a24ceabca9450b97e7e60699e946c573ad",
+    "design/SKILL.md": "ed39d9e56ba2109ba4fbc62bb081625bcd345b1af67b0d41a5e65f24bc028d6b",
+    "maintain/SKILL.md": "cda29304901fb5d01e2d6b52129215af896a9c776c4e410c1dfb3eccdfd142c0",
+    "plan/SKILL.md": "d854fc991385ef53109778d4530c4bcdb987728e2b8152ae19728b9d2badf7d7",
+    "scripts/validate_pack.py": "ba81748c946cbab9cdbde9724112d22d6e6bbae6037787f08dcc9784b9bf7c80",
+    "shared/artifact-contracts.md": "c15773ca7720ccaaf64307f3210eeb5905532ad87b567f04c737e34de592c276",
+    "shared/governance.md": "cc364a51728053525c103a81ddcfa83a7ad1e976f0a84bcc79ed83ed34662fb1",
+    "shared/parameters.md": "f262ce0419fc6549099b35c94c8559e06c537e7f2f9bec1b204e4a24bd433593",
+    "shared/platform-adapters.md": "7009723b8fdaef0544f31b8e4be955c7bb652bbc675b62217165cbd195f565be",
+    "shared/schemas/artifact.schema.json": "1692ec3e0a769f0d6ac76c6a7c5256a6d4fad301f53c345968b8bffe07fdf1cb",
+    "shared/schemas/common.schema.json": "03a2aaa84f3746570ebd8aaf02d55b7920c3b64ca3d3a27e9db5c9d6ba132dfd",
+    "shared/schemas/context.schema.json": "b935f22c87cc8ed4303b714397b1e8bef500bdfbd8444e8377da54a6220871d3",
+    "shared/schemas/handoff.schema.json": "bff0f9d175854fd83979dc40afe6cef3036140142bd832b61e4954a195671b84",
+    "shared/standards-register.md": "e275ee4ed56837ce68dd848f6677d62adb1795fc3ef68f5668d50e76df0fd7f3",
+    "shared/templates/architecture.md": "91965e9e028f113b545fcfdfe69824737f25b98dc307f17a55de900b6bed0aa8",
+    "shared/templates/build-record.md": "bcbc3400ce388a717b05aec82284ca8c7f7833153650a9927e6e650d8149763e",
+    "shared/templates/context.json": "d22ce0d3759054ae5acd52ec808a20f9c885029eaacd07db5dfcd1eeca320ea4",
+    "shared/templates/handoff.json": "bb7914405d86986fac728b671419e4b3ebe03d199ef324d16ae015bf1817740d",
+    "shared/templates/intent.md": "f91490ecfcdc24626a0a748eccf30baeafec1d48fcb0ef2e17928f65ee0d1da7",
+    "shared/templates/maintenance-record.md": "c4e237630e468939f1d634c8a1bbcbf3982383d1ecb28c792efa8371794a76b8",
+    "shared/templates/release-record.md": "e1246c16cc5e2f13978de53d6de70855eba1c8f8fece776c497099f5fe1416c4",
+    "shared/templates/test-report.md": "ec07dc4826440723be05e1689c803172f6c448b59fb61a47216f3c61fad2f40a",
+    "test/SKILL.md": "efd40c7ad63f99c224faad220d33ec6dfeedf39cdfbe8d6f599631c46c6e8dba"
+  },
+  "limits": [
+    "Structural validation is not lifecycle gate authorization.",
+    "Three synthetic boundary trials include one retained permission-adherence failure; see forward-test-results.json.",
+    "Normative ISO conformance, application outcomes, production controls and repeated-run reliability are not verified."
+  ]
+}

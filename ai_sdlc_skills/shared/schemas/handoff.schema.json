@@ -1,0 +1,126 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage": {
+      "enum": [
+        "PLAN",
+        "DESIGN",
+        "BUILD",
+        "TEST",
+        "DEPLOY",
+        "MAINTAIN"
+      ]
+    },
+    "input_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/ref"
+      }
+    },
+    "output_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/ref"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/evidence"
+      }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/control"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/decision"
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/issue"
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/gate"
+      }
+    },
+    "trace": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/trace"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/action"
+      }
+    },
+    "next_consumer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "next_authority": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/status"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "task_id",
+    "stage",
+    "input_refs",
+    "output_refs",
+    "evidence",
+    "controls",
+    "decisions",
+    "unresolved",
+    "gates",
+    "trace",
+    "actions",
+    "next_consumer",
+    "next_authority",
+    "requested_action",
+    "status",
+    "id",
+    "revision",
+    "synthetic"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-SDLC shared handoff 2.0.0"
+}

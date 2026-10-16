@@ -1,0 +1,203 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "product_domain": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "stakeholder_roles": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "authorized_sources": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "scope_and_non_goals": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "acceptance_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "prioritization_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "repository_state": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "technology_stack": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "toolchain": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "deployment_environment": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "release_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "data_classification": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "privacy_retention_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "jurisdiction": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "criticality": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "risk_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "security_requirements": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "accessibility_applicability": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "safety_applicability": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "sector_requirements": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "ai_product_applicability": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "ai_governance": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "service_objectives": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "metric_definitions": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "alert_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "resource_budgets": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "retry_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "concurrency_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "tool_permissions": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "authorization_roles": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "enforcement_inventory": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "standards_baseline": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "freshness_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        },
+        "evaluation_policy": {
+          "$ref": "common.schema.json#/$defs/parameter"
+        }
+      },
+      "required": [
+        "product_domain",
+        "stakeholder_roles",
+        "authorized_sources",
+        "scope_and_non_goals",
+        "acceptance_policy",
+        "prioritization_policy",
+        "repository_state",
+        "technology_stack",
+        "toolchain",
+        "deployment_environment",
+        "release_policy",
+        "data_classification",
+        "privacy_retention_policy",
+        "jurisdiction",
+        "criticality",
+        "risk_policy",
+        "security_requirements",
+        "accessibility_applicability",
+        "safety_applicability",
+        "sector_requirements",
+        "ai_product_applicability",
+        "ai_governance",
+        "service_objectives",
+        "metric_definitions",
+        "alert_policy",
+        "resource_budgets",
+        "retry_policy",
+        "concurrency_policy",
+        "tool_permissions",
+        "authorization_roles",
+        "enforcement_inventory",
+        "standards_baseline",
+        "freshness_policy",
+        "evaluation_policy"
+      ],
+      "additionalProperties": false
+    },
+    "state_stores": {
+      "type": "object",
+      "properties": {
+        "manifest": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "ledger": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "trace_graph": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "approval_registry": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "execution_journal": {
+          "$ref": "common.schema.json#/$defs/ref"
+        }
+      },
+      "required": [
+        "manifest",
+        "ledger",
+        "trace_graph",
+        "approval_registry",
+        "execution_journal"
+      ],
+      "additionalProperties": false
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "revision",
+    "parameters",
+    "state_stores",
+    "id"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-SDLC project context 2.0.0"
+}

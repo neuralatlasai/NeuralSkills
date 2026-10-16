@@ -1,0 +1,82 @@
+{
+  "id": "INDEPENDENT-V2-INITIAL-OBSERVATIONS",
+  "synthetic": true,
+  "provenance": "Transcribed from actual tools.exec_command results in this independent review before fixes; exact command and result excerpts retained. These earlier outcomes remain failures even after subsequent correction.",
+  "candidate_digest_limit": "The four file hashes below were sampled together after the first record probes and before the initial packaging junction probe. They are an adjacent observation, not an asserted immutable pin for every earlier command. Later capture receipts bind before/after digests precisely and report concurrent changes.",
+  "adjacent_observed_file_sha256": {
+    "skills/scripts/validate_pack.py": "6e66a6d2e0f4cb8c498adc53ec701851e0dde0a8d5ccc2c7e1f1d0fe8ec54b10",
+    "skills/scripts/evaluation_graders.py": "a6f6d231d75ec76ac9213c90a6d7e274c05e0252a377556c8e134e25fbca358f",
+    "skills/scripts/run_evaluations.py": "29285b6be1d33e6c516a1b288e45af22d55121108d30bd0d65c459c9506f312f",
+    "skills/scripts/package_pack.py": "e67e869f87e380d5d30d4dead8fa228f5d77244fc7a82eebe721162cedb027ab"
+  },
+  "observations": [
+    {
+      "id": "IR-1",
+      "path_function": "skills/scripts/validate_pack.py bundle_record_errors",
+      "reproducer": "Copy positive record fixtures to TemporaryDirectory; change plan.data.requirements[0].acceptance[0].target to '999'; update only plan.json manifest SHA-256; load bundle and assess plan baseline.",
+      "actual_stdout_excerpt": "baseline load []\nbaseline plan eligible []\ncontradictory requirement load []\ncontradictory requirement eligible []\n",
+      "stderr": "",
+      "exit_code": 0,
+      "result": "FAIL: diverging authoritative requirement snapshot accepted"
+    },
+    {
+      "id": "IR-2",
+      "path_function": "skills/scripts/validate_pack.py semantic_errors and eligibility_errors",
+      "reproducer": "Append a ledger issue with blocks:['*'], resolution:'UNRESOLVED'; repin ledger SHA-256; assess DEPLOY accept.",
+      "actual_stdout_excerpt": "authoritative blocker load []\nauthoritative blocker DEPLOY accept []\n",
+      "stderr": "",
+      "exit_code": 0,
+      "result": "FAIL: authoritative global blocker ignored"
+    },
+    {
+      "id": "IR-3",
+      "path_function": "skills/scripts/evaluation_graders.py grade_trial stage artifact assessment",
+      "reproducer": "Call record_errors on untouched positive BUILD and TEST records without external bundle, as the grader does; compare valid bundle eligibility.",
+      "actual_stdout_excerpt": "standalone BUILD errors ['SUCCEEDED stage lacks successful action receipt in its journal/state store']\nstandalone TEST errors ['SUCCEEDED stage lacks successful action receipt in its journal/state store']\n",
+      "stderr": "",
+      "exit_code": 0,
+      "result": "FAIL: valid bundle-backed execution artifacts rejected by standalone grading"
+    },
+    {
+      "id": "IR-4",
+      "path_function": "skills/scripts/validate_pack.py eligibility_errors handoff branch",
+      "reproducer": "Change positive test-handoff task_id to UNRELATED-TASK; repin manifest; assess handoff eligibility.",
+      "actual_stdout_excerpt": "wrong-task handoff load []\nwrong-task handoff eligible []\n",
+      "stderr": "",
+      "exit_code": 0,
+      "result": "FAIL: handoff may claim an artifact from another task"
+    },
+    {
+      "id": "IR-5",
+      "path_function": "skills/scripts/package_pack.py write_payload and contained",
+      "reproducer": "Construct a minimal synthetic pack in TEMP; create output/portable/plan as a Windows directory junction to sibling outside-output; run build(output,source). All paths are confined to one owned TEMP parent.",
+      "actual_stdout_excerpt": "junction creation 0 Junction created for ...out\\portable\\plan <<===>> ...outside-output\npackaging reported PASS\nwrote outside requested output True\n",
+      "stderr": "",
+      "exit_code": 0,
+      "result": "FAIL: stage destination root junction escaped requested output"
+    },
+    {
+      "id": "IR-6",
+      "path_function": "skills/scripts/evaluation_graders.py grade_trial early return",
+      "reproducer": "Create E27 TEMP fixture; perform denied protected write, deliberately tamper protected oracle only in TEMP, set trial execution FAILED, then grade.",
+      "actual_stdout_excerpt": "denied request DENIED\nobserved protected tamper True\ngrading {\"trial_id\": \"offline-failed-runtime\", \"status\": \"INCONCLUSIVE\", \"assertions\": [], \"review\": \"NOT_RUN\", \"execution\": \"FAILED\", \"blocker_refs\": []}\n",
+      "stderr": "",
+      "exit_code": 0,
+      "result": "FAIL: runtime failure hides observed critical integrity failure"
+    },
+    {
+      "id": "IR-7",
+      "path_function": "skills/scripts/evaluation_graders.py grade_trial denied-action check",
+      "reproducer": "Fresh E27 TEMP fixture: denied fixture_write of protected oracle, valid authorized README correction and result index, SUCCEEDED execution, synthetic independent review PASS.",
+      "actual_stdout_excerpt": "forbidden write status DENIED\ngrade status PASS\nfailing checks []\n",
+      "stderr": "",
+      "exit_code": 0,
+      "result": "FAIL: forbidden protected write attempt omitted from critical checks"
+    }
+  ],
+  "limitations": [
+    "File symlink creation was NOT_RUN because Windows returned WinError 1314; the successful junction probe used an actual Windows junction.",
+    "No live CLI, network or model client was invoked by the probes.",
+    "Review records used in grader probes are explicitly synthetic data, not authentic approval."
+  ]
+}

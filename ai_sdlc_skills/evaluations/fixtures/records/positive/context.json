@@ -1,0 +1,681 @@
+{
+  "schema_version": "2.0.0",
+  "project_id": "PROJECT-SYNTHETIC-ARITHMETIC",
+  "revision": "r1",
+  "parameters": {
+    "product_domain": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "product_domain for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "stakeholder_roles": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "stakeholder_roles for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "authorized_sources": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "authorized_sources for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "scope_and_non_goals": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "scope_and_non_goals for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "acceptance_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "acceptance_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "prioritization_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "prioritization_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "repository_state": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "repository_state for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "technology_stack": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "technology_stack for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "toolchain": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "toolchain for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "deployment_environment": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "deployment_environment for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "release_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "release_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "data_classification": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "data_classification for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "privacy_retention_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "privacy_retention_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "jurisdiction": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "jurisdiction for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "criticality": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "criticality for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "risk_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "risk_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "security_requirements": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "security_requirements for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "accessibility_applicability": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "accessibility_applicability for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "safety_applicability": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "safety_applicability for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "sector_requirements": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "sector_requirements for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "ai_product_applicability": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "ai_product_applicability for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "ai_governance": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "ai_governance for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "service_objectives": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "service_objectives for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "metric_definitions": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "metric_definitions for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "alert_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "alert_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "resource_budgets": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "resource_budgets for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "retry_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "retry_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "concurrency_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "concurrency_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "tool_permissions": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "tool_permissions for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "authorization_roles": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "authorization_roles for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "enforcement_inventory": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "enforcement_inventory for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "standards_baseline": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "standards_baseline for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "freshness_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "freshness_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    },
+    "evaluation_policy": {
+      "state": "RESOLVED",
+      "value": {
+        "synthetic": true,
+        "source": {
+          "id": "SOURCE-POLICY",
+          "revision": "r1",
+          "location": "sources/policy.json"
+        },
+        "bounded_value": "evaluation_policy for isolated fixture only"
+      },
+      "authority": "fixture-owner",
+      "evidence_ids": [
+        "E-SOURCE"
+      ],
+      "owner": "fixture-owner",
+      "blocks": [],
+      "rationale": "Explicit synthetic fixture policy; not a real project default"
+    }
+  },
+  "state_stores": {
+    "manifest": {
+      "id": "BUNDLE-1",
+      "revision": "r1",
+      "location": "bundle.json"
+    },
+    "ledger": {
+      "id": "LEDGER-1",
+      "revision": "r1",
+      "location": "ledger.json"
+    },
+    "trace_graph": {
+      "id": "GRAPH-1",
+      "revision": "r1",
+      "location": "trace_graph.json"
+    },
+    "approval_registry": {
+      "id": "APPROVAL-REGISTRY-1",
+      "revision": "r1",
+      "location": "approval_registry.json"
+    },
+    "execution_journal": {
+      "id": "JOURNAL-1",
+      "revision": "r1",
+      "location": "execution_journal.json"
+    }
+  },
+  "id": "CONTEXT-1"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "SOURCE-POLICY",
+  "revision": "r1",
+  "synthetic": true,
+  "payload": {
+    "scope": "isolated arithmetic fixture",
+    "expiry_policy": "no expiry for immutable synthetic fixture",
+    "authority": "fixture-owner",
+    "acceptance": "add(2,3)=5; no production access",
+    "bounds": "one operation, no retry",
+    "risk": "local synthetic example only"
+  }
+}

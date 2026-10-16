@@ -1,0 +1,10 @@
+{
+  "command": ".dist\\validation-env\\Scripts\\python.exe -B skills\\scripts\\run_evaluations.py --output .dist\\evaluation-runs\\v2.0.0-blocked --bundle-root .dist\\v2.0.0\\portable --import-preflight .dist\\evaluation-runs\\preflight\\summary.json",
+  "result": {
+    "chunk_id": "2362f0",
+    "wall_time_seconds": 1.5717911,
+    "exit_code": 1,
+    "original_token_count": 41,
+    "output": "{\"result\": \"BLOCKED\", \"planned_behavioral_trials\": 240, \"actual_behavioral_executions\": 0, \"counts\": {\"PASS\": 0, \"FAIL\": 0, \"NOT_RUN\": 240, \"INCONCLUSIVE\": 0}}\r\n"
+  }
+}

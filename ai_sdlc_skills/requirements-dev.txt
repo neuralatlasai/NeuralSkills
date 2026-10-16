@@ -1,0 +1,7 @@
+# Python 3.12 validation environment. These are tooling pins, not application requirements.
+attrs==23.2.0
+jsonschema==4.23.0
+jsonschema-specifications==2024.10.1
+PyYAML==6.0.1
+referencing==0.35.1
+rpds-py==0.20.0

@@ -1,0 +1,104 @@
+{
+  "pack_version": "1.0.1",
+  "report_date": "2026-10-16",
+  "status": "PASS",
+  "changes": [
+    "Removed hardcoded developer path",
+    "Moved generated authoring reports and result logs outside skills",
+    "Replaced authoring gap report with reusable project context contract",
+    "Removed prefilled authoring issues from templates",
+    "Removed authoring-plan dependency from runtime authority"
+  ],
+  "validation": [
+    {
+      "command": [
+        "python",
+        "-B",
+        "skills/scripts/validate_pack.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "receipt": {
+        "result": "PASS",
+        "checks": {
+          "skills": 6,
+          "schemas": 4,
+          "templates": 8,
+          "local_links": 132,
+          "synthetic_invariant_cases": 13
+        },
+        "errors": []
+      }
+    },
+    {
+      "check": "skill-creator quick_validate",
+      "stage": "plan",
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "check": "skill-creator quick_validate",
+      "stage": "design",
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "check": "skill-creator quick_validate",
+      "stage": "build",
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "check": "skill-creator quick_validate",
+      "stage": "test",
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "check": "skill-creator quick_validate",
+      "stage": "deploy",
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "check": "skill-creator quick_validate",
+      "stage": "maintain",
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    }
+  ],
+  "portability": {
+    "hardcoded_absolute_windows_paths": [],
+    "local_dependencies_outside_pack": [],
+    "prefilled_template_issues": 0
+  },
+  "content_digests": {
+    "build/SKILL.md": "76956195173a27f5dbf9995e2355408ab947c21bdc35cdacd7ef62d40d6701d6",
+    "deploy/SKILL.md": "6457f953799e410c96b5af19a7c5b552791793276bdc0ceb25165dd7d6ee81f2",
+    "design/SKILL.md": "d3db6e419f735ec46af393d61d563e54866b6489c12904abe187a1b9de52e613",
+    "evaluations/cases.md": "4d428f71f322d5ee73f41474eab9925f0a853ce6f83d7ed97666257c3b9d6407",
+    "maintain/SKILL.md": "1a756b79804eb8e191c13790d2cca5023a4c1652923ff8effa6cb33c83b246d7",
+    "plan/SKILL.md": "632c522d3d4209db0c7524f857a3ac48c06e6765a090c799fded7abfbd125097",
+    "README.md": "a53f4735dbb40ec5c054ecefe49818f9e6a114f36337edc9923ebcbf734fa276",
+    "scripts/validate_pack.py": "b8c267d16a7a7037b95bbc7c815b9655d5911fd158a28c2dc84edcd0c80269c8",
+    "shared/artifact-contracts.md": "f8638734b3cede99dd9cdcf39ba2d5f777c1ce178ac5973664a1d424582df6c7",
+    "shared/governance.md": "f4cbe6ad85dd508b8557e8eb9613dc7657c2d47ec32e376a1f83c606b70c740e",
+    "shared/platform-adapters.md": "2eba1eb6dbbdc08688abcedb05c69ec9d36ffca157943a3e838283263d932e14",
+    "shared/project-context.md": "1a813ffc6bdb70e2e346b0a31c225a1277df53efc1bd2d1a11910e72a17c6bfb",
+    "shared/schemas/artifact.schema.json": "1692ec3e0a769f0d6ac76c6a7c5256a6d4fad301f53c345968b8bffe07fdf1cb",
+    "shared/schemas/common.schema.json": "03a2aaa84f3746570ebd8aaf02d55b7920c3b64ca3d3a27e9db5c9d6ba132dfd",
+    "shared/schemas/context.schema.json": "b935f22c87cc8ed4303b714397b1e8bef500bdfbd8444e8377da54a6220871d3",
+    "shared/schemas/handoff.schema.json": "bff0f9d175854fd83979dc40afe6cef3036140142bd832b61e4954a195671b84",
+    "shared/standards-register.md": "fa424cbd22f81783197cf3acccc1cbfb398aa33d1538a889147250c3ffa29e0e",
+    "shared/templates/architecture.md": "4f878240e10060600154f61b09a8e8df8f6c7016f2f81a205cdb2eaf97e8e5fd",
+    "shared/templates/build-record.md": "3b59985d7646e6e447c62263aa15b54290e6f93616bdb00331347d6a2e7af297",
+    "shared/templates/context.json": "7f526ffcbba83bf7305b4ee02120545ae3cdd088d661061b088c8dbff279ec05",
+    "shared/templates/handoff.json": "e4c0ba7357678dd7bad33fa1bc0db323c75d7c3a7ca5d1732b15cf37d30e78c6",
+    "shared/templates/intent.md": "c2d7346b1589ba0169f5d83b0f7c5165ac7bd36294eb92e5b321ff08c94752b2",
+    "shared/templates/maintenance-record.md": "ecc9518726437e6052a5dbe2798d4589975eb95905810a5296cb345fcf82ce10",
+    "shared/templates/release-record.md": "21f762197bff757ba15ba20da19056f54666980e7d0628fa811c9f3515155083",
+    "shared/templates/test-report.md": "5dda4d7ec8dda715c6c576be850960c0836be01b29caffcda4407534d2068554",
+    "test/SKILL.md": "e68ce5e29bbd3204929de4c453d5bfd0a24b2d956ceab763162c7097f3ee0938"
+  },
+  "historical_evidence": "Earlier results retained separately; no new application or production execution implied."
+}

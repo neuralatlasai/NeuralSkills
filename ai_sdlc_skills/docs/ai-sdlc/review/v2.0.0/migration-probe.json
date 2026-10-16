@@ -1,0 +1,38 @@
+{
+  "synthetic_isolated_migration": true,
+  "command": [
+    "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\heman\\Desktop\\Brain\\skills\\scripts\\validate_pack.py",
+    "--mode",
+    "structural",
+    "--instance",
+    "C:\\Users\\heman\\Desktop\\Brain\\.dist\\upgrade-rollback-probe\\v2\\test-report.md",
+    "--schema",
+    "artifact"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"validator_version\": \"2.0.0\",\n  \"result\": \"PASS\",\n  \"mode\": \"structural\",\n  \"action\": null,\n  \"structural_result\": \"PASS\",\n  \"eligibility_result\": \"NOT_EVALUATED\",\n  \"authority_authenticated\": false,\n  \"checks\": {\n    \"instance\": \"C:\\\\Users\\\\heman\\\\Desktop\\\\Brain\\\\.dist\\\\upgrade-rollback-probe\\\\v2\\\\test-report.md\",\n    \"schema\": \"artifact\"\n  },\n  \"errors\": []\n}\n",
+  "stderr": "",
+  "migration_receipt": {
+    "schema_version": "2.0.0",
+    "source_schema": "1.0.0",
+    "source": "test-report.md",
+    "source_sha256": "5dda4d7ec8dda715c6c576be850960c0836be01b29caffcda4407534d2068554",
+    "output": "test-report.md",
+    "output_sha256": "b835ecfee1f73cda27ef82c10c11bded1625953dc0ea03fa7d14dd4469dab1b1",
+    "original_copy": "test-report.md.original",
+    "result": "DRAFT_REQUIRES_REQUALIFICATION",
+    "historical_input_modified": false,
+    "eligibility": "NOT_ESTABLISHED",
+    "changes": [
+      "New record identity/revision",
+      "Draft, stale verification and unknown historical execution",
+      "Active approval and gates cleared",
+      "Pinned v2 state stores and new evidence must be supplied"
+    ]
+  },
+  "original_preserved": true,
+  "result": "PASS",
+  "eligibility": "NOT_ESTABLISHED; migrated gates remain BLOCKED, verification STALE, approvals NOT_REQUESTED"
+}

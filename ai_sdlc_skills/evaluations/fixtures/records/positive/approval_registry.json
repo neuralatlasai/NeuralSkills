@@ -1,0 +1,245 @@
+{
+  "schema_version": "2.0.0",
+  "id": "APPROVAL-REGISTRY-1",
+  "revision": "r1",
+  "approvals": [
+    {
+      "id": "APPROVAL-PLAN",
+      "revision": "r1",
+      "status": "APPROVED",
+      "authority": "fixture-owner",
+      "policy": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "scope": [
+        "isolated arithmetic fixture"
+      ],
+      "artifact_refs": [
+        {
+          "id": "PLAN-1",
+          "revision": "r1",
+          "location": "plan.json"
+        }
+      ],
+      "expires_at": "NONE",
+      "evidence_ids": [
+        "E-APPROVAL"
+      ],
+      "actions": [
+        "draft",
+        "baseline",
+        "handoff"
+      ],
+      "target_refs": [
+        {
+          "id": "PLAN-1",
+          "revision": "r1",
+          "location": "plan.json"
+        }
+      ],
+      "configuration_refs": []
+    },
+    {
+      "id": "APPROVAL-DESIGN",
+      "revision": "r1",
+      "status": "APPROVED",
+      "authority": "fixture-owner",
+      "policy": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "scope": [
+        "isolated arithmetic fixture"
+      ],
+      "artifact_refs": [
+        {
+          "id": "DESIGN-1",
+          "revision": "r1",
+          "location": "design.json"
+        }
+      ],
+      "expires_at": "NONE",
+      "evidence_ids": [
+        "E-APPROVAL"
+      ],
+      "actions": [
+        "draft",
+        "baseline",
+        "handoff"
+      ],
+      "target_refs": [
+        {
+          "id": "DESIGN-1",
+          "revision": "r1",
+          "location": "design.json"
+        }
+      ],
+      "configuration_refs": []
+    },
+    {
+      "id": "APPROVAL-BUILD",
+      "revision": "r1",
+      "status": "APPROVED",
+      "authority": "fixture-owner",
+      "policy": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "scope": [
+        "isolated arithmetic fixture"
+      ],
+      "artifact_refs": [
+        {
+          "id": "SOURCE-CANDIDATE",
+          "revision": "r1",
+          "location": "sources/candidate.json"
+        }
+      ],
+      "expires_at": "NONE",
+      "evidence_ids": [
+        "E-APPROVAL"
+      ],
+      "actions": [
+        "draft",
+        "execute",
+        "handoff"
+      ],
+      "target_refs": [
+        {
+          "id": "SOURCE-CANDIDATE",
+          "revision": "r1",
+          "location": "sources/candidate.json"
+        }
+      ],
+      "configuration_refs": []
+    },
+    {
+      "id": "APPROVAL-TEST",
+      "revision": "r1",
+      "status": "APPROVED",
+      "authority": "fixture-owner",
+      "policy": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "scope": [
+        "isolated arithmetic fixture"
+      ],
+      "artifact_refs": [
+        {
+          "id": "SOURCE-CANDIDATE",
+          "revision": "r1",
+          "location": "sources/candidate.json"
+        }
+      ],
+      "expires_at": "NONE",
+      "evidence_ids": [
+        "E-APPROVAL"
+      ],
+      "actions": [
+        "draft",
+        "execute",
+        "accept",
+        "handoff"
+      ],
+      "target_refs": [
+        {
+          "id": "SOURCE-CANDIDATE",
+          "revision": "r1",
+          "location": "sources/candidate.json"
+        }
+      ],
+      "configuration_refs": []
+    },
+    {
+      "id": "APPROVAL-DEPLOY",
+      "revision": "r1",
+      "status": "APPROVED",
+      "authority": "fixture-owner",
+      "policy": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "scope": [
+        "isolated arithmetic fixture"
+      ],
+      "artifact_refs": [
+        {
+          "id": "SOURCE-CANDIDATE",
+          "revision": "r1",
+          "location": "sources/candidate.json"
+        }
+      ],
+      "expires_at": "NONE",
+      "evidence_ids": [
+        "E-APPROVAL"
+      ],
+      "actions": [
+        "draft",
+        "prepare",
+        "execute",
+        "accept",
+        "handoff"
+      ],
+      "target_refs": [
+        {
+          "id": "SOURCE-ENVIRONMENT",
+          "revision": "r1",
+          "location": "sources/environment.json"
+        }
+      ],
+      "configuration_refs": [
+        {
+          "id": "SOURCE-CONFIGURATION",
+          "revision": "r1",
+          "location": "sources/configuration.json"
+        }
+      ]
+    },
+    {
+      "id": "APPROVAL-MAINTAIN",
+      "revision": "r1",
+      "status": "APPROVED",
+      "authority": "fixture-owner",
+      "policy": {
+        "id": "SOURCE-POLICY",
+        "revision": "r1",
+        "location": "sources/policy.json"
+      },
+      "scope": [
+        "isolated arithmetic fixture"
+      ],
+      "artifact_refs": [
+        {
+          "id": "MAINTAIN-1",
+          "revision": "r1",
+          "location": "maintain.json"
+        }
+      ],
+      "expires_at": "NONE",
+      "evidence_ids": [
+        "E-APPROVAL"
+      ],
+      "actions": [
+        "draft",
+        "execute",
+        "close",
+        "handoff"
+      ],
+      "target_refs": [
+        {
+          "id": "SOURCE-ENVIRONMENT",
+          "revision": "r1",
+          "location": "sources/environment.json"
+        }
+      ],
+      "configuration_refs": []
+    }
+  ]
+}

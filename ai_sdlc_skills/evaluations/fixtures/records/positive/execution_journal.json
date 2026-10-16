@@ -1,0 +1,193 @@
+{
+  "schema_version": "2.0.0",
+  "id": "JOURNAL-1",
+  "revision": "r1",
+  "actions": [
+    {
+      "operation_key": "OP-PLAN",
+      "action": "baseline",
+      "target": "PLAN-1",
+      "input_revision": "r1",
+      "execution": "SUCCEEDED",
+      "receipt": "sources/receipt.json",
+      "retries_used": 0,
+      "target_ref": {
+        "id": "PLAN-1",
+        "revision": "r1",
+        "location": "plan.json"
+      },
+      "configuration_refs": [],
+      "authorization_ref": {
+        "id": "APPROVAL-PLAN",
+        "revision": "r1",
+        "location": "approval_registry.json"
+      },
+      "evidence_ids": [
+        "E-EXECUTION"
+      ],
+      "stage": "PLAN",
+      "task_id": "TASK-FIXTURE",
+      "subject_ref": {
+        "id": "PLAN-1",
+        "revision": "r1",
+        "location": "plan.json"
+      }
+    },
+    {
+      "operation_key": "OP-DESIGN",
+      "action": "baseline",
+      "target": "DESIGN-1",
+      "input_revision": "r1",
+      "execution": "SUCCEEDED",
+      "receipt": "sources/receipt.json",
+      "retries_used": 0,
+      "target_ref": {
+        "id": "DESIGN-1",
+        "revision": "r1",
+        "location": "design.json"
+      },
+      "configuration_refs": [],
+      "authorization_ref": {
+        "id": "APPROVAL-DESIGN",
+        "revision": "r1",
+        "location": "approval_registry.json"
+      },
+      "evidence_ids": [
+        "E-EXECUTION"
+      ],
+      "stage": "DESIGN",
+      "task_id": "TASK-FIXTURE",
+      "subject_ref": {
+        "id": "DESIGN-1",
+        "revision": "r1",
+        "location": "design.json"
+      }
+    },
+    {
+      "operation_key": "OP-BUILD",
+      "action": "execute",
+      "target": "SOURCE-CANDIDATE",
+      "input_revision": "r1",
+      "execution": "SUCCEEDED",
+      "receipt": "sources/receipt.json",
+      "retries_used": 0,
+      "target_ref": {
+        "id": "SOURCE-CANDIDATE",
+        "revision": "r1",
+        "location": "sources/candidate.json"
+      },
+      "configuration_refs": [],
+      "authorization_ref": {
+        "id": "APPROVAL-BUILD",
+        "revision": "r1",
+        "location": "approval_registry.json"
+      },
+      "evidence_ids": [
+        "E-EXECUTION"
+      ],
+      "stage": "BUILD",
+      "task_id": "TASK-FIXTURE",
+      "subject_ref": {
+        "id": "SOURCE-CANDIDATE",
+        "revision": "r1",
+        "location": "sources/candidate.json"
+      }
+    },
+    {
+      "operation_key": "OP-TEST",
+      "action": "execute",
+      "target": "SOURCE-CANDIDATE",
+      "input_revision": "r1",
+      "execution": "SUCCEEDED",
+      "receipt": "sources/receipt.json",
+      "retries_used": 0,
+      "target_ref": {
+        "id": "SOURCE-CANDIDATE",
+        "revision": "r1",
+        "location": "sources/candidate.json"
+      },
+      "configuration_refs": [],
+      "authorization_ref": {
+        "id": "APPROVAL-TEST",
+        "revision": "r1",
+        "location": "approval_registry.json"
+      },
+      "evidence_ids": [
+        "E-EXECUTION"
+      ],
+      "stage": "TEST",
+      "task_id": "TASK-FIXTURE",
+      "subject_ref": {
+        "id": "SOURCE-CANDIDATE",
+        "revision": "r1",
+        "location": "sources/candidate.json"
+      }
+    },
+    {
+      "operation_key": "OP-DEPLOY",
+      "action": "execute",
+      "target": "SOURCE-ENVIRONMENT",
+      "input_revision": "r1",
+      "execution": "SUCCEEDED",
+      "receipt": "sources/receipt.json",
+      "retries_used": 0,
+      "target_ref": {
+        "id": "SOURCE-ENVIRONMENT",
+        "revision": "r1",
+        "location": "sources/environment.json"
+      },
+      "configuration_refs": [
+        {
+          "id": "SOURCE-CONFIGURATION",
+          "revision": "r1",
+          "location": "sources/configuration.json"
+        }
+      ],
+      "authorization_ref": {
+        "id": "APPROVAL-DEPLOY",
+        "revision": "r1",
+        "location": "approval_registry.json"
+      },
+      "evidence_ids": [
+        "E-EXECUTION"
+      ],
+      "stage": "DEPLOY",
+      "task_id": "TASK-FIXTURE",
+      "subject_ref": {
+        "id": "SOURCE-CANDIDATE",
+        "revision": "r1",
+        "location": "sources/candidate.json"
+      }
+    },
+    {
+      "operation_key": "OP-MAINTAIN",
+      "action": "execute",
+      "target": "SOURCE-ENVIRONMENT",
+      "input_revision": "r1",
+      "execution": "SUCCEEDED",
+      "receipt": "sources/receipt.json",
+      "retries_used": 0,
+      "target_ref": {
+        "id": "SOURCE-ENVIRONMENT",
+        "revision": "r1",
+        "location": "sources/environment.json"
+      },
+      "configuration_refs": [],
+      "authorization_ref": {
+        "id": "APPROVAL-MAINTAIN",
+        "revision": "r1",
+        "location": "approval_registry.json"
+      },
+      "evidence_ids": [
+        "E-EXECUTION"
+      ],
+      "stage": "MAINTAIN",
+      "task_id": "TASK-FIXTURE",
+      "subject_ref": {
+        "id": "MAINTAIN-1",
+        "revision": "r1",
+        "location": "maintain.json"
+      }
+    }
+  ]
+}

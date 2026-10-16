@@ -1,0 +1,17 @@
+{
+  "synthetic_isolated_rollback": true,
+  "restored_files": 32,
+  "all_original_digests_match": true,
+  "source_working_tree_modified": false,
+  "command": [
+    "C:\\Users\\heman\\Desktop\\Brain\\.dist\\validation-env\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\heman\\Desktop\\Brain\\.dist\\upgrade-rollback-probe\\v1\\skills\\scripts\\validate_pack.py",
+    "--self-test"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"result\": \"PASS\",\n  \"checks\": {\n    \"skills\": 6,\n    \"schemas\": 4,\n    \"templates\": 8,\n    \"local_links\": 132,\n    \"synthetic_invariant_cases\": 13\n  },\n  \"errors\": []\n}\n",
+  "stderr": "",
+  "result": "PASS",
+  "limit": "Restores and checks historical pack in isolation; does not qualify application/database rollback."
+}
