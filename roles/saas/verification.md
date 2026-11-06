@@ -2,6 +2,8 @@
 
 Freeze acceptance before results. Record requirement ID, status, actual command/observation, conditions and evidence. Use PASS, FAIL, UNVERIFIED or NOT_APPLICABLE with rationale; preserve initial failures and rerun affected checks after repair.
 
+For a requested report, apply the [verification record format](documentation.md#5-report-verification-and-traceability); distinguish actual review/approval status from execution results and link the tested baseline.
+
 | Changed concern | Meaningful evidence |
 | --- | --- |
 | Component/page | Actual action/states, names, keyboard/focus, rendered long content; declared reference conditions and narrow/intermediate/desktop layouts |

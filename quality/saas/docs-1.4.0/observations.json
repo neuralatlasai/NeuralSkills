@@ -1,0 +1,39 @@
+{
+  "createdAt": "2026-11-06T10:59:11.257Z",
+  "scope": "Document word bounds and file links plus frozen source/case integrity; semantic quality evaluated independently",
+  "status": "PASS",
+  "documents": [
+    {
+      "id": "F01",
+      "file": "quality/saas/docs-1.4.0/observations/F01/change-record.md",
+      "words": 399,
+      "maxWords": 400,
+      "sha256": "be6f2f15fe31028b550440c95c47933b03466f2da6fa396e9462ce35846080ce",
+      "wordAndFileLinks": "PASS",
+      "exclusiveSingleFileDelivery": "PASS (coordinator directory inventory)"
+    },
+    {
+      "id": "F02",
+      "file": "quality/saas/docs-1.4.0/observations/F02/design-operation.md",
+      "words": 730,
+      "maxWords": 800,
+      "sha256": "18479c5e1e35ca0327800332c948151b20e858980c5db69bf95fe2c4a3f96348",
+      "wordAndFileLinks": "PASS",
+      "exclusiveSingleFileDelivery": "PASS (coordinator directory inventory)"
+    }
+  ],
+  "frozenUnchanged": 22,
+  "resourceObservation": {
+    "F01": {
+      "agentReportedTools": 4
+    },
+    "F02": {
+      "agentReportedTools": 5
+    },
+    "exactModel": null,
+    "tokens": null,
+    "cost": null,
+    "comparableElapsedTime": null
+  },
+  "limit": "Two single-run documentation tasks; no product implementation or tests, user research, formal standards conformity or efficiency advantage demonstrated."
+}

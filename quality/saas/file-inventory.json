@@ -1,6 +1,6 @@
 {
-  "createdAt": "2026-11-06T10:31:28.492Z",
-  "skillVersion": "1.3.1",
+  "createdAt": "2026-11-06T11:01:36.739Z",
+  "skillVersion": "1.4.0",
   "scope": "One flat active skill plus retained version-attributed evidence; self-index and five local browser profiles excluded.",
   "excluded": [
     "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/supplemental/chrome-profile/",
@@ -31,8 +31,8 @@
     },
     {
       "path": "quality/saas/README.md",
-      "bytes": 1358,
-      "sha256": "c8dbec730e5c83dd937cafccb14bb0b7d6f06bfc607fb8dd67a0c5da32b836af",
+      "bytes": 1409,
+      "sha256": "531a2b4a7d26172acbfff9c0923d80cb9042449e1d160c672a85d05b29ccc36c",
       "purpose": "Version-attributed authoring evidence or evaluation resource"
     },
     {
@@ -489,6 +489,72 @@
       "path": "quality/saas/devops-1.3/validation-controls-initial.json",
       "bytes": 10690,
       "sha256": "cf0d61acdb8df4cb722fd2fa5becfe60a14a2db12a0ae645f65430794e2a9f4a",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/cases.json",
+      "bytes": 2310,
+      "sha256": "3e00ad8c2b2bf9d5aa781a124877c3c6745a2987b8e293e61b2df2de560dbd81",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/criteria.json",
+      "bytes": 1411,
+      "sha256": "d25310416b3d6039c9831c5b275641087f7a721e3b6f595410607d79813e60f0",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/freeze.json",
+      "bytes": 3210,
+      "sha256": "9b68239fb001329128621a38ad9cf1ac4d977271ac477505839843d9c646ff97",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/observations.json",
+      "bytes": 1328,
+      "sha256": "c86881b81b55ac9cd6db3211d405297ca7998b9d259d37fb6635c16efaff5db4",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/observations/F01/change-record.md",
+      "bytes": 2986,
+      "sha256": "be6f2f15fe31028b550440c95c47933b03466f2da6fa396e9462ce35846080ce",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/observations/F02/design-operation.md",
+      "bytes": 5945,
+      "sha256": "18479c5e1e35ca0327800332c948151b20e858980c5db69bf95fe2c4a3f96348",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/protocol.md",
+      "bytes": 1136,
+      "sha256": "a5e37d34cf93a5961beaef3a66ebd861c79958dcc43667071bfe6fbe41ff6af1",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/report.md",
+      "bytes": 5547,
+      "sha256": "66fb5dfad2ac736c0224d56e70fa94075814b2a498e0b90e477c2754368e2e3d",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/review/artifacts.json",
+      "bytes": 14761,
+      "sha256": "9d3ab71be4fb6726255f6bb68064a122fe2c4816e03662ce199dc298ca1c31a9",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/review/profile.json",
+      "bytes": 641,
+      "sha256": "383a49fa5db7e1e7aff5090e809663553b1de32602c2f9564b343c2f855ea4ef",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/docs-1.4.0/structural.json",
+      "bytes": 543,
+      "sha256": "31e1864c524104ba1a47dbeebf4f311c85c13ec9a1579fcd76b4a44fb69d86f7",
       "purpose": "Version-attributed authoring evidence or evaluation resource"
     },
     {
@@ -12391,8 +12457,8 @@
     },
     {
       "path": "roles/saas/SKILL.md",
-      "bytes": 2563,
-      "sha256": "4d5ff0e4c7fc64fa1d562ba51f676362650d22e0b144cce79e7e6a0ffc0f0696",
+      "bytes": 2611,
+      "sha256": "5f5cd0dbcba835da31d730429088fa5ab21f9ac341d9e58e5febbc90f746d2cd",
       "purpose": "Active flat skill resource"
     },
     {
@@ -12456,6 +12522,12 @@
       "purpose": "Active flat skill resource"
     },
     {
+      "path": "roles/saas/documentation.md",
+      "bytes": 4869,
+      "sha256": "b869513a06be28c675ca52c183a28c8be1aa77c5a241ca06c28547426b7aae9e",
+      "purpose": "Active flat skill resource"
+    },
+    {
       "path": "roles/saas/frontend-design.md",
       "bytes": 7790,
       "sha256": "f5c7abc285f0d071ec94cbea8587a0b6c0e2145c70ce3c78c35e048459b54515",
@@ -12469,32 +12541,32 @@
     },
     {
       "path": "roles/saas/manifest.json",
-      "bytes": 2415,
-      "sha256": "2ceb31b8eb54ddf576d58aa2843526c4c3a2695fbdd54f477e208d46b117e1d0",
+      "bytes": 2611,
+      "sha256": "02987055b916fe0fcb39ce8ea0af3b35cd1aee5e447de4962811ba921cf14205",
       "purpose": "Active flat skill resource"
     },
     {
       "path": "roles/saas/source-register.md",
-      "bytes": 28033,
-      "sha256": "9fb264f725bbee389595adc26f31bc73eafee291639925243a622315a61950bc",
+      "bytes": 30022,
+      "sha256": "d37dd218a32a2873512ef946b7b79964c22070847e98a8bfd18beb788b96b70d",
       "purpose": "Active flat skill resource"
     },
     {
       "path": "roles/saas/standards.md",
-      "bytes": 3870,
-      "sha256": "cbee29bd5cabbce047bb502081c1e5e872adbe4ecc20d46972f50ab3e59f9936",
+      "bytes": 4787,
+      "sha256": "df85f4b1fa92c76d5d60c7aaac1b180cce574cd8a99c3714f1d038a3c3b8d41e",
       "purpose": "Active flat skill resource"
     },
     {
       "path": "roles/saas/verification.md",
-      "bytes": 2819,
-      "sha256": "9ec8040cea65250e04fdd9c653a3c30d6c36b95a88c9ef1fbb4f76ee418fcba4",
+      "bytes": 3036,
+      "sha256": "2c72e1869bcf7a56b583225db9e7641a827081ea4bdea7dcee6ad7ad1dae5b48",
       "purpose": "Active flat skill resource"
     },
     {
       "path": "roles/saas/workflow.md",
-      "bytes": 3493,
-      "sha256": "d2a4b4b6ddb3e6bcdb98a9152da69436de35d069ec4cee0b16011524e467fe12",
+      "bytes": 3707,
+      "sha256": "8a03671395aeef14e4a37eeca969a344746938e89b544ef75be96f9e8d770eec",
       "purpose": "Active flat skill resource"
     }
   ]

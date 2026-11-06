@@ -1,0 +1,7 @@
+{
+  "method": "Freeze before outputs. Evaluate requested engineering-record quality, not formal IEEE conformance or exact heading words.",
+  "common": ["Record ID/purpose/scope/revision or baseline and actual owner/review state", "Distinguish supplied facts, assumptions/proposals and execution evidence", "Stable requirements/decisions/tests trace to sources and proposed artifacts", "No invented approval, implementation, research, measurement or normative clause", "Do not introduce extra permission ceremonies or unnecessary documents"],
+  "F01": ["One file and at most400words", "Verifiable duplicate-effect requirement preserves native semantics/brand", "Proposed decision and test method linked; absent implementation/tests remain unverified", "Unknown ownership/reviewer honestly unassigned"],
+  "F02": ["One file and at most800words", "System boundaries, stakeholders/concerns, relationships/state ownership and failure views represented", "Alternatives/tradeoffs/decision/reconsideration tied to supplied constraints", "Ordered host/target/prerequisite/expected/stop/recovery procedure; placeholders not execution", "Tenant/replay/publication/recovery trace; accepted job distinguished from completion", "900seconds is a target, no achieved RTO claimed"],
+  "limit": "Passing documentation does not prove product behavior, runtime recovery, implementation correctness or full standards conformity."
+}

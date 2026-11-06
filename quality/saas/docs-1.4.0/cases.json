@@ -1,0 +1,13 @@
+{
+  "scope": "Documentation authoring only. Supplied scenario facts are fixtures, not observed product or deployment behavior.",
+  "cases": [
+    {
+      "id": "F01",
+      "task": "Write one concise engineering change record, at most400words, for a small Save-button correction. Preserve native semantics and existing brand. Supplied requirement: repeated activation while a save is pending must not initiate another mutation. Supplied observation: the current button can submit twice on rapid activation; this observation was reported, not independently reproduced. Proposed decision: one pending-operation owner and duplicate suppression with accessible feedback; no implementation is supplied. No tests ran, no build exists, owner/reviewer are unassigned, no approval is given. Use appropriate stable requirement/decision/test identifiers, distinguish sources/assumptions/proposal and acceptance evidence. Do not create a separate SRS/ADR/runbook or invent numeric targets/user research. Output change-record.md only to the assigned directory."
+    },
+    {
+      "id": "F02",
+      "task": "Write one design-and-operation record, at most800words, for a proposed staging AWS container API plus existing Linux Slurm/Apptainer compute site. Supplied owner: Platform team; reviewer unassigned. Supplied constraints: preserve Slurm, staged region eu-west-1, target staging account ACCOUNT_A, authorized login host hpc-login, shared storage /project/orders; installed versions, actual cloud resources and integration code are unknown. API accepts durable jobs and returns a job identity; acceptance is not solver completion. Requirements: isolate tenant job/results, prevent duplicate final publication after replay and target recovery within900seconds. No measured recovery, deployment, build or test exists. Compare retaining site scheduling against replacing it with Kubernetes; record a justified proposal, relevant boundary/authority/deployment/failure views and relationships. Provide an ordered bounded procedure with trust/environment prerequisites and command placeholders clearly unready, recovery/stop conditions, and verification trace. Scope is authoring only, no account/cluster/SSH commands or additional approval ceremony. Output design-operation.md only to the assigned directory."
+    }
+  ]
+}

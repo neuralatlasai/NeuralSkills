@@ -1,7 +1,11 @@
 {
   "schemaVersion": "1.0",
-  "skillVersion": "1.3.1",
+  "skillVersion": "1.4.0",
   "resources": [
+    {
+      "path": "documentation.md",
+      "purpose": "On-demand tailored requirements, architecture/decision, procedure and verification formats with document control and traceability"
+    },
     {
       "path": "devops.md",
       "purpose": "Conditional infrastructure, delivery, reliability and local-to-global operating decisions"

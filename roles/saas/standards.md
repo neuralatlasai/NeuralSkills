@@ -6,10 +6,14 @@ Use current applicable editions when executing. The [research record](https://gi
 | --- | --- |
 | [ISO/IEC/IEEE 29148:2018](https://www.iso.org/standard/72089.html) | Requirement ID, stakeholder need/source, conditions, observable acceptance and evidence |
 | [ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html) | Relevant stakeholder concerns, views, interfaces/owners, relationships and decision rationale |
+| [ISO/IEC/IEEE 15289:2019](https://www.iso.org/standard/74909.html) | Purpose/content of lifecycle information items; combine or separate records proportionately |
+| [ISO/IEC/IEEE 29119-3:2021](https://www.iso.org/standard/79429.html) | Test-documentation purpose and traceability; full normative templates were not inspected |
 | [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) | Selected product-quality concerns expressed as measurable scenarios |
 | [ISO 9241-210:2019](https://www.iso.org/standard/77520.html) | Users/tasks/context, alternatives, iteration and actual evaluation; label absent research |
 
 An agent review is not a user study. Obtain applicable normative text and an agreed assessment scope before claiming formal conformance; never invent clauses or certification.
+
+Public catalogues rechecked 2026-11-06: 29148:2018 remains published, confirmed in 2024, with a replacement draft under development; 42010:2022 is published; 15289:2019 is Edition 4, confirmed in 2025 with revision underway; 29119-3:2021 is published Edition 2. A draft does not automatically replace the applicable published edition. 42010 does not prescribe recording format/media. Use the tailored [documentation profile](documentation.md) for requested engineering records; its fields and Markdown layout are local conventions, not normative clauses or a universal corporate format.
 
 ## Coding evidence
 

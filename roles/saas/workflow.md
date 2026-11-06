@@ -2,6 +2,8 @@
 
 Use this when a task spans concerns or needs explicit ownership. Routine edits use the relevant procedure and a short contract; do not create eight documents.
 
+Use the [documentation profile](documentation.md) when durable engineering records are requested or warranted; keep one authoritative identity/baseline and link active module outputs rather than duplicating them.
+
 All modules inherit the user's constraints and available tools. Dependencies are outputs of active modules, not mandatory phases or agents. Consequential decisions remain within the agreed scope. One contract owns requirements, interface versions, trusted identity, state, tokens, deadlines and acceptance. Delegate only after interfaces/ownership are fixed; one coordinator reconciles results.
 
 | Module | Activate; inputs; dependencies | Decision/procedure -> output | Acceptance; failure/recovery |

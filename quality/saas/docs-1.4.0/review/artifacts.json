@@ -1,0 +1,186 @@
+{
+  "review_kind": "Independent artifact evaluation",
+  "basis": {
+    "cases": "quality/saas/docs-1.4.0/cases.json",
+    "frozen_criteria": "quality/saas/docs-1.4.0/criteria.json",
+    "scope": "Engineering-record content only. Supplied scenario facts are fixtures. No product, deployment, recovery, implementation or test behavior was observed.",
+    "inputs_read": [
+      "quality/saas/docs-1.4.0/cases.json",
+      "quality/saas/docs-1.4.0/criteria.json",
+      "quality/saas/docs-1.4.0/observations/F01/change-record.md",
+      "quality/saas/docs-1.4.0/observations/F02/design-operation.md"
+    ],
+    "word_count_method": "The frozen word-bound checks use whitespace-delimited words in the complete UTF-8 Markdown, including headings, tables and markup. A separate lexical count of Unicode word-character runs is reported for transparency. Neither count represents model token usage; exact model token telemetry is unavailable. Both counts satisfy the bounds.",
+    "status_meanings": {
+      "PASS": "The inspected authored content satisfies the stated documentation criterion.",
+      "FAIL": "A located defect contradicts a stated documentation criterion.",
+      "UNVERIFIED": "Available evidence does not establish the claimed behavior or delivery property."
+    }
+  },
+  "cases": [
+    {
+      "id": "F01",
+      "artifact": "quality/saas/docs-1.4.0/observations/F01/change-record.md",
+      "status": "PASS",
+      "status_scope": "The supplied change-record content against the frozen documentation criteria; product acceptance remains unverified.",
+      "word_count": {
+        "maximum": 400,
+        "whitespace_words": 399,
+        "lexical_word_runs": 386,
+        "status": "PASS"
+      },
+      "checks": [
+        {
+          "criterion": "Record identity, purpose, scope, revision/baseline and actual ownership/review state",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "1-6", "finding": "CR-F01 identifies the correction, revision/date, draft/unapproved status, one-button scope and supplied baseline. Owner and reviewer are explicitly UNASSIGNED."}
+          ]
+        },
+        {
+          "criterion": "Distinguish supplied sources, assumptions/proposals and actual execution evidence",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "10-12", "finding": "Links the F01 fixture, labels the double-submit observation as reported and reproduction UNVERIFIED, and states that research/measurements are unavailable."},
+            {"lines": "16-20", "finding": "Requirements distinguish supplied constraints from proposed accessible-feedback acceptance; DEC-F01-01 is expressly proposed."},
+            {"lines": "28-39", "finding": "Identifies API-contract limitations and unavailable artifacts; both planned tests are Not run / UNVERIFIED and no approval is granted."}
+          ]
+        },
+        {
+          "criterion": "Stable requirement, decision and verification trace to source and proposed correction",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "10-22", "finding": "The fixture source, OBS-F01-01, REQ-F01-01 through REQ-F01-03 and DEC-F01-01 give stable local references. The decision describes the shared pending-operation guard for the duplicate-mutation requirement."},
+            {"lines": "34-37", "finding": "TEST-F01-01 and TEST-F01-02 explicitly map to requirement IDs, with planned methods, expected observations and actual status."}
+          ]
+        },
+        {
+          "criterion": "Verifiable duplicate-effect requirement preserves native semantics and brand",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "16-18", "finding": "Requires no additional mutation while pending, preservation of native button/form semantics and existing brand, and accessible status/keyboard/focus behavior."},
+            {"lines": "22-28", "finding": "Proposes synchronous ownership at the mutation entry boundary, shared activation/submit paths, operation-specific release, reuse of the native control and existing visual tokens, and explicit limits on local suppression."},
+            {"lines": "36-37", "finding": "Plans pending rapid-click, keyboard and form-submission observation plus pending/success/failure semantics, brand and accessibility inspection."}
+          ]
+        },
+        {
+          "criterion": "Professional proportional record without unnecessary documents or approval ceremony",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "1-39", "finding": "One concise, self-contained engineering change record contains the sources, requirements, proposal, rationale, limits and planned acceptance evidence. No separate SRS, ADR or runbook is requested."},
+            {"lines": "26-28", "finding": "Briefly compares a shared guard with visual-only state and separate flags, and defines a reconsideration condition proportionate to the small change."},
+            {"lines": "3-4,39", "finding": "Actual unapproved/unassigned state is recorded without adding a permission step."}
+          ]
+        },
+        {
+          "criterion": "No invented implementation, test, build, approval, research, numeric target or normative conformance",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "6,12,28,32-39", "finding": "Unavailable implementation/build, measurements, API contract and test evidence are stated explicitly. No performance target, user research, standards clause, mandatory document format or standards-conformance claim appears."}
+          ]
+        }
+      ],
+      "defects": [],
+      "unverified": [
+        {"subject": "Reported double submission and acceptance behavior", "status": "UNVERIFIED", "evidence": "Lines 12 and 32-39 explicitly state no reproduction, implementation or executed tests."},
+        {"subject": "Exclusive one-file filesystem delivery", "status": "UNVERIFIED", "evidence": "Only the assigned artifact was inspected; directory inventory was outside the four-file read scope. The inspected content itself is a single self-contained record."}
+      ],
+      "limitations": [
+        "Stable trace is documentary. No implementation/build artifact exists to demonstrate that the proposed guard or native/accessibility behavior is implemented.",
+        "Browser/device coverage and API timeout/reconciliation contracts remain explicitly unknown. Their absence is honestly recorded rather than treated as acceptance evidence."
+      ]
+    },
+    {
+      "id": "F02",
+      "artifact": "quality/saas/docs-1.4.0/observations/F02/design-operation.md",
+      "status": "PASS",
+      "status_scope": "The supplied design-and-operation-record content against the frozen documentation criteria; operating acceptance remains unverified.",
+      "word_count": {
+        "maximum": 800,
+        "whitespace_words": 730,
+        "lexical_word_runs": 776,
+        "status": "PASS"
+      },
+      "checks": [
+        {
+          "criterion": "Record identity, purpose, revision/baseline, stakeholders and actual ownership/review state",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "1-3", "finding": "F02 identifies the staging API/compute subject, revision/date, Platform team owner, unassigned reviewer, proposal/no-approval state, operator/maintainer audience and supplied-scenario baseline."},
+            {"lines": "21-25", "finding": "Tenants, API/integration responsibilities, Platform authority and site authority are represented with their identity, execution, isolation, deployment and recovery concerns."}
+          ]
+        },
+        {
+          "criterion": "Supplied facts, proposal and actual evidence distinguished; no invented execution or conformance",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "3,15", "finding": "Labels environment facts as supplied fixtures and identifies unknown installed versions, resources, code, capacity and recovery prerequisites."},
+            {"lines": "19,23,25", "finding": "The decision, transactional authority design and deployment are proposals; managed resources remain unselected and regional/capacity guarantees unverified."},
+            {"lines": "29,39", "finding": "Declares placeholders UNREADY, states no commands were run, and records no deployment, build, tests or measured recovery. No normative clause, required standards format or conformance claim appears."}
+          ]
+        },
+        {
+          "criterion": "Stable requirements/decision/verification trace to sources and proposed artifacts",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "3,7-13", "finding": "The F02 fixture is linked; R01-R05 retain job acceptance, tenant isolation, publication replay, recovery target and staging/site constraints, each linked to V01-V05."},
+            {"lines": "19,39", "finding": "D01 explicitly supports R01-R05. V01-V05 map respectively to those requirements through D01 and this revision, with planned probes, expected outcomes and actual evidence state."},
+            {"lines": "31-35", "finding": "Pinned artifacts, immutable image/configuration identity and target-plan inspection are required before proposed deployment; no nonexistent artifact is represented as available."}
+          ]
+        },
+        {
+          "criterion": "Boundaries, relationships, state ownership, authority, deployment and failure views",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "21", "finding": "Gives an end-to-end tenant/API/ledger/outbox/queue/bridge/login/Slurm/solver relationship and distinguishes API job identity/authorization from Slurm allocation/execution. Login-host duties exclude solver execution."},
+            {"lines": "23", "finding": "Defines durable commit before acceptance, tenant/scheduler identity binding, replay reconciliation, per-tenant site identity/ACL authority and fenced conditional final-manifest publication."},
+            {"lines": "25", "finding": "Proposes private API/bridge placement and controlled ingress, allocates Platform versus site responsibility, and identifies WAN, site/storage, stale-state and unknown-submission failures with dispatch restrictions."}
+          ]
+        },
+        {
+          "criterion": "Alternatives, tradeoffs, justified decision and reconsideration tied to constraints",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "13,19", "finding": "Retaining Slurm/Apptainer follows the preserve-Slurm constraint. Kubernetes replacement is compared through migration and unproven compute/storage/scheduling suitability; retention benefits and WAN/site/queue dependencies are explicit. Reconsideration requires changed constraints and representative measured benefit."}
+          ]
+        },
+        {
+          "criterion": "Ordered bounded procedure with trust/environment prerequisites, target, expected outcomes, stop and recovery conditions; placeholders are not execution",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "29", "finding": "Defines a staging rollout/recovery trigger, UNREADY placeholder status, no execution claim, proposed per-step control-plane deadlines and the overall recovery clock."},
+            {"lines": "31-33", "finding": "Ordered preflight establishes trusted controller and Linux host context, pinned tools/configuration, actual account resolution, region, caller identity, host-key trust, site capabilities/ACLs and bounded immutable-artifact plans; mismatch, missing trust and drift stop mutations or dispatch."},
+            {"lines": "34-35", "finding": "Canary and isolated recovery steps specify expected health/durability/isolation, state reconciliation before retry, abort triggers, old-writer fencing, compatible restoration/rollback, data preservation and the 900-second stop condition."}
+          ]
+        },
+        {
+          "criterion": "Tenant/replay/publication/recovery verification; accepted job is distinct from solver completion",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "9-12,21,23", "finding": "Acceptance follows durable commit rather than solver completion; cross-tenant access denial, replay-safe final publication and failure-onset recovery measurement have explicit acceptance descriptions and supporting ownership mechanisms."},
+            {"lines": "39", "finding": "Plans acknowledgement-crash, two-tenant denial, replay/concurrent publication/stale-owner, timed restore/queue/WAN and target-placement probes. Every probe is explicitly UNVERIFIED."}
+          ]
+        },
+        {
+          "criterion": "900 seconds is a target rather than achieved recovery; record is proportional and adds no approval ceremony",
+          "status": "PASS",
+          "evidence": [
+            {"lines": "12,15,29,35,39", "finding": "R04 defines a proposed 900-second measurement, acknowledges the unresolved failure envelope and queue/restore delays, and makes expiry a failed-exercise stop condition. No achieved recovery is claimed."},
+            {"lines": "1-39", "finding": "One bounded record covers design and operation without separate required documents, exact-heading prescriptions, or an extra permission process. The unassigned reviewer and no-approval state remain explicit."}
+          ]
+        }
+      ],
+      "defects": [],
+      "unverified": [
+        {"subject": "Tenant isolation, durable acceptance, replay-safe publication and recovery target", "status": "UNVERIFIED", "evidence": "Lines 15 and 39 identify unknown implementation/environment and no executed probes or recovery measurement."},
+        {"subject": "Executable deployment/recovery readiness", "status": "UNVERIFIED", "evidence": "Lines 15,25 and 29-35 retain unknown versions/resources/capabilities and explicitly UNREADY placeholders; the ordered procedure is a proposed authoring artifact."},
+        {"subject": "Exclusive one-file filesystem delivery", "status": "UNVERIFIED", "evidence": "Only the assigned artifact was inspected; directory inventory was outside the four-file read scope. The inspected content itself is a single self-contained record."}
+      ],
+      "limitations": [
+        "The recovery failure envelope, recovery-point requirement, queue/restore delay and solver checkpoint capability must be resolved before meaningful operational acceptance; the record already exposes these uncertainties.",
+        "The design names authority and fencing mechanisms but supplies no resources, integration code or executable commands that could establish their correctness.",
+        "Documentation quality cannot establish runtime behavior, achieved recovery or implementation correctness."
+      ]
+    }
+  ]
+}
