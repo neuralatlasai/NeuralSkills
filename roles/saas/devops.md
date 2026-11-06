@@ -2,9 +2,25 @@
 
 Activate for infrastructure, delivery pipelines, container/cloud/HPC operations, reliability or scaling. Inputs: repository/IaC, target account/context, versions, topology/state ownership, traffic or job workload, budget and SLO/RPO/RTO. Dependencies: affected application contracts; read only the selected [platform](devops-platforms.md) section or [container/HPC](devops-compute.md) section. Output working configuration/code, an operating envelope, rollout/recovery procedure and evidence. Missing credentials/tools leave deployment unverified; prepare and check artifacts without inventing execution.
 
+## Environment and command procedure
+
+Extend the same task context with controller versus execution host, OS/architecture/shell, working directory, resolved tool/version, config path and selected account/project/region/context/namespace. Distinguish Windows, WSL/VM, remote login and compute allocation; their paths, credentials, network and available devices can differ. Reuse observed facts and prior authorization; refresh only affected evidence after a target/config/environment change. Discover missing facts from authorized repository/site documentation first; ask only for a consequential unresolved choice, grouped once.
+
+1. Inspect project pins, trusted scripts/configuration and host prerequisites before choosing commands. Resolve executables with `Get-Command` in PowerShell or `command -v` in a POSIX shell. Check the required capability separately: client presence, daemon access, authentication, authorization and workload execution are distinct. Missing local HPC tools do not establish a missing remote scheduler. Inspect only relevant paths/environment keys; do not dump credentials or complete configuration.
+2. Record a consequential step as `execution host + shell/cwd + exact argv + explicit target + prerequisites + side effects + deadline + expected exit/output + postcondition + stop/recovery`. Verify flags against installed help and version-matched primary docs. Substitute established values; examples are not commands to run across every provider. Use structured files for complex inputs, shell-correct quoting and argument arrays where supported. Validate external values, avoid shell interpolation and keep secrets out of command history.
+3. Start with applicable local checks, then scoped remote reads when authorized. Before mutation, match live target/identity and required permissions to the task; configured defaults are insufficient. Preserve reviewed artifact/config/inputs/state identity and existing authorization. Execute the authorized change, verify its postcondition and record the result; command exit zero or resource existence alone is insufficient.
+4. Capture exit code, stdout and stderr separately before another command or parser overwrites status; PowerShell native commands use `$LASTEXITCODE`, while Bash pipeline handling needs its own status rules. Stderr may contain normal diagnostics. Parse only expected output; early non-JSON errors are failures to classify, not empty success. Respect documented special exits, such as Terraform plan's detailed 0=no change, 1=error, 2=changes.
+
+| Observed blocker | Next action / stopping condition |
+| --- | --- |
+| Missing binary, wrong shell/architecture or dependency | Prepare/check what existing tools support; name the exact prerequisite and execution host. Install only within task/environment permissions; no automatic host/toolchain migration. |
+| Client exists, runtime unreachable | Check selected context/endpoint and allowed connectivity once. Do not infer daemon availability from version output or start services/change global defaults without authorization. |
+| Access denied, expired identity, untrusted config/CA, proxy/DNS or filesystem failure | Classify the affected layer; inspect relevant VPN/proxy/trust/clock/path/cache/space evidence. Preserve failure, avoid blind retries, privilege escalation or TLS/host-key bypass; continue independent offline work. |
+| Mutation timed out or acknowledgement lost | Reconcile operation identity and actual state with bounded authorized reads before retry; report unknown outcome when it cannot be resolved. Do not duplicate apply/submission or destroy evidence. |
+
 ## Choose by workload and failure scope
 
-Inspect actual accounts, regions, cluster versions, quotas, extensions, network paths and identity. Confirm targets without printing credentials. Compare existing platform, managed service, VM/Compose, Kubernetes and batch scheduler by isolation, execution lifetime, data gravity, compatibility, on-call burden and total cost. Kubernetes and multi-cloud require a concrete benefit. Preserve a viable existing platform.
+Use the verified execution context, actual quotas, extensions and network paths. Compare existing platform, managed service, VM/Compose, Kubernetes and batch scheduler by isolation, execution lifetime, data gravity, compatibility, on-call burden and total cost. Kubernetes and multi-cloud require a concrete benefit. Preserve a viable existing platform.
 
 | Required scope | Mechanism / operating limit | Failure to expose / acceptance |
 | --- | --- | --- |
@@ -22,6 +38,8 @@ For homogeneous independent replicas, surviving capacity is `(replicas - failed 
 | Trusted delivery | Build once; promote identical digest/config identity. Lock dependencies/actions; verify expected builder/signer and SBOM/scans where required. Scoped short-lived CI identity; restrict OIDC audience/subject/repo/ref/environment and permissions | Untrusted PR/branch/token or substituted artifact must be denied. Pinning freezes updates, so assign refresh ownership. Do not run repository scripts/providers before inspection. |
 | Bounded release | Environment isolation, serialized apply, scoped IAM/network/egress, compatible migrations, canary population/window/abort thresholds and deployment timeout | Bad revision, missing secret, partial apply or interrupted migration. Inspect plan replacements/deletions and resource costs; reconcile actual state before retry. Do not force-unlock a live writer. |
 | Safe repair | Health, rollback/forward-fix owner and state compatibility from [operations](backend-operations.md); retain audit/change evidence | Execute old/new compatibility and active drain. Reverting image/config does not reverse committed data. Preserve failure and stop the affected rollout when its abort criterion trips. |
+
+Keep format, validation, plan and apply distinct. Terraform/OpenTofu validation needs installed modules/providers; initialization can download/execute dependencies, and disabling a backend does not make every step offline. Validate cannot establish remote API/permission/state behavior. Protect saved plans as sensitive; recheck engine/provider/config/input/target/state compatibility before applying. Inspect errors as well as changes and policy outcomes. Do not apply a plan for a different context or rerun an uncertain apply blindly.
 
 ## Verify operations, not resource existence
 

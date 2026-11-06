@@ -2,7 +2,7 @@
 name: saas
 description: Build, improve, diagnose or review frontend interfaces, backend systems and DevOps from briefs, repositories and runtime evidence. Route to only the relevant UI, API, data or infrastructure procedure. Exclude unrelated writing and concept explanations without engineering work.
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
 ---
 
 # SaaS engineering

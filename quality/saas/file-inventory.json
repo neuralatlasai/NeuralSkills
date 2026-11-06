@@ -1,6 +1,6 @@
 {
-  "createdAt": "2026-11-06T09:45:31.875Z",
-  "skillVersion": "1.3.0",
+  "createdAt": "2026-11-06T10:31:28.492Z",
+  "skillVersion": "1.3.1",
   "scope": "One flat active skill plus retained version-attributed evidence; self-index and five local browser profiles excluded.",
   "excluded": [
     "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/supplemental/chrome-profile/",
@@ -31,8 +31,8 @@
     },
     {
       "path": "quality/saas/README.md",
-      "bytes": 1261,
-      "sha256": "23a571aaba5e744049cfa86f137bbc17d59e7c51a692c2162fcb512eb0a2fb74",
+      "bytes": 1358,
+      "sha256": "c8dbec730e5c83dd937cafccb14bb0b7d6f06bfc607fb8dd67a0c5da32b836af",
       "purpose": "Version-attributed authoring evidence or evaluation resource"
     },
     {
@@ -129,6 +129,78 @@
       "path": "quality/saas/delivery-evidence/package-inventory.json",
       "bytes": 461661,
       "sha256": "95292b81c6473d16639d726bea2c0e2ea6af785be4651f1b6b7cafe0e0dd352c",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/cases.json",
+      "bytes": 3761,
+      "sha256": "b29247b76c0fb9af1f2cbbb728528ee65dad78937bc86e6b99d96f52274abe34",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/criteria.json",
+      "bytes": 1659,
+      "sha256": "76dd92a360960c7b4204110c26c42134b9d5ea59ba2e7babfe7e44ab9a49ebc9",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/freeze.json",
+      "bytes": 3075,
+      "sha256": "68f5d1aa7c50ebaa943e586b3fbaec54e90ffdb76c9cd12e6a4df6d783aaead4",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/observation-shape.json",
+      "bytes": 1085,
+      "sha256": "0c44e0f8ee252a2ca2665945354a4b0d863073e272000acba9ef3c53e32c5044",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/observations/E01-E02.json",
+      "bytes": 21888,
+      "sha256": "b6aa64a012910f4924537f37e8c6f2a49c8eb6f06bb3a58aadb0d0a3ed8b2267",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/observations/E03-E04.json",
+      "bytes": 18785,
+      "sha256": "872a0b22461ad4da36ee15ae2f2a2cac7d30f25fa11eff9a65efe0add2a53436",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/protocol.md",
+      "bytes": 1362,
+      "sha256": "490eab9a70e6b17e149cffae733fe1bb8d287fb486822bfbe70d266014708290",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/report.md",
+      "bytes": 4755,
+      "sha256": "30c32578bd32cff24a6be2cf3afda45e07bd4d6845f824bd5cb21c8561d772a9",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/review/content.json",
+      "bytes": 855,
+      "sha256": "1652fc2a2138bec29d3fb79aa879291f55c380b3eabaea8a61c2167ab9e5f9a8",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/review/decisions.json",
+      "bytes": 18243,
+      "sha256": "894854b3fa23a9f4055e8c0259e7f2aa16af9dbd2f9b07ada71c102d4e0606a2",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/review/gap-register.json",
+      "bytes": 2267,
+      "sha256": "f468e8f49288e95a8709393afe2140915aef5416ae03b4aad7dd07ad6e2a7d3c",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/structural.json",
+      "bytes": 516,
+      "sha256": "34e162353a402d5bce87eb73c6a2532e600a40bfca03d85165c2fdac3f60ae54",
       "purpose": "Version-attributed authoring evidence or evaluation resource"
     },
     {
@@ -12320,7 +12392,7 @@
     {
       "path": "roles/saas/SKILL.md",
       "bytes": 2563,
-      "sha256": "6f65e3a4310756c9a46e9189149e2af74eeadf323a9efd6db82c2e4cf5f826b9",
+      "sha256": "4d5ff0e4c7fc64fa1d562ba51f676362650d22e0b144cce79e7e6a0ffc0f0696",
       "purpose": "Active flat skill resource"
     },
     {
@@ -12367,20 +12439,20 @@
     },
     {
       "path": "roles/saas/devops-compute.md",
-      "bytes": 5384,
-      "sha256": "eda7983fb0d1f5a4d845392131390912b22f8d7003bcaef362f50e9dbdc4d229",
+      "bytes": 7084,
+      "sha256": "4691afe2bfc56c1313a50a77654e8317cd085d4de78b3745f5097d5ba1a9c848",
       "purpose": "Active flat skill resource"
     },
     {
       "path": "roles/saas/devops-platforms.md",
-      "bytes": 4686,
-      "sha256": "0f6f0f5ef25763a13a3929247da2232a3d8be9cef04d9f27eddabda0571735de",
+      "bytes": 7167,
+      "sha256": "a5d5212cd776025d8dca23de76f049d14f7e6ee834894c1f64e9c748f34a9f1f",
       "purpose": "Active flat skill resource"
     },
     {
       "path": "roles/saas/devops.md",
-      "bytes": 5580,
-      "sha256": "b3cff595c9591b55518e3b02c74f6eba83f9d3d672579f3fe25862346033623d",
+      "bytes": 9679,
+      "sha256": "e10751c2dee0e1d9cb3ba7c946efd6d6bd115db6a3fbe9766a49c5b81a0a1e01",
       "purpose": "Active flat skill resource"
     },
     {
@@ -12398,13 +12470,13 @@
     {
       "path": "roles/saas/manifest.json",
       "bytes": 2415,
-      "sha256": "6ba9cc4bad2adb995530fc6932cc2625954142e372eaa082a7ebb9c9a660d52b",
+      "sha256": "2ceb31b8eb54ddf576d58aa2843526c4c3a2695fbdd54f477e208d46b117e1d0",
       "purpose": "Active flat skill resource"
     },
     {
       "path": "roles/saas/source-register.md",
-      "bytes": 25181,
-      "sha256": "857ee0c9aed526f3118462e0214912a556b9a0152783ec1f66d22364ef30a56d",
+      "bytes": 28033,
+      "sha256": "9fb264f725bbee389595adc26f31bc73eafee291639925243a622315a61950bc",
       "purpose": "Active flat skill resource"
     },
     {

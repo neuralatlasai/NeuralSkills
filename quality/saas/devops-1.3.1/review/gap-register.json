@@ -1,0 +1,13 @@
+{
+  "method": "Two independent read-only pre-edit reviews; coordinator implemented targeted guidance and verified source provenance.",
+  "findings": [
+    {"id":"ENV-01","location":"devops.md","gap":"Controller OS/tool presence was not explicitly separated from remote execution capability.","repair":"Single execution context records host, OS/architecture/shell, cwd, resolved tool, configuration and target; refresh only changed facts."},
+    {"id":"CMD-01","location":"devops.md","gap":"Commands lacked a reusable prerequisites/deadline/result/recovery contract.","repair":"Command records capture exact argv, execution context, side effects, expected exit/output and postcondition; documented error classification and uncertain-outcome reconciliation."},
+    {"id":"CLOUD-01","location":"devops-platforms.md","gap":"Configured selection, live identity and actual permission could be conflated.","repair":"Scoped provider patterns and explicit target binding; mismatch blocks mutation without automatic login/account switch."},
+    {"id":"TRUST-01","location":"devops-platforms.md","gap":"Untrusted kubeconfig credential plugins were not called out.","repair":"Inspect credential exec trust before API use; explicit context flags do not make a malicious helper safe."},
+    {"id":"IAC-01","location":"devops.md","gap":"Formatting, dependency initialization, validation, detailed plan exits and apply identity were not sufficiently distinct.","repair":"Document installed dependencies, non-JSON early failures, 0/1/2 plan meanings, sensitive saved plans and context/state compatibility."},
+    {"id":"HPC-01","location":"devops-compute.md","gap":"Login discovery, scheduler RPCs, syntax validation and allocated GPU execution were not operationally separated.","repair":"Host-specific scoped commands, module preservation, no automatic staging assumption, batch environment/paths, and actual driver/toolkit/MPI proof."}
+  ],
+  "primaryResearchLimitations": ["Official GNU Bash startup page returned429; not adopted", "Gcloud version-reference retrieval timed out; not adopted", "Cloud/account/scheduler/GPU commands were not executed"],
+  "standards": "Existing ISO/IEC/IEEE acceptance traceability remains; no clause-level conformance or certification claimed."
+}

@@ -1,0 +1,321 @@
+{
+  "scope": "E01 and E02 only. Procedure observations from supplied simulated evidence; no suggested CLI, cloud, cluster, remote, scheduler or solver command was executed.",
+  "accounting": {
+    "underlyingToolCalls": 5,
+    "tools": {
+      "exec_command": 4,
+      "apply_patch": 1
+    },
+    "instructionAndCaseFileReads": 6,
+    "uniqueInstructionAndCaseFiles": [
+      "roles/saas/SKILL.md",
+      "quality/saas/devops-1.3.1/cases.json",
+      "roles/saas/devops.md",
+      "roles/saas/verification.md",
+      "roles/saas/standards.md",
+      "roles/saas/devops-compute.md"
+    ],
+    "outputWrites": 1,
+    "outputParseReads": 1,
+    "countingConvention": "Includes this output write and the following parse/contract validation. Counts underlying tool invocations, not proposed commands."
+  },
+  "limitations": [
+    "Only the listed instruction/case files were read. No criteria, previous results, other observations or reports were consulted.",
+    "All environment and failure statements below are supplied facts, not fresh measurements. Project configuration, remote site documentation, versions, help and runtime evidence were not available for inspection.",
+    "No installation, permission changes, service starts, deployment, allocation, job submission or heavy solver tests occurred. No deployment credentials were requested.",
+    "Command records describe future procedures. Angle-bracket values are unresolved prerequisites, never literal runnable targets. Flags and executable paths must be checked against installed version/help before use.",
+    "The requested procedure is prepared; configuration modification, actual syntax checks and runtime acceptance remain unverified."
+  ],
+  "perCase": [
+    {
+      "id": "E01",
+      "observedFacts": [
+        "SUPPLIED: Controller is Windows/PowerShell. Trusted repository is C:/workspace/orders, with valid Compose JSON and a working JSON parser.",
+        "SUPPLIED: Docker client exists; its server is unavailable at the selected endpoint. Client presence does not establish engine access.",
+        "SUPPLIED FAILURE: kubectl offline rendering failed with Access is denied. This establishes an access failure for that attempted capability, not missing manifests or a missing cluster.",
+        "SUPPLIED FAILURE: Azure version command failed on a protected CLI profile. CLI version and usable cloud capability remain unknown.",
+        "SUPPLIED AUTHORIZATION: No live cloud or cluster target is authorized; installation, permission changes and service start were not requested."
+      ],
+      "nextSteps": [
+        "Proceed independently with trusted repository inspection and the existing JSON parser. Locate the actual Compose JSON file and pins; preserve a copy/diff before any eventual edit. Valid JSON syntax alone does not establish Compose schema, interpolation, service correctness or runtime behavior.",
+        "Prepare a minimal patch only when actual inspected configuration demonstrates a gap in resource/log bounds, persistence/backup, secrets, network exposure or application health. Do not invent services, ports or restart behavior from the supplied summary.",
+        "Use existing Docker client help/version evidence to select version-compatible config validation. Explicitly bind the reviewed Compose file and project directory; rendering can expose interpolated secrets, so capture privately and redact before reporting.",
+        "A bounded local context/endpoint inspection may diagnose the Docker client/server boundary. Preserve the original unreachable-server receipt; do not switch global context, start the daemon, alter permissions or install a replacement platform.",
+        "Report kubectl rendering as FAIL from the supplied receipt and Azure version discovery as FAIL at the protected-profile layer. Preserve original exit/stdout/stderr if later available; do not invent exit codes. Continue JSON/config review without either capability.",
+        "Mark engine startup, builds, health, restart, dependency recovery, volume restore and all live cloud/cluster checks UNVERIFIED. No deployment credential question is needed for this offline artifact."
+      ],
+      "commandRecords": [
+        {
+          "executionHost": "Controller Windows",
+          "shell": "PowerShell",
+          "cwd": "C:/workspace/orders",
+          "argv": [
+            "Get-ChildItem",
+            "-LiteralPath",
+            "C:/workspace/orders",
+            "-File"
+          ],
+          "target": "Trusted repository top-level file inventory only",
+          "prerequisites": [
+            "Future command only; repository is accessible; inspect relevant pinned configuration and scripts before running them."
+          ],
+          "sideEffects": [
+            "Read-only filesystem listing; no scripts executed."
+          ],
+          "deadline": "10 seconds; abort on access failure.",
+          "expectedResult": "Relevant filenames available for selecting the existing Compose JSON and pins; no filename is assumed here.",
+          "postcondition": "Actual Compose path and applicable project pins are recorded, or remain explicitly unresolved.",
+          "stopRecovery": "Preserve the error; do not broaden permissions or search unrelated credential paths."
+        },
+        {
+          "executionHost": "Controller Windows",
+          "shell": "PowerShell",
+          "cwd": "C:/workspace/orders",
+          "argv": [
+            "PowerShell expression",
+            "Get-Content -LiteralPath '<resolved Compose JSON path>' -Raw -ErrorAction Stop | ConvertFrom-Json -ErrorAction Stop | Out-Null"
+          ],
+          "target": "Exactly the inspected existing Compose JSON under C:/workspace/orders",
+          "prerequisites": [
+            "Replace the unresolved path after trusted inventory; use the supplied existing parser; no command executed in this observation."
+          ],
+          "sideEffects": [
+            "Reads the configuration only; avoid printing secret-bearing contents."
+          ],
+          "deadline": "10 seconds.",
+          "expectedResult": "Parsing completes without an exception. Supplied valid JSON is not a measured result from this command.",
+          "postcondition": "JSON syntax result recorded separately from Compose semantic/runtime validation.",
+          "stopRecovery": "On failure retain the original exception and file identity; do not replace the existing configuration blindly."
+        },
+        {
+          "executionHost": "Controller Windows",
+          "shell": "PowerShell",
+          "cwd": "C:/workspace/orders",
+          "argv": [
+            "docker",
+            "context",
+            "show"
+          ],
+          "target": "Current local Docker client context selection; no context switch",
+          "prerequisites": [
+            "Future optional read; resolve executable and inspect installed help first; limit endpoint diagnosis to relevant local context metadata."
+          ],
+          "sideEffects": [
+            "Read-only local client metadata; no daemon start or global change."
+          ],
+          "deadline": "10 seconds.",
+          "expectedResult": "Selected context name or a separately captured failure; inspect only that context's endpoint as needed.",
+          "postcondition": "Selected endpoint is compared with the supplied unreachable-server receipt; server availability is not inferred.",
+          "stopRecovery": "Stop on access/profile failure; preserve stdout, stderr and $LASTEXITCODE immediately; no blind retries."
+        },
+        {
+          "executionHost": "Controller Windows",
+          "shell": "PowerShell",
+          "cwd": "C:/workspace/orders",
+          "argv": [
+            "docker",
+            "compose",
+            "--project-directory",
+            "C:/workspace/orders",
+            "-f",
+            "<resolved Compose JSON path>",
+            "config",
+            "--quiet"
+          ],
+          "target": "Explicit reviewed local Compose file and project directory only",
+          "prerequisites": [
+            "Future command only; verify installed Compose help/version, support for flags and interpolation prerequisites. Existing JSON parser check can proceed even if Compose is unavailable."
+          ],
+          "sideEffects": [
+            "Local config validation/interpolation; may read referenced environment files; no up/build/pull or deployment."
+          ],
+          "deadline": "30 seconds.",
+          "expectedResult": "Expected zero only if supported config validation succeeds; capture exit/stdout/stderr separately before any later command.",
+          "postcondition": "Compose configuration validity is recorded separately from unavailable Docker-server and runtime capability.",
+          "stopRecovery": "Preserve unsupported-command/access/interpolation failure and continue independent offline inspection; do not install, change profile permissions or start services."
+        }
+      ],
+      "questions": [],
+      "unverified": [
+        "Actual configuration contents, filename, project pins, Docker/Compose versions, selected endpoint identity and fresh help validation.",
+        "Any local parse or Compose render performed by this observer; valid JSON is supplied evidence only.",
+        "Application-specific correction, Docker engine connectivity, image/build/device/health/recovery tests and persistence restore.",
+        "kubectl rendering remains blocked by supplied access denial; Azure version discovery remains blocked by protected CLI profile; no live cloud or cluster target or deployment is authorized."
+      ]
+    },
+    {
+      "id": "E02",
+      "observedFacts": [
+        "SUPPLIED: Controller Windows/PowerShell has no sbatch and no GPU; this says nothing about remote scheduler or allocated-node devices.",
+        "SUPPLIED: Authorized login host hpc-login uses Linux/Bash and provides Slurm, Apptainer and trusted module initialization.",
+        "SUPPLIED AUTHORIZATION: Only scoped read-only login-node discovery and script preparation are allowed. Actual submission/allocation and heavy solver tests are not authorized.",
+        "SUPPLIED: Inputs can be staged in shared storage /project/orders. Slurm does not itself stage those inputs.",
+        "SUPPLIED: Solver requires a GPU allocation and an explicit checkpoint argument. Remote tool/module versions, exact solver restart option and checkpoint semantics have not been established."
+      ],
+      "nextSteps": [
+        "Controller: prepare LF-terminated Bash/batch drafts as files; validate paths and transfer/staging identity using the site's approved path. Preserve the site stack; do not install scheduler clients locally or replace MPI/CUDA/Apptainer.",
+        "Login: discover installed versions/help, current modules and narrowly relevant site/account/partition/resource guidance through the trusted initialization path. Capture module list stdout/stderr independently; normal module information may be on stderr.",
+        "Record resolved executables, versions, module identities and trusted initialization path. Never use automatic module purge, guessed source paths, an indiscriminate environment export, or execute unreviewed site/repository scripts.",
+        "Prepare batch draft rooted at /project/orders with explicit reviewed account/partition/GPU/CPU/memory/wall-time values, bounded output/checkpoint paths and pinned image/input identity. Keep unresolved values clearly marked; do not produce a falsely ready-to-submit script.",
+        "Restart draft contract: on initial run use the documented explicit checkpoint-output argument; on restart select only a compatible completely/atomically published checkpoint and use the documented explicit checkpoint/restart argument. Discover exact flags from trusted solver docs; do not invent --checkpoint syntax.",
+        "Slurm requeue starts the script again and signals do not create a checkpoint. Determine application format, atomic publication, frequency and signal handling; fit checkpoint I/O within preemption notice, preserve incomplete writes, and prevent duplicate committed results using durable run/output identity.",
+        "Separate Bash syntax from scheduler validation: bash -n is offline syntax only; sbatch --test-only contacts scheduler and validates neither runtime devices nor successful workload. Any scheduler contact must remain scoped and bounded; no submission occurs here.",
+        "Allocated-node steps are a future authorization gate: first verify assigned GPU and actual driver/toolkit/container/launcher/fabric compatibility, then a small representative authorized test, then checkpoint/restart and failure probes. Do not run solver/GPU work on login node.",
+        "Acceptance remains UNVERIFIED until an authorized allocation proves explicit checkpoint restore, useful computation and durable output completion, including interruptions before/after checkpoint/output commit. Record queue wait, useful GPU time, checkpoint time/bytes, lost work and restore time separately."
+      ],
+      "commandRecords": [
+        {
+          "executionHost": "hpc-login Linux",
+          "shell": "Bash through the site's trusted initialized login session",
+          "cwd": "/project/orders",
+          "argv": [
+            "bash",
+            "-lc",
+            "command -v squeue; command -v sbatch; command -v apptainer; type module"
+          ],
+          "target": "Authorized login-host executable discovery only",
+          "prerequisites": [
+            "Future procedure; established trusted SSH host identity and site-approved initialization required. The listed independent commands each need their own status/stdout/stderr capture; never treat final-command status as aggregate success."
+          ],
+          "sideEffects": [
+            "Read-only shell/tool discovery; no environment replacement or installation."
+          ],
+          "deadline": "15 seconds including remote command deadline; stop if initialization is unresolved.",
+          "expectedResult": "Resolved site tool paths and module function availability, or separately classified failure for each.",
+          "postcondition": "Login-host tool capability distinguished from missing controller tools.",
+          "stopRecovery": "Retain failures; consult trusted site setup instead of guessing initialization or bypassing host checks."
+        },
+        {
+          "executionHost": "hpc-login Linux",
+          "shell": "Bash with trusted site initialization preserved",
+          "cwd": "/project/orders",
+          "argv": [
+            "squeue",
+            "--version"
+          ],
+          "target": "Remote Slurm client version only",
+          "prerequisites": [
+            "Future read-only version probe; resolved site executable; use separate similarly bounded apptainer version and module list records in receipt log."
+          ],
+          "sideEffects": [
+            "Read-only version discovery; no submission."
+          ],
+          "deadline": "10 seconds.",
+          "expectedResult": "Slurm version; independently record apptainer version and module list outputs with exit codes, preserving normal module stderr.",
+          "postcondition": "Actual versions and current site modules recorded before choosing version-specific batch/runtime flags.",
+          "stopRecovery": "On failure preserve receipt and leave dependent flags UNVERIFIED; do not migrate toolchains."
+        },
+        {
+          "executionHost": "hpc-login Linux",
+          "shell": "Bash with trusted site initialization",
+          "cwd": "/project/orders",
+          "argv": [
+            "apptainer",
+            "version"
+          ],
+          "target": "Site Apptainer client",
+          "prerequisites": [
+            "Future read-only discovery; resolved site executable."
+          ],
+          "sideEffects": [
+            "Read-only version output."
+          ],
+          "deadline": "10 seconds.",
+          "expectedResult": "Version with stdout, stderr and exit status preserved independently.",
+          "postcondition": "Container runtime version known for later help and compatibility review; GPU support not established.",
+          "stopRecovery": "Preserve error; no installation or alternative runtime."
+        },
+        {
+          "executionHost": "hpc-login Linux",
+          "shell": "Bash with trusted site initialization",
+          "cwd": "/project/orders",
+          "argv": [
+            "module",
+            "list"
+          ],
+          "target": "Current site module environment only",
+          "prerequisites": [
+            "Future read-only discovery; trusted module function initialized."
+          ],
+          "sideEffects": [
+            "No module load/unload/purge; output may normally be on stderr."
+          ],
+          "deadline": "10 seconds.",
+          "expectedResult": "Current module names/versions or classified failure, capturing both streams and status separately.",
+          "postcondition": "Existing toolchain preserved and recorded; batch initialization differences remain to verify.",
+          "stopRecovery": "Do not interpret stderr alone as failure or purge modules to repair discovery."
+        },
+        {
+          "executionHost": "hpc-login Linux",
+          "shell": "Bash",
+          "cwd": "/project/orders",
+          "argv": [
+            "bash",
+            "-n",
+            "/project/orders/restart.sbatch"
+          ],
+          "target": "Future prepared and reviewed LF-terminated batch script",
+          "prerequisites": [
+            "Script preparation/staging is authorized but not performed here; verify shebang, paths, input/image identity and all unresolved parameters before scheduler use."
+          ],
+          "sideEffects": [
+            "Reads script for syntax only; no script body or scheduler request."
+          ],
+          "deadline": "10 seconds.",
+          "expectedResult": "Zero for Bash syntax success; retain diagnostics and actual status.",
+          "postcondition": "Only syntax accepted; Slurm directives, resource availability and runtime/restart behavior remain unverified.",
+          "stopRecovery": "Fix syntax in draft and repeat only affected check; never submit on this result alone."
+        },
+        {
+          "executionHost": "hpc-login Linux",
+          "shell": "Bash",
+          "cwd": "/project/orders",
+          "argv": [
+            "sbatch",
+            "--test-only",
+            "/project/orders/restart.sbatch"
+          ],
+          "target": "Reviewed script's explicit site account/partition/resources; scheduler-contacting validation",
+          "prerequisites": [
+            "Future only; establish that scoped scheduler validation is authorized, confirm version-specific help and site policy, replace all placeholders and bind reviewed staged file identity. No allocation/submission is authorized."
+          ],
+          "sideEffects": [
+            "Contacts scheduler controller; no job submitted with documented supported --test-only behavior."
+          ],
+          "deadline": "20 seconds; one bounded attempt.",
+          "expectedResult": "Scheduler validation receipt or classified policy/resource error; no claimed execution or device proof.",
+          "postcondition": "Scheduler acceptance is separate from Bash syntax and workload execution.",
+          "stopRecovery": "If scope/policy is unresolved do not run; on timeout/failure preserve receipt and do not substitute actual sbatch submission."
+        },
+        {
+          "executionHost": "Future allocated compute node",
+          "shell": "Bash with site-approved allocation environment",
+          "cwd": "/project/orders",
+          "argv": [
+            "nvidia-smi",
+            "-L"
+          ],
+          "target": "Only devices assigned within a specifically authorized GPU allocation",
+          "prerequisites": [
+            "NOT AUTHORIZED NOW: obtain separate allocation/test authorization with approved account, partition, resources and wall time; this observer performs no allocation."
+          ],
+          "sideEffects": [
+            "Read-only device enumeration inside allocation; allocation itself consumes resources and is outside present scope."
+          ],
+          "deadline": "10 seconds after authorized job start.",
+          "expectedResult": "Assigned devices enumerated; does not establish toolkit/container or solver compatibility.",
+          "postcondition": "Follow with bounded site-approved actual toolkit/container/library/launcher proof and small solver restart probe only after separate authorization and exact flags are resolved.",
+          "stopRecovery": "Stop on missing/mismatched GPU or libraries; retain allocated-node evidence and follow site job cleanup procedure without changing toolchain."
+        }
+      ],
+      "questions": [],
+      "unverified": [
+        "No remote session, tool discovery, scheduler request, syntax validation, staging or script execution was performed.",
+        "Exact trusted initialization path, Slurm/Apptainer/module versions, account/partition/QOS, GPU type/count, CPU/memory ratios, quotas, time limits and preemption policy must be discovered from authorized site sources.",
+        "Solver executable/image digest, explicit checkpoint/restart flag spellings, format compatibility, atomic publication, signal behavior and duplicate-output contract are unresolved discovery prerequisites, not fabricated commands.",
+        "Controller and login-node artifacts alone cannot prove assigned GPU, driver/toolkit/container/MPI/fabric compatibility or recovery behavior.",
+        "Actual submission/allocation, heavy solver work and runtime recovery probes are outside authorization. No user question is required to prepare this conditional procedure; execution needs a separately authorized concrete resource/test scope."
+      ]
+    }
+  ]
+}

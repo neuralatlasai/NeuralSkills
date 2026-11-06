@@ -15,3 +15,17 @@ For every selected row, name concrete resources, owners, limits with units, expi
 Cross-region asynchronous replication permits a data-loss window; synchronous coordination adds latency and can sacrifice availability under partition. Inspect the chosen engine instead of assigning generic cloud guarantees. Define the last acknowledged durable effect, lag threshold, promotion/fencing condition, reconciliation and failback. Include data residency and credential/key recovery in that contract.
 
 Local emulator, rendered IaC, provider validation, live deployment and observed incident recovery are distinct evidence. Regional and global claims require failure probes in the declared topology and workload; list unavailable probes explicitly.
+
+## Select commands for the established target
+
+These are documented patterns, not executed adapter claims. Replace uppercase values with established task values using the actual shell; verify installed flags first. Prefer per-command target selection over changing shared defaults. Identity/configuration reads do not establish every resource permission.
+
+| Selected tool | Minimal observation / limit |
+| --- | --- |
+| AWS | `aws --version` is local. Authorized `aws sts get-caller-identity --profile PROFILE --region REGION --query '{Account:Account,Arn:Arn}' --output json --no-cli-pager` contacts STS; match caller/account before the scoped resource probe. |
+| Azure | `az version` may need writable CLI cache/config; failure does not justify modifying a protected profile. `az account show --subscription SUBSCRIPTION --query '{id:id,tenantId:tenantId}' --output json` identifies subscription metadata, not data-plane access. Verify the intended operation separately. |
+| Google Cloud | `gcloud config list --format='json(core.project,core.account,auth.impersonate_service_account)'` reports configured selection. Impersonation/command overrides can change the effective caller; use a documented scoped resource read with the same project/identity settings as the proposed operation. Never print access tokens as an identity check. |
+| Cloudflare | Use the existing project-pinned Wrangler binary/help and config/environment. Current docs expose `wrangler whoami --json --account ACCOUNT --config FILE --env ENV`; it contacts the service. Retain only needed account/membership evidence; verify actual binding/resource access separately. Do not invoke a package downloader to obtain the command implicitly. |
+| Kubernetes | Inspect supplied kubeconfig first: credential `exec` entries can execute code. `kubectl config current-context` is selection evidence; scoped `kubectl --context CONTEXT --namespace NAMESPACE --request-timeout=10s auth can-i get deployments.apps` queries authorization, not object health or every admission rule. Explicit context/namespace does not make an untrusted credential plugin safe. |
+
+If configured/live identity or target differs, stop that branch's mutation and retain evidence; prepare independent artifacts without logging in, switching accounts or expanding permissions automatically. Recheck only the changed facts after an authorized correction. Sources and access limitations: [register](source-register.md#execution-preflight-review).

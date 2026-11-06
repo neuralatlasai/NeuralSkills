@@ -1,0 +1,90 @@
+{
+  "createdAt": "2026-11-06T10:24:29.941Z",
+  "version": "1.3.1",
+  "files": [
+    {
+      "path": "quality/saas/devops-1.3.1/cases.json",
+      "sha256": "b29247b76c0fb9af1f2cbbb728528ee65dad78937bc86e6b99d96f52274abe34"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/criteria.json",
+      "sha256": "76dd92a360960c7b4204110c26c42134b9d5ea59ba2e7babfe7e44ab9a49ebc9"
+    },
+    {
+      "path": "quality/saas/devops-1.3.1/protocol.md",
+      "sha256": "490eab9a70e6b17e149cffae733fe1bb8d287fb486822bfbe70d266014708290"
+    },
+    {
+      "path": "roles/saas/SKILL.md",
+      "sha256": "4d5ff0e4c7fc64fa1d562ba51f676362650d22e0b144cce79e7e6a0ffc0f0696"
+    },
+    {
+      "path": "roles/saas/backend-api.md",
+      "sha256": "f4c6480387d68f10d40d706780a253fa62bec30cd0a1a5c036a6f07524968037"
+    },
+    {
+      "path": "roles/saas/backend-async.md",
+      "sha256": "d4ac5fdb06049e35cf30c82934909a9fee0bb9cb4f521d75f5f992225b86a333"
+    },
+    {
+      "path": "roles/saas/backend-coverage.json",
+      "sha256": "77e41a38e9bf44b1c61fc92497fcf35bcef19a40203d5384234edf0fb928cca4"
+    },
+    {
+      "path": "roles/saas/backend-data.md",
+      "sha256": "9fc3b529c922f2236b223c375d42094ca3b83207f04180eeb2915215c6a4ce7c"
+    },
+    {
+      "path": "roles/saas/backend-edge.md",
+      "sha256": "3129fad6f2f6480d74e51467a359720caa2955e5f7f5e3f720a3227aa4a1c96e"
+    },
+    {
+      "path": "roles/saas/backend-operations.md",
+      "sha256": "6368fa14ab57bcca92073b74c03583b4d660d13fe72589b77a7359476ceb3456"
+    },
+    {
+      "path": "roles/saas/backend-runtime.md",
+      "sha256": "f8f57984cd11601edab69e936da6b7ec4c4bfa21a4eb99acacd32552ad502b5f"
+    },
+    {
+      "path": "roles/saas/devops-compute.md",
+      "sha256": "4691afe2bfc56c1313a50a77654e8317cd085d4de78b3745f5097d5ba1a9c848"
+    },
+    {
+      "path": "roles/saas/devops-platforms.md",
+      "sha256": "a5d5212cd776025d8dca23de76f049d14f7e6ee834894c1f64e9c748f34a9f1f"
+    },
+    {
+      "path": "roles/saas/devops.md",
+      "sha256": "e10751c2dee0e1d9cb3ba7c946efd6d6bd115db6a3fbe9766a49c5b81a0a1e01"
+    },
+    {
+      "path": "roles/saas/frontend-design.md",
+      "sha256": "f5c7abc285f0d071ec94cbea8587a0b6c0e2145c70ce3c78c35e048459b54515"
+    },
+    {
+      "path": "roles/saas/frontend-implementation.md",
+      "sha256": "39b25a5920bfffd91ed6215d0f154558fb87c0433375df7123b29f4f74f4d870"
+    },
+    {
+      "path": "roles/saas/manifest.json",
+      "sha256": "2ceb31b8eb54ddf576d58aa2843526c4c3a2695fbdd54f477e208d46b117e1d0"
+    },
+    {
+      "path": "roles/saas/source-register.md",
+      "sha256": "9fb264f725bbee389595adc26f31bc73eafee291639925243a622315a61950bc"
+    },
+    {
+      "path": "roles/saas/standards.md",
+      "sha256": "cbee29bd5cabbce047bb502081c1e5e872adbe4ecc20d46972f50ab3e59f9936"
+    },
+    {
+      "path": "roles/saas/verification.md",
+      "sha256": "9ec8040cea65250e04fdd9c653a3c30d6c36b95a88c9ef1fbb4f76ee418fcba4"
+    },
+    {
+      "path": "roles/saas/workflow.md",
+      "sha256": "d2a4b4b6ddb3e6bcdb98a9152da69436de35d069ec4cee0b16011524e467fe12"
+    }
+  ]
+}

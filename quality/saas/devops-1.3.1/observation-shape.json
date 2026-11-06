@@ -1,0 +1,45 @@
+{
+  "createdAt": "2026-11-06T10:28:26.713Z",
+  "status": "PASS",
+  "scope": "Case output shape and frozen input/source integrity; semantics require independent review",
+  "frozenFiles": 21,
+  "changed": [],
+  "caseSummary": [
+    {
+      "id": "E01",
+      "commandRecords": 4,
+      "recordedQuestions": 0,
+      "unverifiedItems": 4
+    },
+    {
+      "id": "E02",
+      "commandRecords": 7,
+      "recordedQuestions": 0,
+      "unverifiedItems": 5
+    },
+    {
+      "id": "E03",
+      "commandRecords": 4,
+      "recordedQuestions": 0,
+      "unverifiedItems": 4
+    },
+    {
+      "id": "E04",
+      "commandRecords": 2,
+      "recordedQuestions": 0,
+      "unverifiedItems": 4
+    }
+  ],
+  "resourceObservation": {
+    "method": "Agent-reported underlying calls; model/tokens/cost and full elapsed time unavailable",
+    "E01E02": {
+      "calls": 5,
+      "fileReads": 6
+    },
+    "E03E04": {
+      "calls": 4,
+      "fileReads": 6
+    }
+  },
+  "limit": "Two fresh contexts contain four simulations. Zero proposed questions does not measure reduction in real user steering."
+}

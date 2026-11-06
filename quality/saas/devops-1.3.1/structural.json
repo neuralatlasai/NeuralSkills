@@ -1,0 +1,10 @@
+{
+  "createdAt": "2026-11-06T10:25:47.253Z",
+  "command": "node quality/saas/validate-saas.mjs",
+  "exitCode": 0,
+  "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"Bounded flat-package metadata/link/anchor/manifest/coverage/context assertions; not formal standards or full YAML/schema conformance\",\n  \"entryWords\": 307,\n  \"resources\": 18,\n  \"links\": 56,\n  \"errors\": []\n}\n",
+  "stderr": "",
+  "frozenFiles": 21,
+  "changed": [],
+  "scope": "Bounded package structure and source integrity only"
+}
