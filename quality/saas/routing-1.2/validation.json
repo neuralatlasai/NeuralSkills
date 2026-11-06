@@ -1,0 +1,144 @@
+{
+  "createdAt": "2026-11-06T05:34:25.304Z",
+  "structural": {
+    "command": "node quality/saas/validate-saas.mjs ",
+    "exitCode": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"Bounded flat-package metadata/link/anchor/manifest/coverage/context assertions; not formal standards or full YAML/schema conformance\",\n  \"entryWords\": 299,\n  \"resources\": 15,\n  \"links\": 45,\n  \"errors\": []\n}\n",
+    "stderr": ""
+  },
+  "negativePath": {
+    "command": "node quality/saas/validate-saas.mjs --root roles/missing-saas",
+    "exitCode": 1,
+    "stdout": "{\n  \"status\": \"FAIL\",\n  \"scope\": \"Bounded flat-package metadata/link/anchor/manifest/coverage/context assertions; not formal standards or full YAML/schema conformance\",\n  \"entryWords\": 0,\n  \"resources\": 0,\n  \"links\": 0,\n  \"errors\": [\n    \"ENOENT: no such file or directory, scandir 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\missing-saas'\"\n  ]\n}\n",
+    "stderr": ""
+  },
+  "sourceChecks": [
+    {
+      "path": "backend-api.md",
+      "unchanged": true
+    },
+    {
+      "path": "backend-async.md",
+      "unchanged": true
+    },
+    {
+      "path": "backend-coverage.json",
+      "unchanged": true
+    },
+    {
+      "path": "backend-data.md",
+      "unchanged": true
+    },
+    {
+      "path": "backend-edge.md",
+      "unchanged": true
+    },
+    {
+      "path": "backend-operations.md",
+      "unchanged": true
+    },
+    {
+      "path": "backend-runtime.md",
+      "unchanged": true
+    },
+    {
+      "path": "frontend-design.md",
+      "unchanged": true
+    },
+    {
+      "path": "frontend-implementation.md",
+      "unchanged": true
+    },
+    {
+      "path": "manifest.json",
+      "unchanged": true
+    },
+    {
+      "path": "SKILL.md",
+      "unchanged": true
+    },
+    {
+      "path": "source-register.md",
+      "unchanged": true
+    },
+    {
+      "path": "standards.md",
+      "unchanged": true
+    },
+    {
+      "path": "verification.md",
+      "unchanged": true
+    },
+    {
+      "path": "workflow.md",
+      "unchanged": true
+    }
+  ],
+  "observations": [
+    {
+      "id": "R01",
+      "result": "PASS",
+      "procedures": [
+        "frontend-implementation.md"
+      ],
+      "underlyingToolCalls": 3
+    },
+    {
+      "id": "R02",
+      "result": "PASS",
+      "procedures": [
+        "frontend-design.md"
+      ],
+      "underlyingToolCalls": 3
+    },
+    {
+      "id": "R03",
+      "result": "PASS",
+      "procedures": [
+        "backend-data.md"
+      ],
+      "underlyingToolCalls": 3
+    },
+    {
+      "id": "R04",
+      "result": "PASS",
+      "procedures": [
+        "backend-edge.md"
+      ],
+      "underlyingToolCalls": 3
+    },
+    {
+      "id": "R05",
+      "result": "PASS",
+      "procedures": [
+        "backend-async.md"
+      ],
+      "underlyingToolCalls": 3
+    },
+    {
+      "id": "R06",
+      "result": "PASS",
+      "procedures": [
+        "backend-api.md",
+        "frontend-implementation.md"
+      ],
+      "underlyingToolCalls": 3
+    }
+  ],
+  "previousEntries": [
+    {
+      "name": "ui-ux-engineering",
+      "entryWords": 944
+    },
+    {
+      "name": "backend-engineering",
+      "entryWords": 767
+    }
+  ],
+  "aggregationDefect": {
+    "initial": "Ad-hoc aggregator expected underlyingToolCallCount; R04 used underlyingToolCalls. It exited 1 before writing a report.",
+    "repair": "Accept both observed field names; preserve original per-context JSON unchanged.",
+    "rerun": "PASS"
+  },
+  "limit": "Word/file observations are not token, cost, completion-time or implementation-quality measurements."
+}

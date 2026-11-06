@@ -1,7 +1,9 @@
 # SaaS quality evidence
 
-Current revision: expert-evals/ contains frozen cases, source receipts, six fresh submissions and independent results. revision-review/ records content-review findings and resolutions. current-evidence/ contains the exercised reusable heavy-fixture check.
+Current package: [roles/saas](../../roles/saas/SKILL.md), version 1.2.0. One flat folder, one 299-word entry, 15 resources. [Consolidation evidence](consolidation-report.md) records structural checks, six fresh routing observations and the limits of those checks.
 
-version-history/ preserves prior instruction/report bytes. v1.0/ and delivery-evidence/ retain historical execution and packaging records; their old paths and commands describe that version, not the current layout. The original complete1.0 bundle is retained in the workspace .dist directory.
+Version 1.1 implementation comparisons remain in expert-evals/; revision-review/ contains their reviews and current-evidence/ the exercised heavy-fixture check. These are historical results, not fresh implementation results for 1.2.
 
-Only roles/saas contains installable role instructions. Browser runtime profiles stay local and are excluded by layout.json and .gitignore; no raw evidence was deleted.
+version-history/ and v1.0/ preserve prior source and execution evidence. Archived entry files end in SKILL.md.txt to prevent discovery. For a historical reproduction, copy that version to a scratch workspace, restore its entry filename and reroot its version-specific fixture paths; do not run old commands against the active flat package. Prior layout moves/exclusions are in layout.json; the current consolidation is in consolidation-layout.json.
+
+Only roles/saas is the installable package. Authoring tests/history are outside the agent's default context. Browser runtime profiles stay local and excluded from publication; raw evidence is retained.

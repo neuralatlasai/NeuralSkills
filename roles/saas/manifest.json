@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0",
+  "skillVersion": "1.2.0",
+  "resources": [
+    {
+      "path": "SKILL.md",
+      "purpose": "Single discovery/activation entry and minimal lazy routing"
+    },
+    {
+      "path": "frontend-design.md",
+      "purpose": "UI hierarchy, visual system and interaction tradeoffs"
+    },
+    {
+      "path": "frontend-implementation.md",
+      "purpose": "UI state authority, lifecycle, CSS and rendering diagnosis"
+    },
+    {
+      "path": "backend-edge.md",
+      "purpose": "Network, transport identity, ingress and access boundaries"
+    },
+    {
+      "path": "backend-api.md",
+      "purpose": "Operation/domain contracts, validation and atomic preconditions"
+    },
+    {
+      "path": "backend-data.md",
+      "purpose": "Storage modeling, queries, transactions and distribution decisions"
+    },
+    {
+      "path": "backend-async.md",
+      "purpose": "Derived state, durable effects, jobs and integration boundaries"
+    },
+    {
+      "path": "backend-runtime.md",
+      "purpose": "Runtime diagnosis, capacity envelopes, admission and deadlines"
+    },
+    {
+      "path": "backend-operations.md",
+      "purpose": "Recovery, telemetry, deployment and security operations"
+    },
+    {
+      "path": "workflow.md",
+      "purpose": "Eight conditional responsibility contracts for coordinated work"
+    },
+    {
+      "path": "verification.md",
+      "purpose": "Task-scoped functional, inclusive and real-engine checks"
+    },
+    {
+      "path": "standards.md",
+      "purpose": "Applicable public standards, accessibility and performance targets"
+    },
+    {
+      "path": "source-register.md",
+      "purpose": "Dated source provenance, adoption decisions and reuse limitations"
+    },
+    {
+      "path": "backend-coverage.json",
+      "purpose": "Mandatory backend responsibility index and coverage labels"
+    },
+    {
+      "path": "manifest.json",
+      "purpose": "Exact active flat resource inventory"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "1.0",
+  "source": "https://github.com/neuralatlasai/NeuralSkills/blob/8f3453920a27a9e0f8cb2c45ef505a409d40e7f4/roles/saas/backend-engineering/meet.md#3-mandatory-technical-coverage",
+  "dispositions": [
+    "IMPLEMENTED_OR_CHANGED",
+    "INHERITED_VERIFIED",
+    "OUT_OF_SCOPE",
+    "RELEVANT_UNVERIFIED"
+  ],
+  "note": "Backend scope index only; all procedures are flat on-demand references. Classify actual task areas without claiming inherited verification from metadata.",
+  "areas": [
+    {
+      "id": "L01",
+      "name": "DNS, discovery, network paths and sockets",
+      "module": "M4",
+      "procedure": "backend-edge.md"
+    },
+    {
+      "id": "L02",
+      "name": "TLS, certificates and transport identity",
+      "module": "M4",
+      "procedure": "backend-edge.md"
+    },
+    {
+      "id": "L03",
+      "name": "Proxies, gateways, ingress, CDN and load balancing",
+      "module": "M4",
+      "procedure": "backend-edge.md"
+    },
+    {
+      "id": "L04",
+      "name": "Authentication, authorization and tenant identity",
+      "module": "M4",
+      "procedure": "backend-edge.md"
+    },
+    {
+      "id": "L05",
+      "name": "API styles, HTTP versions, RPC and streams",
+      "module": "M4",
+      "procedure": "backend-edge.md"
+    },
+    {
+      "id": "L06",
+      "name": "CRUD, upsert and bulk semantics",
+      "module": "M4",
+      "procedure": "backend-api.md"
+    },
+    {
+      "id": "L07",
+      "name": "Validation, parsing, serialization and errors",
+      "module": "M4",
+      "procedure": "backend-api.md"
+    },
+    {
+      "id": "L08",
+      "name": "Domain architecture and request lifecycle",
+      "module": "M4",
+      "procedure": "backend-api.md"
+    },
+    {
+      "id": "L09",
+      "name": "Runtime, memory, concurrency, OS and containers",
+      "module": "M6",
+      "procedure": "backend-runtime.md"
+    },
+    {
+      "id": "L10",
+      "name": "Database modeling and DDL",
+      "module": "M5",
+      "procedure": "backend-data.md"
+    },
+    {
+      "id": "L11",
+      "name": "DML/DQL, ORM, indexes and query plans",
+      "module": "M5",
+      "procedure": "backend-data.md"
+    },
+    {
+      "id": "L12",
+      "name": "Transactions, isolation, locks and consistency",
+      "module": "M5",
+      "procedure": "backend-data.md"
+    },
+    {
+      "id": "L13",
+      "name": "Database privileges and operational administration",
+      "module": "M5",
+      "procedure": "backend-data.md"
+    },
+    {
+      "id": "L14",
+      "name": "Storage, replication, partitioning, sharding and hashes",
+      "module": "M5",
+      "procedure": "backend-data.md"
+    },
+    {
+      "id": "L15",
+      "name": "Cache, views and derived state",
+      "module": "M5",
+      "procedure": "backend-async.md"
+    },
+    {
+      "id": "L16",
+      "name": "Messaging, event logs, CDC and async effects",
+      "module": "M5",
+      "procedure": "backend-async.md"
+    },
+    {
+      "id": "L17",
+      "name": "Durable workers, schedules and workflows",
+      "module": "M5",
+      "procedure": "backend-async.md"
+    },
+    {
+      "id": "L18",
+      "name": "Files, objects, search and specialized stores",
+      "module": "M5",
+      "procedure": "backend-async.md"
+    },
+    {
+      "id": "L19",
+      "name": "External APIs, webhooks, tools and MCP",
+      "module": "M5",
+      "procedure": "backend-async.md"
+    },
+    {
+      "id": "L20",
+      "name": "Traffic, capacity, scaling and cost",
+      "module": "M6",
+      "procedure": "backend-runtime.md"
+    },
+    {
+      "id": "L21",
+      "name": "Reliability, backups and recovery",
+      "module": "M8",
+      "procedure": "backend-operations.md"
+    },
+    {
+      "id": "L22",
+      "name": "Observability, objectives and audit",
+      "module": "M8",
+      "procedure": "backend-operations.md"
+    },
+    {
+      "id": "L23",
+      "name": "Infrastructure, build and deployment lifecycle",
+      "module": "M8",
+      "procedure": "backend-operations.md"
+    },
+    {
+      "id": "L24",
+      "name": "Security, privacy, supply chain and lifecycle",
+      "module": "M8",
+      "procedure": "backend-operations.md"
+    }
+  ]
+}

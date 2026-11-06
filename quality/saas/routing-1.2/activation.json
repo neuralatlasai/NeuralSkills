@@ -1,0 +1,75 @@
+{
+  "method": "One fresh description-only context,12 compact prompts,not12freshcontexts",
+  "rawSelections": [
+    {
+      "id": "A1",
+      "decision": "ACTIVATE",
+      "reason": "Frontend behavior and accessibility repair."
+    },
+    {
+      "id": "A2",
+      "decision": "ACTIVATE",
+      "reason": "Responsive frontend implementation from a screenshot."
+    },
+    {
+      "id": "A3",
+      "decision": "ACTIVATE",
+      "reason": "Backend data concurrency repair."
+    },
+    {
+      "id": "A4",
+      "decision": "ACTIVATE",
+      "reason": "Operational diagnosis of a TLS configuration failure."
+    },
+    {
+      "id": "A5",
+      "decision": "ACTIVATE",
+      "reason": "Backend worker reliability and retry repair."
+    },
+    {
+      "id": "A6",
+      "decision": "ACTIVATE",
+      "reason": "UI and API implementation involving concurrency and tenant security."
+    },
+    {
+      "id": "N1",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Unrelated correspondence without engineering work."
+    },
+    {
+      "id": "N2",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Concept explanation without engineering work."
+    },
+    {
+      "id": "N3",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Grammar proofreading without engineering work."
+    },
+    {
+      "id": "N4",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Text sorting without engineering work."
+    },
+    {
+      "id": "N5",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Creative writing without engineering work."
+    },
+    {
+      "id": "N6",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Vocabulary translation without engineering work."
+    }
+  ],
+  "toolsUsed": 0,
+  "confusion": {
+    "TP": 6,
+    "TN": 6,
+    "FP": 0,
+    "FN": 0
+  },
+  "exactModel": null,
+  "tokens": null,
+  "limit": "Single observations; no statistical or general accuracy claim"
+}

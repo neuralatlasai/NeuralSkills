@@ -1,0 +1,34 @@
+{
+  "method": "Six fresh routing/reading observations, not implementation tests or a quality score. Inspect actual reads after one entry. Per-context max3underlyingtools/120seconds. No version-preferred outcome disclosed.",
+  "cases": [
+    {
+      "id": "R01",
+      "task": "Fix duplicate submissions and focus feedback in an existing native button component. Preserve its CSS and behavior; no backend change."
+    },
+    {
+      "id": "R02",
+      "task": "Reproduce a supplied landing-page screenshot with its typography, composition and narrow layout. This is an interface implementation request."
+    },
+    {
+      "id": "R03",
+      "task": "Repair an inventory lost update in the existing relational storage adapter while preserving the API. No interface changes."
+    },
+    {
+      "id": "R04",
+      "task": "Diagnose wrong-host TLS failures between ingress and upstream. Keep certificate verification enabled and preserve compatible versions."
+    },
+    {
+      "id": "R05",
+      "task": "Repair a durable worker's retry after an external effect succeeds but its acknowledgement is lost. No UI change."
+    },
+    {
+      "id": "R06",
+      "task": "Implement an order form plus API with version conflicts and trusted tenant scope, preserving the existing brand. Define only the necessary frontend/backend boundary."
+    }
+  ],
+  "acceptance": {
+    "singleEntry": "Only active roles/saas/SKILL.md",
+    "selectiveReading": "Read relevant domain files; do not load the other branch for single-domain requests. Fullstack can read two needed boundary references.",
+    "honesty": "No implementation, benchmark or project inspection is claimed"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-11-06T05:20:32.612Z",
+  "activeSkill": "roles/saas/SKILL.md",
+  "activeName": "saas",
+  "version": "1.2.0",
+  "priorCommit": "8f3453920a27a9e0f8cb2c45ef505a409d40e7f4",
+  "archives": "quality/saas/version-history/1.1.0",
+  "historicalInstructionsRenamed": [
+    {
+      "from": "quality/saas/v1.0/backend-engineering/evals/trials/B01-skill-2/evidence/inspected-sources/SKILL.md",
+      "to": "quality/saas/v1.0/backend-engineering/evals/trials/B01-skill-2/evidence/inspected-sources/SKILL.md.txt",
+      "sha256": "d3b7a8508c01993918412aa9cf40f8fa842b764c145c3189bf676969d5cdfbbc",
+      "reason": "Historical instruction data must not activate as a live skill"
+    }
+  ],
+  "coreWords": 299,
+  "reason": "User requested one folder and lower initial context. Detailed techniques remain flat on-demand references; old packages/records remain version-attributed."
+}

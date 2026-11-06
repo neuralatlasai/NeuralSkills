@@ -1,0 +1,82 @@
+{
+  "createdAt": "2026-11-06T05:23:43.459Z",
+  "version": "1.2.0",
+  "scope": "Single-entry instructions/reference/index bytes frozen before fresh routing observations; implementation techniques are consolidated from evaluated1.1, no new app execution claim.",
+  "files": [
+    {
+      "path": "backend-api.md",
+      "bytes": 6208,
+      "sha256": "f4c6480387d68f10d40d706780a253fa62bec30cd0a1a5c036a6f07524968037"
+    },
+    {
+      "path": "backend-async.md",
+      "bytes": 5574,
+      "sha256": "d4ac5fdb06049e35cf30c82934909a9fee0bb9cb4f521d75f5f992225b86a333"
+    },
+    {
+      "path": "backend-coverage.json",
+      "bytes": 4155,
+      "sha256": "77e41a38e9bf44b1c61fc92497fcf35bcef19a40203d5384234edf0fb928cca4"
+    },
+    {
+      "path": "backend-data.md",
+      "bytes": 6457,
+      "sha256": "9fc3b529c922f2236b223c375d42094ca3b83207f04180eeb2915215c6a4ce7c"
+    },
+    {
+      "path": "backend-edge.md",
+      "bytes": 7109,
+      "sha256": "3129fad6f2f6480d74e51467a359720caa2955e5f7f5e3f720a3227aa4a1c96e"
+    },
+    {
+      "path": "backend-operations.md",
+      "bytes": 5089,
+      "sha256": "6368fa14ab57bcca92073b74c03583b4d660d13fe72589b77a7359476ceb3456"
+    },
+    {
+      "path": "backend-runtime.md",
+      "bytes": 5746,
+      "sha256": "f8f57984cd11601edab69e936da6b7ec4c4bfa21a4eb99acacd32552ad502b5f"
+    },
+    {
+      "path": "frontend-design.md",
+      "bytes": 7790,
+      "sha256": "f5c7abc285f0d071ec94cbea8587a0b6c0e2145c70ce3c78c35e048459b54515"
+    },
+    {
+      "path": "frontend-implementation.md",
+      "bytes": 9025,
+      "sha256": "39b25a5920bfffd91ed6215d0f154558fb87c0433375df7123b29f4f74f4d870"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 1963,
+      "sha256": "7b34f6aa3c6ec0ed840071a3c310bd129912b1fb457b033eec69108966425502"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 2486,
+      "sha256": "5c84fcbc7444fef0c7ed51b722566ecbf375fdca1da82a28768a4a8b5f001058"
+    },
+    {
+      "path": "source-register.md",
+      "bytes": 18421,
+      "sha256": "7e5461587234cc8ba7ad07a1f11376ed85158deb8deb4220a73f4634a8026357"
+    },
+    {
+      "path": "standards.md",
+      "bytes": 3870,
+      "sha256": "cbee29bd5cabbce047bb502081c1e5e872adbe4ecc20d46972f50ab3e59f9936"
+    },
+    {
+      "path": "verification.md",
+      "bytes": 2819,
+      "sha256": "9ec8040cea65250e04fdd9c653a3c30d6c36b95a88c9ef1fbb4f76ee418fcba4"
+    },
+    {
+      "path": "workflow.md",
+      "bytes": 3493,
+      "sha256": "d2a4b4b6ddb3e6bcdb98a9152da69436de35d069ec4cee0b16011524e467fe12"
+    }
+  ]
+}

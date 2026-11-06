@@ -1,0 +1,40 @@
+﻿{
+    "id":  "R05",
+    "decision":  "ACTIVATE",
+    "selectedRoute":  "roles/saas/backend-async.md",
+    "actualReadPaths":  [
+                            "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\quality\\saas\\routing-1.2\\R05.txt",
+                            "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\SKILL.md",
+                            "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-async.md"
+                        ],
+    "whyEachRead":  [
+                        {
+                            "path":  "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\quality\\saas\\routing-1.2\\R05.txt",
+                            "reason":  "Read the assigned fresh observation constraints and worker retry scenario."
+                        },
+                        {
+                            "path":  "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\SKILL.md",
+                            "reason":  "Select the scoped SaaS procedure for a durable worker and integration effect."
+                        },
+                        {
+                            "path":  "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-async.md",
+                            "reason":  "Plan retry safety when an external effect succeeds but its acknowledgement is lost."
+                        }
+                    ],
+    "firstActions":  [
+                         "Trace the worker delivery, external effect identity, persisted retry state, and acknowledgement boundary.",
+                         "Determine the external system idempotency or reconciliation contract and plan durable duplicate-effect prevention across ambiguous retries.",
+                         "Plan failure-injection verification for effect success followed by acknowledgement loss, retry, crash recovery, and replay."
+                     ],
+    "unverifiedScope":  [
+                            "Repository code, stack, worker framework, persistence, and provider contracts were not inspected.",
+                            "No implementation, runtime reproduction, tests, research, or UI changes were performed."
+                        ],
+    "actualReadCommands":  [
+                               "Get-Content -Raw -LiteralPath \u0027C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\quality\\saas\\routing-1.2\\R05.txt\u0027",
+                               "Get-Content -Raw -LiteralPath \u0027C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\SKILL.md\u0027",
+                               "Get-Content -Raw -LiteralPath \u0027C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-async.md\u0027"
+                           ],
+    "actualReadCommandCount":  3,
+    "underlyingToolCallCount":  3
+}
