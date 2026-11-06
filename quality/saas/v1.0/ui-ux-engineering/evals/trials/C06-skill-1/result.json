@@ -1,0 +1,190 @@
+{
+  "caseId": "C06",
+  "arm": "skill",
+  "run": 1,
+  "route": "ui-ux-engineering; small local native component; explore; M1,M3,M4,M5,M6,M7,M8",
+  "requirementCoverage": [
+    {
+      "id": "C06-R01",
+      "requirement": "Native TypeScript/CSS page, labeled form, Enter and Search submission",
+      "status": "PASS",
+      "evidence": [
+        "evidence/browser.json#initial-form",
+        "evidence/browser.json#cedar-pending-success-enter",
+        "evidence/browser.json#moss-search-button"
+      ]
+    },
+    {
+      "id": "C06-R02",
+      "requirement": "Initial prompt and visible pending state for each current request",
+      "status": "PASS",
+      "evidence": [
+        "evidence/browser.json#initial-form",
+        "evidence/browser.json#cedar-pending-success-enter",
+        "evidence/browser.json#failure-retry-same-query"
+      ]
+    },
+    {
+      "id": "C06-R03",
+      "requirement": "Guide cards and useful empty outcome",
+      "status": "PASS",
+      "evidence": [
+        "evidence/browser.json#moss-search-button",
+        "evidence/browser.json#empty"
+      ]
+    },
+    {
+      "id": "C06-R04",
+      "requirement": "Clear failure and Retry of the same failed query",
+      "status": "PASS",
+      "evidence": [
+        "evidence/browser.json#failure-retry-same-query"
+      ]
+    },
+    {
+      "id": "C06-R05",
+      "requirement": "Latest submitted query wins over stale successes and failures",
+      "status": "PASS",
+      "evidence": [
+        "evidence/browser.json#race-stale-success",
+        "evidence/browser.json#race-stale-failure"
+      ]
+    },
+    {
+      "id": "C06-R06",
+      "requirement": "Live feedback semantics and usable keyboard focus",
+      "status": "PASS",
+      "evidence": [
+        "evidence/browser.json#initial-form",
+        "evidence/browser.json#cedar-pending-success-enter",
+        "evidence/browser.json#failure-retry-same-query",
+        "evidence/browser.json#narrow-320-and-focus"
+      ]
+    },
+    {
+      "id": "C06-R07",
+      "requirement": "Responsive page fits 320px with long moss content",
+      "status": "PASS",
+      "evidence": [
+        "evidence/browser.json#narrow-320-and-focus"
+      ]
+    },
+    {
+      "id": "C06-R08",
+      "requirement": "Unchanged fixture, setup instructions, deterministic scenario checks",
+      "status": "PASS",
+      "evidence": [
+        "evidence/browser.json#fixture-unchanged",
+        "evidence/browser.json#runtime-errors"
+      ]
+    }
+  ],
+  "assumptions": [
+    "The task supplies eight requirement IDs without individual descriptions; descriptions in this result map the supplied task text to those IDs.",
+    "No brand or reference layout was supplied; a compact field-library visual direction is an implementation decision.",
+    "Known local typed fixture payloads are trusted; no real backend or network is used."
+  ],
+  "decisions": [
+    "Original API copied byte-for-byte. TypeScript compiler API performs strict checking and creates a tiny CommonJS browser bundle; no package install or runtime UI library.",
+    "A monotonically increasing request ID guards every success, rejection and finally update. Searches remain enabled while requests run; old cards clear on submission.",
+    "Retry owns the last submitted query independently of editable input. Retrying moves focus from the disappearing Retry button to the persistent input.",
+    "Stable polite live status lies outside the aria-busy results list. Native form, label and buttons provide semantics and keyboard behavior.",
+    "System fonts, semantic CSS variables, stacked narrow form, wrapping cards and at least 46px form controls keep this small page usable.",
+    "No automatic retries or timeouts are introduced into the deterministic fixture. Results are informational cards."
+  ],
+  "checks": [
+    {
+      "id": "build",
+      "status": "PASS",
+      "evidence": "evidence/build-final.stdout.txt: strict TypeScript 6.0.3 check and bundle completed."
+    },
+    {
+      "id": "initial-form",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: \"Visible initial prompt, associated label, Tab reaches search input.\""
+    },
+    {
+      "id": "cedar-pending-success-enter",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: \"Enter submits; pending visible immediately; live region not suppressed by busy ancestor; cedar resolves; input focus retained.\""
+    },
+    {
+      "id": "moss-search-button",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: \"Search button returns both moss cards, habitat and page counts.\""
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: \"Empty outcome includes a useful next search suggestion.\""
+    },
+    {
+      "id": "failure-retry-same-query",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: \"Keyboard Retry creates a new pending attempt for fail despite edited input cedar; deterministic failure returns; focus transferred to persistent input.\""
+    },
+    {
+      "id": "race-stale-success",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: \"cedar starts; moss starts about 100ms later; after 1400ms additional wait, moss status/query/cards remain.\""
+    },
+    {
+      "id": "race-stale-failure",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: \"fail starts; moss starts about 100ms later; after stale rejection, moss stays visible without Retry.\""
+    },
+    {
+      "id": "narrow-320-and-focus",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: {\"viewport\":\"320Ã—760\",\"horizontalOverflow\":false,\"controlHeights\":[46.796875,46],\"textResize\":\"200% text at 640px: no horizontal overflow; not browser zoom\"}"
+    },
+    {
+      "id": "fixture-unchanged",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: \"Byte-for-byte Buffer equality against supplied fixture.\""
+    },
+    {
+      "id": "runtime-errors",
+      "status": "PASS",
+      "evidence": "evidence/browser.json: []"
+    },
+    {
+      "id": "render-review",
+      "status": "PASS",
+      "evidence": "Inspected evidence/desktop-results.png (960x850) and evidence/mobile-results-focus.png (320x760): readable hierarchy, aligned form, wrapped long guide title, no clipped cards, visible keyboard focus ring."
+    },
+    {
+      "id": "initial-fixture-check-path",
+      "status": "FAIL",
+      "evidence": "evidence/browser-initial.json and browser-initial.stdout.txt preserve ENOENT from helper path. Corrected helper path; final fixture-unchanged check PASS. This was a test helper defect."
+    },
+    {
+      "id": "assistive-technology",
+      "status": "UNVERIFIED",
+      "evidence": "No screen reader run. DOM live-region and keyboard checks do not establish announcements in AT."
+    },
+    {
+      "id": "automated-a11y-and-contrast",
+      "status": "UNVERIFIED",
+      "evidence": "No accessibility scanner or numerical contrast evaluation executed."
+    },
+    {
+      "id": "field-performance",
+      "status": "NOT_APPLICABLE",
+      "evidence": "Local fixture task; no field data or performance claim. No CWV or INP measurement executed."
+    }
+  ],
+  "limitations": [
+    "Headless Chrome 156 only; no other browser or assistive technology tested. This is not a WCAG conformance assessment.",
+    "200% text resizing was checked at 640px; actual browser zoom was not exercised.",
+    "Original failed verification output is retained; later browser run passes all 10 checks.",
+    "Host tool paths in build and verification scripts are explicit; TYPESCRIPT_PATH supports another compiler location. Playwright/Chrome paths match the supplied environment.",
+    "PowerShell environment inspection used unsupported Get-Date -AsUTC once; error preserved in evidence/environment-inspection-error.txt. UTC timing comes from clock tool for start and Node Date for end.",
+    "Tokens and cost are not exposed; actualTokens and cost are null."
+  ],
+  "startUtc": "2026-11-05T15:49:18.000Z",
+  "endUtc": "2026-11-05T15:55:49.225Z",
+  "elapsedSeconds": 391.225,
+  "actualTokens": null,
+  "cost": null
+}

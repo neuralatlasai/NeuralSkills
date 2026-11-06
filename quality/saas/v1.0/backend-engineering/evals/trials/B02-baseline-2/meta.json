@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-11-05T17:34:45.345Z",
+  "provenance": "Coordinator reconciliation from actual saved dispatch/order and retained result; raw result untouched; not host telemetry export.",
+  "trial": "B02-baseline-2",
+  "controlVersion": "2",
+  "dispatch": "evals/dispatch/B02-baseline-2.txt",
+  "commonInput": "evals/inputs/control-v2.json",
+  "comparisonStatus": "SCORED_CONTROL_CORRECTION",
+  "model": {
+    "selection": "Same inherited configuration, no override",
+    "exactId": null
+  },
+  "permissions": "Same workspace/network constraints; Node24.12/SQLite3.50.4",
+  "resources": {
+    "actualTokens": null,
+    "actualCost": null,
+    "availability": "Not exposed",
+    "actualNestedToolCalls": 10,
+    "toolCountBasis": "Exact: 9 nested tools and 1 collaboration send_message; functions.exec wrappers excluded. Includes one failed apply_patch.",
+    "startUtc": null,
+    "endUtc": "2026-11-05T17:34:21.820Z",
+    "reportedElapsedSeconds": null,
+    "fullExactElapsedSeconds": null
+  },
+  "conditionalWallUpperBound": {
+    "seconds": 258.912,
+    "priorObservedUtc": "2026-11-05T17:30:02.908Z",
+    "reason": "B01-skill-2 completion preceded B02baseline dispatch",
+    "premise": "Stable host UTC and actual dispatch after prior completion",
+    "meaning": "Causal upper bound, not exact whole-trial measured duration"
+  },
+  "budget": {
+    "wallSeconds": 360,
+    "nestedTools": 20,
+    "observedToolBreach": false,
+    "wallUpperBoundBelowLimit": true
+  },
+  "rawResultSha256": "e4e4ee16fa575fc31b7812efa349c0734f1e8d23f0579b0ac8848d51a1b7946b",
+  "concurrency": "BothB02arms shared host; elapsed times descriptive only, not efficiency comparison."
+}

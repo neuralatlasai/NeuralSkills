@@ -1,0 +1,37 @@
+{
+  "suiteVersion": "1.0.0",
+  "state": "AUTHORED_NOT_EXECUTED",
+  "statuses": {
+    "PASS": "Direct executed evidence establishes dynamic behavior; inspected source may establish a purely static requirement.",
+    "FAIL": "Observed behavior or inspected source contradicts requirement.",
+    "UNVERIFIED": "Not executed, incomplete, tools/evidence unavailable, or self-report without required independent observation.",
+    "NOT_APPLICABLE": "Genuinely outside this case with reason; cannot waive requested behavior."
+  },
+  "gates": [
+    "function and persisted correctness",
+    "authentication/authorization/tenant boundaries where applicable",
+    "bounded resource and retry behavior",
+    "scope and compatibility",
+    "truthful evidence and capability claims"
+  ],
+  "passingRule": "Every required applicable criterion must PASS; FAIL or UNVERIFIED blocks unqualified case pass. NOT_APPLICABLE requires evaluator rationale. No aesthetic score, weighted total, 10/10 label or statistical-confidence claim.",
+  "coverageRule": "Every L01-L24 has exactly one IMPLEMENTED_OR_CHANGED, INHERITED_VERIFIED, OUT_OF_SCOPE or RELEVANT_UNVERIFIED disposition with component and evidence/reason. Dispositions are not test statuses. Narrow tasks can have many OUT_OF_SCOPE entries. Inherited verified requires observation; do not require all24 implementations.",
+  "decisionRule": "Each material recommendation links requirement, mechanism, operating limit, failure mode and verification. Concise proportionate records suffice; verbosity and mechanism count earn no credit.",
+  "evidenceRule": "Database invariants need actual SQLite; HTTP requirements need actual HTTP. Preserve commands/exit codes/failures/raw outputs. Mock/code-only/compilation claims do not prove dynamic correctness. Independently repeat fault/recovery checks.",
+  "objectiveCriteria": "Evaluator-only detailed probes are heldout/grading.json; withhold from implementation agents. Public ID meanings communicate plain task criteria, not grader answers.",
+  "comparison": {
+    "cases": [
+      "B01",
+      "B02"
+    ],
+    "runsPerArm": 1,
+    "skillOnly": [
+      "B03",
+      "B04",
+      "B05",
+      "B06"
+    ],
+    "interpretation": "Four comparative trials total and four skill-only trials. Show individual observations and exact FAIL/UNVERIFIED counts; no broad/statistical superiority or fabricated savings."
+  },
+  "measurementRule": "Record actual start/end/elapsed and exposed host token/tool/cost counts only; null with reason when unavailable. Limit breaches remain visible. Three lab optimization samples do not establish throughput or p99."
+}

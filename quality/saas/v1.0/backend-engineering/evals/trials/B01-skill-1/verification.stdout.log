@@ -1,0 +1,13 @@
+PASS GET baseline and projection
+PASS identity and function denial
+PASS PATCH trim absence null and version-only
+PASS schema rejects without mutation
+PASS malformed media and oversized bytes
+PASS invalid UTF8 rejected
+PASS chunked oversized body
+PASS tenant comes from registry and absent object
+PASS atomic concurrent same-version edits
+PASS maximum valid fields
+PASS selected engine schema and query path
+PASS real SQLite persistence after close/reopen
+{"status":"PASS","checks":12}

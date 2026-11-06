@@ -1,0 +1,19 @@
+{
+    "trial":  "T05",
+    "utcStart":  "2026-11-06T03:19:44Z",
+    "firstPowerShellUtc":  "2026-11-06T03:19:56.2954663Z",
+    "utcEnd":  "2026-11-06T03:23:21.5822664Z",
+    "elapsedSeconds":  217.582,
+    "underlyingToolCalls":  15,
+    "toolBreakdown":  {
+                          "exec_command":  9,
+                          "clock":  1,
+                          "view_image":  5
+                      },
+    "hardSeconds":  360,
+    "hardToolCalls":  20,
+    "tokens":  null,
+    "cost":  null,
+    "firstToolPowerShellTimestampRequirement":  "deviation: first clock capture; ISO PowerShell capture in following read batch",
+    "delegation":  0
+}

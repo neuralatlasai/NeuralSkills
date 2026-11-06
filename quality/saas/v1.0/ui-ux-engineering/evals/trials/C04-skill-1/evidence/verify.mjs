@@ -1,0 +1,62 @@
+import { createRequire } from 'node:module';
+import { spawn } from 'node:child_process';
+import { writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+const require = createRequire(import.meta.url);
+const { chromium } = require('C:/Users/heman/AppData/Roaming/npm/node_modules/@playwright/cli/node_modules/playwright');
+const root = fileURLToPath(new URL('../', import.meta.url));
+const report = { startedUTC: new Date().toISOString(), environment: { node: process.version, viewports: ['1280x900', '375x812', '320x812', '640x900'], dpr: 1, fonts: 'system-ui / Windows Segoe UI', network: 'loopback, unthrottled', cpu: 'host, unthrottled', cache: 'no-store', dataset: 'one contact, three native checkboxes' }, checks: [], errors: [], requests: [], serverLog: '' };
+const check = (id, ok, evidence) => { report.checks.push({ id, status: ok ? 'PASS' : 'FAIL', evidence }); if (!ok) throw new Error(`${id}: ${JSON.stringify(evidence)}`); };
+const server = spawn(process.execPath, [path.join(root, 'artifact/scripts/serve.mjs')], { env: { ...process.env, PORT: '44104' }, stdio: ['ignore','pipe','pipe'] });
+let browser;
+try {
+ await new Promise((resolve, reject) => { const timer = setTimeout(() => reject(new Error('Server start timeout')), 8000); server.stdout.on('data', chunk => { report.serverLog += chunk; if (report.serverLog.includes('http://')) { clearTimeout(timer); resolve(); } }); server.stderr.on('data', chunk => { report.serverLog += chunk; }); server.on('exit', code => { if (code) reject(new Error(`Server exit ${code}`)); }); });
+ browser = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true });
+ report.environment.browser = await browser.version();
+ const page = await browser.newPage({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });
+ page.on('pageerror', error => report.errors.push(String(error)));
+ page.on('request', request => report.requests.push(request.url()));
+ await page.goto('http://127.0.0.1:44104');
+ const email = page.getByLabel('Email address', { exact: true });
+ const boxes = page.getByRole('checkbox');
+ check('defaults', await boxes.count() === 3 && await boxes.nth(0).isChecked() && !await boxes.nth(1).isChecked() && !await boxes.nth(2).isChecked() && !await page.locator('#saved-summary').isVisible(), '3 named native checkboxes; only Email updates checked; summary hidden');
+ await page.screenshot({ path: path.join(root, 'evidence/desktop-initial.png'), fullPage: true });
+ await page.getByRole('button', { name: 'Save preferences' }).click();
+ check('blank-email', await email.getAttribute('aria-invalid') === 'true' && await email.evaluate(el => document.activeElement === el) && await page.locator('#email-error').innerText() === 'Enter your email address.', 'Blank submit displays associated error and focuses email');
+ await email.fill('broken'); await email.press('Enter');
+ check('invalid-email', await page.locator('#email-error').innerText() === 'Enter a valid email address, such as name@example.com.' && !await page.locator('#saved-summary').isVisible(), 'Invalid address rejected; no saved summary');
+ await email.fill('person@example.com'); await email.press('Tab');
+ check('keyboard-focus', await boxes.nth(0).evaluate(el => document.activeElement === el && el.matches(':focus-visible')), 'Tab from email focuses Email updates with focus-visible');
+ await page.screenshot({ path: path.join(root, 'evidence/desktop-focus.png'), fullPage: true });
+ await page.keyboard.press('Space'); await page.keyboard.press('Tab'); await page.keyboard.press('Space'); await page.keyboard.press('Tab'); await page.keyboard.press('Space'); await page.keyboard.press('Tab');
+ check('keyboard-order', await page.getByRole('button').evaluate(el => document.activeElement === el), 'Email > Email updates > Product research > Partner offers > Save');
+ await page.keyboard.press('Enter');
+ check('keyboard-save', await page.locator('#saved-email').innerText() === 'person@example.com' && JSON.stringify(await page.locator('#saved-categories li').allTextContents()) === JSON.stringify(['Product research', 'Partner offers']) && await page.getByRole('status').innerText() === 'Preferences saved on this page.', 'Space toggles saved by Enter; visible email and two categories');
+ await page.screenshot({ path: path.join(root, 'evidence/desktop-saved.png'), fullPage: true });
+ await email.fill('changed@example.com'); await boxes.nth(0).check();
+ check('saved-snapshot', await page.locator('#saved-email').innerText() === 'person@example.com' && JSON.stringify(await page.locator('#saved-categories li').allTextContents()) === JSON.stringify(['Product research', 'Partner offers']) && await page.locator('#edit-status').isVisible(), 'Draft edits preserve saved snapshot and reveal unsaved message');
+ await email.fill('invalid'); await page.getByRole('button').click();
+ check('invalid-resave', await page.locator('#saved-email').innerText() === 'person@example.com', 'Invalid save preserves successful snapshot');
+ await page.setViewportSize({ width: 375, height: 812 }); await page.screenshot({ path: path.join(root, 'evidence/narrow-invalid.png'), fullPage: true });
+ await email.fill('changed@example.com'); for (let i = 0; i < 3; i++) await boxes.nth(i).uncheck(); await page.getByRole('button').click();
+ check('resave-empty', await page.locator('#saved-email').innerText() === 'changed@example.com' && await page.locator('#no-categories').isVisible() && !await page.locator('#saved-categories').isVisible() && !await page.locator('#edit-status').isVisible(), 'Valid save replaces snapshot; zero categories stated explicitly');
+ await page.screenshot({ path: path.join(root, 'evidence/narrow-saved.png'), fullPage: true });
+ for (const width of [375, 320, 640]) { await page.setViewportSize({ width, height: width === 640 ? 900 : 812 }); check(`reflow-${width}`, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px: no horizontal document overflow`); }
+ await page.setViewportSize({ width: 320, height: 812 }); await page.screenshot({ path: path.join(root, 'evidence/reflow-320.png'), fullPage: true });
+ const semantics = await page.evaluate(() => ({ lang: document.documentElement.lang, emailLabel: document.querySelector('#email').labels[0].textContent, required: document.querySelector('#email').required, group: document.querySelector('legend').textContent, status: document.querySelector('#save-status').getAttribute('role'), choices: [...document.querySelectorAll('input[type=checkbox]')].map(el => el.labels[0].textContent.trim()), targetHeights: [...document.querySelectorAll('.choice,button,input[type=email]')].map(el => el.getBoundingClientRect().height) }));
+ check('semantics-targets', semantics.lang === 'en' && semantics.required && semantics.choices.length === 3 && semantics.status === 'status' && semantics.targetHeights.every(h => h >= 44), semantics);
+ const luminance = hex => { const c = hex.match(/[0-9a-f]{2}/gi).map(v => parseInt(v,16)/255).map(v => v <= .04045 ? v/12.92 : ((v+.055)/1.055)**2.4); return c[0]*.2126+c[1]*.7152+c[2]*.0722; };
+ const contrast = (a,b) => { const x=luminance(a),y=luminance(b); return (Math.max(x,y)+.05)/(Math.min(x,y)+.05); };
+ const pairs = [['body','#262a2d','#f7f4ed',4.5],['muted','#565e65','#f7f4ed',4.5],['input','#262a2d','#fffdf8',4.5],['button','#ffffff','#173d68',4.5],['button-hover','#ffffff','#102e50',4.5],['error','#a12d27','#f7f4ed',4.5],['focus','#173d68','#f7f4ed',3],['border','#737b81','#fffdf8',3]].map(([name,fg,bg,min]) => ({ name,fg,bg, minimum:min, ratio:contrast(fg,bg) }));
+ check('contrast', pairs.every(p => p.ratio >= p.minimum), pairs);
+ await page.reload();
+ check('local-only-reload', await email.inputValue() === '' && await boxes.nth(0).isChecked() && !await page.locator('#saved-summary').isVisible(), 'Reload resets in-memory state and defaults');
+ check('runtime', report.errors.length === 0 && report.requests.every(url => url.startsWith('http://127.0.0.1:44104/')), { errors: report.errors, requests: report.requests });
+} catch (error) { report.failure = String(error); process.exitCode = 1; }
+finally {
+ if (browser) await browser.close();
+ const stopped = new Promise(resolve => server.once('exit', resolve)); server.kill(); await stopped;
+ report.serverStopped = true; report.endedUTC = new Date().toISOString();
+ await writeFile(path.join(root, 'evidence/browser-results.json'), JSON.stringify(report,null,2)); console.log(JSON.stringify(report,null,2));
+}

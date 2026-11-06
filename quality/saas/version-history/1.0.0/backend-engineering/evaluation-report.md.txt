@@ -1,0 +1,142 @@
+# Backend engineering acceptance assessment
+
+The package implements and demonstrates a usable **local Node/SQLite backend skill**. All ten authoring gates PASS **within the declared local scope**. Eight scored fresh-context trials have **47 required functional/reporting criteria PASS, zero FAIL, zero UNVERIFIED**. Four original comparative pilots remain retained after a common-input repair and four replacement comparative runs. Activation, resource reconciliation, structural checks and delivery inventory are included. Measurement unknowns and unsupported production/platform capabilities remain explicit; this is not certification or a universal quality score.
+
+This assessment uses the unchanged [meet.md](../meet.md), [ten gates](../assets/gates.json), [cases](cases.json), [rubric](rubric.json), [protocol](protocol.md) and [held-out criteria](heldout/grading.json). The assessor inspected actual code, references, retained failures, current evidence and trial outputs. Arm blinding was **broken**: directory names and result records were visible. Objective HTTP, SQLite, race, crash and recovery assertions were independently executed in [isolated assessment copies](evidence/assessment/trial-probes/results.json). Original trial databases, raw evidence and frozen source files were not rewritten.
+
+## Gate decisions
+
+These decisions concern the declared local operating boundary. Conditional guidance is distinct from runtime support. An absent optional technology does not by itself fail a required local behavior.
+
+| Gate | Status | Requirement-to-evidence assessment |
+|---|---|---|
+| G01 Authorized contract and scope | PASS | [Entry point](../SKILL.md), [task schema](../assets/task.schema.json), [adapters](../references/adapters.md) and [fixture contract](fixtures/README.md) define tasks, inputs, working outputs, authority, versions, limits and unknowns. |
+| G02 Evidence and source integrity | PASS | [Source register](../references/sources.md) and [research record](evidence/research.json) identify six selected Architecture Book chapters, pinned skill sources, inspected scope, reuse limits, primary behavior sources and rejected overclaims. This assessor inspected retained provenance, not entire upstream repositories or normative ISO texts. Current bundle hash matches current runtime evidence. |
+| G03 Full responsibility mapping | PASS | All L01–L24 map to actual components below and route through the [coverage index](../assets/coverage-index.json). [Eight module contracts](../references/modules.md) specify activation, inputs, dependencies, procedure, output, limits, failure handling and verification. Each skill trial supplies 24 valid dispositions; pilot baseline reporting differences are retained with the fairness caveat below. |
+| G04 Coherent contracts and invariants | PASS | Shared schema and references require the five-field decision chain. Actual service uses fresh transactional authority, tenant/version predicates, database type guards, bounded parsing, scoped durable operation identity and explicit local effect ownership. Fresh outputs and [independent runtime probes](evidence/assessment/trial-probes/results.json) support the declared mechanisms. |
+| G05 Cost and workload analysis | PASS | [Cost analysis](evidence/cost-analysis.md) and [observations](evidence/cost-observations.json) cover CPU/memory/database/network/amplification/storage/recovery. All three required models are present with unknown terms. B03 preserves comparable plans and three raw samples per tenant on 60,000 unchanged rows. |
+| G06 Working integrated backend | PASS | [Current integrated results](evidence/integrated/integrated-results.json) retain 13 executed groups on real HTTPS → ingress → authentication/tenant/validation/domain → file-backed SQLite → structured response. Important per-group limits appear below. |
+| G07 Security and failure boundaries | PASS | Current negative TLS/parser/credential/tenant/object/field, local concurrency and ambiguous-effect checks are corroborated by the assessor’s [29-request rerun](evidence/assessment/fixture-probes/probe-results.json) and [three streamed interleavings](evidence/assessment/fixture-probes/race-results.json). Exact postconditions PASS; the diagnostic’s raw UNVERIFIED labels remain unchanged. |
+| G08 Bounded operation and recovery | PASS | Admission/socket/parser/cache/telemetry bounds, local effect crash/restart, certificate/credential uptake, additive compatibility, drain and isolated restore execute. [18 load runs](evidence/integrated/load-results.json) account for all demand. Their PASS means accounting/cleanup assertions; no SLO, CPU starvation isolation, long soak, fleet rollout or production capacity is established. |
+| G09 Package and fresh-context validation | PASS | Equal-control reruns independently PASS all 24 comparative criteria; four skill-only trials add 23 PASS. Activation has 6TP/6TN/0FP/0FN. Original measurement unknowns remain explicit. The copied-snapshot link failure was repaired with contextual companions; the unchanged validator’s normal, self-test, negative and contract branches now PASS. |
+| G10 Delivery and claim traceability | PASS | [Static manifest](../assets/manifest.json), [complete generated inventory](evidence/delivery-inventory.json), versions, commands, raw results, resource reconciliation, source hashes and this trace are delivered. The final inventory is refreshed after report bytes stabilize and checked with the read-only verifier before archiving; unsupported/unverified capabilities are named below. |
+
+## Current and historical execution
+
+Current implementation bundle hash, independently recomputed: `a96c548de3b2618581179d66647bd587606b1c64f2a4fdc63b3c87091411d132`. Current [integrated](evidence/integrated/integrated-results.json), [network](evidence/integrated/network-results.json), [load](evidence/integrated/load-results.json) and [smoke](evidence/integrated/smoke-results.json) records identify the same bundle. Captured versions: Windows x64, Node **24.12.0**, SQLite **3.50.4**, OpenSSL **3.5.7**, TypeScript **6.0.3** for the contract file only. Runtime JavaScript receives syntax and real integration checks; it is not fully statically typechecked.
+
+The first [independent review](evidence/independent-review/report.md), against bundle `26110b595a6ce1ba8f1730462986fb5bf1f1cddb3f6a134180f405d30ca82a37`, found six actual defects: ownership revocation during body parsing, replay authorization, deleted representation disclosure, fractional database quantity, missing Bearer scheme validation and noncanonical cursor suffix acceptance. Those FAIL results and pre-repair source remain historical evidence. Current source moves fresh authority/current fields into the write transaction, reauthorizes replay, scrubs deleted representations, installs integer-domain guards and validates scheme/cursor syntax. Repairs do not retroactively change old results.
+
+Retained [post-repair probes](evidence/independent-review/post-repair/probe-results.json) report 17 PASS, 0 FAIL and one UNVERIFIED. The final assessor reran the same reviewer-authored harness: **29 real HTTPS requests, 17 PASS, 0 FAIL, one UNVERIFIED**, writing only under assessment. The harness imports a shared transport helper. P14 hardcodes “no documented retention rule”; the current [README](fixtures/README.md) now explicitly retains minimal worker identifiers for the local fixture lifetime. Observed cascading job deletion and retained effect ID agree with that policy. This establishes the documented **fixture policy**, not automatic production retention, quotas or deletion compliance. Raw P14 remains untouched.
+
+The streamed diagnostic has only FAIL-or-UNVERIFIED classification logic. [Coordinator postconditions](evidence/independent-review/post-repair/coordinator-assessment.json) and the assessor’s rerun show, on each of three attempts: transfer200 to owner=alice/version2; delayed limited write403; final owner=alice, quantity5, version2. Those exact authorization/state postconditions PASS. Raw UNVERIFIED labels are preserved. The assessor executed **41 HTTPS requests** across these two harnesses. Derived decisions are recorded separately in [assessment](evidence/assessment/assessment.json).
+
+| Integrated group | Supported observation and limit |
+|---|---|
+| I01 CRUD/trace | Full supported lifecycle, projections and persisted state traverse the real path. Bulk/upsert/stream protocols are unsupported. |
+| I02 duplicate create | Concurrent same-key requests produce one local item/operation; conflicting parameters and direct fractional/unsafe writes reject. |
+| I03 same-version updates | One winner/one409; stored quantity/version satisfy the invariant. I05 adds streamed authority/current-field regressions. |
+| I04 lost acknowledgement | Real post-commit response loss reconciles without another create. Revoked replay denies; deleted replay returns minimal410. |
+| I05 access | Tenant/object/field/cache/job/result and delayed body/queue authority changes deny. SQLite file owners remain privileged; SQL DCL/RLS is unavailable. |
+| I06 parser/deadline/cost | Byte/depth/media/framing/slow-body bounds and awaited-work deadline execute. `costMs` is a timer seam, not CPU work; synchronous SQL cannot be preempted. |
+| I07 exhaustion | Two active/four queued, bounded age, rejection, empty post-state and recovery. Application admission is not a database connection-pool test. |
+| I08 outages | Bounded cache bypass and pre-SQL dependency seam. Cache hits still check database authority; reduced DB reads or real Redis/disk outage is not established. |
+| I09 worker | Child exits77 after local effect commit; new-process replay gives two attempts/one effect. No remote/distributed exactly-once or power-loss claim. |
+| I10 rotation | Expired/untrusted/wrong-host rejection, live trusted fingerprint change and synthetic credential retirement execute. Production identity/PKI lifecycle is not established. |
+| I11 migration/drain | Legacy SQL works after additive schema3; invalid legacy types refuse migration; admitted work drains/new work503. No fleet canary, forced termination or destructive rollback. |
+| I12 restore | Native backup, isolated reopen/integrity/data comparison, tenant checks and explicit deletion-ledger reapplication execute; local restore-and-verify79.3483ms in this run. Production role/key/config recovery and post-snapshot authority reconciliation require their own contract. |
+| I13 telemetry | Queue16 and visible drops bound the local sink fault. No external exporter/collector outage was run. |
+
+Local DNS observes NXDOMAIN, explicit application negative caching, stale endpoint refusal, replacement use after **532.4205ms**, slow-peer/timeout behavior and **50** new TCP connections with zero active sockets remaining. NXDOMAIN contains no SOA, so recursive RFC2308 negative caching is not proved. IPv6, QUIC, NAT/descriptor exhaustion and blackholed half-open sockets remain unverified.
+
+Latest load: **822 intended = 582 generated + 240 generator-dropped**; **582 outcomes = 366 useful + 108 rejected + 108 failed**, zero client timeouts/retries. All generated-response latency samples include rejection/failure; dropped work has no response latency. Eighteen runs are three repetitions of six frozen scenarios. Generator/service share a process, use fresh TLS connections, 40 items and80/20 tenant skew; sustained windows are short. This supports local demand accounting, not production p99/capacity, scaling improvement, a memory ceiling or statistical confidence. Earlier totals in the historical review remain earlier-run observations.
+
+## L01–L24 mapping
+
+This is the authoring fixture map; fresh tasks have narrower individual maps. I=IMPLEMENTED_OR_CHANGED, H=INHERITED_VERIFIED, O=OUT_OF_SCOPE, U=RELEVANT_UNVERIFIED. Each leading disposition retains the explicitly named unverified aspects. Guidance is not an executable adapter.
+
+| Area / guidance | Disposition, actual component and evidence | Outside scope / unverified aspects |
+|---|---|---|
+| L01 [edge](../references/edge-identity.md) | I: dns-network.mjs actual UDP Resolver/TCP replacement, HTTPS sockets | Public recursive DNS, IPv6/QUIC, NAT/FD/blackholes U |
+| L02 edge | I: cert-gen.mjs/service.mjs/client CA/hostname validation, I10 | Loopback second hop intentionally HTTP; mTLS/HSTS/public renewal O |
+| L03 edge | I: service.mjs ingress normalization, framing/body/header/socket bounds/drain | CDN, multi-backend persistent distribution, fleet retry amplification O |
+| L04 edge | I: SQLite credentials/current role/object/field policy, I05/I10/replay | Production OAuth/OIDC/JWT/browser sessions O; OS/file authority U |
+| L05 edge | I: HTTP1.1 JSON REST and durable jobs | gRPC/GraphQL/SSE/WebSocket/HTTP2/QUIC adapters O |
+| L06 [API](../references/api-domain.md) | I: CRUD/signed cursor/versioned SQL, I01–I05/B01 | Bulk/upsert/search O; no snapshot pagination; large deletion cost U |
+| L07 API | I: bounded JSON/allowlists/depth/ranges/media/Problem Details, I06/B01/B06 | Compression rejected; general schema ecosystem compatibility O |
+| L08 API | I: ingress/handler/policy/domain/transaction/storage ownership, authority after await | Multi-service orchestration O; transaction covers local effects only |
+| L09 [runtime](../references/runtime-capacity.md) | I: Node event loop/admission/socket limits/drain/RSS/CPU observations | CPU-heavy starvation, long soak, container limits/disk pressure/forced signals U |
+| L10 [data](../references/data.md) | I: keys/FKs/checks/type triggers/migrations, I02/I05/I11 | Other engines/SQL role isolation O |
+| L11 data | I: scoped SQL/actual plans/bounded list; B03 covering index | Physical rows examined/I/O/lock wait/cold cache U; ORM O |
+| L12 data | I: BEGIN IMMEDIATE/CAS/rollback/identity ledger; B02 two connections | Distributed commit/other-engine anomaly tests O; power loss U |
+| L13 data | H: actual file-backed SQLite connection/busy timeout observed | SQL GRANT/RLS/server pooling unavailable/O; deployment ACL/admin U |
+| L14 data | I: WAL/integrity/type checks/B03 page-file growth; hashing roles separated | Replication/shards/ownership transfer O; disk/checkpoint pressure U |
+| L15 [async](../references/async-integrations.md) | I: scoped cache8/invalidation/fallback, I05/I08 | Cache retains authority SELECT; Redis/materialized rebuild O |
+| L16 async | I: SQLite job/effect identity and ack boundary, I09 | Broker/log/CDC/remote publication atomicity O |
+| L17 async | I: worker.mjs child crash/restart, B04 durable credits | One worker/local effect; leases/fencing/schedules/distributed workflow O |
+| L18 async | O: no object/search/vector/upload adapter; conditional procedure exists | Multipart/orphan/rebuild runtime checks unperformed |
+| L19 async | I: B06 real HTTP webhook/raw HMAC/tenant/durable receipt/replay | Live carrier/MCP SDK/server/discovery/cancel adapter O |
+| L20 runtime | I: bounded service/generator,6 scenarios×3, complete demand | Horizontal improvement/replica loss/production capacity U |
+| L21 [operations](../references/operations.md) | I: local fault seam/worker restart/actual isolated backup-restore/B05 | PITR/region/key infrastructure O; physical storage loss U |
+| L22 operations | I: correlation/local events/counters/telemetry bounded loss | Collector/exporter O; full lock/pool/freshness/profile metrics U |
+| L23 operations | I: dependency inventory/hash/syntax/contract checks/additive drain/B05 interruption | Cloud/Kubernetes canary/traffic switch O; forced job handoff/scanner/signer verification U |
+| L24 operations | I: selected ASVS mapping/auth/framing/rotation/deletion replay scrub | Minimal IDs retained for fixture lifetime; production retention/quotas U; unshipped channels O |
+
+## Fresh-context trials and comparison fairness
+
+[Freeze](evidence/skill-suite-freeze.json) occurred2026-11-05T16:51:15.631Z; B05/B06 are held-out. Original comparison: one observation per arm for each B01/B02 case, plus four skill-only trials. Every run is retained, with no best-of selection. [Independent probes](evidence/assessment/trial-probes/results.json) and [criterion decisions](evidence/assessment/trial-probes/requirement-assessment.json) inspect all47 required case criteria: literal frozen scoring yields45PASS/twoFAIL/zeroUNVERIFIED. Both FAILs concern baseline coverage-disposition labels, not functional code.
+
+The original common [responsibility input](inputs/responsibilities.json) contains only24 IDs/names and no allowed disposition labels/meanings. Case inputs request proportional truthful classification. [Coordinator reconstruction](evidence/coordinator-resources.json) records that the original shared dispatch wrapper omitted the enum while supplying check-status labels. The skill itself supplied the four coverage labels. Strict enum scoring was therefore not an equivalent-input comparison. Raw rubric flags remain **setup-induced format findings**, without a baseline engineering inferiority or skill-superiority claim. Original baseline reasons still describe implemented and outside-scope components.
+
+The [versioned correction](evidence/comparison-control-repair.json) adds only the user-derived coverage vocabulary and shared output contract in [control-v2](inputs/control-v2.json). The assessor inspected all four [saved run2 wrappers](dispatch/B01-baseline-2.txt): same task/control, inherited model, permissions,360-second/20-nested-tool budgets and raw fixtures; only skill availability and trial destination differ. No frozen criterion/instruction/source file was changed. Both arms were rerun without reading earlier outputs; all original runs remain pilots, rather than selecting the better result.
+
+| Original trial | Objective observation | Literal criterion counts / qualification |
+|---|---|---|
+| B01 baseline1 | HTTP validation/denial/tenant/media/bytes/CAS/reopen PASS |5PASS/1FAIL: R06enum setup defect |
+| B01 skill1 | Same HTTP assertions PASS;24 valid dispositions/five-field decisions |6PASS/0FAIL |
+| B02 baseline1 | Two connections/shared async barrier:201/409,stock1/version2/one allocation; fault rollback/retry PASS |5PASS/1FAIL: R06enum setup defect |
+| B02 skill1 | Same race/rollback/hooks/tenant/preconditions PASS; explicit SQLite limits |6PASS/0FAIL |
+| B03 skill1 | Independent60k-row oracle/ties/tenant/limits/covering plan; frozen seed/bench unchanged; rawbefore/after×3per tenant |6PASS/0FAIL |
+| B04 skill1 | Independent child exit73/repeated restart:balance7/onecredit/done; invalid/conflicting identity checks; copied verifier replay |6PASS/0FAIL |
+| B05 skill1 held-out | ≤2-row interruption/schema1; restart/repeat; isolated deletion-aware restore/source-backup hashes; copied verifier replay |5PASS/0FAIL |
+| B06 skill1 held-out | Raw HMAC/freshness/deny/rollback/retry/restart/conflicting replay; copied main/extra verifiers; MCP unsupported |6PASS/0FAIL |
+
+B03–B06 use coverage `id` rather than `area`; B03 uses `requirementsStatus`. Semantic field-name normalization is documented separately from prohibited enum values. All skill outputs have24 unique valid dispositions and material five-field decisions. The assessor executed12 new cross-case dynamic assertion groups; attributed full B04/B05/B06 verifier replays and B06extra also completed with child exit0. Evaluator path/UTF16 parsing incidents and Node experimental-warning wrapper behavior are retained in the criterion record. A single run per arm cannot establish statistical confidence, broad superiority or token/cost savings.
+
+The final scored suite uses the four corrected comparative trials below plus the original B03–B06 skill-only trials. Thus **12 implementation runs are retained, eight are scored, four are pilots**. No held-out task was used to tune skill instructions.
+
+| Scored comparative trial | Independent criterion outcome | Dynamic evidence |
+|---|---|---|
+| B01 baseline2 |6PASS/0FAIL/0UNVERIFIED | Real HTTP denial/schema/media/bytes/tenant, same-version200/409, null/absence and close/reopen;24valid dispositions/six decisions |
+| B01 skill2 |6PASS/0FAIL/0UNVERIFIED | Same frozen HTTP/persistence criteria;24valid dispositions/six decisions |
+| B02 skill2 |6PASS/0FAIL/0UNVERIFIED | Two real connections/shared afterRead barrier201/409; stock1/version2/one allocation; fault rollback, reuse/retry and tenant/preconditions |
+| B02 baseline2 |6PASS/0FAIL/0UNVERIFIED | Same forced race/reopen/rollback/retry criteria;24valid dispositions/six decisions |
+
+[Run2 criterion decisions](evidence/assessment/run2/requirement-assessment.json) contain24PASS. The four retained single-run skill cases add23PASS, giving47PASS/0FAIL/0UNVERIFIED across eight scored trials. [B01 raw probes](evidence/assessment/run2/b01-results.json), [B02 skill probes](evidence/assessment/run2/b02-skill-results.json), [B02 baseline probes](evidence/assessment/run2/b02-baseline-results.json) and [execution records](evidence/assessment/run2/command-records.json) preserve the independent observations. Eight additional dynamic assertion groups cover run2. There is **no observed functionality advantage** in this tiny corrected comparison: both arms satisfy the same required criteria. Resource timing is descriptive only; overlapping workloads and unavailable exact telemetry prevent efficiency conclusions.
+
+[Activation evidence](evidence/activation-results.json) contains twelve separate fresh contexts, each seeing only the frozen name/description and one prompt without the expected label. Independent reconciliation matches all prompts to the frozen suite and recomputes **6 true positives,6 true negatives,0 false positives,0 false negatives,0 uncertain**; all report zero tools. This is one observation per prompt, not a population-accuracy or confidence claim.
+
+## Resources, validation and support limits
+
+All twelve trial meta records are reconciled against raw-result hashes in the assessor’s [coordinator evidence summary](evidence/assessment/coordinator-evidence-summary.json); all hashes match. These are retrospective coordinator records, not exported host telemetry. Exact model identity/version, tokens and monetary cost are unexposed and remain **null**. Same inherited configuration/no override is recorded; no exact model name or resource saving is invented.
+
+| Scored comparison | Recorded nested tools | Conditional wall upper bound |
+|---|---:|---:|
+| B01 baseline2 |9 |227.665s |
+| B01 skill2 |12 |323.251s |
+| B02 skill2 |10 |283.267s |
+| B02 baseline2 |10 |258.912s |
+
+Run2 counts use nested external tools plus collaboration, excluding orchestration wrappers. Bounds derive from observed prior events that preceded actual dispatch to retained end timestamps, assuming stable host UTC; they fall below360seconds under that premise and are **not exact whole-trial measurements**. Full exact start/elapsed fields remain null where unavailable. Original B01baseline1 tool count is unavailable. B05’s raw11 counts9functions.exec wrappers plus2messages; B06’s raw11 counts exec_command/write_stdin and excludes collaboration. Original convention-matched nested totals therefore remain unverified. No exact cap compliance is fabricated for unknown boundaries.
+
+B03’s **288.191s is a lower-bound observation window**, beginning at the first successful UTC read after an initial clock-command failure. Actual dispatch after B01skill end17:01:31.403Z and B03end17:07:10.076Z gives a **conditional upper bound338.673s**, assuming stable host UTC. This inference is recorded separately from measured values. B05 nested timing259.339s and B06 start/end interval297.551s were read from the actual raw fields, with their intake/final-reply and tool-count qualifications retained.
+
+Final structural validation, five self-test assertions, the expected missing-root exit 1 and valid contract branch all PASS in [final validator evidence](evidence/assessment/final-validation.json). A later full-tree check had found 24 missing relative-link targets in the flat B01 skill2 inspected-source snapshots. The [context repair](evidence/snapshot-context-repair.json) adds 23 unique companion pointers/resources without altering the original six snapshots, raw result, frozen validator or acceptance thresholds. The assessor independently [verified their hashes](evidence/assessment/structural-repair-review.json) and reran the unchanged validator successfully. Companion files are explicitly post-trial context, not evidence that an agent read them. The original failure remains recorded by the repair and delivery-check history.
+
+[Initial validator evidence](evidence/package-validation-initial.json) and [assessor incidents](evidence/assessment/assessor-incidents.json) retain earlier outcomes. [15 smoke entries](evidence/integrated/smoke-results.json), helper negatives, syntax/strict contract checks and SQLite warnings remain retained. The validator checks bounded frontmatter/links/manifest/schema assertions, not complete YAML/JSON Schema or formal Agent Skills/ISO conformance.
+
+The [delivery inventory](evidence/delivery-inventory.json) records each package file’s purpose, size and SHA256, excluding only its own self-reference. The final assessor’s read-only command is `node evals/evidence/assessment/verify-delivery-inventory.mjs`; it checks complete file-set equality, duplicate/escaping paths, purposes, sizes and every hash. The coordinator refreshes inventory after final report bytes stabilize; the final observed verification and archive identity are retained by the parent delivery process. This inventory is artifact identity evidence, not a trusted signer/provenance or dependency-vulnerability assessment.
+
+Runtime support is demonstrated for the exact captured Windows/Node/SQLite/native HTTP1.1/TLS configuration. Node≥24.12 compatibility is a requirement, not proof all newer versions or operating systems were tested. PostgreSQL/MySQL/Redis/broker/object/search/Kubernetes/cloud/MCP adapters, production identity, distributed fencing, power-loss durability, long-run storage retention, public PKI renewal and production capacity are not established. Conditional references describe their assessment when selected. Optional absent platforms are distinct from missing required evidence.
+
+Full normative IEEE/ISO clauses were not accessed. [Coding guidance](../references/coding-standards.md) and [source limits](../references/sources.md) provide practical requirements/architecture traceability and project checks, without certification or a10/10 quality rating.

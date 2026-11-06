@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "originalSnapshots": 6,
+  "companions": 23,
+  "snapshotsIntact": true,
+  "companionHashes": true,
+  "scope": "Post-trial link context only; original flat snapshot and raw result bytes retained. Added pointer Markdown does not imply the agent read those sources.",
+  "evidence": "evals/evidence/snapshot-context-repair.json"
+}

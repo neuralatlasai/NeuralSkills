@@ -1,0 +1,46 @@
+# Handoff
+
+Implemented and verified the local reservation repair. All four supplied requirements PASS on Node v24.12.0 / SQLite 3.50.4 using real file-backed databases. No dependencies were installed.
+
+## Symptom and cause
+
+[baseline.log](baseline.log) retains the original run. Two Promise.all requests for 4 from stock 5 both returned reserved and left stock -3. The original read/check/await/unconditional-update schedule lets both requests pass the same stale check. This distinguishes the race from a missing-stock or lock-timeout diagnosis: both reads succeeded, neither call reported contention, and the durable decrement happened twice. The global primary key and unscoped replay query returned a red reservation ID to blue while blue stock stayed 5. A before-commit fault left stock 3 with zero receipts/events, proving independent autocommit writes rather than an atomic transaction.
+
+## Requirement trace and frozen checks
+
+The acceptance checks below were derived from the supplied B1-R1 through B1-R4 before running the repaired suite. Command for every row: `node --disable-warning=ExperimentalWarning tests.mjs`; executed exit 0, seven check groups PASS. Raw console output and generated database paths are in [verification.log](verification.log); retained database files allow durable-state inspection.
+
+| ID / meaning | Mechanism / file | Operating limit | Failure addressed | Executed evidence / status |
+|---|---|---|---|---|
+| B1-R1: 5 stock, two qty-4 commands produce one reservation and one sold_out, never negative, one event per accepted receipt | `service.ts`: SQLite BEGIN IMMEDIATE orders all cooperating writers; guarded UPDATE and CHECK(qty>=0); receipt/event inserted in the same transaction with unique event identity | Single SQLite file, one writer at a time; short synchronous transaction, configured 250ms busy wait | Stale read/check races, oversell and duplicate event | PASS: three independent worker-connection races start from a shared gate; each produces reserved + sold_out and stock 1. Tests inspect every accepted receipt's event count. Direct negative-stock SQL is rejected by SQLite CHECK. |
+| B1-R2: durable replay, exact parameter binding, conflict, tenant separation | `service.ts`: receipt PK(tenant,operation,key), operation=reserve; exact sku/qty comparison before update; UUID reservation ID; persist sold_out too | Receipts retained indefinitely for this disposable fixture; tenant supplied by trusted caller context; all calls use the same database | Global-key tenant leak, duplicate effects, key reused with changed payload, changed stock changing a replay outcome | PASS: three independent worker calls with the same key return one identical receipt/event; fresh child process replays it; changed qty and sku conflict without writes; blue same key has its own stock and distinct reservation. Durable sold_out remains sold_out after restock. |
+| B1-R3: stock, receipt, event atomic; rollback before commit; reconcile post-commit ack loss | `service.ts`: one transaction owner, catch rollback, COMMIT before after-commit hook; replays read receipt | Hook is a local exception after SQLite COMMIT returned, before the caller receives return. No power-loss or remote effect proof | Partial local effects; blind retries after acknowledgement loss | PASS: before-commit injected failure leaves exact prior durable state and retry succeeds; after-commit injected failure leaves one complete effect, retry returns stored reservation ID with exact unchanged state. |
+| B1-R4: validate qty, bind values, close connections; bounded contention policy | `service.ts`: positive Number.isSafeInteger validation before open; bound SQL values; try/finally close for init/reserve/readState, open helper closes setup failures; busy_timeout=250, no application retry | Safe JavaScript integers only; SQLite lock wait configuration is not a total wall-clock deadline. No admission queue or unlimited-concurrency guarantee | Negative/fractional/NaN/infinite/unsafe input mutation, SQL injection, leaked handles and indefinite application retry | PASS: zero/negative/fractional/NaN/infinite/unsafe/string/null rejected with unchanged state; SQL-shaped key safely reserved; a held writer causes bounded lock failure (364.8454ms observed, including call overhead), then immediate recovery succeeds. Connection cleanup additionally directly inspected in every exit path. |
+
+## Decision and compatibility
+
+Chosen: BEGIN IMMEDIATE plus an atomic stock predicate and local transactional receipt/event log. A deferred transaction plus guarded UPDATE and bounded whole-transaction retries is a plausible alternative, but an initial replay read can require a failed lock upgrade and retry. The small synchronous fixture has no long work inside the transaction, so acquiring SQLite's single writer lock first is simpler. The alternative becomes useful if measured lock holding/read-heavy workloads justify the added retry logic. A process mutex would not protect independent processes; a broker or distributed lock adds an external consistency boundary absent from this local effect log and is unnecessary.
+
+Exports and command/status shapes are preserved. `reservationId` remains an opaque string but now uses UUIDs rather than delimiter concatenation. readState still returns stock/receipts/events arrays; receipt/event rows now expose operation and composite tenant keys. Init schema is intentionally new; migration/reuse of original databases is not implemented, as allowed by the task. The package declares ES module parsing locally and changes no dependency/framework.
+
+Implemented: transaction, schema constraints, tenant/parameter replay, validation and cleanup. Inherited and verified: Node native TS, node:sqlite, bound values, per-call connection model. Simulated and executed: before/after commit hooks. Unperformed / outside required scope: crash or power-loss durability, disk-full recovery, high-load capacity, network/authentication, external effect delivery. SQLite file authority remains inherited; callers cannot use an operation key as tenant authorization.
+
+## Retained failures and trial accounting
+
+The original baseline invocation returned tool exit 1 because PowerShell treated Node warning stderr as NativeCommandError; its three JSON probes still executed and are preserved in baseline.log. It emitted MODULE_TYPELESS_PACKAGE_JSON and SQLite experimental warnings. The artifact now has local type=module; final test invocation suppresses only the experimental warning and records its actual test exit 0.
+
+One apply_patch attempt failed before changing files: `invalid patch: multiple operations target .../service.ts` (delete and add same path). It was corrected using scoped file writes; no test failure was hidden. Final verification required no implementation repair.
+
+Start UTC: 2026-11-06 03:19:38 (clock tool, second precision). The first functions wrapper captured UTC concurrently with reading the dispatch. Exact PowerShell UTC capture was in the next invocation: 2026-11-06T03:19:49.4958052Z. This differs from the dispatch's requested first-capture expression and is disclosed. Underlying tool counts include the initial clock/read pair, subsequent reads, baseline, failed patch, implementation/test write, and this documentation write. Final count/end are recorded below. Model token usage/cost: null (unavailable).
+
+
+Supplementary executed evidence: `node --disable-warning=ExperimentalWarning storage-fault-tests.mjs`, exit 0, two groups PASS, in [storage-fault-verification.log](storage-fault-verification.log). A real SQLite trigger aborts the event INSERT after stock and receipt writes; the entire state remains identical to its pre-call snapshot, then retry succeeds once the trigger is removed. A sold_out receipt also rolls back before commit and reconciles after commit. This expands B1-R3 beyond a JavaScript fault hook to a database write failure.
+
+[baseline-duplicate.log](baseline-duplicate.log) retains another run of the untouched original: two same-key calls decrement stock from 5 to 3 and create two local events but one receipt. INSERT OR IGNORE hides the duplicate receipt while the unconditional decrement/event still runs. The repaired concurrent same-key test closes this precise counterexample.
+
+All nine executed repaired check groups PASS. No required check remains FAIL or UNVERIFIED. The original baseline bugs and the failed patch attempt remain documented. Architectural, production and power-loss limits above remain outside the task acceptance boundary.
+
+Underlying invocation ledger: 1 clock UTC; 2 dispatch read; 3 selected skill/wrapper/contract/task read; 4 fixture and selected module/data/verification references read; 5 baseline reproduction; 6 failed apply_patch; 7 implementation plus seven-group verification; 8 README/handoff write; 9 duplicate baseline plus two storage-fault checks; 10 final handoff/evidence accounting. Functions wrappers do not add to this count. No delegation, installation, network, other-trial reads or production changes occurred.
+
+Actual underlying tool count: 10 / 20. UTC start: 2026-11-06 03:19:38 UTC. UTC end: 2026-11-06T03:23:54.9301757Z. Hard 360-second budget met. Model tokens/cost: null.
+

@@ -1,0 +1,1 @@
+{"command":"node build.cjs","cwd":"artifact","node":"v24.12.0","status":"PASS","exitCode":0,"stdout":"","stderr":"","source":"Executed tool result, strict TypeScript API build"}

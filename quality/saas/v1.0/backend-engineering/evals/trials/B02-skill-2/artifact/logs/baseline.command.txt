@@ -1,0 +1,2 @@
+node probe.mjs baseline.sqlite
+exitCode=0

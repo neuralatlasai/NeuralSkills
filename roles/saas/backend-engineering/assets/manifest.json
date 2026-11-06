@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "1.0",
+  "resources": [
+    {
+      "path": "SKILL.md",
+      "purpose": "Activation, routing and core execution rules"
+    },
+    {
+      "path": "assets/coverage-index.json",
+      "purpose": "Canonical shared contract/index/gates/resource inventory: coverage-index.json"
+    },
+    {
+      "path": "assets/gates.json",
+      "purpose": "Canonical shared contract/index/gates/resource inventory: gates.json"
+    },
+    {
+      "path": "assets/manifest.json",
+      "purpose": "Canonical shared contract/index/gates/resource inventory: manifest.json"
+    },
+    {
+      "path": "assets/task.schema.json",
+      "purpose": "Canonical shared contract/index/gates/resource inventory: task.schema.json"
+    },
+    {
+      "path": "assets/task.template.json",
+      "purpose": "Canonical shared contract/index/gates/resource inventory: task.template.json"
+    },
+    {
+      "path": "evals/activation.json",
+      "purpose": "Frozen suite specification or actual report: activation.json"
+    },
+    {
+      "path": "evals/cases.json",
+      "purpose": "Frozen suite specification or actual report: cases.json"
+    },
+    {
+      "path": "evals/fixtures/README.md",
+      "purpose": "Executable integrated fixture contract/workload/provenance: README.md"
+    },
+    {
+      "path": "evals/fixtures/contracts.ts",
+      "purpose": "Executable integrated fixture contract/workload/provenance: contracts.ts"
+    },
+    {
+      "path": "evals/fixtures/legacy-repository.mjs",
+      "purpose": "Executable integrated fixture contract/workload/provenance: legacy-repository.mjs"
+    },
+    {
+      "path": "evals/fixtures/load-workloads.json",
+      "purpose": "Executable integrated fixture contract/workload/provenance: load-workloads.json"
+    },
+    {
+      "path": "evals/heldout/B05.json",
+      "purpose": "Sealed hold-out case or evaluator probe; do not inspect during instruction tuning"
+    },
+    {
+      "path": "evals/heldout/B05/README.md",
+      "purpose": "Sealed hold-out case or evaluator probe; do not inspect during instruction tuning"
+    },
+    {
+      "path": "evals/heldout/B05/deletions.json",
+      "purpose": "Sealed hold-out case or evaluator probe; do not inspect during instruction tuning"
+    },
+    {
+      "path": "evals/heldout/B05/store.mjs",
+      "purpose": "Sealed hold-out case or evaluator probe; do not inspect during instruction tuning"
+    },
+    {
+      "path": "evals/heldout/B06.json",
+      "purpose": "Sealed hold-out case or evaluator probe; do not inspect during instruction tuning"
+    },
+    {
+      "path": "evals/heldout/B06/README.md",
+      "purpose": "Sealed hold-out case or evaluator probe; do not inspect during instruction tuning"
+    },
+    {
+      "path": "evals/heldout/B06/service.mjs",
+      "purpose": "Sealed hold-out case or evaluator probe; do not inspect during instruction tuning"
+    },
+    {
+      "path": "evals/heldout/grading.json",
+      "purpose": "Sealed hold-out case or evaluator probe; do not inspect during instruction tuning"
+    },
+    {
+      "path": "evals/protocol.md",
+      "purpose": "Frozen suite specification or actual report: protocol.md"
+    },
+    {
+      "path": "evals/report.md",
+      "purpose": "Frozen suite specification or actual report: report.md"
+    },
+    {
+      "path": "evals/rubric.json",
+      "purpose": "Frozen suite specification or actual report: rubric.json"
+    },
+    {
+      "path": "evals/skill-fixtures/B01/README.md",
+      "purpose": "Original raw skill-evaluation fixture: B01/README.md"
+    },
+    {
+      "path": "evals/skill-fixtures/B01/service.mjs",
+      "purpose": "Original raw skill-evaluation fixture: B01/service.mjs"
+    },
+    {
+      "path": "evals/skill-fixtures/B02/README.md",
+      "purpose": "Original raw skill-evaluation fixture: B02/README.md"
+    },
+    {
+      "path": "evals/skill-fixtures/B02/probe.mjs",
+      "purpose": "Original raw skill-evaluation fixture: B02/probe.mjs"
+    },
+    {
+      "path": "evals/skill-fixtures/B02/store.mjs",
+      "purpose": "Original raw skill-evaluation fixture: B02/store.mjs"
+    },
+    {
+      "path": "evals/skill-fixtures/B03/README.md",
+      "purpose": "Original raw skill-evaluation fixture: B03/README.md"
+    },
+    {
+      "path": "evals/skill-fixtures/B03/bench.mjs",
+      "purpose": "Original raw skill-evaluation fixture: B03/bench.mjs"
+    },
+    {
+      "path": "evals/skill-fixtures/B03/query.mjs",
+      "purpose": "Original raw skill-evaluation fixture: B03/query.mjs"
+    },
+    {
+      "path": "evals/skill-fixtures/B03/seed.mjs",
+      "purpose": "Original raw skill-evaluation fixture: B03/seed.mjs"
+    },
+    {
+      "path": "evals/skill-fixtures/B04/README.md",
+      "purpose": "Original raw skill-evaluation fixture: B04/README.md"
+    },
+    {
+      "path": "evals/skill-fixtures/B04/worker.mjs",
+      "purpose": "Original raw skill-evaluation fixture: B04/worker.mjs"
+    },
+    {
+      "path": "meet.md",
+      "purpose": "User-supplied acceptance source; preserved"
+    },
+    {
+      "path": "package.json",
+      "purpose": "Local commands and runtime requirement"
+    },
+    {
+      "path": "references/adapters.md",
+      "purpose": "Conditional procedure or source/support boundary: adapters.md"
+    },
+    {
+      "path": "references/api-domain.md",
+      "purpose": "Conditional procedure or source/support boundary: api-domain.md"
+    },
+    {
+      "path": "references/async-integrations.md",
+      "purpose": "Conditional procedure or source/support boundary: async-integrations.md"
+    },
+    {
+      "path": "references/coding-standards.md",
+      "purpose": "Conditional procedure or source/support boundary: coding-standards.md"
+    },
+    {
+      "path": "references/data.md",
+      "purpose": "Conditional procedure or source/support boundary: data.md"
+    },
+    {
+      "path": "references/edge-identity.md",
+      "purpose": "Conditional procedure or source/support boundary: edge-identity.md"
+    },
+    {
+      "path": "references/modules.md",
+      "purpose": "Conditional procedure or source/support boundary: modules.md"
+    },
+    {
+      "path": "references/operations.md",
+      "purpose": "Conditional procedure or source/support boundary: operations.md"
+    },
+    {
+      "path": "references/runtime-capacity.md",
+      "purpose": "Conditional procedure or source/support boundary: runtime-capacity.md"
+    },
+    {
+      "path": "references/sources.md",
+      "purpose": "Conditional procedure or source/support boundary: sources.md"
+    },
+    {
+      "path": "references/verification.md",
+      "purpose": "Conditional procedure or source/support boundary: verification.md"
+    },
+    {
+      "path": "scripts/cert-gen.mjs",
+      "purpose": "Deterministic checked operation: cert-gen.mjs"
+    },
+    {
+      "path": "scripts/check.mjs",
+      "purpose": "Deterministic checked operation: check.mjs"
+    },
+    {
+      "path": "scripts/client.mjs",
+      "purpose": "Deterministic checked operation: client.mjs"
+    },
+    {
+      "path": "scripts/dns-network.mjs",
+      "purpose": "Deterministic checked operation: dns-network.mjs"
+    },
+    {
+      "path": "scripts/evidence.mjs",
+      "purpose": "Deterministic checked operation: evidence.mjs"
+    },
+    {
+      "path": "scripts/integrated.mjs",
+      "purpose": "Deterministic checked operation: integrated.mjs"
+    },
+    {
+      "path": "scripts/load.mjs",
+      "purpose": "Deterministic checked operation: load.mjs"
+    },
+    {
+      "path": "scripts/service.mjs",
+      "purpose": "Deterministic checked operation: service.mjs"
+    },
+    {
+      "path": "scripts/smoke.mjs",
+      "purpose": "Deterministic checked operation: smoke.mjs"
+    },
+    {
+      "path": "scripts/validate-package.mjs",
+      "purpose": "Deterministic checked operation: validate-package.mjs"
+    },
+    {
+      "path": "scripts/worker.mjs",
+      "purpose": "Deterministic checked operation: worker.mjs"
+    },
+    {
+      "path": "evals/expert-report.md",
+      "purpose": "Version 1.1 targeted revision and evaluation status; prior report remains historical"
+    }
+  ]
+}

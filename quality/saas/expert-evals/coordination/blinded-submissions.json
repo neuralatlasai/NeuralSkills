@@ -1,0 +1,963 @@
+{
+  "method": "Version/trial labels and instruction citations redacted. Mapping is withheld from reviewer. Task/input, candidate source, local tests, handoff and independent observations only.",
+  "submissions": [
+    {
+      "alias": "A9",
+      "caseId": "BE-B1",
+      "task": "# BE-B1: repair local reservation consistency\nA Node24 service uses file-backed SQLite. reserve(path, command, hooks?) opens a separate connection per call. Concurrent requests sometimes oversell or repeat local reservation events. A caller may lose acknowledgement after commit and retry. Fix the small fixture, preserving init/reserve/readState exports. All data is disposable synthetic data; init schema may change. This is a local transactional effect log, not external messaging/payment. No framework, server database, broker, distributed lock or dependency.\n\nRequirements:\n- B1-R1: stock=5, two concurrent different keys each qty=4 yield one reserved and one sold_out; stock never negative and each accepted reservation has exactly one local event. Enforce storage/transaction invariants, not a process-only mutex.\n- B1-R2: same tenant+operation(reserve)+key and same sku/qty replay one durable outcome, even concurrently or across restart. Same key with different sku/qty returns conflict without another effect. Different tenants use same key independently; keys never authorize cross-tenant replay.\n- B1-R3: stock change, durable receipt and local event are atomic. hooks.failBeforeCommit=true rolls back all three. hooks.failAfterCommit=true simulates lost acknowledgement after local commit; retry reconciles without decrement/event duplication. Define this simulation's boundary.\n- B1-R4: reject noninteger/nonpositive qty before mutation. Bind SQL values and close connections on every exit. Explain SQLite contention and bounded busy/retry policy; no unbounded-concurrency or remote-exactly-once guarantee.\n\nCommand {tenant:string,key:string,sku:string,qty:number}; return {status:'reserved'|'sold_out'|'conflict',reservationId?:string}; invalid input may throw. init(path,stock=5) creates SKU widget for tenants red and blue. readState returns {stock:[{tenant,sku,qty}],receipts:[...],events:[...]}. Optional hooks are fault injection, preserve meanings rather than faulty ordering. Add focused tests and handoff.md with requirement→mechanism→limit→failure→executed evidence. Scope is storage path; no network/auth system.\n\n",
+      "handoff": "# Handoff\n\nImplemented and verified the local reservation repair. All four supplied requirements PASS on Node v24.12.0 / SQLite 3.50.4 using real file-backed databases. No dependencies were installed.\n\n## Symptom and cause\n\n[baseline.log](baseline.log) retains the original run. Two Promise.all requests for 4 from stock 5 both returned reserved and left stock -3. The original read/check/await/unconditional-update schedule lets both requests pass the same stale check. This distinguishes the race from a missing-stock or lock-timeout diagnosis: both reads succeeded, neither call reported contention, and the durable decrement happened twice. The global primary key and unscoped replay query returned a red reservation ID to blue while blue stock stayed 5. A before-commit fault left stock 3 with zero receipts/events, proving independent autocommit writes rather than an atomic transaction.\n\n## Requirement trace and frozen checks\n\nThe acceptance checks below were derived from the supplied B1-R1 through B1-R4 before running the repaired suite. Command for every row: `node --disable-warning=ExperimentalWarning tests.mjs`; executed exit 0, seven check groups PASS. Raw console output and generated database paths are in [verification.log](verification.log); retained database files allow durable-state inspection.\n\n| ID / meaning | Mechanism / file | Operating limit | Failure addressed | Executed evidence / status |\n|---|---|---|---|---|\n| B1-R1: 5 stock, two qty-4 commands produce one reservation and one sold_out, never negative, one event per accepted receipt | `service.ts`: SQLite BEGIN IMMEDIATE orders all cooperating writers; guarded UPDATE and CHECK(qty>=0); receipt/event inserted in the same transaction with unique event identity | Single SQLite file, one writer at a time; short synchronous transaction, configured 250ms busy wait | Stale read/check races, oversell and duplicate event | PASS: three independent worker-connection races start from a shared gate; each produces reserved + sold_out and stock 1. Tests inspect every accepted receipt's event count. Direct negative-stock SQL is rejected by SQLite CHECK. |\n| B1-R2: durable replay, exact parameter binding, conflict, tenant separation | `service.ts`: receipt PK(tenant,operation,key), operation=reserve; exact sku/qty comparison before update; UUID reservation ID; persist sold_out too | Receipts retained indefinitely for this disposable fixture; tenant supplied by trusted caller context; all calls use the same database | Global-key tenant leak, duplicate effects, key reused with changed payload, changed stock changing a replay outcome | PASS: three independent worker calls with the same key return one identical receipt/event; fresh child process replays it; changed qty and sku conflict without writes; blue same key has its own stock and distinct reservation. Durable sold_out remains sold_out after restock. |\n| B1-R3: stock, receipt, event atomic; rollback before commit; reconcile post-commit ack loss | `service.ts`: one transaction owner, catch rollback, COMMIT before after-commit hook; replays read receipt | Hook is a local exception after SQLite COMMIT returned, before the caller receives return. No power-loss or remote effect proof | Partial local effects; blind retries after acknowledgement loss | PASS: before-commit injected failure leaves exact prior durable state and retry succeeds; after-commit injected failure leaves one complete effect, retry returns stored reservation ID with exact unchanged state. |\n| B1-R4: validate qty, bind values, close connections; bounded contention policy | `service.ts`: positive Number.isSafeInteger validation before open; bound SQL values; try/finally close for init/reserve/readState, open helper closes setup failures; busy_timeout=250, no application retry | Safe JavaScript integers only; SQLite lock wait configuration is not a total wall-clock deadline. No admission queue or unlimited-concurrency guarantee | Negative/fractional/NaN/infinite/unsafe input mutation, SQL injection, leaked handles and indefinite application retry | PASS: zero/negative/fractional/NaN/infinite/unsafe/string/null rejected with unchanged state; SQL-shaped key safely reserved; a held writer causes bounded lock failure (364.8454ms observed, including call overhead), then immediate recovery succeeds. Connection cleanup additionally directly inspected in every exit path. |\n\n## Decision and compatibility\n\nChosen: BEGIN IMMEDIATE plus an atomic stock predicate and local transactional receipt/event log. A deferred transaction plus guarded UPDATE and bounded whole-transaction retries is a plausible alternative, but an initial replay read can require a failed lock upgrade and retry. The small synchronous fixture has no long work inside the transaction, so acquiring SQLite's single writer lock first is simpler. The alternative becomes useful if measured lock holding/read-heavy workloads justify the added retry logic. A process mutex would not protect independent processes; a broker or distributed lock adds an external consistency boundary absent from this local effect log and is unnecessary.\n\nExports and command/status shapes are preserved. `reservationId` remains an opaque string but now uses UUIDs rather than delimiter concatenation. readState still returns stock/receipts/events arrays; receipt/event rows now expose operation and composite tenant keys. Init schema is intentionally new; migration/reuse of original databases is not implemented, as allowed by the task. The package declares ES module parsing locally and changes no dependency/framework.\n\nImplemented: transaction, schema constraints, tenant/parameter replay, validation and cleanup. Inherited and verified: Node native TS, node:sqlite, bound values, per-call connection model. Simulated and executed: before/after commit hooks. Unperformed / outside required scope: crash or power-loss durability, disk-full recovery, high-load capacity, network/authentication, external effect delivery. SQLite file authority remains inherited; callers cannot use an operation key as tenant authorization.\n\n## Retained failures and trial accounting\n\nThe original baseline invocation returned tool exit 1 because PowerShell treated Node warning stderr as NativeCommandError; its three JSON probes still executed and are preserved in baseline.log. It emitted MODULE_TYPELESS_PACKAGE_JSON and SQLite experimental warnings. The artifact now has local type=module; final test invocation suppresses only the experimental warning and records its actual test exit 0.\n\nOne apply_patch attempt failed before changing files: `invalid patch: multiple operations target .../service.ts` (delete and add same path). It was corrected using scoped file writes; no test failure was hidden. Final verification required no implementation repair.\n\nStart UTC: 2026-11-06 03:19:38 (clock tool, second precision). The first functions wrapper captured UTC concurrently with reading the dispatch. Exact PowerShell UTC capture was in the next invocation: 2026-11-06[trial masked]:19:49.4958052Z. This differs from the dispatch's requested first-capture expression and is disclosed. Underlying tool counts include the initial clock/read pair, subsequent reads, baseline, failed patch, implementation/test write, and this documentation write. Final count/end are recorded below. Model token usage/cost: null (unavailable).\r\n\r\n\nSupplementary executed evidence: `node --disable-warning=ExperimentalWarning storage-fault-tests.mjs`, exit 0, two groups PASS, in [storage-fault-verification.log](storage-fault-verification.log). A real SQLite trigger aborts the event INSERT after stock and receipt writes; the entire state remains identical to its pre-call snapshot, then retry succeeds once the trigger is removed. A sold_out receipt also rolls back before commit and reconciles after commit. This expands B1-R3 beyond a JavaScript fault hook to a database write failure.\n\n[baseline-duplicate.log](baseline-duplicate.log) retains another run of the untouched original: two same-key calls decrement stock from 5 to 3 and create two local events but one receipt. INSERT OR IGNORE hides the duplicate receipt while the unconditional decrement/event still runs. The repaired concurrent same-key test closes this precise counterexample.\n\nAll nine executed repaired check groups PASS. No required check remains FAIL or UNVERIFIED. The original baseline bugs and the failed patch attempt remain documented. Architectural, production and power-loss limits above remain outside the task acceptance boundary.\n\nUnderlying invocation ledger: 1 clock UTC; 2 dispatch read; 3 selected skill/wrapper/contract/task read; 4 fixture and selected module/data/verification references read; 5 baseline reproduction; 6 failed apply_patch; 7 implementation plus seven-group verification; 8 README/handoff write; 9 duplicate baseline plus two storage-fault checks; 10 final handoff/evidence accounting. Functions wrappers do not add to this count. No delegation, installation, network, other-trial reads or production changes occurred.\r\n\nActual underlying tool count: 10 / 20. UTC start: 2026-11-06 03:19:38 UTC. UTC end: 2026-11-06[trial masked]:23:54.9301757Z. Hard 360-second budget met. Model tokens/cost: null.\n\r\n",
+      "files": [
+        {
+          "name": "concurrent-worker.mjs",
+          "content": "import {parentPort,workerData} from 'node:worker_threads';\nimport {reserve} from './service.ts';\nconst gate=new Int32Array(workerData.gate);parentPort.postMessage({ready:true});Atomics.wait(gate,0,0);\ntry{parentPort.postMessage({result:await reserve(workerData.path,workerData.command)});}catch(error){parentPort.postMessage({error:{message:error.message,code:error.code}});}\r\n"
+        },
+        {
+          "name": "service.original.ts",
+          "content": "import {DatabaseSync} from 'node:sqlite';\nexport type Command={tenant:string;key:string;sku:string;qty:number};\nexport function init(path:string, stock=5){const db=new DatabaseSync(path);db.exec(\"CREATE TABLE inventory(tenant TEXT,sku TEXT,qty INTEGER,PRIMARY KEY(tenant,sku));CREATE TABLE receipts(key TEXT PRIMARY KEY,tenant TEXT,sku TEXT,qty INTEGER,status TEXT,reservationId TEXT);CREATE TABLE events(id INTEGER PRIMARY KEY,tenant TEXT,key TEXT,reservationId TEXT);\");const put=db.prepare('INSERT INTO inventory VALUES(?,?,?)');for(const tenant of ['red','blue'])put.run(tenant,'widget',stock);db.close()}\nexport async function reserve(path:string,c:Command,hooks:{failBeforeCommit?:boolean;failAfterCommit?:boolean}={}){const db=new DatabaseSync(path);try{const seen=db.prepare('SELECT * FROM receipts WHERE key=?').get(c.key);if(seen)return {status:seen.status,reservationId:seen.reservationId};const item=db.prepare('SELECT qty FROM inventory WHERE tenant=? AND sku=?').get(c.tenant,c.sku);if(!item||Number(item.qty)<c.qty)return {status:'sold_out'};await Promise.resolve();const reservationId=c.tenant+':'+c.key;db.prepare('UPDATE inventory SET qty=qty-? WHERE tenant=? AND sku=?').run(c.qty,c.tenant,c.sku);if(hooks.failBeforeCommit)throw new Error('before commit fixture');db.prepare('INSERT OR IGNORE INTO receipts VALUES(?,?,?,?,?,?)').run(c.key,c.tenant,c.sku,c.qty,'reserved',reservationId);db.prepare('INSERT INTO events(tenant,key,reservationId) VALUES(?,?,?)').run(c.tenant,c.key,reservationId);if(hooks.failAfterCommit)throw new Error('ack lost fixture');return {status:'reserved',reservationId}}finally{db.close()}}\nexport function readState(path:string){const db=new DatabaseSync(path);try{return {stock:db.prepare('SELECT * FROM inventory ORDER BY tenant,sku').all(),receipts:db.prepare('SELECT * FROM receipts ORDER BY key').all(),events:db.prepare('SELECT * FROM events ORDER BY id').all()}}finally{db.close()}}\n\n"
+        },
+        {
+          "name": "service.ts",
+          "content": "import {DatabaseSync} from 'node:sqlite';\nimport {randomUUID} from 'node:crypto';\nexport type Command={tenant:string;key:string;sku:string;qty:number};\ntype Outcome={status:'reserved'|'sold_out'|'conflict';reservationId?:string};\nfunction open(path:string){const db=new DatabaseSync(path);try{db.exec('PRAGMA foreign_keys=ON; PRAGMA busy_timeout=250;');return db;}catch(error){db.close();throw error;}}\nexport function init(path:string,stock=5){\n if(!Number.isSafeInteger(stock)||stock<0)throw new TypeError('invalid stock');\n const db=open(path);let active=false;\n try{db.exec('BEGIN IMMEDIATE');active=true;db.exec(`\n CREATE TABLE inventory(tenant TEXT NOT NULL,sku TEXT NOT NULL,qty INTEGER NOT NULL CHECK(qty>=0),PRIMARY KEY(tenant,sku)) STRICT;\n CREATE TABLE receipts(tenant TEXT NOT NULL,operation TEXT NOT NULL CHECK(operation='reserve'),key TEXT NOT NULL,sku TEXT NOT NULL,qty INTEGER NOT NULL CHECK(qty>0),status TEXT NOT NULL CHECK(status IN ('reserved','sold_out')),reservationId TEXT UNIQUE,PRIMARY KEY(tenant,operation,key),CHECK((status='reserved' AND reservationId IS NOT NULL) OR (status='sold_out' AND reservationId IS NULL))) STRICT;\n CREATE TABLE events(id INTEGER PRIMARY KEY,tenant TEXT NOT NULL,operation TEXT NOT NULL,key TEXT NOT NULL,reservationId TEXT NOT NULL UNIQUE,UNIQUE(tenant,operation,key),FOREIGN KEY(tenant,operation,key) REFERENCES receipts(tenant,operation,key),FOREIGN KEY(reservationId) REFERENCES receipts(reservationId)) STRICT;\n `);const put=db.prepare('INSERT INTO inventory VALUES(?,?,?)');for(const tenant of ['red','blue'])put.run(tenant,'widget',stock);db.exec('COMMIT');active=false;\n }catch(error){if(active)db.exec('ROLLBACK');throw error;}finally{db.close();}\n}\nexport async function reserve(path:string,c:Command,hooks:{failBeforeCommit?:boolean;failAfterCommit?:boolean}={}):Promise<Outcome>{\n if(!c||typeof c.tenant!=='string'||typeof c.key!=='string'||typeof c.sku!=='string'||!Number.isSafeInteger(c.qty)||c.qty<=0)throw new TypeError('tenant/key/sku must be strings and qty a positive safe integer');\n const db=open(path);let active=false;\n try{\n // Acquire SQLite writer authority before reading replay or stock. No await holds this lock.\n db.exec('BEGIN IMMEDIATE');active=true;\n const seen=db.prepare(\"SELECT sku,qty,status,reservationId FROM receipts WHERE tenant=? AND operation='reserve' AND key=?\").get(c.tenant,c.key);\n if(seen){const result:Outcome=seen.sku!==c.sku||seen.qty!==c.qty?{status:'conflict'}:seen.status==='reserved'?{status:'reserved',reservationId:String(seen.reservationId)}:{status:'sold_out'};db.exec('COMMIT');active=false;return result;}\n const changed=db.prepare('UPDATE inventory SET qty=qty-? WHERE tenant=? AND sku=? AND qty>=?').run(c.qty,c.tenant,c.sku,c.qty);\n const reservationId=changed.changes===1?randomUUID():null;const status=reservationId?'reserved':'sold_out';\n db.prepare(\"INSERT INTO receipts(tenant,operation,key,sku,qty,status,reservationId) VALUES(?,'reserve',?,?,?,?,?)\").run(c.tenant,c.key,c.sku,c.qty,status,reservationId);\n if(reservationId)db.prepare(\"INSERT INTO events(tenant,operation,key,reservationId) VALUES(?,'reserve',?,?)\").run(c.tenant,c.key,reservationId);\n if(hooks.failBeforeCommit)throw new Error('before commit fixture');\n db.exec('COMMIT');active=false;\n // Only simulates an exception after local COMMIT returns, before caller acknowledgement.\n if(hooks.failAfterCommit)throw new Error('ack lost fixture');\n return reservationId?{status:'reserved',reservationId}:{status:'sold_out'};\n }catch(error){if(active)db.exec('ROLLBACK');throw error;}finally{db.close();}\n}\nexport function readState(path:string){const db=open(path);try{db.exec('BEGIN');const state={stock:db.prepare('SELECT * FROM inventory ORDER BY tenant,sku').all(),receipts:db.prepare('SELECT * FROM receipts ORDER BY tenant,operation,key').all(),events:db.prepare('SELECT * FROM events ORDER BY id').all()};db.exec('COMMIT');return state;}finally{db.close();}}\r\n"
+        },
+        {
+          "name": "storage-fault-tests.mjs",
+          "content": "import assert from 'node:assert/strict';import {DatabaseSync} from 'node:sqlite';import {mkdtempSync} from 'node:fs';import {join} from 'node:path';import {init,reserve,readState} from './service.ts';\nconst dir=mkdtempSync(join(process.cwd(),'storage-fault-'));const p=join(dir,'events.sqlite');init(p);const before=readState(p);const db=new DatabaseSync(p);db.exec(\"CREATE TRIGGER fail_event BEFORE INSERT ON events BEGIN SELECT RAISE(ABORT,'event storage failure'); END;\");await assert.rejects(reserve(p,{tenant:'red',key:'event-fault',sku:'widget',qty:2}),/event storage failure/);assert.deepEqual(readState(p),before);db.exec('DROP TRIGGER fail_event');db.close();assert.equal((await reserve(p,{tenant:'red',key:'event-fault',sku:'widget',qty:2})).status,'reserved');assert.equal(readState(p).events.length,1);console.log('PASS B1-R3 real event insertion failure rolls back stock and receipt; retry succeeds');\nconst q=join(dir,'soldout.sqlite');init(q,0);const initial=readState(q);await assert.rejects(reserve(q,{tenant:'red',key:'empty',sku:'widget',qty:1},{failBeforeCommit:true}),/before commit/);assert.deepEqual(readState(q),initial);await assert.rejects(reserve(q,{tenant:'red',key:'empty',sku:'widget',qty:1},{failAfterCommit:true}),/ack lost/);const committed=readState(q);assert.equal(committed.receipts.length,1);assert.equal(committed.events.length,0);assert.deepEqual(await reserve(q,{tenant:'red',key:'empty',sku:'widget',qty:1}),{status:'sold_out'});assert.deepEqual(readState(q),committed);console.log('PASS B1-R2/R3 sold_out receipt rollback and postcommit reconciliation');\nconsole.log(JSON.stringify({node:process.version,dir,status:'PASS'}));\r\n"
+        },
+        {
+          "name": "tests.mjs",
+          "content": "import assert from 'node:assert/strict';\nimport {mkdtempSync} from 'node:fs';\nimport {join} from 'node:path';\nimport {Worker} from 'node:worker_threads';\nimport {spawnSync} from 'node:child_process';\nimport {DatabaseSync} from 'node:sqlite';\nimport {init,reserve,readState} from './service.ts';\nconst dir=mkdtempSync(join(process.cwd(),'verification-'));let number=0;\nfunction fixture(stock=5){const path=join(dir,`${++number}.sqlite`);init(path,stock);return path;}\nconst cmd=(key,qty=1,tenant='red',sku='widget')=>({tenant,key,sku,qty});\nconst red=state=>state.stock.find(x=>x.tenant==='red').qty;\nfunction invariant(path){const state=readState(path);assert(state.stock.every(x=>x.qty>=0));const accepted=state.receipts.filter(x=>x.status==='reserved');assert.equal(state.events.length,accepted.length);for(const r of accepted)assert.equal(state.events.filter(e=>e.tenant===r.tenant&&e.key===r.key&&e.reservationId===r.reservationId).length,1);return state;}\nasync function concurrent(path,commands){const gate=new SharedArrayBuffer(4);let ready=0;return Promise.all(commands.map(command=>new Promise((resolve,reject)=>{const worker=new Worker(new URL('./concurrent-worker.mjs',import.meta.url),{workerData:{gate,path,command}});worker.on('error',reject);worker.on('message',m=>{if(m.ready){if(++ready===commands.length){Atomics.store(new Int32Array(gate),0,1);Atomics.notify(new Int32Array(gate),0);}}else if(m.error)reject(new Error(JSON.stringify(m.error)));else resolve(m.result);});worker.on('exit',code=>{if(code)reject(new Error(`worker exit ${code}`));});})));}\nconst results=[];async function check(name,run){try{await run();results.push({name,status:'PASS'});console.log(`PASS ${name}`);}catch(error){results.push({name,status:'FAIL',error:error.stack});console.error(`FAIL ${name}`,error);}}\nconst versionDb=new DatabaseSync(':memory:');console.log(JSON.stringify({node:process.version,sqlite:versionDb.prepare('SELECT sqlite_version() version').get().version,dir}));versionDb.close();\nawait check('B1-R1 independent connections compete for stock, 3 runs',async()=>{for(let i=0;i<3;i++){const p=fixture();const outcomes=await concurrent(p,[cmd('a',4),cmd('b',4)]);assert.deepEqual(outcomes.map(x=>x.status).sort(),['reserved','sold_out']);assert.equal(red(invariant(p)),1);}});\nawait check('B1-R2 concurrent same key, restart replay, conflicts, tenant separation',async()=>{const p=fixture();const outcomes=await concurrent(p,[cmd('same',2),cmd('same',2),cmd('same',2)]);assert(outcomes.every(x=>x.status==='reserved'));assert(outcomes.every(x=>x.reservationId===outcomes[0].reservationId));let state=invariant(p);assert.equal(red(state),3);assert.equal(state.receipts.length,1);const child=spawnSync(process.execPath,['--disable-warning=ExperimentalWarning','--input-type=module','-e',`import {reserve} from './service.ts';console.log(JSON.stringify(await reserve(process.argv[1],JSON.parse(process.argv[2]))));`,p,JSON.stringify(cmd('same',2))],{cwd:process.cwd(),encoding:'utf8'});assert.equal(child.status,0,child.stderr);assert.deepEqual(JSON.parse(child.stdout),outcomes[0]);assert.deepEqual(await reserve(p,cmd('same',1)),{status:'conflict'});assert.deepEqual(await reserve(p,cmd('same',2,'red','other')),{status:'conflict'});const blue=await reserve(p,cmd('same',2,'blue'));assert.equal(blue.status,'reserved');assert.notEqual(blue.reservationId,outcomes[0].reservationId);state=invariant(p);assert.equal(state.events.length,2);assert.equal(state.stock.find(x=>x.tenant==='blue').qty,3);});\nawait check('B1-R2 durable sold_out binds exact parameters',async()=>{const p=fixture(0);assert.deepEqual(await reserve(p,cmd('empty')),{status:'sold_out'});const db=new DatabaseSync(p);try{db.prepare('UPDATE inventory SET qty=5 WHERE tenant=?').run('red');}finally{db.close();}assert.deepEqual(await reserve(p,cmd('empty')),{status:'sold_out'});assert.deepEqual(await reserve(p,cmd('empty',2)),{status:'conflict'});assert.equal(red(invariant(p)),5);assert.equal(readState(p).events.length,0);});\nawait check('B1-R3 before commit rolls back all effects and releases lock',async()=>{const p=fixture();const before=readState(p);await assert.rejects(reserve(p,cmd('fail',2),{failBeforeCommit:true}),/before commit/);assert.deepEqual(readState(p),before);assert.equal((await reserve(p,cmd('fail',2))).status,'reserved');assert.equal(red(invariant(p)),3);});\nawait check('B1-R3 lost acknowledgement reconciles one durable effect',async()=>{const p=fixture();await assert.rejects(reserve(p,cmd('lost',2),{failAfterCommit:true}),/ack lost/);const committed=invariant(p);assert.equal(red(committed),3);const reply=await reserve(p,cmd('lost',2));assert.equal(reply.status,'reserved');assert.equal(reply.reservationId,committed.receipts[0].reservationId);assert.deepEqual(readState(p),committed);});\nawait check('B1-R4 invalid quantities do not mutate; SQL values bound',async()=>{const p=fixture();const before=readState(p);for(const qty of [0,-1,1.5,NaN,Infinity,Number.MAX_SAFE_INTEGER+1,'2',null])await assert.rejects(reserve(p,cmd('bad',qty)),/positive safe integer/);assert.deepEqual(readState(p),before);assert.equal((await reserve(p,cmd(\"'; DROP TABLE inventory; --\"))).status,'reserved');invariant(p);});\nawait check('B1-R1/R4 constraints deny bypass; bounded lock wait recovers',async()=>{const p=fixture();const db=new DatabaseSync(p);try{assert.throws(()=>db.exec(\"UPDATE inventory SET qty=-1 WHERE tenant='red'\"),/CHECK constraint/);db.exec('BEGIN IMMEDIATE');const begin=performance.now();await assert.rejects(reserve(p,cmd('busy')),/locked/);const ms=performance.now()-begin;console.log(JSON.stringify({probe:'busy lock',elapsedMs:ms,policyMs:250}));assert(ms>=150&&ms<1500);db.exec('ROLLBACK');}finally{db.close();}assert.equal((await reserve(p,cmd('busy'))).status,'reserved');assert.equal(red(invariant(p)),4);});\nconsole.log(JSON.stringify({summary:results}));if(results.some(x=>x.status==='FAIL'))process.exitCode=1;\r\n"
+        }
+      ],
+      "independentObservations": [
+        {
+          "caseId": "BE-B1",
+          "node": "v24.12.0",
+          "time": "2026-11-06[trial masked]:24:29.689Z",
+          "checks": [
+            {
+              "id": "B1-control-single-reservation",
+              "kind": "control",
+              "status": "PASS",
+              "evidence": {
+                "stock": [
+                  {
+                    "tenant": "blue",
+                    "sku": "widget",
+                    "qty": 5
+                  },
+                  {
+                    "tenant": "red",
+                    "sku": "widget",
+                    "qty": 3
+                  }
+                ],
+                "receipts": [
+                  {
+                    "tenant": "red",
+                    "operation": "reserve",
+                    "key": "one",
+                    "sku": "widget",
+                    "qty": 2,
+                    "status": "reserved",
+                    "reservationId": "4f32dc51-510f-4bad-86a7-d8c7f0a88475"
+                  }
+                ],
+                "events": [
+                  {
+                    "id": 1,
+                    "tenant": "red",
+                    "operation": "reserve",
+                    "key": "one",
+                    "reservationId": "4f32dc51-510f-4bad-86a7-d8c7f0a88475"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B1-R1-contended-stock",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "results": [
+                  {
+                    "status": "reserved",
+                    "reservationId": "a8b9921b-9780-4cb6-ae43-bd1c0604a813"
+                  },
+                  {
+                    "status": "sold_out"
+                  }
+                ],
+                "st": {
+                  "stock": [
+                    {
+                      "tenant": "blue",
+                      "sku": "widget",
+                      "qty": 5
+                    },
+                    {
+                      "tenant": "red",
+                      "sku": "widget",
+                      "qty": 1
+                    }
+                  ],
+                  "receipts": [
+                    {
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "a",
+                      "sku": "widget",
+                      "qty": 4,
+                      "status": "reserved",
+                      "reservationId": "a8b9921b-9780-4cb6-ae43-bd1c0604a813"
+                    },
+                    {
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "b",
+                      "sku": "widget",
+                      "qty": 4,
+                      "status": "sold_out",
+                      "reservationId": null
+                    }
+                  ],
+                  "events": [
+                    {
+                      "id": 1,
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "a",
+                      "reservationId": "a8b9921b-9780-4cb6-ae43-bd1c0604a813"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "B1-R2-concurrent-replay",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "r": [
+                  {
+                    "status": "reserved",
+                    "reservationId": "49b5a7fa-e7f9-4736-abb7-da167be73112"
+                  },
+                  {
+                    "status": "reserved",
+                    "reservationId": "49b5a7fa-e7f9-4736-abb7-da167be73112"
+                  }
+                ],
+                "st": {
+                  "stock": [
+                    {
+                      "tenant": "blue",
+                      "sku": "widget",
+                      "qty": 5
+                    },
+                    {
+                      "tenant": "red",
+                      "sku": "widget",
+                      "qty": 3
+                    }
+                  ],
+                  "receipts": [
+                    {
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "same",
+                      "sku": "widget",
+                      "qty": 2,
+                      "status": "reserved",
+                      "reservationId": "49b5a7fa-e7f9-4736-abb7-da167be73112"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "id": 1,
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "same",
+                      "reservationId": "49b5a7fa-e7f9-4736-abb7-da167be73112"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "B1-R2-parameter-binding",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "B1-R2-tenant-scope",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "B1-R3-before-commit-rollback",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "stock": [
+                  {
+                    "tenant": "blue",
+                    "sku": "widget",
+                    "qty": 5
+                  },
+                  {
+                    "tenant": "red",
+                    "sku": "widget",
+                    "qty": 5
+                  }
+                ],
+                "receipts": [],
+                "events": []
+              }
+            },
+            {
+              "id": "B1-R3-lost-ack-restart-replay",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "r": {
+                  "status": "reserved",
+                  "reservationId": "23178830-0f6c-42e5-b73e-127bacaf4c27"
+                },
+                "state": {
+                  "stock": [
+                    {
+                      "tenant": "blue",
+                      "sku": "widget",
+                      "qty": 5
+                    },
+                    {
+                      "tenant": "red",
+                      "sku": "widget",
+                      "qty": 3
+                    }
+                  ],
+                  "receipts": [
+                    {
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "lost",
+                      "sku": "widget",
+                      "qty": 2,
+                      "status": "reserved",
+                      "reservationId": "23178830-0f6c-42e5-b73e-127bacaf4c27"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "id": 1,
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "lost",
+                      "reservationId": "23178830-0f6c-42e5-b73e-127bacaf4c27"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "B1-R4-invalid-quantity",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            }
+          ],
+          "errors": [],
+          "pass": true
+        }
+      ]
+    },
+    {
+      "alias": "C3",
+      "caseId": "BE-B2",
+      "task": "# BE-B2: repair SQLite worker lease ownership\nTwo worker instances consume a local SQLite queue. A slow worker completes after lease expiry/reclaim and overwrites the new owner's result. Sometimes both claim one job. Repair minimal native Node24 SQLite adapter. No broker, distributed lock library, dependency or new service. Disposable schema may change.\n\nRequirements:\n- B2-R1: concurrent claim(path,{now,worker,leaseMs}) with separate connections grants at most one current lease for one due job. Return {id,worker,token,leaseUntil,payload} or null. Eligible: pending dueAt<=now or processing leaseUntil<=now, ordered dueAt then id. Future jobs cannot starve due work.\n- B2-R2: each reclaim has fresh fencing token; complete(path,claim,result,{now}) returns boolean, succeeds only current owner/token with unexpired lease. Expired/stale completion returns false without touching current state/result. Completed jobs never reappear.\n- B2-R3: ownership survives connection/process restart; expired lease reclaimable, completed jobs ineligible. Reject noninteger/nonpositive leaseMs; bound lock waiting/retries; close connections on all exits. Injected now is authoritative, no wall-time override.\n- B2-R4: local completion fencing does not prove arbitrary remote effects exactly once. State a valid provider-side ownership/idempotency approach and one operating limit of single-file topology. Implement this local path only.\n\nExports: init(path); enqueue(path,{id,payload,dueAt}); claim(path,{now,worker,leaseMs}); complete(path,claim,result,{now}); readJobs(path). Payload/result strings, numbers/strings JSON-safe. Preserve return shapes. Deliver fix/tests + handoff.md with causal interleaving, mechanism/alternative, limits and requirement evidence. No authentication/UI/deployment.\n\n",
+      "handoff": "# [trial masked] handoff: SQLite worker lease fencing\n\nImplemented and verified the local repair using frozen backend-engineering v1.1.0. Only service.ts in the supplied artifact was changed; added local reproduction, tests, helper and evidence. No dependencies, services, schema changes, shared infrastructure changes, external mutation or child agents were used.\n\n## Reproduced symptom and cause\n\nBefore repair, two Promise.all callers both selected the same pending row before the await, then both wrote token 1 and received apparently valid claims. After reclaim at injected now=10, the old owner completed at now=11, returned true, and stored STALE under the new owner's worker/token. See [original-failure.log](original-failure.log). This distinguishes missing atomic ownership checks from clock skew or delayed scheduling: all times were explicitly injected and the durable SQLite rows show duplicate token grants and the stale result overwrite. The original leaseMs=0 request was also accepted (returned null on a completed queue rather than rejecting).\n\nThe original causal interleaving is A reads pending token0; B reads pending token0; A writes workerA/token1; B writes workerB/token1; both return. Later C reclaims token2; A updates by id alone and changes C's result/status. The repair removes the unlocked read and applies completion ownership conditions in the same write statement as the result mutation.\n\n## Requirement evidence\n\nAll executable checks ran against native node:sqlite, Node v24.12.0, SQLite 3.50.4. Command from this directory: `node test.mjs`. Actual invocation used the absolute artifact path and redirected stdout/stderr to the retained verification logs. Node exited 0; six test groups passed. See [verification.stdout.log](verification.stdout.log), [verification.stderr.log](verification.stderr.log), [test.mjs](test.mjs) and [worker.mjs](worker.mjs).\n\n| Requirement/status | Meaning -> mechanism/file | Operating limit -> failure mode | Actual evidence |\n| --- | --- | --- | --- |\n| B2-R1 PASS | At most one current lease for a due candidate -> service.ts uses one UPDATE with ordered eligible subquery and RETURNING. SQLite serializes competing writers; no read/await/write gap. Pending must be due; processing must be expired. Selection orders dueAt,id. | One SQLite file/writer at a time. Lock contention can reject; null means no grant. Claim candidate scan/sort grows with N. | Promise caller assertions including tie order, future exclusion, null queue; three synchronized races with 8 worker threads, each opening its own real connection. Each race produced exactly one claim and persisted that winner/token1. |\n| B2-R2 PASS | Fresh persistent token on every grant/reclaim; completion requires id, processing status, worker, token and leaseUntil > injected now in one UPDATE. | Token limited to JS exact integer range; exhausted token fails closed rather than reusing a token. Local state only. | Exact expiry now=leaseUntil rejects; changed worker/token rejects; reclaim token increments; stale completion leaves entire row unchanged; current completion succeeds; repeat completion cannot overwrite; completed row never claims again even at now=1000. |\n| B2-R3 PASS | Connections use try/finally; PRAGMA busy_timeout=250, no retries. Positive safe-integer lease validation happens before connection open. Injected finite now is used directly. Ownership lives in SQLite, not process memory. | busy_timeout bounds SQLite lock sleeping, not an OS scheduling or whole-query deadline. Callers handle busy errors; admission/retry policy is outside this adapter. now must be finite and lease addition advance it. | Independent child processes claim, exit, reopen before expiry (null), reclaim exactly at expiry, complete, reopen result and reject later claim. Rejected 0, negative, fractional, NaN, Infinity and unsafe leases. Synthetic now=99/100/109/110 governs due and expiry irrespective of wall time. Held BEGIN IMMEDIATE caused locked error, observed 353.3865ms including host overhead; claim succeeded after rollback. Duplicate-init, duplicate-enqueue and missing-schema errors were exercised; files were removed after operations. |\n| B2-R4 PASS (specified boundary) | Documentation below states a provider protocol and single-file limits. Implemented only local path. | No arbitrary remote exactly-once guarantee is claimed. Remote effects and provider enforcement are unperformed. | Local fencing suite passed; provider design was reviewed as a contract, not simulated or reported as a remote-engine test. |\n\n## Why this mechanism\n\nA BEGIN IMMEDIATE transaction enclosing SELECT plus UPDATE is a viable alternative. One UPDATE RETURNING fits this single-row invariant with fewer transaction/rollback paths and avoids an exposed intermediate selection. A transaction becomes appropriate when one lease grant must atomically reserve multiple rows or write related records. A broker, distributed lock service or outbox is unnecessary for this isolated local completion repair: none closes the original missing SQLite ownership predicate more directly, and each expands the authorized topology.\n\nClaim becomes accepted at SQLite statement commit; returned claims are not kept in process memory. Completion and reclaim contend on the same SQLite writer boundary, so the winner is assessed against durable ownership at that boundary. A busy exception is distinct from null or false. No automatic retry hides contention. Reopen/process-exit tests establish persistence in this environment, not power-loss durability or full-disk recovery.\n\n## Remote-effects boundary and remaining limits\n\nA valid provider protocol uses a stable logical operation id (job identity plus queue incarnation), binds the payload parameters, and atomically records/deduplicates that id together with applying the remote effect and retaining its result. If ownership itself matters, the provider must atomically verify the current lease/epoch at its own effect boundary, or maintain an authoritative monotonic fence and reject older epochs; merely passing a local token is insufficient before the provider has learned the newer epoch. On lost acknowledgement, reconcile/retry the same provider operation id, reusing its recorded result rather than creating a new effect. Provider retention must exceed every allowed replay/recovery window. None of that provider path is implemented or exercised here.\n\nSingle-file SQLite serializes writes and depends on correct local file locking; it is not an independently available multi-host queue. Claim scans/sorts eligible jobs (worst-case O(N log N), payload/result storage and readJobs materialization also cost bytes); no capacity claim is made for large queues. readJobs intentionally preserves the fixture's unbounded inspection export. Worker code must use the trusted injected clock consistently; this adapter does not substitute wall time. Tokens persist for a row's lifetime and are exact only through 2^53-1; no delete/recreate or cross-database epoch protocol exists. Native busy waiting blocks that calling thread. Constructor failure cannot leave an acquired adapter connection; all acquired connections close in finally, including SQL errors. Connection cleanup is directly inspected and exercised on failure paths, not proven with a handle profiler.\n\nThe existing schema, exports, asynchronous claim return, claim object keys, null/boolean outcomes, payload and result storage remain compatible. Inputs that cannot represent a positive advancing lease now reject explicitly. No auth, UI, deployment, network or distributed guarantee was in scope. Coverage: API/data/async-local/verification changed; restart and SQLite arbitration inherited and verified; remote provider implementation and power-loss tests unperformed and not acceptance claims.\n\n## Commands, failures and trial accounting\n\nThe pre-repair command was `node .\\NeuralSkills\\quality\\saas\\expert-evals\\trials\\[trial masked]\\artifact\\reproduce.mjs 2>&1 | Tee-Object -FilePath .\\NeuralSkills\\quality\\saas\\expert-evals\\trials\\[trial masked]\\artifact\\original-failure.log` from the workspace root. It intentionally observed the defects; the PowerShell wrapper reported exit 1 when native stderr warnings entered its pipeline. The retained output contains both defect observations and warning text. The script now imports the repaired service, so its historical output, not a later rerun, is the pre-repair evidence.\n\nThe verification command was `node .\\NeuralSkills\\quality\\saas\\expert-evals\\trials\\[trial masked]\\artifact\\test.mjs > .\\NeuralSkills\\quality\\saas\\expert-evals\\trials\\[trial masked]\\artifact\\verification.stdout.log 2> .\\NeuralSkills\\quality\\saas\\expert-evals\\trials\\[trial masked]\\artifact\\verification.stderr.log` from the workspace root. Its captured native exit was 0. Expected Node experimental SQLite and module-type warnings remain retained; no package outside this artifact was edited to suppress them. No test failures were discarded or repaired after this suite; the original failures remain in their original log. Native TS stripping executes the service but is not static typechecking.\n\nBudget: 360 seconds / 20 underlying tools. Actual count is 9 including one UTC-clock tool, seven exec_command tools, and one parent progress message. No delegation. First observed UTC start was 2026-11-06 03:19:57 UTC (clock tool, second resolution). Exact PowerShell initial-read capture was 2026-11-06[trial masked]:20:08.7870547Z. Procedural deviation: the very first invocation captured UTC through the clock API with dispatch read, rather than the requested DateTime expression; the expression was captured on the next invocation. Model/tokens/cost are unavailable (null). Final observed UTC and elapsed ceiling are in run-metadata.json.\r\n\r\n",
+      "files": [
+        {
+          "name": "reproduce.mjs",
+          "content": "import {init,enqueue,claim,complete,readJobs} from './service.ts';\nimport {mkdtempSync} from 'node:fs';\nimport {tmpdir} from 'node:os';\nimport {join} from 'node:path';\nconst path=join(mkdtempSync(join(tmpdir(),'lease-repro-')),'queue.db');\ninit(path); enqueue(path,{id:'job',payload:'payload',dueAt:0});\nconst [a,b]=await Promise.all([claim(path,{now:0,worker:'a',leaseMs:10}),claim(path,{now:0,worker:'b',leaseMs:10})]);\nconsole.log(JSON.stringify({symptom:'simultaneous claims',a,b,state:readJobs(path)}));\nconst fresh=await claim(path,{now:10,worker:'new',leaseMs:10});\nconst staleCompleted=complete(path,a,'STALE',{now:11});\nconsole.log(JSON.stringify({symptom:'old owner overwrites after reclaim',fresh,staleCompleted,state:readJobs(path)}));\ntry {const invalid=await claim(path,{now:20,worker:'bad',leaseMs:0}); console.log(JSON.stringify({invalidLeaseAccepted:true,invalid}));} catch(e){console.log(JSON.stringify({invalidLeaseRejected:String(e)}));}\nconsole.log(JSON.stringify({node:process.version,sqlite:(await import('node:sqlite')).DatabaseSync? 'native node:sqlite':'missing'}));\r\n"
+        },
+        {
+          "name": "service.ts",
+          "content": "import {DatabaseSync} from 'node:sqlite';\n\n// One short-lived connection per operation; SQLite bounds lock waits to 250ms.\nfunction withDb<T>(path:string, operation:(d:DatabaseSync)=>T):T {\n  const d=new DatabaseSync(path);\n  try { d.exec('PRAGMA busy_timeout=250'); return operation(d); }\n  finally { d.close(); }\n}\nexport function init(path:string) {\n  return withDb(path,d=>d.exec('CREATE TABLE jobs(id TEXT PRIMARY KEY,payload TEXT,dueAt INTEGER,status TEXT,worker TEXT,token INTEGER,leaseUntil INTEGER,result TEXT)'));\n}\nexport function enqueue(path:string,j:{id:string;payload:string;dueAt:number}) {\n  withDb(path,d=>d.prepare(\"INSERT INTO jobs VALUES(?,?,?,'pending',NULL,0,NULL,NULL)\").run(j.id,j.payload,j.dueAt));\n}\nexport async function claim(path:string,o:{now:number;worker:string;leaseMs:number}) {\n  if(!Number.isSafeInteger(o.leaseMs)||o.leaseMs<=0) throw new RangeError('leaseMs must be a positive safe integer');\n  const leaseUntil=o.now+o.leaseMs;\n  if(!Number.isFinite(o.now)||!Number.isFinite(leaseUntil)||leaseUntil<=o.now) throw new RangeError('lease time must be finite and advance now');\n  return withDb(path,d=>{\n    // A single write statement owns candidate selection and mutation. No unlocked read.\n    // Tokens remain exactly representable as JS numbers; exhausted jobs fail closed.\n    const row=d.prepare(`UPDATE jobs SET status='processing',worker=?,token=token+1,leaseUntil=?\n      WHERE id=(SELECT id FROM jobs\n        WHERE (status='pending' AND dueAt<=?) OR (status='processing' AND leaseUntil<=?)\n        ORDER BY dueAt,id LIMIT 1)\n      AND token<9007199254740991\n      RETURNING id,worker,token,leaseUntil,payload`).get(o.worker,leaseUntil,o.now,o.now);\n    return row ? {id:row.id,worker:row.worker,token:row.token,leaseUntil:row.leaseUntil,payload:row.payload} : null;\n  });\n}\nexport function complete(path:string,c:{id:string;worker:string;token:number},result:string,o:{now:number}) {\n  if(!Number.isFinite(o.now)) throw new RangeError('now must be finite');\n  return withDb(path,d=>Number(d.prepare(`UPDATE jobs SET status='done',result=?\n    WHERE id=? AND status='processing' AND worker=? AND token=? AND leaseUntil>?`)\n    .run(result,c.id,c.worker,c.token,o.now).changes)>0);\n}\nexport function readJobs(path:string) {\n  return withDb(path,d=>d.prepare('SELECT * FROM jobs ORDER BY id').all());\n}\r\n"
+        },
+        {
+          "name": "test.mjs",
+          "content": "import assert from 'node:assert/strict';\nimport {DatabaseSync} from 'node:sqlite';\nimport {Worker} from 'node:worker_threads';\nimport {spawnSync} from 'node:child_process';\nimport {mkdtempSync,rmSync} from 'node:fs';\nimport {tmpdir} from 'node:os';\nimport {join} from 'node:path';\nimport {fileURLToPath} from 'node:url';\nimport {performance} from 'node:perf_hooks';\nimport {init,enqueue,claim,complete,readJobs} from './service.ts';\nconst directory=mkdtempSync(join(tmpdir(),'lease-fixed-')); let sequence=0;\nconst fixture=()=>{const path=join(directory,`${sequence++}.db`);init(path);return path;};\nconst add=(path,id,dueAt=0)=>enqueue(path,{id,payload:`payload:${id}`,dueAt});\nconst options=(now=0,worker='a',leaseMs=10)=>({now,worker,leaseMs});\nconst child=(action,path,data={})=>{const result=spawnSync(process.execPath,[fileURLToPath(new URL('./worker.mjs',import.meta.url)),action,path,JSON.stringify(data)],{encoding:'utf8',timeout:5000});assert.equal(result.status,0,result.stderr);return JSON.parse(result.stdout);};\nconst tests=[]; async function test(name,fn){await fn();tests.push(name);console.log(`PASS ${name}`);}\ntry{\n  const v=new DatabaseSync(':memory:');console.log(JSON.stringify({node:process.version,sqlite:v.prepare('SELECT sqlite_version() AS version').get().version}));v.close();\n  await test('B2-R1: Promise callers and eligibility/order/future starvation',async()=>{\n    const p=fixture();add(p,'future',100);add(p,'b',0);add(p,'a',0);\n    const [a,b]=await Promise.all([claim(p,options()),claim(p,options(0,'b'))]);\n    assert.equal(a.id,'a');assert.equal(b.id,'b');assert.equal(a.payload,'payload:a');assert.deepEqual(Object.keys(a),['id','worker','token','leaseUntil','payload']);\n    assert.equal(await claim(p,options()),null);assert.equal((await claim(p,options(100))).id,'a');\n    const q=fixture();add(q,'one');const pair=await Promise.all([claim(q,options()),claim(q,options(0,'b'))]);assert.equal(pair.filter(Boolean).length,1);\n  });\n  await test('B2-R1: three real 8-connection synchronized races',async()=>{\n    for(let run=0;run<3;run++){\n      const p=fixture();add(p,'one');let release;const gate=new Promise(r=>release=r);let ready=0;\n      const outcomes=await Promise.all(Array.from({length:8},(_,i)=>new Promise((resolve,reject)=>{\n        const w=new Worker(new URL('./worker.mjs',import.meta.url),{workerData:{path:p,options:options(0,`worker-${i}`)}});\n        const timer=setTimeout(()=>{w.terminate();reject(new Error('worker timeout'));},8000);\n        w.on('error',reject);w.on('message',async message=>{if(message.ready){ready++;if(ready===8)release();await gate;w.postMessage('claim');}else{clearTimeout(timer);if(message.error)reject(new Error(message.error));else resolve(message.value);}});\n      })));\n      const winners=outcomes.filter(Boolean);assert.equal(winners.length,1);const stored=readJobs(p)[0];assert.equal(stored.worker,winners[0].worker);assert.equal(stored.token,1);console.log(JSON.stringify({run,attempts:8,winner:winners[0],stored}));\n    }\n  });\n  await test('B2-R2: expiry boundary, fresh fencing, wrong owner/token, immutable done',async()=>{\n    const p=fixture();add(p,'one');const a=await claim(p,options());\n    assert.equal(complete(p,{...a,worker:'forged'},'bad',{now:1}),false);\n    assert.equal(complete(p,{...a,token:2},'bad',{now:1}),false);\n    assert.equal(complete(p,a,'expired',{now:10}),false);assert.equal(readJobs(p)[0].result,null);\n    const b=await claim(p,options(10,'b'));assert.equal(b.token,a.token+1);\n    const before=readJobs(p);assert.equal(complete(p,a,'stale',{now:11}),false);assert.deepEqual(readJobs(p),before);\n    assert.equal(complete(p,b,'good',{now:19}),true);assert.equal(complete(p,b,'overwrite',{now:19}),false);\n    assert.equal(await claim(p,options(1000)),null);assert.equal(readJobs(p)[0].result,'good');\n  });\n  await test('B2-R3: independent process restarts persist ownership and completion',()=>{\n    const p=fixture();add(p,'one');const a=child('claim',p,options(0,'old'));\n    assert.equal(child('claim',p,options(9,'new')),null);\n    const b=child('claim',p,options(10,'new'));assert.equal(b.token,a.token+1);\n    assert.equal(complete(p,a,'stale',{now:11}),false);\n    assert.equal(child('complete',p,{claim:b,result:'persisted',options:{now:11}}),true);\n    assert.equal(child('read',p)[0].result,'persisted');assert.equal(child('claim',p,options(100)),null);\n  });\n  await test('B2-R3: invalid leases reject and injected now governs time',async()=>{\n    const p=fixture();add(p,'one',100);\n    for(const leaseMs of [0,-1,0.1,NaN,Infinity,Number.MAX_SAFE_INTEGER+1]) await assert.rejects(claim(p,options(99,'a',leaseMs)),RangeError);\n    assert.equal(await claim(p,options(99)),null);assert.equal((await claim(p,options(100))).leaseUntil,110);\n    assert.equal(await claim(p,options(109,'b')),null);assert.equal((await claim(p,options(110,'b'))).token,2);\n  });\n  await test('B2-R3: busy wait bounded; recovery and error exits close connections',async()=>{\n    const p=fixture();add(p,'one');const lock=new DatabaseSync(p);lock.exec('BEGIN IMMEDIATE');const start=performance.now();\n    try{await assert.rejects(claim(p,options()),/locked/);}finally{lock.exec('ROLLBACK');lock.close();}\n    const elapsedMs=performance.now()-start;assert.ok(elapsedMs<2000,`${elapsedMs}ms`);console.log(JSON.stringify({busyWaitMs:elapsedMs,configuredTimeoutMs:250,retries:0}));\n    assert.ok(await claim(p,options()));assert.throws(()=>init(p),/already exists/);\n    assert.throws(()=>enqueue(p,{id:'one',payload:'duplicate',dueAt:0}),/UNIQUE/);assert.equal(readJobs(p).length,1);\n    const broken=join(directory,'missing-schema.db');await assert.rejects(claim(broken,options()),/no such table/);rmSync(broken);\n  });\n  console.log(JSON.stringify({status:'PASS',tests:tests.length,passed:tests}));\n}finally{rmSync(directory,{recursive:true,force:true});}\r\n"
+        },
+        {
+          "name": "worker.mjs",
+          "content": "import {claim,complete,readJobs} from './service.ts';\nimport {isMainThread,parentPort,workerData} from 'node:worker_threads';\nif(!isMainThread){\n  parentPort.once('message',async()=>{try{parentPort.postMessage({value:await claim(workerData.path,workerData.options)});}catch(e){parentPort.postMessage({error:String(e)});}});\n  parentPort.postMessage({ready:true});\n}else{\n  const [action,path,encoded]=process.argv.slice(2); const data=JSON.parse(encoded||'{}');\n  const value=action==='claim'?await claim(path,data):action==='complete'?complete(path,data.claim,data.result,data.options):readJobs(path);\n  console.log(JSON.stringify(value));\n}\r\n"
+        }
+      ],
+      "independentObservations": [
+        {
+          "caseId": "BE-B2",
+          "node": "v24.12.0",
+          "time": "2026-11-06[trial masked]:24:32.604Z",
+          "checks": [
+            {
+              "id": "B2-control-sequential",
+              "kind": "control",
+              "status": "PASS",
+              "evidence": [
+                {
+                  "id": "job",
+                  "payload": "synthetic",
+                  "dueAt": 10,
+                  "status": "done",
+                  "worker": "a",
+                  "token": 1,
+                  "leaseUntil": 20,
+                  "result": "ok"
+                }
+              ]
+            },
+            {
+              "id": "B2-R1-concurrent-claim",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": [
+                {
+                  "id": "job",
+                  "worker": "a",
+                  "token": 1,
+                  "leaseUntil": 20,
+                  "payload": "synthetic"
+                },
+                null
+              ]
+            },
+            {
+              "id": "B2-R1-due-order",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "B2-R2-fence-stale-completion",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": [
+                {
+                  "id": "job",
+                  "payload": "synthetic",
+                  "dueAt": 10,
+                  "status": "done",
+                  "worker": "b",
+                  "token": 2,
+                  "leaseUntil": 25,
+                  "result": "fresh"
+                }
+              ]
+            },
+            {
+              "id": "B2-R2-expired-current-owner",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "B2-R3-restart-ownership",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "current": null,
+                "reclaimed": {
+                  "id": "job",
+                  "worker": "b",
+                  "token": 2,
+                  "leaseUntil": 20,
+                  "payload": "synthetic"
+                }
+              }
+            },
+            {
+              "id": "B2-R3-invalid-lease",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            }
+          ],
+          "errors": [],
+          "pass": true
+        }
+      ]
+    },
+    {
+      "alias": "L4",
+      "caseId": "UI-U1",
+      "task": "# UI-U1: repair the async assignee picker\nThe native TypeScript/CSS fixture is a small assignee picker. Users report old people reappearing after fast typing, Japanese input triggering searches mid-composition, and the textbox losing focus. Diagnose and fix the working component, retaining mount(root, search) => {dispose()}. The search transport may ignore AbortSignal and settle in either order. This is a deterministic fixture transport, not a real API. No framework, dependencies, cache service, state library or application architecture.\n\nRequirements:\n- U1-R1: only the latest committed query may change results, status, active option or error; ignore stale successes and failures even if cancellation is ignored. Clearing query invalidates pending work and empties results.\n- U1-R2: composition input must not call search until composition commits; typing retains textbox focus/text. Committing composition produces one search for its final value.\n- U1-R3: ArrowDown/ArrowUp chooses a visible option with focus in input; Enter selects into #chosen; Escape closes suggestions without moving focus. aria-expanded and aria-activedescendant accurately reflect visible state with no missing referenced node. Keep input/listbox IDs; options use role=option.\n- U1-R4: current rejection shows failure; #retry repeats current query and success recovers. dispose prevents late responses mutating root. Failure must not leave indefinite loading.\n- U1-R5: 320px viewport plus long unbroken label has no document horizontal overflow; input, label, suggestions and keyboard focus remain readable.\n\nEdit app.ts, styles.css, index.html, demo.ts and add focused tests/docs. Preserve IDs, roles and injected search contract. Node24/preinstalled browser tools available. Shared wrapper/output contract apply. Deliver implementation plus handoff.md with causal evidence, justified alternative, operating limit, unnecessary architecture rejected and requirement-to-test trace. Browser checks establish focus/layout; static checks alone cannot.\n\n",
+      "handoff": "# Handoff � UI-U1\n\nImplemented the bounded native picker repair using the supplied ui-ux-engineering [version masked] skill. Source of requirements: supplied UI-U1/task.md; repository implementation was the behavioral reference. No framework, dependency, transport contract, account, cache service or shared checker changed. `mount(root, search) => {dispose()}` and all supplied IDs/roles remain compatible.\n\n## Diagnosis and causal evidence\n\nThe original assigns every awaited search result directly to items, including old successes, and every catch changes current status. It also unconditionally searches on input and calls input.blur() inside render. These are separate mechanisms, rather than a network latency or browser autofocus explanation. The browser tests import the preserved `baseline-app.ts`, inject independently controlled promises that ignore AbortSignal, finish B before A, and observe A overwrite B and focus leave #query. A separate composition-start/input probe observes an unwanted search before commitment. Those baseline probes PASS because they reproduce the original defects; they are not repaired-component successes.\n\nOriginal CSS imposed input min-width:360px inside a padded 320px page and nowrap on suggestions. Correcting intrinsic width and wrapping at their owner avoids hiding overflow or clipping content.\n\n## Requirements and executed verification\n\nAll commands below use `node test.mjs` from this artifact. Final native exit code: 0. Real browser: Chrome/156.0.8078.80, Node v24.12.0, preinstalled Puppeteer, headless, pipe transport, no network service. The injected deterministic search deliberately ignores abort. [Structured results](test-results.json), [retained final output](final-test-output.txt), and [320px](render-320.png), [768px](render-768.png), [1280px](render-1280.png) screenshots are retained.\n\n| ID / meaning | Mechanism and file | Operating limit / failure mode | Actual check and result |\n| --- | --- | --- | --- |\n| U1-R1 latest committed query; clear invalidates | app.ts generation ticket guards success and failure; invalidate increments before abort and on clear; active/results/status cleared for new intent | One mount owns this picker. Abort alone is only an optimization. An unguarded old catch or result would restore incorrect rows/status. | PASS: A starts/B starts/B finishes/A succeeds; latest state including active reference unchanged. PASS: stale failure after newer success, clear then stale success, clear then stale failure. PASS: Escape during pending request prevents late reopening. |\n| U1-R2 composition and focus/text | app.ts compositionstart/end plus isComposing gates; forced final commit followed by same-value deduplication; render changes only list content, never replaces/blurs input | Composition tests dispatch browser CompositionEvent/InputEvent sequences; an actual Japanese OS IME was not operated. A duplicate post-commit input otherwise creates two requests. | PASS: zero mid-composition requests, exactly one final Japanese query, final duplicate input suppressed, value/focus retained after completion and further real browser typing. |\n| U1-R3 keyboard, selection and ARIA | app.ts ArrowDown/ArrowUp move active visible option; Enter writes #chosen and closes; Escape closes; render removes inactive descendant and derives expanded from visible rows. index.html keeps input/listbox IDs and options retain role=option. | Keyboard interaction remains in textbox. Option IDs are local render indices, not persisted identities. External mutation of owned DOM is unsupported. | PASS: arrows select actual visible option with focus in #query, live descendant resolves to Beta, Up/Enter selects Alpha, Escape closes without moving focus and removes descendant. |\n| U1-R4 reject/retry/dispose | app.ts guarded catch exits Loading, exposes retry; retry forces same query; dispose advances generation and removes all registered listeners | A never-settling transport has no added timeout; task transport is deterministic. Generic failure text deliberately does not expose transport details. | PASS: current rejection becomes Search failed with retry; retry uses same query and recovers; dispose then late success leaves root byte-equivalent, subsequent input causes no search. Late rejection uses the same disposed/generation guard but was not separately executed. |\n| U1-R5 narrow long content | styles.css width:100%, min-width:0, wrapping options/text; existing visible focus outline retained | Long option may become tall; no virtualization or truncation. Tested one long unbroken label at DPR1, viewport height800. | PASS: rendered widths320/768/1280; document scroll widths exactly320/768/1280; input widths222/490/490; focus remains query and computed outline3px. Captured all screenshots and visually inspected hierarchy, readable label/input/options and unclipped focus. |\n\nImplemented: ordering/lifecycle guard, composition policy, keyboard/ARIA state, retry cleanup and intrinsic responsive CSS. Changed index.html only to connect status description, make status atomic, and hide the initial empty listbox. demo.ts remains an explicitly deterministic transport that intentionally ignores abort. Inherited: original typography, colors, page hierarchy and injected Search signature. Simulated: search completion/error ordering, not a real API or server authorization test.\n\nAccessibility coverage is scoped to executed keyboard/focus, ARIA references and the rendered narrow/long-content checks. Automated WCAG scanner, actual assistive technology, native browser zoom, real Japanese OS IME, static TypeScript type checking and field performance are UNVERIFIED and not claimed. No formal conformance or performance claim is made. There are no unresolved required fixture failures in the executed checks.\n\n## Choice and rejected additions\n\nAbort-only cancellation is a plausible simpler alternative when the transport guarantees abort settlement and suppresses every late callback. This fixture expressly allows ignored abort, so a monotonically increasing request generation plus disposed guard fits better; cancellation remains opportunistic. A native select would become appropriate for a fully loaded bounded option set, but would not preserve this injected asynchronous searchable contract. A cache service/state library/framework migration is unnecessary: one component owns one current query and finite option list, and none would fix completion eligibility by itself.\n\n## Execution record and limits\n\nFirst observed start: 2026-11-06 03:13:17 UTC from clock tool; the initial dispatch read was batched with it. The literal requested PowerShell UTC form was captured on the next read at 2026-11-06[trial masked]:13:27.1914244Z, rather than in the first call. This procedural deviation is disclosed.\n\nRead only dispatch, selected skill, active module/implementation/verification/design references, supplied task/wrapper/output contract/reference map, own artifact, and permitted serve-fixture.mjs. No old skill snapshots, other trials, forbidden protocol, grading, or evaluation reports inspected. No child agents or installations. A capability-path question was sent to the parent; its later addendum supplied installed Playwright/Chrome locations without mechanism guidance. Successful browser work already used the independently located installed Chrome and preinstalled Puppeteer. Every test server requested its own ephemeral port0.\n\nActual commands and retained failures:\n\n- Capability check: `node --version` and module-resolution probes found Node24/Puppeteer, while local Playwright/TypeScript module resolution was unavailable. This was discovery, not a dependency installation.\n- First `node test.mjs`: exit1 after 2.5166s; Puppeteer cached Chrome138.0.7204.94 missing. No assertions ran.\n- Second `node test.mjs` using installed Chrome with default transport: TimeoutError after waiting30000ms, before assertions. Polls yielded without assertion output. A process-diagnostic Get-CimInstance attempt was denied by host permissions; it did not change files.\n- Third `node test.mjs`, pipe transport and bounded protocol timeout: exit0, 5.8652s command wall time. All initial focused assertions passed.\n- Final `node test.mjs *> final-test-output.txt` after added clear/stale-error/Escape case and markup/doc refinements: native exit0, 8.0660s command wall time, 11 named checks PASS (including two original-defect reproduction probes). Node emitted its experimental stripTypeScriptTypes warning; it remains in retained output.\n\n[Initial browser failure summary](initial-browser-failure.txt) preserves the failed configurations; full tool errors also remain in the execution transcript. The successful browser's render/geometry evidence is actual, not a DOM fake. Test server strips TypeScript syntax and does not establish type correctness. The first two failed launches occurred before the script's assertion cleanup block, so automatic cleanup of their child servers is not established; successful assertion runs kill their own server and close their own browser. No unrelated process was terminated.\n\nResource record: tokens:null; monetary_cost:null. Total underlying tool invocations:20, including one parent coordination message; functions wrappers are not double-counted. Budget:360seconds; no child delegation.\r\n\nObserved final artifact-write time: 2026-11-06[trial masked]:18:43.2492813Z. Work stopped after this twentieth underlying invocation.\r\n",
+      "files": [
+        {
+          "name": "app.ts",
+          "content": "export type Person = {id:string; label:string};\nexport type Search = (query:string, signal?:AbortSignal)=>Promise<Person[]>;\nexport function mount(root:HTMLElement, search:Search){\n const input=root.querySelector<HTMLInputElement>('#query')!;\n const list=root.querySelector<HTMLElement>('#options')!;\n const status=root.querySelector<HTMLElement>('#status')!;\n const retry=root.querySelector<HTMLButtonElement>('#retry')!;\n const chosen=root.querySelector<HTMLElement>('#chosen')!;\n let items:Person[]=[]; let active=-1; let open=false;\n let generation=0; let controller:AbortController|undefined; let disposed=false;\n let composing=false; let committed='';\n function invalidate(){generation++;controller?.abort();controller=undefined;}\n function render(){\n  list.replaceChildren(...(open?items:[]).map((person,i)=>{\n   const li=document.createElement('li');li.id='person-'+i;li.role='option';li.textContent=person.label;\n   li.setAttribute('aria-selected',String(i===active));return li;\n  }));\n  const visible=open&&items.length>0;list.hidden=!visible;\n  input.setAttribute('aria-expanded',String(visible));\n  if(visible&&active>=0&&active<items.length)input.setAttribute('aria-activedescendant','person-'+active);\n  else input.removeAttribute('aria-activedescendant');\n }\n async function load(force=false){\n  if(disposed||composing)return;\n  const query=input.value;\n  if(!force&&query===committed)return;\n  committed=query;invalidate();const ticket=generation;\n  items=[];active=-1;open=false;retry.hidden=true;\n  if(!query.trim()){status.textContent='';render();return;}\n  controller=new AbortController();const signal=controller.signal;\n  status.textContent='Loading';render();\n  try{\n   const result=await search(query,signal);\n   if(disposed||ticket!==generation)return;\n   if(!Array.isArray(result)||!result.every(p=>p&&typeof p.id==='string'&&typeof p.label==='string'))throw Error('Invalid search response');\n   items=result;active=items.length?0:-1;open=items.length>0;\n   status.textContent=items.length+' people';render();\n  }catch{\n   if(disposed||ticket!==generation)return;\n   items=[];active=-1;open=false;status.textContent='Search failed';retry.hidden=false;render();\n  }\n }\n function onInput(event:Event){if(!composing&&!(event as InputEvent).isComposing)void load();}\n function onStart(){composing=true;invalidate();items=[];active=-1;open=false;status.textContent='';retry.hidden=true;render();}\n function onEnd(){composing=false;void load(true);}\n function onRetry(){void load(true);input.focus();}\n function onKey(event:KeyboardEvent){\n  if(composing||event.isComposing)return;\n  if(event.key==='Escape'){event.preventDefault();invalidate();open=false;active=-1;status.textContent='';retry.hidden=true;render();}\n  else if((event.key==='ArrowDown'||event.key==='ArrowUp')&&items.length){\n   event.preventDefault();if(!open){open=true;active=event.key==='ArrowDown'?0:items.length-1;}\n   else active=(active+(event.key==='ArrowDown'?1:-1)+items.length)%items.length;\n   render();\n  }else if(event.key==='Enter'&&open&&items[active]){\n   event.preventDefault();chosen.textContent=items[active].label;open=false;active=-1;render();\n  }\n }\n function onPointer(event:MouseEvent){\n  const option=(event.target as Element).closest('[role=option]');\n  if(!option||!list.contains(option))return;\n  event.preventDefault();const index=Array.from(list.children).indexOf(option);\n  if(items[index]){chosen.textContent=items[index].label;open=false;active=-1;render();input.focus();}\n }\n input.addEventListener('input',onInput);input.addEventListener('compositionstart',onStart);input.addEventListener('compositionend',onEnd);\n input.addEventListener('keydown',onKey);retry.addEventListener('click',onRetry);list.addEventListener('mousedown',onPointer);render();\n return {dispose(){if(disposed)return;disposed=true;invalidate();input.removeEventListener('input',onInput);input.removeEventListener('compositionstart',onStart);input.removeEventListener('compositionend',onEnd);input.removeEventListener('keydown',onKey);retry.removeEventListener('click',onRetry);list.removeEventListener('mousedown',onPointer);}};\n}\r\n\r\n"
+        },
+        {
+          "name": "demo.ts",
+          "content": "import {mount} from './app.js';\n// Deterministic local demo only. This transport intentionally ignores AbortSignal.\nif(!new URLSearchParams(location.search).has('test'))mount(document.querySelector('#picker')!,async query=>{\n await new Promise(r=>setTimeout(r,query.length===1?400:80));\n return [{id:query,label:query+' Example'}];\n});\r\n"
+        },
+        {
+          "name": "index.html",
+          "content": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Assign request</title><link rel=\"stylesheet\" href=\"styles.css\"><main id=\"picker\"><h1>Assign request</h1><label for=\"query\">Find an assignee</label><input id=\"query\" role=\"combobox\" aria-autocomplete=\"list\" aria-controls=\"options\" aria-expanded=\"false\" aria-describedby=\"status\" autocomplete=\"off\"><ul id=\"options\" hidden role=\"listbox\" aria-label=\"Assignees\"></ul><p id=\"status\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></p><button id=\"retry\" type=\"button\" hidden>Retry search</button><p>Chosen: <span id=\"chosen\">None</span></p></main><script type=\"module\" src=\"demo.js\"></script></html>\n\r\n"
+        },
+        {
+          "name": "styles.css",
+          "content": "*{box-sizing:border-box}body{margin:0;padding:24px;font:16px system-ui;color:#182530;background:#f3f6f8}main{width:100%;max-width:540px;min-width:0;padding:24px;background:white;border:1px solid #ccd5df;border-radius:12px}label{display:block;margin-bottom:8px}input{display:block;font:inherit;width:100%;min-width:0;padding:10px}ul{padding:0;list-style:none;min-width:0}li{padding:10px;border-bottom:1px solid #ddd;white-space:normal;overflow-wrap:anywhere}label,h1,p{overflow-wrap:anywhere}li[aria-selected=true]{background:#daeafa}input:focus-visible,button:focus-visible{outline:3px solid #225bce;outline-offset:2px}button{font:inherit;padding:8px;max-width:100%;white-space:normal}\r\n"
+        },
+        {
+          "name": "test.mjs",
+          "content": "import assert from 'node:assert/strict';\nimport fs from 'node:fs/promises';\nimport {spawn} from 'node:child_process';\nimport {createRequire} from 'node:module';\nconst require=createRequire(import.meta.url);const puppeteer=require('puppeteer');\nconst server=spawn(process.execPath,['../../../serve-fixture.mjs','.', '0'],{cwd:import.meta.dirname,stdio:['ignore','pipe','inherit']});\nconst url=await new Promise((resolve,reject)=>{server.stdout.once('data',b=>resolve(String(b).trim()));server.once('error',reject);});\nconst browser=await puppeteer.launch({headless:true,pipe:true,waitForInitialPage:false,timeout:10000,protocolTimeout:10000,args:['--no-sandbox','--disable-gpu'],executablePath:process.env.CHROME_PATH || '[local path masked] Files/Google/Chrome/Application/chrome.exe'});const page=await browser.newPage();\nconst results=[];const long='LongUnbrokenAssignee'.repeat(20);\nasync function setup(module='app'){\n await page.goto(url+'/?test');await page.evaluate(async module=>{\n  const {mount}=await import('/'+module+'.js');window.calls=[];\n  window.picker=mount(document.querySelector('#picker'),(query,signal)=>new Promise((resolve,reject)=>window.calls.push({query,signal,resolve,reject})));\n },module);await page.focus('#query');\n}\nasync function query(value){await page.$eval('#query',(el,value)=>{el.value=value;el.dispatchEvent(new InputEvent('input',{bubbles:true}));},value);}\nasync function settle(index,items,error=false){await page.evaluate(({index,items,error})=>{const c=window.calls[index];if(error)c.reject(new Error('transport failure'));else c.resolve(items);},{index,items,error});}\nasync function state(){return page.evaluate(()=>({text:document.querySelector('#options').textContent,status:document.querySelector('#status').textContent,focus:document.activeElement.id,expanded:document.querySelector('#query').getAttribute('aria-expanded'),active:document.querySelector('#query').getAttribute('aria-activedescendant'),retry:!document.querySelector('#retry').hidden}));}\nasync function check(name,fn){try{await fn();results.push({name,status:'PASS'});console.log('PASS',name);}catch(error){results.push({name,status:'FAIL',error:String(error)});console.log('FAIL',name,String(error));}}\ntry{\n await check('baseline causal race and explicit blur',async()=>{await setup('baseline-app');await query('a');await query('ab');await settle(1,[{id:'b',label:'Latest'}]);await settle(0,[{id:'a',label:'Stale'}]);const s=await state();assert.equal(s.text,'Stale');assert.notEqual(s.focus,'query');});\n await check('baseline searches during composition',async()=>{await setup('baseline-app');await page.$eval('#query',el=>{el.dispatchEvent(new CompositionEvent('compositionstart'));el.value='?';el.dispatchEvent(new InputEvent('input',{isComposing:true}));});assert.equal(await page.evaluate(()=>window.calls.length),1);});\n await check('U1-R1 stale success and failure cannot overwrite latest',async()=>{await setup();await query('a');await query('ab');await settle(1,[{id:'b',label:'Latest'}]);await page.keyboard.press('ArrowDown');const before=await state();await settle(0,[{id:'a',label:'Stale'}]);assert.deepEqual(await state(),before);await query('abc');await query('abcd');await settle(3,[{id:'d',label:'Current'}]);const latest=await state();await settle(2,[],true);assert.deepEqual(await state(),latest);});\n await check('U1-R1 clear invalidates without another request',async()=>{await setup();await query('pending');await query('');await settle(0,[{id:'a',label:'Late'}]);const s=await state();assert.equal(s.text,'');assert.equal(s.status,'');assert.equal(s.expanded,'false');assert.equal(s.active,null);});\n await check('U1-R1 stale failure after clear and Escape pending',async()=>{await setup();await query('pending');await query('');await settle(0,[],true);assert.equal((await state()).status,'');assert.equal((await state()).retry,false);await query('later');await page.keyboard.press('Escape');await settle(1,[{id:'x',label:'Late'}]);assert.equal((await state()).expanded,'false');assert.equal((await state()).text,'');});\n await check('U1-R2 composition commits once and retains focus/text',async()=>{await setup();await page.$eval('#query',el=>{el.dispatchEvent(new CompositionEvent('compositionstart'));el.value='?';el.dispatchEvent(new InputEvent('input',{isComposing:true}));el.value='??';el.dispatchEvent(new InputEvent('input',{isComposing:true}));});assert.equal(await page.evaluate(()=>window.calls.length),0);await page.$eval('#query',el=>{el.dispatchEvent(new CompositionEvent('compositionend',{data:'??'}));el.dispatchEvent(new InputEvent('input'));});assert.deepEqual(await page.evaluate(()=>window.calls.map(c=>c.query)),['??']);await settle(0,[{id:'j',label:'??'}]);assert.equal((await state()).focus,'query');assert.equal(await page.$eval('#query',el=>el.value),'??');await page.type('#query','x');assert.equal((await state()).focus,'query');});\n await check('U1-R3 keyboard and live ARIA references',async()=>{await setup();await query('a');await settle(0,[{id:'a',label:'Alpha'},{id:'b',label:'Beta'}]);await page.keyboard.press('ArrowDown');let s=await state();assert.equal(s.focus,'query');assert.equal(s.expanded,'true');assert.equal(await page.evaluate(()=>document.getElementById(document.querySelector('#query').getAttribute('aria-activedescendant')).textContent),'Beta');await page.keyboard.press('ArrowUp');await page.keyboard.press('Enter');assert.equal(await page.$eval('#chosen',el=>el.textContent),'Alpha');assert.equal((await state()).active,null);await page.keyboard.press('ArrowUp');await page.keyboard.press('Escape');s=await state();assert.equal(s.expanded,'false');assert.equal(s.active,null);assert.equal(s.focus,'query');});\n await check('U1-R4 failure retry recovery and disposal',async()=>{await setup();await query('failure');await settle(0,[],true);let s=await state();assert.equal(s.status,'Search failed');assert.equal(s.retry,true);await page.click('#retry');assert.deepEqual(await page.evaluate(()=>window.calls.map(c=>c.query)),['failure','failure']);await settle(1,[{id:'r',label:'Recovered'}]);assert.equal((await state()).text,'Recovered');await query('late');await page.evaluate(()=>{window.picker.dispose();window.frozen=document.querySelector('#picker').innerHTML;});await settle(2,[{id:'l',label:'Late'}]);assert.equal(await page.evaluate(()=>document.querySelector('#picker').innerHTML===window.frozen),true);await query('ignored');assert.equal(await page.evaluate(()=>window.calls.length),3);});\n for(const width of [320,768,1280])await check('U1-R5 rendered width '+width,async()=>{await page.setViewport({width,height:800,deviceScaleFactor:1});await setup();await query('long');await settle(0,[{id:'long',label:long}]);await page.keyboard.press('ArrowDown');const geometry=await page.evaluate(()=>({viewport:innerWidth,scroll:document.documentElement.scrollWidth,input:document.querySelector('#query').getBoundingClientRect().toJSON(),option:document.querySelector('[role=option]').getBoundingClientRect().toJSON(),outline:getComputedStyle(document.querySelector('#query')).outlineWidth}));assert.ok(geometry.scroll<=geometry.viewport,JSON.stringify(geometry));assert.ok(geometry.input.width>100);assert.ok(geometry.option.height>20);assert.equal((await state()).focus,'query');await page.screenshot({path:new URL('./render-'+width+'.png',import.meta.url).pathname.replace(/^\\/(\\w:)/,'$1'),fullPage:true});results.push({name:'geometry '+width,...geometry});});\n}finally{const browserVersion=await browser.version();await browser.close();server.kill();await fs.writeFile(new URL('./test-results.json',import.meta.url),JSON.stringify({at:new Date().toISOString(),node:process.version,browser:browserVersion,transport:'deferred deterministic fixture ignoring abort',results},null,2));}\nconsole.log(JSON.stringify(results,null,2));if(results.some(r=>r.status==='FAIL'))process.exitCode=1;\r\n\r\n\r\n\r\n"
+        }
+      ],
+      "independentObservations": [
+        {
+          "caseId": "UI-U1",
+          "node": "v24.12.0",
+          "time": "2026-11-06[trial masked]:20:29.732Z",
+          "checks": [
+            {
+              "id": "U1-control-single-result",
+              "kind": "control",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R1-out-of-order-success",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R1-stale-failure",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R2-composition",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R2-R3-keyboard-focus",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R1-clear-invalidates",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R4-current-error-retry",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R4-dispose",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R5-reflow",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "width": 320,
+                "scroll": 320,
+                "input": {
+                  "x": 49,
+                  "y": 163.875,
+                  "width": 222,
+                  "height": 45,
+                  "top": 163.875,
+                  "right": 271,
+                  "bottom": 208.875,
+                  "left": 49
+                }
+              }
+            }
+          ],
+          "errors": [],
+          "pass": true
+        }
+      ]
+    },
+    {
+      "alias": "N6",
+      "caseId": "UI-U2",
+      "task": "# UI-U2: repair the trapped settings dialog\nThe settings editor is inside a transformed clipped dashboard card. Narrow screens cut it off; keyboard users escape into the background, and Escape leaves scrolling locked. Repair this native TypeScript/CSS widget. Edit opens; Save changes #saved and closes; Cancel/Escape discard edits. Preserve IDs and native field labels. Replacing overlay div with native dialog is allowed if justified. No framework/focus library/portal package.\n\nRequirements:\n- U2-R1: opening exposes a semantic named modal dialog; focus enters it; Tab/Shift+Tab cannot focus background controls (native browser-chrome focus transitions are allowed); background #outside cannot activate via real pointer/keyboard. Cancel/Save/Escape return focus to opener. Opening again works.\n- U2-R2: Save uses entered #displayName once and closes; Cancel/Escape discard edits without changing #saved. Closing cleans modal state and restores page scrolling without stale global trap/listener. Second cycle has one save effect (#saveCount).\n- U2-R3: 320x480 dialog fully reachable in viewport; long unbroken text wraps; #save/#cancel reachable through internal vertical scrolling; no document/dialog horizontal overflow. Transformed clipped ancestor cannot clip it. Keep visible keyboard focus.\n- U2-R4: choose smallest correct platform mechanism; explain compatibility, scrolling/focus ownership and plausible alternative. Distinguish actual browser/keyboard evidence from unperformed AT checks. No routing/global modal manager/animation library/backend.\n\nExport mount(root) => {dispose()}; IDs #open,#panel,#displayName,#save,#cancel,#saved,#saveCount,#outside stable. #panel may become dialog named from #dialogTitle. Native form may replace JS. Edit app.ts/styles.css/index.html/demo.ts plus focused tests/docs. Deliver implementation + handoff.md under shared contract. Installed browser tools available.\n\n",
+      "handoff": "# [trial masked] handoff\n\nThe settings editor is repaired in `app.ts`, `index.html`, and `styles.css`. `mount(root) => {dispose()}`, all supplied IDs, labels, demo loading, and output semantics are preserved. This is a native TypeScript/CSS synthetic widget; no backend, framework, package, routing, global modal manager, or animation layer was added.\n\n## Objective and evidence\n\nRoute: improve-existing small component. The supplied UI-U2 task is the authority for U2-R1 through U2-R4. Audience/task: pointer and keyboard users edit a workspace name, save once, or discard. Acceptance was the supplied semantic modality, lifecycle, focus, viewport, and mechanism requirements. Reference input was the copied local fixture and selected frozen [version masked] skill only; no other heldouts, checkers, graders, or previous solutions were inspected.\n\nOriginal symptom reproduced in real Chrome: at 320x480 the DIV panel was 600px wide, extended to x641/y1112.69, and sat at x41/y224.88 inside a 280x200 clipped transformed card. Escape hid it but left `body.style.overflow` as `hidden`. See `baseline.json` and the executed `node baseline.mjs` historical probe. The actual containing-block geometry plus inspected transform/overflow rules distinguish ancestor clipping from a z-index-only issue. A z-index increase cannot escape that clipping or implement focus containment. Original JS had no semantic modality/focus owner and only removed the opener listener during disposal.\n\n## Requirement trace\n\n| ID / meaning | Mechanism and artifact | Limit and failure mode | Executed evidence / result |\n| --- | --- | --- | --- |\n| U2-R1 named semantic modal, focus entry/containment, inert background, return/reopen | `index.html`: native `dialog#panel` named by `#dialogTitle`; `app.ts`: `showModal`, explicit field focus, close cleanup returning to `#open`. Native top layer owns modality and keyboard containment. | Requires native modal dialog support. Browser-chrome/body focus transitions can occur. Programmatic event dispatch is not user input and is outside inertness guarantees. | PASS: `node verify.mjs` on actual headless Chrome; named dialog locator, initial field focus, 12 forward and 12 reverse real keyboard Tab presses, real outside mouse click, keyboard activation, return after Save/Cancel/Escape and multiple reopen cycles. `browser-results.json`. |\n| U2-R2 one Save effect, discard Cancel/Escape, cleanup/scroll restoration, second cycle | `app.ts`: commit only while open, update output/count once, reset draft from committed output on show/cleanup; one scoped cancel/close path; restore exact previous inline overflow; remove all owned element listeners in dispose. A delayed close event cannot reset an already reopened dialog. | One mounted owner per root. This is local synchronous state; persistence/server idempotency is out of scope. Concurrent independent code changing body overflow while this dialog is open is not coordinated. | PASS: `node verify.mjs`: first and second commits leave count 1 then 2; second commit uses real Enter on Save. Cancel/Escape leave output unchanged, next opening resets draft, all tested closures restore focus/scroll. Real wheel scroll reaches y200 afterward. Disposal while open restores prior `scroll` style, opener listener is gone, remount has one effect. |\n| U2-R3 320x480 reachability, unbroken wrapping, internal vertical actions, no horizontal overflow, unclipped top layer, visible focus | `styles.css`: viewport-constrained native top-layer dialog, 16px margins, max-height vh with dvh override, overflow:auto, wrapping, constrained input; inherited focus-visible outline retained. `app.ts` resets internal scroll on opening while focusing without scrolling. | Long content intentionally requires internal vertical scrolling. Very small viewports below the required size and other writing systems/native mobile keyboards were not tested. | PASS: `node verify.mjs`: actual 320x480, 768x640, 1280x800 rectangles within viewport, dialog/document scrollWidth <= clientWidth; 320 panel 288x448 at 16,16. Long text 84px high. Tab reaches Cancel then Save; Save bottom 437.81 inside 480px viewport, dialog scrollTop503. Focus outline computed solid. Screenshots visually inspected: `narrow-top.png`, `narrow-actions.png`, `desktop-top.png` (also `desktop.png`). |\n| U2-R4 smallest mechanism, compatibility/ownership, alternative, honest evidence | Native dialog replaces custom DIV; no manual global trap, inert tree, reparenting, or dependency. Native top layer escapes transformed clipping. Browser owns modal focus/inertness; this mount owns draft/commit and temporary body scroll lock. | Intended for browsers supporting HTMLDialogElement.showModal. dvh uses a vh fallback; this does not make dialog work in legacy engines. Compatibility tested only in the installed Chrome. | PASS for delivered mechanism/explanation and real-browser distinction: `node verify.mjs` uses installed Playwright with explicit real Chrome executable. See environment/version and raw checks in `browser-results.json`. Actual AT checks remain UNVERIFIED, not implied by role/keyboard tests. |\n\nA plausible alternative is a custom body-level overlay using reparenting plus explicit inertness, focus trap, return-focus, Escape, and lifecycle cleanup. It becomes appropriate when an explicitly required legacy browser cannot support native dialog or the product needs a specialized non-modal interaction. For this fixture it adds several failure-prone owners that the browser already supplies. A portal/focus library is unnecessary and prohibited; a global modal manager has no second modal consumer here. Raising z-index alone is rejected because the original ancestor establishes the clipping/containing block.\n\n## Verification and limits\n\nRun from this artifact directory: `node verify.mjs`. It starts the unchanged shared helper on an ephemeral loopback port, launches the installed Chrome in headless mode, runs real pointer/keyboard/browser checks, writes raw JSON/screenshots, and closes browser/server. Final run exited 0 with all recorded checks PASS and no page errors. All behavior is implemented rather than simulated; diagnostic outside-click counting exists only in the test page. No network service/data behavior was claimed.\n\nVisual review confirmed readable title and label at the top, wrapped policy text, visible blue keyboard focus, bounded panel edges, and reachable actions at the bottom. The original 600px policy spacer is retained as supplied content stress, so the settings card remains deliberately long. No full WCAG conformance, AT/screen-reader pairing, contrast scanner, browser zoom, Safari/Firefox/mobile keyboard, static TypeScript checker, or field performance measurement was performed. Those are UNVERIFIED coverage, separate from the executed task checks. The shared server strips TS but does not statically typecheck it. No performance optimization was requested.\n\n## Failures and provenance\n\nThe first `node baseline.mjs` attempt failed before browser startup with Node `ERR_UNSUPPORTED_ESM_URL_SCHEME`: a Windows absolute path was used as an ESM import. Changing it to the file:/// URL for the same installed Playwright module fixed the harness. That failure is retained in `failures.txt`. The next baseline probe passed and retained the original defect evidence. Both implementation browser runs passed. Initial screenshots showed that focus scrolling could hide the heading; opening now resets dialog scrollTop to zero and uses preventScroll focus, followed by a successful rerun and visual inspection.\n\nBudget accounting is in `trial-budget.json`. No child agents, package installations, downloads, external mutations, or shared infrastructure edits occurred. The first tool captured UTC via the clock tool; the requested PowerShell ISO timestamp was captured in the following read batch, a procedural deviation retained here. Model token and monetary cost measurements are unavailable (null).\r\n",
+      "files": [
+        {
+          "name": "app.ts",
+          "content": "export function mount(root: HTMLElement) {\n  const panel = root.querySelector<HTMLDialogElement>('#panel')!;\n  const open = root.querySelector<HTMLButtonElement>('#open')!;\n  const input = root.querySelector<HTMLInputElement>('#displayName')!;\n  const saved = root.querySelector<HTMLOutputElement>('#saved')!;\n  const count = root.querySelector<HTMLOutputElement>('#saveCount')!;\n  const cancel = root.querySelector<HTMLButtonElement>('#cancel')!;\n  const save = root.querySelector<HTMLButtonElement>('#save')!;\n  let previousOverflow: string | null = null;\n\n  function cleanup() {\n    input.value = saved.value;\n    if (previousOverflow !== null) {\n      document.body.style.overflow = previousOverflow;\n      previousOverflow = null;\n      if (open.isConnected) open.focus();\n    }\n  }\n  function show() {\n    if (panel.open) return;\n    input.value = saved.value;\n    panel.showModal();\n    previousOverflow = document.body.style.overflow;\n    document.body.style.overflow = 'hidden';\n    input.focus({preventScroll: true});\r\n    panel.scrollTop = 0;\n  }\n  function close() {\n    if (panel.open) panel.close();\n    cleanup();\n  }\n  function commit() {\n    if (!panel.open) return;\n    saved.value = input.value;\n    count.value = String(Number(count.value) + 1);\n    close();\n  }\n  function escape(event: Event) {\n    event.preventDefault();\n    close();\n  }\n  function closed() {\n    // A queued close event from the previous cycle must not reset a new draft.\n    if (!panel.open) cleanup();\n  }\n  open.addEventListener('click', show);\n  cancel.addEventListener('click', close);\n  save.addEventListener('click', commit);\n  panel.addEventListener('cancel', escape);\n  panel.addEventListener('close', closed);\n  return {\n    dispose() {\n      close();\n      open.removeEventListener('click', show);\n      cancel.removeEventListener('click', close);\n      save.removeEventListener('click', commit);\n      panel.removeEventListener('cancel', escape);\n      panel.removeEventListener('close', closed);\n    }\n  };\n}\r\n\r\n"
+        },
+        {
+          "name": "demo.ts",
+          "content": "import {mount} from './app.js';if(!new URLSearchParams(location.search).has('test'))mount(document.querySelector('#settings')!);\n\n"
+        },
+        {
+          "name": "index.html",
+          "content": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Workspace settings</title><link rel=\"stylesheet\" href=\"styles.css\"><main id=\"settings\"><h1>Workspace</h1><button id=\"outside\">Background action</button><p>Saved name: <output id=\"saved\">Original</output>; saves: <output id=\"saveCount\">0</output></p><section class=\"card\"><button id=\"open\">Edit workspace</button><dialog id=\"panel\" aria-labelledby=\"dialogTitle\"><h2 id=\"dialogTitle\">Edit workspace</h2><label for=\"displayName\">Workspace name</label><input id=\"displayName\" value=\"Original\" autofocus><p class=\"long\">ThisUnbrokenWorkspacePolicyIdentifierIsIntentionallyLongEnoughToExposeIntrinsicSizingFailuresAtNarrowViewportWidths</p><div class=\"details\">Workspace policies and audit settings. Review before saving.</div><button id=\"cancel\" type=\"button\">Cancel</button><button id=\"save\" type=\"button\">Save settings</button></dialog></section></main><script type=\"module\" src=\"demo.js\"></script></html>\n\r\n"
+        },
+        {
+          "name": "styles.css",
+          "content": "*{box-sizing:border-box}\nbody{font:16px system-ui;margin:0;padding:20px;background:#f5f7fa;color:#182530;min-height:150vh}\n.card{height:200px;overflow:hidden;transform:translateZ(0);border:1px solid #ccd5df;padding:16px}\n#panel{position:fixed;inset:0;margin:auto;width:min(600px,calc(100% - 32px));max-width:calc(100% - 32px);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;background:white;padding:24px;border:2px solid #345;overflow-wrap:anywhere}\n#panel::backdrop{background:rgb(24 37 48 / .55)}\n.long{white-space:normal;overflow-wrap:anywhere}\n.details{min-height:600px;background:#edf2f5}\nbutton,input{font:inherit;padding:10px;max-width:100%}\ninput{width:100%;min-width:0}\nlabel{display:block}\nbutton:focus-visible,input:focus-visible{outline:3px solid #245dcc;outline-offset:2px}\r\n"
+        },
+        {
+          "name": "verify.mjs",
+          "content": "import {spawn} from 'node:child_process';\nimport fs from 'node:fs/promises';\nimport assert from 'node:assert/strict';\nimport {chromium} from 'file:///[local path masked]\nconst server=spawn(process.execPath,['../../../serve-fixture.mjs',process.cwd(),'0'],{stdio:['ignore','pipe','pipe']});\nlet serverWarnings='';server.stderr.on('data',d=>serverWarnings+=d);\nconst url=await new Promise((resolve,reject)=>{server.stdout.once('data',d=>resolve(String(d).trim()));server.on('exit',c=>reject(Error('server '+c)));});\nconst browser=await chromium.launch({headless:true,executablePath:'[local path masked] Files/Google/Chrome/Application/chrome.exe'});\nconst results=[];const errors=[];const record=(name,details)=>{results.push({name,status:'PASS',details});console.log('PASS '+name,JSON.stringify(details??''));};\ntry{\n const page=await browser.newPage({viewport:{width:1280,height:800}});page.on('pageerror',e=>errors.push(String(e)));\n await page.goto(url);await page.evaluate(()=>{window.outsideClicks=0;document.querySelector('#outside').addEventListener('click',()=>window.outsideClicks++);});\n await page.locator('#open').click();await page.getByRole('dialog',{name:'Edit workspace'}).waitFor({state:'visible'});assert.equal(await page.evaluate(()=>document.activeElement.id),'displayName');record('U2-R1 semantic named modal and initial focus');\n for(const key of ['Tab','Shift+Tab']){const focus=[];for(let i=0;i<12;i++){await page.keyboard.press(key);const id=await page.evaluate(()=>document.activeElement.id);focus.push(id);assert.ok(!['outside','open'].includes(id),key+' escaped to '+id);}record('U2-R1 '+key+' containment',focus);}\n const outside=await page.locator('#outside').boundingBox();await page.mouse.click(outside.x+5,outside.y+5);assert.equal(await page.evaluate(()=>window.outsideClicks),0);\n await page.locator('#displayName').focus();await page.keyboard.press('Enter');assert.equal(await page.evaluate(()=>window.outsideClicks),0);record('U2-R1 real pointer and keyboard background blocked');\n await page.screenshot({path:'desktop.png'});\n await page.locator('#displayName').fill('Saved first');await page.locator('#save').click();assert.equal(await page.locator('#saved').textContent(),'Saved first');assert.equal(await page.locator('#saveCount').textContent(),'1');assert.equal(await page.evaluate(()=>document.activeElement.id),'open');assert.equal(await page.evaluate(()=>document.body.style.overflow),'');record('U2-R2 first Save once, closes, focus and scroll restored');\n await page.locator('#open').click();await page.locator('#displayName').fill('Discard cancel');await page.locator('#cancel').click();assert.equal(await page.locator('#saved').textContent(),'Saved first');assert.equal(await page.evaluate(()=>document.activeElement.id),'open');await page.locator('#open').click();assert.equal(await page.locator('#displayName').inputValue(),'Saved first');await page.locator('#displayName').fill('Discard escape');await page.keyboard.press('Escape');assert.equal(await page.locator('#saved').textContent(),'Saved first');assert.equal(await page.evaluate(()=>document.activeElement.id),'open');assert.equal(await page.evaluate(()=>document.body.style.overflow),'');record('U2-R2 Cancel and Escape discard and recover focus/scroll');\n await page.locator('#open').click();assert.equal(await page.locator('#displayName').inputValue(),'Saved first');await page.locator('#displayName').fill('Saved second');await page.locator('#save').focus();await page.keyboard.press('Enter');assert.equal(await page.locator('#saveCount').textContent(),'2');assert.equal(await page.locator('#saved').textContent(),'Saved second');record('U2-R2 second save cycle has one effect');\n for(const viewport of [{width:320,height:480},{width:768,height:640},{width:1280,height:800}]){\n  await page.setViewportSize(viewport);await page.locator('#open').click();assert.equal(await page.locator('#panel').evaluate(d=>d.scrollTop),0);if(viewport.width===1280)await page.screenshot({path:'desktop-top.png'});await page.locator('#displayName').focus();\n  const geometry=await page.evaluate(()=>{const d=document.querySelector('#panel'),r=d.getBoundingClientRect(),l=document.querySelector('.long');return {rect:r.toJSON(),viewport:{w:innerWidth,h:innerHeight},doc:{width:document.documentElement.scrollWidth,client:document.documentElement.clientWidth},dialog:{scroll:d.scrollWidth,client:d.clientWidth,scrollHeight:d.scrollHeight,clientHeight:d.clientHeight},long:{height:l.getBoundingClientRect().height,lineHeight:getComputedStyle(l).lineHeight},modal:d.matches(':modal'),outline:getComputedStyle(document.activeElement).outlineStyle};});\n  assert.ok(geometry.rect.x>=0&&geometry.rect.right<=viewport.width&&geometry.rect.y>=0&&geometry.rect.bottom<=viewport.height);assert.ok(geometry.doc.width<=geometry.doc.client);assert.ok(geometry.dialog.scroll<=geometry.dialog.client);assert.ok(geometry.modal);assert.equal(geometry.outline,'solid');\n  if(viewport.width===320){assert.ok(geometry.long.height>40);await page.screenshot({path:'narrow-top.png'});await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'cancel');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'save');const bottom=await page.evaluate(()=>{const d=document.querySelector('#panel'),b=document.querySelector('#save').getBoundingClientRect();return {scrollTop:d.scrollTop,save:b.toJSON(),bodyY:scrollY};});assert.ok(bottom.scrollTop>0&&bottom.save.bottom<=viewport.height);await page.screenshot({path:'narrow-actions.png'});record('U2-R3 keyboard reaches internally scrolled actions',bottom);}\n  record('U2-R3 viewport '+viewport.width+'x'+viewport.height,geometry);await page.keyboard.press('Escape');\n }\n await page.setViewportSize({width:320,height:480});await page.mouse.move(305,460);await page.mouse.wheel(0,200);await page.waitForTimeout(120);assert.ok(await page.evaluate(()=>scrollY)>0);record('U2-R2 actual page scroll after closing',await page.evaluate(()=>scrollY));\n await page.goto(url+'/?test');await page.evaluate(async()=>{const {mount}=await import('./app.js');document.body.style.overflow='scroll';window.fixture=mount(document.querySelector('#settings'));});await page.locator('#open').click();await page.evaluate(()=>window.fixture.dispose());assert.equal(await page.evaluate(()=>document.querySelector('#panel').open),false);assert.equal(await page.evaluate(()=>document.body.style.overflow),'scroll');await page.locator('#open').click();assert.equal(await page.evaluate(()=>document.querySelector('#panel').open),false);await page.evaluate(async()=>{const {mount}=await import('./app.js');window.fixture=mount(document.querySelector('#settings'));});await page.locator('#open').click();await page.locator('#displayName').fill('After remount');await page.locator('#save').click();assert.equal(await page.locator('#saveCount').textContent(),'1');assert.equal(await page.evaluate(()=>document.body.style.overflow),'scroll');record('U2-R2 dispose removes listeners, restores prior style, remount saves once');\n assert.deepEqual(errors,[]);record('runtime errors absent');\n}catch(e){results.push({name:'failure',status:'FAIL',error:String(e),stack:e.stack});console.error(e);process.exitCode=1;}finally{await fs.writeFile('browser-results.json',JSON.stringify({utc:new Date().toISOString(),browser:browser.version(),results,errors,serverWarnings},null,2));await browser.close();server.kill();}\r\n\r\n"
+        }
+      ],
+      "independentObservations": [
+        {
+          "caseId": "UI-U2",
+          "node": "v24.12.0",
+          "time": "2026-11-06[trial masked]:24:36.071Z",
+          "checks": [
+            {
+              "id": "U2-control-mount",
+              "kind": "control",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U2-R1-modal-focus-background",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U2-R2-cancel-escape-cleanup",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U2-R2-save-reopen-once",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U2-R3-narrow-reflow-internal-scroll",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "rect": {
+                  "x": 16,
+                  "y": 16,
+                  "width": 288,
+                  "height": 448,
+                  "top": 16,
+                  "right": 304,
+                  "bottom": 464,
+                  "left": 16
+                },
+                "client": 284,
+                "scroll": 284,
+                "height": 444,
+                "scrollHeight": 947,
+                "doc": 320
+              }
+            }
+          ],
+          "errors": [],
+          "pass": true
+        }
+      ]
+    },
+    {
+      "alias": "Q2",
+      "caseId": "BE-B1",
+      "task": "# BE-B1: repair local reservation consistency\nA Node24 service uses file-backed SQLite. reserve(path, command, hooks?) opens a separate connection per call. Concurrent requests sometimes oversell or repeat local reservation events. A caller may lose acknowledgement after commit and retry. Fix the small fixture, preserving init/reserve/readState exports. All data is disposable synthetic data; init schema may change. This is a local transactional effect log, not external messaging/payment. No framework, server database, broker, distributed lock or dependency.\n\nRequirements:\n- B1-R1: stock=5, two concurrent different keys each qty=4 yield one reserved and one sold_out; stock never negative and each accepted reservation has exactly one local event. Enforce storage/transaction invariants, not a process-only mutex.\n- B1-R2: same tenant+operation(reserve)+key and same sku/qty replay one durable outcome, even concurrently or across restart. Same key with different sku/qty returns conflict without another effect. Different tenants use same key independently; keys never authorize cross-tenant replay.\n- B1-R3: stock change, durable receipt and local event are atomic. hooks.failBeforeCommit=true rolls back all three. hooks.failAfterCommit=true simulates lost acknowledgement after local commit; retry reconciles without decrement/event duplication. Define this simulation's boundary.\n- B1-R4: reject noninteger/nonpositive qty before mutation. Bind SQL values and close connections on every exit. Explain SQLite contention and bounded busy/retry policy; no unbounded-concurrency or remote-exactly-once guarantee.\n\nCommand {tenant:string,key:string,sku:string,qty:number}; return {status:'reserved'|'sold_out'|'conflict',reservationId?:string}; invalid input may throw. init(path,stock=5) creates SKU widget for tenants red and blue. readState returns {stock:[{tenant,sku,qty}],receipts:[...],events:[...]}. Optional hooks are fault injection, preserve meanings rather than faulty ordering. Add focused tests and handoff.md with requirement→mechanism→limit→failure→executed evidence. Scope is storage path; no network/auth system.\n\n",
+      "handoff": "﻿# [trial masked] handoff\n\nImplemented the bounded local reservation repair using supplied historical backend-engineering [version masked] text and the allowed BE-B1 fixture. No package installs, network, production changes, delegation, or edits outside this artifact. Requirements are from public/BE-B1/task.md. Node v24.12.0 and its real SQLite 3.50.4 engine were exercised against file-backed databases.\n\nThe original read/check/await/unconditional-decrement path let two calls each observe five units, then both reserve four. [baseline.txt](baseline.txt) preserves six failed checks. [baseline-state.json](baseline-state.json) records red stock=-3, two receipts and two events, and the separate failBeforeCommit database with stock=1 but no receipt/event. These persisted states distinguish transaction/race defects from an unavailable SQLite engine or mere response formatting. A global key lookup also returned the old result for different parameters and did not durably retain sold_out outcomes. The original independent-process race happened to pass once; that result does not erase the deterministic same-process oversell.\n\nservice.ts owns validation, SQLite connections and the complete local transaction. BEGIN IMMEDIATE acquires the file's SQLite writer lock before replay/stock reads. An atomic conditional decrement and nonnegative STRICT inventory constraint protect stock. Tenant+operation+key receipt uniqueness, immutable stored parameters on this path, durable reserved/sold_out receipts, unique local events and a tenant-inclusive event foreign key prevent duplicate or mis-scoped effects. Each accepted reservation, receipt and event commits in the same transaction. readState uses a read transaction for a consistent snapshot. All SQL values are bound; only the fixed numeric busy-timeout constant appears in SQL text. Every connection is closed in finally, including open/setup failures; transactions roll back before retry or exit.\n\n| Requirement/status | Meaning and mechanism/file | Operating limit and failure mode | Executed evidence |\n|---|---|---|---|\n| B1-R1 PASS | service.ts: conditional stock update, CHECK(qty>=0), BEGIN IMMEDIATE, one transaction for receipt/event and UNIQUE event identity. Five units plus two qty=4 commands yields reserved+sold_out, stock=1 and one event. | SQLite serializes file writers. Busy exhaustion throws; no process mutex or unlimited write throughput. Storage constraints also reject negative/fractional stock and duplicate local events. | `node run-evidence.mjs`: three runs of same-process and independent-process races and storage-constraint checks; all exit 0. [verification.json](verification.json). |\n| B1-R2 PASS | service.ts: PRIMARY KEY(tenant,operation,key); compare stored sku/qty before replay; mismatch returns conflict; both reserved and sold_out are durable. A different tenant independently uses the same key. | Keys/receipts are retained indefinitely in this disposable fixture; deleting them removes replay protection. Tenant is supplied by the trusted local caller, not authenticated here. No cross-tenant lookup is used. | Three runs of concurrent subprocess duplicate requests, fresh-process replay, qty/SKU conflicts, tenant independence and durable sold_out checks, all PASS in verification.json. |\n| B1-R3 PASS | service.ts: decrement, receipt and event occur before one COMMIT. failBeforeCommit throws after all writes and rolls back. failAfterCommit throws only after successful local COMMIT; retry reads the stored outcome. | The hook simulates a lost acknowledgement after a known local SQLite commit. It does not simulate OS/power failure, a real network socket, uncertain hardware durability or any external message/payment. Errors after commit are never automatically replayed internally. | Three fault/retry runs validate all three stored effects and no duplicate event. `node edge-test.mjs`, also executed by runner, verifies sold_out rollback/commit-loss outcomes. |\n| B1-R4 PASS | service.ts: positive safe-integer runtime validation before opening DB; bound parameters; open/try/finally closure; busy_timeout=250 ms per connection and at most three complete transaction attempts for SQLite BUSY/LOCKED codes, with 10/20 ms backoff after closure. | Synchronous SQLite calls block this Node thread while waiting. The timeout applies to SQLite lock waits, not a strict total request deadline. Three attempts bound retry amplification; per-statement waits/OS scheduling may add time. No admission queue/concurrency or remote-exactly-once guarantee. Other errors are thrown. | Three invalid-input, SQL-looking key, held-writer contention/recovery and storage checks PASS. Held-lock rejections measured 1134,1137,1169 ms (median1137; range1134-1169); each below the unchanged 2000 ms test bound. Edge tests prove invalid qty creates no file. |\n\n`node run-evidence.mjs` executed 9 focused checks per run, three runs, plus the edge suite, all with exitCode=0. Raw stderr retains the inherited experimental SQLite and typeless-package warnings. Full suite elapsed times were 2642.60,2645.72,2949.07 ms (median2645.72, range2642.60-2949.07); these are local test observations, not a throughput benchmark. The earlier final-1.txt run also passed. baseline.txt remains unchanged. inspect-baseline.mjs was executed to extract baseline-state.json. Tests retain synthetic SQLite files under evidence/.\n\nA plausible alternative is an optimistic conditional update plus uniqueness-conflict reconciliation in deferred transactions. BEGIN IMMEDIATE fits this short, single-file transaction better: it serializes receipt checks before the write and avoids a read-to-write upgrade race. Optimistic transactions could be appropriate after measured writer contention justifies their retry complexity and complete-transaction retry behavior is verified. A broker/outbox dispatcher, distributed lock or server database is unnecessary: the event is a local SQLite row participating directly in the same commit, with no remote consumer/effect requirement.\n\nCompatibility: init/reserve/readState exports and command/result statuses are preserved. reservationId is now an opaque UUID. Receipts/events gain an operation column and composite identity; readState still returns stock/receipts/events. This is a new disposable-schema fixture, not an existing-database migration. Callers must use init on a fresh file. Connections and SQLite primitives are inherited; transaction/validation/schema/replay handling and focused tests are implemented/changed. Authentication, network transport, production migration, remote delivery, disk-full, forced process death/power-loss and backup restore were not performed and are outside this local task; none is claimed verified. File/OS access and correct trusted tenant selection remain caller responsibilities. readState materializes all records; retention growth is unbounded by design for this fixture, so a production service would need an explicit replay-retention and paginated inspection policy.\n\nApplied areas are API contract/validation, local event identity, schema/query/transactions and failure/replay verification. Edge/network, external integration, distribution and deployment mechanisms are out of scope because this fixture is exclusively a local storage path. No standards certification or universal capacity guarantee is claimed.\n\nExecution accounting: UTC start 2026-11-06 03:15:40 (clock tool); first PowerShell UTC capture 2026-11-06[trial masked]:15:50.8373103Z. The first invocation captured UTC via the clock tool plus dispatch read, rather than the requested literal DateTime expression; the next read invocation captured that expression. This procedural deviation is disclosed. Exactly 10 underlying tool invocations were used: one clock, eight exec_command calls, and one status message to the parent coordinator. functions.exec wrappers are not double-counted. No subagent was spawned. Model token usage and cost are unavailable (null). End UTC and elapsed seconds are retained in execution.json, captured after writing this handoff. Hard 360-second/20-tool limits were respected.\r\n",
+      "files": [
+        {
+          "name": "edge-test.mjs",
+          "content": "﻿import assert from 'node:assert/strict';\nimport {existsSync,mkdirSync} from 'node:fs';\nimport {fileURLToPath} from 'node:url';\nimport {join} from 'node:path';\nimport {DatabaseSync} from 'node:sqlite';\nimport {init,reserve,readState} from './service.ts';\nconst dir=fileURLToPath(new URL('./evidence/',import.meta.url));mkdirSync(dir,{recursive:true});\nconst c={tenant:'red',key:'edge',sku:'widget',qty:6};\nconst p=join(dir,`edges-${process.pid}.sqlite`);init(p);\nawait assert.rejects(reserve(p,c,{failBeforeCommit:true}));assert.equal(readState(p).receipts.length,0);\nawait assert.rejects(reserve(p,c,{failAfterCommit:true}));assert.deepEqual(await reserve(p,c),{status:'sold_out'});assert.equal(readState(p).receipts.length,1);assert.equal(readState(p).events.length,0);\nconst absent=join(dir,`invalid-${process.pid}.sqlite`);await assert.rejects(reserve(absent,{...c,qty:0}));assert.equal(existsSync(absent),false);\nassert.deepEqual(await reserve(p,{...c,key:'missing',sku:'absent',qty:1}),{status:'sold_out'});\nconst accepted=await reserve(p,{...c,key:'ok',qty:1});assert.equal(accepted.status,'reserved');\nconst before=readState(p);const db=new DatabaseSync(p);try {db.exec('PRAGMA foreign_keys=ON');assert.throws(()=>db.prepare('INSERT INTO events(tenant,operation,key,reservationId) VALUES(?,?,?,?)').run('blue','reserve','ok',accepted.reservationId));assert.equal(db.prepare('PRAGMA integrity_check').get().integrity_check,'ok');}finally {db.close()}\nassert.deepEqual(readState(p),before);console.log('PASS extra edge checks: sold_out fault boundaries, validation before open, missing SKU, cross-tenant event FK and integrity_check');\r\n"
+        },
+        {
+          "name": "inspect-baseline.mjs",
+          "content": "﻿import {DatabaseSync} from 'node:sqlite';\nimport {writeFileSync} from 'node:fs';\nconst result={};\nfor(const [name,file] of [['oversell','test-8080-0.sqlite'],['beforeCommit','test-8080-4.sqlite']]){\n const db=new DatabaseSync(new URL('./evidence/'+file,import.meta.url),{readOnly:true});\n try{result[name]={file,stock:db.prepare('SELECT * FROM inventory').all(),receipts:db.prepare('SELECT * FROM receipts').all(),events:db.prepare('SELECT * FROM events').all()}}finally{db.close()}\n}\nwriteFileSync(new URL('./baseline-state.json',import.meta.url),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));\r\n"
+        },
+        {
+          "name": "run-evidence.mjs",
+          "content": "﻿import {spawnSync} from 'node:child_process';\nimport {writeFileSync} from 'node:fs';\nconst results=[];\nfor(let i=1;i<=3;i++){\n const start=new Date().toISOString(); const t=performance.now();\n const r=spawnSync(process.execPath,['test.mjs'],{encoding:'utf8',cwd:import.meta.dirname});\n results.push({run:i,start,end:new Date().toISOString(),elapsedMs:performance.now()-t,exitCode:r.status,stdout:r.stdout,stderr:r.stderr});\n}\nconst e=spawnSync(process.execPath,['edge-test.mjs'],{encoding:'utf8',cwd:import.meta.dirname});\nresults.push({run:'edges',exitCode:e.status,stdout:e.stdout,stderr:e.stderr});\nwriteFileSync(new URL('./verification.json',import.meta.url),JSON.stringify(results,null,2));\nconsole.log(JSON.stringify(results.map(({run,exitCode,elapsedMs,stdout})=>({run,exitCode,elapsedMs,stdout})),null,2));\nprocess.exitCode=results.some(x=>x.exitCode!==0)?1:0;\r\n"
+        },
+        {
+          "name": "service.ts",
+          "content": "﻿import {DatabaseSync} from 'node:sqlite';\nimport {randomUUID} from 'node:crypto';\nimport {setTimeout as delay} from 'node:timers/promises';\n\nexport type Command = {tenant:string;key:string;sku:string;qty:number};\ntype Result = {status:'reserved'|'sold_out'|'conflict';reservationId?:string};\ntype Hooks = {failBeforeCommit?:boolean;failAfterCommit?:boolean};\nconst BUSY_MS = 250;\nconst MAX_ATTEMPTS = 3;\n\nfunction open(path:string) {\n  const db = new DatabaseSync(path);\n  try {\n    db.exec(`PRAGMA foreign_keys=ON; PRAGMA busy_timeout=${BUSY_MS}; PRAGMA synchronous=FULL;`);\n    return db;\n  } catch (error) { db.close(); throw error; }\n}\nfunction validate(c:Command) {\n  if (!c || !Number.isSafeInteger(c.qty) || c.qty <= 0) throw new TypeError('qty must be a positive safe integer');\n  for (const name of ['tenant','key','sku'] as const) {\n    if (typeof c[name] !== 'string' || c[name].length === 0) throw new TypeError(`${name} must be a nonempty string`);\n  }\n}\nexport function init(path:string, stock=5) {\n  if (!Number.isSafeInteger(stock) || stock < 0) throw new TypeError('stock must be a nonnegative safe integer');\n  const db = open(path);\n  try {\n    db.exec(`BEGIN IMMEDIATE;\n      CREATE TABLE inventory(tenant TEXT NOT NULL,sku TEXT NOT NULL,qty INTEGER NOT NULL CHECK(qty>=0),PRIMARY KEY(tenant,sku)) STRICT;\n      CREATE TABLE receipts(\n        tenant TEXT NOT NULL,operation TEXT NOT NULL CHECK(operation='reserve'),key TEXT NOT NULL,\n        sku TEXT NOT NULL,qty INTEGER NOT NULL CHECK(qty>0),\n        status TEXT NOT NULL CHECK(status IN ('reserved','sold_out')),reservationId TEXT UNIQUE,\n        PRIMARY KEY(tenant,operation,key),UNIQUE(tenant,operation,key,reservationId),\n        CHECK((status='reserved' AND reservationId IS NOT NULL) OR (status='sold_out' AND reservationId IS NULL))\n      ) STRICT;\n      CREATE TABLE events(\n        id INTEGER PRIMARY KEY,tenant TEXT NOT NULL,operation TEXT NOT NULL,key TEXT NOT NULL,reservationId TEXT NOT NULL,\n        UNIQUE(tenant,operation,key),\n        FOREIGN KEY(tenant,operation,key,reservationId) REFERENCES receipts(tenant,operation,key,reservationId)\n      ) STRICT;`);\n    const put = db.prepare('INSERT INTO inventory VALUES(?,?,?)');\n    for (const tenant of ['red','blue']) put.run(tenant,'widget',stock);\n    db.exec('COMMIT');\n  } catch (error) {\n    if (db.isTransaction) db.exec('ROLLBACK');\n    throw error;\n  } finally { db.close(); }\n}\nfunction busy(error:unknown) {\n  return typeof error === 'object' && error !== null && 'errcode' in error &&\n    typeof error.errcode === 'number' && [5,6].includes(error.errcode & 255);\n}\nexport async function reserve(path:string,c:Command,hooks:Hooks={}):Promise<Result> {\n  validate(c);\n  for (let attempt=0; attempt<MAX_ATTEMPTS; attempt++) {\n    let db:DatabaseSync|undefined;\n    let retry = false;\n    let committed = false;\n    try {\n      db = open(path);\n      // Acquire the SQLite writer lock before checking a durable receipt or stock.\n      // No await occurs while a transaction owns this lock.\n      db.exec('BEGIN IMMEDIATE');\n      const seen = db.prepare('SELECT sku,qty,status,reservationId FROM receipts WHERE tenant=? AND operation=? AND key=?').get(c.tenant,'reserve',c.key);\n      if (seen) {\n        const result:Result = seen.sku !== c.sku || seen.qty !== c.qty\n          ? {status:'conflict'}\n          : seen.status === 'reserved' ? {status:'reserved',reservationId:String(seen.reservationId)} : {status:'sold_out'};\n        db.exec('COMMIT');\n        committed = true;\n        return result;\n      }\n      const changed = db.prepare('UPDATE inventory SET qty=qty-? WHERE tenant=? AND sku=? AND qty>=?').run(c.qty,c.tenant,c.sku,c.qty);\n      const status = changed.changes === 1 ? 'reserved' : 'sold_out';\n      const reservationId = status === 'reserved' ? randomUUID() : null;\n      db.prepare('INSERT INTO receipts(tenant,operation,key,sku,qty,status,reservationId) VALUES(?,?,?,?,?,?,?)').run(c.tenant,'reserve',c.key,c.sku,c.qty,status,reservationId);\n      if (reservationId) db.prepare('INSERT INTO events(tenant,operation,key,reservationId) VALUES(?,?,?,?)').run(c.tenant,'reserve',c.key,reservationId);\n      if (hooks.failBeforeCommit) throw new Error('before commit fixture');\n      db.exec('COMMIT');\n      committed = true;\n      // Only a lost local acknowledgement: committed SQLite work is never retried here.\n      if (hooks.failAfterCommit) throw new Error('ack lost fixture');\n      return reservationId ? {status,reservationId} : {status};\n    } catch (error) {\n      if (db?.isTransaction) db.exec('ROLLBACK');\n      if (!committed && busy(error) && attempt+1 < MAX_ATTEMPTS) retry = true;\n      else throw error;\n    } finally { db?.close(); }\n    if (retry) await delay(10*(attempt+1));\n  }\n  throw new Error('retry budget exhausted');\n}\nexport function readState(path:string) {\n  const db = open(path);\n  try {\n    db.exec('BEGIN');\n    const result = {\n      stock:db.prepare('SELECT * FROM inventory ORDER BY tenant,sku').all(),\n      receipts:db.prepare('SELECT * FROM receipts ORDER BY tenant,operation,key').all(),\n      events:db.prepare('SELECT * FROM events ORDER BY id').all()\n    };\n    db.exec('COMMIT');\n    return result;\n  } finally { if (db.isTransaction) db.exec('ROLLBACK'); db.close(); }\n}\r\n"
+        },
+        {
+          "name": "test.mjs",
+          "content": "﻿import assert from 'node:assert/strict';\nimport {mkdirSync, rmSync, writeFileSync} from 'node:fs';\nimport {join} from 'node:path';\nimport {fileURLToPath} from 'node:url';\nimport {spawn} from 'node:child_process';\nimport {DatabaseSync} from 'node:sqlite';\nimport {init,reserve,readState} from './service.ts';\nconst root=fileURLToPath(new URL('./evidence/',import.meta.url));mkdirSync(root,{recursive:true});\nlet seq=0; const fresh=()=>{const p=join(root,`test-${process.pid}-${seq++}.sqlite`);init(p);return p};\nconst c=(key,qty=4,tenant='red',sku='widget')=>({tenant,key,sku,qty});\nfunction child(path,command){return new Promise((resolve,reject)=>{const script=`import {reserve} from ${JSON.stringify(new URL('./service.ts',import.meta.url).href)};console.log(JSON.stringify(await reserve(${JSON.stringify(path)},${JSON.stringify(command)})));`;const p=spawn(process.execPath,['--input-type=module','-e',script]);let out='',err='';p.stdout.on('data',x=>out+=x);p.stderr.on('data',x=>err+=x);p.on('error',reject);p.on('close',code=>code===0?resolve(JSON.parse(out.trim())):reject(Error(err)));})}\nlet failures=0;async function check(name,fn){try{await fn();console.log('PASS '+name)}catch(e){failures++;console.log('FAIL '+name+' '+e.stack)}}\nawait check('B1-R1 same-process race',async()=>{const p=fresh();const r=await Promise.all([reserve(p,c('a')),reserve(p,c('b'))]);assert.deepEqual(r.map(x=>x.status).sort(),['reserved','sold_out']);const s=readState(p);assert.equal(s.stock.find(x=>x.tenant==='red').qty,1);assert.equal(s.events.length,1);assert.equal(s.receipts.length,2)});\nawait check('B1-R1 independent-process race',async()=>{const p=fresh();const r=await Promise.all([child(p,c('a')),child(p,c('b'))]);assert.deepEqual(r.map(x=>x.status).sort(),['reserved','sold_out']);assert.equal(readState(p).events.length,1)});\nawait check('B1-R2 duplicate concurrent/restart/conflict/tenant',async()=>{const p=fresh();const cmd=c('same',2);const r=await Promise.all([child(p,cmd),child(p,cmd)]);assert.deepEqual(r[0],r[1]);assert.deepEqual(await child(p,cmd),r[0]);assert.equal((await reserve(p,c('same',1))).status,'conflict');assert.equal((await reserve(p,c('same',2,'red','other'))).status,'conflict');assert.equal((await reserve(p,c('same',2,'blue'))).status,'reserved');const s=readState(p);assert.equal(s.events.length,2);assert.equal(s.receipts.length,2);assert.deepEqual(s.stock.map(x=>x.qty),[3,3])});\nawait check('B1-R2 durable sold_out receipt',async()=>{const p=fresh();assert.equal((await reserve(p,c('too-much',6))).status,'sold_out');assert.equal(readState(p).receipts.length,1);assert.equal((await child(p,c('too-much',6))).status,'sold_out');assert.equal((await reserve(p,c('too-much',1))).status,'conflict');assert.equal(readState(p).events.length,0)});\nawait check('B1-R3 rollback and lost acknowledgement',async()=>{const p=fresh();await assert.rejects(reserve(p,c('a'),{failBeforeCommit:true}));let s=readState(p);assert.equal(s.stock.find(x=>x.tenant==='red').qty,5);assert.equal(s.receipts.length,0);assert.equal(s.events.length,0);await assert.rejects(reserve(p,c('a'),{failAfterCommit:true}));s=readState(p);assert.equal(s.stock.find(x=>x.tenant==='red').qty,1);assert.equal(s.receipts.length,1);assert.equal(s.events.length,1);assert.equal((await child(p,c('a'))).status,'reserved');assert.equal(readState(p).events.length,1)});\nawait check('B1-R4 invalid quantities no mutation',async()=>{const p=fresh();for(const qty of [0,-1,1.5,NaN,Infinity,Number.MAX_SAFE_INTEGER+1,'2',null])await assert.rejects(reserve(p,c('bad',qty)));assert.equal(readState(p).receipts.length,0);assert.equal(readState(p).stock.find(x=>x.tenant==='red').qty,5)});\nawait check('B1-R4 binding and scoped values',async()=>{const p=fresh();const cmd=c(\"x'; DROP TABLE inventory;--\",1);assert.equal((await reserve(p,cmd)).status,'reserved');assert.equal((await reserve(p,cmd)).status,'reserved');assert.equal(readState(p).events.length,1)});\nawait check('B1-R1 storage constraints',async()=>{const p=fresh();await reserve(p,c('a',1));const db=new DatabaseSync(p);try{db.exec('PRAGMA foreign_keys=ON');assert.throws(()=>db.prepare('UPDATE inventory SET qty=-1 WHERE tenant=?').run('red'));assert.throws(()=>db.prepare('UPDATE inventory SET qty=1.5 WHERE tenant=?').run('red'));const event=db.prepare('SELECT * FROM events').get();assert.throws(()=>db.prepare('INSERT INTO events(tenant,operation,key,reservationId) VALUES(?,?,?,?)').run(event.tenant,event.operation,event.key,event.reservationId));}finally{db.close()}});\nawait check('B1-R4 bounded contention and recovery',async()=>{const p=fresh();const db=new DatabaseSync(p);db.exec('BEGIN IMMEDIATE');const start=Date.now();try{await assert.rejects(reserve(p,c('busy',1)),/busy|locked/i);const elapsed=Date.now()-start;console.log('contention_ms='+elapsed);assert(elapsed<2000);}finally{db.exec('ROLLBACK');db.close()}assert.equal((await reserve(p,c('busy',1))).status,'reserved')});\nconsole.log(JSON.stringify({node:process.version,sqlite:new DatabaseSync(':memory:').prepare('SELECT sqlite_version() AS version').get().version,failures}));process.exitCode=failures?1:0;\r\n"
+        }
+      ],
+      "independentObservations": [
+        {
+          "caseId": "BE-B1",
+          "node": "v24.12.0",
+          "time": "2026-11-06[trial masked]:20:21.107Z",
+          "checks": [
+            {
+              "id": "B1-control-single-reservation",
+              "kind": "control",
+              "status": "PASS",
+              "evidence": {
+                "stock": [
+                  {
+                    "tenant": "blue",
+                    "sku": "widget",
+                    "qty": 5
+                  },
+                  {
+                    "tenant": "red",
+                    "sku": "widget",
+                    "qty": 3
+                  }
+                ],
+                "receipts": [
+                  {
+                    "tenant": "red",
+                    "operation": "reserve",
+                    "key": "one",
+                    "sku": "widget",
+                    "qty": 2,
+                    "status": "reserved",
+                    "reservationId": "12469ab7-540e-42fa-b9dc-39c16d07abc2"
+                  }
+                ],
+                "events": [
+                  {
+                    "id": 1,
+                    "tenant": "red",
+                    "operation": "reserve",
+                    "key": "one",
+                    "reservationId": "12469ab7-540e-42fa-b9dc-39c16d07abc2"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "B1-R1-contended-stock",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "results": [
+                  {
+                    "status": "reserved",
+                    "reservationId": "49db6949-461b-488c-83c0-5c30c7f78120"
+                  },
+                  {
+                    "status": "sold_out"
+                  }
+                ],
+                "st": {
+                  "stock": [
+                    {
+                      "tenant": "blue",
+                      "sku": "widget",
+                      "qty": 5
+                    },
+                    {
+                      "tenant": "red",
+                      "sku": "widget",
+                      "qty": 1
+                    }
+                  ],
+                  "receipts": [
+                    {
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "a",
+                      "sku": "widget",
+                      "qty": 4,
+                      "status": "reserved",
+                      "reservationId": "49db6949-461b-488c-83c0-5c30c7f78120"
+                    },
+                    {
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "b",
+                      "sku": "widget",
+                      "qty": 4,
+                      "status": "sold_out",
+                      "reservationId": null
+                    }
+                  ],
+                  "events": [
+                    {
+                      "id": 1,
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "a",
+                      "reservationId": "49db6949-461b-488c-83c0-5c30c7f78120"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "B1-R2-concurrent-replay",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "r": [
+                  {
+                    "status": "reserved",
+                    "reservationId": "9030aa3c-dbd9-4469-8254-db90ff380d1f"
+                  },
+                  {
+                    "status": "reserved",
+                    "reservationId": "9030aa3c-dbd9-4469-8254-db90ff380d1f"
+                  }
+                ],
+                "st": {
+                  "stock": [
+                    {
+                      "tenant": "blue",
+                      "sku": "widget",
+                      "qty": 5
+                    },
+                    {
+                      "tenant": "red",
+                      "sku": "widget",
+                      "qty": 3
+                    }
+                  ],
+                  "receipts": [
+                    {
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "same",
+                      "sku": "widget",
+                      "qty": 2,
+                      "status": "reserved",
+                      "reservationId": "9030aa3c-dbd9-4469-8254-db90ff380d1f"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "id": 1,
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "same",
+                      "reservationId": "9030aa3c-dbd9-4469-8254-db90ff380d1f"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "B1-R2-parameter-binding",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "B1-R2-tenant-scope",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "B1-R3-before-commit-rollback",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "stock": [
+                  {
+                    "tenant": "blue",
+                    "sku": "widget",
+                    "qty": 5
+                  },
+                  {
+                    "tenant": "red",
+                    "sku": "widget",
+                    "qty": 5
+                  }
+                ],
+                "receipts": [],
+                "events": []
+              }
+            },
+            {
+              "id": "B1-R3-lost-ack-restart-replay",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "r": {
+                  "status": "reserved",
+                  "reservationId": "32632149-8305-46bb-9fbb-d40d39404805"
+                },
+                "state": {
+                  "stock": [
+                    {
+                      "tenant": "blue",
+                      "sku": "widget",
+                      "qty": 5
+                    },
+                    {
+                      "tenant": "red",
+                      "sku": "widget",
+                      "qty": 3
+                    }
+                  ],
+                  "receipts": [
+                    {
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "lost",
+                      "sku": "widget",
+                      "qty": 2,
+                      "status": "reserved",
+                      "reservationId": "32632149-8305-46bb-9fbb-d40d39404805"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "id": 1,
+                      "tenant": "red",
+                      "operation": "reserve",
+                      "key": "lost",
+                      "reservationId": "32632149-8305-46bb-9fbb-d40d39404805"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "B1-R4-invalid-quantity",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            }
+          ],
+          "errors": [],
+          "pass": true
+        }
+      ]
+    },
+    {
+      "alias": "X7",
+      "caseId": "UI-U1",
+      "task": "# UI-U1: repair the async assignee picker\nThe native TypeScript/CSS fixture is a small assignee picker. Users report old people reappearing after fast typing, Japanese input triggering searches mid-composition, and the textbox losing focus. Diagnose and fix the working component, retaining mount(root, search) => {dispose()}. The search transport may ignore AbortSignal and settle in either order. This is a deterministic fixture transport, not a real API. No framework, dependencies, cache service, state library or application architecture.\n\nRequirements:\n- U1-R1: only the latest committed query may change results, status, active option or error; ignore stale successes and failures even if cancellation is ignored. Clearing query invalidates pending work and empties results.\n- U1-R2: composition input must not call search until composition commits; typing retains textbox focus/text. Committing composition produces one search for its final value.\n- U1-R3: ArrowDown/ArrowUp chooses a visible option with focus in input; Enter selects into #chosen; Escape closes suggestions without moving focus. aria-expanded and aria-activedescendant accurately reflect visible state with no missing referenced node. Keep input/listbox IDs; options use role=option.\n- U1-R4: current rejection shows failure; #retry repeats current query and success recovers. dispose prevents late responses mutating root. Failure must not leave indefinite loading.\n- U1-R5: 320px viewport plus long unbroken label has no document horizontal overflow; input, label, suggestions and keyboard focus remain readable.\n\nEdit app.ts, styles.css, index.html, demo.ts and add focused tests/docs. Preserve IDs, roles and injected search contract. Node24/preinstalled browser tools available. Shared wrapper/output contract apply. Deliver implementation plus handoff.md with causal evidence, justified alternative, operating limit, unnecessary architecture rejected and requirement-to-test trace. Browser checks establish focus/layout; static checks alone cannot.\n\n",
+      "handoff": "﻿# Async assignee picker handoff\n\nMode: improve-existing small native TypeScript/CSS component. Supplied acceptance: U1-R1 through U1-R5. Decision: preserve mount(root, search) => {dispose()}, input/listbox IDs, roles, injected transport and the existing demo. Local fixture only; no framework, package installation, cache or external service. Historical skill [version masked] and mapped historical modules/design/implementation/verification references were read. No other trial or grading source was inspected.\n\n## Diagnosis and causal evidence\n\nThe original load() assigned every resolved response directly to items and every rejection to status, regardless of query age. The browser baseline completed B before A and displayed `Old result` instead of `New result`; this distinguishes missing request ordering from a network failure or incorrect current response. Baseline also observed two searches during composition (expected zero), lost input focus during Arrow navigation, root mutation after disposal, and document overflow at 320px. Source inspection identifies unconditional input.blur(), missing composition handlers, missing disposal guard/listener removal, input min-width:360px and nowrap options as separate causes. See [baseline-results.json](baseline-results.json), preserved unchanged. Baseline was the first five tests; four supplemental tests were added afterward.\n\n## Implementation and trace\n\nEvery row uses the executed command `node browser-tests.mjs` from this artifact, against `node NeuralSkills/quality/saas/expert-evals/serve-fixture.mjs NeuralSkills/quality/saas/expert-evals/trials/[trial masked]/artifact 4191` from workspace root. Raw final results: [final-results.json](final-results.json). Node v24.12.0; Puppeteer with installed headless Edge Edg/158.0.4370.1; system font; viewports 320x720 and 960x720; deterministic deferred promises deliberately ignore AbortSignal.\n\n| Requirement / meaning | Mechanism / file | Operating limit and failure mode | Actual evidence / status |\n| --- | --- | --- | --- |\n| U1-R1 latest committed query controls result, status, active option and error; clear invalidates | app.ts increments a generation on each committed request, clear, composition start, Escape and disposal; both success and catch check generation plus disposed; AbortController reduces avoidable work; new requests clear options and active ID | One mounted picker, typed Person[] promise contract. Cancellation alone cannot guarantee correctness when transport ignores it. No cache or freshness policy needed because prior options are removed | PASS: B then A success retains B; obsolete failure after success and while current is loading cannot overwrite; clear suppresses late success and failure; empty current result has collapsed list and no active ID |\n| U1-R2 composition commits once and typing keeps focus/text | app.ts gates input on composition state and InputEvent.isComposing; compositionend loads final text; identical trailing input deduplicates against committed query; render never replaces/blurs input | Browser event simulation, not a physical IME/OS session. Removing only blur would not prevent mid-composition requests | PASS: intermediate Japanese values make zero calls; compositionend plus final input makes exactly one final-value call; response retains focus and Japanese text; desktop real keyboard typing also retains focus |\n| U1-R3 keyboard selection, Escape and accurate visible ARIA state | app.ts handles both arrows, Enter and Escape; input focus stays put; list.hidden and aria-expanded derive from open/results; active ID is removed when closed and references an existing generated option otherwise; index IDs avoid duplicate person-ID collisions; index.html retains IDs/roles | One root with supplied #query/#options markup; list navigation wraps. Enter selects only a visible active option. No screen-reader behavior inferred from DOM assertions | PASS: both arrows retain input focus and reference a visible node; exact Second selection is checked with duplicate data IDs; Escape closes a previously visible list and removes active ID; Enter writes #chosen |\n| U1-R4 current failure, retry recovery, safe disposal | app.ts current catch ends loading and exposes #retry; explicit retry bypasses query dedupe; dispose invalidates pending results and removes every owned event handler, idempotently | No automatic retry/backoff or real API. A transport which never settles can remain pending; the task requires settled rejection recovery. Late callbacks must not write after dispose | PASS: current rejection shows Search failed; retry repeats the same query, success hides retry; late success and rejection do not mutate root; retry/input/composition handlers make no requests after dispose |\n| U1-R5 320px unbroken content and readable focus/layout | styles.css replaces intrinsic minimum with min-width:0;width:100%, content-sized padding, wrap-anywhere and normal option whitespace; focus-visible outline retained | Verified 320x720 plus 960x720 Chromium, system font; arbitrary browsers/AT/zoom not certified. Hiding horizontal overflow would conceal content instead of repairing its sizing | PASS: browser document scrollWidth <= viewport for long unbroken label and person; input width exceeds 150px and retains focus. [narrow.png](narrow.png) and [desktop.png](desktop.png) were rendered and visually inspected: wrapped text, visible focus, suggestions and chosen/status content remain readable |\n\n## Choice and limits\n\nPlausible alternative: debounce searches. It is useful if a real service needs reduced request volume, but it cannot stop an already issued old promise from settling after a new one, and it does not establish composition commit semantics. A request-generation check directly fits this deterministic injected transport; AbortSignal is an optimization, not the correctness boundary. Rejected adding a global state library/cache service: only one component owns ephemeral query/results state and the fixture explicitly has no shared service or application architecture requirement.\n\nImplemented: ordering/composition/focus/keyboard/retry/disposal/layout fixes, semantic hidden/active state, optional pointer selection, focused browser tests. Inherited: exported mount and Search signatures, fixed element IDs, roles, demo deterministic timing. demo.ts documents its intentional cancellation-ignoring behavior; index.html adds status association and initial hidden list. Simulated: transport completion/failure ordering and composition events. Unperformed/UNVERIFIED: physical Japanese IME, assistive technology, non-Chromium engines, zoom/reflow beyond stated viewports, automated accessibility scanner, measured color contrast, static TypeScript compilation, production API and field performance. No conformance or real-user performance claim. All five supplied requirements have executed passing fixture evidence; these broader limits remain explicit.\n\n## Reproduction and preserved failures\n\nFrom workspace root start the server above. From this artifact run `node browser-tests.mjs > final-results.json`. Browser tests select the existing Edge/Chrome executable and installed Puppeteer; no download. The server is a real loopback HTTP server stripping TS annotations, not a static type checker. Final suite reports nine PASS, zero FAIL. Baseline reports five FAIL; its shell command ended with Get-Content and therefore exposed shell exit 0 despite failed Node assertions. The JSON preserves the real failed checks. Same shell shape was used for final evidence; all final checks actually passed.\n\nOne edit attempt failed before mutation: apply_patch rejected delete/add of the same app.ts path with `invalid patch: multiple operations target ...app.ts`; corrected using Update File. Discovery command exit 1 came from absent Get-Command chrome/msedge / absent default Playwright directory; installed Puppeteer and explicit Edge path were then found and real browser launch succeeded. No browser launch failure occurred. Coordinator's later host-path addendum was received after successful browser verification; no budget extension or source from another trial was used. Own loopback port 4191 was started successfully; no other trial server/browser was attached.\n\nUsage and final timing are recorded in [run-log.json](run-log.json). First observation was clock UTC 2026-11-06 03:13:11; exact PowerShell initial-read timestamp was 2026-11-06[trial masked]:13:22.0564809Z. The dispatch's requested first-tool PowerShell timestamp was not met literally: clock capture and dispatch read preceded the exact PowerShell capture; this deviation is retained. Tokens and cost are unavailable (null).\r\n\nCleanup: CIM process inspection was denied; the owned loopback server was then stopped through its exec session 1979 with Ctrl-C (exit 1). The server emitted the retained Node experimental stripTypeScriptTypes warning. Initial elapsed arithmetic mixed local/UTC DateTime and was corrected using DateTimeOffset. Final underlying tool count: 19. End UTC: 2026-11-06[trial masked]:18:56.8563391+00:00. Elapsed: 345.856 seconds.\r\n",
+      "files": [
+        {
+          "name": "app.ts",
+          "content": "export type Person = {id:string; label:string};\nexport type Search = (query:string, signal?:AbortSignal)=>Promise<Person[]>;\nexport function mount(root:HTMLElement, search:Search){\n const input=root.querySelector<HTMLInputElement>('#query')!;\n const list=root.querySelector<HTMLElement>('#options')!;\n const status=root.querySelector<HTMLElement>('#status')!;\n const retry=root.querySelector<HTMLButtonElement>('#retry')!;\n const chosen=root.querySelector<HTMLElement>('#chosen')!;\n let items:Person[]=[], active=-1, open=false, composing=false, disposed=false;\n let generation=0, committed='', controller:AbortController|undefined;\n function invalidate(){generation++;controller?.abort();}\n function render(){\n  list.replaceChildren(...items.map((person,i)=>{\n   const li=document.createElement('li');li.id=list.id+'-option-'+i;\n   li.role='option';li.textContent=person.label;li.dataset.index=String(i);\n   li.setAttribute('aria-selected',String(i===active));return li;\n  }));\n  const visible=open&&items.length>0;\n  list.hidden=!visible;input.setAttribute('aria-expanded',String(visible));\n  if(visible&&active>=0&&active<items.length)input.setAttribute('aria-activedescendant',list.children[active].id);\n  else input.removeAttribute('aria-activedescendant');\n }\n async function load(force=false){\n  if(disposed||composing)return;\n  const query=input.value;\n  if(!force&&query===committed)return;\n  committed=query;invalidate();const request=generation;\n  items=[];active=-1;open=false;retry.hidden=true;render();\n  if(!query.trim()){status.textContent='';return;}\n  controller=new AbortController();status.textContent='Loading';\n  try{\n   const result=await search(query,controller.signal);\n   if(disposed||request!==generation)return;\n   items=result;active=items.length?0:-1;open=items.length>0;\n   status.textContent=items.length+' people';render();\n  }catch{\n   if(disposed||request!==generation)return;\n   status.textContent='Search failed';retry.hidden=false;render();\n  }\n }\n function onInput(event:Event){if(!composing&&!(event as InputEvent).isComposing)void load();}\n function onCompositionStart(){composing=true;invalidate();items=[];active=-1;open=false;status.textContent='';retry.hidden=true;render();}\n function onCompositionEnd(){composing=false;void load(true);}\n function onRetry(){void load(true);}\n function select(index:number){if(!open||!items[index])return;chosen.textContent=items[index].label;open=false;active=-1;render();}\n function onKey(event:KeyboardEvent){\n  if(composing||event.isComposing)return;\n  if(event.key==='Escape'){event.preventDefault();invalidate();open=false;active=-1;if(status.textContent==='Loading')status.textContent='';render();}\n  else if((event.key==='ArrowDown'||event.key==='ArrowUp')&&items.length){\n   event.preventDefault();open=true;\n   active=event.key==='ArrowDown'?(active+1)%items.length:(active<=0?items.length-1:active-1);render();\n  }else if(event.key==='Enter'&&open&&active>=0){event.preventDefault();select(active);}\n }\n function onPointer(event:PointerEvent){if((event.target as Element).closest('[role=option]'))event.preventDefault();}\n function onClick(event:MouseEvent){const option=(event.target as Element).closest<HTMLElement>('[role=option]');if(option){select(Number(option.dataset.index));input.focus();}}\n input.addEventListener('input',onInput);input.addEventListener('compositionstart',onCompositionStart);\n input.addEventListener('compositionend',onCompositionEnd);input.addEventListener('keydown',onKey);\n retry.addEventListener('click',onRetry);list.addEventListener('pointerdown',onPointer);list.addEventListener('click',onClick);\n render();\n return {dispose(){if(disposed)return;disposed=true;invalidate();\n  input.removeEventListener('input',onInput);input.removeEventListener('compositionstart',onCompositionStart);\n  input.removeEventListener('compositionend',onCompositionEnd);input.removeEventListener('keydown',onKey);\n  retry.removeEventListener('click',onRetry);list.removeEventListener('pointerdown',onPointer);list.removeEventListener('click',onClick);\n }};\n}\n\n"
+        },
+        {
+          "name": "browser-tests.mjs",
+          "content": "import puppeteer from 'puppeteer';\nimport fs from 'node:fs';\nimport assert from 'node:assert/strict';\nconst candidates = ['[local path masked] Files (x86)/Microsoft/Edge/Application/msedge.exe','[local path masked] Files/Google/Chrome/Application/chrome.exe',puppeteer.executablePath()];\nconst executablePath = candidates.find(p => fs.existsSync(p));\nconst browser = await puppeteer.launch({executablePath,headless:true,args:['--no-sandbox']});\nconst results=[];\nasync function test(id,fn){const page=await browser.newPage();try{await page.setViewport({width:320,height:720});await page.goto('http://127.0.0.1:4191/?test');await page.evaluate(async()=>{const {mount}=await import('./app.js');window.calls=[];window.picker=mount(document.querySelector('#picker'),(query,signal)=>new Promise((resolve,reject)=>window.calls.push({query,signal,resolve,reject})));window.type=(value)=>{const input=document.querySelector('#query');input.focus();input.value=value;input.dispatchEvent(new Event('input',{bubbles:true}));};window.snapshot=()=>({text:document.querySelector('#options').textContent,status:document.querySelector('#status').textContent,active:document.querySelector('#query').getAttribute('aria-activedescendant'),expanded:document.querySelector('#query').getAttribute('aria-expanded'),focus:document.activeElement.id,value:document.querySelector('#query').value});});await fn(page);results.push({id,status:'PASS'});}catch(e){results.push({id,status:'FAIL',error:e.message});}finally{await page.close();}}\nawait test('U1-R1 latest success, stale failure, clear',async p=>{await p.evaluate(()=>{type('a');type('ab');calls[1].resolve([{id:'new',label:'New result'}]);});await p.waitForFunction(()=>document.querySelector('#status').textContent==='1 people');await p.evaluate(()=>calls[0].resolve([{id:'old',label:'Old result'}]));await new Promise(r=>setTimeout(r,20));assert.equal((await p.evaluate(()=>snapshot())).text,'New result');await p.evaluate(()=>{type('old');type('new');calls[3].resolve([{id:'winner',label:'Winner'}]);});await p.waitForFunction(()=>document.querySelector('#options').textContent==='Winner');await p.evaluate(()=>calls[2].reject(new Error('stale')));await new Promise(r=>setTimeout(r,20));assert.equal((await p.evaluate(()=>snapshot())).status,'1 people');await p.evaluate(()=>{type('pending');type('');calls[4].resolve([{id:'late',label:'Late'}]);});await new Promise(r=>setTimeout(r,20));assert.equal((await p.evaluate(()=>snapshot())).text,'');assert.equal((await p.evaluate(()=>snapshot())).expanded,'false');});\nawait test('U1-R2 composition and stable focus',async p=>{await p.focus('#query');await p.evaluate(()=>{const q=document.querySelector('#query');q.dispatchEvent(new CompositionEvent('compositionstart',{bubbles:true}));type('に');type('日本');});assert.equal(await p.evaluate(()=>calls.length),0);await p.evaluate(()=>{const q=document.querySelector('#query');q.dispatchEvent(new CompositionEvent('compositionend',{bubbles:true,data:'日本'}));q.dispatchEvent(new InputEvent('input',{bubbles:true,data:'日本',isComposing:false}));});assert.deepEqual(await p.evaluate(()=>calls.map(c=>c.query)),['日本']);await p.evaluate(()=>calls[0].resolve([{id:'jp',label:'日本'}]));await p.waitForFunction(()=>document.querySelector('#options').textContent==='日本');assert.equal((await p.evaluate(()=>snapshot())).focus,'query');assert.equal((await p.evaluate(()=>snapshot())).value,'日本');});\nawait test('U1-R3 keyboard, ARIA, escape',async p=>{await p.evaluate(()=>{type('x');calls[0].resolve([{id:'1',label:'One'},{id:'2',label:'Two'}]);});await p.waitForFunction(()=>document.querySelectorAll('[role=option]').length===2);await p.focus('#query');await p.keyboard.press('ArrowDown');await p.keyboard.press('ArrowUp');assert.equal((await p.evaluate(()=>snapshot())).focus,'query');assert.equal(await p.evaluate(()=>{const id=document.querySelector('#query').getAttribute('aria-activedescendant');return !!id&&!!document.getElementById(id)}),true);await p.keyboard.press('Enter');assert.notEqual(await p.$eval('#chosen',e=>e.textContent),'None');await p.keyboard.press('Escape');assert.equal((await p.evaluate(()=>snapshot())).expanded,'false');assert.equal((await p.evaluate(()=>snapshot())).active,null);assert.equal((await p.evaluate(()=>snapshot())).focus,'query');});\nawait test('U1-R4 rejection, retry, dispose',async p=>{await p.evaluate(()=>{type('retry');calls[0].reject(new Error('failure'));});await p.waitForFunction(()=>!document.querySelector('#retry').hidden);assert.equal((await p.evaluate(()=>snapshot())).status,'Search failed');await p.click('#retry');assert.deepEqual(await p.evaluate(()=>calls.map(c=>c.query)),['retry','retry']);await p.evaluate(()=>calls[1].resolve([{id:'ok',label:'Recovered'}]));await p.waitForFunction(()=>document.querySelector('#options').textContent==='Recovered');assert.equal(await p.$eval('#retry',e=>e.hidden),true);await p.evaluate(()=>{type('late');window.beforeDispose=document.querySelector('#picker').innerHTML;picker.dispose();calls[2].resolve([{id:'late',label:'Late'}]);});await new Promise(r=>setTimeout(r,20));assert.equal(await p.$eval('#picker',e=>e.innerHTML),await p.evaluate(()=>beforeDispose));});\nawait test('U1-R5 320px unbroken content',async p=>{await p.evaluate(()=>{document.querySelector('label').textContent='Assignee'.repeat(30);type('long');calls[0].resolve([{id:'long',label:'Person'.repeat(40)}]);});await p.waitForFunction(()=>document.querySelectorAll('[role=option]').length===1);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await p.focus('#query');assert.equal((await p.evaluate(()=>snapshot())).focus,'query');assert.ok(await p.$eval('#query',e=>e.getBoundingClientRect().width)>150);await p.screenshot({path:new URL('./narrow.png',import.meta.url).pathname.replace(/^\\/([A-Za-z]:)/,'$1')});});\nawait test('U1-R1 stale completion while current pending; empty state',async p=>{\n await p.evaluate(()=>{type('old');type('current');window.pendingSnapshot=snapshot();calls[0].reject(new Error('old failure'));});\n await new Promise(r=>setTimeout(r,20));assert.deepEqual(await p.evaluate(()=>snapshot()),await p.evaluate(()=>pendingSnapshot));\n assert.equal(await p.$eval('#retry',e=>e.hidden),true);\n await p.evaluate(()=>calls[1].resolve([]));await p.waitForFunction(()=>document.querySelector('#status').textContent==='0 people');\n assert.equal((await p.evaluate(()=>snapshot())).active,null);assert.equal((await p.evaluate(()=>snapshot())).expanded,'false');\n await p.evaluate(()=>{type('late failure');type('');window.clearedSnapshot=snapshot();calls[2].reject(new Error('late'));});\n await new Promise(r=>setTimeout(r,20));assert.deepEqual(await p.evaluate(()=>snapshot()),await p.evaluate(()=>clearedSnapshot));\n});\nawait test('U1-R3 visible escape and precise selection',async p=>{\n await p.evaluate(()=>{type('x');calls[0].resolve([{id:'same',label:'First'},{id:'same',label:'Second'}]);});\n await p.waitForFunction(()=>document.querySelectorAll('[role=option]').length===2);\n await p.keyboard.press('ArrowDown');assert.equal(await p.evaluate(()=>document.getElementById(document.querySelector('#query').getAttribute('aria-activedescendant')).textContent),'Second');\n await p.keyboard.press('Escape');assert.equal((await p.evaluate(()=>snapshot())).expanded,'false');\n assert.equal(await p.$eval('#options',e=>e.hidden),true);assert.equal((await p.evaluate(()=>snapshot())).active,null);\n await p.keyboard.press('ArrowUp');await p.keyboard.press('Enter');assert.equal(await p.$eval('#chosen',e=>e.textContent),'Second');assert.equal((await p.evaluate(()=>snapshot())).focus,'query');\n});\nawait test('U1-R4 disposed rejection and detached listeners',async p=>{\n await p.evaluate(()=>{type('pending');picker.dispose();picker.dispose();window.disposedHTML=document.querySelector('#picker').innerHTML;calls[0].reject(new Error('late'));});\n await new Promise(r=>setTimeout(r,20));assert.equal(await p.$eval('#picker',e=>e.innerHTML),await p.evaluate(()=>disposedHTML));\n await p.evaluate(()=>{document.querySelector('#query').dispatchEvent(new Event('input'));document.querySelector('#retry').click();document.querySelector('#query').dispatchEvent(new CompositionEvent('compositionend'));});\n assert.equal(await p.evaluate(()=>calls.length),1);\n});\nawait test('desktop rendered focus and layout',async p=>{\n await p.setViewport({width:960,height:720});await p.type('#query','Ada');\n await p.evaluate(()=>calls.at(-1).resolve([{id:'ada',label:'Ada Lovelace'}]));await p.waitForFunction(()=>document.querySelector('#options').textContent==='Ada Lovelace');\n assert.equal((await p.evaluate(()=>snapshot())).focus,'query');assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);\n await p.screenshot({path:new URL('./desktop.png',import.meta.url).pathname.replace(/^\\/([A-Za-z]:)/,'$1')});\n});\nconsole.log(JSON.stringify({timestamp:new Date().toISOString(),node:process.version,browser:await browser.version(),viewports:[{width:320,height:720},{width:960,height:720}],transport:'deterministic promises, deliberately ignores AbortSignal',results},null,2));await browser.close();if(results.some(r=>r.status==='FAIL'))process.exitCode=1;\n"
+        },
+        {
+          "name": "demo.ts",
+          "content": "import {mount} from './app.js';\n// Deterministic demo transport deliberately ignores cancellation to exercise ordering.\nif(!new URLSearchParams(location.search).has('test'))mount(document.querySelector('#picker')!,async query=>{await new Promise(r=>setTimeout(r,query.length===1?400:80));return [{id:query,label:query+' Example'}]});\n\n"
+        },
+        {
+          "name": "index.html",
+          "content": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Assign request</title><link rel=\"stylesheet\" href=\"styles.css\"><main id=\"picker\"><h1>Assign request</h1><label for=\"query\">Find an assignee</label><input id=\"query\" role=\"combobox\" aria-autocomplete=\"list\" aria-controls=\"options\" aria-describedby=\"status\" aria-expanded=\"false\" autocomplete=\"off\"><ul id=\"options\" role=\"listbox\" aria-label=\"Assignees\" hidden></ul><p id=\"status\" role=\"status\" aria-live=\"polite\"></p><button id=\"retry\" type=\"button\" hidden>Retry search</button><p>Chosen: <span id=\"chosen\">None</span></p></main><script type=\"module\" src=\"demo.js\"></script></html>\n"
+        },
+        {
+          "name": "styles.css",
+          "content": ":root{--text:#182530;--border:#ccd5df;--focus:#225bce;--selected:#daeafa}\n*{box-sizing:border-box}\nbody{margin:0;padding:clamp(12px,4vw,24px);font:16px/1.5 system-ui;color:var(--text);background:#f3f6f8}\nmain{max-width:540px;min-width:0;padding:clamp(16px,4vw,24px);background:white;border:1px solid var(--border);border-radius:12px;overflow-wrap:anywhere}\nh1{font-size:1.75rem;line-height:1.2}\nlabel{display:block;margin-bottom:8px}\ninput{display:block;font:inherit;min-width:0;width:100%;padding:10px;border:1px solid #697a8a;border-radius:4px}\nul{padding:0;list-style:none;margin-block:12px}\nli{padding:10px;border-bottom:1px solid var(--border);white-space:normal;overflow-wrap:anywhere;cursor:pointer}\nli[aria-selected=true]{background:var(--selected)}\ninput:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}\nbutton{font:inherit;padding:8px;white-space:normal;max-width:100%}\n[hidden]{display:none}\n"
+        }
+      ],
+      "independentObservations": [
+        {
+          "caseId": "UI-U1",
+          "node": "v24.12.0",
+          "time": "2026-11-06[trial masked]:20:29.931Z",
+          "checks": [
+            {
+              "id": "U1-control-single-result",
+              "kind": "control",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R1-out-of-order-success",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R1-stale-failure",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R2-composition",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R2-R3-keyboard-focus",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R1-clear-invalidates",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R4-current-error-retry",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R4-dispose",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": true
+            },
+            {
+              "id": "U1-R5-reflow",
+              "kind": "required",
+              "status": "PASS",
+              "evidence": {
+                "width": 320,
+                "scroll": 320,
+                "input": {
+                  "x": 29.796875,
+                  "y": 132.890625,
+                  "width": 260.40625,
+                  "height": 46,
+                  "top": 132.890625,
+                  "right": 290.203125,
+                  "bottom": 178.890625,
+                  "left": 29.796875
+                }
+              }
+            }
+          ],
+          "errors": [],
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

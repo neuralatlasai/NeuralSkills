@@ -1,0 +1,37 @@
+{
+  "review": "instruction-quality-and-concision",
+  "version": "1.1.0",
+  "scope": "SKILL.md and design, implementation, modules, verification, standards, adapters, coding-standards references; targeted comparison with historical 1.0 instructions. Evaluation cases and held-out fixtures were not read.",
+  "findings": [
+    {
+      "id": "R1",
+      "location": "SKILL.md:36; references/modules.md:36",
+      "issue": "The entry point and M4 procedure require alternative directions for every affected visual task, contradicting design.md:3, which exempts a familiar button edit. A small spacing correction can consequently acquire an unnecessary direction exercise.",
+      "change": "Limit direction comparisons to exploration or a consequential unresolved choice; otherwise preserve the established direction and record only the changed decision."
+    },
+    {
+      "id": "R2",
+      "location": "SKILL.md:42-44",
+      "issue": "The full asynchronous ownership inventory and A/B race schedule are unconditional even though the small-component route activates M7 only for runtime risk. Static component work is told to verify requests and authority transitions it does not have.",
+      "change": "Prefix the lifecycle inventory and race checks with their applicability to asynchronous/data-driven paths; keep their existing authority-invalidating and stale-cleanup requirements intact."
+    },
+    {
+      "id": "R3",
+      "location": "references/modules.md:61-64",
+      "issue": "M7 activates for any runtime delivery but then requires profiling a bottleneck and raw comparison runs. A routine static page has no demonstrated bottleneck or optimization comparison; the procedure encourages invented optimization work despite implementation.md requiring an observed bottleneck first.",
+      "change": "Require applicable runtime budgets/resilience checks on delivery, and make bottleneck profiling plus comparison runs conditional on a performance task, observed problem or optimization change."
+    },
+    {
+      "id": "R4",
+      "location": "references/coding-standards.md:3-7; SKILL.md:50",
+      "issue": "All three coding-standards paragraphs repeat requirements already owned by SKILL.md, implementation.md, verification.md and standards.md. Loading this file adds no decision, artifact or probe and creates another owner for the same rules.",
+      "change": "Remove the mandatory extra read and retire the duplicate reference, or retain only a short compatibility pointer if the resource path must remain stable."
+    },
+    {
+      "id": "R5",
+      "location": "SKILL.md:42; references/implementation.md:23-39",
+      "issue": "Historical data-driven requirements explicitly covered timeout, partial failure and offline recovery. The operative lifecycle procedure now compresses these into bounded recovery; verification.md mentions partial/offline failure only as an optional flow check, and timeout disappears. A request that never completes can therefore satisfy the listed transitions while remaining indefinitely pending.",
+      "change": "Add one conditional lifecycle row requiring timeout, offline and partial-result policies with a bounded pending/retry probe for affected data paths. Preserve the actual API boundary and permitted-prior-data policy."
+    }
+  ]
+}

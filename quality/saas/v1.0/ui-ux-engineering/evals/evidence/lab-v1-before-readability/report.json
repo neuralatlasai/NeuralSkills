@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "build": {
+    "status": "PASS",
+    "method": "installed TypeScript compiler; strict semantic check and JavaScript emit",
+    "compiler": "C:\\Users\\heman\\AppData\\Local\\Programs\\Microsoft VS Code\\a717861c07\\resources\\app\\extensions\\node_modules\\typescript\\lib\\typescript.js",
+    "version": "6.0.3",
+    "built": [
+      "state.js",
+      "app.js"
+    ]
+  },
+  "checks": [
+    {
+      "name": "landmarks, table, labels and polite status region exist",
+      "status": "PASS"
+    },
+    {
+      "name": "search, status filter, empty state and clear-filters recovery",
+      "status": "PASS"
+    },
+    {
+      "name": "background failure preserves rows, exposes stale indicator, and retry restores freshness",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit abort preserves previous results and announces cancellation",
+      "status": "PASS"
+    },
+    {
+      "name": "native modal focuses title, prevents duplicate submit, recovers failed mutation and returns focus",
+      "status": "PASS"
+    },
+    {
+      "name": "keyboard skip link and visible focus style are available",
+      "status": "PASS"
+    },
+    {
+      "name": "390px layout contains page overflow and keeps primary controls at least 24px",
+      "status": "PASS"
+    }
+  ],
+  "runtimeErrors": [],
+  "networkFailures": [],
+  "screenshotFiles": [
+    "desktop.png",
+    "empty.png",
+    "error.png",
+    "dialog-error.png",
+    "mobile.png"
+  ],
+  "accessibilityBoundary": "Bounded DOM/keyboard/focus/layout/24px-target/reduced-motion checks in one Chromium browser. No full WCAG conformance, screen-reader session, comprehensive contrast audit, zoom/forced-colors coverage, or multi-browser compatibility claim.",
+  "raceEvidence": "A/B out-of-order completion and same-gate failure/retry are tested in scripts/test-tools.mjs independently of browser abort behavior."
+}

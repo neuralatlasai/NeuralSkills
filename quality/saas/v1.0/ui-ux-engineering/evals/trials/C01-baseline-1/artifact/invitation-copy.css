@@ -1,0 +1,39 @@
+invitation-copy { display: block; max-width: 100%; }
+.invitation-copy__button {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 44px;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid #234d42;
+  border-radius: 9px;
+  background: #234d42;
+  color: #fff;
+  font: 600 15px/1.5 system-ui, sans-serif;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.invitation-copy__button:hover { background: #193e34; }
+.invitation-copy__button:active { background: #133127; }
+.invitation-copy__button:focus-visible {
+  outline: 3px solid #1c6788;
+  outline-offset: 4px;
+}
+.invitation-copy__button:disabled {
+  background: #496b62;
+  border-color: #496b62;
+  cursor: wait;
+}
+.invitation-copy__status,
+.invitation-copy__error {
+  margin: 10px 0 0;
+  font: 400 13px/1.6 system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+.invitation-copy__status { color: #355a4e; }
+.invitation-copy__error { color: #9c2926; }
+.invitation-copy__status:empty,
+.invitation-copy__error:empty { margin: 0; }

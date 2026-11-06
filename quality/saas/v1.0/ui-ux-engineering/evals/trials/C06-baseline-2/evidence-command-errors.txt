@@ -1,0 +1,6 @@
+﻿Initial fixture lookup used fixtures/C06 relative to skill root and returned PathNotFound; corrected to evals/fixtures/C06.
+First build invocation ran from skill root and failed MODULE_NOT_FOUND for root/build.mjs; corrected working directory to artifact.
+Second build invocation failed ERR_UNSUPPORTED_ESM_URL_SCHEME because Windows absolute import lacked file:/// prefix; corrected build.mjs import to file URL.
+Favicon cleanup command first used trial-relative paths with artifact as working directory, causing PathNotFound and null-method errors. No artifact was changed by failed writes; corrected working directory to trial root.
+
+Metadata finalization initially encountered PowerShell property-assignment error because ConvertFrom-Json wrapped an array as {value,Count}. Flattened JSON using Node; result checks now validated as individual objects.

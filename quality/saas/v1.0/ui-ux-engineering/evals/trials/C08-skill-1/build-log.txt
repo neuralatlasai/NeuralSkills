@@ -1,0 +1,4 @@
+Node v24.12.0: node build.mjs
+(node:25564) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Built app.js with the Node 24 TypeScript stripper.

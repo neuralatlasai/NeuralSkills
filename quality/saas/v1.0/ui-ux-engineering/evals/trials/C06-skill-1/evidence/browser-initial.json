@@ -1,0 +1,77 @@
+{
+  "environment": {
+    "node": "v24.12.0",
+    "playwright": "1.64.0-alpha-1790635538000",
+    "browser": "156.0.8078.80",
+    "url": "file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/evals/trials/C06-skill-1/artifact/index.html",
+    "headless": true,
+    "network": "file URL; no service or network request",
+    "fonts": "system-ui/Georgia",
+    "viewports": [
+      "960×850",
+      "320×760",
+      "640×850 with 200% text"
+    ]
+  },
+  "checks": [
+    {
+      "id": "initial-form",
+      "status": "PASS",
+      "observation": "Visible initial prompt, associated label, Tab reaches search input."
+    },
+    {
+      "id": "cedar-pending-success-enter",
+      "status": "PASS",
+      "observation": "Enter submits; pending visible immediately; live region not suppressed by busy ancestor; cedar resolves; input focus retained."
+    },
+    {
+      "id": "moss-search-button",
+      "status": "PASS",
+      "observation": "Search button returns both moss cards, habitat and page counts."
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "observation": "Empty outcome includes a useful next search suggestion."
+    },
+    {
+      "id": "failure-retry-same-query",
+      "status": "PASS",
+      "observation": "Keyboard Retry creates a new pending attempt for fail despite edited input cedar; deterministic failure returns; focus transferred to persistent input."
+    },
+    {
+      "id": "race-stale-success",
+      "status": "PASS",
+      "observation": "cedar starts; moss starts about 100ms later; after 1400ms additional wait, moss status/query/cards remain."
+    },
+    {
+      "id": "race-stale-failure",
+      "status": "PASS",
+      "observation": "fail starts; moss starts about 100ms later; after stale rejection, moss stays visible without Retry."
+    },
+    {
+      "id": "narrow-320-and-focus",
+      "status": "PASS",
+      "observation": {
+        "viewport": "320×760",
+        "horizontalOverflow": false,
+        "controlHeights": [
+          46.796875,
+          46
+        ],
+        "textResize": "200% text at 640px: no horizontal overflow; not browser zoom"
+      }
+    },
+    {
+      "id": "fixture-unchanged",
+      "status": "FAIL",
+      "error": "Error: ENOENT: no such file or directory, open 'C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\fixtures\\C06\\fake-api.ts'\n    at Object.openSync (node:fs:560:18)\n    at Object.readFileSync (node:fs:444:35)\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\trials\\C06-skill-1\\artifact\\verify.cjs:82:14\n    at check (C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\trials\\C06-skill-1\\artifact\\verify.cjs:9:64)\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\trials\\C06-skill-1\\artifact\\verify.cjs:80:8"
+    },
+    {
+      "id": "runtime-errors",
+      "status": "PASS",
+      "observation": []
+    }
+  ],
+  "messages": []
+}

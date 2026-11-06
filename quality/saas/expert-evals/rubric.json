@@ -1,0 +1,13 @@
+{
+  "objectiveRule": "All task-required independent checks PASS; healthy controls retained. Missing runtime evidence is UNVERIFIED, not PASS.",
+  "reviewLevels": ["DEMONSTRATED", "PARTIAL", "ABSENT"],
+  "reviewCriteria": {
+    "causalDiagnosis": "Identifies concrete faulty state/transaction/interleaving and distinguishes a plausible competing explanation using source or runtime observation.",
+    "mechanismAndAlternative": "Correction actually closes the causal defect; weighs one viable alternative and rejects one unnecessary architecture with fixture-specific reasons.",
+    "operatingLimitAndFailure": "States at least one real operating bound and what breaks beyond it, without unsupported guarantees; separates local fixture evidence from production/AT/remote effects.",
+    "traceAndVerification": "Maps supplied requirement IDs to actual artifact and executed relevant success/fault checks; retained failures/unknowns match completion claims."
+  },
+  "blinding": "Reviewer receives task + anonymized artifact + evidence, no version or skill citations; cite concrete evidence for each category and preserve disagreements.",
+  "notScored": ["word count", "aesthetic rating", "terminology overlap", "metadata volume", "preferred architecture naming"],
+  "limits": "Four bounded fixture cases; no universal or statistical superiority claim."
+}

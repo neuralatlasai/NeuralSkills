@@ -1,0 +1,23 @@
+{
+  "reason": "Static review found advertised --help absent in two CLI parsers; implemented it without changing normal measurement/server behavior.",
+  "observations": [
+    {
+      "script": "measure",
+      "chunk_id": "1e1ea6",
+      "wall_time_seconds": 2.3585652,
+      "exit_code": 0,
+      "original_token_count": 37,
+      "output": "usage: node scripts/measure.mjs INPUT.json [--out OUTPUT.json]\nSummarize at least three controlled lab runs; field percentile claims are rejected.\n"
+    },
+    {
+      "script": "serve",
+      "chunk_id": "7686ca",
+      "wall_time_seconds": 2.282434,
+      "exit_code": 0,
+      "original_token_count": 27,
+      "output": "usage: node scripts/serve.mjs [--port NUMBER]\nServe the bundled fixture on 127.0.0.1 only; Ctrl+C stops it.\n"
+    }
+  ],
+  "normalRegression": "All 12 test-tools checks passed in coordinator rerun after change; transcript exit 0.",
+  "limits": "Only CLI help branches changed; prior success/failure command evidence remains in tooling/commands.json."
+}

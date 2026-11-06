@@ -1,0 +1,73 @@
+{
+  "createdAt": "2026-11-06T03:09:51.836Z",
+  "reason": "User requested a lean role catalog. Development/evaluation/history moved outside roles; no raw evidence deleted.",
+  "roleCatalog": "roles/saas",
+  "qualityRoot": "quality/saas",
+  "moves": [
+    {
+      "from": "roles/saas/expert-evals",
+      "to": "quality/saas/expert-evals"
+    },
+    {
+      "from": "roles/saas/version-history",
+      "to": "quality/saas/version-history"
+    },
+    {
+      "from": "roles/saas/delivery-evidence",
+      "to": "quality/saas/delivery-evidence"
+    },
+    {
+      "from": "roles/saas/ui-ux-engineering/evals/evidence",
+      "to": "quality/saas/v1.0/ui-ux-engineering/evals/evidence"
+    },
+    {
+      "from": "roles/saas/ui-ux-engineering/evals/trials",
+      "to": "quality/saas/v1.0/ui-ux-engineering/evals/trials"
+    },
+    {
+      "from": "roles/saas/ui-ux-engineering/evals/inputs",
+      "to": "quality/saas/v1.0/ui-ux-engineering/evals/inputs"
+    },
+    {
+      "from": "roles/saas/ui-ux-engineering/evals/dispatch",
+      "to": "quality/saas/v1.0/ui-ux-engineering/evals/dispatch"
+    },
+    {
+      "from": "roles/saas/backend-engineering/evals/evidence",
+      "to": "quality/saas/v1.0/backend-engineering/evals/evidence"
+    },
+    {
+      "from": "roles/saas/backend-engineering/evals/trials",
+      "to": "quality/saas/v1.0/backend-engineering/evals/trials"
+    },
+    {
+      "from": "roles/saas/backend-engineering/evals/inputs",
+      "to": "quality/saas/v1.0/backend-engineering/evals/inputs"
+    },
+    {
+      "from": "roles/saas/backend-engineering/evals/dispatch",
+      "to": "quality/saas/v1.0/backend-engineering/evals/dispatch"
+    }
+  ],
+  "updatedMarkdownLinks": [
+    "roles/saas/backend-engineering/references/sources.md",
+    "roles/saas/README.md",
+    "roles/saas/ui-ux-engineering/evals/fixtures/heavy/README.md",
+    "roles/saas/ui-ux-engineering/references/sources.md",
+    "roles/saas/ui-ux-engineering/references/standards.md"
+  ],
+  "reusableInput": "UI heavy plan moved into evals/fixtures/heavy/plan.json; script read path updated without threshold changes",
+  "runtimeProfiles": "Archived in quality/v1.0 with original evidence, not deleted; excluded from publication.",
+  "publicationExclusions": [
+    "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/supplemental/chrome-profile/",
+    "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/zoom-completion/baseline-profile/",
+    "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/zoom-completion/baseline-profile-2/",
+    "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/zoom-completion/native200-profile/",
+    "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/zoom-completion/native200-profile-2/"
+  ],
+  "mainRoleDirectories": [
+    "backend-engineering",
+    "ui-ux-engineering"
+  ],
+  "rawHistoryScope": "Historical data and copied code are evidence, not current installable instructions. Original instruction/report bytes are in version-history; current cases live in expert-evals."
+}

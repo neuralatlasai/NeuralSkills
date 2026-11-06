@@ -1,0 +1,14 @@
+{
+  "name": "ui-ux-engineering-skill-checks",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node scripts/test-tools.mjs",
+    "build:lab": "node scripts/build-lab.mjs",
+    "serve": "node scripts/serve.mjs",
+    "lab": "node scripts/lab.mjs",
+    "measure": "node scripts/measure.mjs"
+  }
+}

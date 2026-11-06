@@ -1,0 +1,2458 @@
+{
+  "method": "New evaluator-authored probes in isolated source copies; original trial verification additionally replayed for B04-B06 with attribution. No original database or evidence writes.",
+  "blinding": "Broken: evaluator saw directory arm names and implementation/result records; objective HTTP/SQLite assertions used.",
+  "runtime": "v24.12.0",
+  "sqlite": "3.50.4",
+  "scope": "Eight fixed trials, no selection; B01/B02 one observation per arm; no statistical confidence or superiority inference.",
+  "harnessIncidents": [
+    {
+      "status": "FAIL",
+      "scope": "Evaluator path computation before tests",
+      "detail": "Initial evaluator used five ancestor levels rather than four, causing ENOENT; corrected only evaluator script. No trial artifact modified."
+    },
+    {
+      "status": "UNVERIFIED",
+      "scope": "Top-level PowerShell pipeline exit",
+      "detail": "Wrapper reported exit1 while evaluator completed results and all probe assertions passed; stderr contains NativeCommandError wrapping Node experimental SQLite warning. Per-command child exits and observed assertions retained; no blanket top-level exit0 claim."
+    },
+    {
+      "status": "FAIL",
+      "scope": "Evaluator JSON read before encoding detection",
+      "detail": "Direct UTF8 read of raw B03 before/after failed because PowerShell produced UTF16LE; decoded BOM correctly without rewriting raw files."
+    }
+  ],
+  "trials": [
+    {
+      "id": "B01-baseline-1",
+      "coverage": {
+        "normalizedUnique": 24,
+        "formatNotes": "B03-B06 use id rather than area; accepted as semantic ID spelling. Some components are named in README/reasons/evidence rather than a component field. No alias mapping for acceptance statuses into coverage dispositions.",
+        "invalidDispositionCount": 24,
+        "normalized": [
+          {
+            "area": "L01",
+            "disposition": "PASS",
+            "component": "Loopback HTTP socket",
+            "reason": "Actual HTTP uses ephemeral 127.0.0.1 listener; external DNS/network paths are outside the fixture.",
+            "evidence": "artifact/verify.mjs; verification.log"
+          },
+          {
+            "area": "L02",
+            "disposition": "NOT_APPLICABLE",
+            "component": "TLS",
+            "reason": "The supplied fixture explicitly uses local cleartext HTTP and makes no HTTPS claim.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L03",
+            "disposition": "NOT_APPLICABLE",
+            "component": "Ingress and proxies",
+            "reason": "No ingress, proxy, CDN or balancing component exists in this local service.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L04",
+            "disposition": "PASS",
+            "component": "Registry identity and tenant-scoped SQL",
+            "reason": "Registry determines tenant and write permission; client tenant headers cannot change SQL scope.",
+            "evidence": "verification.log: auth, reader denial, tenant boundary and spoofed tenant checks"
+          },
+          {
+            "area": "L05",
+            "disposition": "PASS",
+            "component": "GET and PATCH HTTP contract",
+            "reason": "Actual HTTP verifies method handling, public JSON responses and content types. Other API styles are outside scope.",
+            "evidence": "verification.log"
+          },
+          {
+            "area": "L06",
+            "disposition": "PASS",
+            "component": "Conditional partial update",
+            "reason": "Absent properties preserve data; null clears note; successful writes increment version. No bulk/upsert requested.",
+            "evidence": "verification.log: title/note/absence and version-only checks"
+          },
+          {
+            "area": "L07",
+            "disposition": "PASS",
+            "component": "Body parsing, schema and JSON errors",
+            "reason": "Raw bytes are capped at 2048; UTF-8 and JSON parsing are strict; fields are explicitly allowed.",
+            "evidence": "verification.log: schema, malformed, media type, byte limit checks"
+          },
+          {
+            "area": "L08",
+            "disposition": "PASS",
+            "component": "Existing request lifecycle",
+            "reason": "Keeps fixture layout; PATCH checks identity/permission/media/body/schema before one SQL mutation.",
+            "evidence": "artifact/service.mjs; implementation.diff"
+          },
+          {
+            "area": "L09",
+            "disposition": "PASS",
+            "component": "Node 24.12 runtime and request concurrency",
+            "reason": "Native synchronous SQLite with asynchronous bounded body collection; concurrent HTTP requests verified. No container work requested.",
+            "evidence": "syntax-check.json; verification.log"
+          },
+          {
+            "area": "L10",
+            "disposition": "PASS",
+            "component": "Existing tickets composite key",
+            "reason": "Preserves schema and seed behavior; tenant/id composite key continues to identify rows. No migration needed.",
+            "evidence": "artifact/service.mjs: openStore"
+          },
+          {
+            "area": "L11",
+            "disposition": "PASS",
+            "component": "Prepared SELECT and UPDATE RETURNING",
+            "reason": "Parameterized values and composite key predicates; no extra indexes needed for tiny fixture. Query-plan benchmarking not claimed.",
+            "evidence": "artifact/service.mjs: createService"
+          },
+          {
+            "area": "L12",
+            "disposition": "PASS",
+            "component": "Atomic optimistic concurrency",
+            "reason": "Single UPDATE predicates on tenant/id/version and increments version in the same statement; HTTP race proves one success and one conflict.",
+            "evidence": "verification.log: concurrent same-version edit one winner one conflict"
+          },
+          {
+            "area": "L13",
+            "disposition": "NOT_APPLICABLE",
+            "component": "Database administration",
+            "reason": "Embedded SQLite has no server users or grants; production database administration is outside fixture scope.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L14",
+            "disposition": "PASS",
+            "component": "Local SQLite file storage",
+            "reason": "Actual file is closed and reopened with mutations preserved; no replication, partitioning or sharding requirement.",
+            "evidence": "verification.log: file database persisted after service and SQLite close/reopen"
+          },
+          {
+            "area": "L15",
+            "disposition": "NOT_APPLICABLE",
+            "component": "Cache and derived stores",
+            "reason": "No cache or derived store exists; response projection comes directly from authoritative SQL rows.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L16",
+            "disposition": "NOT_APPLICABLE",
+            "component": "Events and async effects",
+            "reason": "No events, queues, CDC or external side effects are part of this PATCH operation.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L17",
+            "disposition": "NOT_APPLICABLE",
+            "component": "Workers and schedules",
+            "reason": "All requested behavior is synchronous HTTP request handling; no durable background work.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L18",
+            "disposition": "NOT_APPLICABLE",
+            "component": "Specialized stores and objects",
+            "reason": "No file uploads, object storage or search behavior is requested; primary SQLite persistence is covered in L14.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L19",
+            "disposition": "NOT_APPLICABLE",
+            "component": "External integrations",
+            "reason": "No external API, webhook or MCP integration is used; no downloads or external mutation performed.",
+            "evidence": "artifact/service.mjs; artifact/verify.mjs"
+          },
+          {
+            "area": "L20",
+            "disposition": "PASS",
+            "component": "Bounded request memory and payload work",
+            "reason": "At most 2048 bytes are retained for parsing; oversized requests return JSON 413 with Connection close. No scaling/load claim.",
+            "evidence": "verification.log: declared and chunked oversized body; exact limit"
+          },
+          {
+            "area": "L21",
+            "disposition": "PASS",
+            "component": "Orderly close/reopen persistence",
+            "reason": "Tests stop HTTP, close SQLite and reopen the same file. Crash recovery and backups are outside requested verification.",
+            "evidence": "verification.log: reopen checks"
+          },
+          {
+            "area": "L22",
+            "disposition": "PASS",
+            "component": "Local verification evidence",
+            "reason": "Each check is logged with status; syntax and fixture hashes are retained. Production observability/audit infrastructure is outside scope.",
+            "evidence": "verification.log; syntax-check.json; file-hashes.json"
+          },
+          {
+            "area": "L23",
+            "disposition": "PASS",
+            "component": "Reproducible built-in verification",
+            "reason": "Runnable Node-only service and verification are included; no build pipeline or deployment is needed or performed.",
+            "evidence": "artifact/README.md; artifact/verify.mjs"
+          },
+          {
+            "area": "L24",
+            "disposition": "PASS",
+            "component": "Input boundaries and minimal projection",
+            "reason": "Unknown/privileged fields are rejected; queries are parameterized; projection excludes tenant and privilege fields; zero new dependencies. Fixture tokens are not production authentication.",
+            "evidence": "verification.log; artifact/service.mjs"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "id": "B01-R01",
+          "meaning": "PATCH semantics",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R02",
+          "meaning": "HTTP identity/permission/tenant",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R03",
+          "meaning": "concurrent CAS",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R04",
+          "meaning": "bounded parser/media errors",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R05",
+          "meaning": "GET/reopen",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R06",
+          "meaning": "coverage/decision truthfulness",
+          "status": "FAIL",
+          "basis": "All24 entries exist and component/reason/evidence/decisions are proportionate, but every disposition is PASS/NOT_APPLICABLE, which contradicts the frozen coverageRule requiring IMPLEMENTED_OR_CHANGED/INHERITED_VERIFIED/OUT_OF_SCOPE/RELEVANT_UNVERIFIED; dispositions are not test statuses.",
+          "evidence": [
+            "results.json",
+            "B01-baseline-1/artifact"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "HTTP contract denial, validation, tenant, JSON media and body limits",
+          "status": "PASS"
+        },
+        {
+          "name": "HTTP concurrent CAS, absence/null semantics and close/reopen persistence",
+          "status": "PASS",
+          "observation": {
+            "race": [
+              200,
+              409
+            ],
+            "persisted": {
+              "id": "t1",
+              "title": "Win A",
+              "note": null,
+              "version": 3
+            }
+          }
+        }
+      ],
+      "commands": [],
+      "summary": {
+        "PASS": 5,
+        "FAIL": 1,
+        "UNVERIFIED": 0
+      }
+    },
+    {
+      "id": "B01-skill-1",
+      "coverage": {
+        "normalizedUnique": 24,
+        "formatNotes": "B03-B06 use id rather than area; accepted as semantic ID spelling. Some components are named in README/reasons/evidence rather than a component field. No alias mapping for acceptance statuses into coverage dispositions.",
+        "invalidDispositionCount": 0,
+        "normalized": [
+          {
+            "area": "L01",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "Node loopback TCP listener",
+            "reason": "Actual socket HTTP path exercised; DNS/discovery is absent.",
+            "evidence": "evidence.json; artifact/verify.mjs start()/request()/stop()"
+          },
+          {
+            "area": "L02",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "Local cleartext HTTP fixture",
+            "reason": "README explicitly limits transport to isolated loopback; no TLS requested.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L03",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "Direct service listener",
+            "reason": "No proxy, gateway, CDN or load balancer exists in supplied fixture.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L04",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "Registry authorization and tenant-scoped SQL",
+            "reason": "PATCH enforces existing write policy and trusted tenant.",
+            "evidence": "evidence.json: identity and function denial; tenant comes from registry and absent object"
+          },
+          {
+            "area": "L05",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "HTTP JSON PATCH route",
+            "reason": "Adds PATCH while preserving GET over actual HTTP.",
+            "evidence": "artifact/service.mjs; evidence.json"
+          },
+          {
+            "area": "L06",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "Partial-update contract",
+            "reason": "Absence/null/version semantics, stale conflict and public projection implemented.",
+            "evidence": "evidence.json: PATCH trim absence null and version-only; atomic concurrent same-version edits"
+          },
+          {
+            "area": "L07",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "readBody/schema/error path",
+            "reason": "Bounded bytes, UTF8/JSON/schema parsing and JSON errors.",
+            "evidence": "evidence.json: malformed media and oversized bytes; invalid UTF8 rejected; chunked oversized body"
+          },
+          {
+            "area": "L08",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "createService request lifecycle",
+            "reason": "Registry to validation to one scoped mutation to projection; no new layers required.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L09",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "Body buffering and synchronous SQLite",
+            "reason": "Per-request buffering capped; concurrent HTTP requests contend at atomic storage update; no capacity claim.",
+            "evidence": "artifact/service.mjs; evidence.json: atomic concurrent same-version edits"
+          },
+          {
+            "area": "L10",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "tickets table and tenant/id primary key",
+            "reason": "Original schema retained and directly queried using selected engine.",
+            "evidence": "evidence.json: selected engine schema and query path"
+          },
+          {
+            "area": "L11",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "Prepared SELECT and UPDATE RETURNING",
+            "reason": "Fixed identifiers, bound values, tenant-scoped primary-key access; small fixture plan recorded.",
+            "evidence": "artifact/service.mjs; evidence.json: selected engine schema and query path"
+          },
+          {
+            "area": "L12",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "Single-statement version CAS",
+            "reason": "Atomic row mutation closes same-version lost-update race.",
+            "evidence": "evidence.json: atomic concurrent same-version edits"
+          },
+          {
+            "area": "L13",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "SQLite file/OS administration",
+            "reason": "No SQL GRANT/RLS or privilege-management task; local file-owner trust documented.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L14",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "File-backed native SQLite",
+            "reason": "Orderly persisted state survives close/reopen; replication, sharding, power-loss behavior excluded.",
+            "evidence": "evidence.json: real SQLite persistence after close/reopen"
+          },
+          {
+            "area": "L15",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "No cache or materialized derived state",
+            "reason": "Fixture directly reads SQLite; no derived-state changes requested.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L16",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "No messaging/event subsystem",
+            "reason": "Synchronous local update has no async publication effects.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L17",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "No workers or schedules",
+            "reason": "No durable jobs or workflow requirement.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L18",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "No object/search/specialized store",
+            "reason": "Only the supplied SQLite store participates.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L19",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "No external integration",
+            "reason": "No external API, webhook or MCP execution needed for the local task.",
+            "evidence": "artifact/service.mjs"
+          },
+          {
+            "area": "L20",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "No scaling/capacity target",
+            "reason": "No throughput, latency, scaling or cloud-cost claim; body bound addressed in L07/L09.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L21",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "Orderly close/reopen verification",
+            "reason": "Required persistence check implemented; backups/restore/crash recovery not requested or claimed.",
+            "evidence": "evidence.json: real SQLite persistence after close/reopen"
+          },
+          {
+            "area": "L22",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "No production telemetry subsystem",
+            "reason": "Retained verification evidence is task output; no SLO/audit/export requirement.",
+            "evidence": "artifact/README.md; evidence.json"
+          },
+          {
+            "area": "L23",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "Node builtins runtime and local executable entrypoint",
+            "reason": "Node24.12 syntax/runtime checks and real server import; no build/deployment system introduced.",
+            "evidence": "verification.stdout.log; verification.stderr.log; artifact/README.md"
+          },
+          {
+            "area": "L24",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "Field validation, tenant policy and builtin-only supply chain",
+            "reason": "Rejects privileged fields and hostile body forms; no package additions.",
+            "evidence": "artifact/service.mjs; evidence.json: schema rejects without mutation; identity and function denial"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "id": "B01-R01",
+          "meaning": "PATCH semantics",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R02",
+          "meaning": "HTTP identity/permission/tenant",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R03",
+          "meaning": "concurrent CAS",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R04",
+          "meaning": "bounded parser/media errors",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R05",
+          "meaning": "GET/reopen",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B01-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B01-R06",
+          "meaning": "coverage/decision truthfulness",
+          "status": "PASS",
+          "basis": "All24 semantic IDs with valid dispositions and proportionate actual-source component mapping; all material decisions have five required links.",
+          "evidence": [
+            "results.json",
+            "B01-skill-1/artifact"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "HTTP contract denial, validation, tenant, JSON media and body limits",
+          "status": "PASS"
+        },
+        {
+          "name": "HTTP concurrent CAS, absence/null semantics and close/reopen persistence",
+          "status": "PASS",
+          "observation": {
+            "race": [
+              200,
+              409
+            ],
+            "persisted": {
+              "id": "t1",
+              "title": "Win A",
+              "note": null,
+              "version": 3
+            }
+          }
+        }
+      ],
+      "commands": [],
+      "summary": {
+        "PASS": 6,
+        "FAIL": 0,
+        "UNVERIFIED": 0
+      }
+    },
+    {
+      "id": "B02-baseline-1",
+      "coverage": {
+        "normalizedUnique": 24,
+        "formatNotes": "B03-B06 use id rather than area; accepted as semantic ID spelling. Some components are named in README/reasons/evidence rather than a component field. No alias mapping for acceptance statuses into coverage dispositions.",
+        "invalidDispositionCount": 24,
+        "normalized": [
+          {
+            "area": "L01",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "No network or socket path exists.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L02",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "No transport/TLS endpoint exists.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L03",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "No ingress, proxy, CDN or load balancing exists.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L04",
+            "disposition": "PASS",
+            "component": "store.mjs",
+            "reason": "Tenant/item predicates and allocation parameters preserve isolation; identity authentication remains caller responsibility.",
+            "evidence": "verification.json: tenant isolation and API return shape"
+          },
+          {
+            "area": "L05",
+            "disposition": "PASS",
+            "component": "store.mjs",
+            "reason": "Preserved exported async API and response shapes; no transport exists.",
+            "evidence": "verification.json: tenant isolation and API return shape"
+          },
+          {
+            "area": "L06",
+            "disposition": "PASS",
+            "component": "store.mjs",
+            "reason": "Reservation decrement and allocation insertion have guarded create/update semantics; no bulk/upsert API is present.",
+            "evidence": "verification.json: forced file-backed race on independent connections"
+          },
+          {
+            "area": "L07",
+            "disposition": "PASS",
+            "component": "store.mjs",
+            "reason": "Positive safe integer quantity, expected version, missing item and conflict status handling are preserved.",
+            "evidence": "verification.json: quantity/version validation, insufficient stock, missing tenant/item"
+          },
+          {
+            "area": "L08",
+            "disposition": "PASS",
+            "component": "store.mjs",
+            "reason": "Read/hook/write lifecycle keeps await outside the synchronous transaction.",
+            "evidence": "verification.json: events and async read hook rejection preserves stock"
+          },
+          {
+            "area": "L09",
+            "disposition": "PASS",
+            "component": "store.mjs; README.md",
+            "reason": "Native synchronous SQLite and async interleaving verified; writer wait blocks event loop and no in-memory mutex is used.",
+            "evidence": "verification.json: writer contention and retry"
+          },
+          {
+            "area": "L10",
+            "disposition": "PASS",
+            "component": "store.mjs",
+            "reason": "Existing composite stock primary key and nonnegative-stock constraint retained; no schema migration needed.",
+            "evidence": "store.mjs openStore and verification.json stock states"
+          },
+          {
+            "area": "L11",
+            "disposition": "PASS",
+            "component": "store.mjs",
+            "reason": "Parameterized guarded UPDATE RETURNING and INSERT use existing primary-key access; no ORM or tuning workload.",
+            "evidence": "verification.json: forced file-backed race on independent connections"
+          },
+          {
+            "area": "L12",
+            "disposition": "PASS",
+            "component": "store.mjs",
+            "reason": "BEGIN IMMEDIATE, revalidated mutation and rollback enforce one atomic reservation.",
+            "evidence": "verification.json: forced race, afterWrite rollback, allocation insertion failure"
+          },
+          {
+            "area": "L13",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "Embedded local fixture has no database roles or operational administration task.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L14",
+            "disposition": "PASS",
+            "component": "README.md",
+            "reason": "File-backed SQLite is explicit; no replication/partitioning/sharding guarantee.",
+            "evidence": "verification.json: race survives close and reopen"
+          },
+          {
+            "area": "L15",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "No cache, materialized view or derived state exists.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L16",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "No messaging, CDC or asynchronous external effect exists.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L17",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "No durable background worker or schedule exists.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L18",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "SQLite is the only store; no object/file API, search or specialized store is requested.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L19",
+            "disposition": "NOT_APPLICABLE",
+            "component": "fixture scope",
+            "reason": "No external API, webhook, tool or MCP integration belongs to reserve.",
+            "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+          },
+          {
+            "area": "L20",
+            "disposition": "PASS",
+            "component": "README.md",
+            "reason": "One SQLite writer and 200ms busy timeout bound scope; no capacity benchmark or scaling claim.",
+            "evidence": "verification.json: writer contention and retry"
+          },
+          {
+            "area": "L21",
+            "disposition": "PASS",
+            "component": "verify.mjs; README.md",
+            "reason": "Rollback, usable connection, reopen and retry verified; backups and crash recovery not implemented.",
+            "evidence": "verification.json: rollback itself survives close and reopen"
+          },
+          {
+            "area": "L22",
+            "disposition": "PASS",
+            "component": "verify.mjs",
+            "reason": "Retained machine-readable outcomes and actual SQLite state evidence; no service telemetry/SLO project.",
+            "evidence": "../evidence/verification.json and supplied-probe.json"
+          },
+          {
+            "area": "L23",
+            "disposition": "PASS",
+            "component": "README.md",
+            "reason": "Node24.12 built-ins only and runnable local commands; production deployment explicitly outside task.",
+            "evidence": "verification.json node version and verification command"
+          },
+          {
+            "area": "L24",
+            "disposition": "PASS",
+            "component": "store.mjs; README.md",
+            "reason": "Bound SQL avoids input interpolation; tenant boundaries verified; no downloads or external mutation. Broader security/privacy lifecycle outside fixture.",
+            "evidence": "store.mjs SQL statements; verification.json tenant test"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "id": "B02-R01",
+          "meaning": "real SQLite race",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R02",
+          "meaning": "fault rollback",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R03",
+          "meaning": "preconditions/tenant/API",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R04",
+          "meaning": "preserved hooks/reopen",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R05",
+          "meaning": "operating limits",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-baseline-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R06",
+          "meaning": "coverage/decision truthfulness",
+          "status": "FAIL",
+          "basis": "All24 entries exist and component/reason/evidence/decisions are proportionate, but every disposition is PASS/NOT_APPLICABLE, which contradicts the frozen coverageRule requiring IMPLEMENTED_OR_CHANGED/INHERITED_VERIFIED/OUT_OF_SCOPE/RELEVANT_UNVERIFIED; dispositions are not test statuses.",
+          "evidence": [
+            "results.json",
+            "B02-baseline-1/artifact"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "two SQLite connections, real shared barrier CAS race and reopen",
+          "status": "PASS",
+          "observation": {
+            "outcomes": [
+              {
+                "status": 201,
+                "available": 1,
+                "version": 2
+              },
+              {
+                "status": 409
+              }
+            ],
+            "arrivals": 2
+          }
+        },
+        {
+          "name": "fault hook rollback, usable retry, invalid and absent preconditions",
+          "status": "PASS"
+        }
+      ],
+      "commands": [],
+      "summary": {
+        "PASS": 5,
+        "FAIL": 1,
+        "UNVERIFIED": 0
+      }
+    },
+    {
+      "id": "B02-skill-1",
+      "coverage": {
+        "normalizedUnique": 24,
+        "formatNotes": "B03-B06 use id rather than area; accepted as semantic ID spelling. Some components are named in README/reasons/evidence rather than a component field. No alias mapping for acceptance statuses into coverage dispositions.",
+        "invalidDispositionCount": 0,
+        "normalized": [
+          {
+            "area": "L01",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "none",
+            "reason": "Fixture is an in-process SQLite module with no DNS or sockets.",
+            "evidence": "artifact/store.mjs imports only node:sqlite"
+          },
+          {
+            "area": "L02",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "none",
+            "reason": "No network/TLS hop exists in this task.",
+            "evidence": "artifact/store.mjs"
+          },
+          {
+            "area": "L03",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "none",
+            "reason": "No gateway, ingress, proxy or CDN exists.",
+            "evidence": "artifact/probe.mjs directly invokes reserve"
+          },
+          {
+            "area": "L04",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "reserve tenant/item predicates",
+            "reason": "Tenant-qualified updates and insert values preserve fixture isolation; caller authentication remains outside module contract.",
+            "evidence": "artifact/verification.json: race south-stock assertions and validation-scope-contract"
+          },
+          {
+            "area": "L05",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "exported openStore/reserve module API",
+            "reason": "Same function signature and response fields exercised by unchanged supplied probe; no wire protocol added.",
+            "evidence": "artifact/probe.mjs; artifact/repaired-probe.json"
+          },
+          {
+            "area": "L06",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "reserve create allocation/decrement stock",
+            "reason": "Conditional create effect has distinct 201/400/404/409 outcomes with atomic local state.",
+            "evidence": "artifact/store.mjs; artifact/verification.json"
+          },
+          {
+            "area": "L07",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "reserve validation and errors",
+            "reason": "Positive safe integer quantity and strict version precondition; native storage errors remain rejected promises.",
+            "evidence": "artifact/verification.json: validation-scope-contract, lock-contention-and-explicit-retry"
+          },
+          {
+            "area": "L08",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "reserve lifecycle",
+            "reason": "One function owns preflight, async observation boundary, write transaction, rollback and result.",
+            "evidence": "artifact/store.mjs; artifact/verification.json: afterWrite-rollback"
+          },
+          {
+            "area": "L09",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "Node async hook and synchronous SQLite transaction",
+            "reason": "No transaction spans await; actual same/two-connection interleavings and busy cleanup checked. Event-loop blocking and unbounded caller hook documented.",
+            "evidence": "artifact/verification.json; artifact/README.md"
+          },
+          {
+            "area": "L10",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "stock composite key and existing tables",
+            "reason": "Existing DDL retained; actual primary-key index and integrity observed, not a schema migration.",
+            "evidence": "artifact/store.mjs openStore; artifact/verification.json: sqlite-index-and-integrity"
+          },
+          {
+            "area": "L11",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "parameterized conditional UPDATE RETURNING and INSERT",
+            "reason": "Tenant/item/version/stock predicates applied at mutation; composite index plan observed on selected engine.",
+            "evidence": "artifact/store.mjs; artifact/verification.json: sqlite-index-and-integrity"
+          },
+          {
+            "area": "L12",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "SQLite BEGIN IMMEDIATE/COMMIT/ROLLBACK",
+            "reason": "Stock/allocation invariants owned by database transaction and CAS, independent of application mutex.",
+            "evidence": "artifact/verification.json: forced races, afterWrite-rollback, allocation-insert-failure-rollback"
+          },
+          {
+            "area": "L13",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "SQLite file owner",
+            "reason": "No deployment roles, GRANT/RLS or credential administration requested; module caller has direct privileged database access.",
+            "evidence": "artifact/README.md trust boundary; artifact/store.mjs"
+          },
+          {
+            "area": "L14",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "native file-backed SQLite storage",
+            "reason": "Local persistence after close/reopen verified; replication, sharding, power-loss and disk-failure guarantees unverified and outside request.",
+            "evidence": "artifact/verification.json: six reopened race files and reopen-after-fault-retry"
+          },
+          {
+            "area": "L15",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "none",
+            "reason": "No cache, materialized view or derived state exists.",
+            "evidence": "artifact/store.mjs schema and reserve"
+          },
+          {
+            "area": "L16",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "none",
+            "reason": "No messaging, event publication, CDC or external async effect exists; hooks are test injection boundaries.",
+            "evidence": "artifact/store.mjs; artifact/README.md hook contract"
+          },
+          {
+            "area": "L17",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "none",
+            "reason": "No durable worker or schedule requested.",
+            "evidence": "artifact/store.mjs; artifact/probe.mjs"
+          },
+          {
+            "area": "L18",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "none",
+            "reason": "No object/search/specialized store; SQLite file is covered by L14.",
+            "evidence": "artifact/store.mjs"
+          },
+          {
+            "area": "L19",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "none",
+            "reason": "No external API, webhook or tool integration belongs to fixture.",
+            "evidence": "artifact/store.mjs imports and side effects"
+          },
+          {
+            "area": "L20",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "local cost model only",
+            "reason": "No capacity target or scaling change requested. Documented B-tree/I/O and single-writer limits are models, without throughput or percentile claims.",
+            "evidence": "artifact/README.md cost and operating limits"
+          },
+          {
+            "area": "L21",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "rollback and connection recovery",
+            "reason": "Injected operation failures restore invariants and allow retry; persisted close/reopen verified. Backup restore and disaster recovery outside request.",
+            "evidence": "artifact/verification.json: afterWrite-rollback, retry-after-rollback, reopen-after-fault-retry"
+          },
+          {
+            "area": "L22",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "verification evidence only",
+            "reason": "No production telemetry/audit/SLO system exists or is requested; raw test outcomes retained without observability claims.",
+            "evidence": "artifact/verification.json; artifact/baseline-race.json"
+          },
+          {
+            "area": "L23",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "Node native-module runtime",
+            "reason": "Built-ins-only execution and syntax checked on installed Node 24.12.0; no deployment or infrastructure change.",
+            "evidence": "artifact/verification.json runtime; checks syntax command"
+          },
+          {
+            "area": "L24",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "local built-ins-only dependency boundary",
+            "reason": "Inspected imports use only Node built-ins; no downloads or external effects. Production security/privacy lifecycle outside this fixture.",
+            "evidence": "artifact/store.mjs; artifact/verify.mjs; artifact/README.md"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "id": "B02-R01",
+          "meaning": "real SQLite race",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R02",
+          "meaning": "fault rollback",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R03",
+          "meaning": "preconditions/tenant/API",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R04",
+          "meaning": "preserved hooks/reopen",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R05",
+          "meaning": "operating limits",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B02-skill-1/artifact"
+          ]
+        },
+        {
+          "id": "B02-R06",
+          "meaning": "coverage/decision truthfulness",
+          "status": "PASS",
+          "basis": "All24 semantic IDs with valid dispositions and proportionate actual-source component mapping; all material decisions have five required links.",
+          "evidence": [
+            "results.json",
+            "B02-skill-1/artifact"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "two SQLite connections, real shared barrier CAS race and reopen",
+          "status": "PASS",
+          "observation": {
+            "outcomes": [
+              {
+                "status": 201,
+                "available": 1,
+                "version": 2
+              },
+              {
+                "status": 409
+              }
+            ],
+            "arrivals": 2
+          }
+        },
+        {
+          "name": "fault hook rollback, usable retry, invalid and absent preconditions",
+          "status": "PASS"
+        }
+      ],
+      "commands": [],
+      "summary": {
+        "PASS": 6,
+        "FAIL": 0,
+        "UNVERIFIED": 0
+      }
+    },
+    {
+      "id": "B03-skill-1",
+      "coverage": {
+        "normalizedUnique": 24,
+        "formatNotes": "B03-B06 use id rather than area; accepted as semantic ID spelling. Some components are named in README/reasons/evidence rather than a component field. No alias mapping for acceptance statuses into coverage dispositions.",
+        "invalidDispositionCount": 0,
+        "normalized": [
+          {
+            "area": "L01",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "In-process SQLite has no DNS, discovery or socket path.",
+            "evidence": "artifact/query.mjs"
+          },
+          {
+            "area": "L02",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No transport or TLS boundary exists in this local fixture.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L03",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No proxy, ingress or CDN is present.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L04",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Parameterized tenant WHERE is retained and checked across every seeded tenant; identity authentication is caller-owned and unverified.",
+            "evidence": "verify.json"
+          },
+          {
+            "area": "L05",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Exported JavaScript function only; no HTTP/RPC protocol change.",
+            "evidence": "artifact/query.mjs"
+          },
+          {
+            "area": "L06",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Ready list has bounded limit, two-field projection and deterministic total order.",
+            "evidence": "artifact/query.mjs; verify.json"
+          },
+          {
+            "area": "L07",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Integer range validation rejects 13 invalid forms before SQL; projection excludes payload.",
+            "evidence": "verify.json"
+          },
+          {
+            "area": "L08",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Bindings validation precedes prepared parameterized read; no mutation in list lifecycle.",
+            "evidence": "artifact/query.mjs"
+          },
+          {
+            "area": "L09",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "K<=100 bounds JavaScript row materialization; synchronous SQLite remains event-loop blocking; RSS/heap raw deltas are not peak memory.",
+            "evidence": "after.json"
+          },
+          {
+            "area": "L10",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Additive, reproducible partial index leaves complete supplied row data unchanged.",
+            "evidence": "index-apply.json; verify.json"
+          },
+          {
+            "area": "L11",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Predicate/projection/order/LIMIT moved to SQL; both tenant plans show covering index without temp sort.",
+            "evidence": "before.json; after.json"
+          },
+          {
+            "area": "L12",
+            "disposition": "INHERITED_VERIFIED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Read-only statement and native local transaction used; test-only tie writes rollback and restore count. No concurrency/isolation claim.",
+            "evidence": "verify.json"
+          },
+          {
+            "area": "L13",
+            "disposition": "RELEVANT_UNVERIFIED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "SQLite local-file trust applies; OS ACL, file authorization and operational administration were not tested.",
+            "evidence": "artifact/README.md"
+          },
+          {
+            "area": "L14",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Logical allocated page and observed database/WAL size change captured; replication and physical I/O unverified.",
+            "evidence": "index-apply.json"
+          },
+          {
+            "area": "L15",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No application cache or derived view is changed; OS/SQLite cache state is disclosed but uncontrolled.",
+            "evidence": "before.json; after.json"
+          },
+          {
+            "area": "L16",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No messaging, events or asynchronous effects.",
+            "evidence": "artifact/query.mjs"
+          },
+          {
+            "area": "L17",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No worker, scheduler or durable workflow.",
+            "evidence": "artifact/query.mjs"
+          },
+          {
+            "area": "L18",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "All data remains in existing SQLite table; no file/object/search adapter changes.",
+            "evidence": "artifact/seed.mjs"
+          },
+          {
+            "area": "L19",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No external API, webhook or MCP runtime integration.",
+            "evidence": "artifact/query.mjs"
+          },
+          {
+            "area": "L20",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Three comparable samples per tenant, whale skew and explicit read/write/storage cost model; no scaling/capacity claim.",
+            "evidence": "before.json; after.json; result.json"
+          },
+          {
+            "area": "L21",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No backup, DR, service availability or failover requested; seeded local fixture is reproducible.",
+            "evidence": "artifact/reproduce.mjs"
+          },
+          {
+            "area": "L22",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Retain actual plans, raw latency/materialization measurements and initial failures; production telemetry is outside scope.",
+            "evidence": "initial-failures.txt; before.json; after.json"
+          },
+          {
+            "area": "L23",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Additive local migration is idempotent and fresh complete reproduction executed with native runtime only; no deployment.",
+            "evidence": "index-repeat.json; reproduce.json"
+          },
+          {
+            "area": "L24",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Bounded numeric input, parameterized tenant and payload exclusion tested; wider security/privacy lifecycle is outside scope.",
+            "evidence": "verify.json"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "id": "B03-R01",
+          "meaning": "query contract",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B03-skill-1/artifact",
+            "B03-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B03-R02",
+          "meaning": "bounded projection/access path",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B03-skill-1/artifact",
+            "B03-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B03-R03",
+          "meaning": "unchanged before/after data+samples+plans",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B03-skill-1/artifact",
+            "B03-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B03-R04",
+          "meaning": "measurement limits/costs",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B03-skill-1/artifact",
+            "B03-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B03-R05",
+          "meaning": "reproducible setup and correctness",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B03-skill-1/artifact",
+            "B03-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B03-R06",
+          "meaning": "coverage/decision truthfulness",
+          "status": "PASS",
+          "basis": "All24 semantic IDs with valid dispositions and proportionate actual-source component mapping; all material decisions have five required links.",
+          "evidence": [
+            "results.json",
+            "B03-skill-1/artifact",
+            "B03-skill-1/command-0.stdout.txt"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "independent SQL oracle, cardinality, invalid limits, tenant, ties and plan",
+          "status": "PASS",
+          "observation": {
+            "plan": [
+              {
+                "id": 6,
+                "parent": 0,
+                "notused": 59,
+                "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+              }
+            ]
+          }
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "seed.mjs",
+            "evaluator.sqlite"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B03-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B03-skill-1/command-0.stdout.txt",
+          "stderrFile": "B03-skill-1/command-0.stderr.txt"
+        },
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "apply-index.mjs",
+            "evaluator.sqlite"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B03-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B03-skill-1/command-1.stdout.txt",
+          "stderrFile": "B03-skill-1/command-1.stderr.txt"
+        }
+      ],
+      "summary": {
+        "PASS": 6,
+        "FAIL": 0,
+        "UNVERIFIED": 0
+      }
+    },
+    {
+      "id": "B04-skill-1",
+      "coverage": {
+        "normalizedUnique": 24,
+        "formatNotes": "B03-B06 use id rather than area; accepted as semantic ID spelling. Some components are named in README/reasons/evidence rather than a component field. No alias mapping for acceptance statuses into coverage dispositions.",
+        "invalidDispositionCount": 0,
+        "normalized": [
+          {
+            "area": "L01",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No network, resolver or socket path in this local SQLite worker.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L02",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No transport or certificates; no TLS boundary in this fixture.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L03",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "CLI and direct local module calls have no proxy or ingress.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L04",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Trusted local caller/file boundary; tenant or authentication service is absent and not requested.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L05",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Preserve module/CLI interface; no HTTP, RPC or streaming service.",
+            "evidence": [
+              "artifact/worker.mjs"
+            ]
+          },
+          {
+            "area": "L06",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Durable enqueue binds job identity; equal replay accepts and conflicting reuse rejects.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L07",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Validate IDs, known accounts, safe positive integers; structured failure codes and failed poison state.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L08",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Pending/effect-ledger/done lifecycle and separate terminal failure; transaction owns the local effect.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L09",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "One active worker; one job per call; finally closes CLI DB, bounded diagnostic materialization and child timeouts.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L10",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Add per-job credit ledger primary key/FKs, attempts/error columns and pending index.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L11",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Parameterized statements and indexed pending/identity queries; no ORM or performance claim.",
+            "evidence": [
+              "artifact/worker.mjs"
+            ]
+          },
+          {
+            "area": "L12",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "BEGIN IMMEDIATE effect+ledger transaction with rollback; separate acknowledgement reconciles committed effects.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L13",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "SQLite file/OS trust boundary has no SQL role/grant administration; production permissions are not requested or verified.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L14",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Local durable ledger and synchronous FULL; actual same-file process restart tested, no replication/sharding claim.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L15",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No cache, materialized view or asynchronous projection is introduced.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L16",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Local durable enqueue/replay and effect-before-ack failure boundary; no broker or external delivery guarantee.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L17",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Durable job identity, bounded persistent attempts, terminal failure and crash reconciliation.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L18",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "SQLite is covered as the selected DB; no upload/object/search/specialized store path.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L19",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No remote API, webhook, MCP adapter or external effect.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L20",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "At most one pending job and three effect attempts; finite diagnostic output; explicitly unbounded total retained queue.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L21",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Three actual process crashes and usable same-file restart plus rollback recovery tested; backup/DR not claimed.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L22",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Persistent job attempts/error and bounded structured CLI snapshots expose done/failed outcomes.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L23",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Executable original-style CLI and native Node version verified; no dependency downloads, build or deployment.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L24",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Bounded validated inputs and parameterized SQL; trusted local file/direct-writer limitation documented.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "id": "B04-R01",
+          "meaning": "durable identity",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B04-skill-1/artifact",
+            "B04-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B04-R02",
+          "meaning": "actual crash+restart",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B04-skill-1/artifact",
+            "B04-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B04-R03",
+          "meaning": "invalid/failure cleanup",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B04-skill-1/artifact",
+            "B04-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B04-R04",
+          "meaning": "bounds/local guarantee",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B04-skill-1/artifact",
+            "B04-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B04-R05",
+          "meaning": "runnable fault evidence",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B04-skill-1/artifact",
+            "B04-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B04-R06",
+          "meaning": "coverage/decision truthfulness",
+          "status": "PASS",
+          "basis": "All24 semantic IDs with valid dispositions and proportionate actual-source component mapping; all material decisions have five required links.",
+          "evidence": [
+            "results.json",
+            "B04-skill-1/artifact",
+            "B04-skill-1/command-0.stdout.txt"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "independent durable identity, actual crash73 and repeated restart",
+          "status": "PASS",
+          "observation": {
+            "crashStatus": 73
+          }
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "worker.mjs",
+            "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact\\evaluator.sqlite"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B04-skill-1/command-0.stdout.txt",
+          "stderrFile": "B04-skill-1/command-0.stderr.txt"
+        },
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "worker.mjs",
+            "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact\\evaluator.sqlite"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B04-skill-1/command-1.stdout.txt",
+          "stderrFile": "B04-skill-1/command-1.stderr.txt"
+        },
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "verify.mjs"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B04-skill-1/command-2.stdout.txt",
+          "stderrFile": "B04-skill-1/command-2.stderr.txt"
+        }
+      ],
+      "summary": {
+        "PASS": 6,
+        "FAIL": 0,
+        "UNVERIFIED": 0
+      }
+    },
+    {
+      "id": "B05-skill-1",
+      "coverage": {
+        "normalizedUnique": 24,
+        "formatNotes": "B03-B06 use id rather than area; accepted as semantic ID spelling. Some components are named in README/reasons/evidence rather than a component field. No alias mapping for acceptance statuses into coverage dispositions.",
+        "invalidDispositionCount": 0,
+        "normalized": [
+          {
+            "area": "L01",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Local file-backed SQLite uses no network or discovery.",
+            "evidence": [
+              "artifact/store.mjs"
+            ]
+          },
+          {
+            "area": "L02",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No transport or TLS boundary exists in this local maintenance task.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L03",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No ingress, gateway or deployed service.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L04",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Composite tenant/id preserved; deletion includes both keys. Application authentication is outside scope, not verified.",
+            "evidence": [
+              "evidence/verification.json checks tenant scoped deletion"
+            ]
+          },
+          {
+            "area": "L05",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Requested interfaces are local functions and CLI, with no HTTP/RPC/stream contract.",
+            "evidence": [
+              "artifact/cli.mjs"
+            ]
+          },
+          {
+            "area": "L06",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Conditional backfill and tenant-scoped deletion; bulk updates limited to two rows per batch.",
+            "evidence": [
+              "evidence/verification.json restart/replay checks"
+            ]
+          },
+          {
+            "area": "L07",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Deletion keys/count validation, missing journal and corrupt database rejection; errors propagate. Trusted CLI file size is not bounded.",
+            "evidence": [
+              "evidence/verification.json invalid ledger/corrupt backup checks"
+            ]
+          },
+          {
+            "area": "L08",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Explicit expansion/backfill/completion and staged restoration lifecycle; only ready target returned.",
+            "evidence": [
+              "artifact/store.mjs"
+            ]
+          },
+          {
+            "area": "L09",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Native synchronous SQLite; connections close; abrupt process loss and restart exercised. General memory/OS pressure outside requested scope.",
+            "evidence": [
+              "evidence/verification.json abrupt process loss check"
+            ]
+          },
+          {
+            "area": "L10",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Additive state column, preserved primary key and schema2 only after backfill.",
+            "evidence": [
+              "evidence/verification.json interruption/restart state snapshots"
+            ]
+          },
+          {
+            "area": "L11",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Parameterized tenant/id mutation, old SELECT preserved. No query-speed optimization or universal plan claim.",
+            "evidence": [
+              "evidence/verification.json old SELECT compatibility check"
+            ]
+          },
+          {
+            "area": "L12",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "BEGIN IMMEDIATE expansion/batches/completion; committed hook interruption is resumable.",
+            "evidence": [
+              "evidence/verification.json interruption and abrupt exit checks"
+            ]
+          },
+          {
+            "area": "L13",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Backup/restore source opened read-only, destinations must be new. OS authorization trusted; SQLite SQL GRANT/RLS unavailable.",
+            "evidence": [
+              "evidence/verification.json overwrite refusal and source hashes"
+            ]
+          },
+          {
+            "area": "L14",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Actual SQLite files, consistent snapshot includes WAL; SHA256 used only for integrity comparison. No replication/sharding.",
+            "evidence": [
+              "evidence/verification.json engine snapshot includes committed WAL data"
+            ]
+          },
+          {
+            "area": "L15",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No cache, derived view or external projection in the supplied fixture.",
+            "evidence": [
+              "artifact/store.mjs"
+            ]
+          },
+          {
+            "area": "L16",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No messaging, CDC or remote effect. Deletion journal is an explicit local input.",
+            "evidence": [
+              "artifact/deletions.json"
+            ]
+          },
+          {
+            "area": "L17",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Migration is synchronous explicit operator invocation; no worker/lease/scheduler introduced.",
+            "evidence": [
+              "artifact/cli.mjs"
+            ]
+          },
+          {
+            "area": "L18",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Separate snapshot, private staging and recovered SQLite files; target not published before reconciliation.",
+            "evidence": [
+              "evidence/verification.json isolated recovery checks"
+            ]
+          },
+          {
+            "area": "L19",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No external API, webhook or downloaded dependency.",
+            "evidence": [
+              "artifact/store.mjs imports"
+            ]
+          },
+          {
+            "area": "L20",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "At most two rows per batch, ledger cap, three measured local restores; cost/scan limits documented without production capacity claims.",
+            "evidence": [
+              "evidence/verification.json recoverySamplesMs; artifact/README.md"
+            ]
+          },
+          {
+            "area": "L21",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Actual isolated v1 backup and v2 restoration; original/backup remain hash-identical; corruption refused.",
+            "evidence": [
+              "evidence/verification.json isolated recovery 1/2/3; corrupt backup checks"
+            ]
+          },
+          {
+            "area": "L22",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Retained command stdout/stderr, row/schema snapshots, hashes and raw recovery timing; no deployed telemetry/SLO claim.",
+            "evidence": [
+              "evidence/verification.json"
+            ]
+          },
+          {
+            "area": "L23",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Reproducible local setup/interruption/restart/backup/restore; compatible expansion and repeat execution verified. No live rollout.",
+            "evidence": [
+              "evidence/verification.json commands; artifact/README.md"
+            ]
+          },
+          {
+            "area": "L24",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Post-backup deletion policy reconciled before returning target and tenant scope checked; trusted file/ledger authority explicit.",
+            "evidence": [
+              "evidence/verification.json tenant/deletion checks; artifact/README.md"
+            ]
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "id": "B05-R01",
+          "meaning": "compatible additive schema",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B05-skill-1/artifact",
+            "B05-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B05-R02",
+          "meaning": "bounded restartable backfill",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B05-skill-1/artifact",
+            "B05-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B05-R03",
+          "meaning": "backup/deletion-aware isolation",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B05-skill-1/artifact",
+            "B05-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B05-R04",
+          "meaning": "actual measured restore and limits",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B05-skill-1/artifact",
+            "B05-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B05-R05",
+          "meaning": "coverage/decision truthfulness",
+          "status": "PASS",
+          "basis": "All24 semantic IDs with valid dispositions and proportionate actual-source component mapping; all material decisions have five required links.",
+          "evidence": [
+            "results.json",
+            "B05-skill-1/artifact",
+            "B05-skill-1/command-0.stdout.txt"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "independent bounded interrupted migration and isolated deletion-aware recovery",
+          "status": "PASS",
+          "observation": {
+            "elapsedMs": 41.599599999999555,
+            "boundary": "One local sample, no RTO guarantee"
+          }
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "verify.mjs"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B05-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B05-skill-1/command-0.stdout.txt",
+          "stderrFile": "B05-skill-1/command-0.stderr.txt"
+        }
+      ],
+      "summary": {
+        "PASS": 5,
+        "FAIL": 0,
+        "UNVERIFIED": 0
+      }
+    },
+    {
+      "id": "B06-skill-1",
+      "coverage": {
+        "normalizedUnique": 24,
+        "formatNotes": "B03-B06 use id rather than area; accepted as semantic ID spelling. Some components are named in README/reasons/evidence rather than a component field. No alias mapping for acceptance statuses into coverage dispositions.",
+        "invalidDispositionCount": 0,
+        "normalized": [
+          {
+            "area": "L01",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Real 127.0.0.1 TCP HTTP sockets; bounded connections, body timeout and helper cleanup. DNS/discovery beyond literal loopback are outside this fixture.",
+            "evidence": [
+              "verification.json",
+              "extra-verification.json",
+              "artifact/service.mjs"
+            ]
+          },
+          {
+            "area": "L02",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Contract explicitly selects isolated cleartext loopback; no real certificates, TLS termination or production transport identity.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L03",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No proxy, ingress gateway, CDN or load balancer exists in this direct local HTTP integration.",
+            "evidence": [
+              "artifact/service.mjs"
+            ]
+          },
+          {
+            "area": "L04",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "HMAC-authenticated fixed north identity; current authorization precedes replay, and SQL object lookup/update includes tenant.",
+            "evidence": [
+              "verification.json",
+              "extra-verification.json",
+              "artifact/service.mjs"
+            ]
+          },
+          {
+            "area": "L05",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Explicit HTTP/1.1 webhook route and bounded JSON errors; MCP absent and documented unsupported.",
+            "evidence": [
+              "artifact/README.md",
+              "verification.json"
+            ]
+          },
+          {
+            "area": "L06",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Only created-to-shipped conditional update and receipt create/replay contract; other CRUD/bulk routes absent.",
+            "evidence": [
+              "artifact/service.mjs",
+              "verification.json"
+            ]
+          },
+          {
+            "area": "L07",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Exact raw-byte signature, finite body limit, UTF-8/schema/header validation and safe response projection.",
+            "evidence": [
+              "verification.json",
+              "extra-verification.json"
+            ]
+          },
+          {
+            "area": "L08",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Single request handler owns authentication, parsing, tenant lookup, local transaction and postcommit ACK.",
+            "evidence": [
+              "artifact/service.mjs",
+              "verification.json"
+            ]
+          },
+          {
+            "area": "L09",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "16 active bodies, 32 connections, finite bytes/timers, synchronous database limitation documented; overload cleanup tested.",
+            "evidence": [
+              "extra-verification.json",
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L10",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Orders tenant-inclusive primary key and receipts unique event primary key; durable raw payload BLOB.",
+            "evidence": [
+              "artifact/service.mjs",
+              "query-plans.json"
+            ]
+          },
+          {
+            "area": "L11",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Parameterized statements and scoped SQL; observed primary-key index query plans. No optimization or representative production-cardinality claim.",
+            "evidence": [
+              "query-plans.json",
+              "artifact/service.mjs"
+            ]
+          },
+          {
+            "area": "L12",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "BEGIN IMMEDIATE receipt/effect transaction, conditional update, rollback injection and three simultaneous-first-delivery checks.",
+            "evidence": [
+              "verification.json",
+              "extra-verification.json"
+            ]
+          },
+          {
+            "area": "L13",
+            "disposition": "RELEVANT_UNVERIFIED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "SQLite file/OS owner can bypass application policy. No SQL GRANT/RLS; filesystem privilege isolation and disk administration were not exercised.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L14",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Single file-backed SQLite and keyed HMAC-SHA256; exact bytes bind replay without relying on digest equality. Replication/sharding not requested.",
+            "evidence": [
+              "artifact/service.mjs",
+              "after-restart.json"
+            ]
+          },
+          {
+            "area": "L15",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No cache, materialized view or separate derived store is involved.",
+            "evidence": [
+              "artifact/service.mjs"
+            ]
+          },
+          {
+            "area": "L16",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Transactional inbox receipts bind event identity before ACK; no external broker, publication or global exactly-once claim.",
+            "evidence": [
+              "verification.json",
+              "extra-verification.json"
+            ]
+          },
+          {
+            "area": "L17",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Processing is synchronous and completes locally before ACK; no durable worker or schedule is requested.",
+            "evidence": [
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L18",
+            "disposition": "OUT_OF_SCOPE",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "No upload/object/search/specialized-store integration; SQLite database files are covered under L10/L14.",
+            "evidence": [
+              "artifact/service.mjs"
+            ]
+          },
+          {
+            "area": "L19",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Synthetic carrier webhook adapter implemented; MCP runtime explicitly unsupported, missing adapter work listed. No live carrier requests.",
+            "evidence": [
+              "artifact/README.md",
+              "verification.json"
+            ]
+          },
+          {
+            "area": "L20",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Per-request bytes and active-admission limits tested for rejection and recovery; local closed concurrency only, no throughput/SLO/cost claim.",
+            "evidence": [
+              "extra-verification.json",
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L21",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Injected precommit rollback and real process restart replay/integrity verified; backup/power-loss recovery remains unperformed and unclaimed.",
+            "evidence": [
+              "verification.json",
+              "before-restart.json",
+              "after-restart.json"
+            ]
+          },
+          {
+            "area": "L22",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Durable receipt identity and verification-only transition audit evidence; bounded safe errors. Production telemetry/export queues not part of request.",
+            "evidence": [
+              "verification.json",
+              "extra-verification.json",
+              "artifact/README.md"
+            ]
+          },
+          {
+            "area": "L23",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Native Node24.12.0 built-ins, syntax checks, loopback CLI startup, actual child restart/shutdown. No installs/deployments; vulnerability scan/provenance not performed.",
+            "evidence": [
+              "child-output.json",
+              "verification-run1.log",
+              "artifact/service.mjs"
+            ]
+          },
+          {
+            "area": "L24",
+            "disposition": "IMPLEMENTED_OR_CHANGED",
+            "component": "source/README mapping retained in reason/evidence",
+            "reason": "Malformed authentication, raw tampering, tenant/field denial, finite parsing, safe errors and explicit retention/trust boundary. Rotation/privacy deletion not exercised.",
+            "evidence": [
+              "verification.json",
+              "extra-verification.json",
+              "artifact/README.md"
+            ]
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "id": "B06-R01",
+          "meaning": "raw signature/freshness",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B06-skill-1/artifact",
+            "B06-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B06-R02",
+          "meaning": "validation/tenant/body",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B06-skill-1/artifact",
+            "B06-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B06-R03",
+          "meaning": "durable identity+atomicity",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B06-skill-1/artifact",
+            "B06-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B06-R04",
+          "meaning": "restart/conflict/fault",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B06-skill-1/artifact",
+            "B06-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B06-R05",
+          "meaning": "HTTP/SQLite and absent MCP",
+          "status": "PASS",
+          "basis": "Evaluator-authored runtime/SQLite assertions and inspected actual implementation; attributed copied verification replay broadens B04-B06 edge coverage.",
+          "evidence": [
+            "results.json",
+            "B06-skill-1/artifact",
+            "B06-skill-1/command-0.stdout.txt"
+          ]
+        },
+        {
+          "id": "B06-R06",
+          "meaning": "coverage/decision truthfulness",
+          "status": "PASS",
+          "basis": "All24 semantic IDs with valid dispositions and proportionate actual-source component mapping; all material decisions have five required links.",
+          "evidence": [
+            "results.json",
+            "B06-skill-1/artifact",
+            "B06-skill-1/command-0.stdout.txt"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "name": "independent raw HMAC, deny mutation, atomic precommit rollback, restart replay",
+          "status": "PASS"
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "verify.mjs"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B06-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B06-skill-1/command-0.stdout.txt",
+          "stderrFile": "B06-skill-1/command-0.stderr.txt"
+        },
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "verify-extra.mjs"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B06-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B06-skill-1/command-1.stdout.txt",
+          "stderrFile": "B06-skill-1/command-1.stderr.txt"
+        }
+      ],
+      "summary": {
+        "PASS": 6,
+        "FAIL": 0,
+        "UNVERIFIED": 0
+      }
+    }
+  ],
+  "b03Measurements": {
+    "rawEncoding": "UTF16LE with BOM retained",
+    "sampleCounts": {
+      "whale": {
+        "before": 3,
+        "after": 3
+      },
+      "tenant-17": {
+        "before": 3,
+        "after": 3
+      }
+    },
+    "beforeSQL": "SELECT * FROM parcels WHERE tenant=? ORDER BY created_at DESC",
+    "afterSQL": "SELECT id,created_at FROM parcels WHERE tenant=? AND status='ready' ORDER BY created_at DESC,id DESC LIMIT ?",
+    "beforePlan": {
+      "whale": [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 174,
+          "detail": "SCAN parcels"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      "tenant-17": [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 174,
+          "detail": "SCAN parcels"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ]
+    },
+    "afterPlan": {
+      "whale": [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 59,
+          "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+        }
+      ],
+      "tenant-17": [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 59,
+          "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+        }
+      ]
+    },
+    "comparison": "Baseline-query and original frozen query retained; original 60000-row seed retained and independently regenerated unchanged. Before/after raw6samples each, original benchmark semantics; source change reduces materialization. OS cache uncontrolled and results descriptive; rows examined/I/O/peak memory/p99 unavailable. No reconstructed baseline generated by evaluator."
+  }
+}

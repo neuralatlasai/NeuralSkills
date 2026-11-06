@@ -1,0 +1,52 @@
+# Verification and release evidence
+
+Use for M8 and applicable M6/M7. A plan is not a result; a source-code assertion is not rendered/AT/field evidence. Set criteria before running, retain failures, repair defects and repeat affected checks. Report statuses `PASS`, `FAIL`, `UNVERIFIED`, `NOT_APPLICABLE` with actual evidence/rationale.
+
+## Proportionate interface verification
+
+| Artifact | Minimum meaningful coverage | Additional checks when applicable |
+| --- | --- | --- |
+| Small component | Actual action/state behavior, keyboard/focus, accessible name, applicable visual states and rendering | Duplicate pending submission, validation, layout under long label |
+| Page/reproduction | Primary task, desktop+narrow renders, hierarchy/type/spacing/reference conditions, keyboard and content | Font/assets fidelity, loading/empty/error, intermediate width, contrast/zoom |
+| Flow/application | Complete primary journey and recovery, navigation/back/reload, state ownership, cross-screen consistency | Request races, unsaved inputs, permissions/tenant, stale/offline/partial failure, workload profiling |
+| Design system | Token/component contract consistency, representative variants and usage | Theme/localization/migration, runtime performance of implemented components |
+| Design-only | Specification completeness, visual/content review, behavior and inclusive operation specified | Runtime, AT, backend and performance remain unverified until implemented/tested |
+
+For web accessibility, separately record automated scan (tool/version/rules), manual keyboard/focus, manual zoom/reflow, contrast/content and AT/browser pair. No scanner alone determines conformance. Use actual checks rather than marking the whole accessibility target PASS from a few DOM assertions.
+
+For visual review use a predefined brief-specific rubric: identity/fidelity where applicable, primary task hierarchy, typography/readability, alignment/spacing, density/content fit, component consistency and interaction clarity. Review rendered outputs at declared viewports/fonts. A favorable visual assessment cannot cancel a functional/accessibility failure. If independent evaluation is possible, give reviewers raw task inputs and anonymized artifacts, not the preferred outcome. Do not claim user validation from agent reviews or statistical confidence from small samples.
+
+## Reproducible package checks
+
+Run from the skill directory with Node 24+. Inspect `package.json` scripts before running. The Node validator is intentionally bounded; it is not an Agent Skills reference-library or complete JSON Schema conformance implementation. Read its report's checks and limits.
+
+```text
+node scripts/validate.mjs
+node scripts/test-tools.mjs
+node scripts/measure.mjs --help
+node scripts/serve.mjs --help
+```
+
+The lab-specific build/test/render commands and discovered browser/module options are maintained in [lab fixture instructions](../evals/fixtures/lab/README.md). The browser path is host configuration. Do not infer that another host has the same binaries. The fixture tests exercise a limited native TypeScript/CSS interface; they are not every evaluation case or an application benchmark.
+
+Measure important comparisons at least three times; retain raw run conditions and values, report median/range and actual count. A loopback fixture has no field visits. Browser timings and synthetic feedback/operation durations must keep their own names, units and provenance rather than being relabeled INP or p75 CWV. Performance targets require independent future product telemetry when unavailable locally.
+
+## Construction gates (ordered)
+
+| Gate | Exit evidence |
+| --- | --- |
+| G1 Contract established | Supported tasks/input/output, exclusions, runtime and real capabilities, acceptance criteria |
+| G2 Evidence sufficient | Source skills inspected, relevant references and standards applicability, provenance and adoption/limitation records |
+| G3 Architecture coherent | Routing, ≤8 module contracts, shared schemas/state authority and frozen bounded evaluations |
+| G4 Package implemented | Complete instructions/resources, scripts and real host boundaries |
+| G5 Structural checks passed | Metadata and resolving links, schema/dependency checks, every script's success/failure paths |
+| G6 Behavior evaluated | Fresh-context activation/routing and actual tasks, constraint/interface checks, baseline comparison and repeat variation |
+| G7 Delivery verified | Manifest, reproducible evidence, explicit demonstrated scope/remaining limits and precise completion statement |
+
+Gate PASS requires all required evidence; annotate scope. Required FAIL/UNVERIFIED prevents an unqualified complete claim. Future unavailable field performance is a target/limitation, not a locally verified release result. A gate report may truthfully show a partially validated package; never silently soften the gate to pass it.
+
+Start with three substantive evaluation/revision cycles. Record a defect's original failure, correction, affected artifacts and rerun. Expand cycles only for a concrete remaining failure/coverage gap. Preserve initial evidence. Keep held-out cases out of instruction tuning; a held-out failure may be reported, but tuning to it requires a replacement holdout before claiming held-out evaluation again.
+
+## Evidence records
+
+Each result needs a requirement/check ID, status, evidence path or actual observation, run conditions and limits. Keep supplied evidence, author inference, implementation and measured outcome distinguishable. Record actual sample counts, time and resource usage where exposed; leave unavailable token counts/cost unavailable. Do not infer resource usage from response length. Frozen rubrics/thresholds must precede results. The evaluation protocol contains the case arms, repeat plan and reporting rules.

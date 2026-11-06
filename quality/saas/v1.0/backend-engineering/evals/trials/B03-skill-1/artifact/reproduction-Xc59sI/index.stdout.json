@@ -1,0 +1,22 @@
+{
+  "before": {
+    "pageCount": 4300,
+    "pageSize": 4096,
+    "freePages": 0,
+    "databaseFileBytes": 17612800,
+    "walFileBytes": 0
+  },
+  "after": {
+    "pageCount": 4310,
+    "pageSize": 4096,
+    "freePages": 0,
+    "databaseFileBytes": 17612800,
+    "walFileBytes": 49472
+  },
+  "elapsedMs": 98.4698,
+  "index": {
+    "name": "parcels_ready_tenant_order",
+    "sql": "CREATE INDEX parcels_ready_tenant_order ON parcels(tenant,created_at DESC,id DESC) WHERE status='ready'"
+  },
+  "note": "Logical allocated pages and observed file/WAL sizes; not physical I/O or isolated index size."
+}

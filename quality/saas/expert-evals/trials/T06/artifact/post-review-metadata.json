@@ -1,0 +1,17 @@
+{
+    "scope":  "Separately authorized post-trial source-derived repair",
+    "startUtc":  "2026-11-06T03:33:38.3021152Z",
+    "endUtc":  "2026-11-06T03:35:17.8913571Z",
+    "elapsedSeconds":  99.58924189999999,
+    "underlyingToolCount":  5,
+    "originalFreshTrialToolCount":  9,
+    "originalFreshTrialElapsedSeconds":  208.6034641,
+    "originalRunMetadataUnchanged":  true,
+    "snapshotFilesVerified":  6,
+    "preFixProbeExit":  1,
+    "postFixProbeExit":  0,
+    "unchangedExistingSuiteExit":  0,
+    "snapshotInstrumentationFailure":  "SHA256.HashData unavailable; corrected before artifact mutation",
+    "tokens":  null,
+    "cost":  null
+}

@@ -1,0 +1,584 @@
+{
+  "caseId": "B01",
+  "arm": "skill",
+  "run": 2,
+  "route": "PATCH /tickets/:id; preserve GET /tickets/:id",
+  "coverageDispositions": [
+    {
+      "area": "L01",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "loopback TCP socket",
+      "reason": "Actual HTTP binds 127.0.0.1 and closes server; DNS and production network excluded.",
+      "evidence": "evidence/verification-2.json"
+    },
+    {
+      "area": "L02",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "local cleartext HTTP",
+      "reason": "Fixture explicitly uses isolated cleartext; no certificates or TLS required.",
+      "evidence": null
+    },
+    {
+      "area": "L03",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "direct local server",
+      "reason": "No proxy, CDN, gateway or load balancer in supplied fixture.",
+      "evidence": null
+    },
+    {
+      "area": "L04",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "registry and scoped PATCH",
+      "reason": "Editor permission and tenant-inclusive predicates; spoofed headers ignored. Registry is fixture authority only.",
+      "evidence": "evidence/verification-2.json#identity-permission,missing-tenant-object,reopen-persistence"
+    },
+    {
+      "area": "L05",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "HTTP JSON PATCH",
+      "reason": "Real HTTP/1.1 route and JSON response; GET preserved; other protocols excluded.",
+      "evidence": "evidence/verification-2.json"
+    },
+    {
+      "area": "L06",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "PATCH partial update",
+      "reason": "Allowlisted fields, null/absence and version-only semantics verified. Other CRUD unchanged.",
+      "evidence": "evidence/verification-2.json#allowed-fields-and-projection,exact-byte-limit-version-only"
+    },
+    {
+      "area": "L07",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "bounded JSON reader and validation",
+      "reason": "2048 encoded bytes; 5000ms body timer; schema/media/error codes.",
+      "evidence": "evidence/verification-2.json#schema-invalid,malformed-media-size; evidence/faults.stdout.txt"
+    },
+    {
+      "area": "L08",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "single handler and atomic statement",
+      "reason": "Identity -> permission -> media/bytes/schema -> SQL -> public projection; no framework introduced.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L09",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "native Node and synchronous SQLite",
+      "reason": "Actual runtime reported; per-body memory/time bounded; global process capacity not assessed.",
+      "evidence": "evidence/verification-2.json#runtime; artifact/README.md"
+    },
+    {
+      "area": "L10",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "existing tickets schema",
+      "reason": "Original tenant/id primary key and seed behavior preserved; no migration.",
+      "evidence": "artifact/original/service.mjs; evidence/verification-2.json#runtime"
+    },
+    {
+      "area": "L11",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "parameterized indexed update/read",
+      "reason": "Fixed SQL identifiers; explicit tenant predicate and public projection; actual read plan recorded at N=3.",
+      "evidence": "artifact/service.mjs; evidence/verification-2.json#runtime"
+    },
+    {
+      "area": "L12",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "SQLite conditional UPDATE RETURNING",
+      "reason": "One-row CAS includes version and increments atomically; actual same-version HTTP competition. Multi-row invariants excluded.",
+      "evidence": "evidence/verification-2.json#concurrent-cas"
+    },
+    {
+      "area": "L13",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "SQLite OS/file ownership",
+      "reason": "No SQL roles/GRANT in SQLite or administrative change required; file-owner trust disclosed.",
+      "evidence": null
+    },
+    {
+      "area": "L14",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "single file-backed SQLite",
+      "reason": "DELETE journal/synchronous settings observed and close/reopen verified; crash/power-loss/replication excluded.",
+      "evidence": "evidence/verification-2.json#runtime,reopen-persistence"
+    },
+    {
+      "area": "L15",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "no cache",
+      "reason": "Fixture has no cache or derived read model.",
+      "evidence": null
+    },
+    {
+      "area": "L16",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "no messaging",
+      "reason": "Synchronous database operation has no broker, CDC or external effect.",
+      "evidence": null
+    },
+    {
+      "area": "L17",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "no workers",
+      "reason": "No durable background task or schedule requested.",
+      "evidence": null
+    },
+    {
+      "area": "L18",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "no object/search stores",
+      "reason": "SQLite file belongs to L14; no uploaded files or specialized store.",
+      "evidence": null
+    },
+    {
+      "area": "L19",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "no external integration",
+      "reason": "Only local HTTP/SQLite; no external API/webhook/MCP path.",
+      "evidence": null
+    },
+    {
+      "area": "L20",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "request payload/time bounds",
+      "reason": "Enforces task payload budget only. No throughput/cost/scaling assertion; global socket admission unverified.",
+      "evidence": "evidence/verification-2.json#malformed-media-size; evidence/faults.stdout.txt"
+    },
+    {
+      "area": "L21",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "close/reopen lifecycle",
+      "reason": "Reopened isolated database preserves winning mutation and tenant state; backup/crash/full-disk recovery not claimed.",
+      "evidence": "evidence/verification-2.json#reopen-persistence"
+    },
+    {
+      "area": "L22",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "production telemetry",
+      "reason": "Task requests correctness evidence, which is retained. No logging, metrics or audit subsystem exists or was requested.",
+      "evidence": null
+    },
+    {
+      "area": "L23",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "local runnable artifact",
+      "reason": "No deployment/infrastructure/build pipeline change; native built-ins require no installation.",
+      "evidence": null
+    },
+    {
+      "area": "L24",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "field/tenant/input boundaries",
+      "reason": "Mass assignment denied, safe public projection/errors, no new dependency or secret transmission. Production credential lifecycle excluded.",
+      "evidence": "evidence/verification-2.json#schema-invalid,allowed-fields-and-projection"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "B01-R01",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification-2.json#allowed-fields-and-projection",
+        "evidence/verification-2.json#exact-byte-limit-version-only",
+        "evidence/verification-2.json#schema-invalid",
+        "evidence/verification-2.json#stale-version"
+      ]
+    },
+    {
+      "id": "B01-R02",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification-2.json#identity-permission",
+        "evidence/verification-2.json#missing-tenant-object",
+        "evidence/verification-2.json#reopen-persistence"
+      ]
+    },
+    {
+      "id": "B01-R03",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification-2.json#concurrent-cas"
+      ]
+    },
+    {
+      "id": "B01-R04",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification-2.json#schema-invalid",
+        "evidence/verification-2.json#malformed-media-size"
+      ]
+    },
+    {
+      "id": "B01-R05",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification-2.json#get-compatible",
+        "evidence/verification-2.json#reopen-persistence"
+      ]
+    },
+    {
+      "id": "B01-R06",
+      "status": "PASS",
+      "evidence": "result.json coverageDispositions and decisions; artifact/README.md"
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "B01-R01",
+      "mechanism": "Allowlist version/title/note; trim title; preserve absent fields with CASE flags; null only note; public RETURNING projection.",
+      "limit": "Title 120 and note 500 UTF-16 code units; positive safe integer version; body 2048 bytes.",
+      "failure": "400 invalid/unknown fields;409 stale; no partial mutation; lost acknowledgement requires GET reconciliation.",
+      "verification": "3 final actual HTTP repetitions; boundary, null, absence, invalid, stale and projection checks pass."
+    },
+    {
+      "requirement": "B01-R02",
+      "mechanism": "Existing trusted registry -> editor flag -> tenant-inclusive SQL. Headers carry no tenant authority.",
+      "limit": "Three fixed fixture identities; file owner can bypass app checks; no production credential lifecycle.",
+      "failure": "401 unknown identity;403 reader;404 tenant-local absence; no foreign-row disclosure.",
+      "verification": "HTTP denial, spoofed headers, both tenants sharing t1, south-only object and reopen checks pass."
+    },
+    {
+      "requirement": "B01-R03",
+      "mechanism": "One atomic UPDATE WHERE tenant/id/version RETURNING; increment version inside SQL.",
+      "limit": "One synchronous process and one file-backed SQLite connection per service; no multi-row invariant or distributed deployment claim.",
+      "failure": "One same-version winner, one409; busy/unexpected storage errors safe500 and no automatic retry.",
+      "verification": "Two concurrent HTTP requests repeated in three fresh final runs; durable winner and version observed."
+    },
+    {
+      "requirement": "B01-R04",
+      "mechanism": "Media gate, declared-length early reject, streamed byte count before JSON parse, strict UTF-8 decode, schema gate, 5s body deadline, close response connection.",
+      "limit": "2048 accumulated encoded bytes; network chunk/native/socket memory is outside accumulation cap; no global admission limit.",
+      "failure": "400 malformed/schema/deadline;413 oversized;415 unsupported type/encoding; request consumption paused on error.",
+      "verification": "Malformed, media, encoding, declared/chunked/multibyte oversize and exact boundary pass; slow-body fault evidence retained."
+    },
+    {
+      "requirement": "B01-R05",
+      "mechanism": "Copy original fixture; preserve GET projection/schema; retain runnable built-ins-only verification using real TCP HTTP and file-backed SQLite.",
+      "limit": "Node24.12.0 / SQLite3.50.4 / Windowsx64; DELETE journal synchronous2; close/reopen is not power-loss recovery.",
+      "failure": "Original and failed instrumentation retained; required runtime/HTTP/reopen behavior would remain FAIL or UNVERIFIED if absent.",
+      "verification": "Initial9 and three final10-check runs pass; complete stdout/stderr and database files retained."
+    },
+    {
+      "requirement": "B01-R06",
+      "mechanism": "Explicit24-area dispositions separate from acceptance outcomes; decisions state mechanisms, limits, failures and evidence.",
+      "limit": "Proportional isolated fixture scope; no production/performance/cost/quality guarantee.",
+      "failure": "Unavailable exact first-call timestamp, tokens and cost remain unknown; no unsupported claims.",
+      "verification": "Output structural checks validate24 unique areas, declared vocabularies, six requirement IDs and evidence files."
+    }
+  ],
+  "checks": [
+    {
+      "id": "run-2:get-compatible",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#get-compatible",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:identity-permission",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#identity-permission",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:schema-invalid",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#schema-invalid",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:malformed-media-size",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#malformed-media-size",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:missing-tenant-object",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#missing-tenant-object",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:allowed-fields-and-projection",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#allowed-fields-and-projection",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:exact-byte-limit-version-only",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#exact-byte-limit-version-only",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:stale-version",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#stale-version",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:concurrent-cas",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#concurrent-cas",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-2:reopen-persistence",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 2",
+      "exitCode": 0,
+      "evidence": "evidence/verification-2.json#reopen-persistence",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:get-compatible",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#get-compatible",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:identity-permission",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#identity-permission",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:schema-invalid",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#schema-invalid",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:malformed-media-size",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#malformed-media-size",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:missing-tenant-object",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#missing-tenant-object",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:allowed-fields-and-projection",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#allowed-fields-and-projection",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:exact-byte-limit-version-only",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#exact-byte-limit-version-only",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:stale-version",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#stale-version",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:concurrent-cas",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#concurrent-cas",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-3:reopen-persistence",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 3",
+      "exitCode": 0,
+      "evidence": "evidence/verification-3.json#reopen-persistence",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:get-compatible",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#get-compatible",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:identity-permission",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#identity-permission",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:schema-invalid",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#schema-invalid",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:malformed-media-size",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#malformed-media-size",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:missing-tenant-object",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#missing-tenant-object",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:allowed-fields-and-projection",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#allowed-fields-and-projection",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:exact-byte-limit-version-only",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#exact-byte-limit-version-only",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:stale-version",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#stale-version",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:concurrent-cas",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#concurrent-cas",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "run-4:reopen-persistence",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs 4",
+      "exitCode": 0,
+      "evidence": "evidence/verification-4.json#reopen-persistence",
+      "kind": "actual HTTP + file-backed native SQLite integration"
+    },
+    {
+      "id": "slow-body-total-deadline",
+      "status": "PASS",
+      "command": "node artifact/faults.mjs",
+      "exitCode": 0,
+      "evidence": "evidence/faults.stdout.txt; evidence/faults.stderr.txt",
+      "kind": "actual HTTP fault/deadline"
+    },
+    {
+      "id": "setup-clock-command",
+      "status": "FAIL",
+      "command": "Get-Date -AsUTC -Format o",
+      "exitCode": 1,
+      "evidence": "evidence/setup-failure.txt",
+      "kind": "setup instrumentation; repaired using [DateTime]::UtcNow"
+    },
+    {
+      "id": "result-contract",
+      "status": "PASS",
+      "command": "node artifact/validate-result.mjs",
+      "exitCode": 0,
+      "evidence": "evidence/structure.stdout.txt; artifact/validate-result.mjs",
+      "kind": "contract and retained-evidence verification"
+    }
+  ],
+  "evidence": [
+    "artifact/service.mjs",
+    "artifact/verify.mjs",
+    "artifact/faults.mjs",
+    "artifact/README.md",
+    "artifact/original",
+    "evidence/verification-1.json",
+    "evidence/verification-2.json",
+    "evidence/verification-3.json",
+    "evidence/verification-4.json",
+    "evidence/run-1.stdout.txt",
+    "evidence/run-1.stderr.txt",
+    "evidence/run-2.stdout.txt",
+    "evidence/run-2.stderr.txt",
+    "evidence/run-3.stdout.txt",
+    "evidence/run-3.stderr.txt",
+    "evidence/run-4.stdout.txt",
+    "evidence/run-4.stderr.txt",
+    "evidence/faults.stdout.txt",
+    "evidence/faults.stderr.txt",
+    "evidence/tool-calls.json",
+    "evidence/inspected-sources",
+    "artifact/validate-result.mjs"
+  ],
+  "assumptions": [
+    "Character limits count JavaScript UTF-16 code units; title length is measured after trim.",
+    "A version-only PATCH is accepted and increments version while retaining title/note.",
+    "Exact first tool-call UTC is not exposed. First explicitly observed clock is 2026-11-05T17:25:09.2922864Z, after three setup calls; no invented start time or whole-trial elapsed is reported."
+  ],
+  "limitations": [
+    "startUtc and elapsedSeconds are null because the true first tool-call clock was not retained; endUtc is actual. First observed clock and command timing records remain available.",
+    "Only loopback cleartext HTTP and native local SQLite tested, N=3 rows; no production authentication/TLS/proxy/overload/backup/power-loss/multi-process contention tests.",
+    "No token, billed cost or exact model telemetry exposed.",
+    "No global socket/admission/RSS limits or process capacity measured. SQLite native warning remains in stderr."
+  ],
+  "startUtc": null,
+  "endUtc": "2026-11-05T17:30:02.908Z",
+  "elapsedSeconds": null,
+  "actualTokens": null,
+  "tokenAvailability": "Unavailable: host does not expose trial token usage.",
+  "actualCost": null,
+  "costAvailability": "Unavailable: no billing telemetry.",
+  "toolCalls": 12,
+  "toolCallAvailability": "Counted actual nested tool calls in this isolated trial, including the final structural verification call; wrappers excluded. No collaboration or children.",
+  "limits": {
+    "wallSeconds": 360,
+    "toolCalls": 20,
+    "breaches": []
+  }
+}

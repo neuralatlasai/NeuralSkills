@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#214d3b"><title>Find a field guide</title>
+<link rel="stylesheet" href="./style.css"><script type="module" src="./dist/app.js"></script>
+</head>
+<body>
+<main class="guide-finder">
+<header><p class="eyebrow"><span aria-hidden="true">↟</span> The field library</p><h1>Find a field guide</h1><p class="intro">A little knowledge for your next outdoor discovery.</p></header>
+<form id="search-form">
+<label for="query">What would you like to explore?</label>
+<div class="search-row"><input id="query" name="query" type="search" required maxlength="200" placeholder="Try cedar or moss" autocomplete="off" aria-describedby="search-hint"><button type="submit">Search <span aria-hidden="true">→</span></button></div>
+<p id="search-hint" class="hint">Search by plant, habitat, or a subject that interests you.</p>
+</form>
+<section class="results" aria-labelledby="results-title">
+<div class="section-heading"><h2 id="results-title">Your next discovery</h2><span class="tag">Local demo</span></div>
+<p id="status" role="status" aria-live="polite" aria-atomic="true">Start with a subject to find a guide.</p>
+<div id="content" aria-busy="false"><p class="initial">From woodland trails to city pavements, there’s always something to notice.</p></div>
+<button id="retry" class="secondary" type="button" hidden>Retry search</button>
+</section>
+<footer>Fixture searches: <strong>cedar</strong>, <strong>moss</strong>, <strong>empty</strong>, <strong>fail</strong>.</footer>
+</main>
+</body>
+</html>

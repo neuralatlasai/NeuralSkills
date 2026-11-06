@@ -1,0 +1,61 @@
+{
+  "method": "sRGB relative luminance contrast of authored opaque CSS pairs",
+  "pairs": [
+    {
+      "name": "button default",
+      "foreground": "#ffffff",
+      "background": "#243c52",
+      "ratio": 11.393251990956148,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "button hover",
+      "foreground": "#ffffff",
+      "background": "#182d40",
+      "ratio": 14.110764293036263,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "body text",
+      "foreground": "#202b38",
+      "background": "#f7f8fa",
+      "ratio": 13.498130059536635,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "muted text",
+      "foreground": "#536171",
+      "background": "#f7f8fa",
+      "ratio": 5.959424488093987,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "error text",
+      "foreground": "#a32525",
+      "background": "#f7f8fa",
+      "ratio": 6.937403638211474,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "success text",
+      "foreground": "#22603d",
+      "background": "#f7f8fa",
+      "ratio": 7.036450907564007,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "focus against adjacent surface",
+      "foreground": "#1763d1",
+      "background": "#f7f8fa",
+      "ratio": 5.28139215378017,
+      "threshold": 3,
+      "status": "PASS"
+    }
+  ]
+}

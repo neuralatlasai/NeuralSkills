@@ -1,0 +1,8 @@
+{
+  "id": "setup-server",
+  "status": "FAIL",
+  "evidence": {
+    "message": "response.status is not a function",
+    "output": "Fieldnotes: http://127.0.0.1:4173\n"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "kind": "lab-summary",
+  "runCount": 3,
+  "claimBoundary": "Controlled local lab observations only; no field Core Web Vitals, real-user percentile, or production SLO claim.",
+  "conditions": {
+    "build": "6246c9f170d2acb4258f38a9513cb796087fa83e7206a8c7a8a9ae2c47a33435",
+    "tool": "Playwright/CDP; TypeScript 6.0.3",
+    "browser": "156.0.8078.80",
+    "device": "win32/x64; 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz; 8 logical CPUs; 16934494208 RAM bytes; host load uncontrolled",
+    "network": "loopback no throttling; synthetic180ms normal/650ms slow; transport ignores abort",
+    "cpu": "no throttling",
+    "viewport": "1280x900 ->390x844 ->1280x900",
+    "dataset": "1000 deterministic synthetic records;50rendered/page",
+    "cache": "fresh browser context per run; HTTP no-store",
+    "workload": "Load1000records with50DOM rows; Select first record, change page and return; retain selection; Type Record09 sequentially with15ms key delay; record feedback computation, next animation callback and final operation completion separately; Force A=Record0 slow then B=Record09; finish A after B and retain B; Scroll bounded table in12steps; Resize to390x844 and restore desktop; Slow refresh while preserving selection, input focus and visible stale rows; Fail refresh then retry successfully",
+    "timing": "input handler telemetry to synchronous mutation and next rAF callback; operation/workload wall clocks include automation overhead; not paint or INP"
+  },
+  "metrics": {
+    "feedbackMutationMedianMs": {
+      "median": 0,
+      "min": 0,
+      "max": 0
+    },
+    "feedbackAnimationMedianMs": {
+      "median": 8.800000011920929,
+      "min": 8.199999988079071,
+      "max": 11
+    },
+    "typingOperationMs": {
+      "median": 539.259,
+      "min": 514.5030999999999,
+      "max": 594.5176000000001
+    },
+    "scrollWorkloadMs": {
+      "median": 187.88600000000042,
+      "min": 183.65250000000015,
+      "max": 216.06940000000031
+    },
+    "resizeWorkloadMs": {
+      "median": 43.60829999999987,
+      "min": 40.740200000000186,
+      "max": 136.4422999999997
+    },
+    "refreshReadyMs": {
+      "median": 842.0416999999998,
+      "min": 832.6686000000009,
+      "max": 843.7259999999997
+    },
+    "domNodes": {
+      "median": 725,
+      "min": 725,
+      "max": 725
+    },
+    "heapUsedBytes": {
+      "median": 4961948,
+      "min": 4440808,
+      "max": 4970252
+    },
+    "layoutCountDelta": {
+      "median": 33,
+      "min": 33,
+      "max": 35
+    },
+    "recalcStyleCountDelta": {
+      "median": 63,
+      "min": 63,
+      "max": 69
+    }
+  }
+}

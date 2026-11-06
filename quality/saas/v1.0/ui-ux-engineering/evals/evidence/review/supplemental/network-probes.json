@@ -1,0 +1,18 @@
+{
+  "time": "2026-11-05T17:08:07.049Z",
+  "transport": "fresh Chrome156 page navigation via existing Playwright CDP; no certificate bypass",
+  "results": [
+    {
+      "url": "https://registry.npmjs.org/react/19.0.0",
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://registry.npmjs.org/react/19.0.0\nCall log:\n\u001b[2m  - navigating to \"https://registry.npmjs.org/react/19.0.0\", waiting until \"load\"\u001b[22m\n"
+    },
+    {
+      "url": "https://unpkg.com/react@19.0.0/package.json",
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://unpkg.com/react@19.0.0/package.json\nCall log:\n\u001b[2m  - navigating to \"https://unpkg.com/react@19.0.0/package.json\", waiting until \"load\"\u001b[22m\n"
+    },
+    {
+      "url": "https://esm.sh/react@19.0.0",
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://esm.sh/react@19.0.0\nCall log:\n\u001b[2m  - navigating to \"https://esm.sh/react@19.0.0\", waiting until \"load\"\u001b[22m\n"
+    }
+  ]
+}

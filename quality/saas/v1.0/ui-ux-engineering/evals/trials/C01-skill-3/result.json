@@ -1,0 +1,288 @@
+﻿{
+    "caseId":  "C01",
+    "arm":  "skill",
+    "run":  3,
+    "startedAt":  "2026-11-05T16:40:49.000Z",
+    "endedAt":  "2026-11-05T16:45:21.230Z",
+    "elapsedSeconds":  272.22999999999996,
+    "route":  {
+                  "mode":  "explore",
+                  "scope":  "small reusable native web component",
+                  "activeModules":  [
+                                        "M1",
+                                        "M3",
+                                        "M4",
+                                        "M5",
+                                        "M6",
+                                        "M8"
+                                    ],
+                  "conditionalResponsibility":  "M7 limited to clipboard duplicate-mutation resilience; no broad workload/performance study"
+              },
+    "requirementCoverage":  [
+                                {
+                                    "id":  "C01-R01",
+                                    "status":  "PASS",
+                                    "evidence":  "artifact/invitation-copy.ts, styles.css, index.html; strict-compile; no framework/library/icons or marketing page."
+                                },
+                                {
+                                    "id":  "C01-R02",
+                                    "status":  "PASS",
+                                    "evidence":  "browser checks initial-name and real-clipboard; exact URL read using actual Chrome Clipboard API."
+                                },
+                                {
+                                    "id":  "C01-R03",
+                                    "status":  "PASS",
+                                    "evidence":  "browser check duplicate-pending: Space starts once; Enter and two native clicks while unresolved keep one writer call."
+                                },
+                                {
+                                    "id":  "C01-R04",
+                                    "status":  "PASS",
+                                    "evidence":  "browser checks success-retained and success-reset: 2012ms observed versus predefined 1800–2400ms allowance."
+                                },
+                                {
+                                    "id":  "C01-R05",
+                                    "status":  "PASS",
+                                    "evidence":  "browser checks rejection-error, retry and unavailable-clipboard; narrow-error screenshot shows recovery and manual URL."
+                                },
+                                {
+                                    "id":  "C01-R06",
+                                    "status":  "PASS",
+                                    "evidence":  "browser keyboard-focus, pending-accessibility, live-region, focus-preserved and geometry; focus.png. Screen reader experience remains UNVERIFIED."
+                                },
+                                {
+                                    "id":  "C01-R07",
+                                    "status":  "PASS",
+                                    "evidence":  "browser german-narrow-fit-target: 280x71 target at 320px, no text overflow. Desktop/narrow rendered review passed; README documents local no-install startup."
+                                }
+                            ],
+    "assumptions":  [
+                        "Input supplies seven IDs without individually keyed descriptions; brief.md maps them in task order to seven grouped acceptance criteria.",
+                        "Standalone local example can ship checked-in emitted JavaScript and a Node 24 no-dependency loopback server.",
+                        "English feedback is default. Supplied German label is a text-expansion fixture; complete application localization was not requested."
+                    ],
+    "decisions":  [
+                      "Use exported typed mountInvitationCopy(host, options), native button and per-instance state with destroy lifecycle.",
+                      "Keep focus using aria-disabled plus immediate pending guard; status is a separate polite atomic live region.",
+                      "Clear prior success timer on new attempt, show success for 2000ms, preserve error until deliberate retry and reveal selectable URL.",
+                      "Use system fonts, CSS semantic color tokens, 48px minimum target height, natural translated-label wrapping, and 3px focus outline."
+                  ],
+    "checks":  [
+                   {
+                       "id":  "strict-compile",
+                       "status":  "PASS",
+                       "evidence":  "node artifact/build.mjs \u003csupplied TypeScript API\u003e: TypeScript 6.0.3 strict compilation passed, emitted artifact/invitation-copy.js; Node v24.12.0."
+                   },
+                   {
+                       "id":  "initial-name",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Copy invitation link"
+                                    }
+                   },
+                   {
+                       "id":  "keyboard-focus",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Tab focuses native button; computed 3px outline"
+                                    }
+                   },
+                   {
+                       "id":  "real-clipboard",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Actual Chrome Clipboard API read after keyboard Enter"
+                                    }
+                   },
+                   {
+                       "id":  "duplicate-pending",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Space starts unresolved adapter; Enter plus two native clicks produce one writer call"
+                                    }
+                   },
+                   {
+                       "id":  "pending-accessibility",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Pending aria-disabled and aria-busy true"
+                                    }
+                   },
+                   {
+                       "id":  "live-region",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Separate polite atomic status contains pending text"
+                                    }
+                   },
+                   {
+                       "id":  "success-retained",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Success remains after 1500ms"
+                                    }
+                   },
+                   {
+                       "id":  "success-reset",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  {
+                                                            "elapsedMs":  2012,
+                                                            "acceptedMs":  [
+                                                                               1800,
+                                                                               2400
+                                                                           ]
+                                                        }
+                                    }
+                   },
+                   {
+                       "id":  "focus-preserved",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Focus preserved across pending, success and reset"
+                                    }
+                   },
+                   {
+                       "id":  "rejection-error",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Rejected clipboard shows inline recovery plus selectable exact URL; button enabled"
+                                    }
+                   },
+                   {
+                       "id":  "retry",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Second deliberate attempt succeeds"
+                                    }
+                   },
+                   {
+                       "id":  "unavailable-clipboard",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Clipboard API removed in fixture; useful inline error and retry label shown"
+                                    }
+                   },
+                   {
+                       "id":  "narrow-error-fit",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "320px error state has no horizontal overflow"
+                                    }
+                   },
+                   {
+                       "id":  "german-narrow-fit-target",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  {
+                                                            "width":  280,
+                                                            "height":  71,
+                                                            "scrollWidth":  278,
+                                                            "clientWidth":  278,
+                                                            "pageWidth":  320,
+                                                            "viewport":  320,
+                                                            "outline":  "3px",
+                                                            "text":  "Einladungslink für das Projektteam kopieren"
+                                                        }
+                                    }
+                   },
+                   {
+                       "id":  "text-200-percent-fit",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  "Button text enlarged 15px to 30px at 320px; no page horizontal overflow"
+                                    }
+                   },
+                   {
+                       "id":  "runtime-errors",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "path":  "evidence/browser.json",
+                                        "observation":  [
+
+                                                        ]
+                                    }
+                   },
+                   {
+                       "id":  "contrast",
+                       "status":  "PASS",
+                       "evidence":  "evidence/contrast.json: all text pairs \u003e=4.5:1 and focus ring against surface \u003e=3:1."
+                   },
+                   {
+                       "id":  "visual-review",
+                       "status":  "PASS",
+                       "evidence":  "Viewed evidence/desktop.png, focus.png, german-320.png, narrow-error.png: compact single action, restrained slate/neutral palette, clear focus outline, legible wrap, selectable manual URL; no clipping or horizontal overflow."
+                   },
+                   {
+                       "id":  "screen-reader",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "Live-region DOM semantics checked; no actual screen reader/browser pairing executed."
+                   },
+                   {
+                       "id":  "automated-a11y-scan",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "No accessibility scanner executed. Targeted DOM/keyboard/contrast checks are recorded separately."
+                   },
+                   {
+                       "id":  "browser-zoom",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "320px reflow and direct 200% button text enlargement checked; real browser page zoom not executed."
+                   },
+                   {
+                       "id":  "cross-browser",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "Runtime tested only in installed Chrome 156.0.8078.80 headless on host Windows."
+                   },
+                   {
+                       "id":  "field-performance",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "No field visits or comparative profiling. 2012ms is a local success-label timer observation, not INP or a field percentile."
+                   },
+                   {
+                       "id":  "data-request-ordering",
+                       "status":  "NOT_APPLICABLE",
+                       "evidence":  "One local clipboard mutation at a time; no fetching/query race or data refresh."
+                   },
+                   {
+                       "id":  "helper-cleanup",
+                       "status":  "PASS",
+                       "evidence":  "Loopback server exec session 77542 stopped with Ctrl+C; process returned exit code 1 after deliberate interrupt. Browser/context closed in harness finally."
+                   }
+               ],
+    "limitations":  [
+                        "Actual browser clipboard success verified with browser permissions granted; denial/unavailability were deterministic test injections, not operating-system permission-dialog testing.",
+                        "Screen-reader announcement experience, automated accessibility scan, actual browser zoom, cross-browser behavior, and field performance remain UNVERIFIED.",
+                        "No external design reference, network dependency, user study or claim of complete WCAG conformance."
+                    ],
+    "artifacts":  [
+                      "artifact/index.html",
+                      "artifact/invitation-copy.ts",
+                      "artifact/invitation-copy.js",
+                      "artifact/styles.css",
+                      "artifact/serve.mjs",
+                      "artifact/build.mjs",
+                      "artifact/README.md",
+                      "brief.md",
+                      "evidence/browser.json",
+                      "evidence/contrast.json"
+                  ],
+    "failures":  [
+
+                 ],
+    "tokens":  null,
+    "cost":  null
+}

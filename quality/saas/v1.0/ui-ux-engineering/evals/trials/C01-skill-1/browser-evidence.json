@@ -1,0 +1,72 @@
+{
+  "browser": "156.0.8078.80",
+  "node": "v24.12.0",
+  "conditions": {
+    "headless": true,
+    "deviceScaleFactor": 1,
+    "desktop": "1024x768",
+    "narrow": "320x700",
+    "font": "system-ui",
+    "network": "loopback, no throttling",
+    "mocked": "pending/rejected/unavailable tests only; first test actual clipboard"
+  },
+  "checks": [
+    {
+      "id": "real-clipboard-keyboard",
+      "status": "PASS",
+      "evidence": {
+        "clipboard": "https://example.test/invite/team-river",
+        "resetObservedMs": 1987,
+        "focus": {
+          "outline": "3px",
+          "style": "solid"
+        }
+      }
+    },
+    {
+      "id": "pending-duplicate-space",
+      "status": "PASS",
+      "evidence": {
+        "copyCalls": 1,
+        "keyboard": "Space starts; repeated Enter, Space and programmatic clicks guarded",
+        "focusRetained": true
+      }
+    },
+    {
+      "id": "rejection-retry",
+      "status": "PASS",
+      "evidence": {
+        "attempts": 2,
+        "error": "Couldn’t copy the link. Allow clipboard access and try again, or copy this address manually: https://example.test/invite/team-river"
+      }
+    },
+    {
+      "id": "clipboard-unavailable",
+      "status": "PASS",
+      "evidence": "Couldn’t copy the link. Allow clipboard access and try again, or copy this address manually: https://example.test/invite/team-river"
+    },
+    {
+      "id": "translated-320-target-reflow",
+      "status": "PASS",
+      "evidence": {
+        "width": 246,
+        "height": 71,
+        "client": 244,
+        "scroll": 244,
+        "label": "Einladungslink für das Projektteam kopieren",
+        "pageWidth": 320,
+        "viewport": 320
+      }
+    },
+    {
+      "id": "status-semantics",
+      "status": "PASS",
+      "evidence": {
+        "role": "status",
+        "live": "polite",
+        "atomic": "true"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,31 @@
+{
+  "caseId": "C04",
+  "task": "Implement a small contact-preferences form from fixtures/C04/brief.md. The intended Figma reference is deliberately unavailable in this simulated case; fixtures/C04/figma-access.json describes the fixture state, and there is no actual Figma file or URL to fetch. Do not attempt a real Figma lookup. Be explicit that visual fidelity to Figma cannot be verified, make reasonable design assumptions from the text brief, and continue with a useful implementation. The form has a labeled email field and Email updates, Product research and Partner offers checkboxes, with Save preferences and a visible saved summary. Use native TypeScript and CSS. Validate the email, let the user toggle the preferences by keyboard, and show save confirmation without a backend. Keep this to one small page. Include a concise handoff listing the design assumptions and what would need checking when Figma becomes available. Supply a runnable example and setup instructions, put implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+  "fixtures": [
+    "fixtures/C04/brief.md",
+    "fixtures/C04/figma-access.json"
+  ],
+  "requirementIds": [
+    "C04-R01",
+    "C04-R02",
+    "C04-R03",
+    "C04-R04",
+    "C04-R05"
+  ],
+  "outputContract": {
+    "artifactDirectory": "trial/artifact/",
+    "resultFile": "trial/result.json",
+    "fields": [
+      "caseId",
+      "arm",
+      "run",
+      "route",
+      "requirementCoverage",
+      "assumptions",
+      "decisions",
+      "checks",
+      "limitations"
+    ],
+    "note": "The orchestrator supplies caseId, arm, run and trial directory. Checks use PASS, FAIL, UNVERIFIED or NOT_APPLICABLE and cite observable evidence. Never invent tool access or executed checks."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "recordedAt": "2026-11-05T17:38:38.105Z",
+  "scope": "Actual bounded structural/contract validator normal, self-test, missing-root negative and contract branches; not full schema/standards conformance.",
+  "status": "PASS",
+  "results": [
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/validate-package.mjs"
+      ],
+      "expectedExit": 0,
+      "actualExit": 0,
+      "status": "PASS",
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"Bounded frontmatter/link/manifest/schema/coverage/decision checks; not full YAML, Markdown or JSON Schema conformance.\",\n  \"links\": 129,\n  \"resources\": 58,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/validate-package.mjs",
+        "--self-test"
+      ],
+      "expectedExit": 0,
+      "actualExit": 0,
+      "status": "PASS",
+      "stdout": "{\"status\":\"PASS\",\"checks\":5,\"coverage\":\"Valid context; duplicate layer, unsupported PASS, disconnected decision and unsupported keyword rejected.\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/validate-package.mjs",
+        "--root",
+        "assessment-intentionally-missing-root"
+      ],
+      "expectedExit": 1,
+      "actualExit": 1,
+      "status": "PASS",
+      "stdout": "{\n  \"status\": \"FAIL\",\n  \"scope\": \"Bounded frontmatter/link/manifest/schema/coverage/decision checks; not full YAML, Markdown or JSON Schema conformance.\",\n  \"links\": 0,\n  \"resources\": 0,\n  \"errors\": [\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\assessment-intentionally-missing-root\\\\SKILL.md'\",\n    \"ENOENT: no such file or directory, scandir 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\assessment-intentionally-missing-root'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\assessment-intentionally-missing-root\\\\assets\\\\manifest.json'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\assessment-intentionally-missing-root\\\\assets\\\\task.template.json'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\assessment-intentionally-missing-root\\\\assets\\\\coverage-index.json'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\assessment-intentionally-missing-root\\\\assets\\\\gates.json'\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/validate-package.mjs",
+        "--contract",
+        "assets/task.template.json"
+      ],
+      "expectedExit": 0,
+      "actualExit": 0,
+      "status": "PASS",
+      "stdout": "{\"status\":\"PASS\",\"scope\":\"Bounded contract assertions\"}\n",
+      "stderr": ""
+    }
+  ]
+}

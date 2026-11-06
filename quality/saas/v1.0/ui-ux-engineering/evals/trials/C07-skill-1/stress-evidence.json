@@ -1,0 +1,213 @@
+{
+  "utc": "2026-11-05T16:18:02.899Z",
+  "browser": "156.0.8078.80",
+  "results": [
+    {
+      "width": 320,
+      "step": "errors",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 320,
+      "client": 320,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "step": "errors",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 320,
+      "client": 320,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "step": "review",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 320,
+      "client": 320,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "step": "review",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 320,
+      "client": 320,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "step": "success",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 320,
+      "client": 320,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "step": "success",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 320,
+      "client": 320,
+      "clipped": []
+    },
+    {
+      "width": 640,
+      "step": "errors",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 640,
+      "client": 640,
+      "clipped": []
+    },
+    {
+      "width": 640,
+      "step": "errors",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 640,
+      "client": 640,
+      "clipped": []
+    },
+    {
+      "width": 640,
+      "step": "review",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 640,
+      "client": 640,
+      "clipped": []
+    },
+    {
+      "width": 640,
+      "step": "review",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 640,
+      "client": 640,
+      "clipped": []
+    },
+    {
+      "width": 640,
+      "step": "success",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 640,
+      "client": 640,
+      "clipped": []
+    },
+    {
+      "width": 640,
+      "step": "success",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 640,
+      "client": 640,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "step": "errors",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 1280,
+      "client": 1280,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "step": "errors",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 1280,
+      "client": 1280,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "step": "review",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 1280,
+      "client": 1280,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "step": "review",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 1280,
+      "client": 1280,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "step": "success",
+      "cssZoom": 1,
+      "status": "PASS",
+      "scroll": 1280,
+      "client": 1280,
+      "clipped": []
+    },
+    {
+      "width": 1280,
+      "step": "success",
+      "cssZoom": 2,
+      "status": "PASS",
+      "scroll": 1280,
+      "client": 1280,
+      "clipped": []
+    }
+  ],
+  "contrast": [
+    {
+      "role": "body",
+      "fg": "#182b35",
+      "bg": "#ffffff",
+      "ratio": 14.626022112871597
+    },
+    {
+      "role": "muted",
+      "fg": "#4b6058",
+      "bg": "#ffffff",
+      "ratio": 6.745393573106045
+    },
+    {
+      "role": "action",
+      "fg": "#ffffff",
+      "bg": "#135b4c",
+      "ratio": 7.989395710456543
+    },
+    {
+      "role": "danger",
+      "fg": "#a12222",
+      "bg": "#ffffff",
+      "ratio": 7.588561107673262
+    },
+    {
+      "role": "focus",
+      "fg": "#854400",
+      "bg": "#ffffff",
+      "ratio": 7.435844729899391
+    },
+    {
+      "role": "border",
+      "fg": "#657971",
+      "bg": "#ffffff",
+      "ratio": 4.63910004384022
+    },
+    {
+      "role": "selected text",
+      "fg": "#182b35",
+      "bg": "#eaf4ef",
+      "ratio": 13.013786977154385
+    }
+  ],
+  "limitations": "CSS zoom is surrogate; no native browser zoom or AT assessment."
+}

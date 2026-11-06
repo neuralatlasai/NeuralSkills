@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "recordedAt": "2026-11-05T16:45:16.652Z",
+  "machine": {
+    "runtime": "v24.12.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "osRelease": "10.0.28120",
+    "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+    "cpuLogicalCount": 8,
+    "totalMemoryBytes": 16934494208,
+    "network": "127.0.0.1 TCP and native TLS only",
+    "runtimeDependencies": "Node built-ins; node:sqlite is experimental in this runtime"
+  },
+  "source": {
+    "sha256": "a96c548de3b2618581179d66647bd587606b1c64f2a4fdc63b3c87091411d132",
+    "files": [
+      "evals/fixtures/contracts.ts",
+      "evals/fixtures/legacy-repository.mjs",
+      "evals/fixtures/load-workloads.json",
+      "package.json",
+      "scripts/cert-gen.mjs",
+      "scripts/check.mjs",
+      "scripts/client.mjs",
+      "scripts/dns-network.mjs",
+      "scripts/evidence.mjs",
+      "scripts/integrated.mjs",
+      "scripts/load.mjs",
+      "scripts/service.mjs",
+      "scripts/smoke.mjs",
+      "scripts/validate-package.mjs",
+      "scripts/worker.mjs"
+    ]
+  },
+  "runDirectory": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\integrated\\network-runs\\2026-11-05T16-45-15-266Z",
+  "schedule": {
+    "positiveDnsTtlSeconds": 1,
+    "applicationPositiveCacheCapMs": 500,
+    "applicationNegativeCacheMs": 80,
+    "resolverTimeoutMs": 120,
+    "resolverTries": 1,
+    "httpDeadlineMs": 150,
+    "churnRequests": 50,
+    "sequence": [
+      "NXDOMAIN and negative cache",
+      "initial A endpoint and explicit cache refresh",
+      "close endpoint A and change DNS to B",
+      "stale cached address fails",
+      "refresh after510ms discovers B",
+      "DNS timeout",
+      "slow response deadline",
+      "50 fresh TCP connections and cleanup"
+    ]
+  },
+  "resolutionFailure": "ENOTFOUND",
+  "negativeCache": {
+    "dnsQueriesFirst": 1,
+    "refreshed": true,
+    "policy": "Application configured negative-cache80ms; NXDOMAIN response has no SOA, so no RFC2308 resolver negative caching claim"
+  },
+  "staleEndpoint": {
+    "status": 0,
+    "error": "ECONNREFUSED",
+    "peer": "127.0.0.1",
+    "latencyMs": 2.7373000000000047
+  },
+  "replacement": {
+    "status": 200,
+    "body": "B",
+    "peer": "127.0.0.2",
+    "latencyMs": 3.995999999999981
+  },
+  "discoveryToUseMs": 532.4205000000001,
+  "dnsTimeout": {
+    "status": 0,
+    "error": "ETIMEOUT",
+    "latencyMs": 261.05950000000007
+  },
+  "slowPeer": {
+    "status": 0,
+    "error": "READ_TIMEOUT",
+    "peer": "127.0.0.2",
+    "latencyMs": 158.71759999999995
+  },
+  "churn": {
+    "requests": 50,
+    "activeSocketsAfter": 0,
+    "maxActiveSockets": 2
+  },
+  "limits": [
+    "Controlled authoritative UDP DNS server and Node dns.Resolver on loopback; no public/recursive DNS resolver, DNSSEC or production routing claim.",
+    "IPv4 loopback only. QUIC/IPv6, NAT pressure, OS descriptor exhaustion and half-open blackhole simulation are UNVERIFIED.",
+    "HTTP timeout covers a slow responding peer; stale closed listener establishes refused-connect behavior."
+  ]
+}

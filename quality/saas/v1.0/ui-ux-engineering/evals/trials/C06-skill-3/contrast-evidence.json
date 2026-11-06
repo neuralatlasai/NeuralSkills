@@ -1,0 +1,54 @@
+{
+  "method": "WCAG sRGB relative luminance formula applied to authored CSS pairs; not a full automated accessibility audit",
+  "pairs": [
+    {
+      "name": "ink on paper",
+      "foreground": "#203d31",
+      "background": "#f5f4eb",
+      "minimum": 4.5,
+      "ratio": 10.727344124527937
+    },
+    {
+      "name": "muted on paper",
+      "foreground": "#54685b",
+      "background": "#f5f4eb",
+      "minimum": 4.5,
+      "ratio": 5.422336663418121
+    },
+    {
+      "name": "muted on surface",
+      "foreground": "#54685b",
+      "background": "#fffef8",
+      "minimum": 4.5,
+      "ratio": 5.924533884205749
+    },
+    {
+      "name": "button text",
+      "foreground": "#ffffff",
+      "background": "#27563b",
+      "minimum": 4.5,
+      "ratio": 8.465913035678163
+    },
+    {
+      "name": "hover button text",
+      "foreground": "#ffffff",
+      "background": "#1b422b",
+      "minimum": 4.5,
+      "ratio": 11.28563955473422
+    },
+    {
+      "name": "focus on paper",
+      "foreground": "#8a410d",
+      "background": "#f5f4eb",
+      "minimum": 3,
+      "ratio": 6.69193709097209
+    },
+    {
+      "name": "input border on surface",
+      "foreground": "#768778",
+      "background": "#fffef8",
+      "minimum": 3,
+      "ratio": 3.774062304459926
+    }
+  ]
+}

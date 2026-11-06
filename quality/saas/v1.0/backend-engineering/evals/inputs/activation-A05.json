@@ -1,0 +1,6 @@
+{
+  "id": "A05",
+  "name": "backend-engineering",
+  "description": "Design, implement, extend, debug, optimize, review, or migrate backend services and their data and operating paths. Use for APIs and CRUD, authentication and tenant authorization, databases, workers, integrations, network/TLS failures, capacity, deployment, observability and recovery. Exclude frontend-only work, unrelated writing, and backend terms used incidentally.",
+  "prompt": "Build a restartable schema migration and verify backup restore before rollout."
+}

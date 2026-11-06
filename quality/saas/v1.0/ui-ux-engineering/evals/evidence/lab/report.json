@@ -1,0 +1,139 @@
+{
+  "status": "PASS",
+  "build": {
+    "status": "PASS",
+    "method": "installed TypeScript compiler; strict semantic check and JavaScript emit",
+    "compiler": "C:\\Users\\heman\\AppData\\Local\\Programs\\Microsoft VS Code\\a717861c07\\resources\\app\\extensions\\node_modules\\typescript\\lib\\typescript.js",
+    "version": "6.0.3",
+    "built": [
+      "state.js",
+      "app.js"
+    ]
+  },
+  "checks": [
+    {
+      "name": "landmarks, table, labels and polite status region exist",
+      "status": "PASS"
+    },
+    {
+      "name": "selected meaningful text and status pairs meet 4.5:1 contrast",
+      "status": "PASS"
+    },
+    {
+      "name": "search, status filter, empty state and clear-filters recovery",
+      "status": "PASS"
+    },
+    {
+      "name": "background failure preserves rows, exposes stale indicator, and retry restores freshness",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit abort preserves previous results and announces cancellation",
+      "status": "PASS"
+    },
+    {
+      "name": "native modal focuses title, prevents duplicate submit, recovers failed mutation and returns focus",
+      "status": "PASS"
+    },
+    {
+      "name": "keyboard skip link and visible focus style are available",
+      "status": "PASS"
+    },
+    {
+      "name": "390px layout contains page overflow and keeps primary controls at least 24px",
+      "status": "PASS"
+    }
+  ],
+  "runtimeErrors": [],
+  "networkFailures": [],
+  "contrastSamples": [
+    {
+      "selector": ".request-title strong",
+      "foreground": "rgb(53, 61, 75)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 10.93479953736601
+    },
+    {
+      "selector": ".request-meta",
+      "foreground": "rgb(101, 107, 121)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 5.340096032648783
+    },
+    {
+      "selector": ".in-progress",
+      "foreground": "rgb(97, 68, 155)",
+      "background": "rgb(240, 236, 251)",
+      "ratio": 6.4435255502569
+    },
+    {
+      "selector": ".in-review",
+      "foreground": "rgb(120, 87, 29)",
+      "background": "rgb(252, 242, 223)",
+      "ratio": 5.9458058909307026
+    },
+    {
+      "selector": ".backlog",
+      "foreground": "rgb(85, 95, 112)",
+      "background": "rgb(240, 242, 246)",
+      "ratio": 5.752539040065004
+    },
+    {
+      "selector": ".updated",
+      "foreground": "rgb(101, 107, 121)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 5.340096032648783
+    },
+    {
+      "selector": ".priority-high",
+      "foreground": "rgb(143, 75, 50)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 6.520895441020015
+    },
+    {
+      "selector": ".priority-medium",
+      "foreground": "rgb(117, 98, 31)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 5.960422199438226
+    },
+    {
+      "selector": ".priority-low",
+      "foreground": "rgb(98, 108, 124)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 5.309189333428445
+    },
+    {
+      "selector": ".metric-label",
+      "foreground": "rgb(97, 105, 120)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 5.5261402509319275
+    },
+    {
+      "selector": ".panel-footer",
+      "foreground": "rgb(101, 107, 121)",
+      "background": "rgb(255, 255, 255)",
+      "ratio": 5.340096032648783
+    },
+    {
+      "selector": ".load-status",
+      "foreground": "rgb(99, 88, 117)",
+      "background": "rgb(252, 251, 254)",
+      "ratio": 6.398761201263253
+    },
+    {
+      "selector": ".button.primary",
+      "foreground": "rgb(255, 255, 255)",
+      "background": "rgb(101, 80, 207)",
+      "ratio": 5.8304125974641785
+    }
+  ],
+  "contrastMethod": "WCAG sRGB relative luminance formula on 13 computed foreground/background pairs; selected opaque backgrounds only; does not audit every text/interaction state.",
+  "screenshotFiles": [
+    "desktop.png",
+    "empty.png",
+    "error.png",
+    "dialog-error.png",
+    "mobile.png"
+  ],
+  "accessibilityBoundary": "Bounded DOM/keyboard/focus/layout/24px-target/reduced-motion and selected contrast checks in one Chromium browser. No full WCAG conformance, screen-reader session, comprehensive contrast audit, zoom/forced-colors coverage, or multi-browser compatibility claim.",
+  "raceEvidence": "A/B out-of-order completion and same-gate failure/retry are tested in scripts/test-tools.mjs independently of browser abort behavior."
+}

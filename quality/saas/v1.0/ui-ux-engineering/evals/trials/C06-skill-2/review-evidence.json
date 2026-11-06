@@ -1,0 +1,117 @@
+{
+  "checkedAt": "2026-11-05T16:44:12.240Z",
+  "method": "sRGB relative luminance calculation for declared CSS pairs; not a complete accessibility scan",
+  "pairs": [
+    {
+      "name": "ink / surface",
+      "foreground": "#203b30",
+      "background": "#fffef9",
+      "ratio": 12.023392306416397,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "muted / surface",
+      "foreground": "#52655a",
+      "background": "#fffef9",
+      "ratio": 6.174998611256482,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "muted / soft",
+      "foreground": "#52655a",
+      "background": "#e9eee3",
+      "ratio": 5.286342939602574,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "action text",
+      "foreground": "#ffffff",
+      "background": "#214d3b",
+      "ratio": 9.591796579546447,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "hover action text",
+      "foreground": "#ffffff",
+      "background": "#153d2c",
+      "ratio": 12.098494852410898,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "error",
+      "foreground": "#8e3025",
+      "background": "#fbede8",
+      "ratio": 7.070469625311229,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "placeholder",
+      "foreground": "#5d6d61",
+      "background": "#ffffff",
+      "ratio": 5.489477979513079,
+      "threshold": 4.5,
+      "status": "PASS"
+    },
+    {
+      "name": "input boundary",
+      "foreground": "#859784",
+      "background": "#ffffff",
+      "ratio": 3.1078231827150042,
+      "threshold": 3,
+      "status": "PASS"
+    },
+    {
+      "name": "focus / surface",
+      "foreground": "#9c4c16",
+      "background": "#fffef9",
+      "ratio": 6.012419732547569,
+      "threshold": 3,
+      "status": "PASS"
+    },
+    {
+      "name": "secondary text",
+      "foreground": "#214d3b",
+      "background": "#fffef9",
+      "ratio": 9.498909181233586,
+      "threshold": 4.5,
+      "status": "PASS"
+    }
+  ],
+  "fixture": {
+    "unchanged": true,
+    "sha256": "baa8f07b2ffd4cfbfb614f12fa69a53745499c5ed06e056e326ac37a25bd10c3"
+  },
+  "visualReview": {
+    "status": "PASS",
+    "viewports": [
+      "1000x900 DPR1",
+      "320x800 DPR1 (full-page images taller)"
+    ],
+    "screenshots": [
+      "initial-desktop-focus.png",
+      "pending-desktop.png",
+      "cedar-desktop.png",
+      "moss-320.png",
+      "failure-320.png"
+    ],
+    "observation": "Reviewed rendered screenshots: clear primary form, aligned spacing and hierarchy, legible labels and metadata, long moss title wraps, no clipping, distinct text pending/error/outcomes, visible focus. Native search clear affordance visible."
+  },
+  "build": {
+    "command": "node artifact/build.mjs",
+    "status": "PASS",
+    "output": "TypeScript 6.0.3: strict check and build passed",
+    "node": "v24.12.0"
+  },
+  "limitations": [
+    "Screen-reader speech not tested",
+    "No full automated accessibility scanner",
+    "No actual browser zoom test",
+    "No field or lab performance claims"
+  ]
+}

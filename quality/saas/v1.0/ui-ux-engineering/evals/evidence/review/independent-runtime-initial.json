@@ -1,0 +1,231 @@
+{
+  "utc": "2026-11-05T17:01:08.169Z",
+  "method": "Independent evaluator-authored spot checks; raw trial files unchanged. Clipboard adapter tests plus C06 races; no AT or native zoom.",
+  "records": [
+    {
+      "trial": "C01-baseline-1",
+      "checks": [
+        {
+          "id": "independent-spotcheck",
+          "status": "FAIL",
+          "error": "locator.dispatchEvent: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Copy invitation link', exact: true })\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\review\\independent-runtime.mjs:6:818"
+        }
+      ]
+    },
+    {
+      "trial": "C01-baseline-2",
+      "checks": [
+        {
+          "id": "independent-spotcheck",
+          "status": "FAIL",
+          "error": "locator.dispatchEvent: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Copy invitation link', exact: true })\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\review\\independent-runtime.mjs:6:818"
+        }
+      ]
+    },
+    {
+      "trial": "C01-baseline-3",
+      "checks": [
+        {
+          "id": "independent-spotcheck",
+          "status": "FAIL",
+          "error": "locator.dispatchEvent: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Copy invitation link', exact: true })\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\review\\independent-runtime.mjs:6:818"
+        }
+      ]
+    },
+    {
+      "trial": "C01-skill-1",
+      "checks": [
+        {
+          "id": "independent-spotcheck",
+          "status": "FAIL",
+          "error": "locator.dispatchEvent: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Copy invitation link', exact: true })\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\review\\independent-runtime.mjs:6:818"
+        }
+      ]
+    },
+    {
+      "trial": "C01-skill-2",
+      "checks": [
+        {
+          "id": "independent-spotcheck",
+          "status": "FAIL",
+          "error": "locator.dispatchEvent: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Copy invitation link', exact: true })\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\review\\independent-runtime.mjs:6:818"
+        }
+      ]
+    },
+    {
+      "trial": "C01-skill-3",
+      "checks": [
+        {
+          "id": "independent-spotcheck",
+          "status": "FAIL",
+          "error": "locator.dispatchEvent: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Copy invitation link', exact: true })\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\review\\independent-runtime.mjs:6:818"
+        }
+      ]
+    },
+    {
+      "trial": "C03-skill-1",
+      "checks": [
+        {
+          "id": "independent-spotcheck",
+          "status": "FAIL",
+          "error": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=search],input#query').first()\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\review\\independent-runtime.mjs:6:1656"
+        }
+      ]
+    },
+    {
+      "trial": "C06-baseline-1",
+      "checks": [
+        {
+          "id": "independent-race-cedar-moss",
+          "status": "PASS",
+          "intermediate": "↟\nFIELDWORK\nThe little outdoor library\n\nCURIOSITY STARTS HERE\n\nFind a field guide.\n\nA little knowledge for your next wander. Discover guides to the natural world around you.\n\nWhat would you like to explore?\nSearch ↗\n\nSearch by a plant, place, or a spark of curiosity.\n\nYOUR DISCOVERIES\n\nSearching for “moss”…\n\n✦ Small guides. Wide-open possibilities.",
+          "final": "↟\nFIELDWORK\nThe little outdoor library\n\nCURIOSITY STARTS HERE\n\nFind a field guide.\n\nA little knowledge for your next wander. Discover guides to the natural world around you.\n\nWhat would you like to explore?\nSearch ↗\n\nSearch by a plant, place, or a spark of curiosity.\n\nYOUR DISCOVERIES\n2 guides\n\n2 guides found for “moss”.\n\n↟\nMosses of the rain-soaked northern woodland\n\nWoodland · 84 pages\n\n↟\nPocket guide to urban moss\n\nUrban · 46 pages\n\n✦ Small guides. Wide-open possibilities."
+        },
+        {
+          "id": "independent-race-fail-moss",
+          "status": "PASS",
+          "intermediate": "↟\nFIELDWORK\nThe little outdoor library\n\nCURIOSITY STARTS HERE\n\nFind a field guide.\n\nA little knowledge for your next wander. Discover guides to the natural world around you.\n\nWhat would you like to explore?\nSearch ↗\n\nSearch by a plant, place, or a spark of curiosity.\n\nYOUR DISCOVERIES\n\nSearching for “moss”…\n\n✦ Small guides. Wide-open possibilities.",
+          "final": "↟\nFIELDWORK\nThe little outdoor library\n\nCURIOSITY STARTS HERE\n\nFind a field guide.\n\nA little knowledge for your next wander. Discover guides to the natural world around you.\n\nWhat would you like to explore?\nSearch ↗\n\nSearch by a plant, place, or a spark of curiosity.\n\nYOUR DISCOVERIES\n2 guides\n\n2 guides found for “moss”.\n\n↟\nMosses of the rain-soaked northern woodland\n\nWoodland · 84 pages\n\n↟\nPocket guide to urban moss\n\nUrban · 46 pages\n\n✦ Small guides. Wide-open possibilities."
+        },
+        {
+          "id": "independent-320-overflow",
+          "status": "PASS"
+        },
+        {
+          "id": "runtime-exceptions",
+          "status": "PASS",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "C06-baseline-2",
+      "checks": [
+        {
+          "id": "independent-spotcheck",
+          "status": "FAIL",
+          "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(final.includes('Mosses of the rain-soaked northern woodland'))\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/evals/evidence/review/independent-runtime.mjs:6:1912"
+        }
+      ]
+    },
+    {
+      "trial": "C06-baseline-3",
+      "checks": [
+        {
+          "id": "independent-race-cedar-moss",
+          "status": "PASS",
+          "intermediate": "❧\nFIELDNOTES\nTHE GUIDE LIBRARY\n\nA LITTLE CURIOSITY GOES A LONG WAY\n\nFind a field guide.\n\nGet to know the natural world, one discovery at a time.\n\nWhat would you like to explore?\nSearch\n↗\n\nSearch by a plant, place, or natural curiosity.\n\nYour discoveries\n\nSearching for “moss”…\n\nLooking a little closer…\n\nYou can start another search while we find your guides.\n\nMade for the observant.\n✦\nTake a closer look.",
+          "final": "❧\nFIELDNOTES\nTHE GUIDE LIBRARY\n\nA LITTLE CURIOSITY GOES A LONG WAY\n\nFind a field guide.\n\nGet to know the natural world, one discovery at a time.\n\nWhat would you like to explore?\nSearch\n↗\n\nSearch by a plant, place, or natural curiosity.\n\nYour discoveries\n\n2 guides found for “moss”.\n\nFIELD GUIDE / 01\nMosses of the rain-soaked northern woodland\nWoodland\n84 pages\nFIELD GUIDE / 02\nPocket guide to urban moss\nUrban\n46 pages\nMade for the observant.\n✦\nTake a closer look."
+        },
+        {
+          "id": "independent-race-fail-moss",
+          "status": "PASS",
+          "intermediate": "❧\nFIELDNOTES\nTHE GUIDE LIBRARY\n\nA LITTLE CURIOSITY GOES A LONG WAY\n\nFind a field guide.\n\nGet to know the natural world, one discovery at a time.\n\nWhat would you like to explore?\nSearch\n↗\n\nSearch by a plant, place, or natural curiosity.\n\nYour discoveries\n\nSearching for “moss”…\n\nLooking a little closer…\n\nYou can start another search while we find your guides.\n\nMade for the observant.\n✦\nTake a closer look.",
+          "final": "❧\nFIELDNOTES\nTHE GUIDE LIBRARY\n\nA LITTLE CURIOSITY GOES A LONG WAY\n\nFind a field guide.\n\nGet to know the natural world, one discovery at a time.\n\nWhat would you like to explore?\nSearch\n↗\n\nSearch by a plant, place, or natural curiosity.\n\nYour discoveries\n\n2 guides found for “moss”.\n\nFIELD GUIDE / 01\nMosses of the rain-soaked northern woodland\nWoodland\n84 pages\nFIELD GUIDE / 02\nPocket guide to urban moss\nUrban\n46 pages\nMade for the observant.\n✦\nTake a closer look."
+        },
+        {
+          "id": "independent-320-overflow",
+          "status": "PASS"
+        },
+        {
+          "id": "runtime-exceptions",
+          "status": "PASS",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "C06-skill-1",
+      "checks": [
+        {
+          "id": "independent-race-cedar-moss",
+          "status": "PASS",
+          "intermediate": "THE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next adventure.\n\nWhat would you like to explore?\nSearch →\n\nSearch by plant, place, or habitat.\n\nSearching for “moss”\n↗\n\nSearching for “moss”… You can submit another search.\n\nLOCAL DEMO · Sample guides, simulated search",
+          "final": "THE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next adventure.\n\nWhat would you like to explore?\nSearch →\n\nSearch by plant, place, or habitat.\n\nGuides for “moss”\n↗\n\n2 guides found for “moss”.\n\nMosses of the rain-soaked northern woodland\n\nWoodland84 pages\n\nPocket guide to urban moss\n\nUrban46 pages\n\nLOCAL DEMO · Sample guides, simulated search"
+        },
+        {
+          "id": "independent-race-fail-moss",
+          "status": "PASS",
+          "intermediate": "THE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next adventure.\n\nWhat would you like to explore?\nSearch →\n\nSearch by plant, place, or habitat.\n\nSearching for “moss”\n↗\n\nSearching for “moss”… You can submit another search.\n\nLOCAL DEMO · Sample guides, simulated search",
+          "final": "THE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next adventure.\n\nWhat would you like to explore?\nSearch →\n\nSearch by plant, place, or habitat.\n\nGuides for “moss”\n↗\n\n2 guides found for “moss”.\n\nMosses of the rain-soaked northern woodland\n\nWoodland84 pages\n\nPocket guide to urban moss\n\nUrban46 pages\n\nLOCAL DEMO · Sample guides, simulated search"
+        },
+        {
+          "id": "independent-320-overflow",
+          "status": "PASS"
+        },
+        {
+          "id": "runtime-exceptions",
+          "status": "PASS",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "C06-skill-2",
+      "checks": [
+        {
+          "id": "independent-race-cedar-moss",
+          "status": "PASS",
+          "intermediate": "↟ THE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next outdoor discovery.\n\nWhat would you like to explore?\nSearch →\n\nSearch by plant, habitat, or a subject that interests you.\n\nSearching for “moss”\nLocal demo\n\nSearching for “moss”… You can start another search while you wait.\n\nLooking through the field library…\n\nFixture searches: cedar, moss, empty, fail.",
+          "final": "↟ THE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next outdoor discovery.\n\nWhat would you like to explore?\nSearch →\n\nSearch by plant, habitat, or a subject that interests you.\n\nGuides for “moss”\nLocal demo\n\n2 guides found for “moss”.\n\nMosses of the rain-soaked northern woodland\n\nWoodland · 84 pages\n\nPocket guide to urban moss\n\nUrban · 46 pages\n\nFixture searches: cedar, moss, empty, fail."
+        },
+        {
+          "id": "independent-race-fail-moss",
+          "status": "PASS",
+          "intermediate": "↟ THE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next outdoor discovery.\n\nWhat would you like to explore?\nSearch →\n\nSearch by plant, habitat, or a subject that interests you.\n\nSearching for “moss”\nLocal demo\n\nSearching for “moss”… You can start another search while you wait.\n\nLooking through the field library…\n\nFixture searches: cedar, moss, empty, fail.",
+          "final": "↟ THE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next outdoor discovery.\n\nWhat would you like to explore?\nSearch →\n\nSearch by plant, habitat, or a subject that interests you.\n\nGuides for “moss”\nLocal demo\n\n2 guides found for “moss”.\n\nMosses of the rain-soaked northern woodland\n\nWoodland · 84 pages\n\nPocket guide to urban moss\n\nUrban · 46 pages\n\nFixture searches: cedar, moss, empty, fail."
+        },
+        {
+          "id": "independent-320-overflow",
+          "status": "PASS"
+        },
+        {
+          "id": "runtime-exceptions",
+          "status": "PASS",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "C06-skill-3",
+      "checks": [
+        {
+          "id": "independent-race-cedar-moss",
+          "status": "PASS",
+          "intermediate": "↟\nTHE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next outdoor discovery.\n\nWhat would you like to explore?\nSearch\n\nLocal demo · Try cedar, moss, empty, or fail.\n\nSearching for “moss”\n\nSearching for “moss”… You can submit another topic while you wait.\n\nMade for curious minds. Packed for the trail.",
+          "final": "↟\nTHE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next outdoor discovery.\n\nWhat would you like to explore?\nSearch\n\nLocal demo · Try cedar, moss, empty, or fail.\n\nGuides for “moss”\n2\n\nFound 2 guides for “moss”.\n\n↟\nMosses of the rain-soaked northern woodland\n\nWoodland · 84 pages\n\n↟\nPocket guide to urban moss\n\nUrban · 46 pages\n\nMade for curious minds. Packed for the trail."
+        },
+        {
+          "id": "independent-race-fail-moss",
+          "status": "PASS",
+          "intermediate": "↟\nTHE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next outdoor discovery.\n\nWhat would you like to explore?\nSearch\n\nLocal demo · Try cedar, moss, empty, or fail.\n\nSearching for “moss”\n\nSearching for “moss”… You can submit another topic while you wait.\n\nMade for curious minds. Packed for the trail.",
+          "final": "↟\nTHE FIELD LIBRARY\n\nFind a field guide\n\nA little knowledge for your next outdoor discovery.\n\nWhat would you like to explore?\nSearch\n\nLocal demo · Try cedar, moss, empty, or fail.\n\nGuides for “moss”\n2\n\nFound 2 guides for “moss”.\n\n↟\nMosses of the rain-soaked northern woodland\n\nWoodland · 84 pages\n\n↟\nPocket guide to urban moss\n\nUrban · 46 pages\n\nMade for curious minds. Packed for the trail."
+        },
+        {
+          "id": "independent-320-overflow",
+          "status": "PASS"
+        },
+        {
+          "id": "runtime-exceptions",
+          "status": "PASS",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "C03-skill-1",
+      "checks": [
+        {
+          "id": "independent-375-layout",
+          "status": "PASS",
+          "measure": {
+            "width": 375,
+            "scroll": 375,
+            "listBottom": 1039.90625,
+            "summaryTop": 1059.90625
+          }
+        }
+      ]
+    }
+  ]
+}

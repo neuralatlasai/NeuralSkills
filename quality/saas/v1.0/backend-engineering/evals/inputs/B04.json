@@ -1,0 +1,35 @@
+{
+  "caseId": "B04",
+  "task": "Repair the local credit worker. Durable enqueue binds a nonempty job id to one validated known account/positive integer amount; same id/parameters replays acceptance and conflicting reuse rejects. Processing produces one local durable credit and eventually done despite a real process crash at after-effect/before-ack and restart on the same SQLite file. Unknown accounts/invalid amounts cannot silently complete. Keep real crash hook and CLI executable; failures leave DB usable. Document bounded per-invocation work/retry policy. Verify duplicate/conflicting trigger, crash/restart, normal completion and invalid jobs. One SQLite database/one active worker/no external effect: explicitly state that limit and avoid distributed exactly-once claims. Use Node 24.12+ native SQLite and built-ins; no downloads, production deployment or external mutation. Work only in the supplied small fixture. Classify all L01-L24 proportionally; out-of-scope with reasons is allowed. Put implementation and runnable verification in trial/artifact and write trial/result.json using the supplied output contract.",
+  "requirements": [
+    {
+      "id": "B04-R01",
+      "meaning": "Durable job identity validates payloads and distinguishes identical replay from conflicting reuse."
+    },
+    {
+      "id": "B04-R02",
+      "meaning": "Real crash between effect/ack followed by restart yields one durable local effect and terminal completion."
+    },
+    {
+      "id": "B04-R03",
+      "meaning": "Invalid account/amount cannot silently complete; partial failure cleans up and later work remains possible."
+    },
+    {
+      "id": "B04-R04",
+      "meaning": "Processing/retry work is bounded, crash fault stays executable and local-only guarantee is explicit."
+    },
+    {
+      "id": "B04-R05",
+      "meaning": "File-backed crash/restart and duplicate/failure observations have runnable commands."
+    },
+    {
+      "id": "B04-R06",
+      "meaning": "L01-L24 coverage and requirement-linked decision evidence remain proportionate and truthful."
+    }
+  ],
+  "fixtures": [
+    "skill-fixtures/B04/worker.mjs",
+    "skill-fixtures/B04/README.md"
+  ],
+  "outputContract": "trial/artifact plus trial/result.json; fields supplied in common trial wrapper"
+}

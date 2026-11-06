@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900">
+<rect width="1280" height="900" fill="#F6F7FB"/>
+<rect x="0" y="0" width="1280" height="88" fill="#FFFFFF"/>
+<path d="M0 88H1280" stroke="#E3E6EF"/>
+<g font-family="Arial, sans-serif">
+<circle cx="65" cy="44" r="17" fill="#6657D9"/><circle cx="65" cy="44" r="7" fill="#FFFFFF"/>
+<text x="94" y="52" font-size="23" font-weight="700" fill="#20243A">orbit</text>
+<text x="310" y="51" font-size="15" font-weight="700" fill="#6657D9">Overview</text>
+<text x="430" y="51" font-size="15" fill="#687087">Projects</text>
+<text x="536" y="51" font-size="15" fill="#687087">Activity</text>
+<rect x="1010" y="24" width="190" height="40" rx="9" fill="#6657D9"/>
+<text x="1036" y="50" font-size="14" font-weight="700" fill="white">Create workspace</text>
+<text x="64" y="151" font-size="13" letter-spacing="2" font-weight="700" fill="#777E96">YOUR WORK, IN ORBIT</text>
+<text x="64" y="213" font-size="48" font-weight="700" fill="#20243A">A little less busy.</text>
+<text x="64" y="272" font-size="48" font-weight="700" fill="#20243A">A lot more focused.</text>
+<text x="64" y="316" font-size="17" fill="#687087">Bring your projects, people and next steps together.</text>
+<text x="64" y="345" font-size="17" fill="#687087">Make room for the work that matters.</text>
+<rect x="64" y="377" width="151" height="47" rx="9" fill="#20243A"/>
+<text x="91" y="407" font-size="14" font-weight="700" fill="#FFFFFF">View projects</text>
+<text x="238" y="407" font-size="14" font-weight="700" fill="#6657D9">See activity →</text>
+<rect x="780" y="132" width="420" height="316" rx="22" fill="#E9E6FC"/>
+<circle cx="996" cy="284" r="109" fill="#D6CFF8"/>
+<circle cx="996" cy="284" r="74" fill="#C1B6F1"/>
+<path d="M856 280C912 204 1051 194 1134 261" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+<path d="M856 326C938 385 1087 355 1140 275" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+<circle cx="883" cy="251" r="12" fill="#FFFFFF"/><circle cx="1116" cy="319" r="17" fill="#6657D9"/>
+<rect x="850" y="241" width="268" height="104" rx="14" fill="#FFFFFF"/>
+<rect x="873" y="262" width="39" height="39" rx="11" fill="#EDEAFD"/>
+<path d="M883 283L891 291L904 274" stroke="#6657D9" stroke-width="3" fill="none"/>
+<text x="930" y="278" font-size="12" fill="#777E96">THIS WEEK</text>
+<text x="930" y="310" font-size="25" font-weight="700" fill="#20243A">24 tasks complete</text>
+<text x="64" y="513" font-size="26" font-weight="700" fill="#20243A">Your projects</text>
+<text x="1062" y="512" font-size="14" font-weight="700" fill="#6657D9">All projects →</text>
+<rect x="64" y="543" width="360" height="211" rx="14" fill="#FFFFFF" stroke="#E3E6EF"/>
+<rect x="452" y="543" width="360" height="211" rx="14" fill="#FFFFFF" stroke="#E3E6EF"/>
+<rect x="840" y="543" width="360" height="211" rx="14" fill="#FFFFFF" stroke="#E3E6EF"/>
+<rect x="87" y="566" width="44" height="44" rx="11" fill="#EDEAFD"/>
+<rect x="475" y="566" width="44" height="44" rx="11" fill="#E6F2ED"/>
+<rect x="863" y="566" width="44" height="44" rx="11" fill="#FFF0D9"/>
+<path d="M100 581H118M100 587H118M100 593H111" stroke="#6657D9" stroke-width="2"/>
+<path d="M487 592L494 582L504 592M494 582V599" stroke="#43846D" stroke-width="2" fill="none"/>
+<circle cx="885" cy="588" r="9" fill="none" stroke="#C18A32" stroke-width="2"/>
+<text x="87" y="644" font-size="19" font-weight="700" fill="#20243A">Website refresh</text>
+<text x="475" y="644" font-size="19" font-weight="700" fill="#20243A">Spring launch</text>
+<text x="863" y="644" font-size="19" font-weight="700" fill="#20243A">Customer insights</text>
+<text x="87" y="674" font-size="14" fill="#777E96">8 of 12 tasks complete</text>
+<text x="475" y="674" font-size="14" fill="#777E96">5 of 10 tasks complete</text>
+<text x="863" y="674" font-size="14" fill="#777E96">11 of 14 tasks complete</text>
+<rect x="87" y="700" width="314" height="6" rx="3" fill="#EEF0F6"/><rect x="87" y="700" width="209" height="6" rx="3" fill="#8C7EE5"/>
+<rect x="475" y="700" width="314" height="6" rx="3" fill="#EEF0F6"/><rect x="475" y="700" width="157" height="6" rx="3" fill="#67A38C"/>
+<rect x="863" y="700" width="314" height="6" rx="3" fill="#EEF0F6"/><rect x="863" y="700" width="247" height="6" rx="3" fill="#D9AB60"/>
+<text x="64" y="814" font-size="20" font-weight="700" fill="#20243A">Recent activity</text>
+<circle cx="76" cy="850" r="12" fill="#E9E6FC"/><text x="102" y="855" font-size="14" fill="#687087">Maya completed the homepage review</text>
+<text x="1135" y="855" font-size="13" fill="#8A90A3">2h ago</text>
+</g></svg>
+

@@ -1,0 +1,190 @@
+{
+  "suiteVersion": "1.0.0",
+  "state": "AUTHORED_NOT_EXECUTED",
+  "comparison": {
+    "caseIds": [
+      "B01",
+      "B02"
+    ],
+    "runsPerArm": 1,
+    "arms": [
+      "baseline",
+      "skill"
+    ]
+  },
+  "skillOnlyCaseIds": [
+    "B03",
+    "B04",
+    "B05",
+    "B06"
+  ],
+  "budget": {
+    "wallSeconds": 360,
+    "toolCalls": 20,
+    "sameForAllArms": true,
+    "tokenBudget": "same inherited host limit; actual exposed usage only"
+  },
+  "cases": [
+    {
+      "id": "B01",
+      "access": "public",
+      "subject": "Small CRUD change",
+      "task": "Add PATCH /tickets/:id and preserve GET. Editors may change title (nonempty trimmed string, max 120 chars) and note (string max 500 chars or null); absent fields remain unchanged and null only clears note. Require positive integer version in JSON; reject unknown/privileged fields. Success atomically increments stored version and returns the existing public projection. Return JSON 400 malformed/schema-invalid,401 no identity,403 reader writes,404 absent tenant object,409 stale version,413 above 2048 body bytes,415 non-JSON. Derive tenant from registry regardless of client headers. Verify actual HTTP, concurrent same-version edits and persistence across close/reopen. Keep the change small. Use Node 24.12+ native SQLite and built-ins; no downloads, production deployment or external mutation. Work only in the supplied small fixture. Classify all L01-L24 proportionally; out-of-scope with reasons is allowed. Put implementation and runnable verification in trial/artifact and write trial/result.json using the supplied output contract.",
+      "requirements": [
+        {
+          "id": "B01-R01",
+          "meaning": "PATCH supports stated allowed fields, absence/null, validation, projection and version semantics."
+        },
+        {
+          "id": "B01-R02",
+          "meaning": "Authentication, write permission and tenant object boundaries hold through HTTP and persistence."
+        },
+        {
+          "id": "B01-R03",
+          "meaning": "Concurrent same-version updates yield one winning mutation and one defined conflict."
+        },
+        {
+          "id": "B01-R04",
+          "meaning": "Malformed, unsupported and oversized requests fail with bounded work and stated JSON errors."
+        },
+        {
+          "id": "B01-R05",
+          "meaning": "GET compatibility and reproducible actual HTTP/reopen evidence accompany the working implementation."
+        },
+        {
+          "id": "B01-R06",
+          "meaning": "Proportional L01-L24 coverage and requirement/mechanism/limit/failure/verification decisions are truthful."
+        }
+      ],
+      "fixtures": [
+        "skill-fixtures/B01/service.mjs",
+        "skill-fixtures/B01/README.md"
+      ]
+    },
+    {
+      "id": "B02",
+      "access": "public",
+      "subject": "Transaction/concurrency defect",
+      "task": "Reservations sometimes confirm two buyers against the same inventory version. Repair reserve so stock decrement and allocation insertion are atomic and enforce positive integer quantity, tenant/item scope, sufficient quantity and expected version. Two callers quantity4/version1 against stock5 must yield one201 and one409 with stock1 and one allocation. Missing item404; invalid quantity400. A thrown afterWrite fault leaves neither partial stock nor allocation mutation and the store stays usable. Preserve async afterRead interleaving hook, afterWrite fault hook, API shape and other tenant stock. Run forced race on file-backed SQLite and show rollback/retry evidence. An in-memory mutex or mocked database alone is insufficient. Use Node 24.12+ native SQLite and built-ins; no downloads, production deployment or external mutation. Work only in the supplied small fixture. Classify all L01-L24 proportionally; out-of-scope with reasons is allowed. Put implementation and runnable verification in trial/artifact and write trial/result.json using the supplied output contract.",
+      "requirements": [
+        {
+          "id": "B02-R01",
+          "meaning": "Competing same-version reservations preserve inventory/allocation invariants with defined outcomes in real SQLite."
+        },
+        {
+          "id": "B02-R02",
+          "meaning": "Stock and allocation roll back together after the supplied injected fault."
+        },
+        {
+          "id": "B02-R03",
+          "meaning": "Quantity/version preconditions, missing item, tenant isolation and API signature are preserved."
+        },
+        {
+          "id": "B02-R04",
+          "meaning": "Supplied async/fault hooks remain usable and actual race/reopen/rollback evidence is retained."
+        },
+        {
+          "id": "B02-R05",
+          "meaning": "Storage mechanism and SQLite concurrency/operating limits are explicit without broader guarantees."
+        },
+        {
+          "id": "B02-R06",
+          "meaning": "All responsibility dispositions and decision evidence remain proportionate and truthful."
+        }
+      ],
+      "fixtures": [
+        "skill-fixtures/B02/store.mjs",
+        "skill-fixtures/B02/probe.mjs",
+        "skill-fixtures/B02/README.md"
+      ]
+    },
+    {
+      "id": "B03",
+      "access": "public",
+      "subject": "Query and resource optimization",
+      "task": "Optimize ready-parcel listing and required SQLite indexing. Preserve tenant scope and rows{id,created_at}, latest-first ordering with id descending tie-breaker, validated integer limit 1..100 (reject invalid). Keep supplied 60,000 rows / 80% whale skew unchanged. Capture baseline before edits and comparable after: three measured samples per supplied tenant, actual EXPLAIN QUERY PLAN of executed SQL, materialized rows/bytes and elapsed values. Keep raw samples; report median/range without unsupported p99/speedup. Bound page materialization and avoid payload reads. Supply reproducible index application and correctness checks. Explain CPU/memory/I/O/read/write/storage costs and distinguish output rows from unavailable engine rows-examined metrics. Use Node 24.12+ native SQLite and built-ins; no downloads, production deployment or external mutation. Work only in the supplied small fixture. Classify all L01-L24 proportionally; out-of-scope with reasons is allowed. Put implementation and runnable verification in trial/artifact and write trial/result.json using the supplied output contract.",
+      "requirements": [
+        {
+          "id": "B03-R01",
+          "meaning": "Results, deterministic tie ordering, limit validation and tenant filtering remain correct."
+        },
+        {
+          "id": "B03-R02",
+          "meaning": "Executed query/access path bounds page materialization and avoids unnecessary payload projection."
+        },
+        {
+          "id": "B03-R03",
+          "meaning": "Comparable unchanged-cardinality/skew before/after raw measurements include three samples per tenant and actual plans."
+        },
+        {
+          "id": "B03-R04",
+          "meaning": "Measured values and unavailable metrics are distinguished with workload, cache, runtime and amplification limits."
+        },
+        {
+          "id": "B03-R05",
+          "meaning": "Runnable setup/index application and independent correctness evidence accompany implementation."
+        },
+        {
+          "id": "B03-R06",
+          "meaning": "Proportional L01-L24 mapping and requirement-linked mechanism/limit/failure/verification are supplied."
+        }
+      ],
+      "fixtures": [
+        "skill-fixtures/B03/seed.mjs",
+        "skill-fixtures/B03/query.mjs",
+        "skill-fixtures/B03/bench.mjs",
+        "skill-fixtures/B03/README.md"
+      ]
+    },
+    {
+      "id": "B04",
+      "access": "public",
+      "subject": "Durable background processing",
+      "task": "Repair the local credit worker. Durable enqueue binds a nonempty job id to one validated known account/positive integer amount; same id/parameters replays acceptance and conflicting reuse rejects. Processing produces one local durable credit and eventually done despite a real process crash at after-effect/before-ack and restart on the same SQLite file. Unknown accounts/invalid amounts cannot silently complete. Keep real crash hook and CLI executable; failures leave DB usable. Document bounded per-invocation work/retry policy. Verify duplicate/conflicting trigger, crash/restart, normal completion and invalid jobs. One SQLite database/one active worker/no external effect: explicitly state that limit and avoid distributed exactly-once claims. Use Node 24.12+ native SQLite and built-ins; no downloads, production deployment or external mutation. Work only in the supplied small fixture. Classify all L01-L24 proportionally; out-of-scope with reasons is allowed. Put implementation and runnable verification in trial/artifact and write trial/result.json using the supplied output contract.",
+      "requirements": [
+        {
+          "id": "B04-R01",
+          "meaning": "Durable job identity validates payloads and distinguishes identical replay from conflicting reuse."
+        },
+        {
+          "id": "B04-R02",
+          "meaning": "Real crash between effect/ack followed by restart yields one durable local effect and terminal completion."
+        },
+        {
+          "id": "B04-R03",
+          "meaning": "Invalid account/amount cannot silently complete; partial failure cleans up and later work remains possible."
+        },
+        {
+          "id": "B04-R04",
+          "meaning": "Processing/retry work is bounded, crash fault stays executable and local-only guarantee is explicit."
+        },
+        {
+          "id": "B04-R05",
+          "meaning": "File-backed crash/restart and duplicate/failure observations have runnable commands."
+        },
+        {
+          "id": "B04-R06",
+          "meaning": "L01-L24 coverage and requirement-linked decision evidence remain proportionate and truthful."
+        }
+      ],
+      "fixtures": [
+        "skill-fixtures/B04/worker.mjs",
+        "skill-fixtures/B04/README.md"
+      ]
+    },
+    {
+      "id": "B05",
+      "access": "heldout",
+      "definitionPath": "heldout/B05.json",
+      "execution": "skill-only once after freeze",
+      "doNotReadUntilFreeze": true
+    },
+    {
+      "id": "B06",
+      "access": "heldout",
+      "definitionPath": "heldout/B06.json",
+      "execution": "skill-only once after freeze",
+      "doNotReadUntilFreeze": true
+    }
+  ]
+}

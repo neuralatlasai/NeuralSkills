@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "1.0",
+  "resources": [
+    {
+      "path": "SKILL.md",
+      "purpose": "Activation, routing and core execution invariants"
+    },
+    {
+      "path": "assets/contract.template.json",
+      "purpose": "Illustrative UNVERIFIED shared contract to adapt"
+    },
+    {
+      "path": "assets/contracts.schema.json",
+      "purpose": "Shared brief, traceability, component and measurement contract schema"
+    },
+    {
+      "path": "assets/manifest.json",
+      "purpose": "Resource inventory and purpose"
+    },
+    {
+      "path": "evals/activation.json",
+      "purpose": "Evaluation specification or actual report: activation.json"
+    },
+    {
+      "path": "evals/cases.json",
+      "purpose": "Evaluation specification or actual report: cases.json"
+    },
+    {
+      "path": "evals/fixtures/C02/README.md",
+      "purpose": "Original evaluation fixture: C02/README.md"
+    },
+    {
+      "path": "evals/fixtures/C02/reference.png",
+      "purpose": "Original evaluation fixture: C02/reference.png"
+    },
+    {
+      "path": "evals/fixtures/C02/reference.svg",
+      "purpose": "Original evaluation fixture: C02/reference.svg"
+    },
+    {
+      "path": "evals/fixtures/C03/brand.svg",
+      "purpose": "Original evaluation fixture: C03/brand.svg"
+    },
+    {
+      "path": "evals/fixtures/C03/layout.svg",
+      "purpose": "Original evaluation fixture: C03/layout.svg"
+    },
+    {
+      "path": "evals/fixtures/C03/typography.svg",
+      "purpose": "Original evaluation fixture: C03/typography.svg"
+    },
+    {
+      "path": "evals/fixtures/C04/brief.md",
+      "purpose": "Original evaluation fixture: C04/brief.md"
+    },
+    {
+      "path": "evals/fixtures/C04/figma-access.json",
+      "purpose": "Original evaluation fixture: C04/figma-access.json"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/README.md",
+      "purpose": "Original evaluation fixture: C05/repo/README.md"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/index.html",
+      "purpose": "Original evaluation fixture: C05/repo/index.html"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/package.json",
+      "purpose": "Original evaluation fixture: C05/repo/package.json"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/src/App.tsx",
+      "purpose": "Original evaluation fixture: C05/repo/src/App.tsx"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/src/main.tsx",
+      "purpose": "Original evaluation fixture: C05/repo/src/main.tsx"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/src/styles.css",
+      "purpose": "Original evaluation fixture: C05/repo/src/styles.css"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/tsconfig.json",
+      "purpose": "Original evaluation fixture: C05/repo/tsconfig.json"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/vite.config.ts",
+      "purpose": "Original evaluation fixture: C05/repo/vite.config.ts"
+    },
+    {
+      "path": "evals/fixtures/C06/README.md",
+      "purpose": "Original evaluation fixture: C06/README.md"
+    },
+    {
+      "path": "evals/fixtures/C06/fake-api.ts",
+      "purpose": "Original evaluation fixture: C06/fake-api.ts"
+    },
+    {
+      "path": "evals/fixtures/C07/copy.json",
+      "purpose": "Original evaluation fixture: C07/copy.json"
+    },
+    {
+      "path": "evals/fixtures/C08/imported-notes.md",
+      "purpose": "Original evaluation fixture: C08/imported-notes.md"
+    },
+    {
+      "path": "evals/fixtures/C08/reference.svg",
+      "purpose": "Original evaluation fixture: C08/reference.svg"
+    },
+    {
+      "path": "evals/fixtures/heavy/README.md",
+      "purpose": "Original supplemental 1000-record paginated local workload fixture: README.md"
+    },
+    {
+      "path": "evals/fixtures/heavy/app.js",
+      "purpose": "Original supplemental 1000-record paginated local workload fixture: app.js"
+    },
+    {
+      "path": "evals/fixtures/heavy/app.ts",
+      "purpose": "Original supplemental 1000-record paginated local workload fixture: app.ts"
+    },
+    {
+      "path": "evals/fixtures/heavy/index.html",
+      "purpose": "Original supplemental 1000-record paginated local workload fixture: index.html"
+    },
+    {
+      "path": "evals/fixtures/heavy/styles.css",
+      "purpose": "Original supplemental 1000-record paginated local workload fixture: styles.css"
+    },
+    {
+      "path": "evals/fixtures/lab/README.md",
+      "purpose": "Original evaluation fixture: lab/README.md"
+    },
+    {
+      "path": "evals/fixtures/lab/app.js",
+      "purpose": "Original evaluation fixture: lab/app.js"
+    },
+    {
+      "path": "evals/fixtures/lab/app.ts",
+      "purpose": "Original evaluation fixture: lab/app.ts"
+    },
+    {
+      "path": "evals/fixtures/lab/index.html",
+      "purpose": "Original evaluation fixture: lab/index.html"
+    },
+    {
+      "path": "evals/fixtures/lab/state.js",
+      "purpose": "Original evaluation fixture: lab/state.js"
+    },
+    {
+      "path": "evals/fixtures/lab/state.ts",
+      "purpose": "Original evaluation fixture: lab/state.ts"
+    },
+    {
+      "path": "evals/fixtures/lab/styles.css",
+      "purpose": "Original evaluation fixture: lab/styles.css"
+    },
+    {
+      "path": "evals/heldout/C07.json",
+      "purpose": "Sealed final evaluation case; do not inspect during tuning"
+    },
+    {
+      "path": "evals/heldout/C08.json",
+      "purpose": "Sealed final evaluation case; do not inspect during tuning"
+    },
+    {
+      "path": "evals/protocol.md",
+      "purpose": "Evaluation specification or actual report: protocol.md"
+    },
+    {
+      "path": "evals/report.md",
+      "purpose": "Evaluation specification or actual report: report.md"
+    },
+    {
+      "path": "evals/rubric.json",
+      "purpose": "Evaluation specification or actual report: rubric.json"
+    },
+    {
+      "path": "package.json",
+      "purpose": "Inspected local commands and Node engine requirement"
+    },
+    {
+      "path": "references/adapters.md",
+      "purpose": "Conditional procedure: adapters"
+    },
+    {
+      "path": "references/design.md",
+      "purpose": "Conditional procedure: design"
+    },
+    {
+      "path": "references/implementation.md",
+      "purpose": "Conditional procedure: implementation"
+    },
+    {
+      "path": "references/modules.md",
+      "purpose": "Conditional procedure: modules"
+    },
+    {
+      "path": "references/sources.md",
+      "purpose": "Conditional procedure: sources"
+    },
+    {
+      "path": "references/standards.md",
+      "purpose": "Conditional procedure: standards"
+    },
+    {
+      "path": "references/verification.md",
+      "purpose": "Conditional procedure: verification"
+    },
+    {
+      "path": "scripts/build-lab.mjs",
+      "purpose": "Deterministic Node operation: build-lab.mjs"
+    },
+    {
+      "path": "scripts/heavy-lab.mjs",
+      "purpose": "Three-run original 1000-record browser workload, keyboard/state/race/resource diagnostics and failure reporting"
+    },
+    {
+      "path": "scripts/lab.mjs",
+      "purpose": "Deterministic Node operation: lab.mjs"
+    },
+    {
+      "path": "scripts/measure.mjs",
+      "purpose": "Deterministic Node operation: measure.mjs"
+    },
+    {
+      "path": "scripts/serve.mjs",
+      "purpose": "Deterministic Node operation: serve.mjs"
+    },
+    {
+      "path": "scripts/test-tools.mjs",
+      "purpose": "Deterministic Node operation: test-tools.mjs"
+    },
+    {
+      "path": "scripts/validate.mjs",
+      "purpose": "Deterministic Node operation: validate.mjs"
+    },
+    {
+      "path": "evals/expert-report.md",
+      "purpose": "Version 1.1 targeted revision and evaluation status; prior report remains historical"
+    },
+    {
+      "path": "evals/fixtures/heavy/plan.json",
+      "purpose": "Reusable predeclared heavy workload inputs; original plan bytes retained"
+    }
+  ]
+}

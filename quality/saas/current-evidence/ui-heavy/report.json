@@ -1,0 +1,523 @@
+{
+  "status": "PASS",
+  "beganAt": "2026-11-06T03:11:13.028Z",
+  "planHash": "13cb7b08dd86d6355c04e31a4515ec5eea5cbc84211864834f9b85eef6a2b0a2",
+  "buildHash": "6246c9f170d2acb4258f38a9513cb796087fa83e7206a8c7a8a9ae2c47a33435",
+  "sourceHashes": {
+    "index.html": "1b239ac7070e819aee5a698bf7bec68916870fd97ca5c180d1a075fef5aae2cf",
+    "styles.css": "e264755289c3f4062b9205bd62c4d7bf88f7a125cef6dae7f98bbec9cdc5d438",
+    "app.ts": "a270ac35dde5812ce1cd64e2ca47a7f70fe71971fb49fb4812a1b777dae97558",
+    "app.js": "3b064cd08feba6d4dd769c054227e9548ab3d21ed478adc97f7073ca0a5ff657",
+    "../lab/state.js": "a82f8373ff3ed20c17215b8cf31b1243dfef25b7d85b9cab17f3f5043efb8ba4"
+  },
+  "compiler": "C:\\Users\\heman\\AppData\\Local\\Programs\\Microsoft VS Code\\a717861c07\\resources\\app\\extensions\\node_modules\\typescript\\lib\\typescript.js",
+  "checks": [
+    {
+      "run": 1,
+      "status": "PASS",
+      "functional": "pagination, search, out-of-order guard, selection, focus, stale refresh, failure/retry, scroll/resize and live DOM cap"
+    },
+    {
+      "run": 2,
+      "status": "PASS",
+      "functional": "pagination, search, out-of-order guard, selection, focus, stale refresh, failure/retry, scroll/resize and live DOM cap"
+    },
+    {
+      "run": 3,
+      "status": "PASS",
+      "functional": "pagination, search, out-of-order guard, selection, focus, stale refresh, failure/retry, scroll/resize and live DOM cap"
+    }
+  ],
+  "errors": [],
+  "profiles": [
+    {
+      "run": 1,
+      "typingEvents": [
+        {
+          "query": "R",
+          "eventAt": 570.5999999940395,
+          "feedbackAt": 570.5999999940395,
+          "animationAt": 578.4000000059605,
+          "settledAt": 765.5,
+          "applied": false
+        },
+        {
+          "query": "Re",
+          "eventAt": 611.5999999940395,
+          "feedbackAt": 611.5999999940395,
+          "animationAt": 618.0999999940395,
+          "settledAt": 795.9000000059605,
+          "applied": false
+        },
+        {
+          "query": "Rec",
+          "eventAt": 642.8000000119209,
+          "feedbackAt": 642.8000000119209,
+          "animationAt": 656.5999999940395,
+          "settledAt": 828,
+          "applied": false
+        },
+        {
+          "query": "Reco",
+          "eventAt": 686.7000000178814,
+          "feedbackAt": 686.7000000178814,
+          "animationAt": 700.0999999940395,
+          "settledAt": 874.0999999940395,
+          "applied": false
+        },
+        {
+          "query": "Recor",
+          "eventAt": 720.5,
+          "feedbackAt": 720.5,
+          "animationAt": 736.2000000178814,
+          "settledAt": 904.9000000059605,
+          "applied": false
+        },
+        {
+          "query": "Record",
+          "eventAt": 767.5,
+          "feedbackAt": 767.5999999940395,
+          "animationAt": 784.3000000119209,
+          "settledAt": 966.3000000119209,
+          "applied": false
+        },
+        {
+          "query": "Record ",
+          "eventAt": 813.8000000119209,
+          "feedbackAt": 813.9000000059605,
+          "animationAt": 824.0999999940395,
+          "settledAt": 999.2000000178814,
+          "applied": false
+        },
+        {
+          "query": "Record 0",
+          "eventAt": 844.3000000119209,
+          "feedbackAt": 844.4000000059605,
+          "animationAt": 853.3000000119209,
+          "settledAt": 1497.2000000178814,
+          "applied": false
+        },
+        {
+          "query": "Record 09",
+          "eventAt": 877,
+          "feedbackAt": 877.0999999940395,
+          "animationAt": 888,
+          "settledAt": 1067.800000011921,
+          "applied": true
+        }
+      ],
+      "baseline": {
+        "Timestamp": 141650.592839,
+        "AudioHandlers": 0,
+        "AudioWorkletProcessors": 0,
+        "Documents": 4,
+        "Frames": 4,
+        "JSEventListeners": 170,
+        "LayoutObjects": 2036,
+        "MediaKeySessions": 0,
+        "MediaKeys": 0,
+        "Nodes": 2072,
+        "Resources": 4,
+        "ContextLifecycleStateObservers": 10,
+        "V8PerContextDatas": 4,
+        "WorkerGlobalScopes": 0,
+        "UACSSResources": 0,
+        "RTCPeerConnections": 0,
+        "ResourceFetchers": 4,
+        "AdSubframes": 0,
+        "DetachedScriptStates": 2,
+        "ArrayBufferContents": 0,
+        "LayoutCount": 6,
+        "RecalcStyleCount": 16,
+        "LayoutDuration": 0.062503,
+        "RecalcStyleDuration": 0.009921,
+        "DevToolsCommandDuration": 0.063393,
+        "ScriptDuration": 0.013516,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.217945,
+        "TaskOtherDuration": 0.068612,
+        "ThreadTime": 0.320269,
+        "ProcessTime": 0.42232,
+        "JSHeapUsedSize": 2590944,
+        "JSHeapTotalSize": 6098944,
+        "FirstMeaningfulPaint": 0,
+        "DomContentLoaded": 141650.151491,
+        "NavigationStart": 141650.047098
+      },
+      "after": {
+        "Timestamp": 141653.730365,
+        "AudioHandlers": 0,
+        "AudioWorkletProcessors": 0,
+        "Documents": 4,
+        "Frames": 4,
+        "JSEventListeners": 1083,
+        "LayoutObjects": 13826,
+        "MediaKeySessions": 0,
+        "MediaKeys": 0,
+        "Nodes": 13864,
+        "Resources": 4,
+        "ContextLifecycleStateObservers": 12,
+        "V8PerContextDatas": 4,
+        "WorkerGlobalScopes": 0,
+        "UACSSResources": 0,
+        "RTCPeerConnections": 0,
+        "ResourceFetchers": 4,
+        "AdSubframes": 0,
+        "DetachedScriptStates": 2,
+        "ArrayBufferContents": 0,
+        "LayoutCount": 41,
+        "RecalcStyleCount": 85,
+        "LayoutDuration": 0.162006,
+        "RecalcStyleDuration": 0.057935,
+        "DevToolsCommandDuration": 0.209604,
+        "ScriptDuration": 0.055157,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.755712,
+        "TaskOtherDuration": 0.27101,
+        "ThreadTime": 0.860916,
+        "ProcessTime": 1.188493,
+        "JSHeapUsedSize": 4440808,
+        "JSHeapTotalSize": 9052160,
+        "FirstMeaningfulPaint": 141650.396413,
+        "DomContentLoaded": 141650.151491,
+        "NavigationStart": 141650.047098
+      },
+      "domCounters": {
+        "documents": 4,
+        "nodes": 13864,
+        "jsEventListeners": 1083
+      },
+      "liveDocumentNodes": 725
+    },
+    {
+      "run": 2,
+      "typingEvents": [
+        {
+          "query": "R",
+          "eventAt": 524.3000000119209,
+          "feedbackAt": 524.3000000119209,
+          "animationAt": 532.2000000178814,
+          "settledAt": 717.1000000238419,
+          "applied": false
+        },
+        {
+          "query": "Re",
+          "eventAt": 563.7000000178814,
+          "feedbackAt": 563.8000000119209,
+          "animationAt": 578.6000000238419,
+          "settledAt": 747.5,
+          "applied": false
+        },
+        {
+          "query": "Rec",
+          "eventAt": 594.6000000238419,
+          "feedbackAt": 594.6000000238419,
+          "animationAt": 602.8000000119209,
+          "settledAt": 778,
+          "applied": false
+        },
+        {
+          "query": "Reco",
+          "eventAt": 625.6000000238419,
+          "feedbackAt": 625.7000000178814,
+          "animationAt": 633.2000000178814,
+          "settledAt": 810,
+          "applied": false
+        },
+        {
+          "query": "Recor",
+          "eventAt": 656.7000000178814,
+          "feedbackAt": 656.8000000119209,
+          "animationAt": 667.1000000238419,
+          "settledAt": 842.7000000178814,
+          "applied": false
+        },
+        {
+          "query": "Record",
+          "eventAt": 687.9000000059605,
+          "feedbackAt": 688,
+          "animationAt": 694.2000000178814,
+          "settledAt": 874.8000000119209,
+          "applied": false
+        },
+        {
+          "query": "Record ",
+          "eventAt": 719.1000000238419,
+          "feedbackAt": 719.1000000238419,
+          "animationAt": 725.4000000059605,
+          "settledAt": 906.5,
+          "applied": false
+        },
+        {
+          "query": "Record 0",
+          "eventAt": 749.4000000059605,
+          "feedbackAt": 749.4000000059605,
+          "animationAt": 758,
+          "settledAt": 1402.7000000178814,
+          "applied": false
+        },
+        {
+          "query": "Record 09",
+          "eventAt": 780.5,
+          "feedbackAt": 780.5,
+          "animationAt": 793.1000000238419,
+          "settledAt": 974.9000000059605,
+          "applied": true
+        }
+      ],
+      "baseline": {
+        "Timestamp": 141654.591279,
+        "AudioHandlers": 0,
+        "AudioWorkletProcessors": 0,
+        "Documents": 4,
+        "Frames": 4,
+        "JSEventListeners": 170,
+        "LayoutObjects": 2036,
+        "MediaKeySessions": 0,
+        "MediaKeys": 0,
+        "Nodes": 2072,
+        "Resources": 3,
+        "ContextLifecycleStateObservers": 10,
+        "V8PerContextDatas": 4,
+        "WorkerGlobalScopes": 0,
+        "UACSSResources": 0,
+        "RTCPeerConnections": 0,
+        "ResourceFetchers": 4,
+        "AdSubframes": 0,
+        "DetachedScriptStates": 2,
+        "ArrayBufferContents": 0,
+        "LayoutCount": 6,
+        "RecalcStyleCount": 17,
+        "LayoutDuration": 0.055694,
+        "RecalcStyleDuration": 0.008336,
+        "DevToolsCommandDuration": 0.063549,
+        "ScriptDuration": 0.01108,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.204296,
+        "TaskOtherDuration": 0.065637,
+        "ThreadTime": 0.280295,
+        "ProcessTime": 0.384383,
+        "JSHeapUsedSize": 2595408,
+        "JSHeapTotalSize": 6098944,
+        "FirstMeaningfulPaint": 0,
+        "DomContentLoaded": 141654.173483,
+        "NavigationStart": 141654.082197
+      },
+      "after": {
+        "Timestamp": 141657.537448,
+        "AudioHandlers": 0,
+        "AudioWorkletProcessors": 0,
+        "Documents": 4,
+        "Frames": 4,
+        "JSEventListeners": 1083,
+        "LayoutObjects": 13826,
+        "MediaKeySessions": 0,
+        "MediaKeys": 0,
+        "Nodes": 13861,
+        "Resources": 3,
+        "ContextLifecycleStateObservers": 12,
+        "V8PerContextDatas": 4,
+        "WorkerGlobalScopes": 0,
+        "UACSSResources": 0,
+        "RTCPeerConnections": 0,
+        "ResourceFetchers": 4,
+        "AdSubframes": 0,
+        "DetachedScriptStates": 2,
+        "ArrayBufferContents": 0,
+        "LayoutCount": 39,
+        "RecalcStyleCount": 80,
+        "LayoutDuration": 0.131576,
+        "RecalcStyleDuration": 0.048563,
+        "DevToolsCommandDuration": 0.18456,
+        "ScriptDuration": 0.043355,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.626215,
+        "TaskOtherDuration": 0.218161,
+        "ThreadTime": 0.713379,
+        "ProcessTime": 1.010882,
+        "JSHeapUsedSize": 4970252,
+        "JSHeapTotalSize": 9052160,
+        "FirstMeaningfulPaint": 141654.409876,
+        "DomContentLoaded": 141654.173483,
+        "NavigationStart": 141654.082197
+      },
+      "domCounters": {
+        "documents": 4,
+        "nodes": 13861,
+        "jsEventListeners": 1083
+      },
+      "liveDocumentNodes": 725
+    },
+    {
+      "run": 3,
+      "typingEvents": [
+        {
+          "query": "R",
+          "eventAt": 544.6999999880791,
+          "feedbackAt": 544.6999999880791,
+          "animationAt": 557.2999999821186,
+          "settledAt": 729,
+          "applied": false
+        },
+        {
+          "query": "Re",
+          "eventAt": 576.1999999880791,
+          "feedbackAt": 576.1999999880791,
+          "animationAt": 584.5,
+          "settledAt": 767.5,
+          "applied": false
+        },
+        {
+          "query": "Rec",
+          "eventAt": 609.1999999880791,
+          "feedbackAt": 609.1999999880791,
+          "animationAt": 624.5999999940395,
+          "settledAt": 810.5,
+          "applied": false
+        },
+        {
+          "query": "Reco",
+          "eventAt": 654.0999999940395,
+          "feedbackAt": 654.0999999940395,
+          "animationAt": 662.5999999940395,
+          "settledAt": 840.0999999940395,
+          "applied": false
+        },
+        {
+          "query": "Recor",
+          "eventAt": 685.9000000059605,
+          "feedbackAt": 686,
+          "animationAt": 693.2999999821186,
+          "settledAt": 871.5,
+          "applied": false
+        },
+        {
+          "query": "Record",
+          "eventAt": 717.2999999821186,
+          "feedbackAt": 717.4000000059605,
+          "animationAt": 726.0999999940395,
+          "settledAt": 903,
+          "applied": false
+        },
+        {
+          "query": "Record ",
+          "eventAt": 748.5999999940395,
+          "feedbackAt": 748.5999999940395,
+          "animationAt": 763.4000000059605,
+          "settledAt": 934.1999999880791,
+          "applied": false
+        },
+        {
+          "query": "Record 0",
+          "eventAt": 794.6999999880791,
+          "feedbackAt": 794.6999999880791,
+          "animationAt": 807.4000000059605,
+          "settledAt": 1452.7999999821186,
+          "applied": false
+        },
+        {
+          "query": "Record 09",
+          "eventAt": 826.5,
+          "feedbackAt": 826.5999999940395,
+          "animationAt": 832.2999999821186,
+          "settledAt": 1016.6999999880791,
+          "applied": true
+        }
+      ],
+      "baseline": {
+        "Timestamp": 141658.327705,
+        "AudioHandlers": 0,
+        "AudioWorkletProcessors": 0,
+        "Documents": 4,
+        "Frames": 4,
+        "JSEventListeners": 170,
+        "LayoutObjects": 2036,
+        "MediaKeySessions": 0,
+        "MediaKeys": 0,
+        "Nodes": 2072,
+        "Resources": 3,
+        "ContextLifecycleStateObservers": 10,
+        "V8PerContextDatas": 4,
+        "WorkerGlobalScopes": 0,
+        "UACSSResources": 0,
+        "RTCPeerConnections": 0,
+        "ResourceFetchers": 4,
+        "AdSubframes": 0,
+        "DetachedScriptStates": 2,
+        "ArrayBufferContents": 0,
+        "LayoutCount": 6,
+        "RecalcStyleCount": 17,
+        "LayoutDuration": 0.06963,
+        "RecalcStyleDuration": 0.010789,
+        "DevToolsCommandDuration": 0.056499,
+        "ScriptDuration": 0.014487,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.23371,
+        "TaskOtherDuration": 0.082305,
+        "ThreadTime": 0.232101,
+        "ProcessTime": 0.4262,
+        "JSHeapUsedSize": 2631452,
+        "JSHeapTotalSize": 5836800,
+        "FirstMeaningfulPaint": 0,
+        "DomContentLoaded": 141657.891826,
+        "NavigationStart": 141657.800369
+      },
+      "after": {
+        "Timestamp": 141661.329891,
+        "AudioHandlers": 0,
+        "AudioWorkletProcessors": 0,
+        "Documents": 4,
+        "Frames": 4,
+        "JSEventListeners": 1083,
+        "LayoutObjects": 13826,
+        "MediaKeySessions": 0,
+        "MediaKeys": 0,
+        "Nodes": 13861,
+        "Resources": 3,
+        "ContextLifecycleStateObservers": 12,
+        "V8PerContextDatas": 4,
+        "WorkerGlobalScopes": 0,
+        "UACSSResources": 0,
+        "RTCPeerConnections": 0,
+        "ResourceFetchers": 4,
+        "AdSubframes": 0,
+        "DetachedScriptStates": 2,
+        "ArrayBufferContents": 0,
+        "LayoutCount": 39,
+        "RecalcStyleCount": 80,
+        "LayoutDuration": 0.150431,
+        "RecalcStyleDuration": 0.049613,
+        "DevToolsCommandDuration": 0.186401,
+        "ScriptDuration": 0.050683,
+        "V8CompileDuration": 0,
+        "TaskDuration": 0.683508,
+        "TaskOtherDuration": 0.24638,
+        "ThreadTime": 0.688013,
+        "ProcessTime": 1.085817,
+        "JSHeapUsedSize": 4961948,
+        "JSHeapTotalSize": 9052160,
+        "FirstMeaningfulPaint": 141658.140004,
+        "DomContentLoaded": 141657.891826,
+        "NavigationStart": 141657.800369
+      },
+      "domCounters": {
+        "documents": 4,
+        "nodes": 13861,
+        "jsEventListeners": 1083
+      },
+      "liveDocumentNodes": 725
+    }
+  ],
+  "priorHarnessFailure": "failure-001.json retained; correction.json explains live-DOM structural metric versus raw CDP total nodes. Threshold remains2000; no numeric total-CDP-node acceptance claim.",
+  "scriptNegative": {
+    "command": [
+      "node",
+      "scripts/heavy-lab.mjs",
+      "--browser",
+      "missing-browser.exe"
+    ],
+    "exitCode": 1,
+    "stderr": "Error: Browser unavailable: C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\quality\\saas\\current-evidence\\ui-heavy\\missing-browser.exe\n    at run (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/scripts/heavy-lab.mjs:20:46)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/scripts/heavy-lab.mjs:69:310\n"
+  },
+  "limitations": "CDP Performance/Memory snapshots are limited observations; no FPS, memory leak, accessibility conformance, field percentile or field Core Web Vitals claim. Preserve failures; do not retune gates after observing results."
+}

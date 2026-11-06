@@ -1,0 +1,179 @@
+{
+  "createdAt": "2026-11-06T03:02:54.574Z",
+  "scope": "Four-case suite sources frozen before implementation trials. Separate heldout task/grading/author-evidence sealed until skill freeze.",
+  "files": [
+    {
+      "file": "author-check.mjs",
+      "bytes": 1690,
+      "sha256": "97e133e4409dc1ee5c14d1586c96fe39d81dec478a283026fbe465bcdc3f6640"
+    },
+    {
+      "file": "case-matrix.json",
+      "bytes": 1119,
+      "sha256": "a9193d790f27d1114d2fc8a922e17190b384eab5912548e6e55c8150ac62c329"
+    },
+    {
+      "file": "grading/browser.mjs",
+      "bytes": 2277,
+      "sha256": "3431f273fd5bf5f2ed944cb0cd6159603637fa536302e835ece1e7ef63dc19a5"
+    },
+    {
+      "file": "grading/verify-backend.mjs",
+      "bytes": 3685,
+      "sha256": "9bf5ca46207c82f969b252c1e0aa6e3023470e5237c2bacf27f96e86230b835d"
+    },
+    {
+      "file": "grading/verify-ui.mjs",
+      "bytes": 5996,
+      "sha256": "1c2605d4c969821cf154d4760612141dfbe91032de96665da06937983ceb0c0c"
+    },
+    {
+      "file": "hidden-grading/README.md",
+      "bytes": 333,
+      "sha256": "582d6565b1cdef73dcf1cadd3a870cae44c7ab2ee2ed3934fd9ce4812a993347"
+    },
+    {
+      "file": "hidden-grading/verify-be-b2.mjs",
+      "bytes": 3410,
+      "sha256": "390562fc5007a21fcb589f5c06a36fc4a34e389a5c181f4d240f4dec8cde084a"
+    },
+    {
+      "file": "hidden-grading/verify-ui-u2.mjs",
+      "bytes": 4563,
+      "sha256": "0a215e1e0ee7d9de38be7ea157ccee24ef8c73263a18f2d435c9d91dfc6483dc"
+    },
+    {
+      "file": "holdout/BE-B2/fixture/README.md",
+      "bytes": 393,
+      "sha256": "c60e0aaa5ff3c8e7f2c0a350780223c9cd54d0011ade30fd9f40d17998da98c4"
+    },
+    {
+      "file": "holdout/BE-B2/fixture/service.ts",
+      "bytes": 1534,
+      "sha256": "4e3e7ded1e850b20984a80102442b0d29649ca504d1248f4f8bfa1b1cc7fc782"
+    },
+    {
+      "file": "holdout/BE-B2/task.md",
+      "bytes": 1789,
+      "sha256": "9c5f10db96fe9608886b8bf796bcc5c942008afd7a4e1f72399b2b81786d61fc"
+    },
+    {
+      "file": "holdout/UI-U2/fixture/README.md",
+      "bytes": 428,
+      "sha256": "a60c718b4f7b0e8ad5896d2551f1756809777b77f920153211a3421121d3c4d8"
+    },
+    {
+      "file": "holdout/UI-U2/fixture/app.ts",
+      "bytes": 874,
+      "sha256": "516e7d6747388f632a2bf3c9a0a27945552104782408eb7431450ecc1bcabef8"
+    },
+    {
+      "file": "holdout/UI-U2/fixture/demo.ts",
+      "bytes": 130,
+      "sha256": "6c61797878b9116f5b5a9f9d259ed6f85d01546191c6f7200ed7ffd6a094d2d9"
+    },
+    {
+      "file": "holdout/UI-U2/fixture/index.html",
+      "bytes": 963,
+      "sha256": "e33b67a5f6f8de1be56022ca6bfb540844a476fa5095eea5e9308e711404eb86"
+    },
+    {
+      "file": "holdout/UI-U2/fixture/styles.css",
+      "bytes": 546,
+      "sha256": "617e39b12a9c159ce90b557a2f2075c72868743b1edc6cc4e05425175c6c5b8a"
+    },
+    {
+      "file": "holdout/UI-U2/task.md",
+      "bytes": 1915,
+      "sha256": "a4b651ce062eed45c433a7814301c5446ee2ddca7ccdb29bf3398d54156d5533"
+    },
+    {
+      "file": "old-reference-map.json",
+      "bytes": 6881,
+      "sha256": "0aefb7abf759798c81b6989864242c99b9690076c7b23434e3ec506afbc78371"
+    },
+    {
+      "file": "output-contract.md",
+      "bytes": 1817,
+      "sha256": "a996d97f16e493b4e2711dc0435c4f08fc34eb452721e6306f3688262f13dd05"
+    },
+    {
+      "file": "protocol.md",
+      "bytes": 6774,
+      "sha256": "0349523f5ed1115d70b463861582679291e2972b0de4b6b0af750933cbee64ae"
+    },
+    {
+      "file": "public-setup-summary.json",
+      "bytes": 1458,
+      "sha256": "8e9543b6d89809a054538f7414368aff0db64be942362ae7563763ad4eeca7d1"
+    },
+    {
+      "file": "public/BE-B1/fixture/README.md",
+      "bytes": 538,
+      "sha256": "bcb60ccd0354f2ff63ca273d319943176f51d5b96294271d52539c8d0d66d1ef"
+    },
+    {
+      "file": "public/BE-B1/fixture/service.ts",
+      "bytes": 1936,
+      "sha256": "c059632d536d5a06a97fab477cd071909947a2e3aa51b8e8cb9a7c7d57a1a42c"
+    },
+    {
+      "file": "public/BE-B1/task.md",
+      "bytes": 2147,
+      "sha256": "b76480b19bdefef35038714543f7fca1a219ea138323850d6c864fb10aa13859"
+    },
+    {
+      "file": "public/UI-U1/fixture/README.md",
+      "bytes": 613,
+      "sha256": "d7d8eb9cfe1f0bee0a4e0b74d4d5bd053c15d9333c7cd6a7cb1920d4f4133377"
+    },
+    {
+      "file": "public/UI-U1/fixture/app.ts",
+      "bytes": 1478,
+      "sha256": "e2d21b94e9101facdaa30ab59d983fdfcfec6e64f2ce5ca4fefd441d15ea8f70"
+    },
+    {
+      "file": "public/UI-U1/fixture/demo.ts",
+      "bytes": 247,
+      "sha256": "1479df2c6aaed6d09c64e26422cda98d5a78f58738bc64228579527ec4307f31"
+    },
+    {
+      "file": "public/UI-U1/fixture/index.html",
+      "bytes": 675,
+      "sha256": "99ced9f777892989ef38be56df67481f16ef525ef930a0a96e2a07bb722a4a67"
+    },
+    {
+      "file": "public/UI-U1/fixture/styles.css",
+      "bytes": 539,
+      "sha256": "f8834c7a8b75c44201a2ee3b5d319ee6c809fbfd3fe77805fbaa19315268cbee"
+    },
+    {
+      "file": "public/UI-U1/task.md",
+      "bytes": 2032,
+      "sha256": "6dfe2f220b28780796bfb78a68889d9181b62245454fc884295965514bf5c6cb"
+    },
+    {
+      "file": "rubric.json",
+      "bytes": 1352,
+      "sha256": "6efbd2f73a89fcb6142cc32a40021be6d9e8f663ae4016feab2c2e7ddeaae9a4"
+    },
+    {
+      "file": "serve-fixture.mjs",
+      "bytes": 1443,
+      "sha256": "62598d709d6c7d8f625fa57cdef90cab5dd6a0ecdb3f49708fbf62d41b9f1622"
+    },
+    {
+      "file": "shared-wrapper.md",
+      "bytes": 1076,
+      "sha256": "cfdb4c05786ad955e16caa8b8d74520714289a92c66b6fbf9113550f91c28bdd"
+    },
+    {
+      "file": "trial-prompt.template.md",
+      "bytes": 899,
+      "sha256": "a5c0ab8392147cfccbf0a05b8119e83f11e6f728f1ee35bb166da3a90097d1de"
+    }
+  ],
+  "sourceSetSha256": "9f1b89b3b2762d9c2d02d144d1324c2f572604caff3095cfadf5807415444afc",
+  "authorEvidenceManifestSha256": "f9f3195618be3392fbdbdc8c6f3951b779c1a0eb2cc792c6eed6db92e35277c5",
+  "implementationTrialsRun": 0
+}

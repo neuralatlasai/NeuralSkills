@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request a studio payment</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main class="payment-card" aria-labelledby="title">
+    <header>
+      <div class="eyebrow"><span class="mark" aria-hidden="true">+</span><span>Payments</span></div>
+      <h1 id="title">Request a studio payment</h1>
+    </header>
+    <section class="item" aria-labelledby="item-title">
+      <p class="overline">Membership</p>
+      <h2 id="item-title">Quarterly studio membership</h2>
+    </section>
+    <form id="request-form" novalidate>
+      <div class="field">
+        <label for="amount">Amount</label>
+        <input id="amount" name="amount" type="number" inputmode="decimal" step="any" value="240" required aria-describedby="amount-error">
+        <p class="error" id="amount-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="note">Note</label>
+        <textarea id="note" name="note" rows="3" required aria-describedby="note-error">Access for the spring term</textarea>
+        <p class="error" id="note-error" hidden></p>
+      </div>
+      <div class="actions">
+        <button class="primary" type="submit">Send request</button>
+        <button class="secondary" id="save-draft" type="button">Save draft</button>
+      </div>
+    </form>
+    <section class="feedback" id="feedback" role="status" aria-live="polite" aria-atomic="true" hidden></section>
+  </main>
+</body>
+</html>

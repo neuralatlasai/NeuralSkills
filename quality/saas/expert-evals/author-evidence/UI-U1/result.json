@@ -1,0 +1,63 @@
+{
+  "caseId": "UI-U1",
+  "node": "v24.12.0",
+  "time": "2026-11-06T03:02:00.283Z",
+  "checks": [
+    {
+      "id": "U1-control-single-result",
+      "kind": "control",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "id": "U1-R1-out-of-order-success",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'Aye' !== 'Bee'\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:9:213\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:9:1"
+    },
+    {
+      "id": "U1-R1-stale-failure",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:10:259\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:10:1"
+    },
+    {
+      "id": "U1-R2-composition",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:11:362\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:11:1"
+    },
+    {
+      "id": "U1-R2-R3-keyboard-focus",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:12:170\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:12:1"
+    },
+    {
+      "id": "U1-R1-clear-invalidates",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:13:168\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:13:1"
+    },
+    {
+      "id": "U1-R4-current-error-retry",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "id": "U1-R4-dispose",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '<h1>Assign request</h1><label for=\"query\">Find an assignee</label><input id=\"query\" role=\"combobox\" aria-autocomplete=\"list\" aria-controls=\"options\" aria-expanded=\"true\" autocomplete=\"off\" aria-activedescendant=\"person-a\"><ul id=\"options\" role=\"listbox\" aria-label=\"Assignees\"><li id=\"person-a\" role=\"option\" aria-selected=\"true\">Aye</li></ul><p id=\"status\" role=\"status\" aria-live=\"polite\">1 people</p><button id=\"retry\" type=\"button\" hidden=\"\">Retry search</button><p>Chosen: <span id=\"chosen\">None</span></p>'\n- '<h1>Assign request</h1><label for=\"query\">Find an assignee</label><input id=\"query\" role=\"combobox\" aria-autocomplete=\"list\" aria-controls=\"options\" aria-expanded=\"false\" autocomplete=\"off\"><ul id=\"options\" role=\"listbox\" aria-label=\"Assignees\"></ul><p id=\"status\" role=\"status\" aria-live=\"polite\">Loading</p><button id=\"retry\" type=\"button\" hidden=\"\">Retry search</button><p>Chosen: <span id=\"chosen\">None</span></p>'\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:15:345\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:15:1"
+    },
+    {
+      "id": "U1-R5-reflow",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: {\"width\":320,\"scroll\":1910,\"input\":{\"x\":0,\"y\":163.875,\"width\":360,\"height\":45,\"top\":163.875,\"right\":360,\"bottom\":208.875,\"left\":0}}\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:16:426\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/verify-ui.mjs:16:1"
+    }
+  ],
+  "errors": [],
+  "pass": false
+}

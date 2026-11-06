@@ -1,0 +1,3 @@
+# Runnable broken original
+No installation. From expert-evals: node serve-fixture.mjs public/UI-U1/fixture 4173
+Open printed loopback URL. Shared server strips native TS for browser delivery; it is not static type checking. Browser dependencies already installed on this host; see protocol.md. The task intentionally documents defects: late requests overwrite current state, composition triggers requests, render blurs input, active ID may be invalid, dispose fails to guard late work, intrinsic sizing overflows. Keep fixture private/local. Independent original-fault evidence is retained outside this artifact.

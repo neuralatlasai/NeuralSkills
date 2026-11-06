@@ -1,0 +1,34 @@
+{
+  "id": "setup-server",
+  "status": "PASS",
+  "evidence": {
+    "command": "node serve.cjs",
+    "output": "Fieldnotes: http://127.0.0.1:4173\n",
+    "replies": [
+      {
+        "file": "index.html",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "bytes": 1978
+      },
+      {
+        "file": "style.css",
+        "status": 200,
+        "contentType": "text/css; charset=utf-8",
+        "bytes": 4102
+      },
+      {
+        "file": "app.js",
+        "status": 200,
+        "contentType": "text/javascript; charset=utf-8",
+        "bytes": 4116
+      },
+      {
+        "file": "fake-api.js",
+        "status": 200,
+        "contentType": "text/javascript; charset=utf-8",
+        "bytes": 1173
+      }
+    ]
+  }
+}

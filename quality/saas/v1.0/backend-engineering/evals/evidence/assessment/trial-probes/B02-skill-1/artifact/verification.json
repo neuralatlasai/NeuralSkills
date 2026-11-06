@@ -1,0 +1,472 @@
+{
+  "runtime": "v24.12.0",
+  "work": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-skill-1\\artifact\\verification-7x2sv8",
+  "sqlite": "3.50.4",
+  "checks": [
+    {
+      "name": "same-connection-1",
+      "status": "PASS",
+      "separateConnections": false,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "two-connections-1",
+      "status": "PASS",
+      "separateConnections": true,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "same-connection-2",
+      "status": "PASS",
+      "separateConnections": false,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "two-connections-2",
+      "status": "PASS",
+      "separateConnections": true,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "same-connection-3",
+      "status": "PASS",
+      "separateConnections": false,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "two-connections-3",
+      "status": "PASS",
+      "separateConnections": true,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "afterWrite-rollback",
+      "status": "PASS",
+      "faultCalls": 1,
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 5,
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": []
+      }
+    },
+    {
+      "name": "retry-after-rollback",
+      "status": "PASS",
+      "result": {
+        "status": 201,
+        "available": 1,
+        "version": 2
+      },
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      }
+    },
+    {
+      "name": "validation-scope-contract",
+      "status": "PASS",
+      "invalidQuantityCases": 9,
+      "invalidOrStaleVersionCases": 7,
+      "missingItem": 404,
+      "missingTenant": 404,
+      "insufficient": 409,
+      "south": {
+        "status": 201,
+        "available": 99,
+        "version": 2
+      },
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 99,
+            "version": 2
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          },
+          {
+            "id": 2,
+            "tenant": "south",
+            "item": "part-7",
+            "quantity": 1
+          }
+        ]
+      },
+      "afterReadThrowUnchanged": true
+    },
+    {
+      "name": "sqlite-index-and-integrity",
+      "status": "PASS",
+      "plan": [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH stock USING INDEX sqlite_autoindex_stock_1 (tenant=? AND item=?)"
+        }
+      ],
+      "integrity": {
+        "integrity_check": "ok"
+      }
+    },
+    {
+      "name": "reopen-after-fault-retry",
+      "status": "PASS",
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 99,
+            "version": 2
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          },
+          {
+            "id": 2,
+            "tenant": "south",
+            "item": "part-7",
+            "quantity": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "lock-contention-and-explicit-retry",
+      "status": "PASS",
+      "busyTimeoutMs": 200,
+      "busyError": {
+        "message": "database is locked",
+        "code": "ERR_SQLITE_ERROR",
+        "errcode": 5
+      },
+      "retryAfterBusy": {
+        "status": 201,
+        "available": 1,
+        "version": 2
+      },
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      }
+    },
+    {
+      "name": "allocation-insert-failure-rollback",
+      "status": "PASS",
+      "rolledBack": true,
+      "retryStatus": 201,
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      }
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,4 @@
+Initial browser invocation failed before assertions: installed Puppeteer expected cached Chrome 138.0.7204.94, which was unavailable at C:/Users/heman/.cache/puppeteer. No download attempted. Corrected test launch to use already installed C:/Program Files/Google/Chrome/Application/chrome.exe, configurable with CHROME_PATH.
+Command: node NeuralSkills/quality/saas/expert-evals/trials/T02/artifact/test.mjs
+Observed initial exit code: 1.
+Second invocation with system Chrome default WebSocket transport timed out after 30000ms before assertions (Puppeteer TimeoutError). Third attempt uses pipe transport and bounded 10s protocol timeout.

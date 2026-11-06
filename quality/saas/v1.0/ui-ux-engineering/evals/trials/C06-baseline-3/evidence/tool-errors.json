@@ -1,0 +1,34 @@
+{
+  "errors": [
+    {
+      "step": "Initial fixture lookup",
+      "error": "fixtures/C06/fake-api.ts and fixtures/C06/README.md did not exist relative to role root.",
+      "resolution": "Read the named fixtures under evals/fixtures/C06."
+    },
+    {
+      "step": "First corrective edit attempt",
+      "error": "PowerShell ParserError: Missing closing parenthesis in method call; smart quotes in a replacement string were interpreted as quotes.",
+      "resolution": "The command failed before mutation. Applied the same changes using a single quoted here-string Node script."
+    },
+    {
+      "step": "First browser run",
+      "error": "One console Failed to load resource: 404 (Not Found); no pageerror.",
+      "resolution": "Added an embedded favicon. Original browser run retained in browser-checks-first.json; final run records resource statuses and console errors."
+    },
+    {
+      "step": "Second browser run",
+      "error": "Test runner locator for Search also matched Retry search for fail, causing a strict-mode locator failure after the required scenarios had passed.",
+      "resolution": "Used exact Search accessible-name matching. Original failure retained in browser-checks-second.json. Third run passed all 21 checks with zero console, HTTP, or page errors."
+    },
+    {
+      "step": "Second browser run",
+      "error": "Test runner locator for Search also matched Retry search for fail, causing a strict-mode locator failure after the required scenarios had passed.",
+      "resolution": "Used exact Search accessible-name matching. Original failure retained in browser-checks-second.json. Third run passed all 21 checks with zero console, HTTP, or page errors."
+    },
+    {
+      "step": "First setup smoke",
+      "error": "response.status is not a function",
+      "resolution": "Used Node fetch Response.status property. First failure preserved in setup-check-first.json; final setup passed."
+    }
+  ]
+}

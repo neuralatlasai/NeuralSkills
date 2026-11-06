@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "capturedAt": "2026-11-05T15:52:32.348Z",
+  "node": "v24.12.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "name": "validator success",
+      "command": [
+        "node",
+        "scripts/validate.mjs"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"validator\": \"bounded supported-keyword assertions; not full JSON Schema conformance\",\n  \"markdownLinks\": 34,\n  \"manifestResources\": 53,\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "validator missing root failure",
+      "command": [
+        "node",
+        "scripts/validate.mjs",
+        "--root",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\tooling\\missing"
+      ],
+      "expectedExit": 1,
+      "exitCode": 1,
+      "stdout": "{\n  \"status\": \"FAIL\",\n  \"validator\": \"bounded supported-keyword assertions; not full JSON Schema conformance\",\n  \"markdownLinks\": 0,\n  \"manifestResources\": 0,\n  \"errors\": [\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\evals\\\\evidence\\\\tooling\\\\missing\\\\SKILL.md'\",\n    \"ENOENT: no such file or directory, scandir 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\evals\\\\evidence\\\\tooling\\\\missing'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\evals\\\\evidence\\\\tooling\\\\missing\\\\assets\\\\manifest.json'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\evals\\\\evidence\\\\tooling\\\\missing\\\\assets\\\\contracts.schema.json'\"\n  ]\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "strict TypeScript build success",
+      "command": [
+        "node",
+        "scripts/build-lab.mjs"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"method\": \"installed TypeScript compiler; strict semantic check and JavaScript emit\",\n  \"compiler\": \"C:\\\\Users\\\\heman\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\a717861c07\\\\resources\\\\app\\\\extensions\\\\node_modules\\\\typescript\\\\lib\\\\typescript.js\",\n  \"version\": \"6.0.3\",\n  \"built\": [\n    \"state.js\",\n    \"app.js\"\n  ]\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "build missing source failure",
+      "command": [
+        "node",
+        "scripts/build-lab.mjs",
+        "--root",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\tooling\\missing"
+      ],
+      "expectedExit": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "ENOENT: no such file or directory, access 'C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\tooling\\missing\\state.ts'\n",
+      "status": "PASS"
+    },
+    {
+      "name": "substantive Node and CLI tests success",
+      "command": [
+        "node",
+        "scripts/test-tools.mjs"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"checks\": 12,\n  \"results\": [\n    {\n      \"name\": \"validator accepts complete metadata, linked resources, manifest and bounded schema\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"validator rejects broken links and an invalid contract\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"validator rejects resource traversal and overlong metadata\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"actual A-start B-start B-complete A-complete race retains B even when abort is ignored\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"failure retains stale results and retry clears stale/error after recovery\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"empty success and cancellation keep valid lifecycle states\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"initial failure recovers and cancelled first load cannot publish\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"mutation gate rejects duplicates, unlocks after failure, and accepts retry once\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"measurement reports median/range and rejects insufficient, nonnumeric and field claims\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"TypeScript build emits browser JavaScript and rejects missing sources\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"loopback server serves fixture and rejects traversal, malformed paths, mutations and missing resources\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"browser runner gives a clear failure for a missing explicit browser\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "test runner invalid root failure",
+      "command": [
+        "node",
+        "scripts/test-tools.mjs",
+        "--root",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\tooling\\missing"
+      ],
+      "expectedExit": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "{\n  \"status\": \"FAIL\",\n  \"completed\": [],\n  \"error\": \"AssertionError [ERR_ASSERTION]: [\\\"ENOENT: no such file or directory, open 'C:\\\\\\\\Users\\\\\\\\heman\\\\\\\\Desktop\\\\\\\\skills\\\\\\\\Skills_NeuralWorld\\\\\\\\NeuralSkills\\\\\\\\roles\\\\\\\\saas\\\\\\\\ui-ux-engineering\\\\\\\\evals\\\\\\\\evidence\\\\\\\\tooling\\\\\\\\missing\\\\\\\\SKILL.md'\\\",\\\"ENOENT: no such file or directory, scandir 'C:\\\\\\\\Users\\\\\\\\heman\\\\\\\\Desktop\\\\\\\\skills\\\\\\\\Skills_NeuralWorld\\\\\\\\NeuralSkills\\\\\\\\roles\\\\\\\\saas\\\\\\\\ui-ux-engineering\\\\\\\\evals\\\\\\\\evidence\\\\\\\\tooling\\\\\\\\missing'\\\",\\\"ENOENT: no such file or directory, open 'C:\\\\\\\\Users\\\\\\\\heman\\\\\\\\Desktop\\\\\\\\skills\\\\\\\\Skills_NeuralWorld\\\\\\\\NeuralSkills\\\\\\\\roles\\\\\\\\saas\\\\\\\\ui-ux-engineering\\\\\\\\evals\\\\\\\\evidence\\\\\\\\tooling\\\\\\\\missing\\\\\\\\assets\\\\\\\\manifest.json'\\\",\\\"ENOENT: no such file or directory, open 'C:\\\\\\\\Users\\\\\\\\heman\\\\\\\\Desktop\\\\\\\\skills\\\\\\\\Skills_NeuralWorld\\\\\\\\NeuralSkills\\\\\\\\roles\\\\\\\\saas\\\\\\\\ui-ux-engineering\\\\\\\\evals\\\\\\\\evidence\\\\\\\\tooling\\\\\\\\missing\\\\\\\\assets\\\\\\\\contracts.schema.json'\\\"]\\n\\n'FAIL' !== 'PASS'\\n\\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/scripts/test-tools.mjs:27:10\"\n}\n",
+      "status": "PASS"
+    },
+    {
+      "name": "optional browser lab success",
+      "command": [
+        "node",
+        "scripts/lab.mjs"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"checks\": 8,\n  \"runs\": 3,\n  \"out\": \"C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\evals\\\\evidence\\\\lab\",\n  \"browser\": \"156.0.8078.80\"\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "browser missing binary failure",
+      "command": [
+        "node",
+        "scripts/lab.mjs",
+        "--browser",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\tooling\\missing-browser.exe"
+      ],
+      "expectedExit": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Error: Browser unavailable. Supply --browser PATH or CHROME_PATH to an installed Chrome/Edge/Chromium binary.\n    at findBrowser (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/scripts/lab.mjs:16:9)\n    at async runLab (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/scripts/lab.mjs:26:26)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/scripts/lab.mjs:146:32\n",
+      "status": "PASS"
+    },
+    {
+      "name": "three-run measurement success",
+      "command": [
+        "node",
+        "scripts/measure.mjs",
+        "evals/evidence/lab/runs.json"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "stdout": "{\n  \"kind\": \"lab-summary\",\n  \"runCount\": 3,\n  \"claimBoundary\": \"Controlled local lab observations only; no field Core Web Vitals, real-user percentile, or production SLO claim.\",\n  \"conditions\": {\n    \"build\": \"local typed fixture compiled by build-lab.mjs\",\n    \"tool\": \"Playwright using installed Chromium-family browser\",\n    \"browser\": \"156.0.8078.80\",\n    \"executablePath\": \"C:/Program Files/Google/Chrome/Application/chrome.exe\",\n    \"device\": \"win32 x64; host CPU/memory not controlled\",\n    \"network\": \"loopback; no throttling; synthetic in-memory request delay 320ms\",\n    \"cpu\": \"no throttling\",\n    \"viewport\": \"1440x1050 metrics; 390x844 responsive check\",\n    \"dataset\": \"six synthetic requests; mutation case creates seventh temporarily\",\n    \"cache\": \"new browser context per run; HTTP Cache-Control no-store\",\n    \"workload\": \"navigate to six rendered requests; refresh until six requests announced\",\n    \"timing\": \"Node performance clock end-to-end UI readiness, plus browser navigation DCL timing\"\n  },\n  \"metrics\": {\n    \"navigateToReadyMs\": {\n      \"median\": 1092.8282999999974,\n      \"min\": 1024.6511000000028,\n      \"max\": 1684.7826999999997\n    },\n    \"domContentLoadedMs\": {\n      \"median\": 644.1000000089407,\n      \"min\": 582.2000000029802,\n      \"max\": 914.5\n    },\n    \"refreshReadyMs\": {\n      \"median\": 488.15380000000005,\n      \"min\": 457.14630000000034,\n      \"max\": 493.0571\n    }\n  }\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "name": "measurement insufficient run failure",
+      "command": [
+        "node",
+        "scripts/measure.mjs",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\evidence\\tooling\\invalid-runs.json"
+      ],
+      "expectedExit": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "provide kind: lab and at least three runs\n",
+      "status": "PASS"
+    },
+    {
+      "name": "server invalid port failure",
+      "command": [
+        "node",
+        "scripts/serve.mjs",
+        "--port",
+        "-1"
+      ],
+      "expectedExit": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "port must be an integer from 0 through 65535\n",
+      "status": "PASS"
+    },
+    {
+      "name": "standalone server success",
+      "command": [
+        "node",
+        "scripts/serve.mjs",
+        "--port",
+        "0"
+      ],
+      "expectedExit": "running until harness termination",
+      "httpStatus": 200,
+      "stdout": "Serving local fixture at http://127.0.0.1:64768; Ctrl+C stops the server.\n",
+      "stderr": "",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+import { createRequire } from 'node:module';
+import { writeFile } from 'node:fs/promises';
+const require = createRequire(import.meta.url);
+const { chromium } = require('C:/Users/heman/AppData/Roaming/npm/node_modules/@playwright/cli/node_modules/playwright');
+const ts = require('C:/Users/heman/AppData/Local/Programs/Microsoft VS Code/a717861c07/resources/app/extensions/node_modules/typescript/lib/typescript.js');
+const checks = [];
+const record = (id, condition, evidence) => checks.push({ id, status: condition ? 'PASS' : 'FAIL', evidence });
+const diagnostics = ts.getPreEmitDiagnostics(ts.createProgram([new URL('./artifact/app.ts', import.meta.url).pathname.replace(/^\//, '')], { noEmit:true, strict:true, target:ts.ScriptTarget.ES2022, lib:['lib.es2022.d.ts', 'lib.dom.d.ts'] }));
+record('typescript', diagnostics.length === 0, diagnostics.map(d => ts.flattenDiagnosticMessageText(d.messageText, '\n')));
+const browser = await chromium.launch({ executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe', headless:true });
+const page = await browser.newPage({ viewport:{ width:900, height:720 }, deviceScaleFactor:1 });
+const consoleErrors = [], pageErrors = [], requests = [];
+page.on('console', message => { if(message.type() === 'error') consoleErrors.push(message.text()); });
+page.on('pageerror', error => pageErrors.push(String(error)));
+page.on('request', request => requests.push(request.url()));
+const path = name => new URL(name, import.meta.url).pathname.replace(/^\//, '');
+try {
+  await page.goto('http://127.0.0.1:4308/');
+  await page.screenshot({path:path('desktop.png'), fullPage:true});
+  record('initial-content', await page.locator('h1').textContent() === 'Request a studio payment' && await page.locator('#amount').inputValue() === '240' && await page.locator('#note').inputValue() === 'Access for the spring term', 'Heading and field defaults observed in Chrome.');
+  const styles = await page.evaluate(() => ({ background:getComputedStyle(document.documentElement).backgroundColor, brand:getComputedStyle(document.querySelector('.primary')).backgroundColor, sizes:[...document.querySelectorAll('p,label,input,textarea,button')].map(el=>getComputedStyle(el).fontSize) }));
+  record('release-styles', styles.background === 'rgb(247, 248, 250)' && styles.brand === 'rgb(36, 75, 131)' && styles.sizes.every(x=>parseFloat(x)>=16), styles);
+  await page.keyboard.press('Tab');
+  record('keyboard-start', await page.locator('#amount').evaluate(el=>el===document.activeElement), 'First Tab focuses amount.');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  const sendFocus = await page.locator('button[type=submit]').evaluate(el=>({focused:el===document.activeElement, visible:el.matches(':focus-visible'), outline:getComputedStyle(el).outlineWidth}));
+  await page.screenshot({path:path('keyboard-focus.png'),fullPage:true});
+  await page.keyboard.press('Enter');
+  record('keyboard-send', sendFocus.focused && sendFocus.visible && sendFocus.outline === '3px' && (await page.locator('#feedback').innerText()).includes('Request sent'), {sendFocus, feedback:await page.locator('#feedback').innerText()});
+  await page.keyboard.press('Tab');
+  const saveFocused = await page.locator('#save-draft').evaluate(el=>el===document.activeElement && el.matches(':focus-visible'));
+  await page.keyboard.press('Space');
+  record('keyboard-save', saveFocused && (await page.locator('#feedback').innerText()) === 'Draft saved', 'Tab to Save draft, Space activation, local Draft saved status.');
+  const invalidResults = [];
+  for(const value of ['', '0', '-2']) {
+    await page.locator('#amount').fill(value);
+    await page.locator('#note').fill('   ');
+    await page.locator('button[type=submit]').click();
+    invalidResults.push({value,amountError:await page.locator('#amount-error').isVisible(),noteError:await page.locator('#note-error').isVisible(),amountInvalid:await page.locator('#amount').getAttribute('aria-invalid'),focused:await page.locator('#amount').evaluate(el=>el===document.activeElement), feedbackHidden:await page.locator('#feedback').isHidden()});
+  }
+  record('validation', invalidResults.every(r=>r.amountError && r.noteError && r.amountInvalid==='true' && r.focused && r.feedbackHidden), invalidResults);
+  await page.setViewportSize({width:320,height:740});
+  await page.screenshot({path:path('mobile-errors.png'), fullPage:true});
+  const errorOverflow = await page.evaluate(()=>({scroll:document.documentElement.scrollWidth, viewport:innerWidth}));
+  await page.locator('#amount').fill('125.50');
+  await page.locator('#note').fill('Access updated <script>alert(1)</script>');
+  await page.locator('button[type=submit]').click();
+  const submitted = await page.locator('#feedback').innerText();
+  record('submitted-snapshot', submitted.includes('Request sent') && submitted.includes('125.50') && submitted.includes('Access updated <script>alert(1)</script>') && await page.locator('#feedback script').count()===0, submitted);
+  await page.screenshot({path:path('mobile-success.png'),fullPage:true});
+  await page.locator('#note').fill('LongNote'.repeat(40));
+  await page.locator('button[type=submit]').click();
+  const successOverflow = await page.evaluate(()=>({scroll:document.documentElement.scrollWidth, viewport:innerWidth}));
+  record('320px-reflow', errorOverflow.scroll===320 && successOverflow.scroll===320, {errorOverflow,successOverflow});
+  await page.locator('#amount').fill('0');
+  await page.locator('#note').fill('');
+  await page.locator('#save-draft').click();
+  record('save-without-send', await page.locator('#feedback').innerText()==='Draft saved' && await page.locator('#amount').inputValue()==='0' && await page.locator('#note').inputValue()==='', 'Draft action preserves invalid/unfinished fields and does not send.');
+  await page.reload();
+  await page.screenshot({path:path('mobile.png'),fullPage:true});
+  await page.setViewportSize({width:520,height:800});
+  record('intermediate-reflow', await page.evaluate(()=>document.documentElement.scrollWidth===innerWidth), '520px page has no horizontal overflow.');
+  record('external-dependencies', requests.every(url=>url.startsWith('http://127.0.0.1:4308/')), requests);
+  record('runtime-errors', pageErrors.length===0, {pageErrors,consoleErrors});
+} catch(error) { checks.push({id:'browser-run',status:'FAIL',evidence:String(error),stack:error.stack}); }
+finally {
+  const evidence = {at:new Date().toISOString(),node:process.version,typescript:ts.version,browser:browser.version(),conditions:{headless:true,font:'Arial system',deviceScaleFactor:1,viewports:['900x720','320x740','520x800'],network:'loopback; no throttling',cpu:'host; no throttling'},checks,consoleErrors,pageErrors,requests};
+  await writeFile(new URL('./qa-results.json',import.meta.url),JSON.stringify(evidence,null,2));
+  await browser.close();
+  console.log(JSON.stringify(evidence,null,2));
+}

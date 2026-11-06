@@ -1,0 +1,169 @@
+{
+  "runtime": "v24.12.0",
+  "startedUtc": "2026-11-05T17:00:14.470Z",
+  "checks": [
+    {
+      "name": "GET baseline and projection",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "value": {
+          "id": "t1",
+          "title": "Printer jam",
+          "note": "Call support",
+          "version": 1
+        }
+      }
+    },
+    {
+      "name": "identity and function denial",
+      "status": "PASS"
+    },
+    {
+      "name": "PATCH trim absence null and version-only",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "value": {
+          "id": "t1",
+          "title": "Changed",
+          "note": null,
+          "version": 4
+        }
+      }
+    },
+    {
+      "name": "schema rejects without mutation",
+      "status": "PASS",
+      "detail": {
+        "rejected": 18
+      }
+    },
+    {
+      "name": "malformed media and oversized bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid UTF8 rejected",
+      "status": "PASS",
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "chunked oversized body",
+      "status": "PASS",
+      "detail": {
+        "status": 413,
+        "body": {
+          "code": "payload_too_large"
+        }
+      }
+    },
+    {
+      "name": "tenant comes from registry and absent object",
+      "status": "PASS",
+      "detail": {
+        "status": 200,
+        "value": {
+          "id": "t1",
+          "title": "Private account",
+          "note": null,
+          "version": 1
+        }
+      }
+    },
+    {
+      "name": "atomic concurrent same-version edits",
+      "status": "PASS",
+      "detail": {
+        "results": [
+          {
+            "status": 200,
+            "value": {
+              "id": "t1",
+              "title": "Winner A",
+              "note": "north only",
+              "version": 6
+            }
+          },
+          {
+            "status": 409,
+            "value": {
+              "code": "version_conflict"
+            }
+          }
+        ],
+        "stored": {
+          "tenant": "north",
+          "id": "t1",
+          "title": "Winner A",
+          "note": "north only",
+          "version": 6
+        }
+      }
+    },
+    {
+      "name": "maximum valid fields",
+      "status": "PASS",
+      "detail": {
+        "titleLength": 120,
+        "noteLength": 500
+      }
+    },
+    {
+      "name": "selected engine schema and query path",
+      "status": "PASS",
+      "detail": {
+        "schema": {
+          "sql": "CREATE TABLE tickets(tenant TEXT NOT NULL,id TEXT NOT NULL,title TEXT NOT NULL,note TEXT,version INTEGER NOT NULL DEFAULT 1,PRIMARY KEY(tenant,id))"
+        },
+        "plan": [
+          {
+            "id": 3,
+            "parent": 0,
+            "notused": 39,
+            "detail": "SEARCH tickets USING INDEX sqlite_autoindex_tickets_1 (tenant=? AND id=?)"
+          }
+        ],
+        "rows": {
+          "count": 3
+        }
+      }
+    },
+    {
+      "name": "real SQLite persistence after close/reopen",
+      "status": "PASS",
+      "detail": {
+        "after": {
+          "id": "t1",
+          "title": "tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+          "note": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+          "version": 7
+        },
+        "raw": [
+          {
+            "tenant": "north",
+            "id": "t1",
+            "version": 7
+          },
+          {
+            "tenant": "south",
+            "id": "south-only",
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "id": "t1",
+            "version": 1
+          }
+        ],
+        "sqlite": {
+          "version": "3.50.4"
+        }
+      }
+    }
+  ],
+  "status": "PASS",
+  "endedUtc": "2026-11-05T17:00:14.767Z"
+}

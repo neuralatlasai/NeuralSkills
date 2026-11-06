@@ -1,0 +1,13 @@
+{
+  "scope": "Paths relative to NeuralSkills/roles/saas. Exclusion recommendation for a portable archive; no deletion or archive was performed.",
+  "excludeDirectoryPrefixes": [
+    "ui-ux-engineering/evals/evidence/review/supplemental/chrome-profile/",
+    "ui-ux-engineering/evals/evidence/review/zoom-completion/baseline-profile/",
+    "ui-ux-engineering/evals/evidence/review/zoom-completion/baseline-profile-2/",
+    "ui-ux-engineering/evals/evidence/review/zoom-completion/native200-profile/",
+    "ui-ux-engineering/evals/evidence/review/zoom-completion/native200-profile-2/"
+  ],
+  "futureRule": "Exclude every directory directly under ui-ux-engineering/evals/evidence/review/zoom-completion/ whose name contains profile, including all descendants.",
+  "keep": "Preserve original trials, research, historical reports, prior assessment/report, failure records, run.cjs, metrics/report JSON, the completion report and all 20 completion PNGs; the browser profile directories are runtime caches.",
+  "deletionStatus": "Profiles remain local. Earlier supplemental profile cleanup was rejected automatically; this audit did not retry cleanup or escalate approval."
+}

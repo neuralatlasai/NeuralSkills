@@ -1,0 +1,65 @@
+{
+  "started": "2026-11-05T17:34:58.570Z",
+  "runtime": "v24.12.0",
+  "sqlite": "3.50.4",
+  "blinding": "Broken: evaluator saw directory arm names and implementation/result records; objective HTTP/SQLite assertions used.",
+  "method": "New evaluator-authored probes in isolated source copies; original trial verification additionally replayed for B04-B06 with attribution. No original database or evidence writes.",
+  "trials": [
+    {
+      "id": "B02-baseline-2",
+      "checks": [
+        {
+          "name": "two SQLite connections, real shared barrier CAS race and reopen",
+          "status": "PASS",
+          "observation": {
+            "outcomes": [
+              {
+                "status": 201,
+                "available": 1,
+                "version": 2
+              },
+              {
+                "status": 409
+              }
+            ],
+            "arrivals": 2
+          }
+        },
+        {
+          "name": "fault hook rollback, usable retry, invalid and absent preconditions",
+          "status": "PASS"
+        }
+      ],
+      "commands": [],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 24,
+        "validDispositions": true,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "finalize.mjs",
+            "sha256": "e54e484391dc829dde3b89a695b9767b9fdc34e66697f3ae6e2a851ca128674a"
+          },
+          {
+            "name": "probe.mjs",
+            "sha256": "81b22c0f76658745e10601f14e3cdad5e408605868275bc4000d7192978a9559"
+          },
+          {
+            "name": "store.mjs",
+            "sha256": "78d6c5eb402cf4fc26e2c4ed50b11440e37decea2b712b56f9c9dc9587fbd054"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "ab61a733f226bca24da89e5a88bb5762119179f9b1843a813d357323c7604acd"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 2,
+        "FAIL": 0
+      }
+    }
+  ]
+}

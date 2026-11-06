@@ -1,0 +1,167 @@
+{
+  "createdAt": "2026-11-06T03:15:29.375Z",
+  "version": "1.1.0",
+  "scope": "Backend instructions/assets/scripts/reusablefixtures frozen before backend implementation. Output reports excluded. Both role freezes complete; sealed tasks may now be released for final tests, without instruction tuning.",
+  "files": [
+    {
+      "file": "roles/saas/backend-engineering/assets/coverage-index.json",
+      "bytes": 4201,
+      "sha256": "460cfb0f59dda03ff00079428d5a305b1a9176224b31c748b668291804c14af7"
+    },
+    {
+      "file": "roles/saas/backend-engineering/assets/gates.json",
+      "bytes": 2995,
+      "sha256": "cfe5b9b7ce1507f7918e03afaae32f77f794078179557345ddf07b5dc1039227"
+    },
+    {
+      "file": "roles/saas/backend-engineering/assets/manifest.json",
+      "bytes": 8179,
+      "sha256": "17f2bdc973260282a95356e6f278ee08ef5b3a3c72786e811fbeb0a8db59d646"
+    },
+    {
+      "file": "roles/saas/backend-engineering/assets/task.schema.json",
+      "bytes": 6357,
+      "sha256": "31f8b8a8db413d375ef13a5ea250d03089ad7f3181c66131d06c91856352b519"
+    },
+    {
+      "file": "roles/saas/backend-engineering/assets/task.template.json",
+      "bytes": 9718,
+      "sha256": "8a25b2e343a05e656be268ff3ad3a4beef30867e85af11a5d6639eea7f2dc590"
+    },
+    {
+      "file": "roles/saas/backend-engineering/evals/fixtures/contracts.ts",
+      "bytes": 1304,
+      "sha256": "3aea5580136efb0d040c8f381e8b96a2c44c94d1832651c7ae65b6db83ef4f73"
+    },
+    {
+      "file": "roles/saas/backend-engineering/evals/fixtures/legacy-repository.mjs",
+      "bytes": 543,
+      "sha256": "8262caada1a644bf71bf23f6bcf70a25db1016be0648f46ab4f5f360a37dcf95"
+    },
+    {
+      "file": "roles/saas/backend-engineering/evals/fixtures/load-workloads.json",
+      "bytes": 802,
+      "sha256": "281beb0e3aa99389b36435c2cf683f81cc61dadefe598aee3034da710a048f9a"
+    },
+    {
+      "file": "roles/saas/backend-engineering/evals/fixtures/README.md",
+      "bytes": 7419,
+      "sha256": "2b6a5cc8706f210fff10d0104ed3ce8b3010669ff762b0e75175546e26a78e6d"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/adapters.md",
+      "bytes": 4590,
+      "sha256": "4f6ed75121ffd43ac92fd73f659679fafe186743c0457899dd230541c7212de7"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/api-domain.md",
+      "bytes": 6144,
+      "sha256": "a28bb284ec3fd7ee4bbf7bc414bad3a22751cb6cfe61d7be6ea5009642664f16"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/async-integrations.md",
+      "bytes": 5418,
+      "sha256": "544d0ca47d9150b3361d55f812b5a9e6ca4961f686381e054e15892d1d9751ac"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/coding-standards.md",
+      "bytes": 797,
+      "sha256": "7e8a9966d757dddd92b06934bd6f46d9798fefdcd1c39ad77d01de8659622a90"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/data.md",
+      "bytes": 6308,
+      "sha256": "4cdb909d76500fb73afe3cdb63307c882ace99cc2b125a44aaf1944fd845ebe1"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/edge-identity.md",
+      "bytes": 7067,
+      "sha256": "f268b49d04646881d32b67ff9d397919a158276b444a0bf9830a039cee9cd24e"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/modules.md",
+      "bytes": 5648,
+      "sha256": "1e2f1d22f8b80700c11bed98133d8c87b99cc7731d4a4c649b1493e6b5b384ff"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/operations.md",
+      "bytes": 4939,
+      "sha256": "2a80e9c4f4b1842c8f18d30cec3fab536ecbda6b02fbc3f941bf774ea23f06f3"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/runtime-capacity.md",
+      "bytes": 5744,
+      "sha256": "3022132746621ad5afe83e5874c791c8ab03c0a680b862b17e789b5ae99239a1"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/sources.md",
+      "bytes": 14647,
+      "sha256": "8831260d7d20496989e4d51e6f041e351c7eef9ae5ad7e7443b96a5d403ab50d"
+    },
+    {
+      "file": "roles/saas/backend-engineering/references/verification.md",
+      "bytes": 6722,
+      "sha256": "edf58652afac1e738b096c82a47b9b64d24e62ad120673ef0a5d1e03613e121e"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/cert-gen.mjs",
+      "bytes": 2534,
+      "sha256": "d6ac70087367ec5474917d27d2ecdbd38dc905cf998509ddf3b7c47430521652"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/check.mjs",
+      "bytes": 1408,
+      "sha256": "4a4725e3696d0b2cc42de4f73845ce6be0f6bf231440710fb4523ea57636c504"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/client.mjs",
+      "bytes": 5246,
+      "sha256": "5642222f97ef05977be1e551d298d9e66f67b3db6c586ab9d0ec16fdc6a779b5"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/dns-network.mjs",
+      "bytes": 7869,
+      "sha256": "677b4f0c4362005ad38328403bdca4c3f165d5ccc6b40e535bc2adb7396ddfb7"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/evidence.mjs",
+      "bytes": 1344,
+      "sha256": "41eac0f7282885eda19b8a55f817436d56b5f640d0e41d099962fa4b5c49adf2"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/integrated.mjs",
+      "bytes": 36996,
+      "sha256": "2476a35583363a3ee3f46b333d834cf2f03d2fcd08d9bf222a4db04da5642df5"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/load.mjs",
+      "bytes": 7857,
+      "sha256": "7817b267ff0bf8b65511d74bc33618345e983208e2edcd0b5a4ff62af4fbdead"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/service.mjs",
+      "bytes": 26904,
+      "sha256": "32eb061264a1e534ef15dc1522a4bb04ba4456f1613d9dc79b0b01eca078c41c"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/smoke.mjs",
+      "bytes": 3646,
+      "sha256": "c0f9723d99cdce9c0b2c187b7ce4d8519ab5a4123d8b070c94a3e74b9da1c43d"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/validate-package.mjs",
+      "bytes": 9202,
+      "sha256": "68d171675a5ade5027d69f4d1b0d472a97b24447168a78461b5aa4cb8081283f"
+    },
+    {
+      "file": "roles/saas/backend-engineering/scripts/worker.mjs",
+      "bytes": 1366,
+      "sha256": "ea10dceb00ea0903c761f5fbed7bd6a6dffd0125c43ccb322e51b0231cd4fc55"
+    },
+    {
+      "file": "roles/saas/backend-engineering/SKILL.md",
+      "bytes": 6872,
+      "sha256": "8fe0909f1fa1e3cc1488629cdd77d45e8b76ee2d27661bd4a3cf521f0b50afe2"
+    }
+  ]
+}

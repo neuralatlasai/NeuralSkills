@@ -1,0 +1,332 @@
+{
+  "research_date_utc": "2026-11-05",
+  "first_live_clock_utc": "2026-11-05 15:35:36 UTC",
+  "metadata_observed_between_utc": [
+    "2026-11-05 15:39:07 UTC",
+    "2026-11-05 15:39:08 UTC"
+  ],
+  "method": "skills.sh discovery via web, followed by GitHub repository metadata and pinned raw files via connected GitHub fetch. Read-only source research; no third-party scripts run.",
+  "discovery_urls": [
+    "https://skills.sh/anthropics/skills/skill-creator",
+    "https://skills.sh/anthropics/skills/frontend-design",
+    "https://skills.sh/vercel-labs/agent-skills/web-design-guidelines",
+    "https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices"
+  ],
+  "repositories": [
+    {
+      "repo": "anthropics/skills",
+      "metadata_url": "https://api.github.com/repos/anthropics/skills",
+      "commit_endpoint": "https://api.github.com/repos/anthropics/skills/commits/main",
+      "stars": 187646,
+      "default_branch": "main",
+      "commit": "ca45fc496a3436251f191354091d557da31c15b5",
+      "commit_date_utc": "2026-10-28T19:20:38Z",
+      "github_license_metadata": null,
+      "qualifying_ui_reference": false
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "metadata_url": "https://api.github.com/repos/vercel-labs/agent-skills",
+      "commit_endpoint": "https://api.github.com/repos/vercel-labs/agent-skills/commits/main",
+      "stars": 33577,
+      "default_branch": "main",
+      "commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "commit_date_utc": "2026-10-27T21:40:02Z",
+      "github_license_metadata": null,
+      "qualifying_ui_reference": false
+    },
+    {
+      "repo": "vercel-labs/web-interface-guidelines",
+      "metadata_url": "https://api.github.com/repos/vercel-labs/web-interface-guidelines",
+      "commit_endpoint": "https://api.github.com/repos/vercel-labs/web-interface-guidelines/commits/main",
+      "stars": 1113,
+      "default_branch": "main",
+      "commit": "434b7f91364665f2f733b310ec54809bf8f37937",
+      "commit_date_utc": "2026-10-05T20:49:16Z",
+      "github_license_metadata": "MIT",
+      "qualifying_ui_reference": false
+    },
+    {
+      "repo": "shadcn-ui/ui",
+      "metadata_url": "https://api.github.com/repos/shadcn-ui/ui",
+      "commit_endpoint": "https://api.github.com/repos/shadcn-ui/ui/commits/main",
+      "stars": 127420,
+      "default_branch": "main",
+      "commit": "8a3536678a528cc012b9e62484290e79d0be410f",
+      "commit_date_utc": "2026-11-04T07:50:45Z",
+      "github_license_metadata": "MIT",
+      "qualifying_ui_reference": true
+    },
+    {
+      "repo": "radix-ui/primitives",
+      "metadata_url": "https://api.github.com/repos/radix-ui/primitives",
+      "commit_endpoint": "https://api.github.com/repos/radix-ui/primitives/commits/main",
+      "stars": 19470,
+      "default_branch": "main",
+      "commit": "eb3a2b7091293e27df8f9ba906632d8daa3d81a3",
+      "commit_date_utc": "2026-10-14T19:06:36Z",
+      "github_license_metadata": "MIT",
+      "qualifying_ui_reference": true
+    },
+    {
+      "repo": "adobe/react-spectrum",
+      "metadata_url": "https://api.github.com/repos/adobe/react-spectrum",
+      "commit_endpoint": "https://api.github.com/repos/adobe/react-spectrum/commits/main",
+      "stars": 16012,
+      "default_branch": "main",
+      "commit": "36f3adde26ccd12f3cc18c9d0293ece0f10e94c7",
+      "commit_date_utc": "2026-11-05T00:21:43Z",
+      "github_license_metadata": "Apache-2.0",
+      "qualifying_ui_reference": true
+    },
+    {
+      "repo": "tailwindlabs/tailwindcss",
+      "metadata_url": "https://api.github.com/repos/tailwindlabs/tailwindcss",
+      "commit_endpoint": "https://api.github.com/repos/tailwindlabs/tailwindcss/commits/main",
+      "stars": 98064,
+      "default_branch": "main",
+      "commit": "9369ddbb26bbec97121b61a9908061050378b5d5",
+      "commit_date_utc": "2026-11-05T14:39:08Z",
+      "github_license_metadata": "MIT",
+      "qualifying_ui_reference": true
+    }
+  ],
+  "files": [
+    {
+      "repo": "anthropics/skills",
+      "path": "skills/skill-creator/SKILL.md",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/ca45fc496a3436251f191354091d557da31c15b5/skills/skill-creator/SKILL.md",
+      "retrieved_characters": 32987,
+      "inspection_scope": "Read anatomy/progressive disclosure and evaluation/iteration sections; not every platform-specific instruction.",
+      "short_exact_excerpt": "--- name: skill-creator description: Create new skills, modify"
+    },
+    {
+      "repo": "anthropics/skills",
+      "path": "skills/skill-creator/LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/ca45fc496a3436251f191354091d557da31c15b5/skills/skill-creator/LICENSE.txt",
+      "retrieved_characters": 11345,
+      "inspection_scope": "Per-skill license inspected.",
+      "short_exact_excerpt": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS"
+    },
+    {
+      "repo": "anthropics/skills",
+      "path": "skills/skill-creator/references/schemas.md",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/ca45fc496a3436251f191354091d557da31c15b5/skills/skill-creator/references/schemas.md",
+      "retrieved_characters": 12058,
+      "inspection_scope": "Read evals and grading/benchmark schema structure; no scripts executed.",
+      "short_exact_excerpt": "# JSON Schemas This document defines the JSON"
+    },
+    {
+      "repo": "anthropics/skills",
+      "path": "skills/skill-creator/agents/grader.md",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/ca45fc496a3436251f191354091d557da31c15b5/skills/skill-creator/agents/grader.md",
+      "retrieved_characters": 9031,
+      "inspection_scope": "Read evidence-backed grading and eval critique workflow.",
+      "short_exact_excerpt": "# Grader Agent Evaluate expectations against an execution"
+    },
+    {
+      "repo": "anthropics/skills",
+      "path": "skills/frontend-design/SKILL.md",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/ca45fc496a3436251f191354091d557da31c15b5/skills/frontend-design/SKILL.md",
+      "retrieved_characters": 9363,
+      "inspection_scope": "Full short skill inspected.",
+      "short_exact_excerpt": "--- name: frontend-design description: Guidance for distinctive, intentional"
+    },
+    {
+      "repo": "anthropics/skills",
+      "path": "skills/frontend-design/LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/anthropics/skills/ca45fc496a3436251f191354091d557da31c15b5/skills/frontend-design/LICENSE.txt",
+      "retrieved_characters": 10174,
+      "inspection_scope": "Per-skill license inspected.",
+      "short_exact_excerpt": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS"
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "path": "skills/web-design-guidelines/SKILL.md",
+      "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/skills/web-design-guidelines/SKILL.md",
+      "retrieved_characters": 1231,
+      "inspection_scope": "Full short skill inspected.",
+      "short_exact_excerpt": "--- name: web-design-guidelines description: Review UI code for"
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "path": "skills/react-best-practices/SKILL.md",
+      "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/skills/react-best-practices/SKILL.md",
+      "retrieved_characters": 7251,
+      "inspection_scope": "Main skill/category index inspected.",
+      "short_exact_excerpt": "--- name: vercel-react-best-practices description: React and Next.js performance"
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "path": "skills/react-best-practices/README.md",
+      "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/skills/react-best-practices/README.md",
+      "retrieved_characters": 3360,
+      "inspection_scope": "Rule layout and file structure inspected.",
+      "short_exact_excerpt": "# React Best Practices A structured repository for"
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "path": "skills/react-best-practices/metadata.json",
+      "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/skills/react-best-practices/metadata.json",
+      "retrieved_characters": 921,
+      "inspection_scope": "Version and older rule-count metadata inspected.",
+      "short_exact_excerpt": "{ \"version\": \"1.0.0\", \"organization\": \"Vercel Engineering\", \"date\": \"January"
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "path": "skills/react-best-practices/AGENTS.md",
+      "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/skills/react-best-practices/AGENTS.md",
+      "retrieved_characters": 108212,
+      "inspection_scope": "Retrieved compiled document; read introduction/category structure and selected corresponding rules only, not all 70.",
+      "short_exact_excerpt": "# React Best Practices **Version 1.0.0** Vercel Engineering"
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "path": "skills/react-best-practices/rules/async-parallel.md",
+      "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/skills/react-best-practices/rules/async-parallel.md",
+      "retrieved_characters": 653,
+      "inspection_scope": "Full rule inspected.",
+      "short_exact_excerpt": "--- title: Promise.all() for Independent Operations impact: CRITICAL"
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "path": "skills/react-best-practices/rules/bundle-dynamic-imports.md",
+      "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/skills/react-best-practices/rules/bundle-dynamic-imports.md",
+      "retrieved_characters": 791,
+      "inspection_scope": "Full rule inspected.",
+      "short_exact_excerpt": "--- title: Dynamic Imports for Heavy Components impact:"
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "path": "skills/react-best-practices/rules/server-no-shared-module-state.md",
+      "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/skills/react-best-practices/rules/server-no-shared-module-state.md",
+      "retrieved_characters": 1766,
+      "inspection_scope": "Full rule inspected.",
+      "short_exact_excerpt": "--- title: Avoid Shared Module State for Request"
+    },
+    {
+      "repo": "vercel-labs/web-interface-guidelines",
+      "path": "command.md",
+      "url": "https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/434b7f91364665f2f733b310ec54809bf8f37937/command.md",
+      "retrieved_characters": 8015,
+      "inspection_scope": "Full support checklist inspected.",
+      "short_exact_excerpt": "--- description: Review UI code for Vercel Web"
+    },
+    {
+      "repo": "vercel-labs/web-interface-guidelines",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/434b7f91364665f2f733b310ec54809bf8f37937/LICENSE",
+      "retrieved_characters": 1068,
+      "inspection_scope": "License inspected.",
+      "short_exact_excerpt": "MIT License Copyright (c) 2025 Vercel Labs Permission"
+    },
+    {
+      "repo": "shadcn-ui/ui",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/8a3536678a528cc012b9e62484290e79d0be410f/README.md",
+      "retrieved_characters": 467,
+      "inspection_scope": "Full short README inspected.",
+      "short_exact_excerpt": "# shadcn/ui A set of beautifully designed components"
+    },
+    {
+      "repo": "shadcn-ui/ui",
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/8a3536678a528cc012b9e62484290e79d0be410f/LICENSE.md",
+      "retrieved_characters": 1063,
+      "inspection_scope": "License inspected.",
+      "short_exact_excerpt": "MIT License Copyright (c) 2023 shadcn Permission is"
+    },
+    {
+      "repo": "shadcn-ui/ui",
+      "path": "apps/v4/registry/new-york-v4/ui/dialog.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/8a3536678a528cc012b9e62484290e79d0be410f/apps/v4/registry/new-york-v4/ui/dialog.tsx",
+      "retrieved_characters": 4304,
+      "inspection_scope": "Full short wrapper inspected.",
+      "short_exact_excerpt": "\"use client\" import * as React from \"react\""
+    },
+    {
+      "repo": "radix-ui/primitives",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/radix-ui/primitives/eb3a2b7091293e27df8f9ba906632d8daa3d81a3/README.md",
+      "retrieved_characters": 1703,
+      "inspection_scope": "README inspected.",
+      "short_exact_excerpt": "[![Radix Primitives Logo](primitives.png)](https://radix-ui.com/primitives) # Radix Primitives **An open-source"
+    },
+    {
+      "repo": "radix-ui/primitives",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/radix-ui/primitives/eb3a2b7091293e27df8f9ba906632d8daa3d81a3/LICENSE",
+      "retrieved_characters": 1063,
+      "inspection_scope": "License inspected.",
+      "short_exact_excerpt": "MIT License Copyright (c) 2022 WorkOS Permission is"
+    },
+    {
+      "repo": "radix-ui/primitives",
+      "path": "packages/react/dialog/src/dialog.tsx",
+      "url": "https://raw.githubusercontent.com/radix-ui/primitives/eb3a2b7091293e27df8f9ba906632d8daa3d81a3/packages/react/dialog/src/dialog.tsx",
+      "retrieved_characters": 25262,
+      "inspection_scope": "Selected controlled-state, focus-scope, dismissal, return-focus and ARIA association portions inspected.",
+      "short_exact_excerpt": "import * as React from 'react'; import {"
+    },
+    {
+      "repo": "adobe/react-spectrum",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/adobe/react-spectrum/36f3adde26ccd12f3cc18c9d0293ece0f10e94c7/README.md",
+      "retrieved_characters": 4457,
+      "inspection_scope": "Selected library roles and features inspected.",
+      "short_exact_excerpt": "# [React Spectrum Libraries](https://react-spectrum.adobe.com/) A collection of libraries"
+    },
+    {
+      "repo": "adobe/react-spectrum",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/adobe/react-spectrum/36f3adde26ccd12f3cc18c9d0293ece0f10e94c7/LICENSE",
+      "retrieved_characters": 11335,
+      "inspection_scope": "License identity and terms inspected.",
+      "short_exact_excerpt": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS"
+    },
+    {
+      "repo": "adobe/react-spectrum",
+      "path": "packages/react-aria-components/src/Dialog.tsx",
+      "url": "https://raw.githubusercontent.com/adobe/react-spectrum/36f3adde26ccd12f3cc18c9d0293ece0f10e94c7/packages/react-aria-components/src/Dialog.tsx",
+      "retrieved_characters": 6817,
+      "inspection_scope": "DialogTrigger and Dialog naming/slot/state composition inspected.",
+      "short_exact_excerpt": "/* * Copyright 2022 Adobe. All rights reserved."
+    },
+    {
+      "repo": "tailwindlabs/tailwindcss",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/tailwindlabs/tailwindcss/9369ddbb26bbec97121b61a9908061050378b5d5/README.md",
+      "retrieved_characters": 1838,
+      "inspection_scope": "Short README inspected.",
+      "short_exact_excerpt": "<p align=\"center\"> <a href=\"https://tailwindcss.com\" target=\"_blank\"> <picture> <source media=\"(prefers-color-scheme:"
+    },
+    {
+      "repo": "tailwindlabs/tailwindcss",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/tailwindlabs/tailwindcss/9369ddbb26bbec97121b61a9908061050378b5d5/LICENSE",
+      "retrieved_characters": 1071,
+      "inspection_scope": "License inspected.",
+      "short_exact_excerpt": "MIT License Copyright (c) Tailwind Labs, Inc. Permission"
+    },
+    {
+      "repo": "tailwindlabs/tailwindcss",
+      "path": "packages/tailwindcss/theme.css",
+      "url": "https://raw.githubusercontent.com/tailwindlabs/tailwindcss/9369ddbb26bbec97121b61a9908061050378b5d5/packages/tailwindcss/theme.css",
+      "retrieved_characters": 19586,
+      "inspection_scope": "Selected theme-variable families inspected, not every color value.",
+      "short_exact_excerpt": "@theme default { --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI',"
+    }
+  ],
+  "license_scope_notes": [
+    "anthropics/skills repository API license is null; skill-creator and frontend-design each have Apache License 2.0 LICENSE.txt.",
+    "vercel-labs/agent-skills root contents and both relevant skill directories were enumerated: no standalone LICENSE found. react-best-practices SKILL frontmatter declares MIT; web-design-guidelines has no license declaration. No source skill prose/code is vendored.",
+    "vercel-labs/web-interface-guidelines LICENSE is MIT; this scope is separate from agent-skills.",
+    "UI repository license files inspected at pinned revisions. Licenses do not automatically cover linked websites, trademarks or third-party assets."
+  ],
+  "limitations": [
+    "These are selected reference readings, not whole-repository audits or runtime verification.",
+    "Shell HTTPS requests could not connect; web tool could read skills.sh/raw pages but most GitHub API calls failed; connected GitHub fetch succeeded.",
+    "GitHub default-branch commits were fetched at 15:36 UTC, metadata refreshed at 15:39 UTC. Counts are observations, not durable guarantees.",
+    "No external script execution, paid standard text, inaccessible clause review, paired skill benchmark or certification was performed by this research task."
+  ]
+}

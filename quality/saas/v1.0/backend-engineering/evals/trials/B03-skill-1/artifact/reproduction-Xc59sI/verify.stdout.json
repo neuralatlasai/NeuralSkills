@@ -1,0 +1,41 @@
+{
+  "checks": [
+    {
+      "name": "unchanged full supplied dataset including payload/status/skew",
+      "status": "PASS",
+      "rows": 60000,
+      "whaleRows": 48000,
+      "sha256": "dceb3dd35c917b174cc9e3f01757ffce4fdddb82d5d97f8220f76277d16afd7c"
+    },
+    {
+      "name": "independent seeded oracle: all tenants, missing/injection-shaped tenant, limits 1/20/100 and projection",
+      "status": "PASS",
+      "combinations": 249
+    },
+    {
+      "name": "13 invalid limits rejected before SQL execution",
+      "status": "PASS"
+    },
+    {
+      "name": "same-timestamp descending id, status/tenant exclusion and limit; transient rows rolled back",
+      "status": "PASS"
+    },
+    {
+      "name": "real SQLite integrity and post-rollback cardinality",
+      "status": "PASS"
+    },
+    {
+      "name": "executed production SQL uses covering index without temp sort",
+      "status": "PASS",
+      "plan": [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 59,
+          "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+        }
+      ]
+    }
+  ],
+  "sqlite": "3.50.4"
+}

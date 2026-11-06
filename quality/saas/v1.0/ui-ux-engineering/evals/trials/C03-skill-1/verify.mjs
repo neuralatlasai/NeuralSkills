@@ -1,0 +1,60 @@
+import {chromium} from 'file:///C:/Users/heman/AppData/Roaming/npm/node_modules/@playwright/cli/node_modules/playwright/index.mjs';
+import {writeFile,readFile} from 'node:fs/promises';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import path from 'node:path';
+const trial=path.dirname(fileURLToPath(import.meta.url));
+const evidence=path.join(trial,'evidence');
+const results={startedAt:new Date().toISOString(),environment:{node:process.version,renderer:'Chrome headless',deviceScaleFactor:1,network:'file URLs, no network',fonts:'Georgia and Arial system stacks'},checks:[],errors:[]};
+const check=(id,ok,detail)=>{console.log(id,ok);results.checks.push({id,status:ok?'PASS':'FAIL',evidence:detail});if(!ok)process.exitCode=1;};
+const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+results.environment.browser=browser.version();
+try{
+const page=await browser.newPage({viewport:{width:1280,height:900},deviceScaleFactor:1});
+page.setDefaultTimeout(5000);
+page.on('pageerror',e=>results.errors.push(e.message));
+await page.goto(pathToFileURL(path.join(trial,'artifact/index.html')).href);
+await page.screenshot({path:path.join(evidence,'desktop.png'),fullPage:true,timeout:10000});
+check('content',await page.locator('h1').textContent()==='Workshop reservations' && await page.locator('.workshop-list li').count()===3 && await page.locator('.summary').innerText().then(s=>s.includes('23')&&s.includes('3')),'Desktop shows heading, three exact workshop rows, 3 workshops and 23 seats; desktop.png');
+check('type-palette',await page.locator('h1').evaluate(e=>getComputedStyle(e).fontFamily.includes('Georgia')&&getComputedStyle(e).fontSize==='44px') && await page.locator('body').evaluate(e=>getComputedStyle(e).backgroundColor==='rgb(247, 246, 239)'),'Computed 44px Georgia h1; brand canvas rgb(247,246,239).');
+await page.getByRole('button',{name:'New reservation',exact:true}).focus();
+await page.keyboard.press('Enter');
+check('dialog-open',await page.locator('dialog').evaluate(e=>e.open)&&await page.locator('#workshop').evaluate(e=>e===document.activeElement),'Enter opens labeled native modal; workshop receives focus.');
+await page.getByRole('button',{name:'Add reservation',exact:true}).click();
+check('required-errors',await page.locator('#workshop-error').isVisible()&&await page.locator('#attendee-error').isVisible()&&await page.locator('#workshop').evaluate(e=>e===document.activeElement),'Both empty fields show associated errors; focus goes to first invalid field.');
+await page.screenshot({path:path.join(evidence,'dialog-errors.png'),timeout:10000});
+console.log(await page.locator('#workshop option').allTextContents());
+await page.locator('#workshop').selectOption({label:'Urban sketching'});
+await page.locator('#attendee').fill('   ');
+await page.getByRole('button',{name:'Add reservation',exact:true}).click();
+check('whitespace-validation',await page.locator('#attendee-error').isVisible(),'Whitespace-only attendee rejected without discarding selected workshop.');
+await page.locator('#attendee').fill('Ada Lovelace');
+await page.getByRole('button',{name:'Add reservation',exact:true}).click();
+check('local-addition',await page.locator('#local-list li').textContent()==='Ada Lovelace — Urban sketching'&&!await page.locator('dialog').evaluate(e=>e.open)&&await page.locator('#new-reservation').evaluate(e=>e===document.activeElement),'Valid form adds exact local summary, closes modal and restores trigger focus.');
+check('capacity-preserved',(await page.locator('.seat-pill').allTextContents()).join('|')==='8 of 12 seats|12 of 12 seats|3 of 10 seats'&&(await page.locator('.summary dd').allTextContents()).join('|')==='3|23','Supplied capacities and summary figures unchanged after local addition.');
+await page.keyboard.press('Enter');
+await page.keyboard.press('Shift+Tab');
+check('focus-trap',await page.locator('.close').evaluate(e=>e===document.activeElement),'Shift+Tab from select focuses dialog close button.');
+await page.keyboard.press('Shift+Tab');
+check('focus-wrap',await page.getByRole('button',{name:'Add reservation',exact:true}).evaluate(e=>e===document.activeElement),'Shift+Tab from first dialog control wraps to final submit control.');
+await page.keyboard.press('Escape');
+check('escape-return',!await page.locator('dialog').evaluate(e=>e.open)&&await page.locator('#new-reservation').evaluate(e=>e===document.activeElement),'Escape closes modal and restores trigger focus.');
+for(const width of [768,390,320]){
+ await page.setViewportSize({width,height:844});
+ await page.screenshot({path:path.join(evidence,`width-${width}.png`),fullPage:true,timeout:10000});
+ const geom=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,summary:document.querySelector('.summary').getBoundingClientRect().top,list:document.querySelector('.workshops').getBoundingClientRect().bottom,nav:getComputedStyle(document.querySelector('.sidebar')).position}));
+ check(`reflow-${width}`,!geom.overflow&&geom.summary>=geom.list&&geom.nav==='static',JSON.stringify(geom)+`; width-${width}.png`);
+}
+await page.getByRole('button',{name:'New reservation',exact:true}).click();
+await page.screenshot({path:path.join(evidence,'narrow-dialog.png'),fullPage:true,timeout:10000});
+check('narrow-dialog-fit',await page.locator('dialog').evaluate(e=>e.getBoundingClientRect().left>=0&&e.getBoundingClientRect().right<=innerWidth),'Dialog fits 320px viewport.');
+await page.getByRole('button',{name:'Cancel',exact:true}).click();
+await page.getByRole('link',{name:'Settings',exact:true}).click();
+await page.waitForFunction(()=>document.querySelector('#settings').getBoundingClientRect().top<innerHeight);
+check('navigation',await page.locator('#settings').evaluate(e=>e.getBoundingClientRect().top<innerHeight),'Settings links to local workspace section.');
+await page.reload();
+check('session-reset',await page.locator('#local-list li').count()===0,'Reload clears session additions.');
+check('runtime-errors',results.errors.length===0,JSON.stringify(results.errors));
+function ratio(a,b){const lum=c=>{const v=c.match(/\w\w/g).map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4);return .2126*v[0]+.7152*v[1]+.0722*v[2]};const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+results.contrast={forestWhite:ratio('153f3d','ffffff'),mutedCanvas:ratio('526663','f7f6ef'),forestLime:ratio('153f3d','d6ee8c'),forestClay:ratio('153f3d','e6a36f'),errorWhite:ratio('9f302a','ffffff')};
+check('text-contrast',Object.values(results.contrast).every(v=>v>=4.5),JSON.stringify(results.contrast));
+}catch(e){results.errors.push(e.stack);process.exitCode=1;}finally{await browser.close();results.endedAt=new Date().toISOString();await writeFile(path.join(evidence,'browser-checks.json'),JSON.stringify(results,null,2));console.log(JSON.stringify(results,null,2));}

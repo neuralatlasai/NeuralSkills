@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "objective": "Copy one supplied invitation link with resilient and accessible feedback",
+  "scope": "component",
+  "output": "implementation",
+  "mode": "explore",
+  "context": {"audience":"Team member sharing an existing invitation","task":"Copy invitation URL","device":"Keyboard and pointer; 320px and desktop browser","locale":"English default; supplied German label stress"},
+  "references": [{"source":"evals/inputs/C01.json","role":"Binding task and content; no visual reference"}],
+  "constraints": {"stack":"Native TypeScript and plain CSS; no dependencies, React, UI library or icons","accessibility":"Native button; focus indicator; status announcements; 44px target; broader WCAG conformance not claimed","performance":"No performance comparison requested; field and profiler measurements unavailable"},
+  "uncertainty": [{"id":"U1","kind":"assumption","statement":"Use the modern supplied Chrome browser and loopback secure context","consequence":"Clipboard permission remains browser controlled"}],
+  "requirements": [
+    {"id":"C01-R01","statement":"Small reusable native TypeScript/CSS control; runnable local example"},
+    {"id":"C01-R02","statement":"Exact default label and supplied invitation URL"},
+    {"id":"C01-R03","statement":"Guard duplicate copy while pending"},
+    {"id":"C01-R04","statement":"Success text lasts about 2000ms then resets"},
+    {"id":"C01-R05","statement":"Unavailable/rejected clipboard yields useful inline error and retry"},
+    {"id":"C01-R06","statement":"Keyboard, exposed changing status, visible focus and 44px target"},
+    {"id":"C01-R07","statement":"320px viewport and supplied German label without clipping; restrained polish"}
+  ],
+  "tokens": {"authority":"artifact/styles.css :root semantic CSS variables"},
+  "components": [{"id":"invitation-copy","semantics":"Native button and persistent polite status region","inputs":["url","localized labels","optional copy adapter"],"outputs":["copy promise"],"states":["idle","pending","success","error"],"keyboard":"Native Enter/Space; Tab focus retained during pending","focus":"3px focus-visible ring with 4px offset","recovery":"Error message includes address; button immediately allows deliberate retry"}],
+  "stateOwnership": {"local":"Each component owns pending, disposed and success reset timer","server":"None"},
+  "measurements": [],
+  "visualCriteria": ["One clear action", "Restrained dark green action and neutral surface", "Readable wrapping text", "No icons, external fonts, motion or marketing sections"]
+}

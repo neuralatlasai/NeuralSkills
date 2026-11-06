@@ -1,0 +1,61 @@
+{
+  "method": "Categorical review against rubric.json; no scores, ranking, version comparison, reruns or new runtime checks.",
+  "reading": {
+    "onlySources": ["rubric.json", "coordination/blinded-submissions.json"],
+    "examined": "All six tasks, handoffs and independent observations; service.ts/app.ts implementations; UI markup/CSS; focused reservation, lease, picker and dialog tests. Auxiliary reproduction/runner/helper files were not all examined in full. Initial combined output was truncated; targeted packet reads recovered the substantive material used below.",
+    "notRead": "No trial directories, map, selected skill, source versions, author controls or other evaluation files.",
+    "blindingCaveat": "Blinding was incomplete: C3 handoff explicitly says 'using frozen backend-engineering v1.1.0'. This was incidental exposure in the authorized packet, reported to coordinator, and not used to infer mapping or preferred outcome. The packet was not silently replaced.",
+    "limitations": "No implementation execution, screenshot inspection, independent AT session or raw linked-log inspection by this reviewer. Reported execution is attributed to the packet; source-derived concerns are not runtime failures. Four fixture cases support no universal or statistical claim."
+  },
+  "objectiveEvidence": "The packet reports 46 independent checks PASS total: 40 required checks and six healthy controls. These results remain separate from qualitative categories and do not establish untested production, remote-effect, AT, physical-IME or cross-browser scope.",
+  "reviews": [
+    {
+      "alias": "A9", "caseId": "BE-B1",
+      "causalDiagnosis": {"level": "DEMONSTRATED", "evidence": "Handoff contrasts stale read/check/await oversell (stock -3) with successful reads/no contention; partial stock write with zero receipts/events identifies autocommit rather than an atomic transaction. service.original.ts contains that schedule."},
+      "mechanismAndAlternative": {"level": "DEMONSTRATED", "evidence": "service.ts acquires BEGIN IMMEDIATE before replay, conditionally decrements, stores scoped receipt/event before COMMIT. Handoff weighs deferred guarded update plus whole-transaction retries against short synchronous writer acquisition; process mutex and external broker fail the independent-connection/local-row boundary."},
+      "operatingLimitAndFailure": {"level": "DEMONSTRATED", "evidence": "Handoff: 'busy_timeout=250, no application retry'; distinguishes lock-wait configuration from total deadline, and post-COMMIT hook from power-loss/remote proof. Receipt deletion/retention and trusted tenant context are explicit limits."},
+      "traceAndVerification": {"level": "DEMONSTRATED", "evidence": "B1-R1..R4 table maps to service.ts and tests.mjs: synchronized worker races, child replay, conflicts, tenant separation, hook rollback/lost ack, invalid quantities and held writer. storage-fault-tests.mjs additionally aborts event INSERT with a real SQLite trigger. Independent required observations all PASS."},
+      "materialCaveats": ["No material completion contradiction identified in the reviewed scope. 'All requirements PASS' is explicitly bounded to the local fixture; linked raw logs and crash/power-loss behavior were not independently reviewed."]
+    },
+    {
+      "alias": "C3", "caseId": "BE-B2",
+      "causalDiagnosis": {"level": "DEMONSTRATED", "evidence": "Handoff gives A/B read token0, both write token1, then stale A completes by id after reclaim; injected times and durable rows distinguish missing ownership predicates from clock skew. service.ts replaces that gap with one UPDATE RETURNING."},
+      "mechanismAndAlternative": {"level": "DEMONSTRATED", "evidence": "claim atomically selects eligible ordered work and increments token; complete predicates status/worker/token/unexpired lease in its result UPDATE. Handoff weighs BEGIN IMMEDIATE plus SELECT/UPDATE, identifies multirow grants as its use case, and rejects broker/outbox for this local predicate defect."},
+      "operatingLimitAndFailure": {"level": "DEMONSTRATED", "evidence": "Handoff bounds lock wait at 250ms/no retries, single writer, finite advancing injected time and exact token range; explicitly requires provider-side atomic deduplication/fence enforcement for remote effects, including newer-epoch knowledge and retention limits."},
+      "traceAndVerification": {"level": "DEMONSTRATED", "evidence": "test.mjs maps B2-R1..R3 to synchronized eight-connection races, exact expiry/wrong owner/token, child-process reopen/reclaim, injected-clock validation and busy recovery. B2-R4 is clearly a specified unperformed provider contract, not a remote execution claim. Independent required observations all PASS."},
+      "materialCaveats": ["Source-derived, unexecuted boundary: claim's ordered subquery can select a token-exhausted oldest eligible row, then outer token<9007199254740991 rejects it. Later eligible jobs can consequently be starved. Handoff states token exhaustion fails closed but does not describe this queue-wide consequence; no supplied token-exhaustion test was found."]
+    },
+    {
+      "alias": "L4", "caseId": "UI-U1",
+      "causalDiagnosis": {"level": "DEMONSTRATED", "evidence": "Handoff and test.mjs baseline probes distinguish response age, unconditional input.blur and composition-triggered calls; CSS min-width:360px/nowrap explains overflow independently of request timing."},
+      "mechanismAndAlternative": {"level": "PARTIAL", "evidence": "app.ts generation/disposed guards protect both success/catch; composition gates/deduplication preserve the input and visible ARIA state. However handoff's abort-only alternative assumes a transport guarantee expressly absent here; its native-select alternative also changes the asynchronous search contract. No viable alternative satisfying the supplied contract is actually weighed. State/cache/framework rejection is fixture-specific."},
+      "operatingLimitAndFailure": {"level": "DEMONSTRATED", "evidence": "Handoff separates simulated composition from physical Japanese IME, keyboard/ARIA from AT, tested viewports from zoom/cross-browser conformance, and explicitly admits a never-settling transport can remain loading."},
+      "traceAndVerification": {"level": "DEMONSTRATED", "evidence": "U1-R1..R5 table maps app.ts/styles.css to test.mjs real-browser ordering, clear, composition, keyboard/ARIA, retry/disposal and rendered-width checks. Independent required checks all PASS. Handoff explicitly marks disposed late rejection as source-guarded but not separately executed and retains failed launches."},
+      "materialCaveats": ["AT, physical IME and broader accessibility conformance remain UNVERIFIED despite passing DOM/keyboard/layout checks; the handoff correctly preserves that boundary. Early failed-launch child-server cleanup is explicitly unestablished."]
+    },
+    {
+      "alias": "N6", "caseId": "UI-U2",
+      "causalDiagnosis": {"level": "DEMONSTRATED", "evidence": "Handoff ties 600px panel geometry inside a transformed clipped 280x200 card to clipping rather than z-index alone, and separately identifies missing modal focus ownership and Escape's retained body overflow lock."},
+      "mechanismAndAlternative": {"level": "DEMONSTRATED", "evidence": "index.html uses named dialog; app.ts showModal/close owns draft and scroll restoration, removes listeners on disposal, guards delayed close events after reopen. Handoff weighs a body-level custom overlay with inertness/trap/return focus for legacy requirements and rejects unnecessary global manager/library."},
+      "operatingLimitAndFailure": {"level": "DEMONSTRATED", "evidence": "Handoff limits compatibility to native showModal support and tested Chrome, identifies competing body-overflow writers as uncoordinated, and separates native keyboard/background evidence from unperformed AT/mobile-keyboard/zoom checks."},
+      "traceAndVerification": {"level": "DEMONSTRATED", "evidence": "verify.mjs maps U2-R1..R4 to named modal/initial focus, real forward/reverse Tab, outside pointer, Save/Cancel/Escape return, second save count, disposal/remount, exact overflow restoration, actual wheel scrolling and viewport/internal-scroll geometry. Independent required checks all PASS."},
+      "materialCaveats": ["The keyboard-background probe presses Enter in the dialog field; its stronger evidence is Tab containment plus native modality and blocked real outside pointer. It is not an AT test, and the handoff does not claim one. No material completion contradiction identified."]
+    },
+    {
+      "alias": "Q2", "caseId": "BE-B1",
+      "causalDiagnosis": {"level": "DEMONSTRATED", "evidence": "Handoff records stock=-3 and before-commit stock mutation without receipt/event, distinguishing transaction defects from unavailable SQLite/response formatting; retains a baseline independent-process race that happened to pass without letting it erase deterministic oversell."},
+      "mechanismAndAlternative": {"level": "DEMONSTRATED", "evidence": "service.ts combines BEGIN IMMEDIATE, guarded decrement, STRICT/CHECK stock, scoped durable receipts and tenant-inclusive event FK. Handoff weighs deferred optimistic conditional update/uniqueness reconciliation against short transaction/read-upgrade behavior; no remote dispatcher is needed for a local event row."},
+      "operatingLimitAndFailure": {"level": "DEMONSTRATED", "evidence": "Handoff states 250ms SQLite waits, maximum three attempts and 10/20ms backoff after close, without claiming total deadline; explains retention deletion loses replay protection and local post-COMMIT hook cannot establish network/power-loss durability."},
+      "traceAndVerification": {"level": "DEMONSTRATED", "evidence": "B1-R1..R4 table traces to test.mjs/edge-test.mjs with same/separate-process races, child replay, conflict/tenant checks, durable sold_out, hook faults, invalid-before-open, binding, constraints and held-lock recovery. Independent required observations all PASS; repeated runner execution is attributed to handoff rather than reviewer."},
+      "materialCaveats": ["No material completion contradiction identified in the reviewed scope. Production migration, remote delivery, disk-full and forced-death/power-loss tests remain explicitly unperformed."]
+    },
+    {
+      "alias": "X7", "caseId": "UI-U1",
+      "causalDiagnosis": {"level": "DEMONSTRATED", "evidence": "Handoff reports B-before-A then Old result overwrite and traces separate failures to unconditional blur, composition/disposal omissions and CSS intrinsic sizing; controlled transport distinguishes ordering from an incorrect current response."},
+      "mechanismAndAlternative": {"level": "PARTIAL", "evidence": "app.ts generation/disposed checks close stale success/failure and clear/disposal paths; composition gates/deduplication, stable input and visible-state ARIA close the other defects. Handoff's only proposed alternative, debounce, expressly cannot prevent an already-issued stale completion; it is a request-volume adjunct rather than a viable alternative correction. Global state/cache rejection is appropriate."},
+      "operatingLimitAndFailure": {"level": "DEMONSTRATED", "evidence": "Handoff says cancellation is optimization, never-settling transport can remain pending, composition is simulated, and Chromium viewports do not certify AT/zoom/physical IME or production API behavior."},
+      "traceAndVerification": {"level": "DEMONSTRATED", "evidence": "browser-tests.mjs maps U1-R1..R5 to stale success/failure (also while current pending), clear/empty, final composition once, precise duplicate-data-ID selection, visible Escape, retry, late success/rejection after dispose and narrow long-content geometry. Independent required checks all PASS. Handoff retains misleading baseline shell exit 0 versus actual failed assertions."},
+      "materialCaveats": ["No material functional completion contradiction identified in reviewed scope. Accessibility-critical focus/ARIA/reflow claims have real-browser fixture evidence; AT, physical IME, zoom and other engines remain UNVERIFIED."]
+    }
+  ]
+}

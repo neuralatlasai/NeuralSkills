@@ -1,0 +1,343 @@
+{
+  "suiteVersion": "1.0.0",
+  "frozenBeforeExecution": true,
+  "evaluatorInstructions": "Distribute only each case's task and fixture files to the implementation agent. Do not reveal checks, rubric, other cases, or held-out files. All fixture paths are relative to this evals directory.",
+  "commonOutputContract": {
+    "artifactDirectory": "trial/artifact/",
+    "resultFile": "trial/result.json",
+    "fields": [
+      "caseId",
+      "arm",
+      "run",
+      "route",
+      "requirementCoverage",
+      "assumptions",
+      "decisions",
+      "checks",
+      "limitations"
+    ],
+    "note": "The orchestrator supplies caseId, arm, run and trial directory. Checks use PASS, FAIL, UNVERIFIED or NOT_APPLICABLE and cite observable evidence. Never invent tool access or executed checks."
+  },
+  "cases": [
+    {
+      "id": "C01",
+      "title": "Text-only invitation copy button",
+      "access": "public",
+      "execution": "comparative, 3 independent runs per arm",
+      "task": "Build one small reusable invitation-copy button in native TypeScript and plain CSS, without React, a UI library, icons, or a full marketing page. The button label is “Copy invitation link” and it copies https://example.test/invite/team-river. While a copy is pending it must prevent duplicate submissions. On success show “Link copied” for about two seconds, then restore the original label. If the clipboard is unavailable or rejects, show a useful inline error and allow retry. Make it work with a keyboard, expose its changing status to assistive technology, show a clear focus indicator, and keep a target of at least 44 by 44 CSS pixels. It must fit a 320px viewport and tolerate the translated label “Einladungslink für das Projektteam kopieren” without clipping. Keep the visual treatment restrained and polished. Supply a runnable local example and concise setup instructions. Put the implementation in the supplied trial/artifact directory and write trial/result.json using the supplied output contract.",
+      "fixtures": [],
+      "requirements": [
+        {
+          "id": "C01-R01",
+          "kind": "function",
+          "check": "Normal activation requests exactly the specified URL through the clipboard; pointer and keyboard activation work."
+        },
+        {
+          "id": "C01-R02",
+          "kind": "function",
+          "check": "While the clipboard Promise is unresolved, further activations do not cause additional writes; success state resets after approximately two seconds."
+        },
+        {
+          "id": "C01-R03",
+          "kind": "function",
+          "check": "Missing/rejected clipboard causes a visible, understandable error; another attempt is possible."
+        },
+        {
+          "id": "C01-R04",
+          "kind": "accessibility",
+          "check": "Native button or equivalent complete semantics; visible keyboard focus; state feedback is exposed with a live region or equivalent; measured target is >=44x44 CSS px."
+        },
+        {
+          "id": "C01-R05",
+          "kind": "responsive",
+          "check": "At 320px with the supplied long label, there is no horizontal page overflow, overlap or clipped text."
+        },
+        {
+          "id": "C01-R06",
+          "kind": "scope",
+          "check": "Native TypeScript and CSS; no React/UI/icon dependency or unrelated full-page content."
+        },
+        {
+          "id": "C01-R07",
+          "kind": "delivery",
+          "check": "Runnable setup is documented; result.json accurately distinguishes executed checks from limitations."
+        }
+      ],
+      "visualDimensions": [
+        "hierarchy",
+        "spacing",
+        "states"
+      ]
+    },
+    {
+      "id": "C02",
+      "title": "Reproduce a supplied dashboard screenshot",
+      "access": "public",
+      "execution": "skill-only, 1 run",
+      "task": "Reproduce the supplied synthetic screenshot as a responsive frontend page. Inspect fixtures/C02/reference.png visually before implementation; reference.svg is retained only as source provenance. Match its desktop composition, spacing, typography, colors and simple decorative shapes at 1280×900. Keep all visible content from the reference. The top navigation anchors should move to the corresponding section, and “Create workspace” should open an accessible small dialog with a workspace-name field, Cancel and Create; Create shows a local success message, with no backend. At 375px, adapt the layout so navigation, headings and cards remain readable and usable. Use local CSS/HTML shapes for the artwork; no external image service is needed. Supply a runnable local example and setup instructions. Put the implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+      "fixtures": [
+        "fixtures/C02/reference.png",
+        "fixtures/C02/reference.svg",
+        "fixtures/C02/README.md"
+      ],
+      "requirements": [
+        {
+          "id": "C02-R01",
+          "kind": "reference",
+          "check": "Evidence records actual visual inspection of the supplied PNG screenshot; no claim that it was inspected when it was not."
+        },
+        {
+          "id": "C02-R02",
+          "kind": "function",
+          "check": "Navigation anchors target actual sections; Create workspace dialog opens, validates a nonblank name, supports Cancel/Create and shows local confirmation."
+        },
+        {
+          "id": "C02-R03",
+          "kind": "accessibility",
+          "check": "Dialog has a programmatic name, focus enters it, Escape/Cancel closes, focus returns to trigger, and background cannot be focused while modal is open."
+        },
+        {
+          "id": "C02-R04",
+          "kind": "responsive",
+          "check": "Desktop reference structure remains recognizable at 1280x900; at 375px no horizontal overflow, overlapping controls or clipped headings."
+        },
+        {
+          "id": "C02-R05",
+          "kind": "content",
+          "check": "All screenshot labels, counts, card titles and the principal hierarchy are preserved."
+        },
+        {
+          "id": "C02-R06",
+          "kind": "delivery",
+          "check": "Runnable setup and truthful result evidence are supplied."
+        }
+      ],
+      "visualDimensions": [
+        "layoutFidelity",
+        "typographyFidelity",
+        "colorFidelity",
+        "detailFidelity"
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "Combine references with separate roles",
+      "access": "public",
+      "execution": "skill-only, 1 run",
+      "task": "Build a compact responsive “Workshop reservations” admin page from the three supplied visual references. Inspect all three visually. Use fixtures/C03/brand.svg only for brand colors and the FIELDNOTES wordmark; use layout.svg only for page structure and relative grouping; use typography.svg only for type families, scale and label treatment. Do not copy the grayscale colors from the layout reference or its placeholder text. The page needs sidebar links Overview, Reservations and Settings, with Reservations active; a heading and short description; a “New reservation” button that opens an accessible dialog; a list with these rows: “Urban sketching / 12 June / 8 of 12 seats”, “Botanical inks / 14 June / 12 of 12 seats”, and “Field photography / 18 June / 3 of 10 seats”; and a right-hand summary showing 3 workshops and 23 reserved seats. The dialog has workshop and attendee-name fields, validates them, and adds a local reservation summary; it need not alter the supplied capacity figures. On a narrow screen, let the sidebar become a compact navigation area and place the summary after the list. Keep this to one page, with no backend. Supply a runnable example and setup instructions. Put implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+      "fixtures": [
+        "fixtures/C03/brand.svg",
+        "fixtures/C03/layout.svg",
+        "fixtures/C03/typography.svg"
+      ],
+      "requirements": [
+        {
+          "id": "C03-R01",
+          "kind": "reference",
+          "check": "Evidence records actual inspection of all three visual references and a role map; brand, structure and type sources are not conflated."
+        },
+        {
+          "id": "C03-R02",
+          "kind": "content",
+          "check": "Specified navigation, active state, rows, heading, summary numbers and local reservation feedback exist."
+        },
+        {
+          "id": "C03-R03",
+          "kind": "function",
+          "check": "New reservation dialog validates fields and creates a visible local summary without inventing a backend."
+        },
+        {
+          "id": "C03-R04",
+          "kind": "accessibility",
+          "check": "Dialog keyboard behavior, visible focus, explicit labels, errors and modal semantics are complete."
+        },
+        {
+          "id": "C03-R05",
+          "kind": "responsive",
+          "check": "At 375px navigation remains usable, summary follows list, and no horizontal overflow or clipped labels occur."
+        },
+        {
+          "id": "C03-R06",
+          "kind": "delivery",
+          "check": "Runnable setup and truthful result evidence are supplied."
+        }
+      ],
+      "visualDimensions": [
+        "roleBrand",
+        "roleLayout",
+        "roleTypography",
+        "spacing"
+      ]
+    },
+    {
+      "id": "C04",
+      "title": "Unavailable Figma reference with useful fallback",
+      "access": "public",
+      "execution": "skill-only, 1 run",
+      "task": "Implement a small contact-preferences form from fixtures/C04/brief.md. The intended Figma reference is deliberately unavailable in this simulated case; fixtures/C04/figma-access.json describes the fixture state, and there is no actual Figma file or URL to fetch. Do not attempt a real Figma lookup. Be explicit that visual fidelity to Figma cannot be verified, make reasonable design assumptions from the text brief, and continue with a useful implementation. The form has a labeled email field and Email updates, Product research and Partner offers checkboxes, with Save preferences and a visible saved summary. Use native TypeScript and CSS. Validate the email, let the user toggle the preferences by keyboard, and show save confirmation without a backend. Keep this to one small page. Include a concise handoff listing the design assumptions and what would need checking when Figma becomes available. Supply a runnable example and setup instructions, put implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+      "fixtures": [
+        "fixtures/C04/brief.md",
+        "fixtures/C04/figma-access.json"
+      ],
+      "requirements": [
+        {
+          "id": "C04-R01",
+          "kind": "truthfulness",
+          "check": "No real Figma fetch is attempted; no Figma node data, screenshot or pixel-match claim is invented; Figma fidelity is explicitly UNVERIFIED."
+        },
+        {
+          "id": "C04-R02",
+          "kind": "function",
+          "check": "Email validation, independent checkbox toggles and Save confirmation with the current values work locally."
+        },
+        {
+          "id": "C04-R03",
+          "kind": "accessibility",
+          "check": "Controls have explicit labels, keyboard activation and visible focus; validation/error and saved feedback are programmatically available."
+        },
+        {
+          "id": "C04-R04",
+          "kind": "responsive",
+          "check": "At 320px the form fits without clipping or horizontal overflow."
+        },
+        {
+          "id": "C04-R05",
+          "kind": "handoff",
+          "check": "Assumptions and a concrete later-Figma verification list are disclosed while a useful runnable artifact is delivered."
+        }
+      ],
+      "visualDimensions": [
+        "hierarchy",
+        "spacing",
+        "states"
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "Targeted improvement in an existing repository",
+      "access": "public",
+      "execution": "skill-only, 1 run",
+      "task": "Work in the supplied fixtures/C05/repo starter by copying it into trial/artifact. This is an existing React + TypeScript + Vite billing screen with a small purple brand system in src/styles.css. Preserve its stack, CSS variables, existing screen content and overall visual character. Make one targeted change: add a “Payment schedule” disclosure to each invoice row. Each disclosure must toggle that row's schedule details without changing other rows, use a native button with aria-expanded/aria-controls, and show the invoice's due date plus its three supplied payment entries. It must be usable with a keyboard, show visible focus, and keep the table/card content readable at 375px. Add only the structure and styling needed for that feature; do not redesign the page, replace its CSS, add a UI kit, fetch data or introduce a router. Use the existing package scripts for the appropriate checks. Summarize the changed files and any checks you could not execute. Write trial/result.json using the supplied output contract.",
+      "fixtures": [
+        "fixtures/C05/repo/package.json",
+        "fixtures/C05/repo/index.html",
+        "fixtures/C05/repo/tsconfig.json",
+        "fixtures/C05/repo/vite.config.ts",
+        "fixtures/C05/repo/src/main.tsx",
+        "fixtures/C05/repo/src/App.tsx",
+        "fixtures/C05/repo/src/styles.css",
+        "fixtures/C05/repo/README.md"
+      ],
+      "requirements": [
+        {
+          "id": "C05-R01",
+          "kind": "scope",
+          "check": "Existing React/TypeScript/Vite stack and package scripts are retained; no new runtime/UI/router dependency."
+        },
+        {
+          "id": "C05-R02",
+          "kind": "preservation",
+          "check": "Original CSS brand tokens, heading, invoice data, navigation, totals and base page character remain; changes are localized to disclosure support."
+        },
+        {
+          "id": "C05-R03",
+          "kind": "function",
+          "check": "Every row independently opens/closes its correct due date and three payment entries; toggling one row does not alter another."
+        },
+        {
+          "id": "C05-R04",
+          "kind": "accessibility",
+          "check": "Each native toggle has correct aria-expanded and a unique matching aria-controls target; keyboard/focus work in both states."
+        },
+        {
+          "id": "C05-R05",
+          "kind": "responsive",
+          "check": "At 375px controls/details remain readable, without page overflow or overlapping content."
+        },
+        {
+          "id": "C05-R06",
+          "kind": "delivery",
+          "check": "Existing typecheck/build scripts are run when environment allows; exact failures or unavailability are disclosed."
+        }
+      ],
+      "visualDimensions": [
+        "preservation",
+        "spacing",
+        "states"
+      ]
+    },
+    {
+      "id": "C06",
+      "title": "Slow, failed and out-of-order search responses",
+      "access": "public",
+      "execution": "comparative, 3 independent runs per arm",
+      "task": "Build a compact native TypeScript and CSS “Find a field guide” search UI using the supplied fixtures/C06/fake-api.ts unchanged. The form has a labeled search input and Search button; Enter submits it. Show an initial prompt, a visible pending state while each request runs, result cards for returned guides, a useful empty state, and a clear failure state with Retry. A new search may start while a previous request is pending. Only the most recently submitted query may update the visible query/state/results; stale successes and stale failures must be ignored even though this API does not support cancellation. After a failed query Retry submits the same query again. Make loading and outcome feedback accessible, keep focus usable, and fit 320px. Use the API's built-in “cedar”, “moss”, “empty” and “fail” scenarios for checks; also test cedar followed quickly by moss, and fail followed quickly by moss. Keep this to one small local page with no backend, React or UI library. Supply setup instructions, put implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+      "fixtures": [
+        "fixtures/C06/fake-api.ts",
+        "fixtures/C06/README.md"
+      ],
+      "requirements": [
+        {
+          "id": "C06-R01",
+          "kind": "function",
+          "check": "Initial prompt, submission by button/Enter, pending state, valid result cards, empty state and failure feedback all occur using the supplied unchanged API."
+        },
+        {
+          "id": "C06-R02",
+          "kind": "function",
+          "check": "cedar (slow) then moss (fast): final query/results remain moss after cedar settles; intermediate content is never mislabelled as the latest query."
+        },
+        {
+          "id": "C06-R03",
+          "kind": "function",
+          "check": "fail then moss before fail settles: stale rejection cannot replace moss success with an error."
+        },
+        {
+          "id": "C06-R04",
+          "kind": "function",
+          "check": "Retry after an active fail submits the same failed query and exposes a fresh pending state; new searches remain possible while pending."
+        },
+        {
+          "id": "C06-R05",
+          "kind": "accessibility",
+          "check": "Input has an explicit label, pending/outcome feedback is announced, controls work by keyboard with visible focus, and the loading button does not prevent newer submissions."
+        },
+        {
+          "id": "C06-R06",
+          "kind": "responsive",
+          "check": "At 320px the input, long title and state messages fit without horizontal overflow or overlap."
+        },
+        {
+          "id": "C06-R07",
+          "kind": "scope",
+          "check": "Native TypeScript/CSS, supplied API unchanged, no external network or UI framework."
+        },
+        {
+          "id": "C06-R08",
+          "kind": "delivery",
+          "check": "Runnable setup and truthful per-scenario evidence are supplied; unexecuted race checks are UNVERIFIED."
+        }
+      ],
+      "visualDimensions": [
+        "hierarchy",
+        "spacing",
+        "states"
+      ]
+    },
+    {
+      "id": "C07",
+      "access": "heldout",
+      "definitionPath": "heldout/C07.json",
+      "execution": "skill-only, 1 run after skill freeze",
+      "doNotReadUntilFreeze": true
+    },
+    {
+      "id": "C08",
+      "access": "heldout",
+      "definitionPath": "heldout/C08.json",
+      "execution": "skill-only, 1 run after skill freeze",
+      "doNotReadUntilFreeze": true
+    }
+  ]
+}
+

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0",
+  "source": "meet.md",
+  "policy": "Gates are internal; criteria freeze before scoring. Required FAIL/UNVERIFIED blocks unqualified completion. These ten gates are a traceability decomposition, not a subjective ten-point quality rating.",
+  "gates": [
+    {
+      "id": "G01",
+      "name": "Authorized contract and scope",
+      "source": "§1–2",
+      "criterion": "Supported tasks/inputs/outputs, actual runtime/permissions, sourced requirements and consequential unknowns defined."
+    },
+    {
+      "id": "G02",
+      "name": "Evidence and source integrity",
+      "source": "§2",
+      "criterion": "Architecture Book/source skills/primary behavior inspected with versions, provenance/adoption/limits; no fabricated claims."
+    },
+    {
+      "id": "G03",
+      "name": "Full responsibility mapping",
+      "source": "§3",
+      "criterion": "All L01–L24 mapped to actual components with dispositions and verified/unverified aspects; conditional modules complete."
+    },
+    {
+      "id": "G04",
+      "name": "Coherent contracts and invariants",
+      "source": "§1,3,5",
+      "criterion": "Every consequential recommendation has requirement/mechanism/limit/failure/verification; one authority; complete operation/identity/state ownership."
+    },
+    {
+      "id": "G05",
+      "name": "Cost and workload analysis",
+      "source": "§4",
+      "criterion": "Variables, CPU/memory/DB/network/amplification/storage/recovery, three supplied models and optimization comparison conditions documented and exercised where claimed."
+    },
+    {
+      "id": "G06",
+      "name": "Working integrated backend",
+      "source": "§6",
+      "criterion": "Real HTTPS→ingress→auth/tenant/validation/domain→real database→structured response path and all thirteen integrated cases evidenced."
+    },
+    {
+      "id": "G07",
+      "name": "Security and failure boundaries",
+      "source": "§3,6",
+      "criterion": "Actual negative auth/TLS/parser/tenant/field, concurrency/ambiguous effects and adapter fault checks preserve critical invariants; unsupported boundaries explicit."
+    },
+    {
+      "id": "G08",
+      "name": "Bounded operation and recovery",
+      "source": "§4,6",
+      "criterion": "Normal/sustained/burst/overload/failure/recovery load accounts all demand; pool/queue/cache/worker/rotation/rollout/restore/telemetry behavior and operating limits evidenced."
+    },
+    {
+      "id": "G09",
+      "name": "Package and fresh-context validation",
+      "source": "§5,7",
+      "criterion": "Metadata/links/schema/scripts success+failure and realistic fresh/heldout/baseline/negative activation evaluations completed with raw evidence."
+    },
+    {
+      "id": "G10",
+      "name": "Delivery and claim traceability",
+      "source": "§7",
+      "criterion": "Manifest, coverage/versions, commands/fixtures/faults/workloads/results, requirement evidence and unsupported/unverified capabilities delivered precisely."
+    }
+  ]
+}

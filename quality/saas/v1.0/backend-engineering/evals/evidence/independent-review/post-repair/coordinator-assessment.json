@@ -1,0 +1,58 @@
+{
+  "assessedAt": "2026-11-05T16:49:03.717Z",
+  "assessor": "Coordinator, actual local rerun of independent reviewer-authored diagnostic",
+  "criterion": "An owner transfer completes at version2; earlier request body completing later is denied403 and leaves owner=alice, quantity5, version2.",
+  "basis": "Original meet.md tenant/object/field authorization and atomic state invariants; unchanged by repair.",
+  "rawDiagnostic": "race-results.json preserves its original FAIL-or-UNVERIFIED-only classification; this separate assessment checks explicit expected postconditions without editing raw results.",
+  "status": "PASS",
+  "attempts": 3,
+  "httpsRequests": 12,
+  "assertions": [
+    {
+      "attempt": 1,
+      "status": "PASS",
+      "observed": {
+        "attempt": 1,
+        "transferStatus": 200,
+        "transferOwner": "alice",
+        "transferVersion": 2,
+        "limitedMutationStatus": 403,
+        "finalOwner": "alice",
+        "finalQuantity": 5,
+        "finalVersion": 2,
+        "status": "UNVERIFIED"
+      }
+    },
+    {
+      "attempt": 2,
+      "status": "PASS",
+      "observed": {
+        "attempt": 2,
+        "transferStatus": 200,
+        "transferOwner": "alice",
+        "transferVersion": 2,
+        "limitedMutationStatus": 403,
+        "finalOwner": "alice",
+        "finalQuantity": 5,
+        "finalVersion": 2,
+        "status": "UNVERIFIED"
+      }
+    },
+    {
+      "attempt": 3,
+      "status": "PASS",
+      "observed": {
+        "attempt": 3,
+        "transferStatus": 200,
+        "transferOwner": "alice",
+        "transferVersion": 2,
+        "limitedMutationStatus": 403,
+        "finalOwner": "alice",
+        "finalQuantity": 5,
+        "finalVersion": 2,
+        "status": "UNVERIFIED"
+      }
+    }
+  ],
+  "delegationLimit": "Post-repair reviewer turns were interrupted by automatic possible-cybersecurity-risk checks; basic29-request results were retained before interruption. Coordinator ran remaining12-request diagnostic locally."
+}

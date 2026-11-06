@@ -1,0 +1,159 @@
+{
+  "caseId": "C07",
+  "arm": "skill",
+  "run": 1,
+  "route": {
+    "mode": "adapt",
+    "scope": "flow",
+    "modules": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8"
+    ],
+    "implementation": "native TypeScript and plain CSS; single-page local state"
+  },
+  "startedAt": "2026-11-05T16:13:25Z",
+  "endedAt": "2026-11-05T16:19:00Z",
+  "elapsedSeconds": 335,
+  "requirementCoverage": [
+    {
+      "id": "C07-R01",
+      "status": "PASS",
+      "evidence": "artifact/app.ts, style.css; strict build; one-page local state; browser flow"
+    },
+    {
+      "id": "C07-R02",
+      "status": "PASS",
+      "evidence": "browser-evidence.json required-errors-focus and invalid-email-focus"
+    },
+    {
+      "id": "C07-R03",
+      "status": "PASS",
+      "evidence": "browser-evidence.json review-focus-and-summary, back-preserves-and-keyboard, consent-validation-translation, success-keyboard-locale"
+    },
+    {
+      "id": "C07-R04",
+      "status": "PASS",
+      "evidence": "browser-evidence.json locale-current-errors, consent-validation-translation, success-keyboard-locale; unchanged copy.json"
+    },
+    {
+      "id": "C07-R05",
+      "status": "PASS",
+      "evidence": "browser-evidence.json keyboard/focus/target checks; associated error IDs and visible style; AT not assessed"
+    },
+    {
+      "id": "C07-R06",
+      "status": "UNVERIFIED",
+      "evidence": "All 18 German layout/CSS zoom stress checks pass; actual browser zoom remains unverified"
+    },
+    {
+      "id": "C07-R07",
+      "status": "PASS",
+      "evidence": "artifact/README.md, generated app.js, result.json and raw evidence files"
+    }
+  ],
+  "assumptions": [
+    "Requirement IDs mapped to the supplied task clauses in contract.json; no separate requirement definitions inspected.",
+    "State deliberately resets on reload; confirmation simulates submission without a backend.",
+    "No brand supplied; use system fonts and a compact calm single-column surface."
+  ],
+  "decisions": [
+    "Use native radios rather than a native select so every long German choice can wrap.",
+    "Local IDs preserve selections during locale switch; render fixture translations for current errors and summaries.",
+    "Use semantic native fields with required validity, aria-invalid/aria-describedby errors and explicit focus transitions.",
+    "No network, package installation, imagery, animation or persistent sensitive data."
+  ],
+  "checks": [
+    {
+      "id": "strict-typescript-build",
+      "status": "PASS",
+      "evidence": "node artifact/build.cjs executed with exit 0; TypeScript strict/noEmitOnError; emitted artifact/app.js."
+    },
+    {
+      "id": "browser-functional",
+      "status": "PASS",
+      "evidence": "browser-evidence.json: all 10 checks passed after repair; keyboard validation, first invalid focus, review and Back focus, value preservation, consent and success."
+    },
+    {
+      "id": "localization",
+      "status": "PASS",
+      "evidence": "browser-evidence.json: German current errors, labels, choices, review and success; raw input and choice IDs preserved. Fixture copy SHA256 68FBFB9E4FACF941A9B24EECBAA0A8AEA6DE7E760989184C15D9C9CD56CA1919 matches source."
+    },
+    {
+      "id": "layout-content",
+      "status": "PASS",
+      "evidence": "stress-evidence.json: 18 no-overflow/no-clipping checks on German errors, consent review and success at widths 320/640/1280, CSS zoom 1/2. Desktop-en.png, narrow-de-errors.png, narrow-de-review.png and stress-review-320-zoom2.png visually inspected."
+    },
+    {
+      "id": "keyboard-focus-targets",
+      "status": "PASS",
+      "evidence": "browser-evidence.json: native Enter, radio ArrowDown, checkbox Space, Tab journey, correct focus destinations; 3px solid focus outline and measured target heights 45–50px."
+    },
+    {
+      "id": "contrast",
+      "status": "PASS",
+      "evidence": "stress-evidence.json: selected measured text/color pairs contrast >=6.74:1, input border 4.64:1 and focus ring 7.44:1 against white. This is scoped palette evidence."
+    },
+    {
+      "id": "initial-overflow",
+      "status": "FAIL",
+      "evidence": "browser-evidence-initial.json retained: at 320px/CSS zoom2 German success subtitle caused scrollWidth432/client320. Fixed h3 wrapping; subsequent browser-evidence.json and stress-evidence.json pass."
+    },
+    {
+      "id": "native-browser-zoom200",
+      "status": "UNVERIFIED",
+      "evidence": "CSS zoom2 and narrow reflow used as surrogate. Actual Chrome UI browser zoom was not exercised."
+    },
+    {
+      "id": "screen-reader",
+      "status": "UNVERIFIED",
+      "evidence": "No AT/browser pair executed; DOM labels/error associations/status semantics checked only."
+    },
+    {
+      "id": "automated-a11y-scanner",
+      "status": "UNVERIFIED",
+      "evidence": "No external scanner installed or run; scoped browser DOM assertions only."
+    },
+    {
+      "id": "field-performance",
+      "status": "UNVERIFIED",
+      "evidence": "No field visits or lab performance profiling; no CWV claims."
+    },
+    {
+      "id": "backend",
+      "status": "NOT_APPLICABLE",
+      "evidence": "Explicitly local state; success is simulated with no backend or email."
+    },
+    {
+      "id": "helpers-stopped",
+      "status": "PASS",
+      "evidence": "Playwright browsers closed in scripts; server session 89922 stopped with Ctrl+C."
+    }
+  ],
+  "limitations": [
+    "Actual 200% browser zoom unverified; CSS zoom 2 and 320px reflow are bounded surrogate evidence.",
+    "No assistive technology run or complete WCAG assessment.",
+    "No field or profiled lab performance measurement.",
+    "Native Chrome desktop only; no additional browser/mobile device coverage."
+  ],
+  "tokens": null,
+  "cost": null,
+  "resourceUsageNote": "Token count and monetary cost unavailable.",
+  "artifacts": [
+    "artifact/README.md",
+    "artifact/index.html",
+    "artifact/app.ts",
+    "artifact/app.js",
+    "artifact/style.css",
+    "artifact/copy.json",
+    "contract.json",
+    "browser-evidence-initial.json",
+    "browser-evidence.json",
+    "stress-evidence.json"
+  ]
+}

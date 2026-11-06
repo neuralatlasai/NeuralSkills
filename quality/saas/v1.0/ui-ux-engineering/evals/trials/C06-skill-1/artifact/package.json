@@ -1,0 +1,1 @@
+{"name":"field-guide-search","private":true,"scripts":{"build":"node build.cjs","test":"node verify.cjs"},"engines":{"node":">=24"}}

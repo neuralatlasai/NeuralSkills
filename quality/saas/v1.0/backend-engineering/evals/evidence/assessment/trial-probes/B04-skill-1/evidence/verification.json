@@ -1,0 +1,230 @@
+{
+  "runtime": "v24.12.0",
+  "sqlite": "3.50.4",
+  "platform": "win32",
+  "arch": "x64",
+  "checks": [
+    {
+      "name": "durable duplicate and conflicting enqueue",
+      "status": "PASS",
+      "observations": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\evidence\\1793899072937-identity.sqlite",
+        "rows": 1
+      }
+    },
+    {
+      "name": "real process crash and restart 1",
+      "status": "PASS",
+      "observations": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\evidence\\1793899072937-crash-1.sqlite",
+        "crashed": {
+          "status": 73,
+          "signal": null,
+          "stdout": "",
+          "stderr": "(node:21180) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "restarted": {
+          "status": 0,
+          "signal": null,
+          "stdout": "{\"jobs\":[{\"id\":\"credit-1\",\"account\":\"north\",\"amount\":7,\"state\":\"done\",\"attempts\":1,\"error\":null}],\"balances\":[{\"account\":\"north\",\"total\":7}],\"credits\":[{\"job_id\":\"credit-1\",\"account\":\"north\",\"amount\":7}],\"snapshotLimit\":100}\n",
+          "stderr": "(node:3272) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "idle": {
+          "status": 0,
+          "signal": null,
+          "stdout": "{\"jobs\":[{\"id\":\"credit-1\",\"account\":\"north\",\"amount\":7,\"state\":\"done\",\"attempts\":1,\"error\":null}],\"balances\":[{\"account\":\"north\",\"total\":7}],\"credits\":[{\"job_id\":\"credit-1\",\"account\":\"north\",\"amount\":7}],\"snapshotLimit\":100}\n",
+          "stderr": "(node:564) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "before": {
+          "job": {
+            "id": "credit-1",
+            "account": "north",
+            "amount": 7,
+            "state": "pending",
+            "attempts": 1,
+            "error": null
+          },
+          "balance": 7,
+          "credits": 1
+        },
+        "after": {
+          "job": {
+            "id": "credit-1",
+            "account": "north",
+            "amount": 7,
+            "state": "done",
+            "attempts": 1,
+            "error": null
+          },
+          "balance": 7,
+          "credits": 1,
+          "integrity": "ok"
+        }
+      }
+    },
+    {
+      "name": "real process crash and restart 2",
+      "status": "PASS",
+      "observations": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\evidence\\1793899072937-crash-2.sqlite",
+        "crashed": {
+          "status": 73,
+          "signal": null,
+          "stdout": "",
+          "stderr": "(node:27732) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "restarted": {
+          "status": 0,
+          "signal": null,
+          "stdout": "{\"jobs\":[{\"id\":\"credit-1\",\"account\":\"north\",\"amount\":7,\"state\":\"done\",\"attempts\":1,\"error\":null}],\"balances\":[{\"account\":\"north\",\"total\":7}],\"credits\":[{\"job_id\":\"credit-1\",\"account\":\"north\",\"amount\":7}],\"snapshotLimit\":100}\n",
+          "stderr": "(node:30868) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "idle": {
+          "status": 0,
+          "signal": null,
+          "stdout": "{\"jobs\":[{\"id\":\"credit-1\",\"account\":\"north\",\"amount\":7,\"state\":\"done\",\"attempts\":1,\"error\":null}],\"balances\":[{\"account\":\"north\",\"total\":7}],\"credits\":[{\"job_id\":\"credit-1\",\"account\":\"north\",\"amount\":7}],\"snapshotLimit\":100}\n",
+          "stderr": "(node:17196) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "before": {
+          "job": {
+            "id": "credit-1",
+            "account": "north",
+            "amount": 7,
+            "state": "pending",
+            "attempts": 1,
+            "error": null
+          },
+          "balance": 7,
+          "credits": 1
+        },
+        "after": {
+          "job": {
+            "id": "credit-1",
+            "account": "north",
+            "amount": 7,
+            "state": "done",
+            "attempts": 1,
+            "error": null
+          },
+          "balance": 7,
+          "credits": 1,
+          "integrity": "ok"
+        }
+      }
+    },
+    {
+      "name": "real process crash and restart 3",
+      "status": "PASS",
+      "observations": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\evidence\\1793899072937-crash-3.sqlite",
+        "crashed": {
+          "status": 73,
+          "signal": null,
+          "stdout": "",
+          "stderr": "(node:26208) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "restarted": {
+          "status": 0,
+          "signal": null,
+          "stdout": "{\"jobs\":[{\"id\":\"credit-1\",\"account\":\"north\",\"amount\":7,\"state\":\"done\",\"attempts\":1,\"error\":null}],\"balances\":[{\"account\":\"north\",\"total\":7}],\"credits\":[{\"job_id\":\"credit-1\",\"account\":\"north\",\"amount\":7}],\"snapshotLimit\":100}\n",
+          "stderr": "(node:2748) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "idle": {
+          "status": 0,
+          "signal": null,
+          "stdout": "{\"jobs\":[{\"id\":\"credit-1\",\"account\":\"north\",\"amount\":7,\"state\":\"done\",\"attempts\":1,\"error\":null}],\"balances\":[{\"account\":\"north\",\"total\":7}],\"credits\":[{\"job_id\":\"credit-1\",\"account\":\"north\",\"amount\":7}],\"snapshotLimit\":100}\n",
+          "stderr": "(node:8252) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+        },
+        "before": {
+          "job": {
+            "id": "credit-1",
+            "account": "north",
+            "amount": 7,
+            "state": "pending",
+            "attempts": 1,
+            "error": null
+          },
+          "balance": 7,
+          "credits": 1
+        },
+        "after": {
+          "job": {
+            "id": "credit-1",
+            "account": "north",
+            "amount": 7,
+            "state": "done",
+            "attempts": 1,
+            "error": null
+          },
+          "balance": 7,
+          "credits": 1,
+          "integrity": "ok"
+        }
+      }
+    },
+    {
+      "name": "normal completion, callback failure and bounded per-call work",
+      "status": "PASS",
+      "observations": {
+        "jobs": [
+          {
+            "id": "a",
+            "account": "north",
+            "amount": 3,
+            "state": "done",
+            "attempts": 1,
+            "error": null
+          },
+          {
+            "id": "b",
+            "account": "north",
+            "amount": 4,
+            "state": "done",
+            "attempts": 1,
+            "error": null
+          }
+        ],
+        "total": 7
+      }
+    },
+    {
+      "name": "invalid enqueue and legacy poison jobs reject without silent completion",
+      "status": "PASS",
+      "observations": {
+        "failed": [
+          {
+            "id": "bad-account",
+            "state": "failed",
+            "error": "INVALID_JOB"
+          },
+          {
+            "id": "bad-fraction",
+            "state": "failed",
+            "error": "INVALID_JOB"
+          },
+          {
+            "id": "bad-zero",
+            "state": "failed",
+            "error": "INVALID_JOB"
+          }
+        ],
+        "recoveredTotal": 2
+      }
+    },
+    {
+      "name": "transaction rollback, retry cap, and subsequent healthy work",
+      "status": "PASS",
+      "observations": {
+        "failed": {
+          "id": "a-fault",
+          "account": "north",
+          "amount": 5,
+          "state": "failed",
+          "attempts": 3,
+          "error": "ERR_SQLITE_ERROR"
+        },
+        "recoveredTotal": 6
+      }
+    }
+  ]
+}

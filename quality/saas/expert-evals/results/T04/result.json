@@ -1,0 +1,242 @@
+{
+  "caseId": "BE-B1",
+  "node": "v24.12.0",
+  "time": "2026-11-06T03:24:29.689Z",
+  "checks": [
+    {
+      "id": "B1-control-single-reservation",
+      "kind": "control",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "blue",
+            "sku": "widget",
+            "qty": 5
+          },
+          {
+            "tenant": "red",
+            "sku": "widget",
+            "qty": 3
+          }
+        ],
+        "receipts": [
+          {
+            "tenant": "red",
+            "operation": "reserve",
+            "key": "one",
+            "sku": "widget",
+            "qty": 2,
+            "status": "reserved",
+            "reservationId": "4f32dc51-510f-4bad-86a7-d8c7f0a88475"
+          }
+        ],
+        "events": [
+          {
+            "id": 1,
+            "tenant": "red",
+            "operation": "reserve",
+            "key": "one",
+            "reservationId": "4f32dc51-510f-4bad-86a7-d8c7f0a88475"
+          }
+        ]
+      }
+    },
+    {
+      "id": "B1-R1-contended-stock",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": {
+        "results": [
+          {
+            "status": "reserved",
+            "reservationId": "a8b9921b-9780-4cb6-ae43-bd1c0604a813"
+          },
+          {
+            "status": "sold_out"
+          }
+        ],
+        "st": {
+          "stock": [
+            {
+              "tenant": "blue",
+              "sku": "widget",
+              "qty": 5
+            },
+            {
+              "tenant": "red",
+              "sku": "widget",
+              "qty": 1
+            }
+          ],
+          "receipts": [
+            {
+              "tenant": "red",
+              "operation": "reserve",
+              "key": "a",
+              "sku": "widget",
+              "qty": 4,
+              "status": "reserved",
+              "reservationId": "a8b9921b-9780-4cb6-ae43-bd1c0604a813"
+            },
+            {
+              "tenant": "red",
+              "operation": "reserve",
+              "key": "b",
+              "sku": "widget",
+              "qty": 4,
+              "status": "sold_out",
+              "reservationId": null
+            }
+          ],
+          "events": [
+            {
+              "id": 1,
+              "tenant": "red",
+              "operation": "reserve",
+              "key": "a",
+              "reservationId": "a8b9921b-9780-4cb6-ae43-bd1c0604a813"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "B1-R2-concurrent-replay",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": {
+        "r": [
+          {
+            "status": "reserved",
+            "reservationId": "49b5a7fa-e7f9-4736-abb7-da167be73112"
+          },
+          {
+            "status": "reserved",
+            "reservationId": "49b5a7fa-e7f9-4736-abb7-da167be73112"
+          }
+        ],
+        "st": {
+          "stock": [
+            {
+              "tenant": "blue",
+              "sku": "widget",
+              "qty": 5
+            },
+            {
+              "tenant": "red",
+              "sku": "widget",
+              "qty": 3
+            }
+          ],
+          "receipts": [
+            {
+              "tenant": "red",
+              "operation": "reserve",
+              "key": "same",
+              "sku": "widget",
+              "qty": 2,
+              "status": "reserved",
+              "reservationId": "49b5a7fa-e7f9-4736-abb7-da167be73112"
+            }
+          ],
+          "events": [
+            {
+              "id": 1,
+              "tenant": "red",
+              "operation": "reserve",
+              "key": "same",
+              "reservationId": "49b5a7fa-e7f9-4736-abb7-da167be73112"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "B1-R2-parameter-binding",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "id": "B1-R2-tenant-scope",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "id": "B1-R3-before-commit-rollback",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "blue",
+            "sku": "widget",
+            "qty": 5
+          },
+          {
+            "tenant": "red",
+            "sku": "widget",
+            "qty": 5
+          }
+        ],
+        "receipts": [],
+        "events": []
+      }
+    },
+    {
+      "id": "B1-R3-lost-ack-restart-replay",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": {
+        "r": {
+          "status": "reserved",
+          "reservationId": "23178830-0f6c-42e5-b73e-127bacaf4c27"
+        },
+        "state": {
+          "stock": [
+            {
+              "tenant": "blue",
+              "sku": "widget",
+              "qty": 5
+            },
+            {
+              "tenant": "red",
+              "sku": "widget",
+              "qty": 3
+            }
+          ],
+          "receipts": [
+            {
+              "tenant": "red",
+              "operation": "reserve",
+              "key": "lost",
+              "sku": "widget",
+              "qty": 2,
+              "status": "reserved",
+              "reservationId": "23178830-0f6c-42e5-b73e-127bacaf4c27"
+            }
+          ],
+          "events": [
+            {
+              "id": 1,
+              "tenant": "red",
+              "operation": "reserve",
+              "key": "lost",
+              "reservationId": "23178830-0f6c-42e5-b73e-127bacaf4c27"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "B1-R4-invalid-quantity",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": true
+    }
+  ],
+  "errors": [],
+  "pass": true
+}

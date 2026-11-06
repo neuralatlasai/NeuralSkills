@@ -1,0 +1,503 @@
+{
+  "runtime": {
+    "node": "v24.12.0",
+    "sqlite": "3.50.4",
+    "platform": "win32",
+    "arch": "x64",
+    "pragmas": {
+      "busyTimeout": {
+        "timeout": 200
+      },
+      "journalMode": {
+        "journal_mode": "delete"
+      },
+      "synchronous": {
+        "synchronous": 2
+      },
+      "foreignKeys": {
+        "foreign_keys": 1
+      }
+    }
+  },
+  "run": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-skill-2\\artifact\\runs\\verification-JiaIqx",
+  "checks": [
+    {
+      "id": "race-two-connections-1",
+      "status": "PASS",
+      "milliseconds": 42.42349999999999,
+      "evidence": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-skill-2\\artifact\\runs\\verification-JiaIqx\\race-1.sqlite",
+        "hookCalls": 2,
+        "results": [
+          {
+            "status": 201,
+            "available": 1,
+            "version": 2
+          },
+          {
+            "status": 409
+          }
+        ],
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        },
+        "reopen": "same persistent state"
+      }
+    },
+    {
+      "id": "race-two-connections-2",
+      "status": "PASS",
+      "milliseconds": 40.59819999999999,
+      "evidence": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-skill-2\\artifact\\runs\\verification-JiaIqx\\race-2.sqlite",
+        "hookCalls": 2,
+        "results": [
+          {
+            "status": 201,
+            "available": 1,
+            "version": 2
+          },
+          {
+            "status": 409
+          }
+        ],
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        },
+        "reopen": "same persistent state"
+      }
+    },
+    {
+      "id": "race-two-connections-3",
+      "status": "PASS",
+      "milliseconds": 38.75049999999999,
+      "evidence": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-skill-2\\artifact\\runs\\verification-JiaIqx\\race-3.sqlite",
+        "hookCalls": 2,
+        "results": [
+          {
+            "status": 201,
+            "available": 1,
+            "version": 2
+          },
+          {
+            "status": 409
+          }
+        ],
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        },
+        "reopen": "same persistent state"
+      }
+    },
+    {
+      "id": "race-same-connection",
+      "status": "PASS",
+      "milliseconds": 34.82479999999998,
+      "evidence": {
+        "results": [
+          {
+            "status": 201,
+            "available": 1,
+            "version": 2
+          },
+          {
+            "status": 409
+          }
+        ],
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "fault-rollback-reopen-retry",
+      "status": "PASS",
+      "milliseconds": 42.22460000000001,
+      "evidence": {
+        "before": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 5,
+              "version": 1
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": []
+        },
+        "provisional": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": []
+        },
+        "rolledBack": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 5,
+              "version": 1
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": []
+        },
+        "reopen": "unchanged",
+        "retry": {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        "final": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "contracts-and-tenant-scope",
+      "status": "PASS",
+      "milliseconds": 44.02420000000001,
+      "evidence": {
+        "invalid": [
+          {
+            "quantity": "0",
+            "result": {
+              "status": 400
+            }
+          },
+          {
+            "quantity": "-1",
+            "result": {
+              "status": 400
+            }
+          },
+          {
+            "quantity": "1.5",
+            "result": {
+              "status": 400
+            }
+          },
+          {
+            "quantity": "NaN",
+            "result": {
+              "status": 400
+            }
+          },
+          {
+            "quantity": "Infinity",
+            "result": {
+              "status": 400
+            }
+          },
+          {
+            "quantity": "4",
+            "result": {
+              "status": 400
+            }
+          },
+          {
+            "quantity": "null",
+            "result": {
+              "status": 400
+            }
+          },
+          {
+            "quantity": "undefined",
+            "result": {
+              "status": 400
+            }
+          },
+          {
+            "quantity": "9007199254740992",
+            "result": {
+              "status": 400
+            }
+          }
+        ],
+        "missing": 404,
+        "stale": 409,
+        "insufficient": 409,
+        "afterReadFaultCalls": 1,
+        "south": {
+          "status": 201,
+          "available": 96,
+          "version": 2
+        },
+        "north": {
+          "status": 201,
+          "available": 0,
+          "version": 2
+        },
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 0,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 96,
+              "version": 2
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "south",
+              "item": "part-7",
+              "quantity": 4
+            },
+            {
+              "id": 2,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "sqlite-busy-release-retry",
+      "status": "PASS",
+      "milliseconds": 399.34659999999997,
+      "evidence": {
+        "failure": {
+          "message": "database is locked",
+          "code": "ERR_SQLITE_ERROR",
+          "errcode": 5,
+          "errstr": "database is locked"
+        },
+        "waitedMilliseconds": 292.0069,
+        "retry": {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        },
+        "automaticRetries": 0
+      }
+    },
+    {
+      "id": "allocation-insert-failure-rolls-back",
+      "status": "PASS",
+      "milliseconds": 52.01089999999999,
+      "evidence": {
+        "before": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 5,
+              "version": 1
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": []
+        },
+        "retry": {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "raceElapsedMs": {
+    "samples": [
+      38.75049999999999,
+      40.59819999999999,
+      42.42349999999999
+    ],
+    "median": 40.59819999999999,
+    "range": [
+      38.75049999999999,
+      42.42349999999999
+    ]
+  },
+  "status": "PASS"
+}

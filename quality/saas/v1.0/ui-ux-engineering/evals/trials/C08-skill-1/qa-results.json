@@ -1,0 +1,160 @@
+{
+  "at": "2026-11-05T16:17:49.180Z",
+  "node": "v24.12.0",
+  "typescript": "6.0.3",
+  "browser": "156.0.8078.80",
+  "conditions": {
+    "headless": true,
+    "font": "Arial system",
+    "deviceScaleFactor": 1,
+    "viewports": [
+      "900x720",
+      "320x740",
+      "520x800"
+    ],
+    "network": "loopback; no throttling",
+    "cpu": "host; no throttling"
+  },
+  "checks": [
+    {
+      "id": "typescript",
+      "status": "PASS",
+      "evidence": []
+    },
+    {
+      "id": "initial-content",
+      "status": "PASS",
+      "evidence": "Heading and field defaults observed in Chrome."
+    },
+    {
+      "id": "release-styles",
+      "status": "PASS",
+      "evidence": {
+        "background": "rgb(247, 248, 250)",
+        "brand": "rgb(36, 75, 131)",
+        "sizes": [
+          "16px",
+          "16px",
+          "20px",
+          "16px",
+          "16px",
+          "16px",
+          "16px",
+          "16px",
+          "16px"
+        ]
+      }
+    },
+    {
+      "id": "keyboard-start",
+      "status": "PASS",
+      "evidence": "First Tab focuses amount."
+    },
+    {
+      "id": "keyboard-send",
+      "status": "PASS",
+      "evidence": {
+        "sendFocus": {
+          "focused": true,
+          "visible": true,
+          "outline": "3px"
+        },
+        "feedback": "Request sent\n\nAmount: 240\n\nNote: Access for the spring term"
+      }
+    },
+    {
+      "id": "keyboard-save",
+      "status": "PASS",
+      "evidence": "Tab to Save draft, Space activation, local Draft saved status."
+    },
+    {
+      "id": "validation",
+      "status": "PASS",
+      "evidence": [
+        {
+          "value": "",
+          "amountError": true,
+          "noteError": true,
+          "amountInvalid": "true",
+          "focused": true,
+          "feedbackHidden": true
+        },
+        {
+          "value": "0",
+          "amountError": true,
+          "noteError": true,
+          "amountInvalid": "true",
+          "focused": true,
+          "feedbackHidden": true
+        },
+        {
+          "value": "-2",
+          "amountError": true,
+          "noteError": true,
+          "amountInvalid": "true",
+          "focused": true,
+          "feedbackHidden": true
+        }
+      ]
+    },
+    {
+      "id": "submitted-snapshot",
+      "status": "PASS",
+      "evidence": "Request sent\n\nAmount: 125.50\n\nNote: Access updated <script>alert(1)</script>"
+    },
+    {
+      "id": "320px-reflow",
+      "status": "PASS",
+      "evidence": {
+        "errorOverflow": {
+          "scroll": 320,
+          "viewport": 320
+        },
+        "successOverflow": {
+          "scroll": 320,
+          "viewport": 320
+        }
+      }
+    },
+    {
+      "id": "save-without-send",
+      "status": "PASS",
+      "evidence": "Draft action preserves invalid/unfinished fields and does not send."
+    },
+    {
+      "id": "intermediate-reflow",
+      "status": "PASS",
+      "evidence": "520px page has no horizontal overflow."
+    },
+    {
+      "id": "external-dependencies",
+      "status": "PASS",
+      "evidence": [
+        "http://127.0.0.1:4308/",
+        "http://127.0.0.1:4308/styles.css",
+        "http://127.0.0.1:4308/app.js",
+        "http://127.0.0.1:4308/",
+        "http://127.0.0.1:4308/styles.css",
+        "http://127.0.0.1:4308/app.js"
+      ]
+    },
+    {
+      "id": "runtime-errors",
+      "status": "PASS",
+      "evidence": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "requests": [
+    "http://127.0.0.1:4308/",
+    "http://127.0.0.1:4308/styles.css",
+    "http://127.0.0.1:4308/app.js",
+    "http://127.0.0.1:4308/",
+    "http://127.0.0.1:4308/styles.css",
+    "http://127.0.0.1:4308/app.js"
+  ]
+}

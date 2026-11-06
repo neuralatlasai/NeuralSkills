@@ -1,0 +1,11 @@
+{
+  "status": "FAIL",
+  "at": "2026-11-05T16:04:12.519Z",
+  "planHash": "13cb7b08dd86d6355c04e31a4515ec5eea5cbc84211864834f9b85eef6a2b0a2",
+  "buildHash": "6246c9f170d2acb4258f38a9513cb796087fa83e7206a8c7a8a9ae2c47a33435",
+  "checks": [],
+  "runs": [],
+  "profiles": [],
+  "errors": [],
+  "error": "AssertionError [ERR_ASSERTION]: predeclared bounded-DOM cap\n    at run (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/scripts/heavy-lab.mjs:56:85)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/scripts/heavy-lab.mjs:68:310"
+}

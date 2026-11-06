@@ -1,0 +1,37 @@
+{
+  "caseId": "B03",
+  "task": "Optimize ready-parcel listing and required SQLite indexing. Preserve tenant scope and rows{id,created_at}, latest-first ordering with id descending tie-breaker, validated integer limit 1..100 (reject invalid). Keep supplied 60,000 rows / 80% whale skew unchanged. Capture baseline before edits and comparable after: three measured samples per supplied tenant, actual EXPLAIN QUERY PLAN of executed SQL, materialized rows/bytes and elapsed values. Keep raw samples; report median/range without unsupported p99/speedup. Bound page materialization and avoid payload reads. Supply reproducible index application and correctness checks. Explain CPU/memory/I/O/read/write/storage costs and distinguish output rows from unavailable engine rows-examined metrics. Use Node 24.12+ native SQLite and built-ins; no downloads, production deployment or external mutation. Work only in the supplied small fixture. Classify all L01-L24 proportionally; out-of-scope with reasons is allowed. Put implementation and runnable verification in trial/artifact and write trial/result.json using the supplied output contract.",
+  "requirements": [
+    {
+      "id": "B03-R01",
+      "meaning": "Results, deterministic tie ordering, limit validation and tenant filtering remain correct."
+    },
+    {
+      "id": "B03-R02",
+      "meaning": "Executed query/access path bounds page materialization and avoids unnecessary payload projection."
+    },
+    {
+      "id": "B03-R03",
+      "meaning": "Comparable unchanged-cardinality/skew before/after raw measurements include three samples per tenant and actual plans."
+    },
+    {
+      "id": "B03-R04",
+      "meaning": "Measured values and unavailable metrics are distinguished with workload, cache, runtime and amplification limits."
+    },
+    {
+      "id": "B03-R05",
+      "meaning": "Runnable setup/index application and independent correctness evidence accompany implementation."
+    },
+    {
+      "id": "B03-R06",
+      "meaning": "Proportional L01-L24 mapping and requirement-linked mechanism/limit/failure/verification are supplied."
+    }
+  ],
+  "fixtures": [
+    "skill-fixtures/B03/seed.mjs",
+    "skill-fixtures/B03/query.mjs",
+    "skill-fixtures/B03/bench.mjs",
+    "skill-fixtures/B03/README.md"
+  ],
+  "outputContract": "trial/artifact plus trial/result.json; fields supplied in common trial wrapper"
+}

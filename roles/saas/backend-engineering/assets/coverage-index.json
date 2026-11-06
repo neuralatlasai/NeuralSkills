@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "1.0",
+  "source": "meet.md §3",
+  "dispositions": [
+    "IMPLEMENTED_OR_CHANGED",
+    "INHERITED_VERIFIED",
+    "OUT_OF_SCOPE",
+    "RELEVANT_UNVERIFIED"
+  ],
+  "note": "Classify all areas for each task; disposition is not a test result. Mixed areas name verified and unverified aspects explicitly.",
+  "areas": [
+    {
+      "id": "L01",
+      "name": "DNS, discovery, network paths and sockets",
+      "module": "B2",
+      "procedure": "references/edge-identity.md"
+    },
+    {
+      "id": "L02",
+      "name": "TLS, certificates and transport identity",
+      "module": "B2",
+      "procedure": "references/edge-identity.md"
+    },
+    {
+      "id": "L03",
+      "name": "Proxies, gateways, ingress, CDN and load balancing",
+      "module": "B2",
+      "procedure": "references/edge-identity.md"
+    },
+    {
+      "id": "L04",
+      "name": "Authentication, authorization and tenant identity",
+      "module": "B2",
+      "procedure": "references/edge-identity.md"
+    },
+    {
+      "id": "L05",
+      "name": "API styles, HTTP versions, RPC and streams",
+      "module": "B2",
+      "procedure": "references/edge-identity.md"
+    },
+    {
+      "id": "L06",
+      "name": "CRUD, upsert and bulk semantics",
+      "module": "B3",
+      "procedure": "references/api-domain.md"
+    },
+    {
+      "id": "L07",
+      "name": "Validation, parsing, serialization and errors",
+      "module": "B3",
+      "procedure": "references/api-domain.md"
+    },
+    {
+      "id": "L08",
+      "name": "Domain architecture and request lifecycle",
+      "module": "B3",
+      "procedure": "references/api-domain.md"
+    },
+    {
+      "id": "L09",
+      "name": "Runtime, memory, concurrency, OS and containers",
+      "module": "B6",
+      "procedure": "references/runtime-capacity.md"
+    },
+    {
+      "id": "L10",
+      "name": "Database modeling and DDL",
+      "module": "B4",
+      "procedure": "references/data.md"
+    },
+    {
+      "id": "L11",
+      "name": "DML/DQL, ORM, indexes and query plans",
+      "module": "B4",
+      "procedure": "references/data.md"
+    },
+    {
+      "id": "L12",
+      "name": "Transactions, isolation, locks and consistency",
+      "module": "B4",
+      "procedure": "references/data.md"
+    },
+    {
+      "id": "L13",
+      "name": "Database privileges and operational administration",
+      "module": "B4",
+      "procedure": "references/data.md"
+    },
+    {
+      "id": "L14",
+      "name": "Storage, replication, partitioning, sharding and hashes",
+      "module": "B4",
+      "procedure": "references/data.md"
+    },
+    {
+      "id": "L15",
+      "name": "Cache, views and derived state",
+      "module": "B5",
+      "procedure": "references/async-integrations.md"
+    },
+    {
+      "id": "L16",
+      "name": "Messaging, event logs, CDC and async effects",
+      "module": "B5",
+      "procedure": "references/async-integrations.md"
+    },
+    {
+      "id": "L17",
+      "name": "Durable workers, schedules and workflows",
+      "module": "B5",
+      "procedure": "references/async-integrations.md"
+    },
+    {
+      "id": "L18",
+      "name": "Files, objects, search and specialized stores",
+      "module": "B5",
+      "procedure": "references/async-integrations.md"
+    },
+    {
+      "id": "L19",
+      "name": "External APIs, webhooks, tools and MCP",
+      "module": "B5",
+      "procedure": "references/async-integrations.md"
+    },
+    {
+      "id": "L20",
+      "name": "Traffic, capacity, scaling and cost",
+      "module": "B6",
+      "procedure": "references/runtime-capacity.md"
+    },
+    {
+      "id": "L21",
+      "name": "Reliability, backups and recovery",
+      "module": "B7",
+      "procedure": "references/operations.md"
+    },
+    {
+      "id": "L22",
+      "name": "Observability, objectives and audit",
+      "module": "B7",
+      "procedure": "references/operations.md"
+    },
+    {
+      "id": "L23",
+      "name": "Infrastructure, build and deployment lifecycle",
+      "module": "B7",
+      "procedure": "references/operations.md"
+    },
+    {
+      "id": "L24",
+      "name": "Security, privacy, supply chain and lifecycle",
+      "module": "B7",
+      "procedure": "references/operations.md"
+    }
+  ]
+}

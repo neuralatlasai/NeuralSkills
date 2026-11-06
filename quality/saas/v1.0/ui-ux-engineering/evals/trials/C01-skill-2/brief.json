@@ -1,0 +1,20 @@
+{
+  "mode": "adapt",
+  "route": "small-component: M1,M3,M4,M5,M6,M8",
+  "source": "evals/inputs/C01.json",
+  "objective": "Reusable invitation-copy button; standalone local fixture only",
+  "requirements": {
+    "C01-R01": "Native TypeScript/plain CSS; reusable, no libraries/icons/marketing page",
+    "C01-R02": "Exact invitation label and URL; clipboard action",
+    "C01-R03": "Pending state blocks duplicate submissions",
+    "C01-R04": "Success label Link copied for approximately 2000ms then reset",
+    "C01-R05": "Clipboard missing/rejection yields useful inline error and retry",
+    "C01-R06": "Native keyboard support, live status, focus indicator, >=44px target",
+    "C01-R07": "320px and supplied translated label fit; restrained styling; runnable instructions"
+  },
+  "assumptions": ["Requirement IDs are assigned in task order because input supplies IDs without individual text mappings", "System fonts and a light theme are sufficient; browser clipboard requires localhost/HTTPS"],
+  "decisions": ["Native button; pending aria-disabled plus synchronous handler guard preserves focus", "Persistent polite live region; selectable fallback URL on errors", "No motion; content-wrapping min-height button; scoped semantic color tokens"],
+  "stateContract": "idle -> pending -> success -> idle after 2000ms; pending -> error -> pending on retry; dispose ignores async completion and clears timer",
+  "acceptance": ["Exact clipboard payload", "One write while pending", "Success 2s reset", "Missing/rejected clipboard errors and retry", "Keyboard Enter/Space and visible focus", "320px translated label no clipping/overflow", "Render desktop and narrow; measure contrast"],
+  "verificationLimits": ["Screen reader speech and real-user performance unavailable", "Browser tests use deterministic clipboard adapters in addition to actual browser clipboard"]
+}

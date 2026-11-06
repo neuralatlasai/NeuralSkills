@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "id": "real-clipboard-and-timer",
+      "status": "PASS",
+      "evidence": "Real Chrome clipboard matched URL; success visible after 1.1s; original label returned within 3.1s."
+    },
+    {
+      "id": "keyboard-and-pending",
+      "status": "PASS",
+      "evidence": "Tab + Enter triggered one request; repeated clicks ignored while pending; aria-disabled/aria-busy set and focus preserved."
+    },
+    {
+      "id": "rejection-and-retry",
+      "status": "PASS",
+      "evidence": "Rejected clipboard showed inline permission guidance and manual URL; keyboard Space retry succeeded."
+    },
+    {
+      "id": "small-viewport-long-label-focus",
+      "status": "PASS",
+      "evidence": "{\"width\":242,\"height\":70.78125,\"scroll\":240,\"client\":240,\"outline\":\"solid\",\"outlineWidth\":\"3px\",\"overflow\":false,\"text\":\"Einladungslink für das Projektteam kopieren\",\"live\":\"polite\"}"
+    },
+    {
+      "id": "unavailable-clipboard",
+      "status": "PASS",
+      "evidence": "Unavailable API produced inline browser guidance and manual-copy field; retry button remained enabled."
+    }
+  ],
+  "errors": []
+}

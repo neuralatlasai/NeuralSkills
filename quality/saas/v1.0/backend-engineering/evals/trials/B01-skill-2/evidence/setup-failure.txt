@@ -1,0 +1,8 @@
+Setup command retained from call 4:
+Get-Date -AsUTC -Format o
+Exit code: 1
+stderr:
+Get-Date : A parameter cannot be found that matches parameter name 'AsUTC'.
+CategoryInfo : InvalidArgument: (:) [Get-Date], ParameterBindingException
+FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.GetDateCommand
+The earlier directory creation and fixture/input copies in that same command succeeded. Subsequent recorded clocks use [DateTime]::UtcNow.ToString('o').

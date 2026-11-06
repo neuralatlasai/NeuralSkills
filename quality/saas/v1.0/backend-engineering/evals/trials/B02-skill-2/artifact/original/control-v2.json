@@ -1,0 +1,139 @@
+{
+  "controlVersion": "2",
+  "source": "User meet.md ?1 mandatory responsibility dispositions; same information supplied to both arms.",
+  "areas": [
+    {
+      "id": "L01",
+      "name": "DNS, discovery, network paths and sockets"
+    },
+    {
+      "id": "L02",
+      "name": "TLS, certificates and transport identity"
+    },
+    {
+      "id": "L03",
+      "name": "Proxies, gateways, ingress, CDN and load balancing"
+    },
+    {
+      "id": "L04",
+      "name": "Authentication, authorization and tenant identity"
+    },
+    {
+      "id": "L05",
+      "name": "API styles, HTTP versions, RPC and streams"
+    },
+    {
+      "id": "L06",
+      "name": "CRUD, upsert and bulk semantics"
+    },
+    {
+      "id": "L07",
+      "name": "Validation, parsing, serialization and errors"
+    },
+    {
+      "id": "L08",
+      "name": "Domain architecture and request lifecycle"
+    },
+    {
+      "id": "L09",
+      "name": "Runtime, memory, concurrency, OS and containers"
+    },
+    {
+      "id": "L10",
+      "name": "Database modeling and DDL"
+    },
+    {
+      "id": "L11",
+      "name": "DML/DQL, ORM, indexes and query plans"
+    },
+    {
+      "id": "L12",
+      "name": "Transactions, isolation, locks and consistency"
+    },
+    {
+      "id": "L13",
+      "name": "Database privileges and operational administration"
+    },
+    {
+      "id": "L14",
+      "name": "Storage, replication, partitioning, sharding and hashes"
+    },
+    {
+      "id": "L15",
+      "name": "Cache, views and derived state"
+    },
+    {
+      "id": "L16",
+      "name": "Messaging, event logs, CDC and async effects"
+    },
+    {
+      "id": "L17",
+      "name": "Durable workers, schedules and workflows"
+    },
+    {
+      "id": "L18",
+      "name": "Files, objects, search and specialized stores"
+    },
+    {
+      "id": "L19",
+      "name": "External APIs, webhooks, tools and MCP"
+    },
+    {
+      "id": "L20",
+      "name": "Traffic, capacity, scaling and cost"
+    },
+    {
+      "id": "L21",
+      "name": "Reliability, backups and recovery"
+    },
+    {
+      "id": "L22",
+      "name": "Observability, objectives and audit"
+    },
+    {
+      "id": "L23",
+      "name": "Infrastructure, build and deployment lifecycle"
+    },
+    {
+      "id": "L24",
+      "name": "Security, privacy, supply chain and lifecycle"
+    }
+  ],
+  "coverageDispositions": [
+    {
+      "value": "IMPLEMENTED_OR_CHANGED",
+      "meaning": "The task implements or changes this area; state the specific scope and tests."
+    },
+    {
+      "value": "INHERITED_VERIFIED",
+      "meaning": "Provided by the existing environment and directly verified; cite evidence."
+    },
+    {
+      "value": "OUT_OF_SCOPE",
+      "meaning": "Not part of this task; give a concrete scope reason."
+    },
+    {
+      "value": "RELEVANT_UNVERIFIED",
+      "meaning": "Relevant but not verified; name the missing evidence."
+    }
+  ],
+  "resultStatuses": {
+    "values": [
+      "PASS",
+      "FAIL",
+      "UNVERIFIED",
+      "NOT_APPLICABLE"
+    ],
+    "meaning": "Acceptance/test outcomes only; separate from the responsibility disposition vocabulary."
+  },
+  "outputContract": {
+    "coverageDispositions": "Exactly24 entries {area,disposition,component,reason,evidence}; use one declared coverage value per area, scope mixed aspects explicitly.",
+    "decisions": "{requirement,mechanism,limit,failure,verification}",
+    "requirements": "Use task requirement IDs and observable evidence"
+  },
+  "budget": {
+    "wallSeconds": 360,
+    "externalToolCalls": 20,
+    "convention": "Count nested tools and collaboration calls; functions.exec orchestration wrappers excluded to avoid double counting; report unknown counts as unavailable."
+  }
+}

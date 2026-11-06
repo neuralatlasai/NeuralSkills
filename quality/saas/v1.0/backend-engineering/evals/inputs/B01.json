@@ -1,0 +1,35 @@
+{
+  "caseId": "B01",
+  "task": "Add PATCH /tickets/:id and preserve GET. Editors may change title (nonempty trimmed string, max 120 chars) and note (string max 500 chars or null); absent fields remain unchanged and null only clears note. Require positive integer version in JSON; reject unknown/privileged fields. Success atomically increments stored version and returns the existing public projection. Return JSON 400 malformed/schema-invalid,401 no identity,403 reader writes,404 absent tenant object,409 stale version,413 above 2048 body bytes,415 non-JSON. Derive tenant from registry regardless of client headers. Verify actual HTTP, concurrent same-version edits and persistence across close/reopen. Keep the change small. Use Node 24.12+ native SQLite and built-ins; no downloads, production deployment or external mutation. Work only in the supplied small fixture. Classify all L01-L24 proportionally; out-of-scope with reasons is allowed. Put implementation and runnable verification in trial/artifact and write trial/result.json using the supplied output contract.",
+  "requirements": [
+    {
+      "id": "B01-R01",
+      "meaning": "PATCH supports stated allowed fields, absence/null, validation, projection and version semantics."
+    },
+    {
+      "id": "B01-R02",
+      "meaning": "Authentication, write permission and tenant object boundaries hold through HTTP and persistence."
+    },
+    {
+      "id": "B01-R03",
+      "meaning": "Concurrent same-version updates yield one winning mutation and one defined conflict."
+    },
+    {
+      "id": "B01-R04",
+      "meaning": "Malformed, unsupported and oversized requests fail with bounded work and stated JSON errors."
+    },
+    {
+      "id": "B01-R05",
+      "meaning": "GET compatibility and reproducible actual HTTP/reopen evidence accompany the working implementation."
+    },
+    {
+      "id": "B01-R06",
+      "meaning": "Proportional L01-L24 coverage and requirement/mechanism/limit/failure/verification decisions are truthful."
+    }
+  ],
+  "fixtures": [
+    "skill-fixtures/B01/service.mjs",
+    "skill-fixtures/B01/README.md"
+  ],
+  "outputContract": "trial/artifact plus trial/result.json; fields supplied in common trial wrapper"
+}

@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "sampleCount": 12,
+  "counts": {
+    "truePositive": 6,
+    "falsePositive": 0,
+    "trueNegative": 6,
+    "falseNegative": 0,
+    "uncertain": 0
+  },
+  "rows": [
+    {
+      "id": "A-P01",
+      "expected": "ACTIVATE",
+      "actual": "ACTIVATE"
+    },
+    {
+      "id": "A-P02",
+      "expected": "ACTIVATE",
+      "actual": "ACTIVATE"
+    },
+    {
+      "id": "A-P03",
+      "expected": "ACTIVATE",
+      "actual": "ACTIVATE"
+    },
+    {
+      "id": "A-P04",
+      "expected": "ACTIVATE",
+      "actual": "ACTIVATE"
+    },
+    {
+      "id": "A-P05",
+      "expected": "ACTIVATE",
+      "actual": "ACTIVATE"
+    },
+    {
+      "id": "A-P06",
+      "expected": "ACTIVATE",
+      "actual": "ACTIVATE"
+    },
+    {
+      "id": "A-N01",
+      "expected": "DO_NOT_ACTIVATE",
+      "actual": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "A-N02",
+      "expected": "DO_NOT_ACTIVATE",
+      "actual": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "A-N03",
+      "expected": "DO_NOT_ACTIVATE",
+      "actual": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "A-N04",
+      "expected": "DO_NOT_ACTIVATE",
+      "actual": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "A-N05",
+      "expected": "DO_NOT_ACTIVATE",
+      "actual": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "A-N06",
+      "expected": "DO_NOT_ACTIVATE",
+      "actual": "DO_NOT_ACTIVATE"
+    }
+  ],
+  "limits": "Fresh classifier, description only, single suite run. Artifact timestamps do not measure whole model classification time. No implementation or broad accuracy claim.",
+  "normalization": "Raw PowerShell-created result has UTF-8 BOM; first strict JSON.parse failed. Assessor strips only BOM in memory; raw result preserved."
+}

@@ -1,0 +1,235 @@
+{
+  "version": "1.0.0",
+  "frozenAt": "2026-11-05T15:48:39.772Z",
+  "scope": "Instructions, contracts, test criteria and all trial input fixtures. Separate lab tooling is not a trial input or solution available to trial agents.",
+  "heldout": "C07 and C08 authored by independent agent; semantic contents uninspected by root before this freeze; byte hashing is freeze operation only.",
+  "budget": "Same inherited host model and tools, no overrides; 20 tool calls and ~6 minutes target per implementation trial; no installs or external transmissions.",
+  "baselineOrder": "C01 B1,S1,S2,B2,B3,S3; C06 S1,B1,B2,S2,S3,B3; independent cases can run concurrently.",
+  "unavailableResources": {
+    "tokens": null,
+    "cost": null,
+    "modelIdentifier": "not exposed; inherited configuration identical"
+  },
+  "files": [
+    {
+      "path": "SKILL.md",
+      "bytes": 10470,
+      "sha256": "9d14e9d5ec00d84513172b08b94c8e2218d235cf2b2145d036846958ea2bc222"
+    },
+    {
+      "path": "assets/contract.template.json",
+      "bytes": 1883,
+      "sha256": "34827af8e2ed33cc5dd6c6f9f05c1be20887adff48e37e56854a6c943a101aea"
+    },
+    {
+      "path": "assets/contracts.schema.json",
+      "bytes": 5025,
+      "sha256": "a04e82cda47278bcd3fba117bda32b80e3cc1b21dd45461ad940d362681d03f3"
+    },
+    {
+      "path": "evals/activation.json",
+      "bytes": 3726,
+      "sha256": "67282989be472fa1146efdca5799a30deea6220ea56e05cca80452c00710537f"
+    },
+    {
+      "path": "evals/cases.json",
+      "bytes": 18664,
+      "sha256": "fe22ba6fc6882b5ab6ea2e6a9e109b01c366576c89250e179e414f1aa37f1100"
+    },
+    {
+      "path": "evals/fixtures/C02/README.md",
+      "bytes": 554,
+      "sha256": "25a39e49fdf731ee29c6755827d6b8729d4b0e04b4746e3b78386d64ba495466"
+    },
+    {
+      "path": "evals/fixtures/C02/reference.png",
+      "bytes": 63846,
+      "sha256": "f6bb1ec0ce1b6e7a93120fd97ce838ebc3345b29f959117aa678bd9dfc141718"
+    },
+    {
+      "path": "evals/fixtures/C02/reference.svg",
+      "bytes": 4609,
+      "sha256": "6fd199f619ec67f1148abb1d4d04023e3242fe53f23d72de469ff7d3d79b52e6"
+    },
+    {
+      "path": "evals/fixtures/C03/brand.svg",
+      "bytes": 1241,
+      "sha256": "4acc1164d5a7f2faa99dd7afe74b2e1bec4a13be4bc0911e485e0a7a4a211406"
+    },
+    {
+      "path": "evals/fixtures/C03/layout.svg",
+      "bytes": 2076,
+      "sha256": "f8181fa04e28a252ca4415743239d72b285e4f1f9cfc0c6a061b8d163c05552a"
+    },
+    {
+      "path": "evals/fixtures/C03/typography.svg",
+      "bytes": 1412,
+      "sha256": "921e845f9821e2a54eb809f5f6fe67988e6ddf21ddc9ead88be0f86188d1703b"
+    },
+    {
+      "path": "evals/fixtures/C04/brief.md",
+      "bytes": 791,
+      "sha256": "21808c40345d4cb887bf0bf9c4c81bbcc7bdb37aa69fe82afcf08e36ed95554d"
+    },
+    {
+      "path": "evals/fixtures/C04/figma-access.json",
+      "bytes": 317,
+      "sha256": "d93fe7451a442439951d06a5d70601d7cb00f3d7d85fea9364037b3c866d8642"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/README.md",
+      "bytes": 568,
+      "sha256": "c49ee7004b3a9827b04c572094cfe28170ceb70f9289c5c9a24446e03d7ae32a"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/index.html",
+      "bytes": 267,
+      "sha256": "b822a8305b084c22e41e280820d334ad88a88f01d2fbc5c6db27fcf445977d5c"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/package.json",
+      "bytes": 495,
+      "sha256": "10f369cbcfe50f9b04b596580b188fbdbe8b19c5bb659fcb4cbe3335c3e9ad49"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/src/App.tsx",
+      "bytes": 2841,
+      "sha256": "b6c5401c5ef7393bbaef821816dce2b8f670e19638d40c3926aced181720d19c"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/src/main.tsx",
+      "bytes": 230,
+      "sha256": "484dec2869f86a979f9569ab897855787addbcf37318655a6043f8531b00495c"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/src/styles.css",
+      "bytes": 4306,
+      "sha256": "e71a187b2e6553c89aade70a3f9d0d138ec7c078fef82f2e5e1a613e8df3d8fd"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/tsconfig.json",
+      "bytes": 523,
+      "sha256": "b97fb1ea80421bf0133e2afdb05484e49804f534f0edf4ff7b6e71c866cdcc40"
+    },
+    {
+      "path": "evals/fixtures/C05/repo/vite.config.ts",
+      "bytes": 134,
+      "sha256": "21eba04627b77d915e075859f6a8c53c2a8c575135286fb4c795fbde4d54cb54"
+    },
+    {
+      "path": "evals/fixtures/C06/README.md",
+      "bytes": 737,
+      "sha256": "6dd4c2d86a56c318fbe9fe05609642405859b4376f1d761ec60750f676560567"
+    },
+    {
+      "path": "evals/fixtures/C06/fake-api.ts",
+      "bytes": 1257,
+      "sha256": "baa8f07b2ffd4cfbfb614f12fa69a53745499c5ed06e056e326ac37a25bd10c3"
+    },
+    {
+      "path": "evals/fixtures/C07/copy.json",
+      "bytes": 3246,
+      "sha256": "68fbfb9e4facf941a9b24eecbaa0a8aea6de7e760989184c15d9c9cd56ca1919"
+    },
+    {
+      "path": "evals/fixtures/C08/imported-notes.md",
+      "bytes": 940,
+      "sha256": "c0581bbdea22144626dc1103770e36f729c7b9e49d1b2e9845681a4a11a3a5f1"
+    },
+    {
+      "path": "evals/fixtures/C08/reference.svg",
+      "bytes": 1587,
+      "sha256": "6f54bf5078be1e3ac5eaae180badab1666e931dcc6ce02a3b20632da6a58fa56"
+    },
+    {
+      "path": "evals/heldout/C07.json",
+      "bytes": 3190,
+      "sha256": "b9cf90022503d76171d1a1210d495f3d34178ee4fa818fd8d2393094b53f81c5"
+    },
+    {
+      "path": "evals/heldout/C08.json",
+      "bytes": 2952,
+      "sha256": "45257e9e1175f894223440e90ce7c09b692da6eb4c953d4e462250ce04e62ea9"
+    },
+    {
+      "path": "evals/inputs/C01.json",
+      "bytes": 1710,
+      "sha256": "f06118a3d123534a0e68ab174d85119eb28b37214fa05885dc6d68a8db0652ed"
+    },
+    {
+      "path": "evals/inputs/C02.json",
+      "bytes": 1679,
+      "sha256": "908daf7e4157e96e3132643b01173884691db81a7c1fa6ff011f38622c0537f8"
+    },
+    {
+      "path": "evals/inputs/C03.json",
+      "bytes": 2083,
+      "sha256": "0b0cfaba0156294b0563e5ceba12cf733f1bba863e37aeef28b2f98e53ce339b"
+    },
+    {
+      "path": "evals/inputs/C04.json",
+      "bytes": 1778,
+      "sha256": "19163584770d81408cfb208739f1fe9282f0dec32b0016a111c0b6be6bad8d9f"
+    },
+    {
+      "path": "evals/inputs/C05.json",
+      "bytes": 2001,
+      "sha256": "7d12082ad6989b3d29f4bdacf68079b85b17e8a28db4dffe9de28da33007fbf7"
+    },
+    {
+      "path": "evals/inputs/C06.json",
+      "bytes": 1892,
+      "sha256": "d87c1e402fa9939e7463b38684fc817c6c0b753b1e3f6cc351c4dbb94ff80123"
+    },
+    {
+      "path": "evals/inputs/activation.json",
+      "bytes": 2258,
+      "sha256": "54834818d7eff7b29e3ae8a35f3bd03d0168264951190564159e2395b49ed586"
+    },
+    {
+      "path": "evals/protocol.md",
+      "bytes": 5946,
+      "sha256": "2d5a306954f24818fc78cd0f1bfbd490e0c287261ba7b27ff71e6892646fbce7"
+    },
+    {
+      "path": "evals/rubric.json",
+      "bytes": 5344,
+      "sha256": "904c9564cec73f25bf5ee0f043a6a93102fe81f630543cf731f4f1f4fa9d0ccf"
+    },
+    {
+      "path": "references/adapters.md",
+      "bytes": 2336,
+      "sha256": "ae3c2794b0e7923e78ef4dcd304ccb04d955a118774e92f55be289500a147c60"
+    },
+    {
+      "path": "references/design.md",
+      "bytes": 7724,
+      "sha256": "a8e31eafa0a09d5f9daeb36fa80f31b8a20c2cfc08f79c7928b9daa7ec2259f1"
+    },
+    {
+      "path": "references/implementation.md",
+      "bytes": 6744,
+      "sha256": "cc85f8868b0853f066eb333819a63330b4f5caf1db0e77244387d5a98ec398ac"
+    },
+    {
+      "path": "references/modules.md",
+      "bytes": 11222,
+      "sha256": "11e700e31bcbf2e8a525588cd299152798ba85d6571d7b43a9472d7e245dcf72"
+    },
+    {
+      "path": "references/sources.md",
+      "bytes": 16175,
+      "sha256": "dd6e10edfcb1477cd54263d98c60b14418e299790b05f7985765c099cc79d89d"
+    },
+    {
+      "path": "references/standards.md",
+      "bytes": 8591,
+      "sha256": "0ae1bd0dc98ba236455098286467854f3ffa96bf39ac67882e27a37e1de1280a"
+    },
+    {
+      "path": "references/verification.md",
+      "bytes": 5824,
+      "sha256": "e7198621bbd2f0ebc44ecb141be2133af99778f52c033dec7699147ea771a50c"
+    }
+  ]
+}

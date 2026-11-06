@@ -1,0 +1,98 @@
+{
+  "started": "2026-11-05T16:36:47.193Z",
+  "ended": "2026-11-05T16:36:58.744Z",
+  "checks": [
+    {
+      "id": "strict-build-and-render",
+      "status": "PASS",
+      "evidence": {
+        "pageTitle": "Invitation link",
+        "compile": "TypeScript strict compilation completed before server started",
+        "screenshot": "default.png"
+      }
+    },
+    {
+      "id": "keyboard-focus-and-target",
+      "status": "PASS",
+      "evidence": {
+        "focused": true,
+        "outline": "rgb(43, 117, 96) solid 3px",
+        "width": 400,
+        "height": 49.75
+      }
+    },
+    {
+      "id": "real-clipboard-keyboard-success-reset",
+      "status": "PASS",
+      "evidence": {
+        "copied": "https://example.test/invite/team-river",
+        "resetElapsedMs": 2439,
+        "status": "Invitation link copied. Ready to paste."
+      }
+    },
+    {
+      "id": "pending-prevents-duplicates",
+      "status": "PASS",
+      "evidence": {
+        "pending": {
+          "disabled": true,
+          "busy": "true",
+          "label": "Copying…"
+        },
+        "calls": [
+          "https://example.test/invite/team-river"
+        ]
+      }
+    },
+    {
+      "id": "clipboard-reject-retry",
+      "status": "PASS",
+      "evidence": {
+        "message": "The link could not be copied. Try again, or select and copy the invitation link below.",
+        "retryViaSpace": true,
+        "calls": [
+          "https://example.test/invite/team-river",
+          "https://example.test/invite/team-river"
+        ]
+      }
+    },
+    {
+      "id": "clipboard-unavailable-retry",
+      "status": "PASS",
+      "evidence": {
+        "message": "Copying is unavailable in this browser. Select and copy the invitation link below, or try again.",
+        "retryViaSpace": true,
+        "calls": [
+          "https://example.test/invite/team-river"
+        ]
+      }
+    },
+    {
+      "id": "translation-320px-layout",
+      "status": "PASS",
+      "evidence": {
+        "width": 278,
+        "scrollWidth": 278,
+        "height": 71.5,
+        "pageWidth": 320,
+        "viewport": 320,
+        "text": "Einladungslink für das Projektteam kopieren",
+        "whiteSpace": "normal",
+        "screenshot": "german-320.png"
+      }
+    },
+    {
+      "id": "accessible-status-and-browser-errors",
+      "status": "PASS",
+      "evidence": {
+        "accessibility": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        },
+        "uncaughtPageErrors": []
+      }
+    }
+  ],
+  "errors": []
+}

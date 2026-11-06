@@ -1,0 +1,492 @@
+{
+  "createdAt": "2026-11-06T03:37:45.014Z",
+  "skillVersion": "1.1.0",
+  "instructionFootprint": [
+    {
+      "package": "ui-ux-engineering",
+      "beforeWords": 8772,
+      "afterWords": 6707,
+      "reductionPercent": 23.54081167350661,
+      "entryWords": 944,
+      "entryLines": 64,
+      "scope": "SKILL.md and all references, including source/standards registers; whitespace-separated word count, not model tokens"
+    },
+    {
+      "package": "backend-engineering",
+      "beforeWords": 10128,
+      "afterWords": 8289,
+      "reductionPercent": 18.15758293838863,
+      "entryWords": 767,
+      "entryLines": 59,
+      "scope": "SKILL.md and all references, including source/standards registers; whitespace-separated word count, not model tokens"
+    }
+  ],
+  "total": {
+    "beforeWords": 18900,
+    "afterWords": 14996,
+    "reductionPercent": 20.656084656084662
+  },
+  "layout": {
+    "roleDirectories": [
+      "backend-engineering",
+      "ui-ux-engineering"
+    ],
+    "developmentEvidenceRoot": "quality/saas",
+    "rawEvidenceDeleted": false
+  },
+  "evaluation": {
+    "freshContexts": 6,
+    "comparativeCases": 2,
+    "comparativeContexts": 4,
+    "heldoutCases": 2,
+    "heldoutContexts": 2,
+    "repetitionsPerArm": 1,
+    "objective": {
+      "PASS": 46,
+      "FAIL": 0,
+      "UNVERIFIED": 0,
+      "required": 40,
+      "control": 6
+    },
+    "source": "expert-evals/results/T01..T06",
+    "pairedFinding": "Both previous/current versions pass the public behavioral checks; no observed functional superiority or statistical/general quality claim.",
+    "qualitative": {
+      "source": "expert-evals/results/blind-review.json",
+      "mechanismAlternatives": "PARTIAL in both public UI arms; other categories DEMONSTRATED in reviewed scope",
+      "blinding": "Incomplete; one version citation leaked. Reviewer did not see map or preferred result.",
+      "tokenBoundary": "Initial heldout lease source had exhausted-token head-of-queue blocking. Preserved before snapshot; separate repair reproduced/fixed it and reran original local groups and unchanged independent checker. Not a new fresh trial or instruction tuning."
+    },
+    "setup": "A capability-only browser-path/port addendum was delivered identically to both public UI arms; discovery failures retained. No efficiency comparison.",
+    "trials": [
+      {
+        "id": "T01",
+        "caseId": "UI-U1",
+        "version": "1.0.0",
+        "calls": 19,
+        "reportedStartUtc": "2026-11-06T03:13:11Z",
+        "reportedEndUtc": "2026-11-06T03:18:56.856Z",
+        "observedIntervalSeconds": 345.856,
+        "clockBoundary": "Agent-observed UTC; first-call expression/timestamp deviations retained in handoffs. Supervisor pre-dispatch bounds are separate.",
+        "actualTokens": null,
+        "actualCost": null
+      },
+      {
+        "id": "T02",
+        "caseId": "UI-U1",
+        "version": "1.1.0",
+        "calls": 20,
+        "reportedStartUtc": "2026-11-06T03:13:17Z",
+        "reportedEndUtc": "2026-11-06T03:18:43.249Z",
+        "observedIntervalSeconds": 326.249,
+        "clockBoundary": "Agent-observed UTC; first-call expression/timestamp deviations retained in handoffs. Supervisor pre-dispatch bounds are separate.",
+        "actualTokens": null,
+        "actualCost": null
+      },
+      {
+        "id": "T03",
+        "caseId": "BE-B1",
+        "version": "1.0.0",
+        "calls": 10,
+        "reportedStartUtc": "2026-11-06T03:15:40Z",
+        "reportedEndUtc": "2026-11-06T03:19:17.5835446Z",
+        "observedIntervalSeconds": 217.583,
+        "clockBoundary": "Agent-observed UTC; first-call expression/timestamp deviations retained in handoffs. Supervisor pre-dispatch bounds are separate.",
+        "actualTokens": null,
+        "actualCost": null
+      },
+      {
+        "id": "T04",
+        "caseId": "BE-B1",
+        "version": "1.1.0",
+        "calls": 10,
+        "reportedStartUtc": "2026-11-06T03:19:38Z",
+        "reportedEndUtc": "2026-11-06T03:23:54.9301757Z",
+        "observedIntervalSeconds": 256.93,
+        "clockBoundary": "Agent-observed UTC; first-call expression/timestamp deviations retained in handoffs. Supervisor pre-dispatch bounds are separate.",
+        "actualTokens": null,
+        "actualCost": null
+      },
+      {
+        "id": "T05",
+        "caseId": "UI-U2",
+        "version": "1.1.0",
+        "calls": 15,
+        "reportedStartUtc": "2026-11-06T03:19:44Z",
+        "reportedEndUtc": "2026-11-06T03:23:21.5822664Z",
+        "observedIntervalSeconds": 217.582,
+        "clockBoundary": "Agent-observed UTC; first-call expression/timestamp deviations retained in handoffs. Supervisor pre-dispatch bounds are separate.",
+        "actualTokens": null,
+        "actualCost": null
+      },
+      {
+        "id": "T06",
+        "caseId": "BE-B2",
+        "version": "1.1.0",
+        "calls": 9,
+        "reportedStartUtc": "2026-11-06T03:19:57Z",
+        "reportedEndUtc": "2026-11-06T03:23:25.6034641Z",
+        "observedIntervalSeconds": 208.603,
+        "clockBoundary": "Agent-observed UTC; first-call expression/timestamp deviations retained in handoffs. Supervisor pre-dispatch bounds are separate.",
+        "actualTokens": null,
+        "actualCost": null
+      }
+    ],
+    "model": "Same inherited configuration; exact model identifier not exposed",
+    "toolsAndHost": "Node24.12.0/SQLite3.50.4/Chrome156; native TS stripping is not semantic typechecking",
+    "postReview": "expert-evals/results/T06-before-review.json and T06-after-review/"
+  },
+  "sourceIntegrity": {
+    "roleFiles": [
+      {
+        "file": "roles/saas/ui-ux-engineering/assets/contract.template.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/assets/contracts.schema.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/assets/manifest.json",
+        "status": "DECLARED_METADATA_ONLY"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C02/README.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C02/reference.png",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C02/reference.svg",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C03/brand.svg",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C03/layout.svg",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C03/typography.svg",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C04/brief.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C04/figma-access.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/index.html",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/package.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/README.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/src/App.tsx",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/src/main.tsx",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/src/styles.css",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/tsconfig.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/vite.config.ts",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C06/fake-api.ts",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C06/README.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C07/copy.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C08/imported-notes.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/C08/reference.svg",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/app.js",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/app.ts",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/index.html",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/plan.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/README.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/styles.css",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/app.js",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/app.ts",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/index.html",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/README.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/state.js",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/state.ts",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/styles.css",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/references/adapters.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/references/design.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/references/implementation.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/references/modules.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/references/sources.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/references/standards.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/references/verification.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/scripts/build-lab.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/scripts/heavy-lab.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/scripts/lab.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/scripts/measure.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/scripts/serve.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/scripts/test-tools.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/scripts/validate.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/ui-ux-engineering/SKILL.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/assets/coverage-index.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/assets/gates.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/assets/manifest.json",
+        "status": "DECLARED_METADATA_ONLY"
+      },
+      {
+        "file": "roles/saas/backend-engineering/assets/task.schema.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/assets/task.template.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/evals/fixtures/contracts.ts",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/evals/fixtures/legacy-repository.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/evals/fixtures/load-workloads.json",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/evals/fixtures/README.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/adapters.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/api-domain.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/async-integrations.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/coding-standards.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/data.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/edge-identity.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/modules.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/operations.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/runtime-capacity.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/sources.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/references/verification.md",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/cert-gen.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/check.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/client.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/dns-network.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/evidence.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/integrated.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/load.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/service.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/smoke.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/validate-package.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/scripts/worker.mjs",
+        "status": "UNCHANGED"
+      },
+      {
+        "file": "roles/saas/backend-engineering/SKILL.md",
+        "status": "UNCHANGED"
+      }
+    ],
+    "suiteSourceFiles": 34,
+    "suiteUnchanged": true,
+    "amendment": "Two resource-index notes removed after layout cleanup; no routing/procedure/criteria/fixture change; affected validators rerun."
+  },
+  "standards": {
+    "basis": "ISO/IEC/IEEE29148:2018 requirements traceability;42010:2022 concerns/views/relationships; applicable quality/accessibility guidance in role registers",
+    "formalNormativeConformance": "UNVERIFIED",
+    "rating": null
+  },
+  "limits": [
+    "Targeted revision evaluation, not a replay of every original1.0 case or proof of all future tasks.",
+    "Original React/Vite runtime gap remains; no AT, physical IME, full WCAG, field CWV or production/distributed deployment proof.",
+    "Failed public UI test-launch child-server cleanup is unverified: exited parent sessions captured, child PIDs unavailable; no unidentified process killed.",
+    "No token/cost or efficiency/statistical confidence claim; historical1.0 results remain version-attributed."
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "research_date_utc": "2026-11-05",
+  "live_clock_bounds_utc": [
+    "2026-11-05 15:35:36 UTC",
+    "2026-11-05 15:42:19 UTC"
+  ],
+  "method": "Primary pages opened with web tool; public catalog metadata and abstracts only for ISO. Selected accessible public guidance reviewed; full standards not purchased or reviewed.",
+  "standards": [
+    {
+      "reference": "ISO/IEC/IEEE 29148:2018",
+      "url": "https://www.iso.org/standard/72089.html",
+      "edition": 2,
+      "published": "2018-11",
+      "confirmed": 2024,
+      "status": "Published; catalog lists DIS replacement under development.",
+      "scope": "Catalog metadata/abstract; no normative clause review.",
+      "decision": "Adapt public scope for requirements traceability; no conformance claim."
+    },
+    {
+      "reference": "ISO/IEC/IEEE 42010:2022",
+      "url": "https://www.iso.org/standard/74393.html",
+      "edition": 2,
+      "published": "2022-11",
+      "status": "Published",
+      "scope": "Catalog metadata/abstract; no normative clause review.",
+      "decision": "Adapt public scope for stakeholder concerns/views/rationale; no prescribed frontend method or conformance claim."
+    },
+    {
+      "reference": "ISO/IEC 25010:2023",
+      "url": "https://www.iso.org/standard/78176.html",
+      "edition": 2,
+      "published": "2023-11",
+      "status": "Published; product quality model, nine characteristics.",
+      "scope": "Catalog metadata/abstract; no normative clause review.",
+      "decision": "Adapt quality concerns into measurable scenarios; no unchecked 2011 taxonomy reuse."
+    },
+    {
+      "reference": "ISO 9241-210:2019",
+      "url": "https://www.iso.org/standard/77520.html",
+      "edition": 2,
+      "published": "2019-07",
+      "confirmed": 2025,
+      "status": "Published",
+      "scope": "Catalog metadata/abstract; no normative clause review.",
+      "decision": "Adapt public scope for context, needs, iteration and evaluation; do not invent user research."
+    },
+    {
+      "reference": "WCAG 2.2",
+      "url": "https://www.w3.org/TR/2024/REC-WCAG22-20241212/",
+      "live_url": "https://www.w3.org/TR/WCAG22/",
+      "published": "2024-12-12",
+      "status": "W3C Recommendation",
+      "scope": "Selected A/AA criteria and conformance section inspected, including full pages, complete processes, AA target size and focus obscuration distinctions.",
+      "decision": "Target all applicable A and AA criteria; scoped evidence, not an automated score, supports assessment."
+    },
+    {
+      "reference": "ARIA Authoring Practices Guide",
+      "url": "https://www.w3.org/WAI/ARIA/apg/about/introduction/",
+      "pattern_url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+      "version": "Living guidance accessed 2026-11-05",
+      "status": "Informative; not normative standard or UI design system.",
+      "scope": "Introduction/status and modal dialog pattern inspected.",
+      "decision": "Adapt pertinent interaction contracts; test actual integration."
+    },
+    {
+      "reference": "DTCG Design Tokens Format Module 2025.10",
+      "url": "https://www.designtokens.org/TR/2025.10/format/",
+      "published": "2025-10-28",
+      "status": "Final Community Group Report; explicitly not a W3C Standard or Recommendation.",
+      "scope": "Status and selected type/value/alias/extension guidance inspected.",
+      "decision": "Use stable dated report for supported interchange; no automatic format-conformance claim."
+    },
+    {
+      "reference": "DTCG editor draft",
+      "url": "https://www.designtokens.org/tr/drafts/format/",
+      "document_date": "2026-09-08",
+      "status": "Preview draft; explicitly warns not to implement.",
+      "scope": "Status inspected.",
+      "decision": "Reject as production authority; pin stable dated publication."
+    },
+    {
+      "reference": "Core Web Vitals",
+      "url": "https://web.dev/articles/vitals",
+      "displayed_last_updated": "2024-10-31",
+      "version": "Living guidance accessed 2026-11-05",
+      "scope": "Metric thresholds, field assessment at 75th percentile and mobile/desktop segmentation inspected.",
+      "targets": {
+        "LCP": "<=2.5 s",
+        "INP": "<=200 ms",
+        "CLS": "<=0.1"
+      },
+      "decision": "Adopt field targets; mark lab diagnostics and absent field data explicitly."
+    }
+  ],
+  "support": [
+    {
+      "url": "https://playwright.dev/docs/accessibility-testing",
+      "scope": "Selected current-state scanning examples and automation limitations.",
+      "decision": "Adapt state-specific scans; do not copy older WCAG tag examples without checking installed engine support."
+    },
+    {
+      "url": "https://developer.chrome.com/docs/lighthouse/accessibility/scoring",
+      "displayed_last_updated": "2025-10-22",
+      "scope": "Scoring and exclusion of manual audits.",
+      "decision": "Reject score as conformance proof."
+    },
+    {
+      "url": "https://www.deque.com/axe/core-documentation/",
+      "scope": "Official documentation entrypoint only; no comprehensive engine API/source audit.",
+      "decision": "Selectable primary route for future rule/API checks."
+    },
+    {
+      "url": "https://www.radix-ui.com/primitives/docs/components/dialog",
+      "scope": "Selected dialog documentation."
+    },
+    {
+      "url": "https://react-aria.adobe.com/Modal",
+      "scope": "Current Modal API and trigger/accessibility guidance."
+    },
+    {
+      "url": "https://ui.shadcn.com/docs/components/dialog",
+      "redirected_to": "https://ui.shadcn.com/docs/components/base/dialog",
+      "scope": "Current documentation route and selected structure; pinned GitHub wrapper is Radix-based and different."
+    },
+    {
+      "url": "https://tailwindcss.com/docs/theme",
+      "version_displayed": "v4.3",
+      "scope": "Selected theme-variable guidance."
+    }
+  ],
+  "uninspected_optional_index": [
+    "https://developer.apple.com/design/human-interface-guidelines/",
+    "https://m3.material.io/",
+    "https://carbondesignsystem.com/",
+    "https://fluent2.microsoft.design/",
+    "https://spectrum.adobe.com/",
+    "https://design-system.service.gov.uk/",
+    "https://www.nngroup.com/articles/",
+    "https://mobbin.com/"
+  ],
+  "access_failure": {
+    "url": "https://react-spectrum.adobe.com/react-aria/Dialog.html",
+    "result": "Web tool timeout; replaced with current react-aria.adobe.com/Modal primary page."
+  },
+  "license_and_claim_boundary": "Reference links/short metadata retained, not copied manuals. ISO complete normative text was not accessed. Public guidance does not grant rights to unrelated brands/assets or prove product conformance."
+}

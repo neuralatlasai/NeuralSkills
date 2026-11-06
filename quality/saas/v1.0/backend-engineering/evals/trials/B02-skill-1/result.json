@@ -1,0 +1,359 @@
+{
+    "caseId":  "B02",
+    "arm":  "skill",
+    "run":  1,
+    "status":  "PASS",
+    "route":  "backend-engineering/SKILL.md; B1 intake, B2 tenant boundary only, B3 API/domain, B4 data, B6 local concurrency/cost limits, B8 verification",
+    "startUtc":  "2026-11-05T16:52:11Z",
+    "endUtc":  "2026-11-05T16:57:30Z",
+    "elapsedSeconds":  319,
+    "actualTokens":  null,
+    "actualCost":  null,
+    "cost":  null,
+    "usageAvailability":  "Actual tokens and cost are not exposed by the host.",
+    "actualToolCount":  17,
+    "toolCountBasis":  "16 clock/exec_command/apply_patch tool invocations plus one collaboration message; nine functions.exec orchestration wrappers excluded. Ten visible top-level calls including collaboration.",
+    "runtime":  {
+                    "node":  "v24.12.0",
+                    "sqlite":  "3.50.4",
+                    "dependencies":  "Node built-ins only"
+                },
+    "requirements":  [
+                         {
+                             "id":  "B02-R01",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "artifact/verification.json: same-connection-1..3, two-connections-1..3",
+                                              "artifact/repaired-probe.json"
+                                          ],
+                             "result":  "Each forced two-caller race produced one 201 and one 409, stock 1/version 2, one quantity-4 allocation, south unchanged; persisted state checked after reopen."
+                         },
+                         {
+                             "id":  "B02-R02",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "artifact/verification.json: afterWrite-rollback, retry-after-rollback, allocation-insert-failure-rollback"
+                                          ],
+                             "result":  "Thrown afterWrite observed the decrement then rolled back both tables; same connection accepted a successful retry. Trigger-induced allocation INSERT failure also rolled back stock."
+                         },
+                         {
+                             "id":  "B02-R03",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "artifact/store.mjs",
+                                              "artifact/verification.json: validation-scope-contract",
+                                              "artifact/probe.mjs"
+                                          ],
+                             "result":  "Positive safe integer quantity, expected version, sufficient stock, missing item/tenant, tenant-qualified SQL, exported signature and response fields exercised."
+                         },
+                         {
+                             "id":  "B02-R04",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "artifact/verification.json",
+                                              "artifact/baseline-race.json",
+                                              "artifact/verification-initial-failure.json"
+                                          ],
+                             "result":  "Both async afterRead callers reach gate before either writes; synchronous afterWrite still injects rollback fault; real files reopened; initial failures retained."
+                         },
+                         {
+                             "id":  "B02-R05",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "artifact/README.md",
+                                              "artifact/verification.json: lock-contention-and-explicit-retry, sqlite-index-and-integrity"
+                                          ],
+                             "result":  "Local SQLite transaction, conditional write, writer serialization, native 200-ms busy timeout/error, explicit safe retry after rollback and unsupported durability/scaling boundaries documented."
+                         },
+                         {
+                             "id":  "B02-R06",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "result.json: coverageDispositions, decisions, checks",
+                                              "artifact/README.md"
+                                          ],
+                             "result":  "All 24 areas have one disposition with bounded claims; required assertions are backed by actual SQLite evidence."
+                         }
+                     ],
+    "decisions":  [
+                      {
+                          "requirement":  "B02-R01",
+                          "mechanism":  "BEGIN IMMEDIATE plus tenant/item/version/available conditional UPDATE RETURNING, followed by allocation INSERT and COMMIT in one synchronous transaction",
+                          "limit":  "One local SQLite file; one writer at a time; no await inside transaction; caller supplies idle connection",
+                          "failure":  "Concurrent stale observation loses the conditional update and returns 409 without allocation",
+                          "verification":  "PASS: six forced file-backed races across shared and separate connections, exact tables and reopen asserted"
+                      },
+                      {
+                          "requirement":  "B02-R02",
+                          "mechanism":  "Catch synchronous afterWrite/INSERT errors, ROLLBACK whole transaction, rethrow original fault",
+                          "limit":  "Rollback only covers this SQLite transaction; hook performs no external effect",
+                          "failure":  "Injected post-update throw or allocation insertion failure must leave stock/version and allocation count unchanged",
+                          "verification":  "PASS: both injected failures roll back; explicit retry on usable store returns 201"
+                      },
+                      {
+                          "requirement":  "B02-R03",
+                          "mechanism":  "Positive safe integer validation, strict preflight version match and write-time CAS; parameterized tenant/item predicates and allocation values",
+                          "limit":  "Tenant argument is trusted by fixture contract; invalid quantity takes precedence over missing resource; no HTTP/auth server exists",
+                          "failure":  "Malformed quantity 400, absent scoped row 404, stale version or insufficient stock 409",
+                          "verification":  "PASS: nine invalid quantities, seven invalid/stale versions, missing item and tenant, insufficient stock, independent south stock, supplied probe API"
+                      },
+                      {
+                          "requirement":  "B02-R04",
+                          "mechanism":  "Await afterRead before acquiring transaction; keep afterWrite synchronous immediately after successful update",
+                          "limit":  "Caller controls hook duration; async afterWrite and external side effects unsupported",
+                          "failure":  "Holding a transaction across the async gate could deadlock or leak partial writes",
+                          "verification":  "PASS: both callers reach hook gate before release; afterRead rejection mutates neither table; afterWrite observes decremented stock before throwing"
+                      },
+                      {
+                          "requirement":  "B02-R05",
+                          "mechanism":  "Retain SQLite busy_timeout=200; surface native busy error; demonstrate caller retry only after blocking transaction rollback",
+                          "limit":  "Busy timeout is lock wait configuration, not a complete request deadline; sync SQLite blocks event loop; no automatic retries",
+                          "failure":  "Another connection owns writer lock; operation rejects without reserving, then retry succeeds after release",
+                          "verification":  "PASS: lock-contention-and-explicit-retry records native error, unchanged rows and one later successful allocation"
+                      },
+                      {
+                          "requirement":  "B02-R06",
+                          "mechanism":  "Requirement trace, all-24 coverage, retained baseline and initial verifier failure, exact native versions and local cost envelope",
+                          "limit":  "Single local fixture experiment; no production, performance, standards certification or distributed recovery claims",
+                          "failure":  "Local correctness could otherwise be mistaken for authentication, scalability or power-loss durability evidence",
+                          "verification":  "PASS: result.json and README scope each claim; actual tokens/cost remain null"
+                      }
+                  ],
+    "coverageDispositions":  [
+                                 {
+                                     "area":  "L01",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "none",
+                                     "reason":  "Fixture is an in-process SQLite module with no DNS or sockets.",
+                                     "evidence":  "artifact/store.mjs imports only node:sqlite"
+                                 },
+                                 {
+                                     "area":  "L02",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "none",
+                                     "reason":  "No network/TLS hop exists in this task.",
+                                     "evidence":  "artifact/store.mjs"
+                                 },
+                                 {
+                                     "area":  "L03",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "none",
+                                     "reason":  "No gateway, ingress, proxy or CDN exists.",
+                                     "evidence":  "artifact/probe.mjs directly invokes reserve"
+                                 },
+                                 {
+                                     "area":  "L04",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "component":  "reserve tenant/item predicates",
+                                     "reason":  "Tenant-qualified updates and insert values preserve fixture isolation; caller authentication remains outside module contract.",
+                                     "evidence":  "artifact/verification.json: race south-stock assertions and validation-scope-contract"
+                                 },
+                                 {
+                                     "area":  "L05",
+                                     "disposition":  "INHERITED_VERIFIED",
+                                     "component":  "exported openStore/reserve module API",
+                                     "reason":  "Same function signature and response fields exercised by unchanged supplied probe; no wire protocol added.",
+                                     "evidence":  "artifact/probe.mjs; artifact/repaired-probe.json"
+                                 },
+                                 {
+                                     "area":  "L06",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "component":  "reserve create allocation/decrement stock",
+                                     "reason":  "Conditional create effect has distinct 201/400/404/409 outcomes with atomic local state.",
+                                     "evidence":  "artifact/store.mjs; artifact/verification.json"
+                                 },
+                                 {
+                                     "area":  "L07",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "component":  "reserve validation and errors",
+                                     "reason":  "Positive safe integer quantity and strict version precondition; native storage errors remain rejected promises.",
+                                     "evidence":  "artifact/verification.json: validation-scope-contract, lock-contention-and-explicit-retry"
+                                 },
+                                 {
+                                     "area":  "L08",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "component":  "reserve lifecycle",
+                                     "reason":  "One function owns preflight, async observation boundary, write transaction, rollback and result.",
+                                     "evidence":  "artifact/store.mjs; artifact/verification.json: afterWrite-rollback"
+                                 },
+                                 {
+                                     "area":  "L09",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "component":  "Node async hook and synchronous SQLite transaction",
+                                     "reason":  "No transaction spans await; actual same/two-connection interleavings and busy cleanup checked. Event-loop blocking and unbounded caller hook documented.",
+                                     "evidence":  "artifact/verification.json; artifact/README.md"
+                                 },
+                                 {
+                                     "area":  "L10",
+                                     "disposition":  "INHERITED_VERIFIED",
+                                     "component":  "stock composite key and existing tables",
+                                     "reason":  "Existing DDL retained; actual primary-key index and integrity observed, not a schema migration.",
+                                     "evidence":  "artifact/store.mjs openStore; artifact/verification.json: sqlite-index-and-integrity"
+                                 },
+                                 {
+                                     "area":  "L11",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "component":  "parameterized conditional UPDATE RETURNING and INSERT",
+                                     "reason":  "Tenant/item/version/stock predicates applied at mutation; composite index plan observed on selected engine.",
+                                     "evidence":  "artifact/store.mjs; artifact/verification.json: sqlite-index-and-integrity"
+                                 },
+                                 {
+                                     "area":  "L12",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "component":  "SQLite BEGIN IMMEDIATE/COMMIT/ROLLBACK",
+                                     "reason":  "Stock/allocation invariants owned by database transaction and CAS, independent of application mutex.",
+                                     "evidence":  "artifact/verification.json: forced races, afterWrite-rollback, allocation-insert-failure-rollback"
+                                 },
+                                 {
+                                     "area":  "L13",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "SQLite file owner",
+                                     "reason":  "No deployment roles, GRANT/RLS or credential administration requested; module caller has direct privileged database access.",
+                                     "evidence":  "artifact/README.md trust boundary; artifact/store.mjs"
+                                 },
+                                 {
+                                     "area":  "L14",
+                                     "disposition":  "INHERITED_VERIFIED",
+                                     "component":  "native file-backed SQLite storage",
+                                     "reason":  "Local persistence after close/reopen verified; replication, sharding, power-loss and disk-failure guarantees unverified and outside request.",
+                                     "evidence":  "artifact/verification.json: six reopened race files and reopen-after-fault-retry"
+                                 },
+                                 {
+                                     "area":  "L15",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "none",
+                                     "reason":  "No cache, materialized view or derived state exists.",
+                                     "evidence":  "artifact/store.mjs schema and reserve"
+                                 },
+                                 {
+                                     "area":  "L16",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "none",
+                                     "reason":  "No messaging, event publication, CDC or external async effect exists; hooks are test injection boundaries.",
+                                     "evidence":  "artifact/store.mjs; artifact/README.md hook contract"
+                                 },
+                                 {
+                                     "area":  "L17",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "none",
+                                     "reason":  "No durable worker or schedule requested.",
+                                     "evidence":  "artifact/store.mjs; artifact/probe.mjs"
+                                 },
+                                 {
+                                     "area":  "L18",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "none",
+                                     "reason":  "No object/search/specialized store; SQLite file is covered by L14.",
+                                     "evidence":  "artifact/store.mjs"
+                                 },
+                                 {
+                                     "area":  "L19",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "none",
+                                     "reason":  "No external API, webhook or tool integration belongs to fixture.",
+                                     "evidence":  "artifact/store.mjs imports and side effects"
+                                 },
+                                 {
+                                     "area":  "L20",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "local cost model only",
+                                     "reason":  "No capacity target or scaling change requested. Documented B-tree/I/O and single-writer limits are models, without throughput or percentile claims.",
+                                     "evidence":  "artifact/README.md cost and operating limits"
+                                 },
+                                 {
+                                     "area":  "L21",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "component":  "rollback and connection recovery",
+                                     "reason":  "Injected operation failures restore invariants and allow retry; persisted close/reopen verified. Backup restore and disaster recovery outside request.",
+                                     "evidence":  "artifact/verification.json: afterWrite-rollback, retry-after-rollback, reopen-after-fault-retry"
+                                 },
+                                 {
+                                     "area":  "L22",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "component":  "verification evidence only",
+                                     "reason":  "No production telemetry/audit/SLO system exists or is requested; raw test outcomes retained without observability claims.",
+                                     "evidence":  "artifact/verification.json; artifact/baseline-race.json"
+                                 },
+                                 {
+                                     "area":  "L23",
+                                     "disposition":  "INHERITED_VERIFIED",
+                                     "component":  "Node native-module runtime",
+                                     "reason":  "Built-ins-only execution and syntax checked on installed Node 24.12.0; no deployment or infrastructure change.",
+                                     "evidence":  "artifact/verification.json runtime; checks syntax command"
+                                 },
+                                 {
+                                     "area":  "L24",
+                                     "disposition":  "INHERITED_VERIFIED",
+                                     "component":  "local built-ins-only dependency boundary",
+                                     "reason":  "Inspected imports use only Node built-ins; no downloads or external effects. Production security/privacy lifecycle outside this fixture.",
+                                     "evidence":  "artifact/store.mjs; artifact/verify.mjs; artifact/README.md"
+                                 }
+                             ],
+    "checks":  [
+                   {
+                       "command":  "node --version",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "evidence":  "Observed v24.12.0; verification.json runtime agrees",
+                       "kind":  "environment"
+                   },
+                   {
+                       "command":  "node probe.mjs baseline.sqlite (unmodified copied fixture)",
+                       "exit":  0,
+                       "status":  "FAIL",
+                       "evidence":  "artifact/baseline-race.json: two 201s, two quantity-4 allocations against stock 5; expected regression reproduced",
+                       "kind":  "baseline-reproduction",
+                       "requiredForFinal":  false
+                   },
+                   {
+                       "command":  "node --check artifact/store.mjs; node --check artifact/verify.mjs",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "evidence":  "No syntax diagnostics in executed checks; final verify.mjs syntax rerun after contention coverage added",
+                       "kind":  "syntax"
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs (initial verifier)",
+                       "exit":  1,
+                       "status":  "FAIL",
+                       "evidence":  "artifact/verification-initial-failure.json: incorrect test expected current version 2 to conflict; corrected to stale version 1",
+                       "kind":  "retained-verifier-failure",
+                       "requiredForFinal":  false
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "evidence":  "artifact/verification.json: 13 named checks PASS, Node v24.12.0, SQLite 3.50.4; real file-backed race/reopen, fault rollback/retry, validation, scope, native lock contention and insertion failure",
+                       "kind":  "sqlite-integration"
+                   },
+                   {
+                       "command":  "node artifact/probe.mjs artifact/repaired-probe.sqlite (fresh file)",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "evidence":  "artifact/repaired-probe.json: one 201, one 409, stock 1/version 2, one allocation, south 100/version 1",
+                       "kind":  "supplied-probe"
+                   },
+                   {
+                       "command":  "result.json trace validation",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "evidence":  "Final JSON parsed; 24 unique coverage areas; six requirements PASS; final verification 13 checks PASS; supplied probe exact 201/409 and allocation count asserted.",
+                       "kind":  "artifact-contract"
+                   }
+               ],
+    "assumptions":  [
+                        "The direct module caller supplies trusted tenant/item identity and an idle SQLite connection; this fixture has no caller authentication layer.",
+                        "afterWrite is synchronous and only injects local faults, as specified by supplied fixture README; no async/external effect is made atomic.",
+                        "Current file-backed SQLite on local filesystem is the selected environment; broader deployment/power-loss behavior is not inferred.",
+                        "Invalid quantity is validated before missing item lookup; no requirement specifies precedence for simultaneously invalid/missing requests."
+                    ],
+    "limitations":  [
+                        "No automatic transaction retry. Native writer-lock error is surfaced after inherited busy timeout; explicit retry after holder rollback is verified.",
+                        "Synchronous SQLite can block Node event loop, and caller-provided hooks have no execution deadline or admission bounds.",
+                        "No test of process-kill/power-loss durability, disk-full, backup restore, unknown commit acknowledgement, multi-host deployment or production throughput.",
+                        "Direct privileged SQL writers can bypass reserve\u0027s quantity/tenant contract; this patch preserves fixture schema and application boundary.",
+                        "Two-connection forced races run on one Node event loop; actual database lock contention is separately exercised using a held transaction.",
+                        "Initial verifier assertion defect is retained; final assertions use the actual stale version without implementation change."
+                    ]
+}

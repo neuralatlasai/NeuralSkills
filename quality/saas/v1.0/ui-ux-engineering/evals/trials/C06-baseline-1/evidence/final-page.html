@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Find a field guide · Fieldwork</title><link rel="stylesheet" href="./styles.css"></head>
+<body>
+  <main class="shell">
+    <header class="brand"><span class="brand-mark" aria-hidden="true">↟</span> FIELDWORK <span class="brand-note">The little outdoor library</span></header>
+    <section class="search-panel" aria-labelledby="page-title">
+      <p class="eyebrow">CURIOSITY STARTS HERE</p>
+      <h1 id="page-title">Find a field guide.</h1>
+      <p class="intro">A little knowledge for your next wander. Discover guides to the natural world around you.</p>
+      <form id="search-form">
+        <label for="query">What would you like to explore?</label>
+        <div class="search-row"><input id="query" name="query" type="search" placeholder="Try cedar or moss" aria-describedby="search-help" autocomplete="off" required="" style=""><button type="submit">Search <span aria-hidden="true">↗</span></button></div>
+        <p id="search-help" class="help">Search by a plant, place, or a spark of curiosity.</p>
+      </form>
+    </section>
+    <section class="outcomes" aria-labelledby="results-title">
+      <div class="section-heading"><h2 id="results-title">Your discoveries</h2><span id="count" class="count">2 guides</span></div>
+      <p id="status" role="status" aria-live="polite" aria-atomic="true" data-state="success">2 guides found for “moss”.</p>
+      <div id="results" aria-busy="false"><article class="guide"><span class="book" aria-hidden="true">↟</span><div><h3>Mosses of the rain-soaked northern woodland</h3><p>Woodland · 84 pages</p></div></article><article class="guide"><span class="book" aria-hidden="true">↟</span><div><h3>Pocket guide to urban moss</h3><p>Urban · 46 pages</p></div></article></div>
+      <div id="failure" class="failure" hidden=""><h3>We couldn't load your guides.</h3><p id="error" role="alert"></p><button id="retry" type="button">Retry search <span aria-hidden="true">↻</span></button></div>
+    </section>
+    <footer><span aria-hidden="true">✦</span> Small guides. Wide-open possibilities.</footer>
+  </main>
+  <script type="module" src="./dist/main.js"></script>
+
+</body></html>

@@ -1,0 +1,8 @@
+{
+  "status": "FAIL",
+  "kind": "tooling",
+  "phase": "pre-verification",
+  "error": "apply_patch verification failed: invalid patch: multiple operations target worker.mjs",
+  "mutation": false,
+  "resolution": "Use Update File instead of Delete File plus Add File for same target."
+}

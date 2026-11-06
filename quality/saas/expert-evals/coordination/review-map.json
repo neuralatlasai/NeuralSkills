@@ -1,0 +1,34 @@
+{
+  "mapping": [
+    {
+      "trial": "T01",
+      "alias": "X7",
+      "caseId": "UI-U1"
+    },
+    {
+      "trial": "T02",
+      "alias": "L4",
+      "caseId": "UI-U1"
+    },
+    {
+      "trial": "T03",
+      "alias": "Q2",
+      "caseId": "BE-B1"
+    },
+    {
+      "trial": "T04",
+      "alias": "A9",
+      "caseId": "BE-B1"
+    },
+    {
+      "trial": "T05",
+      "alias": "N6",
+      "caseId": "UI-U2"
+    },
+    {
+      "trial": "T06",
+      "alias": "C3",
+      "caseId": "BE-B2"
+    }
+  ]
+}

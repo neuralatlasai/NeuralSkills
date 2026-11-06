@@ -1,0 +1,6 @@
+{
+    "command":  "node artifact/faults.mjs",
+    "exitCode":  0,
+    "startUtc":  "2026-11-05T17:29:24.0836983Z",
+    "endUtc":  "2026-11-05T17:29:29.6759847Z"
+}

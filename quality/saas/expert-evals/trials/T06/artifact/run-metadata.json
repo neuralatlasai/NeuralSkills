@@ -1,0 +1,23 @@
+{
+    "trial":  "T06",
+    "skillVersion":  "1.1.0",
+    "startUtc":  "2026-11-06T03:19:57Z",
+    "initialDateTimeCaptureUtc":  "2026-11-06T03:20:08.7870547Z",
+    "endUtc":  "2026-11-06T03:23:25.6034641Z",
+    "elapsedSecondsFromSecondResolutionStart":  208.6034641,
+    "underlyingToolCount":  9,
+    "toolBreakdown":  {
+                          "exec_command":  7,
+                          "clock":  1,
+                          "collaboration_send_message":  1
+                      },
+    "budgetSeconds":  360,
+    "budgetToolCalls":  20,
+    "model":  null,
+    "tokens":  null,
+    "cost":  null,
+    "status":  "local acceptance PASS; remote effects unperformed by scope",
+    "verificationNodeExit":  0,
+    "originalWrapperExit":  1,
+    "firstToolDateTimeExpressionDeviation":  true
+}

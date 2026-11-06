@@ -1,0 +1,71 @@
+{
+  "caseId": "BE-B2",
+  "node": "v24.12.0",
+  "time": "2026-11-06T03:02:07.675Z",
+  "checks": [
+    {
+      "id": "B2-control-sequential",
+      "kind": "control",
+      "status": "PASS",
+      "evidence": [
+        {
+          "id": "job",
+          "payload": "synthetic",
+          "dueAt": 10,
+          "status": "done",
+          "worker": "a",
+          "token": 1,
+          "leaseUntil": 20,
+          "result": "ok"
+        }
+      ]
+    },
+    {
+      "id": "B2-R1-concurrent-claim",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n2 !== 1\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-be-b2.mjs:4:203\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-be-b2.mjs:4:1"
+    },
+    {
+      "id": "B2-R1-due-order",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "id": "B2-R2-fence-stale-completion",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-be-b2.mjs:6:231\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-be-b2.mjs:6:1"
+    },
+    {
+      "id": "B2-R2-expired-current-owner",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-be-b2.mjs:7:145\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-be-b2.mjs:7:1"
+    },
+    {
+      "id": "B2-R3-restart-ownership",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": {
+        "current": null,
+        "reclaimed": {
+          "id": "job",
+          "worker": "b",
+          "token": 2,
+          "leaseUntil": 20,
+          "payload": "synthetic"
+        }
+      }
+    },
+    {
+      "id": "B2-R3-invalid-lease",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-be-b2.mjs:9:203\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-be-b2.mjs:9:1"
+    }
+  ],
+  "errors": [],
+  "pass": false
+}

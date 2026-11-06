@@ -1,0 +1,8 @@
+{
+  "command": "npm.cmd view react@19.0.0 version --fetch-retries=0 --fetch-timeout=10000",
+  "status": "FAIL",
+  "exitCode": 1,
+  "observed": "Registry request failed with EACCES; npm could not write its default user-cache log. No package was installed.",
+  "consequence": "Network-backed dependency setup is unavailable in this sandbox. Use existing local tooling; preserve affected verification limits rather than claiming a build.",
+  "automaticApprovalReview": "No approval request or review was invoked."
+}

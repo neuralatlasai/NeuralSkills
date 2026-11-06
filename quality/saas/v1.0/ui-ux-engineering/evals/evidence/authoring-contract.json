@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0",
+  "objective": "Produce a reusable portable UI/UX engineering skill package with actual bounded evaluation evidence.",
+  "source": "User authoring contract and subsequent instructions to add a new SaaS roles folder and reviewed skills.sh shortlist.",
+  "location": "NeuralSkills/roles/saas/ui-ux-engineering",
+  "runtime": {
+    "core": "Portable Agent Skills Markdown; host capability discovery required",
+    "scripts": "Node >=24; optional existing TypeScript compiler, Playwright module and Chromium browser",
+    "hostMetadata": "No host-specific metadata required or tool grants declared"
+  },
+  "supported": {
+    "scope": [
+      "component",
+      "page",
+      "flow",
+      "application",
+      "design-system"
+    ],
+    "inputs": [
+      "text",
+      "screenshot",
+      "sketch",
+      "Figma",
+      "URL",
+      "repository",
+      "brand/tokens",
+      "documents",
+      "combinations"
+    ],
+    "outputs": [
+      "specification",
+      "editable-design",
+      "prototype",
+      "implementation",
+      "audit",
+      "refinement"
+    ],
+    "modes": [
+      "reproduce",
+      "adapt",
+      "explore",
+      "improve-existing"
+    ]
+  },
+  "exclusions": [
+    "Backend-only and unrelated writing",
+    "Universal native-platform implementation guarantees",
+    "Uninspected inaccessible references or verified integrations without evidence",
+    "Global installation, public upload, publication or production change without authorization"
+  ],
+  "acceptance": [
+    "Eight conditional modules with complete contracts",
+    "One shared input/traceability contract",
+    "Source skills and qualifying UI repositories independently inspected",
+    "Current standards applicability accurately bounded",
+    "Entry <500 lines; progressive detail and resolving resources",
+    "Every packaged script exercised, including meaningful failure paths",
+    "Eight realistic fresh-context cases, two held out from tuning, twelve activation prompts",
+    "C01/C06 compare frozen skill versus disabled baseline three times each",
+    "Preserved raw evidence, actual counts and truthful unverified coverage"
+  ],
+  "authoringLimits": {
+    "cyclesBudget": 3,
+    "scope": "Revisions based on demonstrated public defects; heldout not used to tune",
+    "fieldTelemetry": "unavailable",
+    "fullISOText": "not accessed",
+    "userResearch": "not performed"
+  },
+  "status": "Contract established; results are in the final report, not inferred here"
+}

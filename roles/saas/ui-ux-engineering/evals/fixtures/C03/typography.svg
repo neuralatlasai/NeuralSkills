@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+<rect width="900" height="600" fill="white"/>
+<text x="48" y="67" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="2" fill="#222222">TYPOGRAPHY REFERENCE ONLY</text>
+<text x="48" y="154" font-family="Georgia, serif" font-size="44" fill="#222222">Make space for making.</text>
+<text x="48" y="211" font-family="Arial, sans-serif" font-size="17" fill="#555555">Body copy uses a calm sans serif with generous line height.</text>
+<text x="48" y="240" font-family="Arial, sans-serif" font-size="17" fill="#555555">Keep descriptive text readable at narrow widths.</text>
+<text x="48" y="324" font-family="Georgia, serif" font-size="26" fill="#222222">A small heading with character</text>
+<text x="48" y="381" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.7" fill="#555555">WORKSHOP DETAILS</text>
+<text x="48" y="431" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#222222">Action labels are simple and direct</text>
+<text x="48" y="506" font-family="Arial, sans-serif" font-size="13" fill="#555555">H1 44/1.15 Georgia · H2 26/1.25 Georgia · body 17/1.7 Arial</text>
+<text x="48" y="535" font-family="Arial, sans-serif" font-size="13" fill="#555555">Small labels 13px uppercase with tracking · buttons 16px bold Arial</text>
+</svg>
+

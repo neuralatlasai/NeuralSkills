@@ -1,0 +1,490 @@
+{
+    "caseId":  "B04",
+    "arm":  "skill",
+    "run":  1,
+    "status":  "PASS",
+    "route":  {
+                  "skill":  "backend-engineering",
+                  "activeModules":  [
+                                        "B1",
+                                        "B3",
+                                        "B4",
+                                        "B5",
+                                        "B6",
+                                        "B7",
+                                        "B8"
+                                    ],
+                  "basis":  "Local enqueue/worker correctness, SQLite transaction and restart recovery; no edge/network module."
+              },
+    "startUtc":  "2026-11-05T17:03:14.6948104Z",
+    "endUtc":  "2026-11-05T17:08:49.2067205Z",
+    "elapsedSeconds":  334.51191009999997,
+    "actualTokens":  null,
+    "cost":  null,
+    "knownExternalToolCount":  12,
+    "toolCallCountingBasis":  "9 functions.exec calls (including final metadata validation) and 3 collaboration.send_message calls; nested commands included in their containing external invocation. Final response is not a tool call.",
+    "runtime":  {
+                    "node":  "v24.12.0",
+                    "sqlite":  "3.50.4",
+                    "platform":  "win32",
+                    "arch":  "x64"
+                },
+    "requirements":  [
+                         {
+                             "id":  "B04-R01",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "evidence/verification.json",
+                                              "durable duplicate and conflicting enqueue"
+                                          ]
+                         },
+                         {
+                             "id":  "B04-R02",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "evidence/verification.json",
+                                              "real process crash and restart 1",
+                                              "real process crash and restart 2",
+                                              "real process crash and restart 3"
+                                          ]
+                         },
+                         {
+                             "id":  "B04-R03",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "evidence/verification.json",
+                                              "invalid enqueue and legacy poison jobs reject without silent completion",
+                                              "transaction rollback, retry cap, and subsequent healthy work"
+                                          ]
+                         },
+                         {
+                             "id":  "B04-R04",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "evidence/verification.json",
+                                              "normal completion, callback failure and bounded per-call work",
+                                              "transaction rollback, retry cap, and subsequent healthy work"
+                                          ]
+                         },
+                         {
+                             "id":  "B04-R05",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "evidence/verification.json",
+                                              "durable duplicate and conflicting enqueue",
+                                              "real process crash and restart 1",
+                                              "real process crash and restart 2",
+                                              "real process crash and restart 3",
+                                              "normal completion, callback failure and bounded per-call work",
+                                              "invalid enqueue and legacy poison jobs reject without silent completion",
+                                              "transaction rollback, retry cap, and subsequent healthy work"
+                                          ]
+                         },
+                         {
+                             "id":  "B04-R06",
+                             "status":  "PASS",
+                             "evidence":  [
+                                              "result.json#/coverageDispositions",
+                                              "result.json#/decisions"
+                                          ],
+                             "note":  "All 24 task-level dispositions contain reasons/evidence and five-field requirement-linked decisions are recorded."
+                         }
+                     ],
+    "coverageDispositions":  [
+                                 {
+                                     "id":  "L01",
+                                     "name":  "DNS, discovery, network paths and sockets",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "No network, resolver or socket path in this local SQLite worker.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L02",
+                                     "name":  "TLS, certificates and transport identity",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "No transport or certificates; no TLS boundary in this fixture.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L03",
+                                     "name":  "Proxies, gateways, ingress, CDN and load balancing",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "CLI and direct local module calls have no proxy or ingress.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L04",
+                                     "name":  "Authentication, authorization and tenant identity",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "Trusted local caller/file boundary; tenant or authentication service is absent and not requested.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L05",
+                                     "name":  "API styles, HTTP versions, RPC and streams",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "Preserve module/CLI interface; no HTTP, RPC or streaming service.",
+                                     "evidence":  [
+                                                      "artifact/worker.mjs"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L06",
+                                     "name":  "CRUD, upsert and bulk semantics",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Durable enqueue binds job identity; equal replay accepts and conflicting reuse rejects.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L07",
+                                     "name":  "Validation, parsing, serialization and errors",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Validate IDs, known accounts, safe positive integers; structured failure codes and failed poison state.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L08",
+                                     "name":  "Domain architecture and request lifecycle",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Pending/effect-ledger/done lifecycle and separate terminal failure; transaction owns the local effect.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L09",
+                                     "name":  "Runtime, memory, concurrency, OS and containers",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "One active worker; one job per call; finally closes CLI DB, bounded diagnostic materialization and child timeouts.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L10",
+                                     "name":  "Database modeling and DDL",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Add per-job credit ledger primary key/FKs, attempts/error columns and pending index.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L11",
+                                     "name":  "DML/DQL, ORM, indexes and query plans",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Parameterized statements and indexed pending/identity queries; no ORM or performance claim.",
+                                     "evidence":  [
+                                                      "artifact/worker.mjs"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L12",
+                                     "name":  "Transactions, isolation, locks and consistency",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "BEGIN IMMEDIATE effect+ledger transaction with rollback; separate acknowledgement reconciles committed effects.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L13",
+                                     "name":  "Database privileges and operational administration",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "SQLite file/OS trust boundary has no SQL role/grant administration; production permissions are not requested or verified.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L14",
+                                     "name":  "Storage, replication, partitioning, sharding and hashes",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Local durable ledger and synchronous FULL; actual same-file process restart tested, no replication/sharding claim.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L15",
+                                     "name":  "Cache, views and derived state",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "No cache, materialized view or asynchronous projection is introduced.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L16",
+                                     "name":  "Messaging, event logs, CDC and async effects",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Local durable enqueue/replay and effect-before-ack failure boundary; no broker or external delivery guarantee.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L17",
+                                     "name":  "Durable workers, schedules and workflows",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Durable job identity, bounded persistent attempts, terminal failure and crash reconciliation.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L18",
+                                     "name":  "Files, objects, search and specialized stores",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "SQLite is covered as the selected DB; no upload/object/search/specialized store path.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L19",
+                                     "name":  "External APIs, webhooks, tools and MCP",
+                                     "disposition":  "OUT_OF_SCOPE",
+                                     "reason":  "No remote API, webhook, MCP adapter or external effect.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L20",
+                                     "name":  "Traffic, capacity, scaling and cost",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "At most one pending job and three effect attempts; finite diagnostic output; explicitly unbounded total retained queue.",
+                                     "evidence":  [
+                                                      "artifact/README.md"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L21",
+                                     "name":  "Reliability, backups and recovery",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Three actual process crashes and usable same-file restart plus rollback recovery tested; backup/DR not claimed.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L22",
+                                     "name":  "Observability, objectives and audit",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Persistent job attempts/error and bounded structured CLI snapshots expose done/failed outcomes.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L23",
+                                     "name":  "Infrastructure, build and deployment lifecycle",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Executable original-style CLI and native Node version verified; no dependency downloads, build or deployment.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 },
+                                 {
+                                     "id":  "L24",
+                                     "name":  "Security, privacy, supply chain and lifecycle",
+                                     "disposition":  "IMPLEMENTED_OR_CHANGED",
+                                     "reason":  "Bounded validated inputs and parameterized SQL; trusted local file/direct-writer limitation documented.",
+                                     "evidence":  [
+                                                      "evidence/verification.json"
+                                                  ]
+                                 }
+                             ],
+    "decisions":  [
+                      {
+                          "id":  "B04-D01",
+                          "requirement":  [
+                                              "B04-R01"
+                                          ],
+                          "mechanism":  "Validate exact ID/account/amount, check known account, and compare durable job parameters inside BEGIN IMMEDIATE; bind SQL values.",
+                          "limit":  "IDs\u003c=256 UTF-8 bytes, accounts\u003c=128 bytes, positive safe integer amount; local trusted callers.",
+                          "failure":  "Invalid payload rejects without enqueue; conflicting ID raises JOB_CONFLICT; direct SQL bypass is trusted/outside API.",
+                          "verification":  "File reopen replay, amount/account conflict, invalid payload checks in evidence/verification.json"
+                      },
+                      {
+                          "id":  "B04-D02",
+                          "requirement":  [
+                                              "B04-R02"
+                                          ],
+                          "mechanism":  "Balance update and unique job credit ledger insert commit together before real process.exit(73) hook; matching ledger reconciles to done.",
+                          "limit":  "One SQLite database, one active worker, only local balance effect; retain identities indefinitely.",
+                          "failure":  "Crash after commit leaves pending+credit; restart acknowledges without recredit. External effects and pre-repair unledgered effects require separate reconciliation.",
+                          "verification":  "Three actual crash exit73/restart exit0 runs and persisted SQL observations in evidence/verification.json"
+                      },
+                      {
+                          "id":  "B04-D03",
+                          "requirement":  [
+                                              "B04-R03"
+                                          ],
+                          "mechanism":  "Revalidate pending jobs; invalid payload or unsafe total becomes failed; rollback effect+ledger on storage errors; CLI finally closes DB.",
+                          "limit":  "A bounded safe-integer balance; three effect attempts; transaction cleanup assumes DB remains writable.",
+                          "failure":  "Poison job never silently becomes done; storage failure propagates and later healthy job remains processable; disk failure not tested.",
+                          "verification":  "Legacy invalid rows, post-effect callback failure and injected ledger-trigger rollback/recovery in evidence/verification.json"
+                      },
+                      {
+                          "id":  "B04-D04",
+                          "requirement":  [
+                                              "B04-R04"
+                                          ],
+                          "mechanism":  "One pending job per runOne/CLI invocation, persistent attempt cap3, no retry loop; existing ledger reconciles before retry limit.",
+                          "limit":  "250ms busy timeout per acquisition, output100 rows/table; no total queue quota or hard wall deadline.",
+                          "failure":  "After three effect errors job is failed; caller must reinvoke for retries; corrupt ledger mismatch requires manual repair.",
+                          "verification":  "One-job checks and three injected storage failures in evidence/verification.json; limits documented in artifact/README.md"
+                      },
+                      {
+                          "id":  "B04-D05",
+                          "requirement":  [
+                                              "B04-R05",
+                                              "B04-R06"
+                                          ],
+                          "mechanism":  "Built-in test script uses native file-backed SQLite and spawned real CLI; preserve child status/stdout/stderr and all coverage/decision trace.",
+                          "limit":  "Node24.12.0 SQLite3.50.4 Windows x64 tested; no downloads/network/production action.",
+                          "failure":  "Required failing checks remain FAIL; unsupported production/distributed outcomes are explicit limitations.",
+                          "verification":  "node artifact/verify.mjs, evidence/verification.json, result.json and artifact/README.md"
+                      }
+                  ],
+    "checks":  [
+                   {
+                       "command":  "node --version",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "runtime",
+                       "evidence":  [
+                                        "Observed v24.12.0 during inspection"
+                                    ]
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "real-sqlite-integration-and-process-fault",
+                       "evidence":  [
+                                        "evidence/verification.json"
+                                    ]
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs # durable duplicate and conflicting enqueue",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "integration-subcheck",
+                       "evidence":  [
+                                        "evidence/verification.json # durable duplicate and conflicting enqueue"
+                                    ]
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs # real process crash and restart 1",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "integration-subcheck",
+                       "evidence":  [
+                                        "evidence/verification.json # real process crash and restart 1"
+                                    ]
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs # real process crash and restart 2",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "integration-subcheck",
+                       "evidence":  [
+                                        "evidence/verification.json # real process crash and restart 2"
+                                    ]
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs # real process crash and restart 3",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "integration-subcheck",
+                       "evidence":  [
+                                        "evidence/verification.json # real process crash and restart 3"
+                                    ]
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs # normal completion, callback failure and bounded per-call work",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "integration-subcheck",
+                       "evidence":  [
+                                        "evidence/verification.json # normal completion, callback failure and bounded per-call work"
+                                    ]
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs # invalid enqueue and legacy poison jobs reject without silent completion",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "integration-subcheck",
+                       "evidence":  [
+                                        "evidence/verification.json # invalid enqueue and legacy poison jobs reject without silent completion"
+                                    ]
+                   },
+                   {
+                       "command":  "node artifact/verify.mjs # transaction rollback, retry cap, and subsequent healthy work",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "integration-subcheck",
+                       "evidence":  [
+                                        "evidence/verification.json # transaction rollback, retry cap, and subsequent healthy work"
+                                    ]
+                   },
+                   {
+                       "command":  "initial apply_patch delete+add same worker path",
+                       "exit":  null,
+                       "status":  "FAIL",
+                       "kind":  "tooling",
+                       "evidence":  [
+                                        "evidence/initial-tool-failure.json"
+                                    ],
+                       "note":  "Patch rejected before mutation: multiple operations target worker.mjs. Corrected using Update File; acceptance checks first ran after correction."
+                   },
+                   {
+                       "command":  "Parse result.json; assert six requirement PASS, 24 unique coverage IDs and verification process exit0",
+                       "exit":  0,
+                       "status":  "PASS",
+                       "kind":  "artifact-contract",
+                       "evidence":  [
+                                        "result.json",
+                                        "evidence/verification-command.json",
+                                        "evidence/verification.stdout.txt",
+                                        "evidence/verification.stderr.txt"
+                                    ]
+                   }
+               ],
+    "assumptions":  [
+                        "Exactly one active worker; no stale concurrent owner or external broker.",
+                        "Trusted local caller and DB file/direct SQL writers.",
+                        "Repeated invocation is required to drain more than one job or retry recoverable storage failures.",
+                        "Normal local SQLite commit/filesystem behavior; restart test does not establish power-loss guarantees."
+                    ],
+    "limitations":  [
+                        "No distributed exactly-once claim, remote effect, production deployment, networking or downloads.",
+                        "Original already-applied effects without ledger cannot be inferred; manually reconcile pre-repair databases.",
+                        "No automatic purge: jobs/ledger retained indefinitely for durable identity, storage and total queue grow with admitted jobs.",
+                        "No power-loss/disk-full/backup restore/multi-worker/OS-permission/load verification; no production performance or throughput claim.",
+                        "Node emits experimental SQLite warning; raw crash child warnings retained.",
+                        "Actual tokens/cost unavailable from host."
+                    ],
+    "evidence":  [
+                     "evidence/verification.json",
+                     "artifact/worker.mjs",
+                     "artifact/verify.mjs",
+                     "artifact/README.md",
+                     "evidence/initial-tool-failure.json"
+                 ]
+}

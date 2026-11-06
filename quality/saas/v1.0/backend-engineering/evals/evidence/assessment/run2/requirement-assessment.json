@@ -1,0 +1,353 @@
+{
+  "assessedAt": "2026-11-05T17:34:58.751Z",
+  "control": "Both arms supplied same explicit user-derived disposition definitions/output contract, case requirements, raw fixture, inherited model/tools/budget; skill instructions are the intervention.",
+  "observedTrials": 4,
+  "expectedComparativeTrials": 4,
+  "status": "PASS",
+  "trials": [
+    {
+      "trial": "B01-baseline-2",
+      "caseId": "B01",
+      "controlVersion": "2",
+      "blinding": "Broken: arm/directory/result visible; fixed objective HTTP/SQLite probes.",
+      "sourceEvidence": "b01-results.json",
+      "requirements": [
+        {
+          "id": "B01-R01",
+          "status": "PASS",
+          "basis": "Own HTTP assertions and stored public projection establish allowed title/note, trim, absence/null and version behavior; source uses a single conditional UPDATE RETURNING.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-baseline-2/result.json",
+            "evals/trials/B01-baseline-2/artifact/service.mjs",
+            "evals/trials/B01-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R02",
+          "status": "PASS",
+          "basis": "Own HTTP reader/missing identity, forged tenant header and absent tenant object checks plus unchanged south data establish fixture registry scope.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-baseline-2/result.json",
+            "evals/trials/B01-baseline-2/artifact/service.mjs",
+            "evals/trials/B01-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R03",
+          "status": "PASS",
+          "basis": "Two simultaneous actual HTTP same-version requests yield200/409; close/reopen retains only winner and expected version.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-baseline-2/result.json",
+            "evals/trials/B01-baseline-2/artifact/service.mjs",
+            "evals/trials/B01-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R04",
+          "status": "PASS",
+          "basis": "Own malformed/schema/media/2049byte checks yield requested JSON statuses with no prior invalid mutation; parser bounds inspected.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-baseline-2/result.json",
+            "evals/trials/B01-baseline-2/artifact/service.mjs",
+            "evals/trials/B01-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R05",
+          "status": "PASS",
+          "basis": "Own GET before/after and real file reopen preserve public contract; task verification and commands retained.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-baseline-2/result.json",
+            "evals/trials/B01-baseline-2/artifact/service.mjs",
+            "evals/trials/B01-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R06",
+          "status": "PASS",
+          "basis": "24unique valid coverage values with actual components/reasons/evidence and six five-field requirement decisions inspected. No production claims in README.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-baseline-2/result.json",
+            "evals/trials/B01-baseline-2/artifact/service.mjs",
+            "evals/trials/B01-baseline-2/artifact/README.md"
+          ]
+        }
+      ],
+      "coverage": {
+        "count": 24,
+        "unique": 24,
+        "valid": true
+      },
+      "decisions": {
+        "count": 6,
+        "fiveFields": true
+      }
+    },
+    {
+      "trial": "B01-skill-2",
+      "caseId": "B01",
+      "controlVersion": "2",
+      "blinding": "Broken: arm/directory/result visible; fixed objective HTTP/SQLite probes.",
+      "sourceEvidence": "b01-results.json",
+      "requirements": [
+        {
+          "id": "B01-R01",
+          "status": "PASS",
+          "basis": "Own HTTP assertions and stored public projection establish allowed title/note, trim, absence/null and version behavior; source uses a single conditional UPDATE RETURNING.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-skill-2/result.json",
+            "evals/trials/B01-skill-2/artifact/service.mjs",
+            "evals/trials/B01-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R02",
+          "status": "PASS",
+          "basis": "Own HTTP reader/missing identity, forged tenant header and absent tenant object checks plus unchanged south data establish fixture registry scope.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-skill-2/result.json",
+            "evals/trials/B01-skill-2/artifact/service.mjs",
+            "evals/trials/B01-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R03",
+          "status": "PASS",
+          "basis": "Two simultaneous actual HTTP same-version requests yield200/409; close/reopen retains only winner and expected version.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-skill-2/result.json",
+            "evals/trials/B01-skill-2/artifact/service.mjs",
+            "evals/trials/B01-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R04",
+          "status": "PASS",
+          "basis": "Own malformed/schema/media/2049byte checks yield requested JSON statuses with no prior invalid mutation; parser bounds inspected.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-skill-2/result.json",
+            "evals/trials/B01-skill-2/artifact/service.mjs",
+            "evals/trials/B01-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R05",
+          "status": "PASS",
+          "basis": "Own GET before/after and real file reopen preserve public contract; task verification and commands retained.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-skill-2/result.json",
+            "evals/trials/B01-skill-2/artifact/service.mjs",
+            "evals/trials/B01-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B01-R06",
+          "status": "PASS",
+          "basis": "24unique valid coverage values with actual components/reasons/evidence and six five-field requirement decisions inspected. No production claims in README.",
+          "evidence": [
+            "b01-results.json",
+            "evals/trials/B01-skill-2/result.json",
+            "evals/trials/B01-skill-2/artifact/service.mjs",
+            "evals/trials/B01-skill-2/artifact/README.md"
+          ]
+        }
+      ],
+      "coverage": {
+        "count": 24,
+        "unique": 24,
+        "valid": true
+      },
+      "decisions": {
+        "count": 6,
+        "fiveFields": true
+      }
+    },
+    {
+      "trial": "B02-skill-2",
+      "caseId": "B02",
+      "controlVersion": "2",
+      "blinding": "Broken: arm/directory/result visible; fixed objective HTTP/SQLite probes.",
+      "sourceEvidence": "b02-skill-results.json",
+      "requirements": [
+        {
+          "id": "B02-R01",
+          "status": "PASS",
+          "basis": "Own two-DatabaseSync-connection shared afterRead barrier yields201/409; reopened file has stock1/version2/oneallocation4; south unchanged.",
+          "evidence": [
+            "b02-skill-results.json",
+            "evals/trials/B02-skill-2/result.json",
+            "evals/trials/B02-skill-2/artifact/store.mjs",
+            "evals/trials/B02-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R02",
+          "status": "PASS",
+          "basis": "Own synchronous afterWrite throw leaves no stock/allocation partial mutation; connection has no transaction and subsequent valid reservation succeeds.",
+          "evidence": [
+            "b02-skill-results.json",
+            "evals/trials/B02-skill-2/result.json",
+            "evals/trials/B02-skill-2/artifact/store.mjs",
+            "evals/trials/B02-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R03",
+          "status": "PASS",
+          "basis": "Own zero/negative/fractional, absent item, insufficient stock and tenant checks; source preserves exported async API and version predicates.",
+          "evidence": [
+            "b02-skill-results.json",
+            "evals/trials/B02-skill-2/result.json",
+            "evals/trials/B02-skill-2/artifact/store.mjs",
+            "evals/trials/B02-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R04",
+          "status": "PASS",
+          "basis": "Own forced interleaving invokes both async hooks; actual fault and later retry plus source inspection preserve hooks without memory-only serialization.",
+          "evidence": [
+            "b02-skill-results.json",
+            "evals/trials/B02-skill-2/result.json",
+            "evals/trials/B02-skill-2/artifact/store.mjs",
+            "evals/trials/B02-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R05",
+          "status": "PASS",
+          "basis": "Actual SQLite transaction/CAS mechanism, one-writer/synchronous busy timeout and no distributed guarantee documented and inspected.",
+          "evidence": [
+            "b02-skill-results.json",
+            "evals/trials/B02-skill-2/result.json",
+            "evals/trials/B02-skill-2/artifact/store.mjs",
+            "evals/trials/B02-skill-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R06",
+          "status": "PASS",
+          "basis": "24unique valid coverage values with components/reasons/evidence and six five-field decisions inspected; scope and unavailable metrics stated.",
+          "evidence": [
+            "b02-skill-results.json",
+            "evals/trials/B02-skill-2/result.json",
+            "evals/trials/B02-skill-2/artifact/store.mjs",
+            "evals/trials/B02-skill-2/artifact/README.md"
+          ]
+        }
+      ],
+      "coverage": {
+        "count": 24,
+        "unique": 24,
+        "valid": true
+      },
+      "decisions": {
+        "count": 6,
+        "fiveFields": true
+      }
+    },
+    {
+      "trial": "B02-baseline-2",
+      "caseId": "B02",
+      "controlVersion": "2",
+      "blinding": "Broken: arm/directory/result visible; fixed objective HTTP/SQLite probes.",
+      "sourceEvidence": "b02-baseline-results.json",
+      "requirements": [
+        {
+          "id": "B02-R01",
+          "status": "PASS",
+          "basis": "Own two-DatabaseSync-connection shared afterRead barrier yields201/409; reopened file has stock1/version2/oneallocation4; south unchanged.",
+          "evidence": [
+            "b02-baseline-results.json",
+            "evals/trials/B02-baseline-2/result.json",
+            "evals/trials/B02-baseline-2/artifact/store.mjs",
+            "evals/trials/B02-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R02",
+          "status": "PASS",
+          "basis": "Own synchronous afterWrite throw leaves no stock/allocation partial mutation; connection has no transaction and subsequent valid reservation succeeds.",
+          "evidence": [
+            "b02-baseline-results.json",
+            "evals/trials/B02-baseline-2/result.json",
+            "evals/trials/B02-baseline-2/artifact/store.mjs",
+            "evals/trials/B02-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R03",
+          "status": "PASS",
+          "basis": "Own zero/negative/fractional, absent item, insufficient stock and tenant checks; source preserves exported async API and version predicates.",
+          "evidence": [
+            "b02-baseline-results.json",
+            "evals/trials/B02-baseline-2/result.json",
+            "evals/trials/B02-baseline-2/artifact/store.mjs",
+            "evals/trials/B02-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R04",
+          "status": "PASS",
+          "basis": "Own forced interleaving invokes both async hooks; actual fault and later retry plus source inspection preserve hooks without memory-only serialization.",
+          "evidence": [
+            "b02-baseline-results.json",
+            "evals/trials/B02-baseline-2/result.json",
+            "evals/trials/B02-baseline-2/artifact/store.mjs",
+            "evals/trials/B02-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R05",
+          "status": "PASS",
+          "basis": "Actual SQLite transaction/CAS mechanism, one-writer/synchronous busy timeout and no distributed guarantee documented and inspected.",
+          "evidence": [
+            "b02-baseline-results.json",
+            "evals/trials/B02-baseline-2/result.json",
+            "evals/trials/B02-baseline-2/artifact/store.mjs",
+            "evals/trials/B02-baseline-2/artifact/README.md"
+          ]
+        },
+        {
+          "id": "B02-R06",
+          "status": "PASS",
+          "basis": "24unique valid coverage values with components/reasons/evidence and six five-field decisions inspected; scope and unavailable metrics stated.",
+          "evidence": [
+            "b02-baseline-results.json",
+            "evals/trials/B02-baseline-2/result.json",
+            "evals/trials/B02-baseline-2/artifact/store.mjs",
+            "evals/trials/B02-baseline-2/artifact/README.md"
+          ]
+        }
+      ],
+      "coverage": {
+        "count": 24,
+        "unique": 24,
+        "valid": true
+      },
+      "decisions": {
+        "count": 6,
+        "fiveFields": true
+      }
+    }
+  ],
+  "summary": {
+    "PASS": 24,
+    "FAIL": 0,
+    "UNVERIFIED": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "resources": "Budget/resource observations live separately in ../coordinator-evidence-summary.json; functional criterion PASS is not exact metering proof.",
+  "comparison": "One run per arm per case after control repair; original pilots retained; no best-of, broad superiority, statistical-confidence or resource-saving inference."
+}

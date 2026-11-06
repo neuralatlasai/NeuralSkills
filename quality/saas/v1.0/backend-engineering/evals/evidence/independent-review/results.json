@@ -1,0 +1,375 @@
+{
+  "reviewedSourceSha256": "26110b595a6ce1ba8f1730462986fb5bf1f1cddb3f6a134180f405d30ca82a37",
+  "sourceHashVerifiedAfterProbes": true,
+  "generatedAt": "2026-11-05T16:38:50.463Z",
+  "runtime": "v24.12.0",
+  "requests": 41,
+  "distinctProbeClaims": 19,
+  "raceAttempts": 3,
+  "summary": {
+    "PASS": 12,
+    "FAIL": 6,
+    "UNVERIFIED": 1,
+    "NOT_APPLICABLE": 0
+  },
+  "timing": {
+    "mainHarnessMs": 8058.3971,
+    "raceInterleavingsMs": 566.7210000000005,
+    "raceCertificateGenerationExcluded": true
+  },
+  "results": [
+    {
+      "id": "P01",
+      "claim": "Invalid fixture credentials are rejected",
+      "status": "PASS",
+      "observed": {
+        "status": 401
+      },
+      "source": "scripts/service.mjs:201"
+    },
+    {
+      "id": "P02",
+      "claim": "Bearer authentication rejects a missing authorization scheme",
+      "status": "FAIL",
+      "observed": {
+        "status": 200
+      },
+      "source": "scripts/service.mjs:201"
+    },
+    {
+      "id": "P03",
+      "claim": "Tenant isolation on direct resource read",
+      "status": "PASS",
+      "observed": {
+        "status": 404
+      },
+      "source": "scripts/service.mjs:100"
+    },
+    {
+      "id": "P04",
+      "claim": "Nonadmin owner mutation is rejected",
+      "status": "PASS",
+      "observed": {
+        "status": 403
+      },
+      "source": "scripts/service.mjs:67"
+    },
+    {
+      "id": "P05",
+      "claim": "Atomic same-version updates have exactly one winner",
+      "status": "PASS",
+      "observed": {
+        "statuses": [
+          200,
+          409
+        ],
+        "row": {
+          "quantity": 1,
+          "version": 2
+        }
+      },
+      "source": "scripts/service.mjs:186"
+    },
+    {
+      "id": "P06",
+      "claim": "Idempotency replay rechecks current object authorization",
+      "status": "FAIL",
+      "observed": {
+        "getStatus": 403,
+        "replayStatus": 201,
+        "replayed": "true",
+        "returnedOwner": "limited",
+        "currentOwner": "alice"
+      },
+      "source": "scripts/service.mjs:115-118"
+    },
+    {
+      "id": "P07",
+      "claim": "Hard deletion excludes the representation from create replay",
+      "status": "FAIL",
+      "observed": {
+        "deleteStatus": 204,
+        "getStatus": 404,
+        "replayStatus": 201,
+        "replayBody": {
+          "tenant": "tenant-a",
+          "id": "8b0df932-0523-4b30-b25b-a125ced6ac09",
+          "owner": "alice",
+          "name": "deleted-data",
+          "quantity": 5,
+          "version": 1,
+          "description": ""
+        },
+        "persistedItems": 0
+      },
+      "source": "scripts/service.mjs:118,189-192"
+    },
+    {
+      "id": "P08",
+      "claim": "Database enforces the integer quantity domain for alternative writers",
+      "status": "FAIL",
+      "observed": {
+        "directSqlAccepted": true,
+        "httpStatus": 200,
+        "returnedQuantity": 1.5,
+        "sqliteType": "real"
+      },
+      "source": "scripts/service.mjs:22"
+    },
+    {
+      "id": "P09",
+      "claim": "Cursor is bound to caller identity",
+      "status": "PASS",
+      "observed": {
+        "status": 400
+      },
+      "source": "scripts/service.mjs:131"
+    },
+    {
+      "id": "P10",
+      "claim": "Cursor signature forgery is rejected",
+      "status": "PASS",
+      "observed": {
+        "status": 400
+      },
+      "source": "scripts/service.mjs:129"
+    },
+    {
+      "id": "P11",
+      "claim": "Cursor parser rejects trailing components",
+      "status": "FAIL",
+      "observed": {
+        "status": 200
+      },
+      "source": "scripts/service.mjs:128"
+    },
+    {
+      "id": "P12",
+      "claim": "List page cap is enforced",
+      "status": "PASS",
+      "observed": {
+        "status": 422
+      },
+      "source": "scripts/service.mjs:159"
+    },
+    {
+      "id": "P13",
+      "claim": "Local worker effect deduplicates after effect-before-ack crash",
+      "status": "PASS",
+      "observed": {
+        "crash": "Injected worker crash after durable local effect:319c23da-3f61-4cec-ba5b-41bda76630ca",
+        "attempts": 2,
+        "state": "acked",
+        "effects": 1,
+        "method": "Exported worker API; process crash independently UNVERIFIED here"
+      },
+      "source": "scripts/service.mjs:237-241"
+    },
+    {
+      "id": "P14",
+      "claim": "Deletion policy for committed worker effects",
+      "status": "UNVERIFIED",
+      "observed": {
+        "remainingJob": 0,
+        "remainingEffects": 1,
+        "reason": "No documented retention/deletion rule for the local effect ledger; dependent job cascades but effect persists."
+      },
+      "source": "scripts/service.mjs:25-26"
+    },
+    {
+      "id": "P15",
+      "claim": "Running HTTPS server adopts a newly trusted certificate",
+      "status": "PASS",
+      "observed": {
+        "status": 200,
+        "changed": true
+      },
+      "source": "scripts/service.mjs:233"
+    },
+    {
+      "id": "P16",
+      "claim": "Credential rotation retires the old credential",
+      "status": "PASS",
+      "observed": {
+        "oldStatus": 401,
+        "newStatus": 200
+      },
+      "source": "scripts/service.mjs:234"
+    },
+    {
+      "id": "P17",
+      "claim": "Backup preserves integrity and a pre-backup credential revocation",
+      "status": "PASS",
+      "observed": {
+        "backupMs": 11.506800000000112,
+        "integrity": "ok",
+        "oldCredentialActive": 0
+      },
+      "source": "scripts/service.mjs:235"
+    },
+    {
+      "id": "P18",
+      "claim": "Drain preserves admitted work, rejects new work and closes listeners",
+      "status": "PASS",
+      "observed": {
+        "inflight": 200,
+        "newRequest": 503,
+        "stopMs": 11.217399999999543
+      },
+      "source": "scripts/service.mjs:243-244"
+    },
+    {
+      "id": "P19",
+      "claim": "Object authorization and omitted PATCH fields survive concurrent owner revocation during body parsing",
+      "status": "FAIL",
+      "observed": {
+        "attempts": 3,
+        "reproduced": 3,
+        "interleavings": [
+          {
+            "attempt": 1,
+            "transferStatus": 200,
+            "transferOwner": "alice",
+            "transferVersion": 2,
+            "limitedMutationStatus": 200,
+            "finalOwner": "limited",
+            "finalQuantity": 777,
+            "finalVersion": 3,
+            "status": "FAIL"
+          },
+          {
+            "attempt": 2,
+            "transferStatus": 200,
+            "transferOwner": "alice",
+            "transferVersion": 2,
+            "limitedMutationStatus": 200,
+            "finalOwner": "limited",
+            "finalQuantity": 777,
+            "finalVersion": 3,
+            "status": "FAIL"
+          },
+          {
+            "attempt": 3,
+            "transferStatus": 200,
+            "transferOwner": "alice",
+            "transferVersion": 2,
+            "limitedMutationStatus": 200,
+            "finalOwner": "limited",
+            "finalQuantity": 777,
+            "finalVersion": 3,
+            "status": "FAIL"
+          }
+        ]
+      },
+      "source": "scripts/service.mjs:165,183-187"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "status": "FAIL",
+      "severity": "high",
+      "claim": "Object authorization and omitted PATCH fields survive concurrent owner revocation",
+      "probes": [
+        "P19"
+      ],
+      "impact": "Limited user restores revoked ownership and mutates quantity after an administrator transfers ownership.",
+      "recommendation": "Parse first, authorize current state and enforce ownership/version in the storage operation; preserve omitted fields from current state."
+    },
+    {
+      "id": "F02",
+      "status": "FAIL",
+      "severity": "high",
+      "claim": "Idempotency replay enforces current object authorization",
+      "probes": [
+        "P06"
+      ],
+      "impact": "GET403 is bypassed by original POST replay201 with full historical representation.",
+      "recommendation": "Separate operation deduplication from current disclosure authorization."
+    },
+    {
+      "id": "F03",
+      "status": "FAIL",
+      "severity": "medium",
+      "claim": "Hard deletion excludes retained representation disclosure",
+      "probes": [
+        "P07"
+      ],
+      "impact": "GET404 but replay201 discloses deleted item; item is not recreated.",
+      "recommendation": "Specify replay retention/deletion contract; redact retained bodies or deny disclosure after deletion."
+    },
+    {
+      "id": "F04",
+      "status": "FAIL",
+      "severity": "medium",
+      "claim": "Database enforces integer inventory domain for alternative writers",
+      "probes": [
+        "P08"
+      ],
+      "impact": "Direct SQL stores1.5 and HTTP returns1.5.",
+      "recommendation": "Use suitable STRICT migration or typeof integer CHECK plus range; test alternative writers."
+    },
+    {
+      "id": "F05",
+      "status": "FAIL",
+      "severity": "low",
+      "claim": "Bearer scheme is validated",
+      "probes": [
+        "P02"
+      ],
+      "impact": "Raw valid secret without scheme accepted; invalid secrets still denied.",
+      "recommendation": "Validate complete Bearer header contract."
+    },
+    {
+      "id": "F06",
+      "status": "FAIL",
+      "severity": "low",
+      "claim": "Cursor parser rejects trailing components",
+      "probes": [
+        "P11"
+      ],
+      "impact": "Valid cursor suffix accepted; no signature forgery or scope bypass observed.",
+      "recommendation": "Require exactly two canonical components."
+    },
+    {
+      "id": "F07",
+      "status": "UNVERIFIED",
+      "claim": "Committed-effect retention and deletion races have a defined verified policy",
+      "probes": [
+        "P14"
+      ],
+      "impact": "Job deleted while local effect retained; no complete effect retention contract or delayed-worker fencing test.",
+      "recommendation": "Define retention/fencing and test deletion interleavings if supported."
+    }
+  ],
+  "rawEvidence": [
+    "probe-results.json",
+    "race-results.json"
+  ],
+  "report": "report.md",
+  "limits": [
+    "All writes stay in independent-review; original source and integrated evidence were not altered.",
+    "Real loopback HTTPS with generated CA verification and real disk-backed SQLite.",
+    "Importing source client avoids duplicating transport, but is a shared harness dependency.",
+    "No production authentication, remote effect, physical disk outage, process termination or power loss was exercised by this probe harness."
+  ],
+  "existingEvidenceInspected": {
+    "integratedCases": 13,
+    "integratedReported": {
+      "PASS": 13,
+      "FAIL": 0,
+      "UNVERIFIED": 0
+    },
+    "load": {
+      "runs": 18,
+      "intended": 822,
+      "generated": 621,
+      "generatorDropped": 201,
+      "useful": 382,
+      "rejected": 136,
+      "failed": 103
+    },
+    "notRerunByReviewer": true
+  },
+  "score": null
+}

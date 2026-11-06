@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Find a field guide</title><link rel="stylesheet" href="style.css"><script src="dist/app.js" defer></script></head>
+<body><main>
+  <header><p class="eyebrow">THE FIELD LIBRARY</p><h1>Find a field guide</h1><p class="intro">A little knowledge for your next adventure.</p></header>
+  <form id="search-form" role="search">
+    <label for="query">What would you like to explore?</label>
+    <div class="search-row"><input id="query" name="query" type="search" required placeholder="Try cedar or moss" aria-describedby="search-help" autocomplete="off"><button type="submit">Search <span aria-hidden="true">→</span></button></div>
+    <p id="search-help" class="hint">Search by plant, place, or habitat.</p>
+  </form>
+  <section id="outcome" aria-labelledby="outcome-heading">
+    <div class="outcome-title"><h2 id="outcome-heading">Your next discovery</h2><span class="state-mark" aria-hidden="true">↗</span></div>
+    <p id="feedback" role="status" aria-live="polite" aria-atomic="true">Enter a topic above to find a guide.</p>
+    <button id="retry" type="button" hidden>Retry</button>
+    <ul id="results" aria-label="Field guides" aria-busy="false"></ul>
+  </section>
+  <footer>LOCAL DEMO · Sample guides, simulated search</footer>
+</main></body></html>

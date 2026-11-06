@@ -1,0 +1,60 @@
+{
+  "node": "v24.12.0",
+  "cases": [
+    {
+      "id": "UI-U1",
+      "originalFixture": {
+        "healthyControls": 1,
+        "requiredFaultsExposed": 7,
+        "runtimeErrors": 0
+      },
+      "repairedAuthorControl": {
+        "allChecksPass": true,
+        "checkCount": 9
+      },
+      "notSkillImplementationTrial": true
+    },
+    {
+      "id": "BE-B1",
+      "originalFixture": {
+        "healthyControls": 1,
+        "requiredFaultsExposed": 6,
+        "runtimeErrors": 0
+      },
+      "repairedAuthorControl": {
+        "allChecksPass": true,
+        "checkCount": 8
+      },
+      "notSkillImplementationTrial": true
+    },
+    {
+      "id": "UI-U2",
+      "originalFixture": {
+        "healthyControls": 1,
+        "requiredFaultsExposed": 4,
+        "runtimeErrors": 0
+      },
+      "repairedAuthorControl": {
+        "allChecksPass": true,
+        "checkCount": 5
+      },
+      "notSkillImplementationTrial": true
+    },
+    {
+      "id": "BE-B2",
+      "originalFixture": {
+        "healthyControls": 1,
+        "requiredFaultsExposed": 4,
+        "runtimeErrors": 0
+      },
+      "repairedAuthorControl": {
+        "allChecksPass": true,
+        "checkCount": 7
+      },
+      "notSkillImplementationTrial": true
+    }
+  ],
+  "supportChecksPass": true,
+  "sealedEvidence": "author-evidence/",
+  "note": "Counts only; holdout task semantics remain sealed. Author controls validate checkers and do not demonstrate skill performance."
+}

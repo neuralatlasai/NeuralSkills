@@ -1,0 +1,433 @@
+{
+  "caseId": "C06",
+  "arm": "baseline",
+  "run": 3,
+  "startedAt": "2026-11-05T16:48:03Z",
+  "endedAt": "2026-11-05T16:53:24.135Z",
+  "elapsedSeconds": 321,
+  "route": "native TypeScript + CSS; local static page at /; provided local Node, TypeScript API, Playwright and Chrome",
+  "requirementCoverage": [
+    {
+      "id": "C06-R01",
+      "status": "PASS",
+      "implementation": "One small native TypeScript/CSS page with unchanged fixture, no framework or backend.",
+      "evidence": [
+        "artifact/src/app.ts",
+        "artifact/src/fake-api.ts",
+        "evidence/browser-checks.json#fixture-unchanged"
+      ]
+    },
+    {
+      "id": "C06-R02",
+      "status": "PASS",
+      "implementation": "Labeled search input and Search button; native form submits via Enter.",
+      "evidence": [
+        "artifact/public/index.html",
+        "evidence/browser-checks.json#search-button",
+        "evidence/browser-checks.json#focus-after-enter"
+      ]
+    },
+    {
+      "id": "C06-R03",
+      "status": "PASS",
+      "implementation": "Initial prompt and visible pending feedback; search stays available during requests.",
+      "evidence": [
+        "evidence/desktop-initial.png",
+        "evidence/desktop-pending.png",
+        "evidence/browser-checks.json#pending-search-enabled"
+      ]
+    },
+    {
+      "id": "C06-R04",
+      "status": "PASS",
+      "implementation": "Guide cards show title, habitat and page count; empty and failure states offer clear next steps.",
+      "evidence": [
+        "evidence/browser-checks.json#cedar",
+        "evidence/browser-checks.json#moss",
+        "evidence/browser-checks.json#empty",
+        "evidence/browser-checks.json#failure"
+      ]
+    },
+    {
+      "id": "C06-R05",
+      "status": "PASS",
+      "implementation": "Monotonic request identity checks both resolution and rejection before any outcome update. Cedar→moss and fail→moss preserve moss after all promises settle.",
+      "evidence": [
+        "artifact/src/app.ts",
+        "evidence/browser-checks.json#stale-success",
+        "evidence/browser-checks.json#stale-failure"
+      ]
+    },
+    {
+      "id": "C06-R06",
+      "status": "PASS",
+      "implementation": "Retry captures the failed submitted query and makes a new request even after input edits.",
+      "evidence": [
+        "evidence/browser-checks.json#retry-same-query",
+        "evidence/browser-checks.json#retry-new-attempt"
+      ]
+    },
+    {
+      "id": "C06-R07",
+      "status": "PASS",
+      "implementation": "Persistent polite atomic status, busy result region, explicit label, keyboard focus retained on search and restored before Retry is removed, visible focus styling and reduced motion support.",
+      "evidence": [
+        "evidence/browser-checks.json#accessible-markup",
+        "evidence/browser-checks.json#retry-keyboard-reachable",
+        "evidence/browser-checks.json#retry-focus",
+        "evidence/browser-checks.json#reduced-motion"
+      ]
+    },
+    {
+      "id": "C06-R08",
+      "status": "PASS",
+      "implementation": "Responsive 320px layout, wrapping cards and outcomes, setup instructions with checked built JavaScript.",
+      "evidence": [
+        "evidence/mobile-moss.png",
+        "evidence/mobile-failure.png",
+        "evidence/browser-checks.json#mobile-320",
+        "artifact/README.md",
+        "evidence/setup-check.json"
+      ]
+    }
+  ],
+  "assumptions": [
+    "The input lists eight requirement IDs without individual definitions; coverage maps them to the task requirements in task order.",
+    "No extra visual references or brand assets were supplied; used a restrained field-library identity with native fonts and decorative text glyphs.",
+    "Fixture paths in C06.json resolve under evals/fixtures; the initially attempted role-root fixture paths did not exist."
+  ],
+  "decisions": [
+    "Keep Search enabled and use request sequence IDs instead of cancellation because the API has no AbortSignal.",
+    "Use textContent for all query and API content and a persistent live region outside the busy results region.",
+    "Keep the search input and button mounted; Retry returns focus to the input before replacing its own card.",
+    "Supply precompiled browser modules so running the page only requires Node; rebuilding uses the provided local TypeScript API.",
+    "No UI skill, references, cases, rubric, previous trials, network, installs, or unrelated files were consulted."
+  ],
+  "checks": [
+    {
+      "id": "typescript-strict-build",
+      "status": "PASS",
+      "evidence": "node artifact/build.cjs completed with zero diagnostics; TypeScript checked and emitted app.js and fake-api.js."
+    },
+    {
+      "id": "initial",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Ready when you are.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:46.751Z"
+    },
+    {
+      "id": "pending",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Searching for “cedar”…",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:46.872Z"
+    },
+    {
+      "id": "pending-search-enabled",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Input and Search enabled while cedar pending.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:46.884Z"
+    },
+    {
+      "id": "cedar",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "status": "1 guide found for “cedar”.",
+          "cards": [
+            "FIELD GUIDE / 01Cedar trails and their seasonal wildlifeForest112 pages"
+          ]
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:48.377Z"
+    },
+    {
+      "id": "focus-after-enter",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Input retains focus after Enter and result arrival.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:48.390Z"
+    },
+    {
+      "id": "moss",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "status": "2 guides found for “moss”.",
+          "cards": [
+            "FIELD GUIDE / 01Mosses of the rain-soaked northern woodlandWoodland84 pages",
+            "FIELD GUIDE / 02Pocket guide to urban mossUrban46 pages"
+          ]
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:48.630Z"
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "evidence": {
+        "observed": "❧No guides found this time.Try a broader term or a different plant or place. Your search was “empty”.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:49.041Z"
+    },
+    {
+      "id": "failure",
+      "status": "PASS",
+      "evidence": {
+        "observed": "!We couldn’t load your guides.The field guide service is temporarily unavailable.Retry",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:49.896Z"
+    },
+    {
+      "id": "retry-keyboard-reachable",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Tab from input to Search, then Retry.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:49.996Z"
+    },
+    {
+      "id": "retry-same-query",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "status": "Searching for “fail”…",
+          "input": "fail"
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:50.013Z"
+    },
+    {
+      "id": "retry-focus",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Retry moves focus to search input before removing itself.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:50.026Z"
+    },
+    {
+      "id": "retry-new-attempt",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Retry showed pending and subsequently failed again through real fixture.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:50.860Z"
+    },
+    {
+      "id": "stale-success",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "elapsedMs": 1476,
+          "status": "2 guides found for “moss”."
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:52.339Z"
+    },
+    {
+      "id": "stale-failure",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "elapsedMs": 930,
+          "status": "2 guides found for “moss”."
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:53.273Z"
+    },
+    {
+      "id": "mobile-320",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "viewport": 320,
+          "body": 320,
+          "document": 320,
+          "cards": [
+            {
+              "left": 20,
+              "right": 300
+            },
+            {
+              "left": 20,
+              "right": 300
+            }
+          ],
+          "input": {
+            "x": 20,
+            "y": 339.1875,
+            "width": 179.109375,
+            "height": 48,
+            "top": 339.1875,
+            "right": 199.109375,
+            "bottom": 387.1875,
+            "left": 20
+          }
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:53.367Z"
+    },
+    {
+      "id": "mobile-failure-320",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Failure and Retry stay within 320px viewport.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:54.272Z"
+    },
+    {
+      "id": "accessible-markup",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "label": "query",
+          "inputId": "query",
+          "role": "status",
+          "live": "polite",
+          "atomic": "true",
+          "busy": "false"
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:54.275Z"
+    },
+    {
+      "id": "fixture-unchanged",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "sha256": "baa8f07b2ffd4cfbfb614f12fa69a53745499c5ed06e056e326ac37a25bd10c3"
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:54.277Z"
+    },
+    {
+      "id": "search-button",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Search button submitted moss and displayed two cards.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:54.550Z"
+    },
+    {
+      "id": "reduced-motion",
+      "status": "PASS",
+      "evidence": {
+        "observed": "Spinner animation disabled with prefers-reduced-motion: reduce.",
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:54.589Z"
+    },
+    {
+      "id": "browser-runtime",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "errors": []
+        },
+        "file": "evidence/browser-checks.json"
+      },
+      "at": "2026-11-05T16:51:55.929Z"
+    },
+    {
+      "id": "setup-server",
+      "status": "PASS",
+      "evidence": {
+        "command": "node serve.cjs",
+        "output": "Fieldnotes: http://127.0.0.1:4173\n",
+        "replies": [
+          {
+            "file": "index.html",
+            "status": 200,
+            "contentType": "text/html; charset=utf-8",
+            "bytes": 1978
+          },
+          {
+            "file": "style.css",
+            "status": 200,
+            "contentType": "text/css; charset=utf-8",
+            "bytes": 4102
+          },
+          {
+            "file": "app.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 4116
+          },
+          {
+            "file": "fake-api.js",
+            "status": 200,
+            "contentType": "text/javascript; charset=utf-8",
+            "bytes": 1173
+          }
+        ]
+      }
+    },
+    {
+      "id": "visual-review",
+      "status": "PASS",
+      "evidence": "Viewed desktop-initial.png, desktop-moss.png, mobile-moss.png, and mobile-failure.png. Text and controls are legible, long titles wrap, focus ring is visible, and no clipping or overlap observed."
+    },
+    {
+      "id": "first-run-console-error",
+      "status": "FAIL",
+      "evidence": "Historical: first browser run recorded one resource 404. Added embedded favicon; final run recorded zero HTTP, console, and page errors. Preserved in evidence/browser-checks-first.json."
+    },
+    {
+      "id": "second-run-test-selector",
+      "status": "FAIL",
+      "evidence": "Historical runner failure: non-exact Search locator matched Search and Retry search for fail. Corrected to exact accessible-name matching. Preserved in evidence/browser-checks-second.json; final complete run passed."
+    },
+    {
+      "id": "screen-reader-announcement",
+      "status": "UNVERIFIED",
+      "evidence": "Live-region attributes verified in Chrome DOM; no actual screen reader or assistive technology was run."
+    },
+    {
+      "id": "cross-browser",
+      "status": "UNVERIFIED",
+      "evidence": "Only supplied Chrome via Playwright was executed."
+    },
+    {
+      "id": "helper-shutdown",
+      "status": "PASS",
+      "evidence": "Browser test closes browser and ephemeral server in finally; setup smoke server child was terminated and awaited before writing result."
+    },
+    {
+      "id": "first-setup-test-runner",
+      "status": "FAIL",
+      "evidence": "Historical test-runner failure: Node fetch Response.status was called as a function. Corrected to property access. First failure retained in evidence/setup-check-first.json; final setup smoke passed all four asset requests."
+    }
+  ],
+  "limitations": [
+    "Real screen-reader announcement behavior and non-Chrome engines were not tested.",
+    "Build script references the provided environment-specific TypeScript path; README explains changing it on another machine.",
+    "Historical tooling and test-runner failures are retained separately from final passing behavior."
+  ],
+  "tokens": null,
+  "cost": null
+}

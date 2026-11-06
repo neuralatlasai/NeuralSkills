@@ -1,0 +1,65 @@
+# Design, content and interaction
+
+Use for M3/M4/M6. These are decisions to make, not a mandatory visual style. Reproduction inherits the observable reference; established product work inherits its system. For exploration, choose criteria before implementation.
+
+## Make subjective intent testable
+
+Turn adjectives into an audience/task interpretation, explicit decisions and checks. Keep supplied preferences separate from your interpretation. Example for a desktop operations tool:
+
+| Brief language | Possible decision, to confirm through context | Observable acceptance |
+| --- | --- | --- |
+| Professional | Calm hierarchy, one primary action, restrained status color | Primary task/action named; hierarchy clear at target viewport; statuses include text; shared controls reuse tokens |
+| Modern | Content-led responsive composition and clear state feedback | Narrow flow works without page overflow; visible focus; loading/error/success differentiated; no novelty requirement |
+| Stylish | Distinctive type/composition or a purposeful asset treatment | Chosen direction has a rationale; consistent type/spacing roles; contrast and content stress still pass |
+| Dense | Show more comparable information with controlled rhythm | Key fields align, labels remain readable, keyboard tasks work; smaller spacing does not remove necessary targets |
+| Fast | Immediate feedback and bounded operation completion | Feedback latency and operation duration have separate stated budgets and measured conditions |
+
+These examples do not mandate monochrome dashboards, a particular font, gradients, rounded cards, or animation. A familiar template is not evidence that it fits the product.
+
+## Task and state first
+
+Identify who is acting, what decision they need to make, and which content supports it. Design priority before decoration. For a flow, map entry, action, completion and recovery, including back navigation, reload and direct-link behavior. Preserve user work across validation failure, refresh and back navigation when appropriate.
+
+For consequential controls record:
+
+| Contract field | Example question |
+| --- | --- |
+| Semantics and name | Is this a button action, navigation link, checkbox or custom widget? What does assistive technology announce? |
+| Inputs and outputs | What values/events/API boundary does it accept and emit? Who owns truth? |
+| States/transitions | What initiates loading, empty, error or success? Are selected, disabled and pressed different? |
+| Keyboard/focus | Can the task be completed by keyboard? Where does focus move on open/close/error? |
+| Validation/recovery | How are errors associated, values preserved, duplicate submissions prevented and retries bounded? |
+
+Avoid custom menus/listboxes when a native select or list of links meets requirements. Do not put click handlers on generic elements as a substitute for button/link behavior. A loading action needs an accessible name, visible feedback and an explicit duplicate-action policy. A disabled action may need explanatory text; do not make a tooltip the only explanation.
+
+## Visual authority
+
+Define only roles needed for the scope. Use semantic tokens (`text-primary`, `surface`, `action`, `danger`, `focus`) rather than unexplained color literals repeated across components. Maintain aliases/theme overrides in one authority. Document actual theme coverage; a partial dark theme is not a complete variant.
+
+- **Type:** name body, label, heading and data roles; choose font stack, size, weight, line height and text measure for real content. Check font availability and fallback before a fidelity claim. A screenshot's apparent font is an inference unless identified.
+- **Color:** distinguish surfaces, hierarchy and interactive/status states. Use text/icons as well as color for meaning. Measure actual foreground/background pairs, including hover/focus, rather than trusting a palette name.
+- **Space/composition:** choose a spacing rhythm, grid, alignment, content width, density, radius, border and elevation roles. Use whitespace to group and prioritize; large empty areas have a cost in data-oriented tasks.
+- **Assets:** choose icons/images appropriate to the task, with license/provenance and useful alternative text. Decorative assets have empty alternatives. Reserve dimensions to avoid shifts. Use local/system fonts when external fonts do not justify transfer/privacy cost.
+- **Motion:** define purpose (continuity, feedback, state change), duration/easing and reduced-motion alternative. Motion must not carry the only state signal. Avoid gratuitous continuous effects and blanket `transition: all`.
+
+For a system, document token types/aliases, variants, ownership, usage, migration and compatibility. Evaluate DTCG 2025.10 interchange when another tool needs it; do not force it onto every CSS variable file or call it a W3C Standard.
+
+## Responsive and content stress
+
+Define transformations: stacking/order, navigation replacement, column priorities, table handling, wrapping, target spacing and overflow. Choose breakpoints from where actual content breaks. State expected viewport/support boundaries, including an intermediate width, rather than claiming every device.
+
+Test narrow width with long headings, unbroken identifiers, translated labels, errors and realistic data volume. Use logical CSS properties where direction may vary. Do not clip critical content to preserve a mockup. An intentionally scrollable data table needs context and a usable small-screen strategy; page-level horizontal overflow is a different issue. Changing DOM order can change reading/focus order: visual order and keyboard order must remain sensible.
+
+Check relevant localization: language metadata, locale formatting, text expansion, pluralization, RTL, wrapping and truncation. Do not make up translations or assume a reversed English sentence is Arabic. Fixture text can be supplied/simulated and labeled accordingly.
+
+## Reference reproduction
+
+Record screenshot dimensions, crop, viewport, device scale, fonts, renderer and visible state where known. Inspect the image before implementation. Map regions to layout/type/color/asset requirements. Mark unavailable fonts/assets and hidden behavior as unknown. Establish tolerances or a qualitative rubric before reviewing output. Compare renders under the declared conditions; pixel diffs are sensitive to fonts/antialiasing and do not replace hierarchy/content review. State intentional deviations such as contrast, touch size or keyboard treatment. Never claim a responsive rule from one static screenshot.
+
+For multiple references, give each a role and precedence: e.g. supplied brand tokens govern color/type, a layout reference governs grouping, an interaction reference informs recovery. Conflicts between explicit user requirements need resolution; do not average incompatible references invisibly.
+
+## Inclusive review
+
+Default to WCAG 2.2 A and AA; use the normative source in the standards register. Consider keyboard access/order/traps, focus visible/unobscured, accessible names/roles/states, headings/landmarks, labels/instructions, error identification/association, contrast, resizing and reflow, target size and alternatives, motion preferences and applicable authentication needs. Do not invent clause numbers from memory; cite only verified relevant criteria when needed.
+
+Separate coverage into automated rules, manual keyboard/focus, manual zoom/reflow, visual contrast/content review, and assistive technology with actual browser/AT version. Browser DOM assertions can establish names/attributes, not a screen-reader result. A screenshot shows appearance, not keyboard operability. An expert/agent review is not research with representative users.

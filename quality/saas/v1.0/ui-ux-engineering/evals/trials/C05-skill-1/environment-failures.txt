@@ -1,0 +1,11 @@
+Initial check invocation:
+npm run typecheck --cache ../npm-cache
+npm run build --cache ../npm-cache
+
+Both were blocked before execution by the PowerShell npm.ps1 entry point:
+File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.
+FullyQualifiedErrorId: UnauthorizedAccess
+
+The commands were retried using npm.cmd; their actual output is in typecheck.log and build.log, with exit codes in script-exits.json. No execution policy was changed.
+
+git diff --no-index produced the retained source diffs and exited 1 because files differ. It also warned that LF would be replaced by CRLF the next time Git touches the files. No git staging or commit operation was performed.

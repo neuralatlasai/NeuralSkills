@@ -1,0 +1,298 @@
+{
+  "version": "1.0.0",
+  "frozenAt": "2026-11-05T16:51:15.631Z",
+  "source": "User meet.md and exact listed files",
+  "heldout": "B05/B06 and grader heldout not semantically read by coordinator before this byte-hash freeze.",
+  "budget": {
+    "wallSeconds": 360,
+    "toolCalls": 20,
+    "note": "Hard per frozen protocol, no model/reasoning overrides."
+  },
+  "files": [
+    {
+      "path": "SKILL.md",
+      "bytes": 10973,
+      "sha256": "d3b7a8508c01993918412aa9cf40f8fa842b764c145c3189bf676969d5cdfbbc"
+    },
+    {
+      "path": "assets/coverage-index.json",
+      "bytes": 4201,
+      "sha256": "460cfb0f59dda03ff00079428d5a305b1a9176224b31c748b668291804c14af7"
+    },
+    {
+      "path": "assets/gates.json",
+      "bytes": 2995,
+      "sha256": "cfe5b9b7ce1507f7918e03afaae32f77f794078179557345ddf07b5dc1039227"
+    },
+    {
+      "path": "assets/manifest.json",
+      "bytes": 8022,
+      "sha256": "bf5977bc80e190d909381e098643df225d7be429572fdd866fb6043328556dcd"
+    },
+    {
+      "path": "assets/task.schema.json",
+      "bytes": 6357,
+      "sha256": "31f8b8a8db413d375ef13a5ea250d03089ad7f3181c66131d06c91856352b519"
+    },
+    {
+      "path": "assets/task.template.json",
+      "bytes": 9718,
+      "sha256": "8a25b2e343a05e656be268ff3ad3a4beef30867e85af11a5d6639eea7f2dc590"
+    },
+    {
+      "path": "evals/activation.json",
+      "bytes": 2295,
+      "sha256": "253ee33784a857a1ac9cf5c078160d1e519214ddceae76df6823b5db64bf9798"
+    },
+    {
+      "path": "evals/cases.json",
+      "bytes": 10402,
+      "sha256": "4c4698eee81a02eac185f9d8c644c72e03770afc4a64bc0c61e25ea68eb58e0a"
+    },
+    {
+      "path": "evals/fixtures/README.md",
+      "bytes": 7419,
+      "sha256": "2b6a5cc8706f210fff10d0104ed3ce8b3010669ff762b0e75175546e26a78e6d"
+    },
+    {
+      "path": "evals/fixtures/contracts.ts",
+      "bytes": 1304,
+      "sha256": "3aea5580136efb0d040c8f381e8b96a2c44c94d1832651c7ae65b6db83ef4f73"
+    },
+    {
+      "path": "evals/fixtures/legacy-repository.mjs",
+      "bytes": 543,
+      "sha256": "8262caada1a644bf71bf23f6bcf70a25db1016be0648f46ab4f5f360a37dcf95"
+    },
+    {
+      "path": "evals/fixtures/load-workloads.json",
+      "bytes": 802,
+      "sha256": "281beb0e3aa99389b36435c2cf683f81cc61dadefe598aee3034da710a048f9a"
+    },
+    {
+      "path": "evals/heldout/B05.json",
+      "bytes": 2012,
+      "sha256": "4a347f55f2b904eb02ab39f12c1719a8c5bf91317cabc8ba1eeaac163be3216d"
+    },
+    {
+      "path": "evals/heldout/B05/README.md",
+      "bytes": 356,
+      "sha256": "cb4a701ae669137b35deb07d9ae014d235f9b431a4e9c59d1c155dfaae827442"
+    },
+    {
+      "path": "evals/heldout/B05/deletions.json",
+      "bytes": 137,
+      "sha256": "1b267474823f67266085a66b3856b0382a73c650547f05cd67922b140b2a6373"
+    },
+    {
+      "path": "evals/heldout/B05/store.mjs",
+      "bytes": 742,
+      "sha256": "a776d7cfb2be6eea1a1b57e3c6e35424babdb6cce832c944af9af1dbc43c67f1"
+    },
+    {
+      "path": "evals/heldout/B06.json",
+      "bytes": 2223,
+      "sha256": "38802b001820e7f9076491f9119e62e78f9d5e59463c33736863fae755303d77"
+    },
+    {
+      "path": "evals/heldout/B06/README.md",
+      "bytes": 626,
+      "sha256": "a7ea3b0d99d46ef27efaaf9dc1b5fdf91483094afa443175eb935f2bb5bfc74a"
+    },
+    {
+      "path": "evals/heldout/B06/service.mjs",
+      "bytes": 1706,
+      "sha256": "d2f89655c29b5cea959cc1f1ba8af00ddda47a572fc4a3d704dd73f92507886f"
+    },
+    {
+      "path": "evals/heldout/grading.json",
+      "bytes": 4806,
+      "sha256": "5d33c3c85b2351d09c1861fc841804aa2d2ee2ee0bfe63c44dc6213a63d30517"
+    },
+    {
+      "path": "evals/protocol.md",
+      "bytes": 7218,
+      "sha256": "e7d7dc0f83683c8795dde016223c97fe565ca2829a2faa9360bdda040374eb3f"
+    },
+    {
+      "path": "evals/rubric.json",
+      "bytes": 2631,
+      "sha256": "d1280bcf56a6ca0c98da210a509c13e3d68343c8015f715f1d878bfd9b005ef8"
+    },
+    {
+      "path": "evals/skill-fixtures/B01/README.md",
+      "bytes": 502,
+      "sha256": "e62685477dd4f84b9bc220fe05cae987bf2b016f97d6f96892c29e3f20c549cb"
+    },
+    {
+      "path": "evals/skill-fixtures/B01/service.mjs",
+      "bytes": 1909,
+      "sha256": "1edadc15a1b9237f3dc64c19d18e9150c708c7ea24d547b317ef8bc3c635302a"
+    },
+    {
+      "path": "evals/skill-fixtures/B02/README.md",
+      "bytes": 347,
+      "sha256": "f75228fc06402d5372b9373d5497ba5f6d4b099b7dc9838e1128929906f10593"
+    },
+    {
+      "path": "evals/skill-fixtures/B02/probe.mjs",
+      "bytes": 571,
+      "sha256": "81b22c0f76658745e10601f14e3cdad5e408605868275bc4000d7192978a9559"
+    },
+    {
+      "path": "evals/skill-fixtures/B02/store.mjs",
+      "bytes": 1330,
+      "sha256": "58c9b537225101ef067925e36933ee33d925d9af61e5cf1461127d86717b97cc"
+    },
+    {
+      "path": "evals/skill-fixtures/B03/README.md",
+      "bytes": 584,
+      "sha256": "8eabdc02be17e1b96e2d8f972742084502a8afe0f528924df968fdd09c39f5c4"
+    },
+    {
+      "path": "evals/skill-fixtures/B03/bench.mjs",
+      "bytes": 1465,
+      "sha256": "954b412b59e7bd5b861f87cd12f076d005c906d78e01b4b3dcc1bf39c8d87086"
+    },
+    {
+      "path": "evals/skill-fixtures/B03/query.mjs",
+      "bytes": 320,
+      "sha256": "8acb597ce925e3cf4eefe26dd64625111fd9215eba6f5a0b8f1d8e1dc110f505"
+    },
+    {
+      "path": "evals/skill-fixtures/B03/seed.mjs",
+      "bytes": 675,
+      "sha256": "6d6f6f38534a0ae00b6d99d36437050724f80c97e06e51eadcdbe268328ad02c"
+    },
+    {
+      "path": "evals/skill-fixtures/B04/README.md",
+      "bytes": 465,
+      "sha256": "e98ae4262c50be1712ff9d5089207e6c83b517e5308ca550bc045f41f5fa5166"
+    },
+    {
+      "path": "evals/skill-fixtures/B04/worker.mjs",
+      "bytes": 1454,
+      "sha256": "541aa24d220a89ebfcddc170fdcee11c489041c81ee236f7e7ad0afc3f4bf5c1"
+    },
+    {
+      "path": "meet.md",
+      "bytes": 35797,
+      "sha256": "ac891ff4afc3b7d98cb954b0aae990eff33e1b538ea8f910a229fc4597455126"
+    },
+    {
+      "path": "package.json",
+      "bytes": 420,
+      "sha256": "2907b7d11b83f975f9c6252e872eb20199b431da5fff74ccaa4ff79e51361c8a"
+    },
+    {
+      "path": "references/adapters.md",
+      "bytes": 4590,
+      "sha256": "4f6ed75121ffd43ac92fd73f659679fafe186743c0457899dd230541c7212de7"
+    },
+    {
+      "path": "references/api-domain.md",
+      "bytes": 8037,
+      "sha256": "87596f90924d7021dc27f96b6493250763204c7018c3ff6f01343558b83f294d"
+    },
+    {
+      "path": "references/async-integrations.md",
+      "bytes": 6841,
+      "sha256": "35b7be7f927b567e951f2f210d0aceec8e244a4147176fc86dbca74a08c83aef"
+    },
+    {
+      "path": "references/coding-standards.md",
+      "bytes": 2442,
+      "sha256": "1079eeedd679115f125c17f0bf5f13f5a44aebeb163358584ed5f7b54af1993f"
+    },
+    {
+      "path": "references/data.md",
+      "bytes": 6867,
+      "sha256": "2ea396e3267e470f88d7789625ba1d82099a94345b32b30f642b545dffb52214"
+    },
+    {
+      "path": "references/edge-identity.md",
+      "bytes": 7067,
+      "sha256": "f268b49d04646881d32b67ff9d397919a158276b444a0bf9830a039cee9cd24e"
+    },
+    {
+      "path": "references/modules.md",
+      "bytes": 5648,
+      "sha256": "1e2f1d22f8b80700c11bed98133d8c87b99cc7731d4a4c649b1493e6b5b384ff"
+    },
+    {
+      "path": "references/operations.md",
+      "bytes": 5625,
+      "sha256": "81668bb6befd7ebbde73a8aeeccb9210f9bd10a4948782e6ece614a2502d1a42"
+    },
+    {
+      "path": "references/runtime-capacity.md",
+      "bytes": 7111,
+      "sha256": "7d08ef32680b02bad298c52682cea7492a9cee25d330c48642a215d8de08c5f2"
+    },
+    {
+      "path": "references/sources.md",
+      "bytes": 14600,
+      "sha256": "9029b004ec2195a4fdbbb6c019a87be8d09017aa2f8fa2333853051f54004eab"
+    },
+    {
+      "path": "references/verification.md",
+      "bytes": 7675,
+      "sha256": "fc9502d87fcb2c37b312e77655cec14cff1dbb6bda72602ac2deb6dbee10640b"
+    },
+    {
+      "path": "scripts/cert-gen.mjs",
+      "bytes": 2534,
+      "sha256": "d6ac70087367ec5474917d27d2ecdbd38dc905cf998509ddf3b7c47430521652"
+    },
+    {
+      "path": "scripts/check.mjs",
+      "bytes": 1408,
+      "sha256": "4a4725e3696d0b2cc42de4f73845ce6be0f6bf231440710fb4523ea57636c504"
+    },
+    {
+      "path": "scripts/client.mjs",
+      "bytes": 5246,
+      "sha256": "5642222f97ef05977be1e551d298d9e66f67b3db6c586ab9d0ec16fdc6a779b5"
+    },
+    {
+      "path": "scripts/dns-network.mjs",
+      "bytes": 7869,
+      "sha256": "677b4f0c4362005ad38328403bdca4c3f165d5ccc6b40e535bc2adb7396ddfb7"
+    },
+    {
+      "path": "scripts/evidence.mjs",
+      "bytes": 1344,
+      "sha256": "41eac0f7282885eda19b8a55f817436d56b5f640d0e41d099962fa4b5c49adf2"
+    },
+    {
+      "path": "scripts/integrated.mjs",
+      "bytes": 36996,
+      "sha256": "2476a35583363a3ee3f46b333d834cf2f03d2fcd08d9bf222a4db04da5642df5"
+    },
+    {
+      "path": "scripts/load.mjs",
+      "bytes": 7857,
+      "sha256": "7817b267ff0bf8b65511d74bc33618345e983208e2edcd0b5a4ff62af4fbdead"
+    },
+    {
+      "path": "scripts/service.mjs",
+      "bytes": 26904,
+      "sha256": "32eb061264a1e534ef15dc1522a4bb04ba4456f1613d9dc79b0b01eca078c41c"
+    },
+    {
+      "path": "scripts/smoke.mjs",
+      "bytes": 3646,
+      "sha256": "c0f9723d99cdce9c0b2c187b7ce4d8519ab5a4123d8b070c94a3e74b9da1c43d"
+    },
+    {
+      "path": "scripts/validate-package.mjs",
+      "bytes": 9202,
+      "sha256": "68d171675a5ade5027d69f4d1b0d472a97b24447168a78461b5aa4cb8081283f"
+    },
+    {
+      "path": "scripts/worker.mjs",
+      "bytes": 1366,
+      "sha256": "ea10dceb00ea0903c761f5fbed7bd6a6dffd0125c43ccb322e51b0231cd4fc55"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "initial",
+    "status": "PASS",
+    "evidence": "Initial prompt visible; evidence/initial.png"
+  },
+  {
+    "id": "accessible-label",
+    "status": "PASS",
+    "evidence": "Searchbox has explicit label; persistent role=status live region present."
+  },
+  {
+    "id": "pending",
+    "status": "PASS",
+    "evidence": "Enter submitted cedar and loading is visible with Search enabled. evidence/pending.png"
+  },
+  {
+    "id": "cedar",
+    "status": "PASS",
+    "evidence": "Cedar returns one guide after pending."
+  },
+  {
+    "id": "moss",
+    "status": "PASS",
+    "evidence": "Moss returns two cards including long title. evidence/moss-desktop.png"
+  },
+  {
+    "id": "empty",
+    "status": "PASS",
+    "evidence": "Useful no-results guidance; evidence/empty.png"
+  },
+  {
+    "id": "failure",
+    "status": "PASS",
+    "evidence": "Failure explains issue and offers Retry; evidence/failure.png"
+  },
+  {
+    "id": "retry-pending",
+    "status": "PASS",
+    "evidence": "Retry submits failed query despite edited input, returns focus to input."
+  },
+  {
+    "id": "retry-outcome",
+    "status": "PASS",
+    "evidence": "Retry creates another request and fails again as fixture specifies."
+  },
+  {
+    "id": "race-stale-success",
+    "status": "PASS",
+    "evidence": "Cedar then moss 100 ms apart: moss remains after stale cedar resolves."
+  },
+  {
+    "id": "race-stale-failure",
+    "status": "PASS",
+    "evidence": "Fail then moss 100 ms apart: late failure ignored; evidence/race-moss.png"
+  },
+  {
+    "id": "mobile-fit",
+    "status": "PASS",
+    "evidence": "320 px viewport geometry: {\"viewport\":320,\"scrollWidth\":320,\"cards\":[{\"width\":280,\"right\":300},{\"width\":280,\"right\":300}]}; evidence/moss-320.png"
+  },
+  {
+    "id": "keyboard-focus",
+    "status": "PASS",
+    "evidence": "Tab moves from input to Search; keyboard Enter already exercised."
+  },
+  {
+    "id": "live-feedback",
+    "status": "PASS",
+    "evidence": "Persistent polite atomic status; result list aria-busy transitions; actual screen reader audio UNVERIFIED."
+  },
+  {
+    "id": "runtime",
+    "status": "PASS",
+    "evidence": "Browser errors retained in browser-errors.json."
+  }
+]

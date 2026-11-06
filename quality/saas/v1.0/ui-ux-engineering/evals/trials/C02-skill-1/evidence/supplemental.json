@@ -1,0 +1,38 @@
+{
+  "forwardTabCycle": {
+    "status": "PASS"
+  },
+  "mobileDialogFits": {
+    "status": "PASS"
+  },
+  "reflow320": {
+    "status": "PASS"
+  },
+  "contrasts": [
+    {
+      "pair": "muted/page",
+      "ratio": 4.517618874630646,
+      "status": "PASS"
+    },
+    {
+      "pair": "muted/white",
+      "ratio": 4.833271364520897,
+      "status": "PASS"
+    },
+    {
+      "pair": "purple/white",
+      "ratio": 5.340654037332022,
+      "status": "PASS"
+    },
+    {
+      "pair": "purple/page",
+      "ratio": 4.991865273493726,
+      "status": "PASS"
+    },
+    {
+      "pair": "text/page",
+      "ratio": 14.064554175814921,
+      "status": "PASS"
+    }
+  ]
+}

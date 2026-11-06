@@ -1,0 +1,82 @@
+Window: "Ausrüstung zur Abholung reservieren - Google Chrome", App: chrome.exe.
+	0 window Ausrüstung zur Abholung reservieren - Google Chrome Secondary Actions: Raise
+		1 pane (disabled)
+		2 region Ausrüstung zur Abholung reservieren - Google Chrome - Hemanth
+			3 region
+				4 region
+					5 region
+						6 button Minimize ID: view_1
+						192 button Restore ID: view_3
+						8 button Close ID: view_4
+					9 region
+						10 region
+							11 tool bar ID: view_1000
+								12 button Back ID: view_1001
+								13 button (disabled) Forward ID: view_1002
+								14 button Reload ID: view_1003
+								15 group
+									16 button View site information ID: view_1011
+									17 edit (settable, string) Address and search bar Description: Ask Google or type a URL Value: 127.0.0.1:4398 ID: view_1012
+									18 region
+										178 button Zoom: 200%
+										151 button Bookmark this tab
+								20 region
+									21 button Extensions ID: view_1006
+								22 region
+								23 region
+									24 button Downloads
+								25 button Hemanth ID: view_1018
+								26 button Chrome ID: view_1007
+						37 region
+							38 region
+								39 region
+								152 document Ausrüstung zur Abholung reservieren Value: http://127.0.0.1:4398/ ID: RootWebArea
+									153 main ID: app
+										279 section header
+											280 text Sprache
+											281 combo box (settable, string) Sprache Value: Deutsch ID: language
+											282 heading Ausrüstung zur Abholung reservieren
+											283 text Wählen Sie einen Abholort und ein Zeitfenster für Ihre Ausrüstung.
+										284 text 2 / 2
+										285 heading Reservierungsangaben vor der verbindlichen Bestätigung überprüfen ID: review
+										286 list
+											287 term Reservierte Ausrüstung
+												288 text Reservierte Ausrüstung
+											289 text Tragbares Außenaufnahmegerät mit Windschutz und zusätzlichem Langzeitakkupaket
+											290 term Vollständiger Vor- und Nachname
+												291 text Vollständiger Vor- und Nachname
+											292 text Zoom Test
+											293 term E-Mail-Adresse für die Reservierungsbestätigung
+												294 text E-Mail-Adresse für die Reservierungsbestätigung
+											295 text zoom@example.test
+											296 term Gewünschter Abholort
+												297 text Gewünschter Abholort
+											298 text Nordstudio — Haupteingang neben der gemeinschaftlichen Fahrradwerkstatt
+											299 term Gewünschtes Zeitfenster für die Abholung
+												300 text Gewünschtes Zeitfenster für die Abholung
+											301 text Vormittags, zwischen 09:00 und 11:00 Uhr
+										302 check box (settable, string) Ich werde die Ausrüstung einschließlich sämtlicher Zubehörteile zum vereinbarten Zeitpunkt zurückgeben. ID: consent
+										303 text Ich werde die Ausrüstung einschließlich sämtlicher Zubehörteile zum vereinbarten Zeitpunkt zurückgeben.
+										304 button Zurück zu den Abholangaben ID: back
+										305 button Reservierung verbindlich bestätigen
+							66 region
+						67 region
+							68 region
+								69 button Tab search
+							70 region ID: view_21
+								71 tab
+									72 tab item (selectable) Ausrüstung zur Abholung reservieren ID: view_20
+										73 button Close
+								74 region
+							75 button New Tab
+							76 region
+							77 region
+								78 button Open Gemini in Chrome
+								79 region
+						80 region
+
+Selected text: ```
+127.0.0.1:4398
+```
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

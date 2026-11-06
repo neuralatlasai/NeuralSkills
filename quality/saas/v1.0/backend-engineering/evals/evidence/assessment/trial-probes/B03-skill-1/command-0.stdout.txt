@@ -1,0 +1,1 @@
+{"file":"evaluator.sqlite","rows":60000,"whaleRows":48000,"otherTenants":80,"payloadBytes":256,"readyModulo":37}

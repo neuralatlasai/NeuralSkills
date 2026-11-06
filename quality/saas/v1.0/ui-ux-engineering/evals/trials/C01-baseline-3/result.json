@@ -1,0 +1,116 @@
+{
+    "caseId":  "C01",
+    "arm":  "baseline",
+    "run":  3,
+    "route":  "native-typescript-plain-css",
+    "startedAt":  "2026-11-05T16:34:07Z",
+    "endedAt":  "2026-11-05T16:38:13.9800606Z",
+    "elapsedSeconds":  246.98,
+    "requirementCoverage":  {
+                                "C01-R01":  {
+                                                "status":  "PASS",
+                                                "evidence":  "artifact/invitation-copy.ts exports a reusable native button controller; demo.ts supplies the required URL and default exact label. No framework, icons, or UI library."
+                                            },
+                                "C01-R02":  {
+                                                "status":  "PASS",
+                                                "evidence":  "browser-evidence.json: pending-prevents-duplicates recorded disabled=true, aria-busy=true and only one clipboard call after repeated native and synthetic clicks."
+                                            },
+                                "C01-R03":  {
+                                                "status":  "PASS",
+                                                "evidence":  "browser-evidence.json: real-clipboard-keyboard-success-reset read the exact invitation URL from Chrome clipboard; Link copied restored after 2439ms observed polling interval. Source timer is 2000ms."
+                                            },
+                                "C01-R04":  {
+                                                "status":  "PASS",
+                                                "evidence":  "browser-evidence.json: clipboard-reject-retry and clipboard-unavailable-retry both displayed useful inline messages and selectable URL, left retry enabled, and succeeded via Space after recovery."
+                                            },
+                                "C01-R05":  {
+                                                "status":  "PASS",
+                                                "evidence":  "browser-evidence.json: keyboard Tab focus, Enter activation and Space retry verified; 3px focus outline; native target 400 by 49.75px; role=status, aria-live=polite, aria-atomic=true. focus.png visually reviewed."
+                                            },
+                                "C01-R06":  {
+                                                "status":  "PASS",
+                                                "evidence":  "browser-evidence.json: full translated label at 320px; page scroll width 320px, button content width/scroll width both 278px, height 71.5px. german-320.png visually reviewed with no clipping."
+                                            },
+                                "C01-R07":  {
+                                                "status":  "PASS",
+                                                "evidence":  "artifact/README.md gives setup and reuse instructions; node serve.mjs compiled and served the local example. default.png visually reviewed: restrained green button, clear type hierarchy, no full marketing page."
+                                            }
+                            },
+    "assumptions":  [
+                        "Only evals/inputs/C01.json was consulted as task input. The skill and reference material were disabled for this independent baseline.",
+                        "The input lists requirement IDs without individual descriptions; IDs were mapped in task order to implementation, pending, success, failure, accessibility, responsive translation, and delivery requirements.",
+                        "The supplied local TypeScript compiler, Node 24, Playwright and Chrome were used without package installation or network requests.",
+                        "English remains the default UI language. Labels and status messages are configurable for localization. The German label is a separate actual rendered reuse fixture."
+                    ],
+    "decisions":  [
+                      "Use a native button and asynchronous Clipboard API with both disabled state and a pending guard.",
+                      "Keep a persistent polite live region for pending, success and inline error messages; display a manual-copy URL after failure.",
+                      "Reserve status space, use a solid restrained green button, wrap long labels, and provide a visible 3px focus outline.",
+                      "Supply strict TypeScript source, emitted browser JavaScript, plain CSS, a dependency-free local server, cleanup method, and configurable labels/messages."
+                  ],
+    "checks":  [
+                   {
+                       "id":  "strict-build-and-render",
+                       "status":  "PASS",
+                       "evidence":  "browser-evidence.json checks[0]; verification.log; default.png"
+                   },
+                   {
+                       "id":  "keyboard-focus-and-target",
+                       "status":  "PASS",
+                       "evidence":  "browser-evidence.json checks[1]: focused=true, 3px outline, 400 by 49.75px; focus.png"
+                   },
+                   {
+                       "id":  "real-clipboard-keyboard-success-reset",
+                       "status":  "PASS",
+                       "evidence":  "browser-evidence.json checks[2]: exact clipboard URL, success announcement, observed reset 2439ms"
+                   },
+                   {
+                       "id":  "pending-prevents-duplicates",
+                       "status":  "PASS",
+                       "evidence":  "browser-evidence.json checks[3]: delayed promise, disabled/busy state and exactly one call"
+                   },
+                   {
+                       "id":  "clipboard-reject-retry",
+                       "status":  "PASS",
+                       "evidence":  "browser-evidence.json checks[4]: inline explanation, fallback URL, keyboard Space retry succeeded"
+                   },
+                   {
+                       "id":  "clipboard-unavailable-retry",
+                       "status":  "PASS",
+                       "evidence":  "browser-evidence.json checks[5]: inline explanation, fallback URL, keyboard Space retry succeeded"
+                   },
+                   {
+                       "id":  "translation-320px-layout",
+                       "status":  "PASS",
+                       "evidence":  "browser-evidence.json checks[6]: exact German label, no horizontal overflow, 71.5px target height; german-320.png"
+                   },
+                   {
+                       "id":  "accessible-status-and-browser-errors",
+                       "status":  "PASS",
+                       "evidence":  "browser-evidence.json checks[7]: persistent role/status live region attributes and no uncaught page errors"
+                   },
+                   {
+                       "id":  "visual-review",
+                       "status":  "PASS",
+                       "evidence":  "Viewed default.png, focus.png and german-320.png directly: clear focus ring, restrained treatment, readable wrapped translated label."
+                   },
+                   {
+                       "id":  "screen-reader-announcement",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "Live-region attributes were inspected in Chrome; no actual assistive-technology session was run."
+                   },
+                   {
+                       "id":  "cross-browser-permission-prompts",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "Executed Chrome with clipboard permissions granted, plus simulated rejecting and absent APIs. Other browsers and browser permission dialogs were not exercised."
+                   }
+               ],
+    "limitations":  [
+                        "Actual screen-reader announcements and cross-browser behavior are unverified.",
+                        "Real clipboard success was verified in local Chrome with permission pregranted; rejection and unavailable cases used explicit browser fixtures.",
+                        "Build tooling defaults to the supplied machine\u0027s local TypeScript path; another machine must set TYPESCRIPT_PATH or serve the included JavaScript directly.",
+                        "No failures occurred in this verification run; raw outcomes and the original verification log are retained in the trial root."
+                    ],
+    "tokens":  null,
+    "cost":  null
+}

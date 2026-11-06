@@ -1,0 +1,6 @@
+{
+    "command":  "node artifact/verify.mjs 3",
+    "exitCode":  0,
+    "startUtc":  "2026-11-05T17:27:11.1554361Z",
+    "endUtc":  "2026-11-05T17:27:11.6379550Z"
+}

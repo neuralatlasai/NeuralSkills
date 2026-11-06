@@ -1,0 +1,54 @@
+{
+  "createdAt": "2026-11-05T17:27:30.125Z",
+  "provenance": "Retrospective coordinator reconciliation, written after execution. Raw author results remain unchanged; this is not a host telemetry export.",
+  "trial": "B03-skill-1",
+  "caseId": "B03",
+  "arm": "skill",
+  "run": 1,
+  "comparisonStatus": "SINGLE_RUN_SKILL_ONLY",
+  "rawResultSha256": "290c6fcc9d75283bbf1d169b275761cf516911ddde2c26402f409394df0d4e98",
+  "recordedTiming": {
+    "startUtc": "2026-11-05T17:02:21.8859911Z",
+    "endUtc": "2026-11-05T17:07:10.076Z",
+    "reportedElapsedSeconds": 288.191,
+    "timestampIntervalSeconds": 288.191,
+    "basis": "First successful clock was after an initial PowerShell -AsUTC failure. Measured288.191s interval excludes that unmeasured prelude."
+  },
+  "coordinatorExactStartUtc": null,
+  "coordinatorExactEndUtc": null,
+  "model": {
+    "selection": "Inherited parent model/settings; no override",
+    "exactId": null,
+    "availability": "Not exposed by host"
+  },
+  "permissions": "Same workspace-write/network restrictions; Node24.12/SQLite3.50.4; no downloads or production operations authorized.",
+  "tokens": {
+    "actual": null,
+    "availability": "Not exposed"
+  },
+  "cost": {
+    "actual": null,
+    "currency": null,
+    "availability": "Not exposed"
+  },
+  "tools": {
+    "knownCount": 14,
+    "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+    "exactComparableNestedCount": null,
+    "rawDeclared": null,
+    "limit": 20,
+    "qualification": "Do not compare counts or infer token/cost savings; unknown calls remain unavailable."
+  },
+  "wallLimitSeconds": 360,
+  "limitations": [],
+  "conditionalWallUpperBound": {
+    "seconds": 338.673,
+    "from": "B01-skill-1 endUtc2026-11-05T17:01:31.403Z",
+    "to": "B03-skill-1 endUtc2026-11-05T17:07:10.076Z",
+    "premises": [
+      "Coordinator dispatched B03 only after B01skill completion",
+      "Host UTC remained stable"
+    ],
+    "status": "Derived causal bound, not measured exact trial duration"
+  }
+}

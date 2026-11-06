@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="720" viewBox="0 0 900 720">
+<rect width="900" height="720" fill="#F1F5F2"/>
+<rect x="90" y="62" width="720" height="596" rx="22" fill="white" stroke="#DCE5DE"/>
+<g font-family="Arial, sans-serif">
+<circle cx="143" cy="111" r="19" fill="#E3F0E8"/>
+<path d="M137 111H149M143 105V117" stroke="#28795D" stroke-width="2"/>
+<text x="180" y="118" font-size="12" letter-spacing="1.5" font-weight="700" fill="#65776C">PAYMENTS</text>
+<text x="128" y="181" font-size="30" font-weight="700" fill="#213D2C">Approve a payment</text>
+<path d="M128 209H772" stroke="#E3EAE5"/>
+<text x="128" y="246" font-size="12" fill="#718277">MEMBERSHIP</text>
+<text x="128" y="276" font-size="18" font-weight="700" fill="#213D2C">Annual studio plan</text>
+<text x="128" y="323" font-size="12" fill="#718277">Amount</text>
+<rect x="128" y="337" width="644" height="52" rx="8" fill="#FAFCFA" stroke="#CEDAD1"/>
+<text x="147" y="370" font-size="20" fill="#213D2C">$240.00</text>
+<text x="128" y="427" font-size="12" fill="#718277">Note</text>
+<rect x="128" y="441" width="644" height="89" rx="8" fill="#FAFCFA" stroke="#CEDAD1"/>
+<text x="147" y="470" font-size="12" fill="#718277">Access for the coming year</text>
+<rect x="128" y="562" width="405" height="48" rx="8" fill="#28795D"/>
+<text x="299" y="591" font-size="14" font-weight="700" fill="white">Approve</text>
+<rect x="551" y="562" width="221" height="48" rx="8" fill="white" stroke="#CEDAD1"/>
+<text x="620" y="591" font-size="14" font-weight="700" fill="#456050">Save for later</text>
+</g></svg>
+

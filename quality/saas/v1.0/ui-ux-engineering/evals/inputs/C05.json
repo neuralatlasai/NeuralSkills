@@ -1,0 +1,38 @@
+{
+  "caseId": "C05",
+  "task": "Work in the supplied fixtures/C05/repo starter by copying it into trial/artifact. This is an existing React + TypeScript + Vite billing screen with a small purple brand system in src/styles.css. Preserve its stack, CSS variables, existing screen content and overall visual character. Make one targeted change: add a “Payment schedule” disclosure to each invoice row. Each disclosure must toggle that row's schedule details without changing other rows, use a native button with aria-expanded/aria-controls, and show the invoice's due date plus its three supplied payment entries. It must be usable with a keyboard, show visible focus, and keep the table/card content readable at 375px. Add only the structure and styling needed for that feature; do not redesign the page, replace its CSS, add a UI kit, fetch data or introduce a router. Use the existing package scripts for the appropriate checks. Summarize the changed files and any checks you could not execute. Write trial/result.json using the supplied output contract.",
+  "fixtures": [
+    "fixtures/C05/repo/package.json",
+    "fixtures/C05/repo/index.html",
+    "fixtures/C05/repo/tsconfig.json",
+    "fixtures/C05/repo/vite.config.ts",
+    "fixtures/C05/repo/src/main.tsx",
+    "fixtures/C05/repo/src/App.tsx",
+    "fixtures/C05/repo/src/styles.css",
+    "fixtures/C05/repo/README.md"
+  ],
+  "requirementIds": [
+    "C05-R01",
+    "C05-R02",
+    "C05-R03",
+    "C05-R04",
+    "C05-R05",
+    "C05-R06"
+  ],
+  "outputContract": {
+    "artifactDirectory": "trial/artifact/",
+    "resultFile": "trial/result.json",
+    "fields": [
+      "caseId",
+      "arm",
+      "run",
+      "route",
+      "requirementCoverage",
+      "assumptions",
+      "decisions",
+      "checks",
+      "limitations"
+    ],
+    "note": "The orchestrator supplies caseId, arm, run and trial directory. Checks use PASS, FAIL, UNVERIFIED or NOT_APPLICABLE and cite observable evidence. Never invent tool access or executed checks."
+  }
+}

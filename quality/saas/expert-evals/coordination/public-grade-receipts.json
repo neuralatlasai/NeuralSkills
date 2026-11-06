@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-06T03:21:50.270Z",
+  "method": "Independent frozen public verifier executed against submitted artifacts; no checker/threshold edits.",
+  "receipts": [
+    {
+      "trial": "T01",
+      "command": "node grading/verify-ui.mjs UI-U1 trials/T01/artifact results/T01",
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "4e2758",
+        "wall_time_seconds": 0.000017,
+        "session_id": 54799,
+        "original_token_count": 0,
+        "output": "(node:31692) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n{\"caseId\":\"UI-U1\",\"node\":\"v24.12.0\",\"time\":\"2026-11-06T03:20:29.931Z\",\"checks\":[{\"id\":\"U1-control-single-result\",\"kind\":\"control\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R1-out-of-order-success\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R1-stale-failure\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R2-composition\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R2-R3-keyboard-focus\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R1-clear-invalidates\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R4-current-error-retry\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R4-dispose\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R5-reflow\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"width\":320,\"scroll\":320,\"input\":{\"x\":29.796875,\"y\":132.890625,\"width\":260.40625,\"height\":46,\"top\":132.890625,\"right\":290.203125,\"bottom\":178.890625,\"left\":29.796875}}}],\"errors\":[],\"pass\":true}\n",
+        "exit_code": 0
+      }
+    },
+    {
+      "trial": "T02",
+      "command": "node grading/verify-ui.mjs UI-U1 trials/T02/artifact results/T02",
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "e56669",
+        "wall_time_seconds": 9.9911271,
+        "exit_code": 0,
+        "original_token_count": 285,
+        "output": "(node:8948) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n{\"caseId\":\"UI-U1\",\"node\":\"v24.12.0\",\"time\":\"2026-11-06T03:20:29.732Z\",\"checks\":[{\"id\":\"U1-control-single-result\",\"kind\":\"control\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R1-out-of-order-success\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R1-stale-failure\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R2-composition\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R2-R3-keyboard-focus\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R1-clear-invalidates\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R4-current-error-retry\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R4-dispose\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U1-R5-reflow\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"width\":320,\"scroll\":320,\"input\":{\"x\":49,\"y\":163.875,\"width\":222,\"height\":45,\"top\":163.875,\"right\":271,\"bottom\":208.875,\"left\":49}}}],\"errors\":[],\"pass\":true}\n"
+      }
+    },
+    {
+      "trial": "T03",
+      "command": "node grading/verify-backend.mjs BE-B1 trials/T03/artifact results/T03",
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "820f80",
+        "wall_time_seconds": 1.1027662,
+        "exit_code": 0,
+        "original_token_count": 867,
+        "output": "(node:13984) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/quality/saas/expert-evals/trials/T03/artifact/service.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\heman\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:13984) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n{\"caseId\":\"BE-B1\",\"node\":\"v24.12.0\",\"time\":\"2026-11-06T03:20:21.107Z\",\"checks\":[{\"id\":\"B1-control-single-reservation\",\"kind\":\"control\",\"status\":\"PASS\",\"evidence\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":3}],\"receipts\":[{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"one\",\"sku\":\"widget\",\"qty\":2,\"status\":\"reserved\",\"reservationId\":\"12469ab7-540e-42fa-b9dc-39c16d07abc2\"}],\"events\":[{\"id\":1,\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"one\",\"reservationId\":\"12469ab7-540e-42fa-b9dc-39c16d07abc2\"}]}},{\"id\":\"B1-R1-contended-stock\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"results\":[{\"status\":\"reserved\",\"reservationId\":\"49db6949-461b-488c-83c0-5c30c7f78120\"},{\"status\":\"sold_out\"}],\"st\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":1}],\"receipts\":[{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"a\",\"sku\":\"widget\",\"qty\":4,\"status\":\"reserved\",\"reservationId\":\"49db6949-461b-488c-83c0-5c30c7f78120\"},{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"b\",\"sku\":\"widget\",\"qty\":4,\"status\":\"sold_out\",\"reservationId\":null}],\"events\":[{\"id\":1,\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"a\",\"reservationId\":\"49db6949-461b-488c-83c0-5c30c7f78120\"}]}}},{\"id\":\"B1-R2-concurrent-replay\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"r\":[{\"status\":\"reserved\",\"reservationId\":\"9030aa3c-dbd9-4469-8254-db90ff380d1f\"},{\"status\":\"reserved\",\"reservationId\":\"9030aa3c-dbd9-4469-8254-db90ff380d1f\"}],\"st\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":3}],\"receipts\":[{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"same\",\"sku\":\"widget\",\"qty\":2,\"status\":\"reserved\",\"reservationId\":\"9030aa3c-dbd9-4469-8254-db90ff380d1f\"}],\"events\":[{\"id\":1,\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"same\",\"reservationId\":\"9030aa3c-dbd9-4469-8254-db90ff380d1f\"}]}}},{\"id\":\"B1-R2-parameter-binding\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"B1-R2-tenant-scope\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"B1-R3-before-commit-rollback\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":5}],\"receipts\":[],\"events\":[]}},{\"id\":\"B1-R3-lost-ack-restart-replay\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"r\":{\"status\":\"reserved\",\"reservationId\":\"32632149-8305-46bb-9fbb-d40d39404805\"},\"state\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":3}],\"receipts\":[{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"lost\",\"sku\":\"widget\",\"qty\":2,\"status\":\"reserved\",\"reservationId\":\"32632149-8305-46bb-9fbb-d40d39404805\"}],\"events\":[{\"id\":1,\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"lost\",\"reservationId\":\"32632149-8305-46bb-9fbb-d40d39404805\"}]}}},{\"id\":\"B1-R4-invalid-quantity\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true}],\"errors\":[],\"pass\":true}\n"
+      }
+    }
+  ]
+}

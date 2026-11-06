@@ -1,0 +1,10 @@
+{
+  "index.html": "dda1f28c053f621ee889684bd8bcf3720c04c85a6a84ef9350c2d7def241f4b3",
+  "styles.css": "8ab52cdc5aab189e79cb4e7e18684a8ccb6a704ffa5564ef247ab3c469a11b68",
+  "app.ts": "e2e6c82d58b347c491e2e8d3a4e599087a280c001a9b56f71ac9841b0d751f01",
+  "app.js": "0ccd41de8855c9ae1e43b9da732acb6db9d91e96b397970c6bb4201bc0558c0e",
+  "package.json": "6160839cdbfc8fb1f7fb9ce88afcd4dfd52528b27a320bde921d5bac881ad83b",
+  "scripts/build.mjs": "96bf5491952a1dee57a9a352d65f170ad70be31265a7d395cca01f7091b93f24",
+  "scripts/serve.mjs": "32a86a9ad454b82a8e8ac9c2d4690ad3f23494270d77ac6ead1a545fe211db4d",
+  "README.md": "b784b35e71324eccbe8731fe7e5c514a24a65f47a54d982649fac36230da813a"
+}

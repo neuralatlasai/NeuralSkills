@@ -1,0 +1,92 @@
+{
+  "observedAt": "2026-11-05T16:24:24.174Z",
+  "bookWebsiteFetch": "Unavailable through web tool; GitHub pinned chapter source accessed instead.",
+  "records": [
+    {
+      "role": "architectural-reference",
+      "url": "https://raw.githubusercontent.com/neuralatlasai/System_Architecture_Book/095a546b7df9f715b4889af0b4381256399f7ed8/chapters/03-state-ownership-and-consistency-model/03-transactions-isolation-and-invariants.md",
+      "commit": "095a546b7df9f715b4889af0b4381256399f7ed8",
+      "inspectedLines": "1–85 (or whole file if shorter)",
+      "license": "No repository license found in root metadata; no chapter text/images vendored."
+    },
+    {
+      "role": "architectural-reference",
+      "url": "https://raw.githubusercontent.com/neuralatlasai/System_Architecture_Book/095a546b7df9f715b4889af0b4381256399f7ed8/chapters/07-api-contracts-and-request-lifecycle/04-idempotency-and-safe-retries.md",
+      "commit": "095a546b7df9f715b4889af0b4381256399f7ed8",
+      "inspectedLines": "1–85 (or whole file if shorter)",
+      "license": "No repository license found in root metadata; no chapter text/images vendored."
+    },
+    {
+      "role": "architectural-reference",
+      "url": "https://raw.githubusercontent.com/neuralatlasai/System_Architecture_Book/095a546b7df9f715b4889af0b4381256399f7ed8/chapters/09-scheduling-queues-and-resource-admission/02-queueing-laws-and-utilization-economics.md",
+      "commit": "095a546b7df9f715b4889af0b4381256399f7ed8",
+      "inspectedLines": "1–85 (or whole file if shorter)",
+      "license": "No repository license found in root metadata; no chapter text/images vendored."
+    },
+    {
+      "role": "architectural-reference",
+      "url": "https://raw.githubusercontent.com/neuralatlasai/System_Architecture_Book/095a546b7df9f715b4889af0b4381256399f7ed8/chapters/13-reliability-recovery-and-failure-domains/04-recovery-objectives-and-state-restoration.md",
+      "commit": "095a546b7df9f715b4889af0b4381256399f7ed8",
+      "inspectedLines": "1–85 plus 11–63 revisited",
+      "license": "No repository license found in root metadata; no chapter text/images vendored."
+    },
+    {
+      "role": "architectural-reference",
+      "url": "https://raw.githubusercontent.com/neuralatlasai/System_Architecture_Book/095a546b7df9f715b4889af0b4381256399f7ed8/chapters/04-data-modeling-storage-engines-and-query-paths/02-storage-engine-mechanics-and-amplification.md",
+      "commit": "095a546b7df9f715b4889af0b4381256399f7ed8",
+      "inspectedLines": "1–85 (or whole file if shorter)",
+      "license": "No repository license found in root metadata; no chapter text/images vendored."
+    },
+    {
+      "role": "architectural-reference",
+      "url": "https://raw.githubusercontent.com/neuralatlasai/System_Architecture_Book/095a546b7df9f715b4889af0b4381256399f7ed8/chapters/14-observability-profiling-and-verification/09-verification-and-the-test-taxonomy.md",
+      "commit": "095a546b7df9f715b4889af0b4381256399f7ed8",
+      "inspectedLines": "1–85 (or whole file if shorter)",
+      "license": "No repository license found in root metadata; no chapter text/images vendored."
+    },
+    {
+      "role": "skill-source",
+      "url": "https://raw.githubusercontent.com/wshobson/agents/4bde3168b43c0655c4d00ea2726e631719908a6d/plugins/javascript-typescript/skills/nodejs-backend-patterns/SKILL.md",
+      "inspection": "Actual SKILL.md read; supporting resources selectively read as logged in references/sources.md",
+      "license": "MIT root license inspected"
+    },
+    {
+      "role": "skill-source",
+      "url": "https://raw.githubusercontent.com/supabase/agent-skills/c9be0e931b7930f7d02126d04774d904c381e7d7/skills/supabase-postgres-best-practices/SKILL.md",
+      "inspection": "Actual SKILL.md read; supporting resources selectively read as logged in references/sources.md",
+      "license": "MIT root license inspected"
+    },
+    {
+      "role": "skill-source",
+      "url": "https://raw.githubusercontent.com/wshobson/agents/4bde3168b43c0655c4d00ea2726e631719908a6d/plugins/backend-development/skills/saga-orchestration/SKILL.md",
+      "inspection": "Actual SKILL.md read; supporting resources selectively read as logged in references/sources.md",
+      "license": "MIT root license inspected"
+    },
+    {
+      "role": "skill-source",
+      "url": "https://raw.githubusercontent.com/wshobson/agents/4bde3168b43c0655c4d00ea2726e631719908a6d/plugins/backend-development/skills/api-design-principles/SKILL.md",
+      "inspection": "Actual SKILL.md read; supporting resources selectively read as logged in references/sources.md",
+      "license": "MIT root license inspected"
+    }
+  ],
+  "primaryVerified": {
+    "rfc9325": "2022 BCP195 TLS deployments",
+    "rfc9700": "2025 BCP240 OAuth security",
+    "rfc9110": "HTTP intended-effect idempotency; responses may differ",
+    "rfc9457": "2023 Problem Details obsoletes7807",
+    "openapi": "3.2.1 published2026-09-10; preserve project-supported version",
+    "asvs": "5.0.0 stable published2025-05-30",
+    "postgresDocs": "current route identified PostgreSQL18; no PostgreSQL service tested",
+    "pgbouncer": "Current features permit protocol-level prepared plans in transaction mode with max_prepared_statements nonzero; SQL PREPARE differs",
+    "rabbitmq": "Publisher confirms and consumer acknowledgements cover independent boundaries",
+    "otel": "Bounded sending queue/retry can lose data on full queue/time/disk/persistence failures",
+    "k6": "Choose open/closed models by purpose and report generator dropped iterations",
+    "nodeSQLite": "Pinned v24.12.0 documentation inspected; module stability1.1 active development/experimental warning in observed runtime"
+  },
+  "limits": [
+    "No upstream installers or scripts executed",
+    "Selected chapters/sections are not a full book or repository audit",
+    "Catalog guidance cannot establish formal ISO conformance",
+    "No production, broker, Kubernetes, PostgreSQL or field benchmark assertion"
+  ]
+}

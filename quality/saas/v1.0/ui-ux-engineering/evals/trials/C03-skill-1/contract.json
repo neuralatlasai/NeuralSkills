@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0",
+  "objective": "Build a compact responsive Workshop reservations admin page from three role-specific references.",
+  "scope": "page",
+  "output": "implementation",
+  "mode": "adapt",
+  "context": {
+    "audience": "Workshop administrator",
+    "task": "Inspect workshop capacities and add a session-local reservation",
+    "device": "Desktop and narrow browser, keyboard and pointer",
+    "locale": "en"
+  },
+  "references": [
+    {
+      "path": "evals/fixtures/C03/brand.svg",
+      "role": "Brand colors and FIELDNOTES wordmark only",
+      "observations": "Forest #153F3D, lime #D6EE8C, clay #E6A36F, canvas #F7F6EF, muted #526663, border #D8DDD2; wordmark with F icon",
+      "inspection": "Source read and rendered PNG visually inspected; evidence/brand.png"
+    },
+    {
+      "path": "evals/fixtures/C03/layout.svg",
+      "role": "Structure and relative grouping only",
+      "observations": "220px sidebar, heading/action block, wide list beside narrower summary",
+      "inspection": "Source read and rendered PNG visually inspected; evidence/layout.png"
+    },
+    {
+      "path": "evals/fixtures/C03/typography.svg",
+      "role": "Type families, scale, label treatment only",
+      "observations": "Georgia H1 44/1.15 and H2 26/1.25; Arial 17/1.7 body, tracked 13px uppercase labels, bold 16px buttons",
+      "inspection": "Source read and rendered PNG visually inspected; evidence/typography.png"
+    }
+  ],
+  "constraints": {
+    "stack": "Standalone semantic HTML/CSS/JS and optional Node24 server; no dependencies, installation, network or backend",
+    "accessibility": "WCAG 2.2 A/AA target; limited checks do not establish conformance",
+    "performance": "No external resources; field performance and profiling unavailable"
+  },
+  "uncertainty": [
+    {
+      "id": "A-1",
+      "kind": "assumption",
+      "statement": "Navigation links move to same-page sections and Reservations stays active.",
+      "consequence": "No extra admin pages introduced."
+    },
+    {
+      "id": "A-2",
+      "kind": "assumption",
+      "statement": "Local summaries last only for the current page session.",
+      "consequence": "Reload clears additions; disclosed in UI."
+    }
+  ],
+  "tokens": {
+    "authority": "artifact/styles.css :root",
+    "typography": "Georgia serif heading / Arial sans body"
+  },
+  "components": [
+    {
+      "id": "new-reservation",
+      "semantics": "Native button opens labeled native dialog with required select and input",
+      "inputs": [
+        "workshop",
+        "attendee"
+      ],
+      "outputs": [
+        "session-local summary",
+        "live success message"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "invalid",
+        "success"
+      ],
+      "keyboard": "Enter opens; Tab and Shift+Tab wrap; Escape closes",
+      "focus": "Autofocus workshop, first invalid field after validation, return to trigger on close",
+      "recovery": "Inline associated errors preserve valid field values"
+    }
+  ],
+  "stateOwnership": {
+    "local": "Dialog state, form values and DOM summary list",
+    "server": "None",
+    "persistence": "None"
+  },
+  "measurements": []
+}

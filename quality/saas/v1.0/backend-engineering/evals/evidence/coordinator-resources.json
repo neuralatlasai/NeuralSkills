@@ -1,0 +1,85 @@
+{
+  "createdAt": "2026-11-05T17:27:30.138Z",
+  "provenance": "Coordinator reconstruction from actual dispatch history and retained input files; not verbatim host transcript.",
+  "originalWrapper": {
+    "sameCaseIdsAndMeanings": true,
+    "commonAreaNamesOnly": "inputs/responsibilities.json",
+    "coverageEnumProvided": false,
+    "checkStatusesProvided": [
+      "PASS",
+      "FAIL",
+      "UNVERIFIED",
+      "NOT_APPLICABLE"
+    ],
+    "baselineExcluded": [
+      "SKILL.md",
+      "references",
+      "assets",
+      "meet.md",
+      "other outputs",
+      "rubric/grading"
+    ],
+    "budget": {
+      "wallSeconds": 360,
+      "externalCalls": 20
+    }
+  },
+  "repairedWrapperFiles": [
+    "dispatch/B01-baseline-2.txt",
+    "dispatch/B01-skill-2.txt",
+    "dispatch/B02-skill-2.txt",
+    "dispatch/B02-baseline-2.txt"
+  ],
+  "v2Common": "inputs/control-v2.json",
+  "records": [
+    {
+      "trial": "B01-baseline-1",
+      "meta": "../trials/B01-baseline-1/meta.json",
+      "timestampIntervalSeconds": 259.261,
+      "knownTools": null
+    },
+    {
+      "trial": "B01-skill-1",
+      "meta": "../trials/B01-skill-1/meta.json",
+      "timestampIntervalSeconds": 273.403,
+      "knownTools": 16
+    },
+    {
+      "trial": "B02-skill-1",
+      "meta": "../trials/B02-skill-1/meta.json",
+      "timestampIntervalSeconds": 319,
+      "knownTools": 17
+    },
+    {
+      "trial": "B02-baseline-1",
+      "meta": "../trials/B02-baseline-1/meta.json",
+      "timestampIntervalSeconds": 226.331,
+      "knownTools": 11
+    },
+    {
+      "trial": "B03-skill-1",
+      "meta": "../trials/B03-skill-1/meta.json",
+      "timestampIntervalSeconds": 288.191,
+      "knownTools": 14
+    },
+    {
+      "trial": "B04-skill-1",
+      "meta": "../trials/B04-skill-1/meta.json",
+      "timestampIntervalSeconds": 334.512,
+      "knownTools": 12
+    },
+    {
+      "trial": "B05-skill-1",
+      "meta": "../trials/B05-skill-1/meta.json",
+      "timestampIntervalSeconds": 259.339,
+      "knownTools": 11
+    },
+    {
+      "trial": "B06-skill-1",
+      "meta": "../trials/B06-skill-1/meta.json",
+      "timestampIntervalSeconds": 297.551,
+      "knownTools": 11
+    }
+  ],
+  "overallResourceClaims": "Exact model identity, total tokens/cost and comparable original nested tool totals unavailable; no resource savings or broad statistical inference."
+}

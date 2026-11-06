@@ -1,0 +1,36 @@
+{
+  "caseId": "B02",
+  "task": "Reservations sometimes confirm two buyers against the same inventory version. Repair reserve so stock decrement and allocation insertion are atomic and enforce positive integer quantity, tenant/item scope, sufficient quantity and expected version. Two callers quantity4/version1 against stock5 must yield one201 and one409 with stock1 and one allocation. Missing item404; invalid quantity400. A thrown afterWrite fault leaves neither partial stock nor allocation mutation and the store stays usable. Preserve async afterRead interleaving hook, afterWrite fault hook, API shape and other tenant stock. Run forced race on file-backed SQLite and show rollback/retry evidence. An in-memory mutex or mocked database alone is insufficient. Use Node 24.12+ native SQLite and built-ins; no downloads, production deployment or external mutation. Work only in the supplied small fixture. Classify all L01-L24 proportionally; out-of-scope with reasons is allowed. Put implementation and runnable verification in trial/artifact and write trial/result.json using the supplied output contract.",
+  "requirements": [
+    {
+      "id": "B02-R01",
+      "meaning": "Competing same-version reservations preserve inventory/allocation invariants with defined outcomes in real SQLite."
+    },
+    {
+      "id": "B02-R02",
+      "meaning": "Stock and allocation roll back together after the supplied injected fault."
+    },
+    {
+      "id": "B02-R03",
+      "meaning": "Quantity/version preconditions, missing item, tenant isolation and API signature are preserved."
+    },
+    {
+      "id": "B02-R04",
+      "meaning": "Supplied async/fault hooks remain usable and actual race/reopen/rollback evidence is retained."
+    },
+    {
+      "id": "B02-R05",
+      "meaning": "Storage mechanism and SQLite concurrency/operating limits are explicit without broader guarantees."
+    },
+    {
+      "id": "B02-R06",
+      "meaning": "All responsibility dispositions and decision evidence remain proportionate and truthful."
+    }
+  ],
+  "fixtures": [
+    "skill-fixtures/B02/store.mjs",
+    "skill-fixtures/B02/probe.mjs",
+    "skill-fixtures/B02/README.md"
+  ],
+  "outputContract": "trial/artifact plus trial/result.json; fields supplied in common trial wrapper"
+}

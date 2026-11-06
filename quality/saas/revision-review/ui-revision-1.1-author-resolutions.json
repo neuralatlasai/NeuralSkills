@@ -1,0 +1,59 @@
+{
+  "createdAt": "2026-11-06T03:01:50.954Z",
+  "source": "revision-1.1-review.json (historical findings preserved)",
+  "kind": "author resolution record; not independent behavior validation",
+  "sourceCasesInspected": false,
+  "changes": [
+    {
+      "id": "R1",
+      "resolution": "Core/design/M4 preserve established direction; alternatives limited to exploration or consequential unresolved choice."
+    },
+    {
+      "id": "R2",
+      "resolution": "Core and implementation lifecycle explicitly conditional on asynchronous/data-driven paths; overlap checks and authority invalidation retained."
+    },
+    {
+      "id": "R3",
+      "resolution": "M7 runtime delivery uses applicable budgets/resilience; profiling/comparison only for performance task, observed problem or optimization."
+    },
+    {
+      "id": "R4",
+      "resolution": "Removed extra coding-standards read from core; parent owns retiring that duplicate file or preserving a compatibility pointer."
+    },
+    {
+      "id": "R5",
+      "resolution": "Added lifecycle event row naming timeout, offline, partial-result completeness, bounded pending/retry, permitted prior data and stall/fail-segment/disconnect recovery probes."
+    }
+  ],
+  "files": [
+    {
+      "path": "SKILL.md",
+      "words": 944,
+      "sha256": "952b0bc5a8fdfe680c4a66694092ae154324f992e077babb062ac00a864e2712"
+    },
+    {
+      "path": "references/design.md",
+      "words": 1144,
+      "sha256": "c062c0c756eae5c4557c579af7b202136d0455b6893c2e26cefb79c02282e013"
+    },
+    {
+      "path": "references/implementation.md",
+      "words": 1225,
+      "sha256": "37524a9f33ae7ebec9cd69c85de4bde42aaf4b79a8a4a839f9b32f77e86011b2"
+    },
+    {
+      "path": "references/modules.md",
+      "words": 746,
+      "sha256": "f8b10f3051ea0a746aa48448ffc6c5a7a4752dc3a93acbd9305c87dcace0e17b"
+    }
+  ],
+  "ownedWords": 4059,
+  "priorRevisionOwnedWords": 4059,
+  "v1OwnedWords": 4603,
+  "unchangedActivationDescription": true,
+  "modules": 8,
+  "limitations": [
+    "No new behavior evaluation claimed; root must independently review and freeze.",
+    "No fresh or held-out cases read."
+  ]
+}

@@ -1,0 +1,418 @@
+{
+  "status": "PASS",
+  "node": "v24.12.0",
+  "runDir": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-1\\evidence\\sqlite-gjGzsY",
+  "events": [
+    {
+      "event": "afterRead",
+      "caller": 1,
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 5,
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": []
+      }
+    },
+    {
+      "event": "afterRead",
+      "caller": 2,
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 5,
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": []
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "forced file-backed race on independent connections",
+      "status": "PASS",
+      "evidence": {
+        "raceFile": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-1\\evidence\\sqlite-gjGzsY\\race.sqlite",
+        "results": [
+          {
+            "status": 201,
+            "available": 1,
+            "version": 2
+          },
+          {
+            "status": 409
+          }
+        ],
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        },
+        "count": 2
+      }
+    },
+    {
+      "name": "race survives close and reopen",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      }
+    },
+    {
+      "name": "afterWrite throws after actual update and rolls back",
+      "status": "PASS",
+      "evidence": {
+        "during": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": []
+        },
+        "after": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 5,
+              "version": 1
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": []
+        }
+      }
+    },
+    {
+      "name": "same connection remains usable after rollback",
+      "status": "PASS",
+      "evidence": {
+        "sameConnectionRetry": {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "retry commit survives reopen",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      }
+    },
+    {
+      "name": "rollback itself survives close and reopen",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 5,
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": []
+      }
+    },
+    {
+      "name": "retry after rollback reopen succeeds",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      }
+    },
+    {
+      "name": "quantity/version validation, insufficient stock, missing tenant/item",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 5,
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": []
+      }
+    },
+    {
+      "name": "allocation insertion failure rolls back stock too",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 5,
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": []
+      }
+    },
+    {
+      "name": "tenant isolation and API return shape",
+      "status": "PASS",
+      "evidence": {
+        "south": {
+          "status": 201,
+          "available": 98,
+          "version": 2
+        },
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 5,
+              "version": 1
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 98,
+              "version": 2
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "south",
+              "item": "part-7",
+              "quantity": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "async read hook rejection preserves stock",
+      "status": "PASS",
+      "evidence": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 5,
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 98,
+            "version": 2
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "south",
+            "item": "part-7",
+            "quantity": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "writer contention and retry",
+      "status": "PASS",
+      "evidence": {
+        "busy": {
+          "status": 409
+        },
+        "busyElapsedMs": 303,
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 98,
+              "version": 2
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "south",
+              "item": "part-7",
+              "quantity": 2
+            },
+            {
+              "id": 2,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

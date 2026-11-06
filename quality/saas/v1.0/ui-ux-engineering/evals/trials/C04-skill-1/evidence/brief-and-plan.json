@@ -1,0 +1,17 @@
+{
+  "mode": "adapt",
+  "route": "Small native TypeScript/CSS form; M1, M2 (reference unavailable), M3, M4, M5, M6, M8; M7 limited static runtime",
+  "sources": ["evals/inputs/C04.json", "evals/fixtures/C04/brief.md", "evals/fixtures/C04/figma-access.json"],
+  "requirements": {
+    "C04-R01": "Disclose simulated unavailable Figma; use text brief and mark fidelity UNVERIFIED",
+    "C04-R02": "One narrow native TypeScript/CSS page with requested content and defaults",
+    "C04-R03": "Require nonblank syntactically valid email with recoverable feedback",
+    "C04-R04": "Keyboard-operable preferences and local save with visible immutable summary",
+    "C04-R05": "Runnable example, setup and concise assumptions/Figma handoff"
+  },
+  "stateOwner": "DOM draft controls plus one typed in-memory saved snapshot; no requests or storage",
+  "acceptanceBeforeTests": ["No actual Figma call", "Exact content/defaults", "Blank and invalid email rejected; valid save succeeds", "Keyboard Tab/Space/Enter path works and error focuses email", "Editing/invalid save preserves previous summary", "Empty-category save is explicit", "Desktop 1280x900 and narrow 375x812 / 320px reflow have no horizontal overflow", "Text/background contrast at least 4.5:1 and visible focus at least 3:1"],
+  "limits": ["Figma fidelity unavailable", "No backend integration", "No screen reader or automated accessibility scanner available", "Field performance and formal conformance unverified"],
+  "initialToolError": "First fixture read used the wrong fixtures prefix and returned two file-not-found errors. Corrected to evals/fixtures/C04; no data was inferred from the failed reads.",
+  "delegation": "Attempted independent review agent; tool returned agent thread limit reached. Work continued locally."
+}

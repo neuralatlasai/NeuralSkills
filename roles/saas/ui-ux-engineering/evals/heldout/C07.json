@@ -1,0 +1,52 @@
+{
+  "id": "C07",
+  "access": "heldout",
+  "execution": "skill-only, 1 run after skill freeze",
+  "task": "Build a compact two-step equipment-pickup reservation flow in native TypeScript and plain CSS, using fixtures/C07/copy.json for the English/German strings and choices. Keep it to one page and local state. Step 1 collects name, email, pickup location and a time slot; all fields are required and the email must be valid. Next validates, displays specific errors and focuses the first invalid field. Step 2 shows the long equipment name and all entered choices, requires the consent checkbox, and has Back and Confirm reservation. Back preserves the entered values. Confirmation shows an accessible success state with the submitted details, without a backend. Provide an English/German language switch on every step; switching language preserves form values and translates current labels, errors, choices and summary. On a valid Next, move keyboard focus to the review heading; on Back move it to the first form control. Native keyboard interactions must work throughout, with a visible focus style and properly associated errors. Use a layout that fits 320px and remains comfortable at 1280px; the long German strings must wrap without clipping, collisions or page overflow, including at 200% browser zoom. Controls should have targets at least 44px high. No animation or decorative imagery is needed. Supply setup instructions, place implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+  "fixtures": [
+    "fixtures/C07/copy.json"
+  ],
+  "requirements": [
+    {
+      "id": "C07-R01",
+      "kind": "function",
+      "check": "Invalid/blank Step 1 cannot advance; each invalid field has a useful message and focus goes to the first invalid control. Valid values advance."
+    },
+    {
+      "id": "C07-R02",
+      "kind": "function",
+      "check": "Review accurately shows all entered values; Back preserves them; consent is required; confirmation uses the submitted values locally."
+    },
+    {
+      "id": "C07-R03",
+      "kind": "localization",
+      "check": "English/German switching on either step preserves values and updates labels, options, visible errors, summary and outcome; long strings are intact."
+    },
+    {
+      "id": "C07-R04",
+      "kind": "accessibility",
+      "check": "All controls have labels; errors are associated; keyboard flow and the required step focus transitions work; visible focus and >=44px control height are observed."
+    },
+    {
+      "id": "C07-R05",
+      "kind": "responsive",
+      "check": "At 320px and 1280px, plus 200% browser zoom at a recorded desktop viewport, long German content remains readable with no page overflow, clipped text or collisions."
+    },
+    {
+      "id": "C07-R06",
+      "kind": "scope",
+      "check": "Native TypeScript/CSS, one local flow, no backend or framework/UI dependency."
+    },
+    {
+      "id": "C07-R07",
+      "kind": "delivery",
+      "check": "Runnable setup and evidence for the required flows/viewports are supplied; unexecuted checks are UNVERIFIED."
+    }
+  ],
+  "visualDimensions": [
+    "hierarchy",
+    "spacing",
+    "states"
+  ]
+}
+

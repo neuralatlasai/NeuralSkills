@@ -1,0 +1,1297 @@
+{
+  "status": "PASS",
+  "recordedAt": "2026-11-05T16:23:28.906Z",
+  "runDirectory": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\integrated\\load-runs\\2026-11-05T16-23-05-220Z",
+  "machine": {
+    "runtime": "v24.12.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "osRelease": "10.0.28120",
+    "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+    "cpuLogicalCount": 8,
+    "totalMemoryBytes": 16934494208,
+    "network": "127.0.0.1 TCP and native TLS only",
+    "runtimeDependencies": "Node built-ins; node:sqlite is experimental in this runtime"
+  },
+  "source": {
+    "sha256": "80464889301a80c762d16a8e26d649a6763c5b70e65b1525870659105cbd8a61",
+    "files": [
+      "evals/fixtures/contracts.ts",
+      "package.json",
+      "scripts/cert-gen.mjs",
+      "scripts/check.mjs",
+      "scripts/client.mjs",
+      "scripts/dns-network.mjs",
+      "scripts/evidence.mjs",
+      "scripts/integrated.mjs",
+      "scripts/load.mjs",
+      "scripts/service.mjs",
+      "scripts/worker.mjs"
+    ]
+  },
+  "openssl": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+  "sqlite": "3.50.4",
+  "configuration": {
+    "version": 1,
+    "model": "open arrivals; bounded generator concurrency; no automatic retries",
+    "repetitions": 3,
+    "generatorConcurrency": 24,
+    "seedItems": 40,
+    "tenantSkew": "80% tenant-a;20% tenant-b",
+    "requestMix": "75% GET one;25% bounded GET list",
+    "cache": "8 insertion-order entries; warm-up3; retained between scenarios within each repetition",
+    "scenarios": [
+      {
+        "name": "normal",
+        "arrivals": 12,
+        "intervalMs": 50,
+        "costMs": 0
+      },
+      {
+        "name": "sustained",
+        "arrivals": 60,
+        "intervalMs": 16,
+        "costMs": 15
+      },
+      {
+        "name": "burst",
+        "arrivals": 40,
+        "intervalMs": 0,
+        "costMs": 20
+      },
+      {
+        "name": "overload",
+        "arrivals": 90,
+        "intervalMs": 6,
+        "costMs": 60
+      },
+      {
+        "name": "failure",
+        "arrivals": 36,
+        "intervalMs": 16,
+        "costMs": 0,
+        "dependencyDown": true
+      },
+      {
+        "name": "recovery",
+        "arrivals": 36,
+        "intervalMs": 16,
+        "costMs": 0
+      }
+    ]
+  },
+  "configurationHash": "281beb0e3aa99389b36435c2cf683f81cc61dadefe598aee3034da710a048f9a",
+  "bounds": {
+    "bodyBytes": 2048,
+    "active": 2,
+    "queued": 4,
+    "queueAgeMs": 90,
+    "requestDeadlineMs": 180,
+    "cacheEntries": 8,
+    "telemetryEntries": 16
+  },
+  "payload": {
+    "requestBodyBytes": 0,
+    "seedBodyExampleBytes": 33,
+    "resultRowsPerList": 3
+  },
+  "cardinality": [
+    {
+      "tenant": "tenant-a",
+      "n": 32
+    },
+    {
+      "tenant": "tenant-b",
+      "n": 8
+    }
+  ],
+  "queryPlan": [
+    {
+      "id": 7,
+      "parent": 0,
+      "notused": 51,
+      "detail": "SEARCH items USING INDEX sqlite_autoindex_items_1 (tenant=? AND id>?)"
+    }
+  ],
+  "measurements": [
+    {
+      "repeat": 1,
+      "scenario": "normal",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 12,
+      "generated": 12,
+      "admitted": 12,
+      "useful": 12,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 754.1252000000004,
+      "generatedPerSecond": 15.912477132444312,
+      "usefulPerSecond": 15.912477132444312,
+      "maxGeneratorInflight": 5,
+      "latencyAllGeneratedMs": {
+        "samples": 12,
+        "p50": 40.31880000000092,
+        "p95": 237.20819999999912,
+        "p99": 237.20819999999912,
+        "max": 237.20819999999912
+      },
+      "cpuMicroseconds": {
+        "user": 140000,
+        "system": 63000
+      },
+      "maxRssBytes": 67751936,
+      "eventLoopDelayMs": {
+        "mean": 20.745742628571428,
+        "p99": 80.740351,
+        "max": 80.740351
+      },
+      "serverDelta": {
+        "received": 12,
+        "cacheHits": 0,
+        "errors": 0
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 0,
+        "rejected": 0,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 55,
+        "admitted": 55,
+        "useful": 55,
+        "errors": 0,
+        "cacheHits": 0,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 1,
+      "scenario": "sustained",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 60,
+      "generated": 25,
+      "admitted": 16,
+      "useful": 15,
+      "timeouts": 1,
+      "rejected": 9,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 35,
+      "elapsedMs": 1806.9943000000003,
+      "generatedPerSecond": 13.835129419057933,
+      "usefulPerSecond": 8.30107765143476,
+      "maxGeneratorInflight": 24,
+      "latencyAllGeneratedMs": {
+        "samples": 25,
+        "p50": 1359.5177999999996,
+        "p95": 1552.4447,
+        "p99": 1554.5442000000003,
+        "max": 1554.5442000000003
+      },
+      "cpuMicroseconds": {
+        "user": 297000,
+        "system": 297000
+      },
+      "maxRssBytes": 71933952,
+      "eventLoopDelayMs": {
+        "mean": 118.97705813333334,
+        "p99": 488.374271,
+        "max": 488.374271
+      },
+      "serverDelta": {
+        "received": 25,
+        "cacheHits": 0,
+        "errors": 9
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 9,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 80,
+        "admitted": 71,
+        "useful": 71,
+        "errors": 9,
+        "cacheHits": 0,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 1,
+      "scenario": "burst",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 40,
+      "generated": 24,
+      "admitted": 6,
+      "useful": 6,
+      "timeouts": 0,
+      "rejected": 18,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 16,
+      "elapsedMs": 481.22010000000046,
+      "generatedPerSecond": 49.8732284873387,
+      "usefulPerSecond": 12.468307121834675,
+      "maxGeneratorInflight": 24,
+      "latencyAllGeneratedMs": {
+        "samples": 24,
+        "p50": 357.3823000000011,
+        "p95": 455.0612999999994,
+        "p99": 458.29569999999876,
+        "max": 458.29569999999876
+      },
+      "cpuMicroseconds": {
+        "user": 281000,
+        "system": 125000
+      },
+      "maxRssBytes": 75022336,
+      "eventLoopDelayMs": {
+        "mean": 33.58401422222222,
+        "p99": 65.601535,
+        "max": 65.601535
+      },
+      "serverDelta": {
+        "received": 24,
+        "cacheHits": 0,
+        "errors": 18
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 27,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 104,
+        "admitted": 77,
+        "useful": 77,
+        "errors": 27,
+        "cacheHits": 0,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 1,
+      "scenario": "overload",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 90,
+      "generated": 30,
+      "admitted": 17,
+      "useful": 17,
+      "timeouts": 0,
+      "rejected": 13,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 60,
+      "elapsedMs": 906.598899999999,
+      "generatedPerSecond": 33.0907085812701,
+      "usefulPerSecond": 18.75140152938639,
+      "maxGeneratorInflight": 24,
+      "latencyAllGeneratedMs": {
+        "samples": 30,
+        "p50": 502.1363999999994,
+        "p95": 627.6333000000013,
+        "p99": 641.9370999999992,
+        "max": 641.9370999999992
+      },
+      "cpuMicroseconds": {
+        "user": 391000,
+        "system": 328000
+      },
+      "maxRssBytes": 77959168,
+      "eventLoopDelayMs": {
+        "mean": 37.01009066666666,
+        "p99": 97.648639,
+        "max": 97.648639
+      },
+      "serverDelta": {
+        "received": 30,
+        "cacheHits": 5,
+        "errors": 13
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 40,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 134,
+        "admitted": 94,
+        "useful": 94,
+        "errors": 40,
+        "cacheHits": 5,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 1,
+      "scenario": "failure",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 36,
+      "generated": 36,
+      "admitted": 36,
+      "useful": 0,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 36,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 672.978000000001,
+      "generatedPerSecond": 53.49357631304433,
+      "usefulPerSecond": 0,
+      "maxGeneratorInflight": 8,
+      "latencyAllGeneratedMs": {
+        "samples": 36,
+        "p50": 65.01689999999871,
+        "p95": 137.79470000000038,
+        "p99": 140.68299999999908,
+        "max": 140.68299999999908
+      },
+      "cpuMicroseconds": {
+        "user": 453000,
+        "system": 187000
+      },
+      "maxRssBytes": 77557760,
+      "eventLoopDelayMs": {
+        "mean": 14.855633454545455,
+        "p99": 31.309823,
+        "max": 31.309823
+      },
+      "serverDelta": {
+        "received": 36,
+        "cacheHits": 0,
+        "errors": 36
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 40,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 170,
+        "admitted": 130,
+        "useful": 94,
+        "errors": 76,
+        "cacheHits": 5,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 1,
+      "scenario": "recovery",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 36,
+      "generated": 36,
+      "admitted": 36,
+      "useful": 36,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 751.2314999999999,
+      "generatedPerSecond": 47.9213132037195,
+      "usefulPerSecond": 47.9213132037195,
+      "maxGeneratorInflight": 18,
+      "latencyAllGeneratedMs": {
+        "samples": 36,
+        "p50": 209.03520000000026,
+        "p95": 283.9487000000008,
+        "p99": 284.6262999999999,
+        "max": 284.6262999999999
+      },
+      "cpuMicroseconds": {
+        "user": 422000,
+        "system": 297000
+      },
+      "maxRssBytes": 81367040,
+      "eventLoopDelayMs": {
+        "mean": 23.92202735483871,
+        "p99": 45.416447,
+        "max": 45.416447
+      },
+      "serverDelta": {
+        "received": 36,
+        "cacheHits": 1,
+        "errors": 0
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 40,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 206,
+        "admitted": 166,
+        "useful": 130,
+        "errors": 76,
+        "cacheHits": 6,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 2,
+      "scenario": "normal",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 12,
+      "generated": 12,
+      "admitted": 12,
+      "useful": 12,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 570.7458000000006,
+      "generatedPerSecond": 21.025121866862598,
+      "usefulPerSecond": 21.025121866862598,
+      "maxGeneratorInflight": 1,
+      "latencyAllGeneratedMs": {
+        "samples": 12,
+        "p50": 20.280300000000352,
+        "p95": 25.18029999999999,
+        "p99": 25.18029999999999,
+        "max": 25.18029999999999
+      },
+      "cpuMicroseconds": {
+        "user": 109000,
+        "system": 125000
+      },
+      "maxRssBytes": 83189760,
+      "eventLoopDelayMs": {
+        "mean": 15.253447111111113,
+        "p99": 25.673727,
+        "max": 25.673727
+      },
+      "serverDelta": {
+        "received": 12,
+        "cacheHits": 2,
+        "errors": 0
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 40,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 221,
+        "admitted": 181,
+        "useful": 145,
+        "errors": 76,
+        "cacheHits": 8,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 2,
+      "scenario": "sustained",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 60,
+      "generated": 60,
+      "admitted": 58,
+      "useful": 58,
+      "timeouts": 0,
+      "rejected": 2,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 1310.4868999999999,
+      "generatedPerSecond": 45.78450955900437,
+      "usefulPerSecond": 44.25835924037089,
+      "maxGeneratorInflight": 19,
+      "latencyAllGeneratedMs": {
+        "samples": 60,
+        "p50": 94.66589999999997,
+        "p95": 414.83909999999923,
+        "p99": 419.8210999999992,
+        "max": 419.8210999999992
+      },
+      "cpuMicroseconds": {
+        "user": 766000,
+        "system": 390000
+      },
+      "maxRssBytes": 90984448,
+      "eventLoopDelayMs": {
+        "mean": 21.92890793220339,
+        "p99": 59.015167,
+        "max": 95.748095
+      },
+      "serverDelta": {
+        "received": 60,
+        "cacheHits": 7,
+        "errors": 2
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 42,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 281,
+        "admitted": 239,
+        "useful": 203,
+        "errors": 78,
+        "cacheHits": 15,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 2,
+      "scenario": "burst",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 40,
+      "generated": 24,
+      "admitted": 6,
+      "useful": 6,
+      "timeouts": 0,
+      "rejected": 18,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 16,
+      "elapsedMs": 856.3693999999996,
+      "generatedPerSecond": 28.025289086695544,
+      "usefulPerSecond": 7.006322271673886,
+      "maxGeneratorInflight": 24,
+      "latencyAllGeneratedMs": {
+        "samples": 24,
+        "p50": 653.6401000000005,
+        "p95": 832.8653999999988,
+        "p99": 833.6732000000011,
+        "max": 833.6732000000011
+      },
+      "cpuMicroseconds": {
+        "user": 297000,
+        "system": 219000
+      },
+      "maxRssBytes": 92479488,
+      "eventLoopDelayMs": {
+        "mean": 63.9234048,
+        "p99": 185.466879,
+        "max": 185.466879
+      },
+      "serverDelta": {
+        "received": 24,
+        "cacheHits": 0,
+        "errors": 18
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 60,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 305,
+        "admitted": 245,
+        "useful": 209,
+        "errors": 96,
+        "cacheHits": 15,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 2,
+      "scenario": "overload",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 90,
+      "generated": 29,
+      "admitted": 12,
+      "useful": 12,
+      "timeouts": 0,
+      "rejected": 17,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 61,
+      "elapsedMs": 844.2734000000019,
+      "generatedPerSecond": 34.34906275621136,
+      "usefulPerSecond": 14.213405278432287,
+      "maxGeneratorInflight": 24,
+      "latencyAllGeneratedMs": {
+        "samples": 29,
+        "p50": 460.64540000000125,
+        "p95": 608.9147999999986,
+        "p99": 616.7433000000019,
+        "max": 616.7433000000019
+      },
+      "cpuMicroseconds": {
+        "user": 282000,
+        "system": 344000
+      },
+      "maxRssBytes": 94224384,
+      "eventLoopDelayMs": {
+        "mean": 36.68526545454545,
+        "p99": 85.000191,
+        "max": 85.000191
+      },
+      "serverDelta": {
+        "received": 29,
+        "cacheHits": 4,
+        "errors": 17
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 77,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 334,
+        "admitted": 257,
+        "useful": 221,
+        "errors": 113,
+        "cacheHits": 19,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 2,
+      "scenario": "failure",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 36,
+      "generated": 36,
+      "admitted": 36,
+      "useful": 0,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 36,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 716.2252000000008,
+      "generatedPerSecond": 50.263520468143206,
+      "usefulPerSecond": 0,
+      "maxGeneratorInflight": 16,
+      "latencyAllGeneratedMs": {
+        "samples": 36,
+        "p50": 186.10319999999774,
+        "p95": 239.10380000000077,
+        "p99": 239.27649999999994,
+        "max": 239.27649999999994
+      },
+      "cpuMicroseconds": {
+        "user": 422000,
+        "system": 187000
+      },
+      "maxRssBytes": 95154176,
+      "eventLoopDelayMs": {
+        "mean": 22.75598864516129,
+        "p99": 40.665087,
+        "max": 40.665087
+      },
+      "serverDelta": {
+        "received": 36,
+        "cacheHits": 0,
+        "errors": 36
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 77,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 370,
+        "admitted": 293,
+        "useful": 221,
+        "errors": 149,
+        "cacheHits": 19,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 2,
+      "scenario": "recovery",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 36,
+      "generated": 36,
+      "admitted": 36,
+      "useful": 36,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 789.1467999999986,
+      "generatedPerSecond": 45.61888865290978,
+      "usefulPerSecond": 45.61888865290978,
+      "maxGeneratorInflight": 23,
+      "latencyAllGeneratedMs": {
+        "samples": 36,
+        "p50": 275.22090000000026,
+        "p95": 352.6840999999986,
+        "p99": 352.8322999999982,
+        "max": 352.8322999999982
+      },
+      "cpuMicroseconds": {
+        "user": 421000,
+        "system": 157000
+      },
+      "maxRssBytes": 98156544,
+      "eventLoopDelayMs": {
+        "mean": 32.298496,
+        "p99": 64.421887,
+        "max": 64.421887
+      },
+      "serverDelta": {
+        "received": 36,
+        "cacheHits": 7,
+        "errors": 0
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 77,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 406,
+        "admitted": 329,
+        "useful": 257,
+        "errors": 149,
+        "cacheHits": 26,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 3,
+      "scenario": "normal",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 12,
+      "generated": 12,
+      "admitted": 12,
+      "useful": 12,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 581.3757000000005,
+      "generatedPerSecond": 20.64069757301516,
+      "usefulPerSecond": 20.64069757301516,
+      "maxGeneratorInflight": 1,
+      "latencyAllGeneratedMs": {
+        "samples": 12,
+        "p50": 15.743800000000192,
+        "p95": 18.56789999999819,
+        "p99": 18.56789999999819,
+        "max": 18.56789999999819
+      },
+      "cpuMicroseconds": {
+        "user": 140000,
+        "system": 62000
+      },
+      "maxRssBytes": 97255424,
+      "eventLoopDelayMs": {
+        "mean": 15.642453333333334,
+        "p99": 30.392319,
+        "max": 30.392319
+      },
+      "serverDelta": {
+        "received": 12,
+        "cacheHits": 2,
+        "errors": 0
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 77,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 421,
+        "admitted": 344,
+        "useful": 272,
+        "errors": 149,
+        "cacheHits": 28,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 3,
+      "scenario": "sustained",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 60,
+      "generated": 47,
+      "admitted": 43,
+      "useful": 43,
+      "timeouts": 0,
+      "rejected": 4,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 13,
+      "elapsedMs": 1205.5905999999995,
+      "generatedPerSecond": 38.98504185417506,
+      "usefulPerSecond": 35.66716595169207,
+      "maxGeneratorInflight": 24,
+      "latencyAllGeneratedMs": {
+        "samples": 47,
+        "p50": 420.6916999999994,
+        "p95": 597.0597000000016,
+        "p99": 617.4963000000025,
+        "max": 617.4963000000025
+      },
+      "cpuMicroseconds": {
+        "user": 641000,
+        "system": 344000
+      },
+      "maxRssBytes": 102166528,
+      "eventLoopDelayMs": {
+        "mean": 33.9070976,
+        "p99": 90.767359,
+        "max": 90.767359
+      },
+      "serverDelta": {
+        "received": 47,
+        "cacheHits": 7,
+        "errors": 4
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 81,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 468,
+        "admitted": 387,
+        "useful": 315,
+        "errors": 153,
+        "cacheHits": 35,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 3,
+      "scenario": "burst",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 40,
+      "generated": 24,
+      "admitted": 6,
+      "useful": 6,
+      "timeouts": 0,
+      "rejected": 18,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 16,
+      "elapsedMs": 551.1535000000003,
+      "generatedPerSecond": 43.545037816143754,
+      "usefulPerSecond": 10.886259454035939,
+      "maxGeneratorInflight": 24,
+      "latencyAllGeneratedMs": {
+        "samples": 24,
+        "p50": 384.17589999999836,
+        "p95": 527.4475999999995,
+        "p99": 527.4767000000029,
+        "max": 527.4767000000029
+      },
+      "cpuMicroseconds": {
+        "user": 344000,
+        "system": 125000
+      },
+      "maxRssBytes": 104566784,
+      "eventLoopDelayMs": {
+        "mean": 43.26559288888889,
+        "p99": 113.573887,
+        "max": 113.573887
+      },
+      "serverDelta": {
+        "received": 24,
+        "cacheHits": 0,
+        "errors": 18
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 99,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 492,
+        "admitted": 393,
+        "useful": 321,
+        "errors": 171,
+        "cacheHits": 35,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 3,
+      "scenario": "overload",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 90,
+      "generated": 26,
+      "admitted": 13,
+      "useful": 13,
+      "timeouts": 0,
+      "rejected": 13,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 64,
+      "elapsedMs": 1049.493699999999,
+      "generatedPerSecond": 24.7738504766632,
+      "usefulPerSecond": 12.3869252383316,
+      "maxGeneratorInflight": 24,
+      "latencyAllGeneratedMs": {
+        "samples": 26,
+        "p50": 658.5194999999985,
+        "p95": 895.6009999999987,
+        "p99": 895.8748000000014,
+        "max": 895.8748000000014
+      },
+      "cpuMicroseconds": {
+        "user": 406000,
+        "system": 250000
+      },
+      "maxRssBytes": 111149056,
+      "eventLoopDelayMs": {
+        "mean": 57.174926222222226,
+        "p99": 201.195519,
+        "max": 201.195519
+      },
+      "serverDelta": {
+        "received": 26,
+        "cacheHits": 6,
+        "errors": 13
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 112,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 518,
+        "admitted": 406,
+        "useful": 334,
+        "errors": 184,
+        "cacheHits": 41,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 3,
+      "scenario": "failure",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 36,
+      "generated": 36,
+      "admitted": 36,
+      "useful": 0,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 36,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 857.5681999999979,
+      "generatedPerSecond": 41.9791685372663,
+      "usefulPerSecond": 0,
+      "maxGeneratorInflight": 18,
+      "latencyAllGeneratedMs": {
+        "samples": 36,
+        "p50": 242.90469999999914,
+        "p95": 378.65610000000015,
+        "p99": 387.5596000000005,
+        "max": 387.5596000000005
+      },
+      "cpuMicroseconds": {
+        "user": 312000,
+        "system": 312000
+      },
+      "maxRssBytes": 111497216,
+      "eventLoopDelayMs": {
+        "mean": 27.00499406451613,
+        "p99": 73.662463,
+        "max": 73.662463
+      },
+      "serverDelta": {
+        "received": 36,
+        "cacheHits": 0,
+        "errors": 36
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 112,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 554,
+        "admitted": 442,
+        "useful": 334,
+        "errors": 220,
+        "cacheHits": 41,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "repeat": 3,
+      "scenario": "recovery",
+      "model": "open arrivals; bounded generator concurrency; no automatic retries",
+      "intendedArrivals": 36,
+      "generated": 36,
+      "admitted": 36,
+      "useful": 36,
+      "timeouts": 0,
+      "rejected": 0,
+      "failed": 0,
+      "retries": 0,
+      "generatorDropped": 0,
+      "elapsedMs": 730.0357999999978,
+      "generatedPerSecond": 49.31265014674637,
+      "usefulPerSecond": 49.31265014674637,
+      "maxGeneratorInflight": 15,
+      "latencyAllGeneratedMs": {
+        "samples": 36,
+        "p50": 190.4229000000014,
+        "p95": 248.0097999999998,
+        "p99": 251.02430000000095,
+        "max": 251.02430000000095
+      },
+      "cpuMicroseconds": {
+        "user": 438000,
+        "system": 235000
+      },
+      "maxRssBytes": 116637696,
+      "eventLoopDelayMs": {
+        "mean": 22.94784,
+        "p99": 51.314687,
+        "max": 51.314687
+      },
+      "serverDelta": {
+        "received": 36,
+        "cacheHits": 6,
+        "errors": 0
+      },
+      "postState": {
+        "active": 0,
+        "queued": 0,
+        "queueHighWater": 4,
+        "rejected": 112,
+        "cacheEntries": 8,
+        "telemetryEntries": 0,
+        "telemetryDropped": 0,
+        "received": 590,
+        "admitted": 478,
+        "useful": 370,
+        "errors": 220,
+        "cacheHits": 47,
+        "cacheBypass": 0,
+        "transportLost": 0
+      },
+      "status": "PASS"
+    }
+  ],
+  "aggregates": [
+    {
+      "scenario": "normal",
+      "runs": 3,
+      "usefulPerSecond": {
+        "median": 20.64069757301516,
+        "min": 15.912477132444312,
+        "max": 21.025121866862598
+      },
+      "allGeneratedP95Ms": {
+        "median": 25.18029999999999,
+        "min": 18.56789999999819,
+        "max": 237.20819999999912
+      },
+      "allGeneratedP99Ms": {
+        "median": 25.18029999999999,
+        "min": 18.56789999999819,
+        "max": 237.20819999999912
+      },
+      "generated": 36,
+      "useful": 36,
+      "rejected": 0,
+      "failed": 0,
+      "generatorDropped": 0
+    },
+    {
+      "scenario": "sustained",
+      "runs": 3,
+      "usefulPerSecond": {
+        "median": 35.66716595169207,
+        "min": 8.30107765143476,
+        "max": 44.25835924037089
+      },
+      "allGeneratedP95Ms": {
+        "median": 597.0597000000016,
+        "min": 414.83909999999923,
+        "max": 1552.4447
+      },
+      "allGeneratedP99Ms": {
+        "median": 617.4963000000025,
+        "min": 419.8210999999992,
+        "max": 1554.5442000000003
+      },
+      "generated": 132,
+      "useful": 116,
+      "rejected": 15,
+      "failed": 0,
+      "generatorDropped": 48
+    },
+    {
+      "scenario": "burst",
+      "runs": 3,
+      "usefulPerSecond": {
+        "median": 10.886259454035939,
+        "min": 7.006322271673886,
+        "max": 12.468307121834675
+      },
+      "allGeneratedP95Ms": {
+        "median": 527.4475999999995,
+        "min": 455.0612999999994,
+        "max": 832.8653999999988
+      },
+      "allGeneratedP99Ms": {
+        "median": 527.4767000000029,
+        "min": 458.29569999999876,
+        "max": 833.6732000000011
+      },
+      "generated": 72,
+      "useful": 18,
+      "rejected": 54,
+      "failed": 0,
+      "generatorDropped": 48
+    },
+    {
+      "scenario": "overload",
+      "runs": 3,
+      "usefulPerSecond": {
+        "median": 14.213405278432287,
+        "min": 12.3869252383316,
+        "max": 18.75140152938639
+      },
+      "allGeneratedP95Ms": {
+        "median": 627.6333000000013,
+        "min": 608.9147999999986,
+        "max": 895.6009999999987
+      },
+      "allGeneratedP99Ms": {
+        "median": 641.9370999999992,
+        "min": 616.7433000000019,
+        "max": 895.8748000000014
+      },
+      "generated": 85,
+      "useful": 42,
+      "rejected": 43,
+      "failed": 0,
+      "generatorDropped": 185
+    },
+    {
+      "scenario": "failure",
+      "runs": 3,
+      "usefulPerSecond": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "allGeneratedP95Ms": {
+        "median": 239.10380000000077,
+        "min": 137.79470000000038,
+        "max": 378.65610000000015
+      },
+      "allGeneratedP99Ms": {
+        "median": 239.27649999999994,
+        "min": 140.68299999999908,
+        "max": 387.5596000000005
+      },
+      "generated": 108,
+      "useful": 0,
+      "rejected": 0,
+      "failed": 108,
+      "generatorDropped": 0
+    },
+    {
+      "scenario": "recovery",
+      "runs": 3,
+      "usefulPerSecond": {
+        "median": 47.9213132037195,
+        "min": 45.61888865290978,
+        "max": 49.31265014674637
+      },
+      "allGeneratedP95Ms": {
+        "median": 283.9487000000008,
+        "min": 248.0097999999998,
+        "max": 352.6840999999986
+      },
+      "allGeneratedP99Ms": {
+        "median": 284.6262999999999,
+        "min": 251.02430000000095,
+        "max": 352.8322999999982
+      },
+      "generated": 108,
+      "useful": 108,
+      "rejected": 0,
+      "failed": 0,
+      "generatorDropped": 0
+    }
+  ],
+  "limits": [
+    "Loopback experiment, single process SQLite sync connection and co-resident generator; no production or multi-replica capacity inference.",
+    "All generated response latency samples include rejections, dependency failures and client timeouts. Dropped demand has no response latency and is separately counted.",
+    "Generator creates fresh TLS connections (agent:false); TLS CPU and local runtime are part of measurements. No automatic retries.",
+    "SQLite query rows examined, physical I/O, lock wait, OS FD/NAT exhaustion and cold filesystem cache are UNVERIFIED.",
+    "No optimization speedup claim; these are bounded workload observations only."
+  ]
+}

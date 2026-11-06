@@ -1,0 +1,187 @@
+{
+  "checks": [
+    {
+      "id": "initial",
+      "status": "PASS",
+      "evidence": "Ready when you are.",
+      "at": "2026-11-05T16:51:46.751Z"
+    },
+    {
+      "id": "pending",
+      "status": "PASS",
+      "evidence": "Searching for “cedar”…",
+      "at": "2026-11-05T16:51:46.872Z"
+    },
+    {
+      "id": "pending-search-enabled",
+      "status": "PASS",
+      "evidence": "Input and Search enabled while cedar pending.",
+      "at": "2026-11-05T16:51:46.884Z"
+    },
+    {
+      "id": "cedar",
+      "status": "PASS",
+      "evidence": {
+        "status": "1 guide found for “cedar”.",
+        "cards": [
+          "FIELD GUIDE / 01Cedar trails and their seasonal wildlifeForest112 pages"
+        ]
+      },
+      "at": "2026-11-05T16:51:48.377Z"
+    },
+    {
+      "id": "focus-after-enter",
+      "status": "PASS",
+      "evidence": "Input retains focus after Enter and result arrival.",
+      "at": "2026-11-05T16:51:48.390Z"
+    },
+    {
+      "id": "moss",
+      "status": "PASS",
+      "evidence": {
+        "status": "2 guides found for “moss”.",
+        "cards": [
+          "FIELD GUIDE / 01Mosses of the rain-soaked northern woodlandWoodland84 pages",
+          "FIELD GUIDE / 02Pocket guide to urban mossUrban46 pages"
+        ]
+      },
+      "at": "2026-11-05T16:51:48.630Z"
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "evidence": "❧No guides found this time.Try a broader term or a different plant or place. Your search was “empty”.",
+      "at": "2026-11-05T16:51:49.041Z"
+    },
+    {
+      "id": "failure",
+      "status": "PASS",
+      "evidence": "!We couldn’t load your guides.The field guide service is temporarily unavailable.Retry",
+      "at": "2026-11-05T16:51:49.896Z"
+    },
+    {
+      "id": "retry-keyboard-reachable",
+      "status": "PASS",
+      "evidence": "Tab from input to Search, then Retry.",
+      "at": "2026-11-05T16:51:49.996Z"
+    },
+    {
+      "id": "retry-same-query",
+      "status": "PASS",
+      "evidence": {
+        "status": "Searching for “fail”…",
+        "input": "fail"
+      },
+      "at": "2026-11-05T16:51:50.013Z"
+    },
+    {
+      "id": "retry-focus",
+      "status": "PASS",
+      "evidence": "Retry moves focus to search input before removing itself.",
+      "at": "2026-11-05T16:51:50.026Z"
+    },
+    {
+      "id": "retry-new-attempt",
+      "status": "PASS",
+      "evidence": "Retry showed pending and subsequently failed again through real fixture.",
+      "at": "2026-11-05T16:51:50.860Z"
+    },
+    {
+      "id": "stale-success",
+      "status": "PASS",
+      "evidence": {
+        "elapsedMs": 1476,
+        "status": "2 guides found for “moss”."
+      },
+      "at": "2026-11-05T16:51:52.339Z"
+    },
+    {
+      "id": "stale-failure",
+      "status": "PASS",
+      "evidence": {
+        "elapsedMs": 930,
+        "status": "2 guides found for “moss”."
+      },
+      "at": "2026-11-05T16:51:53.273Z"
+    },
+    {
+      "id": "mobile-320",
+      "status": "PASS",
+      "evidence": {
+        "viewport": 320,
+        "body": 320,
+        "document": 320,
+        "cards": [
+          {
+            "left": 20,
+            "right": 300
+          },
+          {
+            "left": 20,
+            "right": 300
+          }
+        ],
+        "input": {
+          "x": 20,
+          "y": 339.1875,
+          "width": 179.109375,
+          "height": 48,
+          "top": 339.1875,
+          "right": 199.109375,
+          "bottom": 387.1875,
+          "left": 20
+        }
+      },
+      "at": "2026-11-05T16:51:53.367Z"
+    },
+    {
+      "id": "mobile-failure-320",
+      "status": "PASS",
+      "evidence": "Failure and Retry stay within 320px viewport.",
+      "at": "2026-11-05T16:51:54.272Z"
+    },
+    {
+      "id": "accessible-markup",
+      "status": "PASS",
+      "evidence": {
+        "label": "query",
+        "inputId": "query",
+        "role": "status",
+        "live": "polite",
+        "atomic": "true",
+        "busy": "false"
+      },
+      "at": "2026-11-05T16:51:54.275Z"
+    },
+    {
+      "id": "fixture-unchanged",
+      "status": "PASS",
+      "evidence": {
+        "sha256": "baa8f07b2ffd4cfbfb614f12fa69a53745499c5ed06e056e326ac37a25bd10c3"
+      },
+      "at": "2026-11-05T16:51:54.277Z"
+    },
+    {
+      "id": "search-button",
+      "status": "PASS",
+      "evidence": "Search button submitted moss and displayed two cards.",
+      "at": "2026-11-05T16:51:54.550Z"
+    },
+    {
+      "id": "reduced-motion",
+      "status": "PASS",
+      "evidence": "Spinner animation disabled with prefers-reduced-motion: reduce.",
+      "at": "2026-11-05T16:51:54.589Z"
+    },
+    {
+      "id": "browser-runtime",
+      "status": "PASS",
+      "evidence": {
+        "errors": []
+      },
+      "at": "2026-11-05T16:51:55.929Z"
+    }
+  ],
+  "errors": [],
+  "finishedAt": "2026-11-05T16:51:55.930Z"
+}

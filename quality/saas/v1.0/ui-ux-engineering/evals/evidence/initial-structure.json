@@ -1,0 +1,9 @@
+{
+  "phase": "during-construction",
+  "command": "node scripts/validate.mjs",
+  "chunk_id": "ff542d",
+  "wall_time_seconds": 1.1669907,
+  "exit_code": 1,
+  "original_token_count": 304,
+  "output": "{\n  \"status\": \"FAIL\",\n  \"validator\": \"bounded supported-keyword assertions; not full JSON Schema conformance\",\n  \"markdownLinks\": 24,\n  \"manifestResources\": 0,\n  \"errors\": [\n    \"ENOENT: no such file or directory, stat 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\evals\\\\fixtures\\\\lab\\\\README.md'\",\n    \"ENOENT: no such file or directory, stat 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\scripts\\\\test-tools.mjs'\",\n    \"ENOENT: no such file or directory, stat 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\evals\\\\protocol.md'\",\n    \"ENOENT: no such file or directory, stat 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\assets\\\\manifest.json'\",\n    \"ENOENT: no such file or directory, stat 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\evals\\\\report.md'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\ui-ux-engineering\\\\assets\\\\manifest.json'\"\n  ]\n}\n"
+}

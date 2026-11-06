@@ -1,0 +1,247 @@
+{
+  "caseId": "C06",
+  "arm": "skill",
+  "run": 2,
+  "startedAt": "2026-11-05T16:40:43.000Z",
+  "endedAt": "2026-11-05T16:44:50.023Z",
+  "elapsedSeconds": 247.023,
+  "route": "adapt / small native web component; M1, M3, M4, M5, M6, M7, M8; M2 limited to supplied fixture contract",
+  "requirementCoverage": [
+    {
+      "id": "C06-R01",
+      "requirement": "Native TypeScript/CSS local page, no backend/React/UI library, unchanged supplied API",
+      "status": "PASS",
+      "evidence": "artifact/src/app.ts; artifact/src/fake-api.ts; review-evidence.json fixture/build"
+    },
+    {
+      "id": "C06-R02",
+      "requirement": "Labeled search input; Search button and Enter submit",
+      "status": "PASS",
+      "evidence": "browser-evidence.json: initial-semantic-keyboard, cedar-enter-pending-result, moss-search-button"
+    },
+    {
+      "id": "C06-R03",
+      "requirement": "Initial prompt and visible pending feedback on requests; concurrent new search permitted",
+      "status": "PASS",
+      "evidence": "browser-evidence.json: initial-semantic-keyboard, cedar-enter-pending-result, both race checks; pending-desktop.png"
+    },
+    {
+      "id": "C06-R04",
+      "requirement": "Returned guide cards with content, useful empty state",
+      "status": "PASS",
+      "evidence": "browser-evidence.json: cedar-enter-pending-result, moss-search-button, empty-state; cedar-desktop.png; empty-desktop.png"
+    },
+    {
+      "id": "C06-R05",
+      "requirement": "Clear failure with Retry that makes another attempt for the failed query",
+      "status": "PASS",
+      "evidence": "browser-evidence.json: failure-and-retry-same-query; fixtureCalls records two 650ms attempts; failure-320.png"
+    },
+    {
+      "id": "C06-R06",
+      "requirement": "Latest submitted intent guards success, rejection and finally; both requested races checked",
+      "status": "PASS",
+      "evidence": "artifact/src/app.ts: generation checks; browser-evidence.json: race-cedar-then-moss (1475ms), race-fail-then-moss (924ms)"
+    },
+    {
+      "id": "C06-R07",
+      "requirement": "Accessible feedback semantics, keyboard task, usable focus",
+      "status": "PASS",
+      "evidence": "browser-evidence.json: initial-semantic-keyboard, cedar-enter-pending-result, failure-and-retry-same-query; review-evidence.json color pairs; AT output UNVERIFIED"
+    },
+    {
+      "id": "C06-R08",
+      "requirement": "320px layout, setup instructions and reproducible checks",
+      "status": "PASS",
+      "evidence": "artifact/README.md; browser-evidence.json: 320px-reflow-and-long-content; moss-320.png; failure-320.png"
+    }
+  ],
+  "assumptions": [
+    "English local demo with current Chrome; no persistence or URL query contract required.",
+    "R01–R08 mapped in task order because supplied IDs have no individual descriptions.",
+    "System fonts; API fixture data/timing only, no real network service."
+  ],
+  "decisions": [
+    "Single native form with stable input, polite atomic status outside busy result content, semantic cards.",
+    "Incrementing request generation guards every Promise success, catch and finally; no cancellation assumed.",
+    "New search clears earlier cards, preserves draft/focus and remains available while pending.",
+    "Retry captures the failed submitted query independently of edited input and focuses the persistent input before hiding Retry. No automatic retry loop.",
+    "Warm-paper/forest palette with CSS semantic tokens, content-driven mobile stacking and 46px+ controls."
+  ],
+  "checks": [
+    {
+      "id": "strict-build",
+      "status": "PASS",
+      "evidence": "review-evidence.json build; executed node artifact/build.mjs with TypeScript 6.0.3 and Node v24.12.0; no diagnostics"
+    },
+    {
+      "id": "unchanged-fixture",
+      "status": "PASS",
+      "evidence": "review-evidence.json fixture; byte equality and SHA256 baa8f07b2ffd4cfbfb614f12fa69a53745499c5ed06e056e326ac37a25bd10c3"
+    },
+    {
+      "id": "initial-semantic-keyboard",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": "Native label/name, stable polite atomic status; Tab input→Search with visible focus; initial prompt visible."
+      }
+    },
+    {
+      "id": "cedar-enter-pending-result",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": "Enter submits cedar; busy and visible pending before 1200ms completion; Search stays enabled; input focus survives; one cedar card."
+      }
+    },
+    {
+      "id": "moss-search-button",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": "Search button yields two moss cards, long title, habitats and page counts."
+      }
+    },
+    {
+      "id": "empty-state",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": "No cards; visible outcome plus broader-subject/spelling recovery advice."
+      }
+    },
+    {
+      "id": "failure-and-retry-same-query",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": {
+          "observation": "Failure clear; Retry keyboard activation creates a new 650ms API attempt for fail despite cedar draft; input focus survives; expected second fail permits further retry.",
+          "before": 1,
+          "after": 2
+        }
+      }
+    },
+    {
+      "id": "race-cedar-then-moss",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": {
+          "elapsedMs": 1475,
+          "observation": "B moss completes before A cedar; moss title/status/cards remain after late cedar success."
+        }
+      }
+    },
+    {
+      "id": "race-fail-then-moss",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": {
+          "elapsedMs": 924,
+          "observation": "Late fail rejection cannot overwrite moss or reveal Retry."
+        }
+      }
+    },
+    {
+      "id": "320px-reflow-and-long-content",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": {
+          "viewport": 320,
+          "controls": [
+            {
+              "width": 258,
+              "height": 48
+            },
+            {
+              "width": 258,
+              "height": 46
+            }
+          ],
+          "observation": "Moss long title, 200-character query, and failure/Retry fit without horizontal overflow."
+        }
+      }
+    },
+    {
+      "id": "blank-query-native-validation",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": "Native required validation blocks empty input; no API call scheduled."
+      }
+    },
+    {
+      "id": "browser-errors",
+      "status": "PASS",
+      "evidence": {
+        "path": "browser-evidence.json",
+        "observation": "No uncaught browser exceptions or server stderr."
+      }
+    },
+    {
+      "id": "rendered-visual-review",
+      "status": "PASS",
+      "evidence": {
+        "status": "PASS",
+        "viewports": [
+          "1000x900 DPR1",
+          "320x800 DPR1 (full-page images taller)"
+        ],
+        "screenshots": [
+          "initial-desktop-focus.png",
+          "pending-desktop.png",
+          "cedar-desktop.png",
+          "moss-320.png",
+          "failure-320.png"
+        ],
+        "observation": "Reviewed rendered screenshots: clear primary form, aligned spacing and hierarchy, legible labels and metadata, long moss title wraps, no clipping, distinct text pending/error/outcomes, visible focus. Native search clear affordance visible."
+      }
+    },
+    {
+      "id": "declared-color-pairs",
+      "status": "PASS",
+      "evidence": "review-evidence.json: ten sRGB pair calculations; text >=4.5, input boundary and focus >=3; not a complete accessibility scan"
+    },
+    {
+      "id": "assistive-technology",
+      "status": "UNVERIFIED",
+      "evidence": "No screen reader used. Live-region and label semantics were browser-tested; spoken output is unverified."
+    },
+    {
+      "id": "full-automated-accessibility-scan",
+      "status": "UNVERIFIED",
+      "evidence": "No scanner installed or run; browser DOM, keyboard/focus, color and 320px reflow checks recorded separately."
+    },
+    {
+      "id": "actual-browser-zoom",
+      "status": "UNVERIFIED",
+      "evidence": "320px viewport and long-content reflow tested; no browser zoom action performed."
+    },
+    {
+      "id": "performance-field-lab",
+      "status": "UNVERIFIED",
+      "evidence": "No field visits, CWV or three-run comparison measurement. Race elapsed values establish fixture waiting only, not performance claims."
+    }
+  ],
+  "limitations": [
+    "Fixture fail always fails; Retry is verified as a fresh same-query attempt with another expected failure.",
+    "Browser automation used Chrome 156.0.8078.80 headless, Playwright 1.64.0-alpha-1790635538000, DPR1; no other browsers or physical devices.",
+    "Keyboard checks were browser-driven; no human user study or screen-reader test.",
+    "Full accessibility conformance, actual zoom behavior, and field/lab performance are not established.",
+    "Build uses existing host TypeScript API; set TYPESCRIPT_API to an existing installation on another host."
+  ],
+  "tokens": null,
+  "cost": null,
+  "artifacts": {
+    "directory": "artifact",
+    "setup": "artifact/README.md",
+    "test": "check.mjs",
+    "rawEvidence": "browser-evidence.json",
+    "review": "review-evidence.json"
+  },
+  "cleanup": "Playwright browser closed and loopback helper process terminated in test finally; no helper left intentionally running."
+}

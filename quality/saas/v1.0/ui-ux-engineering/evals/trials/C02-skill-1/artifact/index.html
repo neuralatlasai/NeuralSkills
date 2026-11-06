@@ -1,0 +1,18 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit — Your work, in orbit</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="header"><a class="brand" href="#overview" aria-label="Orbit home"><span class="brand-mark" aria-hidden="true"></span>orbit</a><nav aria-label="Main navigation"><a class="active" href="#overview">Overview</a><a href="#projects">Projects</a><a href="#activity">Activity</a></nav><button class="create-workspace" type="button">Create workspace</button></header>
+<main>
+<section id="overview" class="hero" aria-labelledby="headline"><div class="intro"><p class="eyebrow">Your work, in orbit</p><h1 id="headline">A little less busy.<br>A lot more focused.</h1><p class="description">Bring your projects, people and next steps together.<br> Make room for the work that matters.</p><div class="hero-actions"><a class="primary" href="#projects">View projects</a><a class="text-link" href="#activity">See activity <span aria-hidden="true">→</span></a></div></div><div class="art" role="img" aria-label="This week: 24 tasks complete"><div class="planet"></div><div class="orbit-line"></div><div class="moon"></div><div class="summary"><div class="check"></div><div><p>This week</p><strong>24 tasks complete</strong></div></div></div></section>
+<section id="projects" class="projects" aria-labelledby="projects-heading"><div class="section-title"><h2 id="projects-heading">Your projects</h2><a href="#projects" class="text-link">All projects <span aria-hidden="true">→</span></a></div><div class="cards"><article class="card"><span class="icon violet" aria-hidden="true"><span class="list-icon"></span></span><h3>Website refresh</h3><p>8 of 12 tasks complete</p><div class="progress" role="progressbar" aria-label="Website refresh task completion" aria-valuenow="8" aria-valuemin="0" aria-valuemax="12"><span style="width:66.6667%"></span></div></article><article class="card"><span class="icon green" aria-hidden="true"><span class="arrow-icon"></span></span><h3>Spring launch</h3><p>5 of 10 tasks complete</p><div class="progress green-progress" role="progressbar" aria-label="Spring launch task completion" aria-valuenow="5" aria-valuemin="0" aria-valuemax="10"><span style="width:50%"></span></div></article><article class="card"><span class="icon amber" aria-hidden="true"><span class="circle-icon"></span></span><h3>Customer insights</h3><p>11 of 14 tasks complete</p><div class="progress amber-progress" role="progressbar" aria-label="Customer insights task completion" aria-valuenow="11" aria-valuemin="0" aria-valuemax="14"><span style="width:78.5714%"></span></div></article></div></section>
+<section id="activity" class="activity" aria-labelledby="activity-heading"><h2 id="activity-heading">Recent activity</h2><div class="activity-row"><span class="activity-dot" aria-hidden="true"></span><p>Maya completed the homepage review</p><time>2h ago</time></div></section>
+</main><div id="success" role="status" class="toast" hidden></div>
+<dialog aria-labelledby="dialog-heading"><form id="workspace-form"><h2 id="dialog-heading">Create workspace</h2><p>Give your new workspace a name.</p><label for="workspace-name">Workspace name</label><input id="workspace-name" name="workspaceName" required maxlength="80" autocomplete="organization"><p id="name-error" class="error" hidden>Enter a workspace name.</p><div class="dialog-actions"><button type="button" class="cancel">Cancel</button><button type="submit" class="create-workspace">Create</button></div></form></dialog>
+<script src="app.js"></script>
+</body></html>
+

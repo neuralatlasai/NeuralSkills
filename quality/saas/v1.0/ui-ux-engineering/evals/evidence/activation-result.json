@@ -1,0 +1,73 @@
+﻿{
+    "startTimestamp":  "2026-11-05T15:47:43.4618346Z",
+    "endTimestamp":  "2026-11-05T15:47:43.4758361Z",
+    "model":  "inherited host model; exact identifier not exposed",
+    "classifications":  [
+                            {
+                                "id":  "A-P01",
+                                "classification":  "ACTIVATE",
+                                "reason":  "Building an accessible interactive button with success and failure states falls within interface implementation."
+                            },
+                            {
+                                "id":  "A-P02",
+                                "classification":  "ACTIVATE",
+                                "reason":  "Recreating a dashboard screenshot responsively and checking visual fidelity directly matches interface reproduction and verification."
+                            },
+                            {
+                                "id":  "A-P03",
+                                "classification":  "ACTIVATE",
+                                "reason":  "Implementing a preferences form from Figma or fallback requirements is interface work covered by the skill."
+                            },
+                            {
+                                "id":  "A-P04",
+                                "classification":  "ACTIVATE",
+                                "reason":  "Fixing keyboard behavior in a mobile filter drawer improves an existing interactive interface while preserving its design tokens."
+                            },
+                            {
+                                "id":  "A-P05",
+                                "classification":  "ACTIVATE",
+                                "reason":  "Preventing stale asynchronous search results from replacing the latest result implements correct interactive panel behavior."
+                            },
+                            {
+                                "id":  "A-P06",
+                                "classification":  "ACTIVATE",
+                                "reason":  "Adapting a checkout step for narrow screens, keyboard access, localization and validation is responsive interface improvement."
+                            },
+                            {
+                                "id":  "A-N01",
+                                "classification":  "DO_NOT_ACTIVATE",
+                                "reason":  "A prose-only explanation of CSS layout concepts does not request interface design, implementation, reproduction or improvement."
+                            },
+                            {
+                                "id":  "A-N02",
+                                "classification":  "DO_NOT_ACTIVATE",
+                                "reason":  "PostgreSQL query and index tuning is backend-only work with frontend changes explicitly excluded."
+                            },
+                            {
+                                "id":  "A-N03",
+                                "classification":  "DO_NOT_ACTIVATE",
+                                "reason":  "The request is limited to headline copy and explicitly leaves interface design and code unchanged."
+                            },
+                            {
+                                "id":  "A-N04",
+                                "classification":  "DO_NOT_ACTIVATE",
+                                "reason":  "Adding a JSON REST endpoint is backend-only work despite its incidental dashboard consumer."
+                            },
+                            {
+                                "id":  "A-N05",
+                                "classification":  "DO_NOT_ACTIVATE",
+                                "reason":  "Generating a standalone watercolor asset does not request designing or implementing a user interface."
+                            },
+                            {
+                                "id":  "A-N06",
+                                "classification":  "DO_NOT_ACTIVATE",
+                                "reason":  "Running backend unit tests excludes interface work and visual design inspection."
+                            }
+                        ],
+    "resourceUsage":  {
+                          "tokens":  null,
+                          "cost":  null,
+                          "reason":  "not exposed by host"
+                      },
+    "observedToolsUsed":  2
+}

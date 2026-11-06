@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-11-05T17:31:14.710Z",
+  "provenance": "Coordinator reconciliation from actual saved dispatch and retained result; no raw result rewrite or host telemetry export.",
+  "trial": "B01-skill-2",
+  "controlVersion": "2",
+  "dispatch": "evals/dispatch/B01-skill-2.txt",
+  "commonInput": "evals/inputs/control-v2.json",
+  "comparisonStatus": "SCORED_CONTROL_CORRECTION",
+  "model": {
+    "selection": "Same inherited configuration, no override",
+    "exactId": null
+  },
+  "permissions": "Same workspace and network restrictions, actual Windows Node24.12/SQLite3.50.4",
+  "resources": {
+    "actualTokens": null,
+    "actualCost": null,
+    "availability": "Host does not expose token/cost telemetry",
+    "actualNestedToolCalls": 12,
+    "toolCountBasis": "Counted actual nested tool calls in this isolated trial, including the final structural verification call; wrappers excluded. No collaboration or children.",
+    "startUtc": null,
+    "endUtc": "2026-11-05T17:30:02.908Z",
+    "reportedElapsedSeconds": null,
+    "fullExactElapsedSeconds": null
+  },
+  "conditionalWallUpperBound": {
+    "seconds": 323.251,
+    "priorObservedUtc": "2026-11-05T17:24:39.657Z",
+    "reason": "Saved wrapper creation completed before actual spawn",
+    "premise": "Stable host UTC; start necessarily after prior event",
+    "meaning": "Causal upper bound, not measured exact whole-trial duration"
+  },
+  "budget": {
+    "wallSeconds": 360,
+    "nestedTools": 20,
+    "observedToolBreach": false,
+    "wallUpperBoundBelowLimit": true
+  },
+  "rawResultSha256": "d955a30fe6f2f5948485ada368b2271706839fbe45d548d01f9229ec14fc5ade",
+  "concurrency": "B01arms overlapped on shared host; B02skill started after B01baseline completed. Timing is descriptive, not an efficiency comparison."
+}

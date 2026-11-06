@@ -1,0 +1,8 @@
+{
+  "cmd": "@'\nimport {readFile,readdir,stat} from 'node:fs/promises';\nimport {resolve,dirname} from 'node:path';\nimport {createHash} from 'node:crypto';\nconst base=resolve('NeuralSkills/roles/saas/delivery-evidence'),facts=JSON.parse(await readFile(resolve(base,'delivery-audit-facts.json'),'utf8'));\nconst issues=[],files=await readdir(base);let jsonCount=0,links=0;\nfor(const file of files){const text=await readFile(resolve(base,file),'utf8');if(file.endsWith('.json')){JSON.parse(text);jsonCount++;}if(file.endsWith('.md'))for(const match of text.matchAll(/\\[[^\\]]*\\]\\(([^)]+)\\)/g)){if(/^[a-z]+:/i.test(match[1]))continue;links++;try{await stat(resolve(base,match[1]));}catch(error){issues.push(error.message);}}}\nfor(const p of facts.packages){const bytes=await readFile(resolve(base,'..',p.name,'evals/report.md'));if(createHash('sha256').update(bytes).digest('hex')!==p.reportSha256)issues.push('Report changed after final capture: '+p.name);}\nconsole.log(JSON.stringify({observedAt:new Date().toISOString(),status:issues.length?'FAIL':'PASS',files:files.length,jsonFilesParsed:jsonCount,localAuditLinksChecked:links,finalReportHashesStillMatch:!issues.length,issues},null,2));\n'@ | node --input-type=module",
+  "chunk_id": "a9c6b4",
+  "wall_time_seconds": 0.5233061,
+  "exit_code": 0,
+  "original_token_count": 48,
+  "output": "{\n  \"observedAt\": \"2026-11-05T17:40:57.632Z\",\n  \"status\": \"PASS\",\n  \"files\": 7,\n  \"jsonFilesParsed\": 6,\n  \"localAuditLinksChecked\": 5,\n  \"finalReportHashesStillMatch\": true,\n  \"issues\": []\n}\n"
+}

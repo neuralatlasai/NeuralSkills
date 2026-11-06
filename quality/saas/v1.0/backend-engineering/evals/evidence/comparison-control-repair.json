@@ -1,0 +1,17 @@
+{
+  "createdAt": "2026-11-05T17:21:46.750Z",
+  "reason": "The original common input supplied24area names but omitted the required4disposition labels/meanings. Exact-enum failures therefore confound strict-format comparison with missing user constraints.",
+  "originalCommonInputSha256": "489cd8546b4423a0b4bf62dc29f3a37df98156d1f10b7ff9321dbeb05cd12073",
+  "originalCommonInput": "control-v1/responsibilities.json",
+  "correctedCommonInput": "../inputs/control-v2.json",
+  "unchanged": [
+    "SKILL.md",
+    "all57frozen instruction/criteria/fixture files",
+    "technical tasks and requirementcriteria",
+    "raw original results",
+    "model configuration/tools/budget"
+  ],
+  "repair": "Repeat B01/B02 baseline+skill as run2 using corrected identical control. Original run1 comparisons retained as pilots; no best-of selection or weakened criterion. Other4single-run skill cases remain separately labeled.",
+  "scores": "Report frozen literal labels plus semantic interpretation of pilots; do not claim engineering inferiority from undisclosed enum.",
+  "authorization": "User requested all applicable gates and repair/retest; internal evaluation correction is within that scope."
+}

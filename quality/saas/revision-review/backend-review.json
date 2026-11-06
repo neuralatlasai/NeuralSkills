@@ -1,0 +1,36 @@
+{
+  "review": "backend-1.1-pre-freeze",
+  "scope": "SKILL.md, api-domain, data, async-integrations, runtime-capacity, operations, verification; coverage index and L22 in meet.md. No evaluation cases, held-out tasks or grading material read.",
+  "findings": [
+    {
+      "id": "B1",
+      "location": "SKILL.md:41",
+      "issue": "Every correctness change must compare a materially different mechanism. This imposes an architecture exercise on a narrow correction whose invariant and existing mechanism are already settled.",
+      "change": "Require the alternative comparison when selecting or materially changing a consequential mechanism; for a local repair, retain the existing mechanism and demonstrate the counterexample and fix."
+    },
+    {
+      "id": "B2",
+      "location": "SKILL.md:53",
+      "issue": "The entry point unconditionally loads capacity models and demands the full CPU/database/network/growth/recovery analysis, while B6 activates only for L09/L20 or a critical performance path. A bounded validation fix can therefore inherit process, surge and partition modelling it does not change.",
+      "change": "Apply the detailed models when workload, resource bounds or a critical path changes; otherwise preserve known limits and verify only the affected bound."
+    },
+    {
+      "id": "B3",
+      "location": "references/operations.md:9",
+      "issue": "L22 now specifies safe telemetry transport but omits the operational signals required by meet.md: client-visible latency/useful throughput/outcomes, queue/pool/lock waits, retry amplification, saturation, lag/freshness and recovery progress. Other references measure selected experiments but do not require appropriate ongoing instrumentation.",
+      "change": "Extend the existing L22 mechanism cell with selection of these applicable service signals and their units/populations; verify emitted values against a controlled workload. Keep exporter resource/loss probes."
+    },
+    {
+      "id": "B4",
+      "location": "references/verification.md:13-44",
+      "issue": "The every-task risk table includes reusable-skill evaluation, followed by package-local commands and fixture assertions before authoring is clearly separated. Ordinary backend work can read these as required skill trials or fixture runs despite the opening affected-responsibilities limit.",
+      "change": "Explicitly scope reusable-skill behavior, package commands, fixture coverage and skill-evaluation procedures to maintaining this package; keep normal application verification above that boundary."
+    },
+    {
+      "id": "B5",
+      "location": "references/data.md:last paragraph before sources; references/async-integrations.md:service-split paragraph",
+      "issue": "Both files repeat the service-extraction decision and nearly the same release/privilege/resource/failure justification. Neither adds a distinct decision at its second occurrence.",
+      "change": "Keep the full local-transaction versus service-split rule in one owner and replace the other occurrence with a short cross-reference, or remove it."
+    }
+  ]
+}

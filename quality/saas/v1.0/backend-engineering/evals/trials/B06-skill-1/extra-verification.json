@@ -1,0 +1,228 @@
+{
+  "results": [
+    {
+      "name": "simultaneous first delivery race 1",
+      "status": "PASS"
+    },
+    {
+      "name": "simultaneous first delivery race 2",
+      "status": "PASS"
+    },
+    {
+      "name": "simultaneous first delivery race 3",
+      "status": "PASS"
+    },
+    {
+      "name": "inclusive timestamp window -300",
+      "status": "PASS"
+    },
+    {
+      "name": "inclusive timestamp window 300",
+      "status": "PASS"
+    },
+    {
+      "name": "duplicate timestamp header rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "active body admission cap rejects and recovers",
+      "status": "PASS"
+    }
+  ],
+  "traces": [
+    {
+      "name": "race-1",
+      "responses": [
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":false}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        }
+      ]
+    },
+    {
+      "name": "race-2",
+      "responses": [
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":false}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        }
+      ]
+    },
+    {
+      "name": "race-3",
+      "responses": [
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":false}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        },
+        {
+          "status": 200,
+          "body": "{\"accepted\":true,\"replay\":true}"
+        }
+      ]
+    },
+    {
+      "name": "timestamp boundary -300",
+      "response": {
+        "status": 200,
+        "body": "{\"accepted\":true,\"replay\":false}"
+      }
+    },
+    {
+      "name": "timestamp boundary 300",
+      "response": {
+        "status": 200,
+        "body": "{\"accepted\":true,\"replay\":false}"
+      }
+    },
+    {
+      "name": "duplicate time",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}"
+      }
+    },
+    {
+      "name": "overload response",
+      "response": {
+        "status": 503,
+        "body": "{\"code\":\"unavailable\"}"
+      }
+    },
+    {
+      "name": "recovered",
+      "response": {
+        "status": 200,
+        "body": "{\"accepted\":true,\"replay\":false}"
+      }
+    }
+  ]
+}

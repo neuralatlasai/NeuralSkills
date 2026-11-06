@@ -1,0 +1,328 @@
+{
+  "time": "2026-11-05T17:15:44.428Z",
+  "scope": "Supplemental capability and runtime-gap verification only; no raw trial/result/core/previous grading changes; no overall rating.",
+  "canonicalSources": [
+    "evals/cases.json C05",
+    "evals/heldout/C07.json"
+  ],
+  "sourceHashes": [
+    {
+      "path": "evals/cases.json",
+      "sha256": "fe22ba6fc6882b5ab6ea2e6a9e109b01c366576c89250e179e414f1aa37f1100"
+    },
+    {
+      "path": "evals/heldout/C07.json",
+      "sha256": "b9cf90022503d76171d1a1210d495f3d34178ee4fa818fd8d2393094b53f81c5"
+    }
+  ],
+  "artifacts": [
+    {
+      "trial": "C05-skill-1",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "c49ee7004b3a9827b04c572094cfe28170ceb70f9289c5c9a24446e03d7ae32a"
+        },
+        {
+          "path": "index.html",
+          "sha256": "b822a8305b084c22e41e280820d334ad88a88f01d2fbc5c6db27fcf445977d5c"
+        },
+        {
+          "path": "package.json",
+          "sha256": "10f369cbcfe50f9b04b596580b188fbdbe8b19c5bb659fcb4cbe3335c3e9ad49"
+        },
+        {
+          "path": "src/App.tsx",
+          "sha256": "d72c5cbb8338191136c951529032222ea25e4d74a0a23455bbcb2cfe8d44e010"
+        },
+        {
+          "path": "src/main.tsx",
+          "sha256": "484dec2869f86a979f9569ab897855787addbcf37318655a6043f8531b00495c"
+        },
+        {
+          "path": "src/styles.css",
+          "sha256": "e61abd3bc9099871616d75933df9f3d2667aebe85644e5daa27ec8b23bcac6c0"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "b97fb1ea80421bf0133e2afdb05484e49804f534f0edf4ff7b6e71c866cdcc40"
+        },
+        {
+          "path": "vite.config.ts",
+          "sha256": "21eba04627b77d915e075859f6a8c53c2a8c575135286fb4c795fbde4d54cb54"
+        }
+      ],
+      "digest": "a196ec085687b5e4dcfd3711db6f756fc1f8014697ebfb0738aaf3b73ca23387",
+      "priorDigest": "a196ec085687b5e4dcfd3711db6f756fc1f8014697ebfb0738aaf3b73ca23387",
+      "hashUnchanged": true
+    },
+    {
+      "trial": "C07-skill-1",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "afc0a7b965d8fc4cab3cd01e9be9482c516223aec28f46361d9ddf2dd31a17e2"
+        },
+        {
+          "path": "app.js",
+          "sha256": "768be3539f1b7af8995561f106ff9ec3cc30af8386f836047a21e0b5baf70456"
+        },
+        {
+          "path": "app.ts",
+          "sha256": "c79aca63c4ebe833828304e6f6e69a1a260d48dca902796854968ac2f469e6bd"
+        },
+        {
+          "path": "build.cjs",
+          "sha256": "a00467025d2ce29a6acff0b7f3ee373f9e3f6a38af1d414e77d59c3c693cc100"
+        },
+        {
+          "path": "copy.json",
+          "sha256": "68fbfb9e4facf941a9b24eecbaa0a8aea6de7e760989184c15d9c9cd56ca1919"
+        },
+        {
+          "path": "index.html",
+          "sha256": "333eb4ca82bd2ecd06e9ef83eaf15540e334312fd46331bad53f3adf5ec12cc2"
+        },
+        {
+          "path": "serve.cjs",
+          "sha256": "208b42a2a30990f1e99cf30c68cdfef866df0ef555ef5ff75d13eb44038945fc"
+        },
+        {
+          "path": "style.css",
+          "sha256": "01e04af99dc0ad16c9bd90ce5f2e859b01106c59e5f7f8074686e1a685c8baad"
+        }
+      ],
+      "digest": "59e573950a10c3fc1b76c935ace7c340c43f1a9423ccff247272d044e68565a8",
+      "priorDigest": "59e573950a10c3fc1b76c935ace7c340c43f1a9423ccff247272d044e68565a8",
+      "hashUnchanged": true
+    }
+  ],
+  "capabilitySteps": [
+    {
+      "step": 1,
+      "action": "Read computer-use SKILL.md plus guidance/api/confirmations; initialize @oai/sky; inventory windows without operating unrelated tabs.",
+      "outcome": "Native Windows UI API available."
+    },
+    {
+      "step": 2,
+      "action": "Create new Playwright Chrome156 persistent task context with loopback server and own chrome-profile.",
+      "outcome": "Loopback render worked. Initial server-root mistake produced 404; corrected only supplemental start.cjs. This browser window was not in native inventory."
+    },
+    {
+      "step": 3,
+      "action": "CUA createBrowserTab chrome with task sessionName and loopback URL.",
+      "outcome": "The browser access host is unavailable. completion_summary Found browser blocker sent immediately after failure, exactly once."
+    },
+    {
+      "step": 4,
+      "action": "Navigate fresh Chrome page to registry.npmjs.org/react/19.0.0, unpkg.com/react@19.0.0/package.json, esm.sh/react@19.0.0; web open exact React/ReactDOM package metadata URLs.",
+      "outcome": "All three Chrome requests ERR_NETWORK_ACCESS_DENIED; both web package opens inaccessible. No certificate/policy bypass or install."
+    },
+    {
+      "step": 5,
+      "action": "Native Ctrl+N creates fresh task Chrome window; navigate loopback C07. Native Ctrl+0 then Ctrl+plus through110/125/150/175/200.",
+      "outcome": "Native toolbar and alert explicitly Zoom: 200%; evidence native-200.txt/native-200-0.jpg. German form and review tested. Stopped after user-input warning; new window2558684 later absent from inventory."
+    }
+  ],
+  "C05": {
+    "stack": {
+      "react": "19.0.0",
+      "reactDOM": "19.0.0",
+      "vite": "6.1.0",
+      "typescript": "5.7.3",
+      "transport": "No genuine React runtime obtained or executed; no alternate stack presented as Vite verification."
+    },
+    "packageChecks": {
+      "typecheckExit": 1,
+      "buildExit": 1
+    },
+    "criteria": [
+      {
+        "id": "C05-R01",
+        "kind": "scope",
+        "check": "Existing React/TypeScript/Vite stack and package scripts are retained; no new runtime/UI/router dependency.",
+        "status": "PASS",
+        "basis": "Retained package.json and original source structure; existing assessment plus unchanged artifact hashes."
+      },
+      {
+        "id": "C05-R02",
+        "kind": "preservation",
+        "check": "Original CSS brand tokens, heading, invoice data, navigation, totals and base page character remain; changes are localized to disclosure support.",
+        "status": "UNVERIFIED",
+        "basis": "No genuine React runtime/render/layout verification; source/transpilation does not prove this required behavior."
+      },
+      {
+        "id": "C05-R03",
+        "kind": "function",
+        "check": "Every row independently opens/closes its correct due date and three payment entries; toggling one row does not alter another.",
+        "status": "UNVERIFIED",
+        "basis": "No genuine React runtime/render/layout verification; source/transpilation does not prove this required behavior."
+      },
+      {
+        "id": "C05-R04",
+        "kind": "accessibility",
+        "check": "Each native toggle has correct aria-expanded and a unique matching aria-controls target; keyboard/focus work in both states.",
+        "status": "UNVERIFIED",
+        "basis": "No genuine React runtime/render/layout verification; source/transpilation does not prove this required behavior."
+      },
+      {
+        "id": "C05-R05",
+        "kind": "responsive",
+        "check": "At 375px controls/details remain readable, without page overflow or overlapping content.",
+        "status": "UNVERIFIED",
+        "basis": "No genuine React runtime/render/layout verification; source/transpilation does not prove this required behavior."
+      },
+      {
+        "id": "C05-R06",
+        "kind": "delivery",
+        "check": "Existing typecheck/build scripts are run when environment allows; exact failures or unavailability are disclosed.",
+        "status": "PASS",
+        "basis": "Existing scripts reattempted with npm.cmd; both exit1 because tsc is absent; exact logs retained. Initial bare npm resolved npm.ps1 and was blocked by existing execution policy; policy was not changed."
+      }
+    ],
+    "blockedProof": [
+      "network-probes.json",
+      "C05-command-exits.json",
+      "C05-typecheck.log",
+      "C05-build.log"
+    ],
+    "limitations": [
+      "Dependencies remain absent. No genuine React19 render, disclosure runtime, keyboard/focus or375px layout check.",
+      "No claim all conceivable approved transports unavailable; tested Chrome navigation and web-fetch paths only.",
+      "No package downloaded/executed; provenance/license inspection therefore not reached."
+    ]
+  },
+  "C07": {
+    "criteria": [
+      {
+        "id": "C07-R01",
+        "kind": "function",
+        "check": "Invalid/blank Step 1 cannot advance; each invalid field has a useful message and focus goes to the first invalid control. Valid values advance.",
+        "status": "PASS",
+        "basis": "Existing independent assessment retained; this supplemental pass does not reexecute every canonical behavior."
+      },
+      {
+        "id": "C07-R02",
+        "kind": "function",
+        "check": "Review accurately shows all entered values; Back preserves them; consent is required; confirmation uses the submitted values locally.",
+        "status": "PASS",
+        "basis": "Existing independent assessment retained; this supplemental pass does not reexecute every canonical behavior."
+      },
+      {
+        "id": "C07-R03",
+        "kind": "localization",
+        "check": "English/German switching on either step preserves values and updates labels, options, visible errors, summary and outcome; long strings are intact.",
+        "status": "PASS",
+        "basis": "Existing independent assessment retained; this supplemental pass does not reexecute every canonical behavior."
+      },
+      {
+        "id": "C07-R04",
+        "kind": "accessibility",
+        "check": "All controls have labels; errors are associated; keyboard flow and the required step focus transitions work; visible focus and >=44px control height are observed.",
+        "status": "PASS",
+        "basis": "Existing independent assessment retained; this supplemental pass does not reexecute every canonical behavior."
+      },
+      {
+        "id": "C07-R05",
+        "kind": "responsive",
+        "check": "At 320px and 1280px, plus 200% browser zoom at a recorded desktop viewport, long German content remains readable with no page overflow, clipped text or collisions.",
+        "status": "UNVERIFIED",
+        "basis": "Partial native200% evidence added. Existing assessment covers320/1280. German entry options, review heading/equipment, consent/actions visibly wrap; no horizontal overflow in captured metrics. Full native200% state/scroll coverage interrupted by user input; independent canonical assessment required."
+      },
+      {
+        "id": "C07-R06",
+        "kind": "scope",
+        "check": "Native TypeScript/CSS, one local flow, no backend or framework/UI dependency.",
+        "status": "PASS",
+        "basis": "Existing independent assessment retained; this supplemental pass does not reexecute every canonical behavior."
+      },
+      {
+        "id": "C07-R07",
+        "kind": "delivery",
+        "check": "Runnable setup and evidence for the required flows/viewports are supplied; unexecuted checks are UNVERIFIED.",
+        "status": "PASS",
+        "basis": "Existing independent assessment retained; this supplemental pass does not reexecute every canonical behavior."
+      }
+    ],
+    "nativeZoom": {
+      "proof": [
+        "native-200.txt",
+        "native-200-0.jpg",
+        "native-200-1.jpg"
+      ],
+      "mechanism": "Native Chrome Ctrl+plus, toolbar/alert explicitly200%; no CSSzoom/deviceemulation/pageScale set.",
+      "browserUA": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "recordedZoomedViewport": {
+        "width": 582,
+        "height": 283,
+        "outerWidth": 1164,
+        "outerHeight": 655,
+        "dpr": 3.3000001907348633
+      },
+      "cssZoom": "1",
+      "visualViewportScale": 1,
+      "deMetricsCount": 9,
+      "allCapturedGermanStatesNoPageOverflow": true,
+      "observedStates": [
+        "Angaben zur Abholung",
+        "Reservierungsangaben vor der verbindlichen Bestätigung überprüfen"
+      ],
+      "screenshots": [
+        "native-200-de-form-0.jpg",
+        "native-200-de-review-0.jpg",
+        "native-200-de-consent-0.jpg"
+      ],
+      "keyboardObserved": [
+        "Language chosen using Down/Return after popup click warning.",
+        "Native Tab/Space selected pickup and time.",
+        "Return from review action advanced and focus visibly outlined review heading.",
+        "Tab moved to consent with visible outline."
+      ],
+      "unobserved": [
+        "Native200% German error rendering",
+        "Full summary middle scroll capture",
+        "Native200% success outcome",
+        "Native200% Back preservation",
+        "Screen reader or other assistive technology"
+      ],
+      "readOnlyProbe": "native-server.cjs serves original C07 HTML/JS/CSS/copy bytes with additive read-only DOM-metrics script in served HTML; no layout/style/form-state mutation by probe. Measurements posted only to127.0.0.1.",
+      "interruption": "Native input warning user input was detected in this window; stopped dependent action and refreshed. Language had changed to English. No further native input. Newly created native window absent in later inventory."
+    }
+  },
+  "commands": [
+    {
+      "command": "node evals/evidence/review/supplemental/start.cjs",
+      "outcome": "First404 due supplemental server root; corrected supplemental harness; second loopback READY."
+    },
+    {
+      "command": "node evals/evidence/review/supplemental/network.cjs",
+      "outcome": "Three exact public URLs network denied; network-probes.json."
+    },
+    {
+      "command": "node evals/evidence/review/supplemental/native-server.cjs",
+      "outcome": "Loopback4398 read-only probe and metrics."
+    },
+    {
+      "command": "npm --prefix evals/trials/C05-skill-1/artifact run typecheck / build",
+      "outcome": "npm.ps1 execution policy blocked before scripts; no policy change."
+    },
+    {
+      "command": "npm.cmd --prefix evals/trials/C05-skill-1/artifact run typecheck",
+      "outcome": "Exit1 tsc not recognized; C05-typecheck.log."
+    },
+    {
+      "command": "npm.cmd --prefix evals/trials/C05-skill-1/artifact run build",
+      "outcome": "Exit1 tsc not recognized; C05-build.log."
+    }
+  ],
+  "cleanup": {
+    "nativeWindow": "Own new window2558684 no longer present; no action on other windows.",
+    "helpers": "Own exec sessions51266(start),61508(native-server),30099(network) received Ctrl+C and returned exit1. No unrelated process killed.",
+    "processInventory": "Get-CimInstance cleanup inventory attempt access denied; abandoned, used only own exec sessions."
+  },
+  "limitations": [
+    "No full journey atnative200% claim; no full WCAG/IEEE/ISO or AT claim.",
+    "The screenshot UI outer dimensions and JS viewport use different OS/browser pixel units; raw metrics and images retained without conflating them.",
+    "Inherited PASS criteria reference existing independently graded evidence; they are not new trials."
+  ]
+}

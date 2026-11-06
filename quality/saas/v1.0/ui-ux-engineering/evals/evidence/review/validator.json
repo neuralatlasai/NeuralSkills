@@ -1,0 +1,10 @@
+{
+  "utc": "2026-11-05T17:19:06.309Z",
+  "command": [
+    "node",
+    "scripts/validate.mjs"
+  ],
+  "exitCode": 0,
+  "stdout": "{\n  \"status\": \"PASS\",\n  \"validator\": \"bounded supported-keyword assertions; not full JSON Schema conformance\",\n  \"markdownLinks\": 48,\n  \"manifestResources\": 60,\n  \"errors\": []\n}\n",
+  "stderr": ""
+}

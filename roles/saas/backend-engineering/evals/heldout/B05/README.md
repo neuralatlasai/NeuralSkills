@@ -1,0 +1,1 @@
+Node 24.12+ built-ins. Copy raw files to trial/artifact. Import seed/openStore to initialize isolated v1 database; use SQLite VACUUM INTO or node:sqlite backup for a consistent backup to a new file. store.mjs has incomplete migration/restore routines. A deletion journal is separate because entries may postdate backup. No live database or customer data.

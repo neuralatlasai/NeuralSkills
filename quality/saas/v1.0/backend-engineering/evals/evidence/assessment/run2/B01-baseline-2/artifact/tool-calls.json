@@ -1,0 +1,82 @@
+{
+  "pathLegend": {
+    "package": "backend-engineering",
+    "evals": "backend-engineering/evals",
+    "trial": "backend-engineering/evals/trials/B01-baseline-2"
+  },
+  "calls": [
+    {
+      "index": 1,
+      "tool": "exec_command",
+      "command": "Get-Content -LiteralPath '<package>/evals/dispatch/B01-baseline-2.txt' -Raw",
+      "exitCode": 0,
+      "stdout": "Dispatch instructions received; named dispatch path only.",
+      "stderr": ""
+    },
+    {
+      "index": 2,
+      "tool": "exec_command",
+      "command": "Get-Content '<evals>/inputs/B01.json' -Raw; Get-Content '<evals>/inputs/control-v2.json' -Raw; node --version",
+      "exitCode": 0,
+      "stdout": "Named inputs preserved in originals; Node v24.12.0.",
+      "stderr": ""
+    },
+    {
+      "index": 3,
+      "tool": "exec_command",
+      "command": "New-Item '<trial>/artifact/originals'; Copy-Item named B01 fixtures and common input; Get-Content service.mjs and README.md; [DateTime]::UtcNow.ToString('o')",
+      "exitCode": 0,
+      "stdout": "Original files preserved in originals; first UTC sample 2026-11-05T17:25:07.0224708Z.",
+      "stderr": ""
+    },
+    {
+      "index": 4,
+      "tool": "apply_patch",
+      "command": "Add artifact/service.mjs and artifact/verify.mjs",
+      "exitCode": 0,
+      "stdout": "Patch success {}",
+      "stderr": ""
+    },
+    {
+      "index": 5,
+      "tool": "exec_command",
+      "command": "node <trial>/artifact/verify.mjs 1> <trial>/artifact/verify.stdout.log 2> <trial>/artifact/verify.stderr.log",
+      "exitCode": 0,
+      "stdout": "verify.first.stdout.log; verification.first.json",
+      "stderr": "verify.first.stderr.log"
+    },
+    {
+      "index": 6,
+      "tool": "apply_patch",
+      "command": "Strict UTF-8 and early Content-Length checks; simplify tenant existence query; add malformed UTF-8 test; add artifact/README.md",
+      "exitCode": 0,
+      "stdout": "Patch success {}",
+      "stderr": ""
+    },
+    {
+      "index": 7,
+      "tool": "exec_command",
+      "command": "Copy initial verification evidence to *.first.*; node <trial>/artifact/verify.mjs 1> <trial>/artifact/verify.stdout.log 2> <trial>/artifact/verify.stderr.log",
+      "exitCode": 0,
+      "stdout": "verify.stdout.log; verification.json",
+      "stderr": "verify.stderr.log"
+    },
+    {
+      "index": 8,
+      "tool": "apply_patch",
+      "command": "Add artifact/finalize.mjs to generate result and validate contract",
+      "exitCode": 0,
+      "stdout": "Patch success {}",
+      "stderr": ""
+    },
+    {
+      "index": 9,
+      "tool": "exec_command",
+      "command": "node <trial>/artifact/finalize.mjs 1> <trial>/artifact/finalize.stdout.log 2> <trial>/artifact/finalize.stderr.log",
+      "exitCode": 0,
+      "stdout": "finalize.stdout.log",
+      "stderr": "finalize.stderr.log"
+    }
+  ],
+  "notes": "Command records normalize absolute trial paths and summarize copy/read orchestration. Execution stdout/stderr retained as files. Patch results were empty success objects. No downloads, children or collaboration tool calls."
+}

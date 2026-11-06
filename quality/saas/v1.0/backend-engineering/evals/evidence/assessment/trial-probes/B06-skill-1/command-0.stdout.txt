@@ -1,0 +1,201 @@
+{
+  "pass": 39,
+  "fail": 0,
+  "results": [
+    {
+      "name": "invalid signature cannot mutate",
+      "status": "PASS",
+      "elapsedMs": 20
+    },
+    {
+      "name": "signature binds exact raw bytes",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "stale timestamp",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "future timestamp",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "noncanonical timestamp",
+      "status": "PASS",
+      "elapsedMs": 10
+    },
+    {
+      "name": "malformed hex signature",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "duplicate signature header",
+      "status": "PASS",
+      "elapsedMs": 4
+    },
+    {
+      "name": "missing signature",
+      "status": "PASS",
+      "elapsedMs": 4
+    },
+    {
+      "name": "signed malformed JSON",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "signed null",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "signed array",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "unknown event type",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "unknown field",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "empty event id",
+      "status": "PASS",
+      "elapsedMs": 4
+    },
+    {
+      "name": "overlong event id",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "nonstring order id",
+      "status": "PASS",
+      "elapsedMs": 3
+    },
+    {
+      "name": "invalid UTF8",
+      "status": "PASS",
+      "elapsedMs": 4
+    },
+    {
+      "name": "wrong tenant order",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "missing order",
+      "status": "PASS",
+      "elapsedMs": 12
+    },
+    {
+      "name": "oversized content length",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "oversized chunked body",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "unsupported compression",
+      "status": "PASS",
+      "elapsedMs": 4
+    },
+    {
+      "name": "unsupported method",
+      "status": "PASS",
+      "elapsedMs": 3
+    },
+    {
+      "name": "unsupported route",
+      "status": "PASS",
+      "elapsedMs": 3
+    },
+    {
+      "name": "precommit fault rolls back receipt and effect",
+      "status": "PASS",
+      "elapsedMs": 11
+    },
+    {
+      "name": "retry after rolled back precommit failure",
+      "status": "PASS",
+      "elapsedMs": 8
+    },
+    {
+      "name": "exact whitespace signed body persists before ACK",
+      "status": "PASS",
+      "elapsedMs": 9
+    },
+    {
+      "name": "identical replay no second effect",
+      "status": "PASS",
+      "elapsedMs": 3
+    },
+    {
+      "name": "conflicting event id different parameters",
+      "status": "PASS",
+      "elapsedMs": 3
+    },
+    {
+      "name": "conflicting event id different raw formatting",
+      "status": "PASS",
+      "elapsedMs": 2
+    },
+    {
+      "name": "north scope with colliding tenant object id",
+      "status": "PASS",
+      "elapsedMs": 8
+    },
+    {
+      "name": "body at 8192 byte boundary accepted",
+      "status": "PASS",
+      "elapsedMs": 8
+    },
+    {
+      "name": "concurrent replay run 1",
+      "status": "PASS",
+      "elapsedMs": 21
+    },
+    {
+      "name": "concurrent replay run 2",
+      "status": "PASS",
+      "elapsedMs": 29
+    },
+    {
+      "name": "concurrent replay run 3",
+      "status": "PASS",
+      "elapsedMs": 24
+    },
+    {
+      "name": "finite body deadline closes slow request",
+      "status": "PASS",
+      "elapsedMs": 5017
+    },
+    {
+      "name": "actual process restart retains replay and effects",
+      "status": "PASS",
+      "elapsedMs": 21
+    },
+    {
+      "name": "conflict after actual process restart",
+      "status": "PASS",
+      "elapsedMs": 8
+    },
+    {
+      "name": "SQLite integrity after restart",
+      "status": "PASS",
+      "elapsedMs": 0
+    }
+  ]
+}

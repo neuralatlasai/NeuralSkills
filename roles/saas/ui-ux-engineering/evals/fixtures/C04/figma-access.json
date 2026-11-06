@@ -1,0 +1,8 @@
+{
+  "simulation": true,
+  "reference": "figma://simulated-unavailable/contact-preferences",
+  "status": "unavailable",
+  "reason": "Evaluation fixture: access is deliberately unavailable and no real Figma file exists.",
+  "allowedFallback": "Use brief.md; disclose assumptions and mark Figma fidelity UNVERIFIED."
+}
+

@@ -1,0 +1,66 @@
+{
+  "suiteVersion": "1.0.0",
+  "execution": "Fresh routing-only contexts receive frozen name/description and one prompt, without labels. Report actual six-positive/six-negative confusion counts separately.",
+  "cases": [
+    {
+      "id": "A01",
+      "expectedActivation": true,
+      "prompt": "Add a tenant-scoped PATCH endpoint to this API and verify the SQLite write."
+    },
+    {
+      "id": "A02",
+      "expectedActivation": true,
+      "prompt": "Two clients reserve the last units and both succeed. Reproduce and repair the transaction race."
+    },
+    {
+      "id": "A03",
+      "expectedActivation": true,
+      "prompt": "Inspect this slow SQL query and use its actual plan to reduce materialization on our current database."
+    },
+    {
+      "id": "A04",
+      "expectedActivation": true,
+      "prompt": "Make this background worker survive a crash after its local effect but before acknowledgement."
+    },
+    {
+      "id": "A05",
+      "expectedActivation": true,
+      "prompt": "Build a restartable schema migration and verify backup restore before rollout."
+    },
+    {
+      "id": "A06",
+      "expectedActivation": true,
+      "prompt": "Implement signature-checked tenant-scoped webhook ingestion with durable duplicate handling."
+    },
+    {
+      "id": "N01",
+      "expectedActivation": false,
+      "prompt": "Adjust only CSS spacing and responsive columns of this dashboard. Mock data mentions API latency."
+    },
+    {
+      "id": "N02",
+      "expectedActivation": false,
+      "prompt": "Write a short thank-you note to the conference host."
+    },
+    {
+      "id": "N03",
+      "expectedActivation": false,
+      "prompt": "Explain what a database transaction means to a beginner; no code, system design or implementation advice."
+    },
+    {
+      "id": "N04",
+      "expectedActivation": false,
+      "prompt": "Create a frontend-only loading spinner and empty state from existing mocks; no backend changes."
+    },
+    {
+      "id": "N05",
+      "expectedActivation": false,
+      "prompt": "Proofread this paragraph: Our backend team is meeting on Friday. Change grammar only."
+    },
+    {
+      "id": "N06",
+      "expectedActivation": false,
+      "prompt": "Sort these book titles alphabetically: Reverse Proxy, Databases, Apples."
+    }
+  ]
+}

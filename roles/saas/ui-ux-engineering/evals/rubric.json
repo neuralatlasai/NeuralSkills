@@ -1,0 +1,65 @@
+{
+  "suiteVersion": "1.0.0",
+  "frozenBeforeExecution": true,
+  "statusVocabulary": {
+    "PASS": "Executed observation directly establishes the check.",
+    "FAIL": "Executed observation contradicts the check.",
+    "UNVERIFIED": "Not observed, tool unavailable, blocked, incomplete evidence, or a plausible code-only claim without required runtime/visual observation.",
+    "NOT_APPLICABLE": "The criterion is genuinely inapplicable; explain why. Required case behavior cannot be marked NOT_APPLICABLE merely because it was omitted."
+  },
+  "gating": {
+    "rule": "Never hide functional, accessibility, content, scope, truthfulness or responsive failures behind aesthetics. Report each requirement separately. A case is not established as passing while any required objective check is FAIL or UNVERIFIED.",
+    "fatalExamples": [
+      "Invented reference/tool/browser access or fabricated verification evidence",
+      "Required keyboard flow fails",
+      "Latest-request correctness fails",
+      "Required feature is missing",
+      "Explicit stack/scope requirement is violated"
+    ],
+    "noOverallRating": true,
+    "recommendation": "Return objective check statuses plus anchored visual dimensions. Avoid unsupported weighted totals, stars, global quality scores or claims of proven improvement."
+  },
+  "evidence": {
+    "objective": "Each objective check cites a concrete observation: command and exit/output, code path for static constraints, browser interaction and screenshot/video, computed measurement, or unavailable-tool error. A screenshot alone cannot establish interaction, keyboard or race behavior.",
+    "reference": "Record which reference was actually opened and at which viewport or rendered size. A textual filename or parsing SVG markup alone is not visual inspection.",
+    "runtime": "Keep console errors and failed commands in the trial evidence. Mark absent browser/runtime checks UNVERIFIED.",
+    "responsive": "Check case-specified narrow and desktop viewports; record width and measured scrollWidth/clientWidth, plus visual overlap/clipping inspection.",
+    "accessibility": "Record actual Tab/Shift+Tab/Enter/Space/Escape observations appropriate to the control. Automated scans supplement but do not replace keyboard checks.",
+    "honesty": "Evaluator independently verifies reported evidence where possible; an agent's self-reported PASS alone does not establish evaluator PASS."
+  },
+  "visualScale": {
+    "0": "Observed material mismatch or usability impairment in this dimension: broken grouping/alignment, illegible type, wrong reference role, or missing/incorrect states.",
+    "1": "Usable and broadly coherent but visible inconsistencies or reference differences remain; name them with screenshot evidence.",
+    "2": "Coherent at checked viewports and states; close to the relevant reference or text brief in this dimension, with no material observed discrepancy.",
+    "UNVERIFIED": "No actual screenshot/reference comparison was possible. Do not replace observation with a code-based guess.",
+    "NOT_APPLICABLE": "Dimension is irrelevant to this case; explain."
+  },
+  "dimensions": {
+    "hierarchy": "Primary action, heading, content and feedback are visually distinct and match the brief's priority.",
+    "spacing": "Alignment, gaps and density are consistent; no collisions or accidental empty regions.",
+    "states": "Focus, pending, success, empty and error states that apply are legible and stable, without disruptive layout shifts.",
+    "layoutFidelity": "Major groups, columns, widths and vertical placement align with the C02 screenshot at 1280x900.",
+    "typographyFidelity": "Relative font sizes, weights, line lengths and text wrapping resemble C02.",
+    "colorFidelity": "Main backgrounds, surfaces, text and accents resemble C02.",
+    "detailFidelity": "Screenshot's card borders/radii, decorative shapes, counts and small labels are credibly reproduced.",
+    "roleBrand": "C03 uses the brand reference's palette and wordmark while leaving layout-reference grayscale behind.",
+    "roleLayout": "C03 preserves structural grouping and relative prominence from layout.svg.",
+    "roleTypography": "C03 uses the type reference's serif/sans division, scale and labels.",
+    "preservation": "C05 still visibly belongs to its starter, with localized changes and preserved tokens."
+  },
+  "comparison": {
+    "cases": [
+      "C01",
+      "C06"
+    ],
+    "runsPerArm": 3,
+    "arms": {
+      "baseline": "Same task and fixtures with this skill and its linked references disabled.",
+      "skill": "Same task and fixtures with the frozen skill enabled."
+    },
+    "method": "Use fresh independent contexts, same model/version, reasoning setting, tools, resource budget, viewport and environment. Randomize or alternate arm order; conceal arm/run identity from the evaluator when feasible.",
+    "report": "Show paired per-case per-run objective outcomes and visual dimensions, with counts of FAIL/UNVERIFIED and evidence. Describe C02–C05/C07–C08 as skill-only observations with no baseline. Six comparative trials per arm do not establish broad statistical superiority.",
+    "resources": "Record host token counts only if exposed. Otherwise record actualTokens:null and tokenAvailability:'not exposed'; never estimate executed token use from text length."
+  }
+}
+

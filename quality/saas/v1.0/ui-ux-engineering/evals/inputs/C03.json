@@ -1,0 +1,33 @@
+{
+  "caseId": "C03",
+  "task": "Build a compact responsive “Workshop reservations” admin page from the three supplied visual references. Inspect all three visually. Use fixtures/C03/brand.svg only for brand colors and the FIELDNOTES wordmark; use layout.svg only for page structure and relative grouping; use typography.svg only for type families, scale and label treatment. Do not copy the grayscale colors from the layout reference or its placeholder text. The page needs sidebar links Overview, Reservations and Settings, with Reservations active; a heading and short description; a “New reservation” button that opens an accessible dialog; a list with these rows: “Urban sketching / 12 June / 8 of 12 seats”, “Botanical inks / 14 June / 12 of 12 seats”, and “Field photography / 18 June / 3 of 10 seats”; and a right-hand summary showing 3 workshops and 23 reserved seats. The dialog has workshop and attendee-name fields, validates them, and adds a local reservation summary; it need not alter the supplied capacity figures. On a narrow screen, let the sidebar become a compact navigation area and place the summary after the list. Keep this to one page, with no backend. Supply a runnable example and setup instructions. Put implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+  "fixtures": [
+    "fixtures/C03/brand.svg",
+    "fixtures/C03/layout.svg",
+    "fixtures/C03/typography.svg"
+  ],
+  "requirementIds": [
+    "C03-R01",
+    "C03-R02",
+    "C03-R03",
+    "C03-R04",
+    "C03-R05",
+    "C03-R06"
+  ],
+  "outputContract": {
+    "artifactDirectory": "trial/artifact/",
+    "resultFile": "trial/result.json",
+    "fields": [
+      "caseId",
+      "arm",
+      "run",
+      "route",
+      "requirementCoverage",
+      "assumptions",
+      "decisions",
+      "checks",
+      "limitations"
+    ],
+    "note": "The orchestrator supplies caseId, arm, run and trial directory. Checks use PASS, FAIL, UNVERIFIED or NOT_APPLICABLE and cite observable evidence. Never invent tool access or executed checks."
+  }
+}

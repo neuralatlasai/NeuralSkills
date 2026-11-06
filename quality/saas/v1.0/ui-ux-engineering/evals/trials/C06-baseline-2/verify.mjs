@@ -1,0 +1,56 @@
+﻿import { chromium } from 'file:///C:/Users/heman/AppData/Roaming/npm/node_modules/@playwright/cli/node_modules/playwright/index.mjs';
+import { spawn } from 'node:child_process';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const root = fileURLToPath(new URL('.', import.meta.url));
+mkdirSync(root + '/evidence', {recursive:true});
+const server = spawn(process.execPath, ['server.mjs'], {cwd:root + '/artifact', env:{...process.env, PORT:'4186'}, windowsHide:true});
+const checks=[]; const errors=[]; let browser;
+const check=(id, condition, evidence)=>{checks.push({id,status:condition?'PASS':'FAIL',evidence}); if(!condition) console.error('FAIL',id,evidence);};
+try {
+ await new Promise((resolve,reject)=>{ server.stdout.once('data',resolve); server.once('error',reject); server.once('exit',code=>reject(new Error('Server exit '+code))); });
+ browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+ const page=await browser.newPage({viewport:{width:1000,height:900}});
+ page.on('pageerror',e=>errors.push({type:'pageerror',message:e.message}));
+ page.on('console',m=>{if(m.type()==='error')errors.push({type:'console',message:m.text()});});
+ await page.goto('http://127.0.0.1:4186');
+ const state=()=>page.locator('#outcome').getAttribute('data-state');
+ const status=()=>page.locator('#status').innerText();
+ const submit=async(q, enter=false)=>{await page.locator('#query').fill(q); if(enter)await page.locator('#query').press('Enter');else await page.getByRole('button',{name:'Search',exact:false}).first().click();};
+ check('initial',await state()==='initial' && (await status()).includes('Search for a subject'),'Initial prompt visible; evidence/initial.png');
+ check('accessible-label',await page.getByRole('searchbox',{name:'What would you like to explore?'}).count()===1,'Searchbox has explicit label; persistent role=status live region present.');
+ await page.screenshot({path:root+'/evidence/initial.png',fullPage:true});
+ await submit('cedar',true);
+ check('pending',await state()==='loading' && (await status()).includes('cedar') && await page.getByRole('button',{name:'Search',exact:false}).first().isEnabled(),'Enter submitted cedar and loading is visible with Search enabled. evidence/pending.png');
+ await page.screenshot({path:root+'/evidence/pending.png',fullPage:true});
+ await page.waitForTimeout(1300);
+ check('cedar',await state()==='success' && await page.locator('.guide').count()===1 && (await page.locator('.guide').innerText()).includes('Cedar trails'),'Cedar returns one guide after pending.');
+ await submit('moss'); await page.waitForTimeout(250);
+ check('moss',await state()==='success' && await page.locator('.guide').count()===2 && (await page.locator('#results').innerText()).includes('rain-soaked northern woodland'),'Moss returns two cards including long title. evidence/moss-desktop.png');
+ await page.screenshot({path:root+'/evidence/moss-desktop.png',fullPage:true});
+ await submit('empty'); await page.waitForTimeout(400);
+ check('empty',await state()==='empty' && await page.locator('.guide').count()===0 && (await status()).includes('broader subject'),'Useful no-results guidance; evidence/empty.png');
+ await page.screenshot({path:root+'/evidence/empty.png',fullPage:true});
+ await submit('fail'); await page.waitForTimeout(750);
+ check('failure',await state()==='failure' && await page.locator('#retry').isVisible() && (await status()).includes('temporarily unavailable'),'Failure explains issue and offers Retry; evidence/failure.png');
+ await page.screenshot({path:root+'/evidence/failure.png',fullPage:true});
+ await page.locator('#query').fill('cedar'); await page.locator('#retry').click();
+ check('retry-pending',await state()==='loading' && (await status()).includes('“fail”') && await page.locator('#query').evaluate(el=>document.activeElement===el),'Retry submits failed query despite edited input, returns focus to input.');
+ await page.waitForTimeout(750);
+ check('retry-outcome',await state()==='failure' && (await status()).includes('“fail”'),'Retry creates another request and fails again as fixture specifies.');
+ await submit('cedar'); await page.waitForTimeout(100); await submit('moss'); await page.waitForTimeout(1450);
+ check('race-stale-success',await state()==='success' && await page.locator('.guide').count()===2 && (await status()).includes('“moss”') && !(await page.locator('#results').innerText()).includes('Cedar'),'Cedar then moss 100 ms apart: moss remains after stale cedar resolves.');
+ await submit('fail'); await page.waitForTimeout(100); await submit('moss'); await page.waitForTimeout(900);
+ check('race-stale-failure',await state()==='success' && await page.locator('.guide').count()===2 && !(await page.locator('#retry').isVisible()) && (await status()).includes('“moss”'),'Fail then moss 100 ms apart: late failure ignored; evidence/race-moss.png');
+ await page.screenshot({path:root+'/evidence/race-moss.png',fullPage:true});
+ await page.setViewportSize({width:320,height:800});
+ await page.screenshot({path:root+'/evidence/moss-320.png',fullPage:true});
+ const geometry=await page.evaluate(()=>({viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,cards:[...document.querySelectorAll('.guide')].map(e=>({width:e.getBoundingClientRect().width,right:e.getBoundingClientRect().right}))}));
+ check('mobile-fit',geometry.scrollWidth===320 && geometry.cards.every(c=>c.right<=320),'320 px viewport geometry: '+JSON.stringify(geometry)+'; evidence/moss-320.png');
+ await page.locator('#query').focus(); await page.keyboard.press('Tab');
+ check('keyboard-focus',await page.getByRole('button',{name:'Search',exact:false}).first().evaluate(el=>document.activeElement===el),'Tab moves from input to Search; keyboard Enter already exercised.');
+ check('live-feedback',await page.locator('#status').getAttribute('role')==='status' && await page.locator('#status').getAttribute('aria-live')==='polite','Persistent role=status and aria-live=polite verified. Actual screen reader announcement audio remains UNVERIFIED.');
+ check('runtime',errors.filter(e=>e.type==='pageerror').length===0,'Browser errors retained in browser-errors.json.');
+} catch(e) { errors.push({type:'verification',message:e.stack}); checks.push({id:'verification-completion',status:'FAIL',evidence:e.message}); }
+finally { if(browser)await browser.close(); server.kill(); writeFileSync(root+'/evidence/browser-checks.json',JSON.stringify(checks,null,2)); writeFileSync(root+'/evidence/browser-errors.json',JSON.stringify(errors,null,2)); console.log(JSON.stringify({checks,errors},null,2)); }
+

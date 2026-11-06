@@ -1,0 +1,381 @@
+{
+  "caseId": "B01",
+  "arm": "baseline",
+  "run": 2,
+  "route": "direct baseline implementation; no backend skill read",
+  "coverageDispositions": [
+    {
+      "area": "L01",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "Loopback HTTP listener",
+      "reason": "DNS, discovery, network paths and sockets: Existing local socket binding verified by actual HTTP requests; DNS and external routing outside this fixture.",
+      "evidence": "artifact/verification.json requests"
+    },
+    {
+      "area": "L02",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Local cleartext fixture",
+      "reason": "TLS, certificates and transport identity: The supplied task and README establish loopback HTTP only; no certificates or TLS requested.",
+      "evidence": "artifact/originals/README.md"
+    },
+    {
+      "area": "L03",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Direct local HTTP",
+      "reason": "Proxies, gateways, ingress, CDN and load balancing: No proxy, gateway, CDN or load balancer occurs in the supplied fixture.",
+      "evidence": "artifact/originals/service.mjs"
+    },
+    {
+      "area": "L04",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Registry authorization and tenant predicates",
+      "reason": "Authentication, authorization and tenant identity: PATCH requires registry write permission; tenant is registry-derived for SELECT and UPDATE. Production identity is outside scope.",
+      "evidence": "artifact/verification.json authentication-permission, tenant-object-boundaries, persistence-close-reopen"
+    },
+    {
+      "area": "L05",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "PATCH route",
+      "reason": "API styles, HTTP versions, RPC and streams: Actual HTTP GET and PATCH status/content-type contracts; other API styles and protocol upgrades outside scope.",
+      "evidence": "artifact/verification.json requests"
+    },
+    {
+      "area": "L06",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Partial ticket update",
+      "reason": "CRUD, upsert and bulk semantics: Optional title/note, explicit null note clearing, absence preservation, projection and version-only update supported.",
+      "evidence": "artifact/verification.json title-note-absence-null-projection, media-type-and-byte-limit"
+    },
+    {
+      "area": "L07",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Byte-limited JSON parser and schema",
+      "reason": "Validation, parsing, serialization and errors: 2048 bytes including chunked body; strict UTF-8; allowed fields and positive safe version; JSON errors.",
+      "evidence": "artifact/verification.json schema-errors, media-type-and-byte-limit"
+    },
+    {
+      "area": "L08",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Existing single-module request lifecycle",
+      "reason": "Domain architecture and request lifecycle: Small route addition preserves fixture lifecycle; shared registry remains unchanged.",
+      "evidence": "artifact/service.mjs; verification.json GET-compatibility"
+    },
+    {
+      "area": "L09",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Node native HTTP and synchronous SQLite",
+      "reason": "Runtime, memory, concurrency, OS and containers: Bounded body buffering and finite timeout settings; actual Windows/Node runtime observed. Slow-client deadlines, scheduling precision and load not measured.",
+      "evidence": "artifact/verification.json bounded-parser-config and runtime fields"
+    },
+    {
+      "area": "L10",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "Composite tenant/id primary key",
+      "reason": "Database modeling and DDL: Existing schema retained and exercised with same id in different tenants. No schema migration required.",
+      "evidence": "artifact/originals/service.mjs; verification.json tenant-object-boundaries"
+    },
+    {
+      "area": "L11",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Parameterized conditional UPDATE RETURNING",
+      "reason": "DML/DQL, ORM, indexes and query plans: Bound parameters and primary-key lookup; no ORM or query-plan performance claim.",
+      "evidence": "artifact/service.mjs; verification.json same-version-concurrency"
+    },
+    {
+      "area": "L12",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "SQLite atomic conditional mutation",
+      "reason": "Transactions, isolation, locks and consistency: Single UPDATE compares version and increments it atomically; two simultaneous HTTP requests produce 200/409. Multi-host and overload behavior outside tested scope.",
+      "evidence": "artifact/verification.json same-version-concurrency"
+    },
+    {
+      "area": "L13",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Embedded local SQLite administration",
+      "reason": "Database privileges and operational administration: No network database identities, grant management or production administration requested.",
+      "evidence": "artifact/originals/README.md"
+    },
+    {
+      "area": "L14",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Single SQLite file",
+      "reason": "Storage, replication, partitioning, sharding and hashes: Replication, partitioning, sharding and hashing are not used by the supplied small fixture. Reopen persistence is recorded in L21.",
+      "evidence": "artifact/originals/service.mjs"
+    },
+    {
+      "area": "L15",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Direct SQL reads",
+      "reason": "Cache, views and derived state: No cache or materialized derived state occurs in this task.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L16",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Synchronous local mutation",
+      "reason": "Messaging, event logs, CDC and async effects: No messages, event logs, CDC or async external effects are requested.",
+      "evidence": "artifact/originals/B01.json"
+    },
+    {
+      "area": "L17",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Request-bound API",
+      "reason": "Durable workers, schedules and workflows: No workers, schedules or durable workflow are part of ticket PATCH.",
+      "evidence": "artifact/originals/B01.json"
+    },
+    {
+      "area": "L18",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Ticket metadata only",
+      "reason": "Files, objects, search and specialized stores: No file uploads, object storage, search or specialized store is used. The SQLite persistence check is covered elsewhere.",
+      "evidence": "artifact/originals/B01.json"
+    },
+    {
+      "area": "L19",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Local-only service",
+      "reason": "External APIs, webhooks, tools and MCP: No external API, webhook or MCP integration is required or used.",
+      "evidence": "artifact/originals/B01.json"
+    },
+    {
+      "area": "L20",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Per-request body/time limits",
+      "reason": "Traffic, capacity, scaling and cost: Input buffer cap and configured request/socket limits added. Capacity, scaling, traffic generation and cost benchmarking outside scope.",
+      "evidence": "artifact/service.mjs; verification.json media-type-and-byte-limit, bounded-parser-config"
+    },
+    {
+      "area": "L21",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "SQLite file reopen persistence",
+      "reason": "Reliability, backups and recovery: Actual close/reopen preserves north update, south data and tenant isolation. Crash recovery, backups and restore drills remain outside scope.",
+      "evidence": "artifact/verification.json persistence-close-reopen"
+    },
+    {
+      "area": "L22",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Local verification evidence",
+      "reason": "Observability, objectives and audit: Runnable test logs and per-request evidence added; production telemetry, SLOs and audit ingestion outside task.",
+      "evidence": "artifact/verify.stdout.log; verify.stderr.log; verification.json"
+    },
+    {
+      "area": "L23",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Reproducible local verification",
+      "reason": "Infrastructure, build and deployment lifecycle: Built-in-only runnable verification and usage instructions supplied; no deployment, container or external mutation.",
+      "evidence": "artifact/README.md; verify.mjs"
+    },
+    {
+      "area": "L24",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Field allowlist, tenant isolation, safe SQL",
+      "reason": "Security, privacy, supply chain and lifecycle: Unknown/privileged fields fail, parameter binding prevents value-based SQL injection, and projection omits tenant. Production credentials and supply-chain audit outside scope.",
+      "evidence": "artifact/verification.json schema-errors, tenant-object-boundaries, title-note-absence-null-projection"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "B01-R01",
+      "status": "PASS",
+      "evidence": "PATCH supports stated allowed fields, absence/null, validation, projection and version semantics. See artifact/verification.json and matching decision."
+    },
+    {
+      "id": "B01-R02",
+      "status": "PASS",
+      "evidence": "Authentication, write permission and tenant object boundaries hold through HTTP and persistence. See artifact/verification.json and matching decision."
+    },
+    {
+      "id": "B01-R03",
+      "status": "PASS",
+      "evidence": "Concurrent same-version updates yield one winning mutation and one defined conflict. See artifact/verification.json and matching decision."
+    },
+    {
+      "id": "B01-R04",
+      "status": "PASS",
+      "evidence": "Malformed, unsupported and oversized requests fail with bounded work and stated JSON errors. See artifact/verification.json and matching decision."
+    },
+    {
+      "id": "B01-R05",
+      "status": "PASS",
+      "evidence": "GET compatibility and reproducible actual HTTP/reopen evidence accompany the working implementation. See artifact/verification.json and matching decision."
+    },
+    {
+      "id": "B01-R06",
+      "status": "PASS",
+      "evidence": "Proportional L01-L24 coverage and requirement/mechanism/limit/failure/verification decisions are truthful. See artifact/verification.json and matching decision."
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "B01-R01",
+      "mechanism": "Allowlisted schema; trimmed title; nullable note; SQL CASE preserves absent fields; UPDATE RETURNING keeps projection.",
+      "limit": "Title max120 and note max500 UTF-16 code units; safe integer version; version-only PATCH allowed.",
+      "failure": "400 schema errors; note null alone clears note; failed mutations leave stored state untouched.",
+      "verification": "GET-compatibility; schema-errors; title-note-absence-null-projection; same-version-concurrency"
+    },
+    {
+      "requirement": "B01-R02",
+      "mechanism": "Existing registry supplies identity, write permission and tenant; all SQL keys include registry tenant.",
+      "limit": "Fixture bearer tokens are test identity, not production authentication.",
+      "failure": "401 missing identity; 403 reader; 404 object absent in current tenant regardless of x-tenant.",
+      "verification": "authentication-permission; tenant-object-boundaries; persistence-close-reopen"
+    },
+    {
+      "requirement": "B01-R03",
+      "mechanism": "One atomic conditional UPDATE ... WHERE version=? increments version and returns winner; tenant lookup distinguishes stale from absent.",
+      "limit": "Observed pair of simultaneous loopback requests on one Node process and SQLite file; no distributed or load guarantee.",
+      "failure": "One request wins 200; the other receives JSON409 and does not overwrite winner.",
+      "verification": "same-version-concurrency"
+    },
+    {
+      "requirement": "B01-R04",
+      "mechanism": "Count bytes before parsing; limit buffer; reject oversized Content-Length; strict UTF-8 decode; schema allowlist and media type check.",
+      "limit": "2048 body bytes; request10s/header5s/inactivity15s configured; slow-client elapsed deadlines unverified and affected by Node sweep scheduling.",
+      "failure": "JSON400 malformed/schema-invalid; JSON413 oversized; JSON415 non-JSON; internal DB errors produce generic500.",
+      "verification": "schema-errors; media-type-and-byte-limit; bounded-parser-config"
+    },
+    {
+      "requirement": "B01-R05",
+      "mechanism": "Preserved GET projection; built-in Node actual HTTP verifier; close server/database then reopen same SQLite file.",
+      "limit": "Node v24.12.0, SQLite3.50.4, Windows x64; native experimental warning retained.",
+      "failure": "Test assertions fail nonzero and evidence is written in finally; no observed assertion failure in either run.",
+      "verification": "GET-compatibility; persistence-close-reopen; verify.stdout.log; verify.stderr.log"
+    },
+    {
+      "requirement": "B01-R06",
+      "mechanism": "Common control labels and vocabulary applied to all24 areas with scoped reasons/evidence; acceptance statuses kept separate.",
+      "limit": "No hidden grading, skill instructions or unrelated trials read; timing first sampled in call3, exact first-call UTC unavailable.",
+      "failure": "Missing optional fault/load tests explicitly unverified; resources not exposed remain null.",
+      "verification": "result.json; tool-calls.json; originals/control-v2.json"
+    }
+  ],
+  "checks": [
+    {
+      "id": "GET-compatibility",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: GET-compatibility",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "authentication-permission",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: authentication-permission",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "schema-errors",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: schema-errors",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "media-type-and-byte-limit",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: media-type-and-byte-limit",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "title-note-absence-null-projection",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: title-note-absence-null-projection",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "tenant-object-boundaries",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: tenant-object-boundaries",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "same-version-concurrency",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: same-version-concurrency",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "persistence-close-reopen",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: persistence-close-reopen",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "bounded-parser-config",
+      "status": "PASS",
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "evidence": "artifact/verification.json: bounded-parser-config",
+      "kind": "actual local HTTP / native file-backed SQLite"
+    },
+    {
+      "id": "slow-client-elapsed-time",
+      "status": "UNVERIFIED",
+      "command": null,
+      "exitCode": null,
+      "evidence": "Timeout configuration inspected; elapsed slow-client behavior not exercised. Optional operating-limit evidence, not an additional task requirement.",
+      "kind": "operating-limit"
+    },
+    {
+      "id": "result-contract",
+      "status": "PASS",
+      "command": "node artifact/finalize.mjs",
+      "exitCode": 0,
+      "evidence": "All24 declared areas exactly once; declared dispositions and test statuses; six task requirement IDs.",
+      "kind": "contract-validation"
+    }
+  ],
+  "evidence": [
+    "artifact/service.mjs",
+    "artifact/verify.mjs",
+    "artifact/verification.json",
+    "artifact/verification.first.json",
+    "artifact/verify.stdout.log",
+    "artifact/verify.stderr.log",
+    "artifact/verify.first.stdout.log",
+    "artifact/verify.first.stderr.log",
+    "artifact/tool-calls.json",
+    "artifact/README.md",
+    "artifact/originals/"
+  ],
+  "assumptions": [
+    "Length limits count JavaScript UTF-16 code units after trimming title; note is not trimmed.",
+    "A version-only PATCH succeeds and increments the stored version.",
+    "startUtc is the first actual UTC sample in tool call3. Exact first-call timestamp was not exposed; elapsedSeconds is measured from that sample and excludes two short initial read calls."
+  ],
+  "limitations": [
+    "Only local HTTP on Windows x64 tested; Node v24.12.0 native SQLite3.50.4 emits ExperimentalWarning.",
+    "No slow-client deadline, load, multi-process contention, crash-recovery or production deployment test; no such universal guarantees claimed.",
+    "Timeout settings use Node scheduling and are not hard real-time deadlines. Synchronous SQLite can block event loop up to busy timeout.",
+    "Exact model identity, actual token consumption and monetary cost were not exposed.",
+    "Full wall-clock elapsed from call1 unavailable; first UTC sample was call3. Completion comfortably within360 seconds from first tool call."
+  ],
+  "startUtc": "2026-11-05T17:25:07.0224708Z",
+  "endUtc": "2026-11-05T17:28:27.322Z",
+  "elapsedSeconds": 200.3,
+  "actualTokens": null,
+  "tokenAvailability": "unavailable: tool/runtime does not expose token usage",
+  "actualCost": null,
+  "costAvailability": "unavailable: tool/runtime does not expose actual cost",
+  "toolCalls": 9,
+  "toolCallAvailability": "available: counted all9 nested tool calls in this isolated trial; orchestration wrappers excluded; no child/collaboration calls",
+  "limits": {
+    "wallSeconds": 360,
+    "toolCalls": 20,
+    "breaches": []
+  }
+}

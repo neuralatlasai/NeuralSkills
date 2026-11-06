@@ -1,0 +1,7 @@
+{
+  "at": "2026-11-06T03:15:29.409Z",
+  "uiFreeze": "coordination/ui-freeze.json",
+  "backendFreeze": "coordination/backend-freeze.json",
+  "suiteFreeze": "freeze.json",
+  "holdoutRelease": "Source is now frozen before root reads held-out semantics; no author instruction tuning against held-out outcomes."
+}

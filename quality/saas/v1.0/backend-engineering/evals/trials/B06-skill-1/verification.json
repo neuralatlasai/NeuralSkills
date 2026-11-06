@@ -1,0 +1,710 @@
+{
+  "runtime": "v24.12.0",
+  "sqlite": "Node native node:sqlite",
+  "transport": "real loopback HTTP/1.1",
+  "database": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B06-skill-1\\state.sqlite",
+  "limits": {
+    "bodyBytes": 8192,
+    "skewSeconds": 300,
+    "bodyMs": 5000,
+    "active": 16
+  },
+  "results": [
+    {
+      "name": "invalid signature cannot mutate",
+      "status": "PASS",
+      "elapsedMs": 29
+    },
+    {
+      "name": "signature binds exact raw bytes",
+      "status": "PASS",
+      "elapsedMs": 10
+    },
+    {
+      "name": "stale timestamp",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "future timestamp",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "noncanonical timestamp",
+      "status": "PASS",
+      "elapsedMs": 10
+    },
+    {
+      "name": "malformed hex signature",
+      "status": "PASS",
+      "elapsedMs": 9
+    },
+    {
+      "name": "duplicate signature header",
+      "status": "PASS",
+      "elapsedMs": 8
+    },
+    {
+      "name": "missing signature",
+      "status": "PASS",
+      "elapsedMs": 13
+    },
+    {
+      "name": "signed malformed JSON",
+      "status": "PASS",
+      "elapsedMs": 10
+    },
+    {
+      "name": "signed null",
+      "status": "PASS",
+      "elapsedMs": 11
+    },
+    {
+      "name": "signed array",
+      "status": "PASS",
+      "elapsedMs": 8
+    },
+    {
+      "name": "unknown event type",
+      "status": "PASS",
+      "elapsedMs": 8
+    },
+    {
+      "name": "unknown field",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "empty event id",
+      "status": "PASS",
+      "elapsedMs": 10
+    },
+    {
+      "name": "overlong event id",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "nonstring order id",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "invalid UTF8",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "wrong tenant order",
+      "status": "PASS",
+      "elapsedMs": 7
+    },
+    {
+      "name": "missing order",
+      "status": "PASS",
+      "elapsedMs": 8
+    },
+    {
+      "name": "oversized content length",
+      "status": "PASS",
+      "elapsedMs": 7
+    },
+    {
+      "name": "oversized chunked body",
+      "status": "PASS",
+      "elapsedMs": 7
+    },
+    {
+      "name": "unsupported compression",
+      "status": "PASS",
+      "elapsedMs": 7
+    },
+    {
+      "name": "unsupported method",
+      "status": "PASS",
+      "elapsedMs": 3
+    },
+    {
+      "name": "unsupported route",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "precommit fault rolls back receipt and effect",
+      "status": "PASS",
+      "elapsedMs": 11
+    },
+    {
+      "name": "retry after rolled back precommit failure",
+      "status": "PASS",
+      "elapsedMs": 11
+    },
+    {
+      "name": "exact whitespace signed body persists before ACK",
+      "status": "PASS",
+      "elapsedMs": 9
+    },
+    {
+      "name": "identical replay no second effect",
+      "status": "PASS",
+      "elapsedMs": 5
+    },
+    {
+      "name": "conflicting event id different parameters",
+      "status": "PASS",
+      "elapsedMs": 3
+    },
+    {
+      "name": "conflicting event id different raw formatting",
+      "status": "PASS",
+      "elapsedMs": 2
+    },
+    {
+      "name": "north scope with colliding tenant object id",
+      "status": "PASS",
+      "elapsedMs": 9
+    },
+    {
+      "name": "body at 8192 byte boundary accepted",
+      "status": "PASS",
+      "elapsedMs": 9
+    },
+    {
+      "name": "concurrent replay run 1",
+      "status": "PASS",
+      "elapsedMs": 18
+    },
+    {
+      "name": "concurrent replay run 2",
+      "status": "PASS",
+      "elapsedMs": 22
+    },
+    {
+      "name": "concurrent replay run 3",
+      "status": "PASS",
+      "elapsedMs": 22
+    },
+    {
+      "name": "finite body deadline closes slow request",
+      "status": "PASS",
+      "elapsedMs": 5022
+    },
+    {
+      "name": "actual process restart retains replay and effects",
+      "status": "PASS",
+      "elapsedMs": 21
+    },
+    {
+      "name": "conflict after actual process restart",
+      "status": "PASS",
+      "elapsedMs": 6
+    },
+    {
+      "name": "SQLite integrity after restart",
+      "status": "PASS",
+      "elapsedMs": 1
+    }
+  ],
+  "traces": [
+    {
+      "name": "invalid signature cannot mutate",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "signature binds exact raw bytes",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "stale timestamp",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "future timestamp",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "noncanonical timestamp",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "malformed hex signature",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "duplicate signature header",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "missing signature",
+      "response": {
+        "status": 401,
+        "body": "{\"code\":\"signature\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "signed malformed JSON",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "signed null",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "signed array",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "unknown event type",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "unknown field",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "empty event id",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "overlong event id",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "nonstring order id",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "invalid UTF8",
+      "response": {
+        "status": 400,
+        "body": "{\"code\":\"invalid\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "wrong tenant order",
+      "response": {
+        "status": 404,
+        "body": "{\"code\":\"not_found\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "missing order",
+      "response": {
+        "status": 404,
+        "body": "{\"code\":\"not_found\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "oversized content length",
+      "response": {
+        "status": 413,
+        "body": "{\"code\":\"too_large\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "oversized chunked body",
+      "response": {
+        "status": 413,
+        "body": "{\"code\":\"too_large\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "unsupported compression",
+      "response": {
+        "status": 415,
+        "body": "{\"code\":\"unsupported_encoding\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "unsupported method",
+      "response": {
+        "status": 404,
+        "body": "{\"code\":\"not_found\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "unsupported route",
+      "response": {
+        "status": 404,
+        "body": "{\"code\":\"not_found\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "precommit fault rolls back receipt and effect",
+      "response": {
+        "status": 503,
+        "body": "{\"code\":\"unavailable\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "fault retry",
+      "response": {
+        "status": 200,
+        "body": "{\"accepted\":true,\"replay\":false}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "exact raw bytes",
+      "response": {
+        "status": 200,
+        "body": "{\"accepted\":true,\"replay\":false}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "replay",
+      "response": {
+        "status": 200,
+        "body": "{\"accepted\":true,\"replay\":true}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "conflicting event id different parameters",
+      "response": {
+        "status": 409,
+        "body": "{\"code\":\"event_conflict\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "conflicting event id different raw formatting",
+      "response": {
+        "status": 409,
+        "body": "{\"code\":\"event_conflict\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:18 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "concurrent replay 1",
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ]
+    },
+    {
+      "name": "concurrent replay 2",
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ]
+    },
+    {
+      "name": "concurrent replay 3",
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ]
+    },
+    {
+      "name": "process restart replay",
+      "response": {
+        "status": 200,
+        "body": "{\"accepted\":true,\"replay\":true}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:23 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    },
+    {
+      "name": "conflict after actual process restart",
+      "response": {
+        "status": 409,
+        "body": "{\"code\":\"event_conflict\"}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-store",
+          "connection": "close",
+          "date": "Thu, 05 Nov 2026 17:11:23 GMT",
+          "transfer-encoding": "chunked"
+        }
+      }
+    }
+  ]
+}

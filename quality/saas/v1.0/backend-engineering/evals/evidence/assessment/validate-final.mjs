@@ -1,0 +1,12 @@
+import {spawnSync} from 'node:child_process';
+import {writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const out=fileURLToPath(new URL('.',import.meta.url));
+const root=resolve(out,'../../..');
+const commands=[{args:[],expectedExit:0},{args:['--self-test'],expectedExit:0},{args:['--root','assessment-intentionally-missing-root'],expectedExit:1},{args:['--contract','assets/task.template.json'],expectedExit:0}];
+const results=commands.map(c=>{const r=spawnSync(process.execPath,['scripts/validate-package.mjs',...c.args],{cwd:root,encoding:'utf8'});return{command:[process.execPath,'scripts/validate-package.mjs',...c.args],expectedExit:c.expectedExit,actualExit:r.status,status:r.status===c.expectedExit?'PASS':'FAIL',stdout:r.stdout,stderr:r.stderr};});
+const result={recordedAt:new Date().toISOString(),scope:'Actual bounded structural/contract validator normal, self-test, missing-root negative and contract branches; not full schema/standards conformance.',status:results.every(r=>r.status==='PASS')?'PASS':'FAIL',results};
+writeFileSync(resolve(out,'final-validation.json'),JSON.stringify(result,null,2));
+console.log(JSON.stringify({status:result.status,results:results.map(({command,status,actualExit})=>({command,status,actualExit}))}));
+process.exitCode=result.status==='PASS'?0:1;

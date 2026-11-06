@@ -1,0 +1,65 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const startUTC = '2026-11-05T16:07:48.000Z';
+const endUTC = new Date().toISOString();
+const result = {
+  caseId: 'C05',
+  arm: 'skill',
+  run: 1,
+  startUTC,
+  endUTC,
+  elapsedSeconds: (Date.parse(endUTC) - Date.parse(startUTC)) / 1000,
+  route: 'improve-existing / small interactive component; M1, M3, M4, M5, M6, M8; existing React + TypeScript + Vite',
+  artifactDirectory: 'artifact/',
+  changedFiles: ['artifact/src/App.tsx', 'artifact/src/styles.css'],
+  requirementCoverage: [
+    { id: 'C05-R01', status: 'PASS', evidence: 'source-checks.json: all named files except App.tsx/styles.css byte-identical, including pinned package.json; no dependency or stack changes' },
+    { id: 'C05-R02', status: 'PASS', evidence: 'source-checks.json: supplied invoice data and CSS variables identical; App.diff/styles.diff show targeted changes; rendered visual fidelity remains UNVERIFIED' },
+    { id: 'C05-R03', status: 'UNVERIFIED', evidence: 'App.tsx implements independent booleans by invoice ID with a functional updater retaining other keys; actual React interaction cannot run without dependencies' },
+    { id: 'C05-R04', status: 'PASS', evidence: 'App.diff: native type=button with dynamic aria-expanded, stable aria-controls, corresponding hidden named region and invoice-specific accessible name; source inspection only' },
+    { id: 'C05-R05', status: 'PASS', evidence: 'App.diff binds invoice.due and maps invoice.payments date/amount pairs; source-checks.json proves all three supplied invoice records unchanged; rendered content remains UNVERIFIED' },
+    { id: 'C05-R06', status: 'UNVERIFIED', evidence: 'Existing focus-visible rule preserved; 44px control minimum height, wrapping payment entries and full-width schedule row implemented. Keyboard/focus, 375px reflow, and build/typecheck dependent on unavailable pinned packages.' }
+  ],
+  assumptions: [
+    'All schedules start collapsed; multiple invoices can remain open.',
+    'Open state is local and resets on page reload.',
+    'Existing Overview/Settings placeholder links are outside this targeted change.'
+  ],
+  decisions: [
+    'Keep React 19.0.0, TypeScript 5.7.3, Vite 6.1.0 and every starter dependency version and script unchanged.',
+    'App owns expandedSchedules keyed by invoice ID; functional updates preserve all other row states.',
+    'Native buttons retain focus on toggle and provide normal Enter/Space behavior by platform semantics; actual keyboard behavior is unverified.',
+    'Stable hidden regions show due date plus the supplied three payment entries; no fetching, router, persistence, UI kit or animation.',
+    'Preserve purple tokens and existing content; convert only invoice row layout to two grid columns with a full-width detail row.',
+    'Use the installed TypeScript 6.0.3 API only for labelled syntax/transpile diagnostics; it does not replace the required TypeScript 5.7.3 typecheck or a React runtime.'
+  ],
+  checks: [
+    { id: 'scope-and-content-source-comparison', status: 'PASS', evidence: 'node verify-source.cjs; source-checks.json verifies exactly two changed source files, identical invoice data, identical CSS variables and preserved focus style' },
+    { id: 'tsx-syntax-only', status: 'PASS', evidence: 'source-checks.json: TypeScript API 6.0.3 parse/transpile produced no diagnostics; not semantic typechecking or runtime evidence' },
+    { id: 'initial-npm-entrypoint', status: 'FAIL', evidence: 'environment-failures.txt: npm.ps1 blocked by PowerShell execution policy; retried with npm.cmd without policy change' },
+    { id: 'existing-typecheck-command', status: 'FAIL', evidence: 'npm.cmd run typecheck --cache ../npm-cache, exit 1; typecheck.log: tsc is not recognized; script-exits.json' },
+    { id: 'existing-build-command', status: 'FAIL', evidence: 'npm.cmd run build --cache ../npm-cache, exit 1; build.log: tsc is not recognized; script-exits.json' },
+    { id: 'pinned-dependency-availability', status: 'FAIL', evidence: 'npm.cmd ls --depth=0 --cache ../npm-cache, exit 1; dependencies.log reports all seven pinned dependencies unmet' },
+    { id: 'browser-row-isolation-and-toggle', status: 'UNVERIFIED', evidence: 'No installed compatible React/Vite stack; no server or substituted runtime was started' },
+    { id: 'keyboard-and-visible-focus', status: 'UNVERIFIED', evidence: 'Native semantics and existing focus rule present in source; no supported runtime for keyboard observation' },
+    { id: 'desktop-and-375px-render', status: 'UNVERIFIED', evidence: 'No actual React render or screenshot produced; source responsive rules reviewed only' },
+    { id: 'automated-a11y-and-assistive-technology', status: 'UNVERIFIED', evidence: 'No browser accessibility scan or screen reader session was executed' },
+    { id: 'backend-and-network-resilience', status: 'NOT_APPLICABLE', evidence: 'Task uses static supplied invoice data and introduces no requests or mutations' }
+  ],
+  limitations: [
+    'All pinned packages are missing. The actual TypeScript 5.7.3 typecheck and Vite build did not execute successfully.',
+    'React runtime, per-row interaction, keyboard/focus, desktop visual fidelity and 375px readability remain unverified.',
+    'No screenshots, performance metrics, accessibility conformance or screen-reader results are claimed.',
+    'No registry install was attempted because the orchestrator had already established registry access failure; dependency versions were not substituted.'
+  ],
+  reproduction: [
+    'From artifact, install the exact package.json dependencies when registry access is available.',
+    'Run npm.cmd run typecheck --cache ../npm-cache and npm.cmd run build --cache ../npm-cache.',
+    'Run npm.cmd run dev -- --host 127.0.0.1 and inspect 1440px and 375px viewports; use Tab/Enter/Space to open rows 1 and 2, close row 1 and confirm row 2 remains open.',
+    'From the trial directory, node verify-source.cjs reproduces the limited source/syntax evidence using the recorded installed TypeScript API path.'
+  ],
+  tokens: null,
+  cost: null
+};
+fs.writeFileSync(path.join(__dirname, 'result.json'), JSON.stringify(result, null, 2));
+process.stdout.write(JSON.stringify({caseId: result.caseId, startUTC, endUTC, elapsedSeconds: result.elapsedSeconds, checks: result.checks.length}, null, 2));

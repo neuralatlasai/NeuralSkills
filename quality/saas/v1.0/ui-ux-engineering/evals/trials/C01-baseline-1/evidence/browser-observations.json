@@ -1,0 +1,66 @@
+[
+  {
+    "id": "keyboard-target-pending",
+    "status": "PASS",
+    "evidence": {
+      "focus": {
+        "outline": "rgb(28, 103, 136) solid 3px",
+        "width": 322,
+        "height": 48.5
+      },
+      "pending": {
+        "calls": [
+          "https://example.test/invite/team-river"
+        ],
+        "disabled": true,
+        "busy": "true",
+        "status": "Copying invitation link…"
+      }
+    }
+  },
+  {
+    "id": "success-reset",
+    "status": "PASS",
+    "evidence": {
+      "resetMs": 2056,
+      "statusRole": "status",
+      "copied": "https://example.test/invite/team-river"
+    }
+  },
+  {
+    "id": "reject-retry-enter",
+    "status": "PASS",
+    "evidence": {
+      "callsAfterRetry": 3,
+      "errorCleared": ""
+    }
+  },
+  {
+    "id": "unavailable-and-translation",
+    "status": "PASS",
+    "evidence": {
+      "width": 242,
+      "height": 71,
+      "scrollWidth": 240,
+      "clientWidth": 240,
+      "scrollHeight": 69,
+      "clientHeight": 69,
+      "pageWidth": 320,
+      "viewport": 320
+    }
+  },
+  {
+    "id": "browser-errors",
+    "status": "PASS",
+    "evidence": []
+  },
+  {
+    "id": "native-clipboard",
+    "status": "PASS",
+    "evidence": {
+      "label": "Link copied",
+      "error": "",
+      "clipboard": "https://example.test/invite/team-river"
+    }
+  }
+]

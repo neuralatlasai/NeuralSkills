@@ -1,0 +1,50 @@
+# Implementation, performance and resilience
+
+Use for M5/M7. Inspect the project before choosing tools. New standalone web fixtures may use Node + TypeScript + semantic CSS; do not force React/Next, Tailwind or a component library into a compatible existing stack. Prefer supported pinned versions and the project's lockfile. Compare any proposed dependency by accessibility behavior, integration/maintenance, bundle/runtime cost, compatibility, license and actual need. Popularity and vendor identity do not settle the choice.
+
+## Repository and data contracts
+
+Inspect package scripts before executing them, then relevant entry points, routes, state owners, styling, tests, build and deployment boundary. Work within authorized files; preserve unrelated changes. Check external data at runtime where necessary. Compile-time types do not prove server behavior or payload validity.
+
+Use typed component inputs/events and one owner for each state:
+
+| State | Typical authority | Persistence/verification concern |
+| --- | --- | --- |
+| Shareable filters, page, selected resource | URL/router when the product needs deep links | Back/reload and invalid parameters |
+| Open panel, pending input, focus | Local interaction state | Re-render/refresh must not reset valid work |
+| Theme/density preference | Persisted preference store | Initial loading and storage failure; do not persist sensitive data by habit |
+| Server records and permissions | Data/cache layer backed by API | Freshness, request ordering, mutation reconciliation; browser checks do not prove server enforcement |
+
+Separate data access, state transitions, rendering and side effects where clarity improves. A tiny native component does not need an abstraction framework. Reuse existing primitives first; use Radix/React Aria/shadcn only if compatible with the project and required behavior. Review version-specific guidance from the source registry when applicable.
+
+## CSS and rendering
+
+Use semantic HTML, shared CSS variables/tokens and predictable component boundaries. Support focus-visible and reduced motion; use logical properties for localization where relevant. Avoid fixed heights around variable text, broad selector leakage, focus removal, and layout changes on hover that move neighboring targets. Scope styles to the project convention; cascade layers/container queries are conditional compatibility choices, not novelty goals. Verify supported browser behavior before adoption.
+
+Set image dimensions/aspect ratios; choose responsive formats and appropriate loading priority. Prioritize the actual LCP candidate only when known. Avoid unnecessary libraries/fonts and large client JavaScript for static content. Make loading skeletons stable and truthful; do not leave a screen indefinitely pending on failure. SSR/hydration/cache decisions are framework-specific and must respect deployment and isolation (particularly SaaS tenant/user data).
+
+Conditional React/Next guidance: profile before adding memoization; avoid independent data-fetch waterfalls where parallel loading is safe; split expensive optional code when it improves the measured task; preserve cache/auth boundaries and request-scoped server state. Check installed versions and primary docs before changing framework APIs. Do not apply server rules to a client-only native fixture.
+
+## Dynamic-data contract
+
+Before implementing dynamic data, define the following in the shared contract:
+
+1. **Initial vs refresh:** initial loading has no usable content; background refresh may preserve prior content only if the freshness policy permits it. Identify stale or refreshing data, show its scope/time when useful, and prevent invalid decisions on expired data.
+2. **User work:** specify preservation of focus, scroll, filters, selection and unsaved input. Replacing an entire subtree can lose focus and state. Do not silently clear selections after background reconciliation; communicate invalidation.
+3. **Latest applicable intent:** define the query/tenant/filter/operation key. Use cancellation plus a generation/request-key guard; cancellation alone may not stop every completion. A result for a previous query must not overwrite a newer one.
+4. **Mutation:** prevent duplicate submissions while pending, distinguish immediate acknowledgement from completion, and define server idempotency if supported. Do not invent API idempotency. Optimistic updates need reconciliation and rollback with retained user context.
+5. **Failure:** define timeout, partial failure, offline, bounded retry and recovery. Preserve allowed previous data and explain freshness; avoid retry loops or exposing raw internal errors. A retry action must work and have an accessible name/status.
+
+Minimum ordering test when applicable: start A; later user action starts B; complete B; complete A even if aborted; assert visible data/query/status still belong to B. Also test stale failure, empty result, retry success and duplicate submission. Test server integration separately from deterministic mocks. Label fixture data and simulated delays/failures.
+
+## Performance protocol
+
+Define workloads and lab gates before measurements. Choose devices/network/data/cache and budgets based on actual tasks and support commitments. Field targets are LCP ≤2.5 s, INP ≤200 ms, CLS ≤0.1 at p75, separately mobile/desktop; those require real page-visit data. A lab event timestamp or Lighthouse score cannot establish p75 INP or field performance.
+
+Keep response feedback and eventual operation duration separate. A button can acknowledge immediately while an operation remains pending for seconds. Measure both if relevant. Do not rename an arbitrary event-to-render timer to INP.
+
+Every measurement records build/commit or artifact hash, tool/browser versions, device or emulation, CPU/network conditions, viewport, dataset, cache state, workload, repetition count, unit, raw evidence and provenance (lab/field). Use ≥3 runs for important lab comparisons; report median and min–max. Do not discard slow runs without a recorded reason; reruns do not erase failed history.
+
+Profile representative scroll, typing, resize, animation, navigation and refresh when applicable. Investigate render counts, expensive layout/paint, DOM size and memory/resource growth against a declared workload. A frame budget depends on display refresh rate and browser work; a 16.7 ms frame interval at 60 Hz is not a promise that all application work has that budget. Do not report universal FPS from an unprofiled screen.
+
+If profiling or field data is unavailable, retain the test plan and mark it UNVERIFIED. Unit race tests prove the tested state invariant, not network performance, browser smoothness, memory stability or backend correctness.

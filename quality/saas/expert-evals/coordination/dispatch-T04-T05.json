@@ -1,0 +1,8 @@
+{
+  "observedBeforeDispatchUtc": "2026-11-06T03:19:26.849Z",
+  "trials": [
+    "T04",
+    "T05"
+  ],
+  "boundary": "Coordinator observation before actual spawning, conditional upper-bound origin, not exact first tool time."
+}

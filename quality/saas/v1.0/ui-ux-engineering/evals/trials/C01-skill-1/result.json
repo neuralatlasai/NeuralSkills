@@ -1,0 +1,253 @@
+{
+  "caseId": "C01",
+  "arm": "skill",
+  "run": 1,
+  "startUtc": "2026-11-05T15:55:55.4062857Z",
+  "endUtc": "2026-11-05T16:01:30.995Z",
+  "elapsedSeconds": 335.589,
+  "actualTokens": null,
+  "cost": null,
+  "route": {
+    "mode": "explore",
+    "scope": "small reusable component",
+    "modules": [
+      "M1",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M8"
+    ],
+    "sources": [
+      "SKILL.md",
+      "references/modules.md",
+      "references/design.md",
+      "references/implementation.md",
+      "references/verification.md",
+      "assets/contract.template.json",
+      "evals/inputs/C01.json"
+    ],
+    "fixtures": [],
+    "note": "No reference uncertainty or application data; M2 and full M7 profiling not activated. Browser clipboard mutation handled through explicit local pending guard."
+  },
+  "requirementCoverage": [
+    {
+      "id": "C01-R01",
+      "status": "PASS",
+      "evidence": [
+        "artifact/copy-invitation.ts",
+        "artifact/styles.css",
+        "artifact/index.html",
+        "artifact/README.md",
+        "build-evidence.txt"
+      ],
+      "detail": "Reusable exported native TypeScript factory and plain scoped CSS, no dependencies, React, icons or UI library. Loopback example built and rendered."
+    },
+    {
+      "id": "C01-R02",
+      "status": "PASS",
+      "evidence": [
+        "browser-evidence.json#real-clipboard-keyboard",
+        "desktop.png"
+      ],
+      "detail": "Exact default label and actual clipboard URL verified."
+    },
+    {
+      "id": "C01-R03",
+      "status": "PASS",
+      "evidence": [
+        "browser-evidence.json#pending-duplicate-space"
+      ],
+      "detail": "One copy call despite Space, Enter and repeated programmatic clicks while promise pending."
+    },
+    {
+      "id": "C01-R04",
+      "status": "PASS",
+      "evidence": [
+        "browser-evidence.json#real-clipboard-keyboard"
+      ],
+      "detail": "Link copied status returned to original label in observed 1987ms."
+    },
+    {
+      "id": "C01-R05",
+      "status": "PASS",
+      "evidence": [
+        "browser-evidence.json#rejection-retry",
+        "browser-evidence.json#clipboard-unavailable",
+        "error-320.png"
+      ],
+      "detail": "Simulated clipboard rejection and absent API both display useful inline error including address; rejection retry succeeds."
+    },
+    {
+      "id": "C01-R06",
+      "status": "PASS",
+      "evidence": [
+        "browser-evidence.json#real-clipboard-keyboard",
+        "browser-evidence.json#pending-duplicate-space",
+        "browser-evidence.json#status-semantics",
+        "focus.png"
+      ],
+      "detail": "Native Tab/Enter/Space tested, focus retained, 3px visible focus ring and polite atomic live region; minimum 48px button height. Actual screen-reader speech unverified."
+    },
+    {
+      "id": "C01-R07",
+      "status": "PASS",
+      "evidence": [
+        "browser-evidence.json#translated-320-target-reflow",
+        "german-320.png",
+        "desktop.png",
+        "error-320.png"
+      ],
+      "detail": "320px viewport, supplied German label wraps into 246x71px button with no clipping or horizontal page overflow. Rendered desktop/narrow layouts visually inspected."
+    }
+  ],
+  "assumptions": [
+    "Requirement ID meanings mapped in brief.json from supplied task order, since the input listed IDs without individual descriptions.",
+    "Modern Chrome on loopback is the supported environment; browser permission remains outside the component.",
+    "English default labels and supplied German default-label stress only; localized pending/error/success content is a host responsibility."
+  ],
+  "decisions": [
+    "Use a native button, synchronous pending guard and aria-disabled instead of native disabled to preserve focus.",
+    "Use one persistent polite atomic status region for pending/success/error; no simulated screen-reader claim.",
+    "Two-second reset is cancellable on repeat activation and component destruction.",
+    "Choose dark green and neutral system typography with no external assets, motion or icons; a compact context card keeps the example usable.",
+    "Each component owns its state; optional typed copy adapter permits deterministic tests while the default uses the actual browser clipboard."
+  ],
+  "checks": [
+    {
+      "id": "typescript-build",
+      "status": "PASS",
+      "evidence": "build-evidence.txt: strict TypeScript 6.0.3 build exit 0"
+    },
+    {
+      "id": "real-clipboard-keyboard",
+      "status": "PASS",
+      "evidence": {
+        "file": "browser-evidence.json",
+        "observed": {
+          "clipboard": "https://example.test/invite/team-river",
+          "resetObservedMs": 1987,
+          "focus": {
+            "outline": "3px",
+            "style": "solid"
+          }
+        }
+      }
+    },
+    {
+      "id": "pending-duplicate-space",
+      "status": "PASS",
+      "evidence": {
+        "file": "browser-evidence.json",
+        "observed": {
+          "copyCalls": 1,
+          "keyboard": "Space starts; repeated Enter, Space and programmatic clicks guarded",
+          "focusRetained": true
+        }
+      }
+    },
+    {
+      "id": "rejection-retry",
+      "status": "PASS",
+      "evidence": {
+        "file": "browser-evidence.json",
+        "observed": {
+          "attempts": 2,
+          "error": "Couldn’t copy the link. Allow clipboard access and try again, or copy this address manually: https://example.test/invite/team-river"
+        }
+      }
+    },
+    {
+      "id": "clipboard-unavailable",
+      "status": "PASS",
+      "evidence": {
+        "file": "browser-evidence.json",
+        "observed": "Couldn’t copy the link. Allow clipboard access and try again, or copy this address manually: https://example.test/invite/team-river"
+      }
+    },
+    {
+      "id": "translated-320-target-reflow",
+      "status": "PASS",
+      "evidence": {
+        "file": "browser-evidence.json",
+        "observed": {
+          "width": 246,
+          "height": 71,
+          "client": 244,
+          "scroll": 244,
+          "label": "Einladungslink für das Projektteam kopieren",
+          "pageWidth": 320,
+          "viewport": 320
+        }
+      }
+    },
+    {
+      "id": "status-semantics",
+      "status": "PASS",
+      "evidence": {
+        "file": "browser-evidence.json",
+        "observed": {
+          "role": "status",
+          "live": "polite",
+          "atomic": "true"
+        }
+      }
+    },
+    {
+      "id": "visual-inspection",
+      "status": "PASS",
+      "evidence": "Viewed desktop.png, german-320.png, error-320.png and focus.png; clear primary action, readable content, visible focus and no clipped critical content."
+    },
+    {
+      "id": "palette-contrast",
+      "status": "PASS",
+      "evidence": {
+        "file": "contrast-evidence.json",
+        "ratios": {
+          "button": 9.705013801923572,
+          "buttonHover": 12.207961998410783,
+          "body": 16.293495425950333,
+          "muted": 6.374802748213422,
+          "error": 7.657000025729957,
+          "focus": 5.527995812193697
+        }
+      }
+    },
+    {
+      "id": "browser-errors",
+      "status": "PASS",
+      "evidence": {
+        "file": "browser-evidence.json",
+        "errors": []
+      }
+    },
+    {
+      "id": "screen-reader",
+      "status": "UNVERIFIED",
+      "evidence": "No assistive technology session performed; DOM semantics only."
+    },
+    {
+      "id": "automated-accessibility-scanner",
+      "status": "UNVERIFIED",
+      "evidence": "No scanner run; targeted semantic, keyboard, focus, target and contrast checks performed."
+    },
+    {
+      "id": "manual-zoom",
+      "status": "UNVERIFIED",
+      "evidence": "320 CSS px reflow checked; browser zoom not separately exercised."
+    },
+    {
+      "id": "field-performance",
+      "status": "UNVERIFIED",
+      "evidence": "No field telemetry or performance comparison; local behavior timing is not INP or a field percentile."
+    }
+  ],
+  "limitations": [
+    "Timing starts at first successful UTC timestamp and excludes initial intake plus failed Get-Date command; see timing-and-deviations.txt.",
+    "apply_patch delay caused elapsed work to exceed the approximate six-minute target.",
+    "Cross-browser, real-device, OS screen-reader, forced-colors, manual zoom and scanner checks were not performed; no conformance claim.",
+    "Rejected/unavailable/pending clipboard paths used explicitly simulated browser fixtures; the primary copy path used the actual browser clipboard.",
+    "Only default label is stress tested in German. Error and pending messages are English by default.",
+    "No network access, package installations or writes outside the assigned trial."
+  ]
+}

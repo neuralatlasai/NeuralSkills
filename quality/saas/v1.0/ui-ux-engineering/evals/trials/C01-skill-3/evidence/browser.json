@@ -1,0 +1,113 @@
+{
+  "startedAt": "2026-11-05T16:43:51.573Z",
+  "environment": {
+    "node": "v24.12.0",
+    "viewport": "900x600 and 320x640",
+    "deviceScaleFactor": 1,
+    "font": "system-ui",
+    "network": "loopback, no throttling",
+    "cpu": "host, no throttling",
+    "cache": "new context",
+    "provenance": "local browser verification; deterministic clipboard scenarios explicitly injected",
+    "browser": "156.0.8078.80"
+  },
+  "checks": [
+    {
+      "id": "initial-name",
+      "status": "PASS",
+      "evidence": "Copy invitation link"
+    },
+    {
+      "id": "keyboard-focus",
+      "status": "PASS",
+      "evidence": "Tab focuses native button; computed 3px outline"
+    },
+    {
+      "id": "real-clipboard",
+      "status": "PASS",
+      "evidence": "Actual Chrome Clipboard API read after keyboard Enter"
+    },
+    {
+      "id": "duplicate-pending",
+      "status": "PASS",
+      "evidence": "Space starts unresolved adapter; Enter plus two native clicks produce one writer call"
+    },
+    {
+      "id": "pending-accessibility",
+      "status": "PASS",
+      "evidence": "Pending aria-disabled and aria-busy true"
+    },
+    {
+      "id": "live-region",
+      "status": "PASS",
+      "evidence": "Separate polite atomic status contains pending text"
+    },
+    {
+      "id": "success-retained",
+      "status": "PASS",
+      "evidence": "Success remains after 1500ms"
+    },
+    {
+      "id": "success-reset",
+      "status": "PASS",
+      "evidence": {
+        "elapsedMs": 2012,
+        "acceptedMs": [
+          1800,
+          2400
+        ]
+      }
+    },
+    {
+      "id": "focus-preserved",
+      "status": "PASS",
+      "evidence": "Focus preserved across pending, success and reset"
+    },
+    {
+      "id": "rejection-error",
+      "status": "PASS",
+      "evidence": "Rejected clipboard shows inline recovery plus selectable exact URL; button enabled"
+    },
+    {
+      "id": "retry",
+      "status": "PASS",
+      "evidence": "Second deliberate attempt succeeds"
+    },
+    {
+      "id": "unavailable-clipboard",
+      "status": "PASS",
+      "evidence": "Clipboard API removed in fixture; useful inline error and retry label shown"
+    },
+    {
+      "id": "narrow-error-fit",
+      "status": "PASS",
+      "evidence": "320px error state has no horizontal overflow"
+    },
+    {
+      "id": "german-narrow-fit-target",
+      "status": "PASS",
+      "evidence": {
+        "width": 280,
+        "height": 71,
+        "scrollWidth": 278,
+        "clientWidth": 278,
+        "pageWidth": 320,
+        "viewport": 320,
+        "outline": "3px",
+        "text": "Einladungslink für das Projektteam kopieren"
+      }
+    },
+    {
+      "id": "text-200-percent-fit",
+      "status": "PASS",
+      "evidence": "Button text enlarged 15px to 30px at 320px; no page horizontal overflow"
+    },
+    {
+      "id": "runtime-errors",
+      "status": "PASS",
+      "evidence": []
+    }
+  ],
+  "errors": [],
+  "endedAt": "2026-11-05T16:43:58.985Z"
+}

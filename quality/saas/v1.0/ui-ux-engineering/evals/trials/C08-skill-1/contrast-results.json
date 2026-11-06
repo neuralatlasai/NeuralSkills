@@ -1,0 +1,41 @@
+{
+  "method": "sRGB relative luminance calculation from declared CSS colors; selected pairs only",
+  "pairs": [
+    {
+      "role": "primary text",
+      "foreground": "ffffff",
+      "background": "244b83",
+      "ratio": 8.716647489251969
+    },
+    {
+      "role": "muted text",
+      "foreground": "526278",
+      "background": "ffffff",
+      "ratio": 6.218438013123683
+    },
+    {
+      "role": "error text",
+      "foreground": "a51e2c",
+      "background": "ffffff",
+      "ratio": 7.4416741067893994
+    },
+    {
+      "role": "control border outside",
+      "foreground": "8392a6",
+      "background": "ffffff",
+      "ratio": 3.168736390897458
+    },
+    {
+      "role": "control border inside",
+      "foreground": "8392a6",
+      "background": "fafbfd",
+      "ratio": 3.060401908365641
+    }
+  ],
+  "history": [
+    {
+      "status": "FAIL",
+      "description": "Initial #c8d1df control boundary against white measured 1.5394:1; darkened to #8392a6. Original renders and QA retained in initial-evidence."
+    }
+  ]
+}

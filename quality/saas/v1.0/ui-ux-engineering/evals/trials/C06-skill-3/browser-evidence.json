@@ -1,0 +1,183 @@
+{
+  "recordedAt": "2026-11-05T16:49:33.302Z",
+  "browser": "156.0.8078.80",
+  "node": "v24.12.0",
+  "url": "http://127.0.0.1:54105",
+  "viewport": "1024x768, 640x800, 320x800; deviceScaleFactor 1",
+  "network": "loopback only; deterministic fixture, no throttling",
+  "checks": [
+    {
+      "id": "initial",
+      "status": "PASS",
+      "evidence": "Initial status prompt visible; no cards."
+    },
+    {
+      "id": "keyboard-input",
+      "status": "PASS",
+      "evidence": "First Tab focuses labeled search input."
+    },
+    {
+      "id": "pending",
+      "status": "PASS",
+      "evidence": "Enter submits; pending feedback and busy results; Search stays enabled."
+    },
+    {
+      "id": "cedar",
+      "status": "PASS",
+      "evidence": "Cedar resolves to one expected card."
+    },
+    {
+      "id": "focus-preservation",
+      "status": "PASS",
+      "evidence": "Input retains focus across pending and result render."
+    },
+    {
+      "id": "moss",
+      "status": "PASS",
+      "evidence": "Moss resolves to two cards including long title."
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "evidence": "Empty clears cards and suggests a broader topic."
+    },
+    {
+      "id": "failure",
+      "status": "PASS",
+      "evidence": "Failure message and query-specific Retry appear."
+    },
+    {
+      "id": "retry-pending",
+      "status": "PASS",
+      "evidence": "Retry resubmits failed fail query despite edited input cedar; visible pending state."
+    },
+    {
+      "id": "retry-duplicate",
+      "status": "PASS",
+      "evidence": "A repeated retry activation while pending adds no second fixture call."
+    },
+    {
+      "id": "retry-focus-pending",
+      "status": "PASS",
+      "evidence": "Retry remains focused and mounted while pending."
+    },
+    {
+      "id": "retry-failure",
+      "status": "PASS",
+      "evidence": "Retry fails again as fixture specifies, is reenabled, and edited input is preserved."
+    },
+    {
+      "id": "retry-focus-outcome",
+      "status": "PASS",
+      "evidence": "Retry retains focus after the failed outcome."
+    },
+    {
+      "id": "race-cedar",
+      "status": "PASS",
+      "evidence": "{\"scenario\":\"cedar-then-moss\",\"heading\":\"Guides for “moss”\",\"status\":\"Found 2 guides for “moss”.\",\"cards\":[\"Mosses of the rain-soaked northern woodland\",\"Pocket guide to urban moss\"],\"busy\":\"false\",\"retry\":false}"
+    },
+    {
+      "id": "race-fail",
+      "status": "PASS",
+      "evidence": "{\"scenario\":\"fail-then-moss\",\"heading\":\"Guides for “moss”\",\"status\":\"Found 2 guides for “moss”.\",\"cards\":[\"Mosses of the rain-soaked northern woodland\",\"Pocket guide to urban moss\"],\"busy\":\"false\",\"retry\":false}"
+    },
+    {
+      "id": "keyboard-order",
+      "status": "PASS",
+      "evidence": "After Search, no result card or hidden Retry enters tab order."
+    },
+    {
+      "id": "reflow-320",
+      "status": "PASS",
+      "evidence": "{\"viewport\":320,\"scroll\":320,\"input\":284,\"button\":46}"
+    },
+    {
+      "id": "reflow-640",
+      "status": "PASS",
+      "evidence": "{\"viewport\":640,\"scroll\":640,\"input\":488.625,\"button\":46}"
+    },
+    {
+      "id": "text-resize",
+      "status": "PASS",
+      "evidence": "320px viewport with root font-size 200% has no page overflow; this is text-resize, not a browser zoom/AT test."
+    },
+    {
+      "id": "semantics",
+      "status": "PASS",
+      "evidence": "{\"label\":\"query\",\"input\":\"query\",\"live\":\"polite\",\"atomic\":\"true\",\"lang\":\"en\",\"focusRule\":true}"
+    },
+    {
+      "id": "fixture-unchanged",
+      "status": "PASS",
+      "evidence": "SHA256 baa8f07b2ffd4cfbfb614f12fa69a53745499c5ed06e056e326ac37a25bd10c3"
+    },
+    {
+      "id": "browser-errors",
+      "status": "PASS",
+      "evidence": "[]"
+    }
+  ],
+  "errors": [],
+  "snapshots": [
+    {
+      "scenario": "cedar-then-moss",
+      "heading": "Guides for “moss”",
+      "status": "Found 2 guides for “moss”.",
+      "cards": [
+        "Mosses of the rain-soaked northern woodland",
+        "Pocket guide to urban moss"
+      ],
+      "busy": "false",
+      "retry": false
+    },
+    {
+      "scenario": "fail-then-moss",
+      "heading": "Guides for “moss”",
+      "status": "Found 2 guides for “moss”.",
+      "cards": [
+        "Mosses of the rain-soaked northern woodland",
+        "Pocket guide to urban moss"
+      ],
+      "busy": "false",
+      "retry": false
+    }
+  ],
+  "timers": [
+    {
+      "delay": 1200,
+      "at": 388.59999999403954
+    },
+    {
+      "delay": 180,
+      "at": 1944.8999999910593
+    },
+    {
+      "delay": 300,
+      "at": 2385
+    },
+    {
+      "delay": 650,
+      "at": 2868.5999999940395
+    },
+    {
+      "delay": 650,
+      "at": 3802.2000000029802
+    },
+    {
+      "delay": 1200,
+      "at": 4704.5
+    },
+    {
+      "delay": 180,
+      "at": 4886.70000000298
+    },
+    {
+      "delay": 650,
+      "at": 6431.79999999702
+    },
+    {
+      "delay": 180,
+      "at": 6612.399999991059
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Usage: node grading/verify-ui.mjs UI-U1 ARTIFACT OUTPUT

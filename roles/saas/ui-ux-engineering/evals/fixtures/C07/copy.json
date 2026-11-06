@@ -1,0 +1,79 @@
+{
+  "equipment": {
+    "en": "Portable field recording kit with wind protection and extended battery pack",
+    "de": "Tragbares Außenaufnahmegerät mit Windschutz und zusätzlichem Langzeitakkupaket"
+  },
+  "locations": [
+    {
+      "id": "north",
+      "en": "North studio — main entrance",
+      "de": "Nordstudio — Haupteingang neben der gemeinschaftlichen Fahrradwerkstatt"
+    },
+    {
+      "id": "east",
+      "en": "East workshop — reception",
+      "de": "Ostwerkstatt — Empfang im barrierefrei zugänglichen Nebengebäude"
+    }
+  ],
+  "slots": [
+    {
+      "id": "morning",
+      "en": "Morning, 09:00–11:00",
+      "de": "Vormittags, zwischen 09:00 und 11:00 Uhr"
+    },
+    {
+      "id": "afternoon",
+      "en": "Afternoon, 14:00–16:00",
+      "de": "Nachmittags, zwischen 14:00 und 16:00 Uhr"
+    }
+  ],
+  "en": {
+    "title": "Reserve equipment",
+    "intro": "Choose where and when to collect your equipment.",
+    "language": "Language",
+    "step1": "Pickup details",
+    "step2": "Review your reservation",
+    "name": "Full name",
+    "email": "Email address",
+    "location": "Pickup location",
+    "chooseLocation": "Choose a pickup location",
+    "slot": "Pickup time",
+    "next": "Review reservation",
+    "back": "Back",
+    "confirm": "Confirm reservation",
+    "consent": "I will return the equipment and all accessories at the agreed time.",
+    "requiredName": "Enter your full name.",
+    "invalidEmail": "Enter a valid email address.",
+    "requiredLocation": "Choose a pickup location.",
+    "requiredSlot": "Choose a pickup time.",
+    "requiredConsent": "Confirm that you will return the equipment and accessories.",
+    "success": "Reservation confirmed",
+    "summary": "Your reservation details",
+    "equipment": "Equipment"
+  },
+  "de": {
+    "title": "Ausrüstung zur Abholung reservieren",
+    "intro": "Wählen Sie einen Abholort und ein Zeitfenster für Ihre Ausrüstung.",
+    "language": "Sprache",
+    "step1": "Angaben zur Abholung",
+    "step2": "Reservierungsangaben vor der verbindlichen Bestätigung überprüfen",
+    "name": "Vollständiger Vor- und Nachname",
+    "email": "E-Mail-Adresse für die Reservierungsbestätigung",
+    "location": "Gewünschter Abholort",
+    "chooseLocation": "Bitte wählen Sie den gewünschten Abholort aus",
+    "slot": "Gewünschtes Zeitfenster für die Abholung",
+    "next": "Reservierungsangaben überprüfen",
+    "back": "Zurück zu den Abholangaben",
+    "confirm": "Reservierung verbindlich bestätigen",
+    "consent": "Ich werde die Ausrüstung einschließlich sämtlicher Zubehörteile zum vereinbarten Zeitpunkt zurückgeben.",
+    "requiredName": "Bitte geben Sie Ihren vollständigen Vor- und Nachnamen ein.",
+    "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "requiredLocation": "Bitte wählen Sie einen Abholort aus.",
+    "requiredSlot": "Bitte wählen Sie ein Zeitfenster für die Abholung aus.",
+    "requiredConsent": "Bitte bestätigen Sie die rechtzeitige Rückgabe der Ausrüstung und aller Zubehörteile.",
+    "success": "Ihre Ausrüstungsreservierung wurde bestätigt",
+    "summary": "Ihre verbindlich bestätigten Reservierungsangaben",
+    "equipment": "Reservierte Ausrüstung"
+  }
+}
+

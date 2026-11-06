@@ -1,0 +1,247 @@
+﻿{
+    "caseId":  "C02",
+    "arm":  "skill",
+    "run":  1,
+    "startUtc":  "2026-11-05T15:53:37.0000000+00:00",
+    "endUtc":  "2026-11-05T15:59:24.4771386+00:00",
+    "elapsedSeconds":  347.48,
+    "tokens":  null,
+    "cost":  null,
+    "route":  "reproduce / page-reference / M1–M8",
+    "artifactDirectory":  "artifact/",
+    "requirementCoverage":  [
+                                {
+                                    "id":  "C02-R01",
+                                    "status":  "PASS",
+                                    "evidence":  "Source reference.png visually inspected with view_image before writing implementation; source role and observations in artifact/brief.json"
+                                },
+                                {
+                                    "id":  "C02-R02",
+                                    "status":  "PASS",
+                                    "evidence":  "evidence/desktop.png and evidence/visual-review.md: composition, all visible copy and local artwork reproduced; approximate font/curve fidelity stated"
+                                },
+                                {
+                                    "id":  "C02-R03",
+                                    "status":  "PASS",
+                                    "evidence":  "evidence/checks.json anchor-Projects/Activity/Overview and mobile-anchor; anchors use real matching section IDs"
+                                },
+                                {
+                                    "id":  "C02-R04",
+                                    "status":  "PASS",
+                                    "evidence":  "evidence/checks.json dialog, focus, Cancel, Escape, validation, success checks; evidence/supplemental.json forward cycle and mobile dialog"
+                                },
+                                {
+                                    "id":  "C02-R05",
+                                    "status":  "PASS",
+                                    "evidence":  "evidence/mobile.png; no-overflow checks at 375 and 768; supplemental reflow 320"
+                                },
+                                {
+                                    "id":  "C02-R06",
+                                    "status":  "PASS",
+                                    "evidence":  "artifact/README.md setup; server.mjs successfully served local HTML/CSS/JS with no dependencies; artwork entirely CSS"
+                                }
+                            ],
+    "assumptions":  [
+                        "System Arial approximates the reference font; exact font identity was not supplied.",
+                        "Responsive behavior is inferred from the task, not from the desktop image.",
+                        "All projects returns to the projects section because no second route was specified.",
+                        "Requirement IDs were mapped in task order; no separate ID descriptions supplied."
+                    ],
+    "decisions":  [
+                      "Use dependency-free semantic HTML/CSS/JavaScript and a Node loopback static server.",
+                      "Use a native modal dialog plus explicit Tab cycle, associated label, required validation, Escape and focus restoration.",
+                      "Workspace creation updates only a local status live region; no persistence/backend.",
+                      "Darken muted text slightly for measured 4.5:1 contrast, an intentional fidelity deviation.",
+                      "Use brief.json as a small-page requirement/token/state authority."
+                  ],
+    "checks":  [
+                   {
+                       "id":  "desktop-content",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  {
+                                       "cards":  3,
+                                       "hero":  "A little less busy.\nA lot more focused."
+                                   }
+                   },
+                   {
+                       "id":  "anchor-Projects",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  {
+                                       "hash":  "#projects",
+                                       "scrollY":  0
+                                   }
+                   },
+                   {
+                       "id":  "anchor-Activity",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  {
+                                       "hash":  "#activity",
+                                       "scrollY":  0
+                                   }
+                   },
+                   {
+                       "id":  "anchor-Overview",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  {
+                                       "hash":  "#overview",
+                                       "scrollY":  0
+                                   }
+                   },
+                   {
+                       "id":  "dialog-open-focus",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  "Named native dialog visible and name input focused"
+                   },
+                   {
+                       "id":  "focus-trap-reverse",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  "\u003cbutton type=\"submit\" class=\"create-workspace\"\u003eCreate\u003c/button\u003e"
+                   },
+                   {
+                       "id":  "escape-restore",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  "Escape closes, focus returns to opener"
+                   },
+                   {
+                       "id":  "cancel",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  "Cancel closes dialog"
+                   },
+                   {
+                       "id":  "empty-validation",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  "Native required validation retains dialog"
+                   },
+                   {
+                       "id":  "whitespace-validation",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  "Whitespace-only name receives visible associated error"
+                   },
+                   {
+                       "id":  "create-success",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  "Local success live region displayed"
+                   },
+                   {
+                       "id":  "mobile-no-overflow",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  {
+                                       "viewport":  375,
+                                       "documentWidth":  375,
+                                       "cardWidths":  [
+                                                          335,
+                                                          335,
+                                                          335
+                                                      ]
+                                   }
+                   },
+                   {
+                       "id":  "mobile-anchor",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  "Activity anchor moves into viewport"
+                   },
+                   {
+                       "id":  "intermediate-no-overflow",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  {
+                                       "viewport":  768,
+                                       "documentWidth":  768
+                                   }
+                   },
+                   {
+                       "id":  "runtime-errors",
+                       "status":  "PASS",
+                       "evidence":  "evidence/checks.json",
+                       "details":  [
+
+                                   ]
+                   },
+                   {
+                       "id":  "visual-review",
+                       "status":  "PASS",
+                       "evidence":  "evidence/visual-review.md; desktop.png, mobile.png, intermediate.png, dialog.png inspected; qualitative fidelity only"
+                   },
+                   {
+                       "id":  "contrast-sampled",
+                       "status":  "PASS",
+                       "evidence":  "evidence/supplemental.json: five text pairs, minimum 4.5176:1"
+                   },
+                   {
+                       "id":  "forward-focus-mobile-dialog-reflow",
+                       "status":  "PASS",
+                       "evidence":  "evidence/supplemental.json; mobile-dialog.png; reflow-320.png"
+                   },
+                   {
+                       "id":  "initial-focus-regression",
+                       "status":  "FAIL",
+                       "evidence":  "evidence/checks-initial.json retained; repaired and final focus checks PASS"
+                   },
+                   {
+                       "id":  "assistive-technology",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "No screen reader execution available/performed"
+                   },
+                   {
+                       "id":  "automated-accessibility-scan",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "No accessibility scanner run; DOM and keyboard assertions only"
+                   },
+                   {
+                       "id":  "actual-zoom",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "320px reflow performed; actual browser zoom not tested"
+                   },
+                   {
+                       "id":  "performance",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "No three-run lab profiling or field telemetry performed"
+                   },
+                   {
+                       "id":  "backend",
+                       "status":  "NOT_APPLICABLE",
+                       "evidence":  "Task explicitly specifies local success with no backend"
+                   }
+               ],
+    "limitations":  [
+                        "Approximate visual reproduction: font metrics and orbital line shapes differ; no quantitative pixel diff was computed.",
+                        "Single Chrome environment only.",
+                        "No screen reader, full accessibility audit, actual zoom, formal lab performance or field data.",
+                        "Local workspace success is simulated and not persisted."
+                    ],
+    "environment":  {
+                        "node":  "v24.12.0",
+                        "browser":  "156.0.8078.80",
+                        "renderer":  "Chrome headless on Windows",
+                        "viewports":  [
+                                          [
+                                              1280,
+                                              900
+                                          ],
+                                          [
+                                              375,
+                                              812
+                                          ],
+                                          [
+                                              768,
+                                              900
+                                          ]
+                                      ],
+                        "deviceScaleFactor":  1,
+                        "network":  "Loopback, no throttling",
+                        "dependencies":  "None for runnable artifact; local Playwright for verification"
+                    }
+}

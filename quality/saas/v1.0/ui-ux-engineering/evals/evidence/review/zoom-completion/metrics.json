@@ -1,0 +1,1685 @@
+{
+  "time": "2026-11-05T17:30:06.263Z",
+  "mechanism": "Chrome persisted native profile partition.default_zoom_level; no CSS zoom, device metrics emulation, pageScale or pinch scale",
+  "before": {
+    "app.js": "768be3539f1b7af8995561f106ff9ec3cc30af8386f836047a21e0b5baf70456",
+    "app.ts": "c79aca63c4ebe833828304e6f6e69a1a260d48dca902796854968ac2f469e6bd",
+    "build.cjs": "a00467025d2ce29a6acff0b7f3ee373f9e3f6a38af1d414e77d59c3c693cc100",
+    "copy.json": "68fbfb9e4facf941a9b24eecbaa0a8aea6de7e760989184c15d9c9cd56ca1919",
+    "index.html": "333eb4ca82bd2ecd06e9ef83eaf15540e334312fd46331bad53f3adf5ec12cc2",
+    "README.md": "afc0a7b965d8fc4cab3cd01e9be9482c516223aec28f46361d9ddf2dd31a17e2",
+    "serve.cjs": "208b42a2a30990f1e99cf30c68cdfef866df0ef555ef5ff75d13eb44038945fc",
+    "style.css": "01e04af99dc0ad16c9bd90ce5f2e859b01106c59e5f7f8074686e1a685c8baad"
+  },
+  "states": [
+    {
+      "url": "http://127.0.0.1:4398/",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "width": 629,
+      "height": 401,
+      "outerWidth": 1280,
+      "outerHeight": 900,
+      "dpr": 2,
+      "cssZoom": "1",
+      "visualScale": 1,
+      "scrollWidth": 629,
+      "clientWidth": 629,
+      "scrollHeight": 959,
+      "lang": "de",
+      "focus": "language",
+      "heading": "Angaben zur Abholung",
+      "wide": [],
+      "texts": [
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Sprache",
+          "x": 407.28125,
+          "y": 45.25,
+          "width": 50.71875,
+          "height": 21,
+          "scrollWidth": 51,
+          "clientWidth": 51
+        },
+        {
+          "tag": "SELECT",
+          "id": "language",
+          "text": "EnglishDeutsch",
+          "x": 468,
+          "y": 33,
+          "width": 128,
+          "height": 45.5,
+          "scrollWidth": 126,
+          "clientWidth": 126
+        },
+        {
+          "tag": "H1",
+          "id": "",
+          "text": "Ausrüstung zur Abholung reservieren",
+          "x": 33,
+          "y": 98.5,
+          "width": 563,
+          "height": 35.515625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "P",
+          "id": "",
+          "text": "Wählen Sie einen Abholort und ein Zeitfenster für Ihre Ausrüstung.",
+          "x": 33,
+          "y": 146.015625,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "H2",
+          "id": "",
+          "text": "Angaben zur Abholung",
+          "x": 33,
+          "y": 258.2109375,
+          "width": 563,
+          "height": 29.15625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Vollständiger Vor- und Nachname",
+          "x": 33,
+          "y": 311.3671875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "E-Mail-Adresse für die Reservierungsbestätigung",
+          "x": 33,
+          "y": 411.3671875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LEGEND",
+          "id": "",
+          "text": "Gewünschter Abholort",
+          "x": 33,
+          "y": 511.3671875,
+          "width": 170.0703125,
+          "height": 24,
+          "scrollWidth": 170,
+          "clientWidth": 170
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Nordstudio — Haupteingang neben der gemeinschaftlichen Fahrradwerkstatt",
+          "x": 33,
+          "y": 543.3671875,
+          "width": 563,
+          "height": 74,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Ostwerkstatt — Empfang im barrierefrei zugänglichen Nebengebäude",
+          "x": 33,
+          "y": 625.3671875,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "LEGEND",
+          "id": "",
+          "text": "Gewünschtes Zeitfenster für die Abholung",
+          "x": 33,
+          "y": 705.3671875,
+          "width": 317.5390625,
+          "height": 24,
+          "scrollWidth": 318,
+          "clientWidth": 318
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Vormittags, zwischen 09:00 und 11:00 Uhr",
+          "x": 33,
+          "y": 737.3671875,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Nachmittags, zwischen 14:00 und 16:00 Uhr",
+          "x": 33,
+          "y": 795.3671875,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "Reservierungsangaben überprüfen",
+          "x": 33,
+          "y": 877.3671875,
+          "width": 302.5390625,
+          "height": 49.1953125,
+          "scrollWidth": 301,
+          "clientWidth": 301
+        }
+      ],
+      "name": "de-entry",
+      "screenshots": [
+        {
+          "file": "de-entry-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-entry-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-entry-02.png",
+          "scrollY": 558.5
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:4398/",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "width": 629,
+      "height": 401,
+      "outerWidth": 1280,
+      "outerHeight": 900,
+      "dpr": 2,
+      "cssZoom": "1",
+      "visualScale": 1,
+      "scrollWidth": 629,
+      "clientWidth": 629,
+      "scrollHeight": 1062,
+      "lang": "de",
+      "focus": "name",
+      "heading": "Angaben zur Abholung",
+      "wide": [],
+      "texts": [
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Sprache",
+          "x": 407.28125,
+          "y": 45.25,
+          "width": 50.71875,
+          "height": 21,
+          "scrollWidth": 51,
+          "clientWidth": 51
+        },
+        {
+          "tag": "SELECT",
+          "id": "language",
+          "text": "EnglishDeutsch",
+          "x": 468,
+          "y": 33,
+          "width": 128,
+          "height": 45.5,
+          "scrollWidth": 126,
+          "clientWidth": 126
+        },
+        {
+          "tag": "H1",
+          "id": "",
+          "text": "Ausrüstung zur Abholung reservieren",
+          "x": 33,
+          "y": 98.5,
+          "width": 563,
+          "height": 35.515625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "P",
+          "id": "",
+          "text": "Wählen Sie einen Abholort und ein Zeitfenster für Ihre Ausrüstung.",
+          "x": 33,
+          "y": 146.015625,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "H2",
+          "id": "",
+          "text": "Angaben zur Abholung",
+          "x": 33,
+          "y": 258.2109375,
+          "width": 563,
+          "height": 29.15625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Vollständiger Vor- und Nachname",
+          "x": 33,
+          "y": 311.3671875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "P",
+          "id": "name-error",
+          "text": "Bitte geben Sie Ihren vollständigen Vor- und Nachnamen ein.",
+          "x": 33,
+          "y": 397.3671875,
+          "width": 563,
+          "height": 21.59375,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "E-Mail-Adresse für die Reservierungsbestätigung",
+          "x": 33,
+          "y": 440.9609375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "P",
+          "id": "email-error",
+          "text": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+          "x": 33,
+          "y": 526.9609375,
+          "width": 563,
+          "height": 21.59375,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LEGEND",
+          "id": "",
+          "text": "Gewünschter Abholort",
+          "x": 33,
+          "y": 570.5546875,
+          "width": 170.0703125,
+          "height": 24,
+          "scrollWidth": 170,
+          "clientWidth": 170
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Nordstudio — Haupteingang neben der gemeinschaftlichen Fahrradwerkstatt",
+          "x": 33,
+          "y": 602.5546875,
+          "width": 563,
+          "height": 74,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Ostwerkstatt — Empfang im barrierefrei zugänglichen Nebengebäude",
+          "x": 33,
+          "y": 684.5546875,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "P",
+          "id": "location-error",
+          "text": "Bitte wählen Sie einen Abholort aus.",
+          "x": 33,
+          "y": 742.5546875,
+          "width": 563,
+          "height": 21.59375,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LEGEND",
+          "id": "",
+          "text": "Gewünschtes Zeitfenster für die Abholung",
+          "x": 33,
+          "y": 786.1484375,
+          "width": 317.5390625,
+          "height": 24,
+          "scrollWidth": 318,
+          "clientWidth": 318
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Vormittags, zwischen 09:00 und 11:00 Uhr",
+          "x": 33,
+          "y": 818.1484375,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Nachmittags, zwischen 14:00 und 16:00 Uhr",
+          "x": 33,
+          "y": 876.1484375,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "P",
+          "id": "slot-error",
+          "text": "Bitte wählen Sie ein Zeitfenster für die Abholung aus.",
+          "x": 33,
+          "y": 934.1484375,
+          "width": 563,
+          "height": 21.59375,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "Reservierungsangaben überprüfen",
+          "x": 33,
+          "y": 979.7421875,
+          "width": 302.5390625,
+          "height": 49.1953125,
+          "scrollWidth": 301,
+          "clientWidth": 301
+        }
+      ],
+      "name": "de-errors",
+      "screenshots": [
+        {
+          "file": "de-errors-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-errors-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-errors-02.png",
+          "scrollY": 661
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:4398/",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "width": 629,
+      "height": 401,
+      "outerWidth": 1280,
+      "outerHeight": 900,
+      "dpr": 2,
+      "cssZoom": "1",
+      "visualScale": 1,
+      "scrollWidth": 629,
+      "clientWidth": 629,
+      "scrollHeight": 1000,
+      "lang": "de",
+      "focus": "review",
+      "heading": "Reservierungsangaben vor der verbindlichen Bestätigung überprüfen",
+      "wide": [],
+      "texts": [
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Sprache",
+          "x": 407.28125,
+          "y": 45.25,
+          "width": 50.71875,
+          "height": 21,
+          "scrollWidth": 51,
+          "clientWidth": 51
+        },
+        {
+          "tag": "SELECT",
+          "id": "language",
+          "text": "EnglishDeutsch",
+          "x": 468,
+          "y": 33,
+          "width": 128,
+          "height": 45.5,
+          "scrollWidth": 126,
+          "clientWidth": 126
+        },
+        {
+          "tag": "H1",
+          "id": "",
+          "text": "Ausrüstung zur Abholung reservieren",
+          "x": 33,
+          "y": 98.5,
+          "width": 563,
+          "height": 35.515625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "P",
+          "id": "",
+          "text": "Wählen Sie einen Abholort und ein Zeitfenster für Ihre Ausrüstung.",
+          "x": 33,
+          "y": 146.015625,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "H2",
+          "id": "review",
+          "text": "Reservierungsangaben vor der verbindlichen Bestätigung überprüfen",
+          "x": 33,
+          "y": 258.2109375,
+          "width": 563,
+          "height": 58.3125,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Reservierte Ausrüstung",
+          "x": 33,
+          "y": 352.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Tragbares Außenaufnahmegerät mit Windschutz und zusätzlichem Langzeitakkupaket",
+          "x": 33,
+          "y": 377.5234375,
+          "width": 563,
+          "height": 48,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Vollständiger Vor- und Nachname",
+          "x": 33,
+          "y": 450.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Alexandra Musterfrau",
+          "x": 33,
+          "y": 475.5234375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "E-Mail-Adresse für die Reservierungsbestätigung",
+          "x": 33,
+          "y": 524.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "alexandra.musterfrau@example.com",
+          "x": 33,
+          "y": 549.5234375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Gewünschter Abholort",
+          "x": 33,
+          "y": 598.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Nordstudio — Haupteingang neben der gemeinschaftlichen Fahrradwerkstatt",
+          "x": 33,
+          "y": 623.5234375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Gewünschtes Zeitfenster für die Abholung",
+          "x": 33,
+          "y": 672.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Nachmittags, zwischen 14:00 und 16:00 Uhr",
+          "x": 33,
+          "y": 697.5234375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Ich werde die Ausrüstung einschließlich sämtlicher Zubehörteile zum vereinbarten Zeitpunkt zurückgeben.",
+          "x": 33,
+          "y": 758.5234375,
+          "width": 563,
+          "height": 74,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "BUTTON",
+          "id": "back",
+          "text": "Zurück zu den Abholangaben",
+          "x": 33,
+          "y": 856.5234375,
+          "width": 263.0859375,
+          "height": 49.1953125,
+          "scrollWidth": 261,
+          "clientWidth": 261
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "Reservierung verbindlich bestätigen",
+          "x": 33,
+          "y": 917.71875,
+          "width": 313.2578125,
+          "height": 49.1953125,
+          "scrollWidth": 311,
+          "clientWidth": 311
+        }
+      ],
+      "name": "de-review",
+      "screenshots": [
+        {
+          "file": "de-review-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-review-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-review-02.png",
+          "scrollY": 599
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:4398/",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "width": 629,
+      "height": 401,
+      "outerWidth": 1280,
+      "outerHeight": 900,
+      "dpr": 2,
+      "cssZoom": "1",
+      "visualScale": 1,
+      "scrollWidth": 629,
+      "clientWidth": 629,
+      "scrollHeight": 1029,
+      "lang": "de",
+      "focus": "consent",
+      "heading": "Reservierungsangaben vor der verbindlichen Bestätigung überprüfen",
+      "wide": [],
+      "texts": [
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Sprache",
+          "x": 407.28125,
+          "y": 45.25,
+          "width": 50.71875,
+          "height": 21,
+          "scrollWidth": 51,
+          "clientWidth": 51
+        },
+        {
+          "tag": "SELECT",
+          "id": "language",
+          "text": "EnglishDeutsch",
+          "x": 468,
+          "y": 33,
+          "width": 128,
+          "height": 45.5,
+          "scrollWidth": 126,
+          "clientWidth": 126
+        },
+        {
+          "tag": "H1",
+          "id": "",
+          "text": "Ausrüstung zur Abholung reservieren",
+          "x": 33,
+          "y": 98.5,
+          "width": 563,
+          "height": 35.515625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "P",
+          "id": "",
+          "text": "Wählen Sie einen Abholort und ein Zeitfenster für Ihre Ausrüstung.",
+          "x": 33,
+          "y": 146.015625,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "H2",
+          "id": "review",
+          "text": "Reservierungsangaben vor der verbindlichen Bestätigung überprüfen",
+          "x": 33,
+          "y": 258.2109375,
+          "width": 563,
+          "height": 58.3125,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Reservierte Ausrüstung",
+          "x": 33,
+          "y": 352.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Tragbares Außenaufnahmegerät mit Windschutz und zusätzlichem Langzeitakkupaket",
+          "x": 33,
+          "y": 377.5234375,
+          "width": 563,
+          "height": 48,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Vollständiger Vor- und Nachname",
+          "x": 33,
+          "y": 450.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Alexandra Musterfrau",
+          "x": 33,
+          "y": 475.5234375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "E-Mail-Adresse für die Reservierungsbestätigung",
+          "x": 33,
+          "y": 524.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "alexandra.musterfrau@example.com",
+          "x": 33,
+          "y": 549.5234375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Gewünschter Abholort",
+          "x": 33,
+          "y": 598.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Nordstudio — Haupteingang neben der gemeinschaftlichen Fahrradwerkstatt",
+          "x": 33,
+          "y": 623.5234375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Gewünschtes Zeitfenster für die Abholung",
+          "x": 33,
+          "y": 672.5234375,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Nachmittags, zwischen 14:00 und 16:00 Uhr",
+          "x": 33,
+          "y": 697.5234375,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Ich werde die Ausrüstung einschließlich sämtlicher Zubehörteile zum vereinbarten Zeitpunkt zurückgeben.",
+          "x": 33,
+          "y": 758.5234375,
+          "width": 563,
+          "height": 74,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "P",
+          "id": "consent-error",
+          "text": "Bitte bestätigen Sie die rechtzeitige Rückgabe der Ausrüstung und aller Zubehörteile.",
+          "x": 33,
+          "y": 840.5234375,
+          "width": 563,
+          "height": 21.59375,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "BUTTON",
+          "id": "back",
+          "text": "Zurück zu den Abholangaben",
+          "x": 33,
+          "y": 886.1171875,
+          "width": 263.0859375,
+          "height": 49.1953125,
+          "scrollWidth": 261,
+          "clientWidth": 261
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "Reservierung verbindlich bestätigen",
+          "x": 33,
+          "y": 947.3125,
+          "width": 313.2578125,
+          "height": 49.1953125,
+          "scrollWidth": 311,
+          "clientWidth": 311
+        }
+      ],
+      "name": "de-consent-error",
+      "screenshots": [
+        {
+          "file": "de-consent-error-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-consent-error-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-consent-error-02.png",
+          "scrollY": 628.5
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:4398/",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "width": 629,
+      "height": 401,
+      "outerWidth": 1280,
+      "outerHeight": 900,
+      "dpr": 2,
+      "cssZoom": "1",
+      "visualScale": 1,
+      "scrollWidth": 629,
+      "clientWidth": 629,
+      "scrollHeight": 959,
+      "lang": "de",
+      "focus": "name",
+      "heading": "Angaben zur Abholung",
+      "wide": [],
+      "texts": [
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Sprache",
+          "x": 407.28125,
+          "y": 45.25,
+          "width": 50.71875,
+          "height": 21,
+          "scrollWidth": 51,
+          "clientWidth": 51
+        },
+        {
+          "tag": "SELECT",
+          "id": "language",
+          "text": "EnglishDeutsch",
+          "x": 468,
+          "y": 33,
+          "width": 128,
+          "height": 45.5,
+          "scrollWidth": 126,
+          "clientWidth": 126
+        },
+        {
+          "tag": "H1",
+          "id": "",
+          "text": "Ausrüstung zur Abholung reservieren",
+          "x": 33,
+          "y": 98.5,
+          "width": 563,
+          "height": 35.515625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "P",
+          "id": "",
+          "text": "Wählen Sie einen Abholort und ein Zeitfenster für Ihre Ausrüstung.",
+          "x": 33,
+          "y": 146.015625,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "H2",
+          "id": "",
+          "text": "Angaben zur Abholung",
+          "x": 33,
+          "y": 258.2109375,
+          "width": 563,
+          "height": 29.15625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Vollständiger Vor- und Nachname",
+          "x": 33,
+          "y": 311.3671875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "E-Mail-Adresse für die Reservierungsbestätigung",
+          "x": 33,
+          "y": 411.3671875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "LEGEND",
+          "id": "",
+          "text": "Gewünschter Abholort",
+          "x": 33,
+          "y": 511.3671875,
+          "width": 170.0703125,
+          "height": 24,
+          "scrollWidth": 170,
+          "clientWidth": 170
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Nordstudio — Haupteingang neben der gemeinschaftlichen Fahrradwerkstatt",
+          "x": 33,
+          "y": 543.3671875,
+          "width": 563,
+          "height": 74,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Ostwerkstatt — Empfang im barrierefrei zugänglichen Nebengebäude",
+          "x": 33,
+          "y": 625.3671875,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "LEGEND",
+          "id": "",
+          "text": "Gewünschtes Zeitfenster für die Abholung",
+          "x": 33,
+          "y": 705.3671875,
+          "width": 317.5390625,
+          "height": 24,
+          "scrollWidth": 318,
+          "clientWidth": 318
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Vormittags, zwischen 09:00 und 11:00 Uhr",
+          "x": 33,
+          "y": 737.3671875,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Nachmittags, zwischen 14:00 und 16:00 Uhr",
+          "x": 33,
+          "y": 795.3671875,
+          "width": 563,
+          "height": 50,
+          "scrollWidth": 561,
+          "clientWidth": 561
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "Reservierungsangaben überprüfen",
+          "x": 33,
+          "y": 877.3671875,
+          "width": 302.5390625,
+          "height": 49.1953125,
+          "scrollWidth": 301,
+          "clientWidth": 301
+        }
+      ],
+      "name": "de-back",
+      "screenshots": [
+        {
+          "file": "de-back-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-back-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-back-02.png",
+          "scrollY": 558.5
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:4398/",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "width": 629,
+      "height": 401,
+      "outerWidth": 1280,
+      "outerHeight": 900,
+      "dpr": 2,
+      "cssZoom": "1",
+      "visualScale": 1,
+      "scrollWidth": 629,
+      "clientWidth": 629,
+      "scrollHeight": 782,
+      "lang": "de",
+      "focus": "success",
+      "heading": "Ihre Ausrüstungsreservierung wurde bestätigt",
+      "wide": [],
+      "texts": [
+        {
+          "tag": "LABEL",
+          "id": "",
+          "text": "Sprache",
+          "x": 407.28125,
+          "y": 45.25,
+          "width": 50.71875,
+          "height": 21,
+          "scrollWidth": 51,
+          "clientWidth": 51
+        },
+        {
+          "tag": "SELECT",
+          "id": "language",
+          "text": "EnglishDeutsch",
+          "x": 468,
+          "y": 33,
+          "width": 128,
+          "height": 45.5,
+          "scrollWidth": 126,
+          "clientWidth": 126
+        },
+        {
+          "tag": "H1",
+          "id": "",
+          "text": "Ausrüstung zur Abholung reservieren",
+          "x": 33,
+          "y": 98.5,
+          "width": 563,
+          "height": 35.515625,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "P",
+          "id": "",
+          "text": "Wählen Sie einen Abholort und ein Zeitfenster für Ihre Ausrüstung.",
+          "x": 33,
+          "y": 146.015625,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "H2",
+          "id": "success",
+          "text": "Ihre Ausrüstungsreservierung wurde bestätigt",
+          "x": 53,
+          "y": 231.015625,
+          "width": 543,
+          "height": 29.15625,
+          "scrollWidth": 543,
+          "clientWidth": 543
+        },
+        {
+          "tag": "H3",
+          "id": "",
+          "text": "Ihre verbindlich bestätigten Reservierungsangaben",
+          "x": 33,
+          "y": 284.171875,
+          "width": 563,
+          "height": 28.078125,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Reservierte Ausrüstung",
+          "x": 33,
+          "y": 342.96875,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Tragbares Außenaufnahmegerät mit Windschutz und zusätzlichem Langzeitakkupaket",
+          "x": 33,
+          "y": 367.96875,
+          "width": 563,
+          "height": 48,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Vollständiger Vor- und Nachname",
+          "x": 33,
+          "y": 440.96875,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Alexandra Musterfrau",
+          "x": 33,
+          "y": 465.96875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "E-Mail-Adresse für die Reservierungsbestätigung",
+          "x": 33,
+          "y": 514.96875,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "alexandra.musterfrau@example.com",
+          "x": 33,
+          "y": 539.96875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Gewünschter Abholort",
+          "x": 33,
+          "y": 588.96875,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Nordstudio — Haupteingang neben der gemeinschaftlichen Fahrradwerkstatt",
+          "x": 33,
+          "y": 613.96875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DT",
+          "id": "",
+          "text": "Gewünschtes Zeitfenster für die Abholung",
+          "x": 33,
+          "y": 662.96875,
+          "width": 563,
+          "height": 21,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        },
+        {
+          "tag": "DD",
+          "id": "",
+          "text": "Nachmittags, zwischen 14:00 und 16:00 Uhr",
+          "x": 33,
+          "y": 687.96875,
+          "width": 563,
+          "height": 24,
+          "scrollWidth": 563,
+          "clientWidth": 563
+        }
+      ],
+      "name": "de-success",
+      "screenshots": [
+        {
+          "file": "de-success-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-success-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-success-02.png",
+          "scrollY": 381
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "baseline": {
+    "url": "http://127.0.0.1:4398/",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "width": 1258,
+    "height": 802,
+    "outerWidth": 1280,
+    "outerHeight": 900,
+    "dpr": 1,
+    "cssZoom": "1",
+    "visualScale": 1,
+    "scrollWidth": 1258,
+    "clientWidth": 1258,
+    "scrollHeight": 1007,
+    "lang": "en",
+    "focus": "",
+    "heading": "Pickup details",
+    "wide": [],
+    "texts": [
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Language",
+        "x": 739.890625,
+        "y": 81,
+        "width": 62.109375,
+        "height": 21,
+        "scrollWidth": 62,
+        "clientWidth": 62
+      },
+      {
+        "tag": "SELECT",
+        "id": "language",
+        "text": "EnglishDeutsch",
+        "x": 812,
+        "y": 69,
+        "width": 128,
+        "height": 45,
+        "scrollWidth": 126,
+        "clientWidth": 126
+      },
+      {
+        "tag": "H1",
+        "id": "",
+        "text": "Reserve equipment",
+        "x": 318,
+        "y": 134,
+        "width": 622,
+        "height": 35.5,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "P",
+        "id": "",
+        "text": "Choose where and when to collect your equipment.",
+        "x": 318,
+        "y": 181.5,
+        "width": 622,
+        "height": 24,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "H2",
+        "id": "",
+        "text": "Pickup details",
+        "x": 318,
+        "y": 293.6875,
+        "width": 622,
+        "height": 29.140625,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Full name",
+        "x": 318,
+        "y": 346.828125,
+        "width": 622,
+        "height": 24,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Email address",
+        "x": 318,
+        "y": 446.828125,
+        "width": 622,
+        "height": 24,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "LEGEND",
+        "id": "",
+        "text": "Pickup location",
+        "x": 318,
+        "y": 546.828125,
+        "width": 115.875,
+        "height": 24,
+        "scrollWidth": 116,
+        "clientWidth": 116
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "North studio — main entrance",
+        "x": 318,
+        "y": 578.828125,
+        "width": 622,
+        "height": 50,
+        "scrollWidth": 620,
+        "clientWidth": 620
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "East workshop — reception",
+        "x": 318,
+        "y": 636.828125,
+        "width": 622,
+        "height": 50,
+        "scrollWidth": 620,
+        "clientWidth": 620
+      },
+      {
+        "tag": "LEGEND",
+        "id": "",
+        "text": "Pickup time",
+        "x": 318,
+        "y": 716.828125,
+        "width": 89.109375,
+        "height": 24,
+        "scrollWidth": 89,
+        "clientWidth": 89
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Morning, 09:00–11:00",
+        "x": 318,
+        "y": 748.828125,
+        "width": 622,
+        "height": 50,
+        "scrollWidth": 620,
+        "clientWidth": 620
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Afternoon, 14:00–16:00",
+        "x": 318,
+        "y": 806.828125,
+        "width": 622,
+        "height": 50,
+        "scrollWidth": 620,
+        "clientWidth": 620
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Review reservation",
+        "x": 318,
+        "y": 888.828125,
+        "width": 184.6875,
+        "height": 49.1875,
+        "scrollWidth": 183,
+        "clientWidth": 183
+      }
+    ]
+  },
+  "zoom": {
+    "url": "http://127.0.0.1:4398/",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "width": 629,
+    "height": 401,
+    "outerWidth": 1280,
+    "outerHeight": 900,
+    "dpr": 2,
+    "cssZoom": "1",
+    "visualScale": 1,
+    "scrollWidth": 629,
+    "clientWidth": 629,
+    "scrollHeight": 935,
+    "lang": "en",
+    "focus": "",
+    "heading": "Pickup details",
+    "wide": [],
+    "texts": [
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Language",
+        "x": 395.890625,
+        "y": 45.25,
+        "width": 62.109375,
+        "height": 21,
+        "scrollWidth": 62,
+        "clientWidth": 62
+      },
+      {
+        "tag": "SELECT",
+        "id": "language",
+        "text": "EnglishDeutsch",
+        "x": 468,
+        "y": 33,
+        "width": 128,
+        "height": 45.5,
+        "scrollWidth": 126,
+        "clientWidth": 126
+      },
+      {
+        "tag": "H1",
+        "id": "",
+        "text": "Reserve equipment",
+        "x": 33,
+        "y": 98.5,
+        "width": 563,
+        "height": 35.515625,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "P",
+        "id": "",
+        "text": "Choose where and when to collect your equipment.",
+        "x": 33,
+        "y": 146.015625,
+        "width": 563,
+        "height": 24,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "H2",
+        "id": "",
+        "text": "Pickup details",
+        "x": 33,
+        "y": 258.2109375,
+        "width": 563,
+        "height": 29.15625,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Full name",
+        "x": 33,
+        "y": 311.3671875,
+        "width": 563,
+        "height": 24,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Email address",
+        "x": 33,
+        "y": 411.3671875,
+        "width": 563,
+        "height": 24,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "LEGEND",
+        "id": "",
+        "text": "Pickup location",
+        "x": 33,
+        "y": 511.3671875,
+        "width": 115.8671875,
+        "height": 24,
+        "scrollWidth": 116,
+        "clientWidth": 116
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "North studio — main entrance",
+        "x": 33,
+        "y": 543.3671875,
+        "width": 563,
+        "height": 50,
+        "scrollWidth": 561,
+        "clientWidth": 561
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "East workshop — reception",
+        "x": 33,
+        "y": 601.3671875,
+        "width": 563,
+        "height": 50,
+        "scrollWidth": 561,
+        "clientWidth": 561
+      },
+      {
+        "tag": "LEGEND",
+        "id": "",
+        "text": "Pickup time",
+        "x": 33,
+        "y": 681.3671875,
+        "width": 89.1015625,
+        "height": 24,
+        "scrollWidth": 89,
+        "clientWidth": 89
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Morning, 09:00–11:00",
+        "x": 33,
+        "y": 713.3671875,
+        "width": 563,
+        "height": 50,
+        "scrollWidth": 561,
+        "clientWidth": 561
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Afternoon, 14:00–16:00",
+        "x": 33,
+        "y": 771.3671875,
+        "width": 563,
+        "height": 50,
+        "scrollWidth": 561,
+        "clientWidth": 561
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Review reservation",
+        "x": 33,
+        "y": 853.3671875,
+        "width": 184.6875,
+        "height": 49.1953125,
+        "scrollWidth": 183,
+        "clientWidth": 183
+      }
+    ]
+  },
+  "native200Observed": true,
+  "back": {
+    "name": "Alexandra Musterfrau",
+    "email": "alexandra.musterfrau@example.com",
+    "location": true,
+    "slot": true,
+    "focus": "name"
+  },
+  "after": {
+    "app.js": "768be3539f1b7af8995561f106ff9ec3cc30af8386f836047a21e0b5baf70456",
+    "app.ts": "c79aca63c4ebe833828304e6f6e69a1a260d48dca902796854968ac2f469e6bd",
+    "build.cjs": "a00467025d2ce29a6acff0b7f3ee373f9e3f6a38af1d414e77d59c3c693cc100",
+    "copy.json": "68fbfb9e4facf941a9b24eecbaa0a8aea6de7e760989184c15d9c9cd56ca1919",
+    "index.html": "333eb4ca82bd2ecd06e9ef83eaf15540e334312fd46331bad53f3adf5ec12cc2",
+    "README.md": "afc0a7b965d8fc4cab3cd01e9be9482c516223aec28f46361d9ddf2dd31a17e2",
+    "serve.cjs": "208b42a2a30990f1e99cf30c68cdfef866df0ef555ef5ff75d13eb44038945fc",
+    "style.css": "01e04af99dc0ad16c9bd90ce5f2e859b01106c59e5f7f8074686e1a685c8baad"
+  },
+  "hashUnchanged": true,
+  "matchesPriorHashes": true,
+  "helpersClosed": true
+}

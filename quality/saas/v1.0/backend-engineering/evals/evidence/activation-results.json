@@ -1,0 +1,180 @@
+{
+  "createdAt": "2026-11-05T17:26:51.432Z",
+  "metadata": {
+    "name": "backend-engineering",
+    "description": "Design, implement, extend, debug, optimize, review, or migrate backend services and their data and operating paths. Use for APIs and CRUD, authentication and tenant authorization, databases, workers, integrations, network/TLS failures, capacity, deployment, observability and recovery. Exclude frontend-only work, unrelated writing, and backend terms used incidentally."
+  },
+  "method": "12 separate fresh fork_turns=none contexts, same inherited model/settings; each received metadata and one prompt without expected label, no tools and no implementation request.",
+  "actualContexts": 12,
+  "actualPrompts": 12,
+  "rawResults": [
+    {
+      "id": "A01",
+      "prompt": "Add a tenant-scoped PATCH endpoint to this API and verify the SQLite write.",
+      "rawSelection": {
+        "id": "A01",
+        "decision": "ACTIVATE",
+        "reason": "Adding a tenant-scoped PATCH endpoint and verifying a SQLite write directly involves backend APIs, tenant authorization, and database operations.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": true,
+      "sourceAgent": "/root/act_a01",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "A02",
+      "prompt": "Two clients reserve the last units and both succeed. Reproduce and repair the transaction race.",
+      "rawSelection": {
+        "id": "A02",
+        "decision": "ACTIVATE",
+        "reason": "Reproducing and repairing a transaction race in inventory reservations is backend database and concurrency work.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": true,
+      "sourceAgent": "/root/act_a02",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "A03",
+      "prompt": "Inspect this slow SQL query and use its actual plan to reduce materialization on our current database.",
+      "rawSelection": {
+        "id": "A03",
+        "decision": "ACTIVATE",
+        "reason": "Inspecting an actual SQL execution plan to optimize a slow query and reduce materialization directly concerns database performance within backend engineering.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": true,
+      "sourceAgent": "/root/act_a03",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "A04",
+      "prompt": "Make this background worker survive a crash after its local effect but before acknowledgement.",
+      "rawSelection": {
+        "id": "A04",
+        "decision": "ACTIVATE",
+        "reason": "Making a background worker recover safely from a crash between its local effect and acknowledgement is backend reliability and recovery work.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": true,
+      "sourceAgent": "/root/act_a04",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "A05",
+      "prompt": "Build a restartable schema migration and verify backup restore before rollout.",
+      "rawSelection": {
+        "id": "A05",
+        "decision": "ACTIVATE",
+        "reason": "Restartable schema migrations and backup restore verification are backend database and recovery operations.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": true,
+      "sourceAgent": "/root/act_a05",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "A06",
+      "prompt": "Implement signature-checked tenant-scoped webhook ingestion with durable duplicate handling.",
+      "rawSelection": {
+        "id": "A06",
+        "decision": "ACTIVATE",
+        "reason": "Implementing signature-checked, tenant-scoped webhook ingestion with durable duplicate handling is backend service work involving authentication, tenant authorization, integrations, and persistence.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": true,
+      "sourceAgent": "/root/act_a06",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "N01",
+      "prompt": "Adjust only CSS spacing and responsive columns of this dashboard. Mock data mentions API latency.",
+      "rawSelection": {
+        "id": "N01",
+        "decision": "DO_NOT_ACTIVATE",
+        "reason": "The request is frontend-only CSS spacing and responsive layout work; API latency appears only in mock data.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": false,
+      "sourceAgent": "/root/act_n01",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "N02",
+      "prompt": "Write a short thank-you note to the conference host.",
+      "rawSelection": {
+        "id": "N02",
+        "decision": "DO_NOT_ACTIVATE",
+        "reason": "Writing a thank-you note is unrelated writing and does not involve backend engineering.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": false,
+      "sourceAgent": "/root/act_n02",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "N03",
+      "prompt": "Explain what a database transaction means to a beginner; no code, system design or implementation advice.",
+      "rawSelection": {
+        "id": "N03",
+        "decision": "DO_NOT_ACTIVATE",
+        "reason": "The prompt requests a beginner-friendly concept explanation, not engineering work on a backend service or its data paths.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": false,
+      "sourceAgent": "/root/act_n03",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "N04",
+      "prompt": "Create a frontend-only loading spinner and empty state from existing mocks; no backend changes.",
+      "rawSelection": {
+        "id": "N04",
+        "decision": "DO_NOT_ACTIVATE",
+        "reason": "The request is explicitly frontend-only and requires no backend changes.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": false,
+      "sourceAgent": "/root/act_n04",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "N05",
+      "prompt": "Proofread this paragraph: Our backend team is meeting on Friday. Change grammar only.",
+      "rawSelection": {
+        "id": "N05",
+        "decision": "DO_NOT_ACTIVATE",
+        "reason": "The request is grammar-only proofreading; backend is mentioned incidentally.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": false,
+      "sourceAgent": "/root/act_n05",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    },
+    {
+      "id": "N06",
+      "prompt": "Sort these book titles alphabetically: Reverse Proxy, Databases, Apples.",
+      "rawSelection": {
+        "id": "N06",
+        "decision": "DO_NOT_ACTIVATE",
+        "reason": "The task is alphabetizing book titles; backend terms appear only as titles.",
+        "toolsUsed": 0
+      },
+      "expectedActivation": false,
+      "sourceAgent": "/root/act_n06",
+      "source": "Actual fresh no-history classifier final message; coordinator transcribed retained decisions without changing wording."
+    }
+  ],
+  "confusion": {
+    "truePositive": 6,
+    "trueNegative": 6,
+    "falsePositive": 0,
+    "falseNegative": 0,
+    "uncertain": 0
+  },
+  "actualTokens": null,
+  "actualCost": null,
+  "modelIdentity": "Host exact model/version not exposed; inherited same configuration, no override.",
+  "limits": "Single observation per prompt; no population accuracy/statistical confidence or timing/resource savings claim.",
+  "status": "PASS"
+}

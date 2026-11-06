@@ -1,0 +1,111 @@
+{
+  "caseId": "B02",
+  "requirements": [
+    {
+      "id": "B02-R01",
+      "status": "PASS",
+      "evidence": [
+        "artifact/verification.json race-two-connections-1",
+        "artifact/verification.json race-two-connections-2",
+        "artifact/verification.json race-two-connections-3",
+        "artifact/verification.json race-same-connection"
+      ]
+    },
+    {
+      "id": "B02-R02",
+      "status": "PASS",
+      "evidence": [
+        "artifact/verification.json fault-rollback-reopen-retry",
+        "artifact/verification.json allocation-insert-failure-rolls-back",
+        "artifact/verification.json fault-same-connection-retry-and-item-scope"
+      ]
+    },
+    {
+      "id": "B02-R03",
+      "status": "PASS",
+      "evidence": [
+        "artifact/verification.json contracts-and-tenant-scope",
+        "artifact/verification.json fault-same-connection-retry-and-item-scope"
+      ]
+    },
+    {
+      "id": "B02-R04",
+      "status": "PASS",
+      "evidence": [
+        "artifact/verification.json race-two-connections-1",
+        "artifact/verification.json fault-rollback-reopen-retry"
+      ]
+    },
+    {
+      "id": "B02-R05",
+      "status": "PASS",
+      "evidence": [
+        "artifact/verification.json sqlite-busy-release-retry"
+      ]
+    },
+    {
+      "id": "B02-R06",
+      "status": "PASS",
+      "evidence": [
+        "artifact/finalize.mjs exact control area/disposition validation; artifact/README.md truthful boundaries"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "baseline-defect",
+      "status": "FAIL"
+    },
+    {
+      "id": "race-two-connections-1",
+      "status": "PASS"
+    },
+    {
+      "id": "race-two-connections-2",
+      "status": "PASS"
+    },
+    {
+      "id": "race-two-connections-3",
+      "status": "PASS"
+    },
+    {
+      "id": "race-same-connection",
+      "status": "PASS"
+    },
+    {
+      "id": "fault-rollback-reopen-retry",
+      "status": "PASS"
+    },
+    {
+      "id": "contracts-and-tenant-scope",
+      "status": "PASS"
+    },
+    {
+      "id": "sqlite-busy-release-retry",
+      "status": "PASS"
+    },
+    {
+      "id": "allocation-insert-failure-rolls-back",
+      "status": "PASS"
+    },
+    {
+      "id": "fault-same-connection-retry-and-item-scope",
+      "status": "PASS"
+    },
+    {
+      "id": "unchanged-probe",
+      "status": "PASS"
+    },
+    {
+      "id": "output-contract",
+      "status": "PASS"
+    }
+  ],
+  "coverageCount": 24,
+  "toolCalls": 10,
+  "firstCapturedUtc": "2026-11-05T17:29:04.0524544Z",
+  "endUtc": "2026-11-05T17:33:10.589Z",
+  "elapsedLowerBoundSeconds": 246.537,
+  "actualTokens": null,
+  "actualCost": null
+}

@@ -1,0 +1,198 @@
+{
+  "startedUTC": "2026-11-05T16:09:12.765Z",
+  "environment": {
+    "node": "v24.12.0",
+    "viewports": [
+      "1280x900",
+      "375x812",
+      "320x812",
+      "640x900"
+    ],
+    "dpr": 1,
+    "fonts": "system-ui / Windows Segoe UI",
+    "network": "loopback, unthrottled",
+    "cpu": "host, unthrottled",
+    "cache": "no-store",
+    "dataset": "one contact, three native checkboxes",
+    "browser": "156.0.8078.80"
+  },
+  "checks": [
+    {
+      "id": "defaults",
+      "status": "PASS",
+      "evidence": "3 named native checkboxes; only Email updates checked; summary hidden"
+    },
+    {
+      "id": "blank-email",
+      "status": "PASS",
+      "evidence": "Blank submit displays associated error and focuses email"
+    },
+    {
+      "id": "invalid-email",
+      "status": "PASS",
+      "evidence": "Invalid address rejected; no saved summary"
+    },
+    {
+      "id": "keyboard-focus",
+      "status": "PASS",
+      "evidence": "Tab from email focuses Email updates with focus-visible"
+    },
+    {
+      "id": "keyboard-order",
+      "status": "PASS",
+      "evidence": "Email > Email updates > Product research > Partner offers > Save"
+    },
+    {
+      "id": "keyboard-save",
+      "status": "PASS",
+      "evidence": "Space toggles saved by Enter; visible email and two categories"
+    },
+    {
+      "id": "saved-snapshot",
+      "status": "PASS",
+      "evidence": "Draft edits preserve saved snapshot and reveal unsaved message"
+    },
+    {
+      "id": "invalid-resave",
+      "status": "PASS",
+      "evidence": "Invalid save preserves successful snapshot"
+    },
+    {
+      "id": "resave-empty",
+      "status": "PASS",
+      "evidence": "Valid save replaces snapshot; zero categories stated explicitly"
+    },
+    {
+      "id": "reflow-375",
+      "status": "PASS",
+      "evidence": "375px: no horizontal document overflow"
+    },
+    {
+      "id": "reflow-320",
+      "status": "PASS",
+      "evidence": "320px: no horizontal document overflow"
+    },
+    {
+      "id": "reflow-640",
+      "status": "PASS",
+      "evidence": "640px: no horizontal document overflow"
+    },
+    {
+      "id": "semantics-targets",
+      "status": "PASS",
+      "evidence": {
+        "lang": "en",
+        "emailLabel": "Email address",
+        "required": true,
+        "group": "Messages you would like",
+        "status": "status",
+        "choices": [
+          "Email updates",
+          "Product research",
+          "Partner offers"
+        ],
+        "targetHeights": [
+          48.375,
+          48,
+          48,
+          48,
+          51.59375
+        ]
+      }
+    },
+    {
+      "id": "contrast",
+      "status": "PASS",
+      "evidence": [
+        {
+          "name": "body",
+          "fg": "#262a2d",
+          "bg": "#f7f4ed",
+          "minimum": 4.5,
+          "ratio": 13.17126889237704
+        },
+        {
+          "name": "muted",
+          "fg": "#565e65",
+          "bg": "#f7f4ed",
+          "minimum": 4.5,
+          "ratio": 6.00310183676724
+        },
+        {
+          "name": "input",
+          "fg": "#262a2d",
+          "bg": "#fffdf8",
+          "minimum": 4.5,
+          "ratio": 14.23195985308819
+        },
+        {
+          "name": "button",
+          "fg": "#ffffff",
+          "bg": "#173d68",
+          "minimum": 4.5,
+          "ratio": 11.030429546625085
+        },
+        {
+          "name": "button-hover",
+          "fg": "#ffffff",
+          "bg": "#102e50",
+          "minimum": 4.5,
+          "ratio": 13.737456476385445
+        },
+        {
+          "name": "error",
+          "fg": "#a12d27",
+          "bg": "#f7f4ed",
+          "minimum": 4.5,
+          "ratio": 6.547112065250322
+        },
+        {
+          "name": "focus",
+          "fg": "#173d68",
+          "bg": "#f7f4ed",
+          "minimum": 3,
+          "ratio": 10.041887574345456
+        },
+        {
+          "name": "border",
+          "fg": "#737b81",
+          "bg": "#fffdf8",
+          "minimum": 3,
+          "ratio": 4.233849547700577
+        }
+      ]
+    },
+    {
+      "id": "local-only-reload",
+      "status": "PASS",
+      "evidence": "Reload resets in-memory state and defaults"
+    },
+    {
+      "id": "runtime",
+      "status": "PASS",
+      "evidence": {
+        "errors": [],
+        "requests": [
+          "http://127.0.0.1:44104/",
+          "http://127.0.0.1:44104/styles.css",
+          "http://127.0.0.1:44104/app.js",
+          "http://127.0.0.1:44104/",
+          "http://127.0.0.1:44104/styles.css",
+          "http://127.0.0.1:44104/app.js"
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:44104/",
+    "http://127.0.0.1:44104/styles.css",
+    "http://127.0.0.1:44104/app.js",
+    "http://127.0.0.1:44104/",
+    "http://127.0.0.1:44104/styles.css",
+    "http://127.0.0.1:44104/app.js"
+  ],
+  "serverLog": "Contact preferences: http://127.0.0.1:44104\n",
+  "serverStopped": true,
+  "endedUTC": "2026-11-05T16:09:20.008Z"
+}

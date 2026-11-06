@@ -1,0 +1,44 @@
+{
+  "createdAt": "2026-11-05T17:27:30.121Z",
+  "provenance": "Retrospective coordinator reconciliation, written after execution. Raw author results remain unchanged; this is not a host telemetry export.",
+  "trial": "B02-baseline-1",
+  "caseId": "B02",
+  "arm": "baseline",
+  "run": 1,
+  "comparisonStatus": "PILOT_COMMON_INPUT_DEFECT",
+  "rawResultSha256": "0396443f6efbc1ea7feeae3ebadaa48ef60f23ee540c013504c300966ae71437",
+  "recordedTiming": {
+    "startUtc": "2026-11-05T16:58:11.000Z",
+    "endUtc": "2026-11-05T17:01:57.331Z",
+    "reportedElapsedSeconds": 226.331,
+    "timestampIntervalSeconds": 226.331,
+    "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+  },
+  "coordinatorExactStartUtc": null,
+  "coordinatorExactEndUtc": null,
+  "model": {
+    "selection": "Inherited parent model/settings; no override",
+    "exactId": null,
+    "availability": "Not exposed by host"
+  },
+  "permissions": "Same workspace-write/network restrictions; Node24.12/SQLite3.50.4; no downloads or production operations authorized.",
+  "tokens": {
+    "actual": null,
+    "availability": "Not exposed"
+  },
+  "cost": {
+    "actual": null,
+    "currency": null,
+    "availability": "Not exposed"
+  },
+  "tools": {
+    "knownCount": 11,
+    "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+    "exactComparableNestedCount": null,
+    "rawDeclared": null,
+    "limit": 20,
+    "qualification": "Do not compare counts or infer token/cost savings; unknown calls remain unavailable."
+  },
+  "wallLimitSeconds": 360,
+  "limitations": []
+}

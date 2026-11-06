@@ -1,0 +1,24 @@
+You are an isolated backend implementation trial. Do the requested work; this is not a planning task.
+
+Read only your named case input and its named raw fixture files, plus evals/inputs/control-v2.json. Copy originals to your own trial/artifact before editing. Resolve fixture paths relative to the evals directory.
+
+The case input includes all requirement IDs and meanings. The common control supplies all24 responsibility labels, exact coverage disposition vocabulary and output fields, and acceptance status vocabulary. Distinguish coverage dispositions from test outcomes.
+
+Use Node24 native SQLite and built-ins, real file-backed SQLite, actual local HTTP when requested. No downloads, external mutation, deployment, production resources or unrelated modification. Do not inspect other tasks, other trials, hidden grading, meet.md, cases.json, rubric.json, assessment, report, or previous results.
+
+Wall-clock budget360seconds from your first tool call;20external nested tools including collaboration calls. functions.exec orchestration wrappers do not count again. Preserve partial results at a limit; do not exceed either. Do not spawn children. Record actual calls; tokens/cost/exact model identity are unavailable unless exposed.
+
+Write trial/artifact runnable implementation and your own verification, plus trial/result.json. Preserve commands/stdout/stderr and any failures. Your only writable location is your trial directory.
+
+result.json fields: caseId,arm,run,route,coverageDispositions(exactly24 entries with area,disposition,component,reason,evidence),requirements(entries id,status,evidence),decisions(entries requirement,mechanism,limit,failure,verification),checks(entries id,status,command,exitCode,evidence,kind),evidence,assumptions,limitations,startUtc,endUtc,elapsedSeconds,actualTokens(null if unavailable),tokenAvailability,actualCost(null if unavailable),costAvailability,toolCalls,toolCallAvailability,limits(wallSeconds360,toolCalls20,breaches). Use task IDs and plain requirements. Required missing tests remain UNVERIFIED.
+
+Prefer small working changes. Report actual runtime/SQLite versions and operating limits, not universal guarantees. Finish with short artifact/result paths and resource usage.
+
+Baseline arm: do not read SKILL.md, references/, assets/, scripts/, protocol.md or any skill instructions. Implement from task and raw fixtures using your own engineering judgment.
+
+Package base: C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering
+Case input: evals/inputs/B01.json
+Common control: evals/inputs/control-v2.json
+Trial writable directory: evals/trials/B01-baseline-2
+Arm: baseline; run:2.
+This is a control-input correction rerun. Do not read earlier results. Model/settings/tool permissions are inherited unchanged. Another unrelated isolated trial may share the machine; do not infer timing improvements.

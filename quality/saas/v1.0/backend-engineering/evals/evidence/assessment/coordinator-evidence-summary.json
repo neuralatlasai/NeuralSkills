@@ -1,0 +1,628 @@
+{
+  "reviewedAt": "2026-11-05T17:35:36.623Z",
+  "provenance": "Independent assessor inspected actual raw result fields, saved dispatch/control files and retrospective coordinator records. Coordinator reconstruction is not a host telemetry export.",
+  "activation": {
+    "status": "PASS",
+    "actualContexts": 12,
+    "confusion": {
+      "truePositive": 6,
+      "trueNegative": 6,
+      "falsePositive": 0,
+      "falseNegative": 0,
+      "uncertain": 0
+    },
+    "checks": [
+      {
+        "id": "A01",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A02",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A03",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A04",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A05",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A06",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "N01",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N02",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N03",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N04",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N05",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N06",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      }
+    ],
+    "source": "evals/evidence/activation-results.json",
+    "limit": "One selection per prompt; no population accuracy/statistical-confidence inference."
+  },
+  "control": {
+    "status": "PASS",
+    "source": "evals/inputs/control-v2.json",
+    "originalDefect": "Original common input omitted coverage labels; original4comparatives remain pilots.",
+    "repair": "Both run2 arms receive the same24areas, exact4coverage labels/meanings, statuses/output contract and360-second20nested-call budgets. Saved wrappers differ only by arm/target plus skill availability.",
+    "record": "evals/evidence/comparison-control-repair.json"
+  },
+  "trials": [
+    {
+      "trial": "B01-baseline-1",
+      "role": "PILOT_COMMON_INPUT_DEFECT",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T16:52:03.000Z",
+        "end": "2026-11-05T16:56:22.261Z",
+        "reportedElapsedSeconds": 259.261
+      },
+      "coordinatorTiming": {
+        "startUtc": "2026-11-05T16:52:03.000Z",
+        "endUtc": "2026-11-05T16:56:22.261Z",
+        "reportedElapsedSeconds": 259.261,
+        "timestampIntervalSeconds": 259.261,
+        "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+      },
+      "conditionalWallUpperBound": null,
+      "rawDeclaredTools": null,
+      "coordinatorTools": {
+        "knownCount": null,
+        "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+        "exactComparableNestedCount": null,
+        "rawDeclared": null,
+        "limit": 20,
+        "qualification": "Do not compare counts or infer token/cost savings; unknown calls remain unavailable."
+      },
+      "exactComparableNestedCount": null,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Original actual tool count unavailable; no reconstruction from text.",
+      "budgetObservation": {
+        "toolStatus": "UNVERIFIED",
+        "wallStatus": "UNVERIFIED",
+        "wallMeaning": "Recorded within-window intervals do not independently establish first-tool-to-finish whole-trial duration."
+      }
+    },
+    {
+      "trial": "B01-baseline-2",
+      "role": "SCORED_CONTROL_CORRECTION",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T17:25:07.0224708Z",
+        "end": "2026-11-05T17:28:27.322Z",
+        "reportedElapsedSeconds": 200.3
+      },
+      "coordinatorTiming": {
+        "actualTokens": null,
+        "actualCost": null,
+        "availability": "Host does not expose token/cost telemetry",
+        "actualNestedToolCalls": 9,
+        "toolCountBasis": "available: counted all9 nested tool calls in this isolated trial; orchestration wrappers excluded; no child/collaboration calls",
+        "startUtc": "2026-11-05T17:25:07.0224708Z",
+        "endUtc": "2026-11-05T17:28:27.322Z",
+        "reportedElapsedSeconds": 200.3,
+        "fullExactElapsedSeconds": null
+      },
+      "conditionalWallUpperBound": {
+        "seconds": 227.665,
+        "priorObservedUtc": "2026-11-05T17:24:39.657Z",
+        "reason": "Saved wrapper creation completed before actual spawn",
+        "premise": "Stable host UTC; start necessarily after prior event",
+        "meaning": "Causal upper bound, not measured exact whole-trial duration"
+      },
+      "rawDeclaredTools": 9,
+      "coordinatorTools": {
+        "knownCount": 9,
+        "basis": "available: counted all9 nested tool calls in this isolated trial; orchestration wrappers excluded; no child/collaboration calls"
+      },
+      "exactComparableNestedCount": 9,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Preserve recorded counting/timing boundary; no efficiency inference.",
+      "budgetObservation": {
+        "toolStatus": "PASS",
+        "wallStatus": "PASS",
+        "wallMeaning": "Conditional causal bound assuming stable UTC, not exact measurement."
+      }
+    },
+    {
+      "trial": "B01-skill-1",
+      "role": "PILOT_COMMON_INPUT_DEFECT",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T16:56:58.000Z",
+        "end": "2026-11-05T17:01:31.403Z",
+        "reportedElapsedSeconds": 273.403
+      },
+      "coordinatorTiming": {
+        "startUtc": "2026-11-05T16:56:58.000Z",
+        "endUtc": "2026-11-05T17:01:31.403Z",
+        "reportedElapsedSeconds": 273.403,
+        "timestampIntervalSeconds": 273.403,
+        "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+      },
+      "conditionalWallUpperBound": null,
+      "rawDeclaredTools": null,
+      "coordinatorTools": {
+        "knownCount": 16,
+        "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+        "exactComparableNestedCount": null,
+        "rawDeclared": null,
+        "limit": 20,
+        "qualification": "Do not compare counts or infer token/cost savings; unknown calls remain unavailable."
+      },
+      "exactComparableNestedCount": null,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Preserve recorded counting/timing boundary; no efficiency inference.",
+      "budgetObservation": {
+        "toolStatus": "UNVERIFIED",
+        "wallStatus": "UNVERIFIED",
+        "wallMeaning": "Recorded within-window intervals do not independently establish first-tool-to-finish whole-trial duration."
+      }
+    },
+    {
+      "trial": "B01-skill-2",
+      "role": "SCORED_CONTROL_CORRECTION",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": null,
+        "end": "2026-11-05T17:30:02.908Z",
+        "reportedElapsedSeconds": null
+      },
+      "coordinatorTiming": {
+        "actualTokens": null,
+        "actualCost": null,
+        "availability": "Host does not expose token/cost telemetry",
+        "actualNestedToolCalls": 12,
+        "toolCountBasis": "Counted actual nested tool calls in this isolated trial, including the final structural verification call; wrappers excluded. No collaboration or children.",
+        "startUtc": null,
+        "endUtc": "2026-11-05T17:30:02.908Z",
+        "reportedElapsedSeconds": null,
+        "fullExactElapsedSeconds": null
+      },
+      "conditionalWallUpperBound": {
+        "seconds": 323.251,
+        "priorObservedUtc": "2026-11-05T17:24:39.657Z",
+        "reason": "Saved wrapper creation completed before actual spawn",
+        "premise": "Stable host UTC; start necessarily after prior event",
+        "meaning": "Causal upper bound, not measured exact whole-trial duration"
+      },
+      "rawDeclaredTools": 12,
+      "coordinatorTools": {
+        "knownCount": 12,
+        "basis": "Counted actual nested tool calls in this isolated trial, including the final structural verification call; wrappers excluded. No collaboration or children."
+      },
+      "exactComparableNestedCount": 12,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Preserve recorded counting/timing boundary; no efficiency inference.",
+      "budgetObservation": {
+        "toolStatus": "PASS",
+        "wallStatus": "PASS",
+        "wallMeaning": "Conditional causal bound assuming stable UTC, not exact measurement."
+      }
+    },
+    {
+      "trial": "B02-baseline-1",
+      "role": "PILOT_COMMON_INPUT_DEFECT",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T16:58:11.000Z",
+        "end": "2026-11-05T17:01:57.331Z",
+        "reportedElapsedSeconds": 226.331
+      },
+      "coordinatorTiming": {
+        "startUtc": "2026-11-05T16:58:11.000Z",
+        "endUtc": "2026-11-05T17:01:57.331Z",
+        "reportedElapsedSeconds": 226.331,
+        "timestampIntervalSeconds": 226.331,
+        "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+      },
+      "conditionalWallUpperBound": null,
+      "rawDeclaredTools": 11,
+      "coordinatorTools": {
+        "knownCount": 11,
+        "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+        "exactComparableNestedCount": null,
+        "rawDeclared": null,
+        "limit": 20,
+        "qualification": "Do not compare counts or infer token/cost savings; unknown calls remain unavailable."
+      },
+      "exactComparableNestedCount": null,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Preserve recorded counting/timing boundary; no efficiency inference.",
+      "budgetObservation": {
+        "toolStatus": "UNVERIFIED",
+        "wallStatus": "UNVERIFIED",
+        "wallMeaning": "Recorded within-window intervals do not independently establish first-tool-to-finish whole-trial duration."
+      }
+    },
+    {
+      "trial": "B02-baseline-2",
+      "role": "SCORED_CONTROL_CORRECTION",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": null,
+        "end": "2026-11-05T17:34:21.820Z",
+        "reportedElapsedSeconds": null
+      },
+      "coordinatorTiming": {
+        "actualTokens": null,
+        "actualCost": null,
+        "availability": "Not exposed",
+        "actualNestedToolCalls": 10,
+        "toolCountBasis": "Exact: 9 nested tools and 1 collaboration send_message; functions.exec wrappers excluded. Includes one failed apply_patch.",
+        "startUtc": null,
+        "endUtc": "2026-11-05T17:34:21.820Z",
+        "reportedElapsedSeconds": null,
+        "fullExactElapsedSeconds": null
+      },
+      "conditionalWallUpperBound": {
+        "seconds": 258.912,
+        "priorObservedUtc": "2026-11-05T17:30:02.908Z",
+        "reason": "B01-skill-2 completion preceded B02baseline dispatch",
+        "premise": "Stable host UTC and actual dispatch after prior completion",
+        "meaning": "Causal upper bound, not exact whole-trial measured duration"
+      },
+      "rawDeclaredTools": 10,
+      "coordinatorTools": {
+        "knownCount": 10,
+        "basis": "Exact: 9 nested tools and 1 collaboration send_message; functions.exec wrappers excluded. Includes one failed apply_patch."
+      },
+      "exactComparableNestedCount": 10,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Preserve recorded counting/timing boundary; no efficiency inference.",
+      "budgetObservation": {
+        "toolStatus": "PASS",
+        "wallStatus": "PASS",
+        "wallMeaning": "Conditional causal bound assuming stable UTC, not exact measurement."
+      }
+    },
+    {
+      "trial": "B02-skill-1",
+      "role": "PILOT_COMMON_INPUT_DEFECT",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T16:52:11Z",
+        "end": "2026-11-05T16:57:30Z",
+        "reportedElapsedSeconds": 319
+      },
+      "coordinatorTiming": {
+        "startUtc": "2026-11-05T16:52:11Z",
+        "endUtc": "2026-11-05T16:57:30Z",
+        "reportedElapsedSeconds": 319,
+        "timestampIntervalSeconds": 319,
+        "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+      },
+      "conditionalWallUpperBound": null,
+      "rawDeclaredTools": 17,
+      "coordinatorTools": {
+        "knownCount": 17,
+        "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+        "exactComparableNestedCount": null,
+        "rawDeclared": null,
+        "limit": 20,
+        "qualification": "Do not compare counts or infer token/cost savings; unknown calls remain unavailable."
+      },
+      "exactComparableNestedCount": null,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Preserve recorded counting/timing boundary; no efficiency inference.",
+      "budgetObservation": {
+        "toolStatus": "UNVERIFIED",
+        "wallStatus": "UNVERIFIED",
+        "wallMeaning": "Recorded within-window intervals do not independently establish first-tool-to-finish whole-trial duration."
+      }
+    },
+    {
+      "trial": "B02-skill-2",
+      "role": "SCORED_CONTROL_CORRECTION",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": null,
+        "end": "2026-11-05T17:33:10.589Z",
+        "reportedElapsedSeconds": null
+      },
+      "coordinatorTiming": {
+        "actualTokens": null,
+        "actualCost": null,
+        "availability": "Not exposed",
+        "actualNestedToolCalls": 10,
+        "toolCountBasis": "exact manually recorded nested calls; orchestration wrappers excluded; no child spawning/collaboration calls",
+        "startUtc": null,
+        "endUtc": "2026-11-05T17:33:10.589Z",
+        "reportedElapsedSeconds": null,
+        "fullExactElapsedSeconds": null
+      },
+      "conditionalWallUpperBound": {
+        "seconds": 283.267,
+        "priorObservedUtc": "2026-11-05T17:28:27.322Z",
+        "reason": "B01-baseline-2 completion preceded B02skill dispatch",
+        "premise": "Stable host UTC and actual dispatch after prior completion",
+        "meaning": "Causal upper bound, not exact whole-trial measured duration"
+      },
+      "rawDeclaredTools": 10,
+      "coordinatorTools": {
+        "knownCount": 10,
+        "basis": "exact manually recorded nested calls; orchestration wrappers excluded; no child spawning/collaboration calls"
+      },
+      "exactComparableNestedCount": 10,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Preserve recorded counting/timing boundary; no efficiency inference.",
+      "budgetObservation": {
+        "toolStatus": "PASS",
+        "wallStatus": "PASS",
+        "wallMeaning": "Conditional causal bound assuming stable UTC, not exact measurement."
+      }
+    },
+    {
+      "trial": "B03-skill-1",
+      "role": "SINGLE_RUN_SKILL_ONLY",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T17:02:21.8859911Z",
+        "end": "2026-11-05T17:07:10.076Z",
+        "reportedElapsedSeconds": 288.191
+      },
+      "coordinatorTiming": {
+        "startUtc": "2026-11-05T17:02:21.8859911Z",
+        "endUtc": "2026-11-05T17:07:10.076Z",
+        "reportedElapsedSeconds": 288.191,
+        "timestampIntervalSeconds": 288.191,
+        "basis": "First successful clock was after an initial PowerShell -AsUTC failure. Measured288.191s interval excludes that unmeasured prelude."
+      },
+      "conditionalWallUpperBound": {
+        "seconds": 338.673,
+        "from": "B01-skill-1 endUtc2026-11-05T17:01:31.403Z",
+        "to": "B03-skill-1 endUtc2026-11-05T17:07:10.076Z",
+        "premises": [
+          "Coordinator dispatched B03 only after B01skill completion",
+          "Host UTC remained stable"
+        ],
+        "status": "Derived causal bound, not measured exact trial duration"
+      },
+      "rawDeclaredTools": {
+        "externalCommandOrPatchCalls": 14,
+        "hostCalls": null,
+        "countBoundary": "commands/patch calls through report generation, including failures; collaboration/host orchestration separate and unmetered"
+      },
+      "coordinatorTools": {
+        "knownCount": 14,
+        "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+        "exactComparableNestedCount": null,
+        "rawDeclared": null,
+        "limit": 20,
+        "qualification": "Do not compare counts or infer token/cost savings; unknown calls remain unavailable."
+      },
+      "exactComparableNestedCount": null,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "288.191 seconds is a lower-bound observation window, not whole-turn elapsed. Actual dispatch after B01-skill-1 end and stable UTC imply conditional upper338.673 seconds.",
+      "budgetObservation": {
+        "toolStatus": "UNVERIFIED",
+        "wallStatus": "PASS",
+        "wallMeaning": "Conditional causal bound assuming stable UTC, not exact measurement."
+      }
+    },
+    {
+      "trial": "B04-skill-1",
+      "role": "SINGLE_RUN_SKILL_ONLY",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T17:03:14.6948104Z",
+        "end": "2026-11-05T17:08:49.2067205Z",
+        "reportedElapsedSeconds": 334.51191009999997
+      },
+      "coordinatorTiming": {
+        "startUtc": "2026-11-05T17:03:14.6948104Z",
+        "endUtc": "2026-11-05T17:08:49.2067205Z",
+        "reportedElapsedSeconds": 334.51191009999997,
+        "timestampIntervalSeconds": 334.512,
+        "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+      },
+      "conditionalWallUpperBound": null,
+      "rawDeclaredTools": null,
+      "coordinatorTools": {
+        "knownCount": 12,
+        "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+        "exactComparableNestedCount": null,
+        "rawDeclared": "9 functions.exec calls (including final metadata validation) and 3 collaboration.send_message calls; nested commands included in their containing external invocation. Final response is not a tool call.",
+        "limit": 20,
+        "qualification": "Raw12 includes9 functions.exec wrappers+3 collaboration messages; nested operations not comparable to other counts."
+      },
+      "exactComparableNestedCount": null,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Preserve recorded counting/timing boundary; no efficiency inference.",
+      "budgetObservation": {
+        "toolStatus": "UNVERIFIED",
+        "wallStatus": "UNVERIFIED",
+        "wallMeaning": "Recorded within-window intervals do not independently establish first-tool-to-finish whole-trial duration."
+      }
+    },
+    {
+      "trial": "B05-skill-1",
+      "role": "SINGLE_RUN_SKILL_ONLY",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T17:07:43.5751504Z",
+        "end": "2026-11-05T17:12:02.914Z",
+        "reportedElapsedSeconds": 259.339
+      },
+      "coordinatorTiming": {
+        "startUtc": "2026-11-05T17:07:43.5751504Z",
+        "endUtc": "2026-11-05T17:12:02.914Z",
+        "reportedElapsedSeconds": 259.339,
+        "timestampIntervalSeconds": 259.339,
+        "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+      },
+      "conditionalWallUpperBound": null,
+      "rawDeclaredTools": {
+        "externalToolInvocationsThroughFinalize": 11,
+        "functionsExec": 9,
+        "collaborationMessages": 2,
+        "note": "Includes initial rejected patch. Nested node child processes are recorded commands, not external tool calls. No background helpers."
+      },
+      "coordinatorTools": {
+        "knownCount": 11,
+        "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+        "exactComparableNestedCount": null,
+        "rawDeclared": {
+          "externalToolInvocationsThroughFinalize": 11,
+          "functionsExec": 9,
+          "collaborationMessages": 2,
+          "note": "Includes initial rejected patch. Nested node child processes are recorded commands, not external tool calls. No background helpers."
+        },
+        "limit": 20,
+        "qualification": "Raw11 includes9 functions.exec wrappers+2 collaboration messages; underlying nested command total unavailable."
+      },
+      "exactComparableNestedCount": null,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Nested raw time field was inspected. Raw11 includes9 functions.exec wrappers and2collaboration messages; exact underlying nested operation count unavailable.",
+      "budgetObservation": {
+        "toolStatus": "UNVERIFIED",
+        "wallStatus": "UNVERIFIED",
+        "wallMeaning": "Recorded within-window intervals do not independently establish first-tool-to-finish whole-trial duration."
+      }
+    },
+    {
+      "trial": "B06-skill-1",
+      "role": "SINGLE_RUN_SKILL_ONLY",
+      "rawResultHashMatches": true,
+      "modelExactId": null,
+      "tokensActual": null,
+      "costActual": null,
+      "rawTiming": {
+        "start": "2026-11-05T17:09:20.5851202Z",
+        "end": "2026-11-05T17:14:18.136Z",
+        "reportedElapsedSeconds": 297.551
+      },
+      "coordinatorTiming": {
+        "startUtc": "2026-11-05T17:09:20.5851202Z",
+        "endUtc": "2026-11-05T17:14:18.136Z",
+        "reportedElapsedSeconds": 297.551,
+        "timestampIntervalSeconds": 297.551,
+        "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+      },
+      "conditionalWallUpperBound": null,
+      "rawDeclaredTools": 11,
+      "coordinatorTools": {
+        "knownCount": 11,
+        "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+        "exactComparableNestedCount": null,
+        "rawDeclared": 11,
+        "limit": 20,
+        "qualification": "Raw11 counts exec_command/write_stdin; collaboration excluded; exact total unavailable."
+      },
+      "exactComparableNestedCount": null,
+      "wholeTrialExactElapsedSeconds": null,
+      "interpretation": "Raw start/end were inspected. Raw11exec_command/write_stdin excludes collaboration; exact complete convention-matched count unavailable.",
+      "budgetObservation": {
+        "toolStatus": "UNVERIFIED",
+        "wallStatus": "UNVERIFIED",
+        "wallMeaning": "Recorded within-window intervals do not independently establish first-tool-to-finish whole-trial duration."
+      }
+    }
+  ],
+  "globalLimits": [
+    "Exact model ID/version, tokens and cost remain null; inherited configuration equivalence is coordinator-observed, not a telemetry dump.",
+    "No efficiency comparison: trials overlap on shared machine and clocks/counts have qualified boundaries.",
+    "Unknown original nested counts and whole-turn duration remain UNVERIFIED observations; no cap breach or successful exact metering is invented."
+  ],
+  "b03": {
+    "recordedLowerBoundSeconds": 288.191,
+    "conditionalUpperBoundSeconds": 338.673,
+    "causalPriorEndUtc": "2026-11-05T17:01:31.403Z",
+    "endUtc": "2026-11-05T17:07:10.076Z",
+    "premise": "Coordinator observed actual B03 dispatch after B01-skill-1 completion; stable host UTC.",
+    "isExactWallMeasurement": false
+  }
+}

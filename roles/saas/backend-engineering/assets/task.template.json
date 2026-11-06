@@ -1,0 +1,328 @@
+{
+  "schemaVersion": "1.0",
+  "objective": "Illustrative template only: replace with actual backend task and success criteria.",
+  "mode": "implement",
+  "evidence": [
+    {
+      "id": "E-1",
+      "kind": "assumption",
+      "source": "Example template",
+      "observation": "No project has been inspected or implementation verified."
+    }
+  ],
+  "components": {
+    "runtime": "Inspect actual runtime/versions before selecting adapter."
+  },
+  "stateOwnership": {
+    "authority": "Identify trusted caller/tenant and commit/side-effect owners."
+  },
+  "contracts": {
+    "source": "Inspect existing schema and operation contracts."
+  },
+  "workload": {
+    "variables": {
+      "N": "records",
+      "B": "bytes",
+      "K": "results",
+      "P": "partitions",
+      "C": "active work",
+      "Q": "queued work"
+    },
+    "mix": "unknown",
+    "cardinality": "unknown",
+    "skew": "unknown",
+    "payload": "unknown",
+    "model": "unverified",
+    "conditions": {}
+  },
+  "limits": {
+    "basis": "Set actual resource/deadline/retry/retention values from requirements before measuring."
+  },
+  "coverage": [
+    {
+      "id": "L01",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L02",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L03",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L04",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L05",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L06",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L07",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L08",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L09",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L10",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L11",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L12",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L13",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L14",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L15",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L16",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L17",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L18",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L19",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L20",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L21",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L22",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L23",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    },
+    {
+      "id": "L24",
+      "component": "Not yet inspected",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "verifiedScope": [],
+      "unverifiedScope": [
+        "Illustrative template, all aspects uninspected"
+      ],
+      "reason": "Populate from actual task; do not infer a pass.",
+      "evidence": []
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D-1",
+      "requirement": "R-1",
+      "mechanism": "Atomic tenant/version/quantity conditional write in selected real database",
+      "limit": "Validated positive quantity, declared version policy and bounded transaction/lock time",
+      "failure": "Competing update or uncertain commit acknowledgement",
+      "verification": "Concurrent same-version test and lost-acknowledgement reconciliation",
+      "artifact": "Requested implementation, not yet authored"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "R-1",
+      "source": "Illustrative example",
+      "criterion": "One successful same-version mutation with the defined stale outcome for the competitor",
+      "status": "UNVERIFIED",
+      "evidence": [],
+      "rationale": "Example only; no test executed."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Find a field guide
+
+Run `node build.cjs`, then open `index.html` in Chrome. No server, network, package install, React, or runtime library is needed. The prebuilt `dist/app.js` is included. This build uses the supplied host TypeScript compiler; set `TYPESCRIPT_PATH` to another compiler API path if needed. `node verify.cjs` runs the included browser checks using the supplied host Playwright/Chrome paths.
+
+Data is the supplied deterministic fixture, copied unchanged into `src/fake-api.ts`. Search with Enter or Search; try cedar, moss, empty, and fail. Retry deliberately fails again for fail because that is the fixture behavior.
+
+Brief / contract: small native component, explore mode; modules M1, M3–M8 (fixture reference only). Audience: readers searching sample guides using keyboard or pointer. Semantic tokens live in `style.css`. One local request counter owns visible submitted query, status and cards; the editable input is independent. Each submission clears previous cards, marks pending immediately, and stays enabled. Every success, rejection and cleanup checks the counter. Retry reuses the last submitted query even if input has since changed. There is no automatic retry or timeout because supplied local promises settle deterministically. Results are content, not dead navigation controls. No real service is implied.
+
+Acceptance set before checks: labeled native form and Enter; initial/pending/success/empty/error states; cedar→moss and fail→moss stay moss after all promises settle; retry makes a new request for the failed query; input/button focus stays usable; 320px has no page overflow; fixture byte match. Render targets: Chrome at 960×850 and 320×760, system fonts at default size; narrow reflow additionally checked at 640px viewport with 200% equivalent content sizing if available. Accessibility target is WCAG A/AA, without a conformance claim. Browser DOM/keyboard checks do not replace assistive-technology testing. No performance or field-metric claim is made.
+
+Requirement IDs are mapped to the task’s eight supplied IDs in `../result.json`; their descriptions are implementation interpretations because the input supplies IDs without individual descriptions. Raw browser observations, screenshots and build stdout are saved under `../evidence/`.

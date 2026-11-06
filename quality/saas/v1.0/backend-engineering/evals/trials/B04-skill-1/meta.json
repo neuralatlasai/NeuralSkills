@@ -1,0 +1,44 @@
+{
+  "createdAt": "2026-11-05T17:27:30.128Z",
+  "provenance": "Retrospective coordinator reconciliation, written after execution. Raw author results remain unchanged; this is not a host telemetry export.",
+  "trial": "B04-skill-1",
+  "caseId": "B04",
+  "arm": "skill",
+  "run": 1,
+  "comparisonStatus": "SINGLE_RUN_SKILL_ONLY",
+  "rawResultSha256": "af4b72b8c8eac3f031a7d99f07296c440cc4f513d7f69447a0479b03c3e5be4b",
+  "recordedTiming": {
+    "startUtc": "2026-11-05T17:03:14.6948104Z",
+    "endUtc": "2026-11-05T17:08:49.2067205Z",
+    "reportedElapsedSeconds": 334.51191009999997,
+    "timestampIntervalSeconds": 334.512,
+    "basis": "Actual retained agent UTC observations; intake/final reply boundaries not guaranteed."
+  },
+  "coordinatorExactStartUtc": null,
+  "coordinatorExactEndUtc": null,
+  "model": {
+    "selection": "Inherited parent model/settings; no override",
+    "exactId": null,
+    "availability": "Not exposed by host"
+  },
+  "permissions": "Same workspace-write/network restrictions; Node24.12/SQLite3.50.4; no downloads or production operations authorized.",
+  "tokens": {
+    "actual": null,
+    "availability": "Not exposed"
+  },
+  "cost": {
+    "actual": null,
+    "currency": null,
+    "availability": "Not exposed"
+  },
+  "tools": {
+    "knownCount": 12,
+    "basis": "Coordinator retained per-trial observations/agent declarations; original counting conventions differ.",
+    "exactComparableNestedCount": null,
+    "rawDeclared": "9 functions.exec calls (including final metadata validation) and 3 collaboration.send_message calls; nested commands included in their containing external invocation. Final response is not a tool call.",
+    "limit": 20,
+    "qualification": "Raw12 includes9 functions.exec wrappers+3 collaboration messages; nested operations not comparable to other counts."
+  },
+  "wallLimitSeconds": 360,
+  "limitations": []
+}

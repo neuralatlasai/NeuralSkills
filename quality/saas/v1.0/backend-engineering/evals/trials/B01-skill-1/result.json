@@ -1,0 +1,432 @@
+{
+  "caseId": "B01",
+  "arm": "skill",
+  "run": 1,
+  "status": "PASS",
+  "route": "Read SKILL.md; activated B1 intake, B2 identity/HTTP boundary, B3 PATCH/parser, B4 SQLite CAS, B6 per-request bound, B8 integration evidence. Supporting references read; no broad platform work.",
+  "coverageDispositions": [
+    {
+      "area": "L01",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "Node loopback TCP listener",
+      "reason": "Actual socket HTTP path exercised; DNS/discovery is absent.",
+      "evidence": "evidence.json; artifact/verify.mjs start()/request()/stop()"
+    },
+    {
+      "area": "L02",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Local cleartext HTTP fixture",
+      "reason": "README explicitly limits transport to isolated loopback; no TLS requested.",
+      "evidence": "artifact/README.md"
+    },
+    {
+      "area": "L03",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Direct service listener",
+      "reason": "No proxy, gateway, CDN or load balancer exists in supplied fixture.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L04",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Registry authorization and tenant-scoped SQL",
+      "reason": "PATCH enforces existing write policy and trusted tenant.",
+      "evidence": "evidence.json: identity and function denial; tenant comes from registry and absent object"
+    },
+    {
+      "area": "L05",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "HTTP JSON PATCH route",
+      "reason": "Adds PATCH while preserving GET over actual HTTP.",
+      "evidence": "artifact/service.mjs; evidence.json"
+    },
+    {
+      "area": "L06",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Partial-update contract",
+      "reason": "Absence/null/version semantics, stale conflict and public projection implemented.",
+      "evidence": "evidence.json: PATCH trim absence null and version-only; atomic concurrent same-version edits"
+    },
+    {
+      "area": "L07",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "readBody/schema/error path",
+      "reason": "Bounded bytes, UTF8/JSON/schema parsing and JSON errors.",
+      "evidence": "evidence.json: malformed media and oversized bytes; invalid UTF8 rejected; chunked oversized body"
+    },
+    {
+      "area": "L08",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "createService request lifecycle",
+      "reason": "Registry to validation to one scoped mutation to projection; no new layers required.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L09",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Body buffering and synchronous SQLite",
+      "reason": "Per-request buffering capped; concurrent HTTP requests contend at atomic storage update; no capacity claim.",
+      "evidence": "artifact/service.mjs; evidence.json: atomic concurrent same-version edits"
+    },
+    {
+      "area": "L10",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "tickets table and tenant/id primary key",
+      "reason": "Original schema retained and directly queried using selected engine.",
+      "evidence": "evidence.json: selected engine schema and query path"
+    },
+    {
+      "area": "L11",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Prepared SELECT and UPDATE RETURNING",
+      "reason": "Fixed identifiers, bound values, tenant-scoped primary-key access; small fixture plan recorded.",
+      "evidence": "artifact/service.mjs; evidence.json: selected engine schema and query path"
+    },
+    {
+      "area": "L12",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Single-statement version CAS",
+      "reason": "Atomic row mutation closes same-version lost-update race.",
+      "evidence": "evidence.json: atomic concurrent same-version edits"
+    },
+    {
+      "area": "L13",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "SQLite file/OS administration",
+      "reason": "No SQL GRANT/RLS or privilege-management task; local file-owner trust documented.",
+      "evidence": "artifact/README.md"
+    },
+    {
+      "area": "L14",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "File-backed native SQLite",
+      "reason": "Orderly persisted state survives close/reopen; replication, sharding, power-loss behavior excluded.",
+      "evidence": "evidence.json: real SQLite persistence after close/reopen"
+    },
+    {
+      "area": "L15",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "No cache or materialized derived state",
+      "reason": "Fixture directly reads SQLite; no derived-state changes requested.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L16",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "No messaging/event subsystem",
+      "reason": "Synchronous local update has no async publication effects.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L17",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "No workers or schedules",
+      "reason": "No durable jobs or workflow requirement.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L18",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "No object/search/specialized store",
+      "reason": "Only the supplied SQLite store participates.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L19",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "No external integration",
+      "reason": "No external API, webhook or MCP execution needed for the local task.",
+      "evidence": "artifact/service.mjs"
+    },
+    {
+      "area": "L20",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "No scaling/capacity target",
+      "reason": "No throughput, latency, scaling or cloud-cost claim; body bound addressed in L07/L09.",
+      "evidence": "artifact/README.md"
+    },
+    {
+      "area": "L21",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Orderly close/reopen verification",
+      "reason": "Required persistence check implemented; backups/restore/crash recovery not requested or claimed.",
+      "evidence": "evidence.json: real SQLite persistence after close/reopen"
+    },
+    {
+      "area": "L22",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "No production telemetry subsystem",
+      "reason": "Retained verification evidence is task output; no SLO/audit/export requirement.",
+      "evidence": "artifact/README.md; evidence.json"
+    },
+    {
+      "area": "L23",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "Node builtins runtime and local executable entrypoint",
+      "reason": "Node24.12 syntax/runtime checks and real server import; no build/deployment system introduced.",
+      "evidence": "verification.stdout.log; verification.stderr.log; artifact/README.md"
+    },
+    {
+      "area": "L24",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Field validation, tenant policy and builtin-only supply chain",
+      "reason": "Rejects privileged fields and hostile body forms; no package additions.",
+      "evidence": "artifact/service.mjs; evidence.json: schema rejects without mutation; identity and function denial"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "B01-R01",
+      "status": "PASS",
+      "evidence": "evidence.json: checks[2] (PATCH trim absence null and version-only); evidence.json: checks[3] (schema rejects without mutation); evidence.json: checks[9] (maximum valid fields)"
+    },
+    {
+      "id": "B01-R02",
+      "status": "PASS",
+      "evidence": "evidence.json: checks[1] (identity and function denial); evidence.json: checks[7] (tenant comes from registry and absent object); evidence.json: checks[11] (real SQLite persistence after close/reopen)"
+    },
+    {
+      "id": "B01-R03",
+      "status": "PASS",
+      "evidence": "evidence.json: checks[8] (atomic concurrent same-version edits)"
+    },
+    {
+      "id": "B01-R04",
+      "status": "PASS",
+      "evidence": "evidence.json: checks[4] (malformed media and oversized bytes); evidence.json: checks[5] (invalid UTF8 rejected); evidence.json: checks[6] (chunked oversized body)"
+    },
+    {
+      "id": "B01-R05",
+      "status": "PASS",
+      "evidence": "evidence.json: checks[0] (GET baseline and projection); evidence.json: checks[11] (real SQLite persistence after close/reopen)"
+    },
+    {
+      "id": "B01-R06",
+      "status": "PASS",
+      "evidence": "result.json coverageDispositions has all L01-L24 once; requirement trace, raw logs, artifact/README.md scope and limitations."
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "B01-R01",
+      "mechanism": "Allowlist version/title/note; trim title, distinguish Object.hasOwn from explicit null; UPDATE RETURNING public fields.",
+      "limit": "Version is positive safe integer; title <=120 UTF-16 units after trim; note <=500 units; version-only PATCH increments.",
+      "failure": "Invalid fields return JSON 400 with no mutation; null clears only note.",
+      "verification": "evidence.json: checks[2] (PATCH trim absence null and version-only); evidence.json: checks[3] (schema rejects without mutation); evidence.json: checks[9] (maximum valid fields)"
+    },
+    {
+      "requirement": "B01-R02",
+      "mechanism": "Existing registry owns tenant and write authority; fixed prepared SQL binds tenant/id for reads and updates; headers never choose tenant.",
+      "limit": "Fixture tokens and local SQLite file trust only; no production authentication or OS privilege claim.",
+      "failure": "Missing/unknown identity 401; reader PATCH 403; object outside identity tenant 404.",
+      "verification": "evidence.json: checks[1] (identity and function denial); evidence.json: checks[7] (tenant comes from registry and absent object); evidence.json: checks[11] (real SQLite persistence after close/reopen)"
+    },
+    {
+      "requirement": "B01-R03",
+      "mechanism": "One SQLite UPDATE WHERE tenant=? AND id=? AND version=? increments version and returns the changed row.",
+      "limit": "Single-row CAS on one native synchronous SQLite connection; no retry; cross-process lock behavior untested.",
+      "failure": "Existing object with unmatched version yields JSON 409; unknown acknowledgement requires GET reconciliation.",
+      "verification": "evidence.json: checks[8] (atomic concurrent same-version edits)"
+    },
+    {
+      "requirement": "B01-R04",
+      "mechanism": "Count streamed bytes before decode/parse; fatal UTF8 decode; JSON/schema checks; media allowlist; five-second body timer.",
+      "limit": "2048 encoded bytes, 5 seconds body receipt; unsupported compression rejected; per-request bound only, no global admission cap.",
+      "failure": "JSON 400 malformed/schema-invalid, 413 oversized, 415 unsupported media; no stored mutation.",
+      "verification": "evidence.json: checks[4] (malformed media and oversized bytes); evidence.json: checks[5] (invalid UTF8 rejected); evidence.json: checks[6] (chunked oversized body)"
+    },
+    {
+      "requirement": "B01-R05",
+      "mechanism": "Preserve GET projection/routing and openStore schema/seeding; runnable verification uses loopback HTTP and file SQLite, closes and reopens.",
+      "limit": "Orderly close/reopen only; no power-loss, crash or restore claim.",
+      "failure": "Changed GET or lost persisted update fails deep equality and database assertions.",
+      "verification": "evidence.json: checks[0] (GET baseline and projection); evidence.json: checks[11] (real SQLite persistence after close/reopen)"
+    },
+    {
+      "requirement": "B01-R06",
+      "mechanism": "Task-scoped 24-area disposition map and five-field decisions tied to inspected code and retained raw results.",
+      "limit": "No source fixture edits, downloads, deployment, prior answers, graders or hidden inputs.",
+      "failure": "Required missing evidence remains UNVERIFIED; out-of-scope is limited to unrequested components.",
+      "verification": "result.json coverageDispositions has all L01-L24 once; requirement trace, raw logs, artifact/README.md scope and limitations."
+    }
+  ],
+  "checks": [
+    {
+      "command": "node --check artifact/service.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "Executed during implementation and final verification invocation; no syntax errors.",
+      "kind": "syntax"
+    },
+    {
+      "command": "node --check artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "Executed during implementation and final verification invocation; no syntax errors.",
+      "kind": "syntax"
+    },
+    {
+      "command": "node artifact/verify.mjs 2>&1 | Tee-Object raw-verification.log",
+      "exitCode": 1,
+      "status": "FAIL",
+      "evidence": "raw-verification.log; PowerShell treated native SQLite experimental-feature stderr warning as NativeCommandError; application evidence status PASS. Wrapper corrected without changing acceptance criteria.",
+      "kind": "instrumentation"
+    },
+    {
+      "command": "node artifact/run-verification.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "verification-exit.json; verification.stdout.log; verification.stderr.log; evidence.json",
+      "kind": "actual-http-and-native-sqlite"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[0] (GET baseline and projection)",
+      "kind": "http-database-integration",
+      "name": "GET baseline and projection"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[1] (identity and function denial)",
+      "kind": "http-database-integration",
+      "name": "identity and function denial"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[2] (PATCH trim absence null and version-only)",
+      "kind": "http-database-integration",
+      "name": "PATCH trim absence null and version-only"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[3] (schema rejects without mutation)",
+      "kind": "http-database-integration",
+      "name": "schema rejects without mutation"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[4] (malformed media and oversized bytes)",
+      "kind": "http-database-integration",
+      "name": "malformed media and oversized bytes"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[5] (invalid UTF8 rejected)",
+      "kind": "http-database-integration",
+      "name": "invalid UTF8 rejected"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[6] (chunked oversized body)",
+      "kind": "http-database-integration",
+      "name": "chunked oversized body"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[7] (tenant comes from registry and absent object)",
+      "kind": "http-database-integration",
+      "name": "tenant comes from registry and absent object"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[8] (atomic concurrent same-version edits)",
+      "kind": "http-database-integration",
+      "name": "atomic concurrent same-version edits"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[9] (maximum valid fields)",
+      "kind": "http-database-integration",
+      "name": "maximum valid fields"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[10] (selected engine schema and query path)",
+      "kind": "real-database-plan",
+      "name": "selected engine schema and query path"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "evidence.json: checks[11] (real SQLite persistence after close/reopen)",
+      "kind": "http-database-integration",
+      "name": "real SQLite persistence after close/reopen"
+    },
+    {
+      "command": "not performed",
+      "exitCode": null,
+      "status": "UNVERIFIED",
+      "evidence": "Five-second receipt timeout is implemented and source-reviewed, but no slow-body timing check was run; timeout is an additional operating bound, not a required status case.",
+      "kind": "additional-body-timeout"
+    },
+    {
+      "command": "not applicable",
+      "exitCode": null,
+      "status": "NOT_APPLICABLE",
+      "evidence": "No TLS/deployment/backups/load target in the supplied loopback CRUD fixture.",
+      "kind": "production-operations"
+    }
+  ],
+  "assumptions": [
+    "Existing fixture registry is the trusted identity source; headers are untrusted tenant suggestions.",
+    "Maximum string lengths use JavaScript UTF-16 code units; title length is checked after trim.",
+    "Version-only PATCH is a valid no-field edit that increments version.",
+    "Single-process synchronous SQLite and orderly close/reopen are the declared task topology."
+  ],
+  "limitations": [
+    "No production identity, TLS, deployment, backup restore, crash/power-loss durability, filesystem privilege, disk pressure or cross-process contention verification.",
+    "No global request admission/connection bound or capacity benchmark; body buffer cap is per request.",
+    "One instrumentation wrapper exit 1 is retained; corrected runner records application exit 0 without suppressing raw SQLite stderr warning.",
+    "Five-second slow-body timeout implemented but not timing-tested.",
+    "Actual token usage and cost are not exposed by the host.",
+    "Independent child review was attempted but unavailable because the agent thread limit was reached."
+  ],
+  "startUtc": "2026-11-05T16:56:58.000Z",
+  "endUtc": "2026-11-05T17:01:31.403Z",
+  "elapsedSeconds": 273.403,
+  "actualTokens": null,
+  "cost": null,
+  "toolCount": {
+    "execCommand": 9,
+    "clockCurrTime": 3,
+    "collaborationSendMessage": 3,
+    "collaborationSpawnAttempt": 1,
+    "totalKnown": 16,
+    "convention": "Counts nested external tool invocations and collaboration calls for this subagent only, through result creation; orchestrator exec calls excluded to avoid double counting."
+  },
+  "artifacts": [
+    "artifact/service.mjs",
+    "artifact/verify.mjs",
+    "artifact/run-verification.mjs",
+    "artifact/README.md",
+    "evidence.json",
+    "verification.sqlite",
+    "verification.stdout.log",
+    "verification.stderr.log",
+    "verification-exit.json",
+    "raw-verification.log"
+  ]
+}

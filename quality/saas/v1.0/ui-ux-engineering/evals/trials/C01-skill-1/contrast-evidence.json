@@ -1,0 +1,11 @@
+{
+  "method": "sRGB contrast formula applied to actual CSS palette; no external scanner",
+  "ratios": {
+    "button": 9.705013801923572,
+    "buttonHover": 12.207961998410783,
+    "body": 16.293495425950333,
+    "muted": 6.374802748213422,
+    "error": 7.657000025729957,
+    "focus": 5.527995812193697
+  }
+}

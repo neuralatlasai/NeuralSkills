@@ -1,0 +1,32 @@
+[
+  {
+    "name": "seed",
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "before",
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "index",
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "after",
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "verify",
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "index-repeat",
+    "exitCode": 0,
+    "error": null
+  }
+]

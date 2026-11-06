@@ -1,0 +1,521 @@
+{
+  "time": "2026-11-05T17:31:07.644Z",
+  "criterion": "C07-R05",
+  "status": "PASS",
+  "basis": "Complete native200 German visual/scroll evidence plus retained prior320/1280 executed checks; canonical assessment not edited.",
+  "native200Observed": true,
+  "all18GermanScreenshotsVisuallyInspected": true,
+  "observedReadableNoClippingOrCollisions": true,
+  "noPageOverflow": true,
+  "noInternalHorizontalTextOverflow": true,
+  "baseline": {
+    "url": "http://127.0.0.1:4398/",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "width": 1258,
+    "height": 802,
+    "outerWidth": 1280,
+    "outerHeight": 900,
+    "dpr": 1,
+    "cssZoom": "1",
+    "visualScale": 1,
+    "scrollWidth": 1258,
+    "clientWidth": 1258,
+    "scrollHeight": 1007,
+    "lang": "en",
+    "focus": "",
+    "heading": "Pickup details",
+    "wide": [],
+    "texts": [
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Language",
+        "x": 739.890625,
+        "y": 81,
+        "width": 62.109375,
+        "height": 21,
+        "scrollWidth": 62,
+        "clientWidth": 62
+      },
+      {
+        "tag": "SELECT",
+        "id": "language",
+        "text": "EnglishDeutsch",
+        "x": 812,
+        "y": 69,
+        "width": 128,
+        "height": 45,
+        "scrollWidth": 126,
+        "clientWidth": 126
+      },
+      {
+        "tag": "H1",
+        "id": "",
+        "text": "Reserve equipment",
+        "x": 318,
+        "y": 134,
+        "width": 622,
+        "height": 35.5,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "P",
+        "id": "",
+        "text": "Choose where and when to collect your equipment.",
+        "x": 318,
+        "y": 181.5,
+        "width": 622,
+        "height": 24,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "H2",
+        "id": "",
+        "text": "Pickup details",
+        "x": 318,
+        "y": 293.6875,
+        "width": 622,
+        "height": 29.140625,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Full name",
+        "x": 318,
+        "y": 346.828125,
+        "width": 622,
+        "height": 24,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Email address",
+        "x": 318,
+        "y": 446.828125,
+        "width": 622,
+        "height": 24,
+        "scrollWidth": 622,
+        "clientWidth": 622
+      },
+      {
+        "tag": "LEGEND",
+        "id": "",
+        "text": "Pickup location",
+        "x": 318,
+        "y": 546.828125,
+        "width": 115.875,
+        "height": 24,
+        "scrollWidth": 116,
+        "clientWidth": 116
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "North studio — main entrance",
+        "x": 318,
+        "y": 578.828125,
+        "width": 622,
+        "height": 50,
+        "scrollWidth": 620,
+        "clientWidth": 620
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "East workshop — reception",
+        "x": 318,
+        "y": 636.828125,
+        "width": 622,
+        "height": 50,
+        "scrollWidth": 620,
+        "clientWidth": 620
+      },
+      {
+        "tag": "LEGEND",
+        "id": "",
+        "text": "Pickup time",
+        "x": 318,
+        "y": 716.828125,
+        "width": 89.109375,
+        "height": 24,
+        "scrollWidth": 89,
+        "clientWidth": 89
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Morning, 09:00–11:00",
+        "x": 318,
+        "y": 748.828125,
+        "width": 622,
+        "height": 50,
+        "scrollWidth": 620,
+        "clientWidth": 620
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Afternoon, 14:00–16:00",
+        "x": 318,
+        "y": 806.828125,
+        "width": 622,
+        "height": 50,
+        "scrollWidth": 620,
+        "clientWidth": 620
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Review reservation",
+        "x": 318,
+        "y": 888.828125,
+        "width": 184.6875,
+        "height": 49.1875,
+        "scrollWidth": 183,
+        "clientWidth": 183
+      }
+    ]
+  },
+  "zoom": {
+    "url": "http://127.0.0.1:4398/",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "width": 629,
+    "height": 401,
+    "outerWidth": 1280,
+    "outerHeight": 900,
+    "dpr": 2,
+    "cssZoom": "1",
+    "visualScale": 1,
+    "scrollWidth": 629,
+    "clientWidth": 629,
+    "scrollHeight": 935,
+    "lang": "en",
+    "focus": "",
+    "heading": "Pickup details",
+    "wide": [],
+    "texts": [
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Language",
+        "x": 395.890625,
+        "y": 45.25,
+        "width": 62.109375,
+        "height": 21,
+        "scrollWidth": 62,
+        "clientWidth": 62
+      },
+      {
+        "tag": "SELECT",
+        "id": "language",
+        "text": "EnglishDeutsch",
+        "x": 468,
+        "y": 33,
+        "width": 128,
+        "height": 45.5,
+        "scrollWidth": 126,
+        "clientWidth": 126
+      },
+      {
+        "tag": "H1",
+        "id": "",
+        "text": "Reserve equipment",
+        "x": 33,
+        "y": 98.5,
+        "width": 563,
+        "height": 35.515625,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "P",
+        "id": "",
+        "text": "Choose where and when to collect your equipment.",
+        "x": 33,
+        "y": 146.015625,
+        "width": 563,
+        "height": 24,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "H2",
+        "id": "",
+        "text": "Pickup details",
+        "x": 33,
+        "y": 258.2109375,
+        "width": 563,
+        "height": 29.15625,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Full name",
+        "x": 33,
+        "y": 311.3671875,
+        "width": 563,
+        "height": 24,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Email address",
+        "x": 33,
+        "y": 411.3671875,
+        "width": 563,
+        "height": 24,
+        "scrollWidth": 563,
+        "clientWidth": 563
+      },
+      {
+        "tag": "LEGEND",
+        "id": "",
+        "text": "Pickup location",
+        "x": 33,
+        "y": 511.3671875,
+        "width": 115.8671875,
+        "height": 24,
+        "scrollWidth": 116,
+        "clientWidth": 116
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "North studio — main entrance",
+        "x": 33,
+        "y": 543.3671875,
+        "width": 563,
+        "height": 50,
+        "scrollWidth": 561,
+        "clientWidth": 561
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "East workshop — reception",
+        "x": 33,
+        "y": 601.3671875,
+        "width": 563,
+        "height": 50,
+        "scrollWidth": 561,
+        "clientWidth": 561
+      },
+      {
+        "tag": "LEGEND",
+        "id": "",
+        "text": "Pickup time",
+        "x": 33,
+        "y": 681.3671875,
+        "width": 89.1015625,
+        "height": 24,
+        "scrollWidth": 89,
+        "clientWidth": 89
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Morning, 09:00–11:00",
+        "x": 33,
+        "y": 713.3671875,
+        "width": 563,
+        "height": 50,
+        "scrollWidth": 561,
+        "clientWidth": 561
+      },
+      {
+        "tag": "LABEL",
+        "id": "",
+        "text": "Afternoon, 14:00–16:00",
+        "x": 33,
+        "y": 771.3671875,
+        "width": 563,
+        "height": 50,
+        "scrollWidth": 561,
+        "clientWidth": 561
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Review reservation",
+        "x": 33,
+        "y": 853.3671875,
+        "width": 184.6875,
+        "height": 49.1953125,
+        "scrollWidth": 183,
+        "clientWidth": 183
+      }
+    ]
+  },
+  "states": [
+    {
+      "name": "de-entry",
+      "screenshots": [
+        {
+          "file": "de-entry-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-entry-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-entry-02.png",
+          "scrollY": 558.5
+        }
+      ]
+    },
+    {
+      "name": "de-errors",
+      "screenshots": [
+        {
+          "file": "de-errors-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-errors-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-errors-02.png",
+          "scrollY": 661
+        }
+      ]
+    },
+    {
+      "name": "de-review",
+      "screenshots": [
+        {
+          "file": "de-review-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-review-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-review-02.png",
+          "scrollY": 599
+        }
+      ]
+    },
+    {
+      "name": "de-consent-error",
+      "screenshots": [
+        {
+          "file": "de-consent-error-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-consent-error-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-consent-error-02.png",
+          "scrollY": 628.5
+        }
+      ]
+    },
+    {
+      "name": "de-back",
+      "screenshots": [
+        {
+          "file": "de-back-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-back-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-back-02.png",
+          "scrollY": 558.5
+        }
+      ]
+    },
+    {
+      "name": "de-success",
+      "screenshots": [
+        {
+          "file": "de-success-00.png",
+          "scrollY": 0
+        },
+        {
+          "file": "de-success-01.png",
+          "scrollY": 361
+        },
+        {
+          "file": "de-success-02.png",
+          "scrollY": 381
+        }
+      ]
+    }
+  ],
+  "back": {
+    "name": "Alexandra Musterfrau",
+    "email": "alexandra.musterfrau@example.com",
+    "location": true,
+    "slot": true,
+    "focus": "name"
+  },
+  "hashUnchanged": true,
+  "matchesPriorHashes": true,
+  "artifactHashes": {
+    "app.js": "768be3539f1b7af8995561f106ff9ec3cc30af8386f836047a21e0b5baf70456",
+    "app.ts": "c79aca63c4ebe833828304e6f6e69a1a260d48dca902796854968ac2f469e6bd",
+    "build.cjs": "a00467025d2ce29a6acff0b7f3ee373f9e3f6a38af1d414e77d59c3c693cc100",
+    "copy.json": "68fbfb9e4facf941a9b24eecbaa0a8aea6de7e760989184c15d9c9cd56ca1919",
+    "index.html": "333eb4ca82bd2ecd06e9ef83eaf15540e334312fd46331bad53f3adf5ec12cc2",
+    "README.md": "afc0a7b965d8fc4cab3cd01e9be9482c516223aec28f46361d9ddf2dd31a17e2",
+    "serve.cjs": "208b42a2a30990f1e99cf30c68cdfef866df0ef555ef5ff75d13eb44038945fc",
+    "style.css": "01e04af99dc0ad16c9bd90ce5f2e859b01106c59e5f7f8074686e1a685c8baad"
+  },
+  "errors": [],
+  "helpersClosed": true,
+  "evidence": [
+    "report.md",
+    "metrics.json",
+    "run.cjs",
+    "attempt-1-scalar-pref.json",
+    "native100-en.png",
+    "native200-en.png",
+    "de-entry-00.png",
+    "de-entry-01.png",
+    "de-entry-02.png",
+    "de-errors-00.png",
+    "de-errors-01.png",
+    "de-errors-02.png",
+    "de-review-00.png",
+    "de-review-01.png",
+    "de-review-02.png",
+    "de-consent-error-00.png",
+    "de-consent-error-01.png",
+    "de-consent-error-02.png",
+    "de-back-00.png",
+    "de-back-01.png",
+    "de-back-02.png",
+    "de-success-00.png",
+    "de-success-01.png",
+    "de-success-02.png"
+  ],
+  "excludeFromEvidenceArchive": [
+    "baseline-profile/",
+    "native200-profile/",
+    "baseline-profile-2/",
+    "native200-profile-2/"
+  ],
+  "limitations": [
+    "No new full accessibility/keyboard or assistive technology audit.",
+    "320/1280 conditions retained from previous executed checks; this pass completes native200 only.",
+    "Headless native profile zoom proof uses recorded100/200 comparison rather than a fresh headed toolbar capture."
+  ]
+}

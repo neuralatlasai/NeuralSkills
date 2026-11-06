@@ -1,0 +1,325 @@
+{
+  "caseId": "B02",
+  "arm": "baseline",
+  "run": 1,
+  "route": "backend skill disabled; own engineering judgment; task-named fixture only",
+  "status": "PASS",
+  "coverageDispositions": [
+    {
+      "area": "L01",
+      "name": "DNS, discovery, network paths and sockets",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "No network or socket path exists.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L02",
+      "name": "TLS, certificates and transport identity",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "No transport/TLS endpoint exists.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L03",
+      "name": "Proxies, gateways, ingress, CDN and load balancing",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "No ingress, proxy, CDN or load balancing exists.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L04",
+      "name": "Authentication, authorization and tenant identity",
+      "disposition": "PASS",
+      "component": "store.mjs",
+      "reason": "Tenant/item predicates and allocation parameters preserve isolation; identity authentication remains caller responsibility.",
+      "evidence": "verification.json: tenant isolation and API return shape"
+    },
+    {
+      "area": "L05",
+      "name": "API styles, HTTP versions, RPC and streams",
+      "disposition": "PASS",
+      "component": "store.mjs",
+      "reason": "Preserved exported async API and response shapes; no transport exists.",
+      "evidence": "verification.json: tenant isolation and API return shape"
+    },
+    {
+      "area": "L06",
+      "name": "CRUD, upsert and bulk semantics",
+      "disposition": "PASS",
+      "component": "store.mjs",
+      "reason": "Reservation decrement and allocation insertion have guarded create/update semantics; no bulk/upsert API is present.",
+      "evidence": "verification.json: forced file-backed race on independent connections"
+    },
+    {
+      "area": "L07",
+      "name": "Validation, parsing, serialization and errors",
+      "disposition": "PASS",
+      "component": "store.mjs",
+      "reason": "Positive safe integer quantity, expected version, missing item and conflict status handling are preserved.",
+      "evidence": "verification.json: quantity/version validation, insufficient stock, missing tenant/item"
+    },
+    {
+      "area": "L08",
+      "name": "Domain architecture and request lifecycle",
+      "disposition": "PASS",
+      "component": "store.mjs",
+      "reason": "Read/hook/write lifecycle keeps await outside the synchronous transaction.",
+      "evidence": "verification.json: events and async read hook rejection preserves stock"
+    },
+    {
+      "area": "L09",
+      "name": "Runtime, memory, concurrency, OS and containers",
+      "disposition": "PASS",
+      "component": "store.mjs; README.md",
+      "reason": "Native synchronous SQLite and async interleaving verified; writer wait blocks event loop and no in-memory mutex is used.",
+      "evidence": "verification.json: writer contention and retry"
+    },
+    {
+      "area": "L10",
+      "name": "Database modeling and DDL",
+      "disposition": "PASS",
+      "component": "store.mjs",
+      "reason": "Existing composite stock primary key and nonnegative-stock constraint retained; no schema migration needed.",
+      "evidence": "store.mjs openStore and verification.json stock states"
+    },
+    {
+      "area": "L11",
+      "name": "DML/DQL, ORM, indexes and query plans",
+      "disposition": "PASS",
+      "component": "store.mjs",
+      "reason": "Parameterized guarded UPDATE RETURNING and INSERT use existing primary-key access; no ORM or tuning workload.",
+      "evidence": "verification.json: forced file-backed race on independent connections"
+    },
+    {
+      "area": "L12",
+      "name": "Transactions, isolation, locks and consistency",
+      "disposition": "PASS",
+      "component": "store.mjs",
+      "reason": "BEGIN IMMEDIATE, revalidated mutation and rollback enforce one atomic reservation.",
+      "evidence": "verification.json: forced race, afterWrite rollback, allocation insertion failure"
+    },
+    {
+      "area": "L13",
+      "name": "Database privileges and operational administration",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "Embedded local fixture has no database roles or operational administration task.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L14",
+      "name": "Storage, replication, partitioning, sharding and hashes",
+      "disposition": "PASS",
+      "component": "README.md",
+      "reason": "File-backed SQLite is explicit; no replication/partitioning/sharding guarantee.",
+      "evidence": "verification.json: race survives close and reopen"
+    },
+    {
+      "area": "L15",
+      "name": "Cache, views and derived state",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "No cache, materialized view or derived state exists.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L16",
+      "name": "Messaging, event logs, CDC and async effects",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "No messaging, CDC or asynchronous external effect exists.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L17",
+      "name": "Durable workers, schedules and workflows",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "No durable background worker or schedule exists.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L18",
+      "name": "Files, objects, search and specialized stores",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "SQLite is the only store; no object/file API, search or specialized store is requested.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L19",
+      "name": "External APIs, webhooks, tools and MCP",
+      "disposition": "NOT_APPLICABLE",
+      "component": "fixture scope",
+      "reason": "No external API, webhook, tool or MCP integration belongs to reserve.",
+      "evidence": "evals/inputs/B02.json task; artifact/store.mjs exports only openStore/reserve"
+    },
+    {
+      "area": "L20",
+      "name": "Traffic, capacity, scaling and cost",
+      "disposition": "PASS",
+      "component": "README.md",
+      "reason": "One SQLite writer and 200ms busy timeout bound scope; no capacity benchmark or scaling claim.",
+      "evidence": "verification.json: writer contention and retry"
+    },
+    {
+      "area": "L21",
+      "name": "Reliability, backups and recovery",
+      "disposition": "PASS",
+      "component": "verify.mjs; README.md",
+      "reason": "Rollback, usable connection, reopen and retry verified; backups and crash recovery not implemented.",
+      "evidence": "verification.json: rollback itself survives close and reopen"
+    },
+    {
+      "area": "L22",
+      "name": "Observability, objectives and audit",
+      "disposition": "PASS",
+      "component": "verify.mjs",
+      "reason": "Retained machine-readable outcomes and actual SQLite state evidence; no service telemetry/SLO project.",
+      "evidence": "../evidence/verification.json and supplied-probe.json"
+    },
+    {
+      "area": "L23",
+      "name": "Infrastructure, build and deployment lifecycle",
+      "disposition": "PASS",
+      "component": "README.md",
+      "reason": "Node24.12 built-ins only and runnable local commands; production deployment explicitly outside task.",
+      "evidence": "verification.json node version and verification command"
+    },
+    {
+      "area": "L24",
+      "name": "Security, privacy, supply chain and lifecycle",
+      "disposition": "PASS",
+      "component": "store.mjs; README.md",
+      "reason": "Bound SQL avoids input interpolation; tenant boundaries verified; no downloads or external mutation. Broader security/privacy lifecycle outside fixture.",
+      "evidence": "store.mjs SQL statements; verification.json tenant test"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "B02-R01",
+      "status": "PASS",
+      "evidence": "Forced barrier race on separate connections returns [201,409], stock1/version2 and one allocation."
+    },
+    {
+      "id": "B02-R02",
+      "status": "PASS",
+      "evidence": "afterWrite observes stock1 then throws; stock5/version1 and zero allocations remain, including after reopen; insertion fault also rolls back."
+    },
+    {
+      "id": "B02-R03",
+      "status": "PASS",
+      "evidence": "Invalid quantity/version, insufficient stock, missing tenant/item, other tenant and return objects asserted."
+    },
+    {
+      "id": "B02-R04",
+      "status": "PASS",
+      "evidence": "Original probe preserved; async afterRead barrier, synchronous afterWrite fault, rollback/reopen/retry recorded."
+    },
+    {
+      "id": "B02-R05",
+      "status": "PASS",
+      "evidence": "README records SQLite transaction mechanism, one-writer limit, blocking busy timeout, transaction/hook ownership and bounded guarantees."
+    },
+    {
+      "id": "B02-R06",
+      "status": "PASS",
+      "evidence": "All24 responsibility areas individually classified; claims mapped to actual checks or explicit exclusions."
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "B02-R01",
+      "mechanism": "BEGIN IMMEDIATE plus guarded tenant/item/version/available UPDATE RETURNING, INSERT and COMMIT.",
+      "limit": "Single local SQLite writer; caller owns connection during synchronous transaction.",
+      "failure": "Stale version or insufficient stock returns409 with no mutations.",
+      "verification": "verification.json: forced file-backed race on independent connections"
+    },
+    {
+      "requirement": "B02-R02",
+      "mechanism": "ROLLBACK on any transaction failure, original non-lock errors rethrown.",
+      "limit": "afterWrite synchronous and without external side effects; SQLite rollback cannot undo external systems.",
+      "failure": "Injected afterWrite and allocation insertion throws restore original stock and allocations.",
+      "verification": "verification.json: afterWrite rollback; allocation insertion failure; same connection remains usable"
+    },
+    {
+      "requirement": "B02-R03",
+      "mechanism": "Preserve validation order and API; bind tenant/item on all stock access and allocation insertion.",
+      "limit": "Tenant is trusted caller context; no authentication service.",
+      "failure": "400 invalid quantity;404 absent row;409 version/stock conflict.",
+      "verification": "verification.json: quantity/version validation; tenant isolation and API return shape"
+    },
+    {
+      "requirement": "B02-R04",
+      "mechanism": "await afterRead before BEGIN; afterWrite after real decrement; test separate file connections and close/reopen.",
+      "limit": "Two-connection same-process barrier race; no crash-kill or multi-host test.",
+      "failure": "Hook rejects before write or transaction rolls back then connection can retry.",
+      "verification": "verification.json events and rollback/reopen/retry checks; supplied-probe.json"
+    },
+    {
+      "requirement": "B02-R05",
+      "mechanism": "Retain busy_timeout200; lock errors return409; document explicit retry responsibility.",
+      "limit": "DatabaseSync can block event loop; no fairness/automatic retry/throughput or distributed guarantees.",
+      "failure": "Held writer yields409, released writer permits retry.",
+      "verification": "verification.json: writer contention and retry"
+    },
+    {
+      "requirement": "B02-R06",
+      "mechanism": "Classify every L01-L24 with evidence and scope reasoning.",
+      "limit": "No claim of complete production backend hardening.",
+      "failure": "Out-of-scope areas explicitly NOT_APPLICABLE.",
+      "verification": "result.json coverageDispositions length24"
+    }
+  ],
+  "checks": [
+    {
+      "command": "node --version",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "v24.12.0",
+      "kind": "runtime"
+    },
+    {
+      "command": "node verify.mjs ../evidence",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "evidence/verification.json;12 asserted real SQLite checks and retained files",
+      "kind": "real-SQLite"
+    },
+    {
+      "command": "node probe.mjs ../evidence/supplied-probe.sqlite",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "evidence/supplied-probe.json; statuses201/409,stock1,one allocation,south100",
+      "kind": "supplied-probe"
+    },
+    {
+      "command": "result contract assertions",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "finish.mjs asserts12 checks and all24 area dispositions",
+      "kind": "report-integrity"
+    }
+  ],
+  "assumptions": [
+    "Tenant identity supplied by trusted caller.",
+    "afterWrite remains synchronous and hooks do not manage transactions or perform external effects.",
+    "No caller-owned open transaction on the passed connection."
+  ],
+  "limitations": [
+    "Only the supplied local fixture and trial files changed.",
+    "One SQLite writer, inherited200ms busy timeout and synchronous event-loop blocking.",
+    "No multi-process crash, disk-failure, backup, distributed-storage, replication, production deployment or throughput verification.",
+    "Invariants apply to reserve; arbitrary direct SQL writers can bypass API checks."
+  ],
+  "startUtc": "2026-11-05T16:58:11.000Z",
+  "endUtc": "2026-11-05T17:01:57.331Z",
+  "elapsedSeconds": 226.331,
+  "actualTokens": null,
+  "cost": null,
+  "actualToolCount": 11,
+  "toolCountConvention": "Nested external tools:3 clock/inspect calls initially,copy,failed patch,successful patch,verify,clock,probe,final patch,final execution=11; functions orchestration wrappers excluded."
+}

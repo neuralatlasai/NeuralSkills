@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "objective": "Replace this example: help an operator locate and retry a failed job with clear feedback.",
+  "scope": "component",
+  "output": "implementation",
+  "mode": "explore",
+  "context": {"audience": "Example operations staff", "task": "Retry a job", "device": "Keyboard and pointer on a web browser", "locale": "en; other locales unknown"},
+  "references": [],
+  "constraints": {"stack": "Inspect the actual project before choosing", "accessibility": "Default WCAG 2.2 A and AA target; conformance not established", "performance": "Define applicable lab gates before measuring; field data unavailable"},
+  "uncertainty": [{"id": "U-1", "kind": "assumption", "statement": "This is an illustrative template, not an executed product contract.", "consequence": "Replace example statements and sources for the actual task; do not treat any result as verified."}],
+  "requirements": [{"id": "R-1", "source": {"kind": "assumption", "reference": "Illustrative example only"}, "decision": "Use a native button and prevent a duplicate pending retry.", "artifact": "Requested component, not yet authored", "verification": {"method": "Keyboard operation and duplicate-submission test", "evidence": []}, "status": "UNVERIFIED"}],
+  "tokens": {"authority": "Use the existing project token source when available"},
+  "components": [{"id": "retry", "semantics": "Native button with stable accessible name", "inputs": ["pending", "disabled"], "outputs": ["retry action"], "states": ["default", "hover", "focus", "pending", "error", "success"], "keyboard": "Enter and Space activate when enabled", "focus": "Preserve the button's focus through pending feedback", "recovery": "Show failure and allow deliberate retry"}],
+  "stateOwnership": {"local": "Pending interaction state", "server": "Job status; mocked until real API is available"},
+  "measurements": []
+}

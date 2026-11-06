@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-11-06T03:40:47.483Z",
+  "trial": "T02",
+  "scope": "Supervisor cleanup metadata followup after completed20-call trial; no rerun or changed evaluation.",
+  "failedLaunches": [
+    {
+      "session": 52194,
+      "observedParentExit": 1,
+      "childPids": null
+    },
+    {
+      "session": null,
+      "observedParentExit": 1,
+      "childPids": null
+    }
+  ],
+  "childCommand": "node ../../../serve-fixture.mjs . 0",
+  "artifact": "quality/saas/expert-evals/trials/T02/artifact",
+  "cleanup": "UNVERIFIED for first two failed-launch childservers; no safely identifiable live helper remained in retained metadata. Successful runs closed owned browser/server. No unidentified process was killed and denied process diagnostics were not retried."
+}

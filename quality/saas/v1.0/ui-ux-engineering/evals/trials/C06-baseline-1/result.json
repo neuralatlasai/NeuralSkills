@@ -1,0 +1,144 @@
+{
+  "caseId": "C06",
+  "arm": "baseline",
+  "run": 1,
+  "route": "http://127.0.0.1:4316/",
+  "startedAtUtc": "2026-11-05T15:56:28Z",
+  "endedAtUtc": "2026-11-05T16:02:42.144Z",
+  "elapsedSeconds": 374.144,
+  "tokens": null,
+  "cost": null,
+  "requirementCoverage": {
+    "C06-R01": {
+      "status": "PASS",
+      "description": "Native TypeScript/CSS local page and unchanged fixture",
+      "evidence": "artifact/src/main.ts; evidence/fixture-integrity.json; evidence/typecheck.json"
+    },
+    "C06-R02": {
+      "status": "PASS",
+      "description": "Labeled form submits by Search and Enter",
+      "evidence": "evidence/browser-checks.json; browser-test.mjs"
+    },
+    "C06-R03": {
+      "status": "PASS",
+      "description": "Initial prompt and visible pending feedback",
+      "evidence": "evidence/initial.png; evidence/pending.png"
+    },
+    "C06-R04": {
+      "status": "PASS",
+      "description": "Result cards and useful empty outcome",
+      "evidence": "evidence/cedar.png; evidence/moss.png; evidence/empty.png"
+    },
+    "C06-R05": {
+      "status": "PASS",
+      "description": "Failure and fresh Retry of the same query",
+      "evidence": "evidence/failure.png; evidence/failure-retry.txt; evidence/timer-invocations.json"
+    },
+    "C06-R06": {
+      "status": "PASS",
+      "description": "Latest submission guards stale successes and failures while new search remains enabled",
+      "evidence": "evidence/race-cedar-moss.txt; evidence/race-fail-moss.txt; browser-test.mjs"
+    },
+    "C06-R07": {
+      "status": "PASS",
+      "description": "Live feedback, semantic input label, busy state, keyboard and retry focus behavior",
+      "evidence": "evidence/accessibility-metrics.json; evidence/browser-checks.json; browser-test.mjs"
+    },
+    "C06-R08": {
+      "status": "PASS",
+      "description": "320px fit, setup instructions, actual scenario tests and evidence",
+      "evidence": "evidence/mobile-accessibility.png; artifact/README.md; evidence/browser-checks.json"
+    }
+  },
+  "assumptions": [
+    "Requirement IDs were supplied without individual definitions; coverage descriptions map the prompt requirements in their presented order.",
+    "The supplied local TypeScript API and Chrome installation are available; build.mjs documents the environment-specific compiler path."
+  ],
+  "decisions": [
+    "Used a monotonically increasing request identifier and guarded both Promise fulfillment and rejection because cancellation is unsupported.",
+    "Kept Search enabled while pending and cleared prior outcomes when a new query starts.",
+    "Retry stores the failed submitted query independently of input edits and focuses the input before hiding Retry.",
+    "Used native form behavior, polite live status, error alert, busy result container, visible focus outlines and reduced-motion support.",
+    "Used an editorial field-library style with warm paper, forest green and wrapped serif guide titles."
+  ],
+  "checks": [
+    {
+      "id": "typecheck",
+      "status": "PASS",
+      "evidence": "evidence/typecheck.json"
+    },
+    {
+      "id": "initial",
+      "status": "PASS",
+      "evidence": "evidence/initial.txt; evidence/initial.png"
+    },
+    {
+      "id": "cedar",
+      "status": "PASS",
+      "evidence": "evidence/cedar.txt; evidence/cedar.png"
+    },
+    {
+      "id": "moss",
+      "status": "PASS",
+      "evidence": "evidence/moss.txt; evidence/moss.png"
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "evidence": "evidence/empty.txt; evidence/empty.png"
+    },
+    {
+      "id": "failure-retry",
+      "status": "PASS",
+      "evidence": "evidence/failure-retry.txt; evidence/failure-retry.png"
+    },
+    {
+      "id": "race-cedar-moss",
+      "status": "PASS",
+      "evidence": "evidence/race-cedar-moss.txt; evidence/race-cedar-moss.png"
+    },
+    {
+      "id": "race-fail-moss",
+      "status": "PASS",
+      "evidence": "evidence/race-fail-moss.txt; evidence/race-fail-moss.png"
+    },
+    {
+      "id": "mobile-accessibility",
+      "status": "PASS",
+      "evidence": "evidence/mobile-accessibility.txt; evidence/mobile-accessibility.png"
+    },
+    {
+      "id": "browser-runtime",
+      "status": "PASS",
+      "evidence": "evidence/browser-errors.json"
+    },
+    {
+      "id": "fixture-unchanged",
+      "status": "PASS",
+      "evidence": "evidence/fixture-integrity.json"
+    },
+    {
+      "id": "visual-inspection",
+      "status": "PASS",
+      "evidence": "evidence/moss.png and evidence/mobile-accessibility.png viewed; long title wraps and controls fit at 320px"
+    },
+    {
+      "id": "screen-reader-announcements",
+      "status": "UNVERIFIED",
+      "evidence": "No screen reader execution; semantic DOM observations only"
+    },
+    {
+      "id": "other-browsers",
+      "status": "UNVERIFIED",
+      "evidence": "Only installed Chrome was exercised"
+    }
+  ],
+  "limitations": [
+    "Assistive-technology announcements have semantic DOM checks but were not heard with a screen reader.",
+    "Keyboard and desktop Chrome automation performed; additional browsers and real touch hardware were not tested.",
+    "Compiler path is specific to the supplied environment.",
+    "The first fixture read and first test-script write failed due to path assumptions; retained in evidence/tooling-errors.log and corrected before successful checks.",
+    "The patch tool took roughly two minutes; all recorded elapsed time includes that delay. Tool-call target counting waits may be exceeded; no usage or monetary telemetry is available.",
+    "Final JSON inspection found a PowerShell array wrapper around browser checks; normalized to the required flat checks array before delivery."
+  ]
+}

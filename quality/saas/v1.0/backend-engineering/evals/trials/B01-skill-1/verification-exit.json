@@ -1,0 +1,6 @@
+{
+  "command": "node artifact/verify.mjs",
+  "exitCode": 0,
+  "signal": null,
+  "error": null
+}

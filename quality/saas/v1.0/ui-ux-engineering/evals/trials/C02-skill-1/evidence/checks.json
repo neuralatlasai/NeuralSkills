@@ -1,0 +1,122 @@
+{
+  "node": "v24.12.0",
+  "browser": "156.0.8078.80",
+  "url": "http://127.0.0.1:4182",
+  "deviceScaleFactor": 1,
+  "viewports": [
+    [
+      1280,
+      900
+    ],
+    [
+      375,
+      812
+    ],
+    [
+      768,
+      900
+    ]
+  ],
+  "network": "loopback; no throttling",
+  "results": [
+    {
+      "id": "desktop-content",
+      "status": "PASS",
+      "details": {
+        "cards": 3,
+        "hero": "A little less busy.\nA lot more focused."
+      }
+    },
+    {
+      "id": "anchor-Projects",
+      "status": "PASS",
+      "details": {
+        "hash": "#projects",
+        "scrollY": 0
+      }
+    },
+    {
+      "id": "anchor-Activity",
+      "status": "PASS",
+      "details": {
+        "hash": "#activity",
+        "scrollY": 0
+      }
+    },
+    {
+      "id": "anchor-Overview",
+      "status": "PASS",
+      "details": {
+        "hash": "#overview",
+        "scrollY": 0
+      }
+    },
+    {
+      "id": "dialog-open-focus",
+      "status": "PASS",
+      "details": "Named native dialog visible and name input focused"
+    },
+    {
+      "id": "focus-trap-reverse",
+      "status": "PASS",
+      "details": "<button type=\"submit\" class=\"create-workspace\">Create</button>"
+    },
+    {
+      "id": "escape-restore",
+      "status": "PASS",
+      "details": "Escape closes, focus returns to opener"
+    },
+    {
+      "id": "cancel",
+      "status": "PASS",
+      "details": "Cancel closes dialog"
+    },
+    {
+      "id": "empty-validation",
+      "status": "PASS",
+      "details": "Native required validation retains dialog"
+    },
+    {
+      "id": "whitespace-validation",
+      "status": "PASS",
+      "details": "Whitespace-only name receives visible associated error"
+    },
+    {
+      "id": "create-success",
+      "status": "PASS",
+      "details": "Local success live region displayed"
+    },
+    {
+      "id": "mobile-no-overflow",
+      "status": "PASS",
+      "details": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "cardWidths": [
+          335,
+          335,
+          335
+        ]
+      }
+    },
+    {
+      "id": "mobile-anchor",
+      "status": "PASS",
+      "details": "Activity anchor moves into viewport"
+    },
+    {
+      "id": "intermediate-no-overflow",
+      "status": "PASS",
+      "details": {
+        "viewport": 768,
+        "documentWidth": 768
+      }
+    },
+    {
+      "id": "runtime-errors",
+      "status": "PASS",
+      "details": []
+    }
+  ],
+  "errors": []
+}

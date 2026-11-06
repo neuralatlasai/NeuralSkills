@@ -1,0 +1,2 @@
+http://127.0.0.1:62108
+{"home":200,"app":200,"containsTypeDeclaration":false,"missing":404}

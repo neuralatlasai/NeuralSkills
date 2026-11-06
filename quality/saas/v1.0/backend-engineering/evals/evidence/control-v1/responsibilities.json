@@ -1,0 +1,101 @@
+{
+  "source": "User meet.md mandatory24-area coverage index; task input common to both arms, no skill routing or solution content.",
+  "areas": [
+    {
+      "id": "L01",
+      "name": "DNS, discovery, network paths and sockets"
+    },
+    {
+      "id": "L02",
+      "name": "TLS, certificates and transport identity"
+    },
+    {
+      "id": "L03",
+      "name": "Proxies, gateways, ingress, CDN and load balancing"
+    },
+    {
+      "id": "L04",
+      "name": "Authentication, authorization and tenant identity"
+    },
+    {
+      "id": "L05",
+      "name": "API styles, HTTP versions, RPC and streams"
+    },
+    {
+      "id": "L06",
+      "name": "CRUD, upsert and bulk semantics"
+    },
+    {
+      "id": "L07",
+      "name": "Validation, parsing, serialization and errors"
+    },
+    {
+      "id": "L08",
+      "name": "Domain architecture and request lifecycle"
+    },
+    {
+      "id": "L09",
+      "name": "Runtime, memory, concurrency, OS and containers"
+    },
+    {
+      "id": "L10",
+      "name": "Database modeling and DDL"
+    },
+    {
+      "id": "L11",
+      "name": "DML/DQL, ORM, indexes and query plans"
+    },
+    {
+      "id": "L12",
+      "name": "Transactions, isolation, locks and consistency"
+    },
+    {
+      "id": "L13",
+      "name": "Database privileges and operational administration"
+    },
+    {
+      "id": "L14",
+      "name": "Storage, replication, partitioning, sharding and hashes"
+    },
+    {
+      "id": "L15",
+      "name": "Cache, views and derived state"
+    },
+    {
+      "id": "L16",
+      "name": "Messaging, event logs, CDC and async effects"
+    },
+    {
+      "id": "L17",
+      "name": "Durable workers, schedules and workflows"
+    },
+    {
+      "id": "L18",
+      "name": "Files, objects, search and specialized stores"
+    },
+    {
+      "id": "L19",
+      "name": "External APIs, webhooks, tools and MCP"
+    },
+    {
+      "id": "L20",
+      "name": "Traffic, capacity, scaling and cost"
+    },
+    {
+      "id": "L21",
+      "name": "Reliability, backups and recovery"
+    },
+    {
+      "id": "L22",
+      "name": "Observability, objectives and audit"
+    },
+    {
+      "id": "L23",
+      "name": "Infrastructure, build and deployment lifecycle"
+    },
+    {
+      "id": "L24",
+      "name": "Security, privacy, supply chain and lifecycle"
+    }
+  ]
+}

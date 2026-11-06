@@ -1,0 +1,118 @@
+{
+  "run": "4",
+  "runtime": {
+    "node": "v24.12.0",
+    "sqlite": "3.50.4",
+    "platform": "win32",
+    "arch": "x64",
+    "journalMode": {
+      "journal_mode": "delete"
+    },
+    "synchronous": {
+      "synchronous": 2
+    },
+    "busyTimeout": {
+      "timeout": 1000
+    },
+    "rows": {
+      "count": 3
+    },
+    "plan": [
+      {
+        "id": 3,
+        "parent": 0,
+        "notused": 39,
+        "detail": "SEARCH tickets USING INDEX sqlite_autoindex_tickets_1 (tenant=? AND id=?)"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "get-compatible",
+      "status": "PASS",
+      "detail": {
+        "id": "t1",
+        "title": "Printer jam",
+        "note": "Call support",
+        "version": 1
+      }
+    },
+    {
+      "id": "identity-permission",
+      "status": "PASS",
+      "detail": "401 anonymous/invalid identity;403 reader; unchanged storage"
+    },
+    {
+      "id": "schema-invalid",
+      "status": "PASS",
+      "detail": "18 invalid bodies rejected; original row preserved"
+    },
+    {
+      "id": "malformed-media-size",
+      "status": "PASS",
+      "detail": "400 malformed;415 media/encoding;413 declared/chunked/UTF8 bytes; no mutation"
+    },
+    {
+      "id": "missing-tenant-object",
+      "status": "PASS",
+      "detail": "south-only object absent for north despite spoofed header"
+    },
+    {
+      "id": "allowed-fields-and-projection",
+      "status": "PASS",
+      "detail": "trim; absence preservation; null clears note; max accepted; public projection; south unchanged"
+    },
+    {
+      "id": "exact-byte-limit-version-only",
+      "status": "PASS",
+      "detail": "exactly 2048 bytes accepted; absent title/note preserved; version increments"
+    },
+    {
+      "id": "stale-version",
+      "status": "PASS",
+      "detail": "stale write rejected without mutation"
+    },
+    {
+      "id": "concurrent-cas",
+      "status": "PASS",
+      "detail": {
+        "results": [
+          {
+            "status": 200,
+            "body": {
+              "id": "t1",
+              "title": "Winner A",
+              "note": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+              "version": 6
+            }
+          },
+          {
+            "status": 409,
+            "body": {
+              "code": "stale_version"
+            }
+          }
+        ],
+        "winner": {
+          "id": "t1",
+          "title": "Winner A",
+          "note": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+          "version": 6
+        }
+      }
+    },
+    {
+      "id": "reopen-persistence",
+      "status": "PASS",
+      "detail": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B01-skill-2\\evidence\\tickets-4-1793899631887.sqlite",
+        "saved": {
+          "id": "t1",
+          "title": "Winner A",
+          "note": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+          "version": 6
+        }
+      }
+    }
+  ]
+}

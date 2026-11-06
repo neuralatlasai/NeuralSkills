@@ -1,0 +1,37 @@
+{
+  "startedAt": "2026-11-05T16:09:07.848Z",
+  "environment": {
+    "node": "v24.12.0",
+    "renderer": "Chrome headless",
+    "deviceScaleFactor": 1,
+    "network": "file URLs, no network",
+    "fonts": "Georgia and Arial system stacks",
+    "browser": "156.0.8078.80"
+  },
+  "checks": [
+    {
+      "id": "content",
+      "status": "PASS",
+      "evidence": "Desktop shows heading, three exact workshop rows, 3 workshops and 23 seats; desktop.png"
+    },
+    {
+      "id": "type-palette",
+      "status": "PASS",
+      "evidence": "Computed 44px Georgia h1; brand canvas rgb(247,246,239)."
+    },
+    {
+      "id": "dialog-open",
+      "status": "PASS",
+      "evidence": "Enter opens labeled native modal; workshop receives focus."
+    },
+    {
+      "id": "required-errors",
+      "status": "PASS",
+      "evidence": "Both empty fields show associated errors; focus goes to first invalid field."
+    }
+  ],
+  "errors": [
+    "locator.selectOption: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#workshop')\u001b[22m\n\u001b[2m    - locator resolved to <select required=\"\" autofocus=\"\" id=\"workshop\" name=\"workshop\" aria-invalid=\"true\" aria-describedby=\"workshop-error\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - did not find some options\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - did not find some options\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\trials\\C03-skill-1\\verify.mjs:25:33"
+  ],
+  "endedAt": "2026-11-05T16:09:18.966Z"
+}

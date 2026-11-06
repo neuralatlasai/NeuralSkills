@@ -1,0 +1,133 @@
+{
+  "observedAt": "2026-11-05T17:35:38.454Z",
+  "scope": "Read-only package structure, frozen byte hashes, current assessment status and profile-exclusion discovery; no runtime or benchmark claims.",
+  "packages": [
+    {
+      "name": "ui-ux-engineering",
+      "entryLines": 70,
+      "manifestResourceCount": 60,
+      "manifestIssues": [],
+      "frozenFileCount": 44,
+      "frozenChanged": [],
+      "reportSha256": "a6f69cd09625c4c1f68c18876ce09d1208e0427c7e24d5d1d82bfa43eda1265e",
+      "reportLastModified": "2026-11-05T17:33:16.376Z"
+    },
+    {
+      "name": "backend-engineering",
+      "entryLines": 71,
+      "manifestResourceCount": 58,
+      "manifestIssues": [],
+      "frozenFileCount": 57,
+      "frozenChanged": [],
+      "reportSha256": "1b81a0d8938e0949ba4f11c2e570ed4d2502cdd6e1f93b486d52092366bae9e0",
+      "reportLastModified": "2026-11-05T17:23:55.878Z"
+    }
+  ],
+  "ui": {
+    "trialCount": 18,
+    "canonicalCounts": {
+      "PASS": 123,
+      "UNVERIFIED": 4
+    },
+    "unresolved": [
+      {
+        "trial": "C05-skill-1",
+        "id": "C05-R02",
+        "status": "UNVERIFIED"
+      },
+      {
+        "trial": "C05-skill-1",
+        "id": "C05-R03",
+        "status": "UNVERIFIED"
+      },
+      {
+        "trial": "C05-skill-1",
+        "id": "C05-R04",
+        "status": "UNVERIFIED"
+      },
+      {
+        "trial": "C05-skill-1",
+        "id": "C05-R05",
+        "status": "UNVERIFIED"
+      }
+    ],
+    "c07R05": "PASS"
+  },
+  "backend": {
+    "gates": [
+      {
+        "id": "G01",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G02",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G03",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G04",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G05",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G06",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G07",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G08",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G09",
+        "status": "UNVERIFIED",
+        "remaining": "Equal-control comparison rerun, activation and coordinator resource reconciliation"
+      },
+      {
+        "id": "G10",
+        "status": "UNVERIFIED",
+        "remaining": "Final inventory and resource/activation reconciliation"
+      }
+    ],
+    "comparisonFairness": {
+      "status": "UNVERIFIED",
+      "issue": "Common responsibilities input omitted coverage-disposition enum/meanings; baseline exact wrapper omission reported by coordinator. Literal baseline enum failures are setup-induced format findings, not valid skill superiority evidence. Versioned equal-input rerun required.",
+      "evidence": [
+        "evals/inputs/responsibilities.json",
+        "evals/inputs/B01.json",
+        "evals/inputs/B02.json"
+      ]
+    }
+  },
+  "archive": {
+    "supplementalChromeProfileExists": true,
+    "zoomProfileDirectories": [
+      "baseline-profile",
+      "baseline-profile-2",
+      "native200-profile",
+      "native200-profile-2"
+    ],
+    "recommendedRelativeExclusions": [
+      "ui-ux-engineering/evals/evidence/review/supplemental/chrome-profile/**",
+      "ui-ux-engineering/evals/evidence/review/zoom-completion/*profile*/**"
+    ],
+    "action": "Recommendation only. No deletion, moving, process/server actions or archive creation."
+  }
+}

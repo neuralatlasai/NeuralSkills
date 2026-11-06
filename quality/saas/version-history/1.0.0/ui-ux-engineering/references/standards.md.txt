@@ -1,0 +1,52 @@
+# Standards and evidence boundaries
+
+Use this reference when turning quality goals into acceptance criteria or reviewing an accessibility or conformance claim. These are engineering defaults for this skill, subject to the user's applicable contract and product context. They do not establish legal compliance or certification.
+
+## Verified editions and scope
+
+Catalog and selected public guidance were checked on **2026-11-05 UTC**. ISO review below covers public catalog metadata and abstracts, **not the purchased standards' complete normative text**. The artifact mapping is this skill's practical interpretation, not a clause mapping or mandatory ISO template.
+
+| Reference | Verified public status | Practical use in this skill | Boundary |
+| --- | --- | --- | --- |
+| [ISO/IEC/IEEE 29148:2018](https://www.iso.org/standard/72089.html) | Edition 2, published November 2018; confirmed 2024. Catalog also lists a DIS replacement under development. | Give consequential UI requirements stable IDs, a stakeholder need, conditions, observable acceptance evidence, and links to design and verification. | A draft is not a replacement published edition. Do not label a local brief or traceability table “29148 conformant.” |
+| [ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html) | Edition 2, published November 2022. | Describe UI architecture through stakeholder concerns, relevant views, decisions and rationale: routes, state ownership, components, tokens, services and deployment boundaries as needed. | This standard concerns architecture descriptions; it does not prescribe this skill's implementation method, file format or frontend architecture. |
+| [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) | Edition 2, published November 2023; product quality model with nine characteristics. | Convert selected product quality concerns into measurable scenarios, such as completion, response, reliability, security, compatibility and maintainability expectations. | Do not silently reuse the 2011 quality model or describe the 2023 product model as a full usability assessment method. Formal characteristic or subcharacteristic mapping needs the applicable text. |
+| [ISO 9241-210:2019](https://www.iso.org/standard/77520.html) | Edition 2, published July 2019; confirmed 2025. | Connect context of use, observed needs, design alternatives and iterative evaluation with representative users. Preserve uncertainty when research has not happened. | An expert review or a polished prototype does not constitute user research, a full human-centred design process, or proof of conformance. |
+
+Recheck catalog status when an edition or conformance requirement matters. If a contract requires a standard, obtain the authorized text and an agreed scope before asserting clause-level coverage. Report what was inspected and what remains unassessed.
+
+## Accessibility baseline
+
+[WCAG 2.2](https://www.w3.org/TR/2024/REC-WCAG22-20241212/) is a W3C Recommendation dated **12 December 2024** in the live version inspected. Target **all applicable Level A and Level AA success criteria**. WCAG AA includes A; it is not a score or a count of passing automated rules. Full pages, responsive variations and complete processes matter for a conformance claim. The checks below are a working selection, not an exhaustive WCAG checklist. Consult the criterion, conditions and exceptions before grading.
+
+| Risk to inspect | Selected WCAG 2.2 criteria | Evidence to retain |
+| --- | --- | --- |
+| Structure, controls and status | 1.1.1, 1.3.1, 2.4.6, 4.1.2, 4.1.3 | Semantic structure, names, roles, states; meaningful alternatives and announcements. |
+| Keyboard and focus | 2.1.1, 2.1.2, 2.4.3, 2.4.7, 2.4.11 | Keyboard completion, focus sequence, entry and return from overlays, visibility under sticky content. AA 2.4.11 concerns focus not being entirely obscured; do not mislabel AAA 2.4.12/2.4.13 as AA. |
+| Readability and adaptation | 1.4.3, 1.4.4, 1.4.10, 1.4.11, 1.4.12 | Contrast, text resize, reflow, UI boundaries and text spacing in the actual rendered states; record permitted exceptions. |
+| Pointer and gesture operation | 2.5.3, 2.5.7, 2.5.8 | Matching visible and accessible names, alternatives to dragging, and target size or applicable exception. The AA minimum is 24 by 24 CSS pixels with exceptions; 44 by 44 is the enhanced AAA criterion. |
+| Forms and authentication | 3.3.1, 3.3.2, 3.3.3, 3.3.7, 3.3.8 | Labels, understandable errors and recovery, repeated-entry behavior, usable authentication including password-manager and paste paths. |
+
+The [ARIA Authoring Practices Guide introduction](https://www.w3.org/WAI/ARIA/apg/about/introduction/) explicitly identifies APG as **informative**, not a normative standard or a UI design system. Use the pertinent pattern as interaction guidance; verify the product's behavior with its actual supported browsers and assistive technologies. For example, the inspected [modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) informs initial focus, contained tab sequence, dismissal, naming and focus restoration. Do not add ARIA to native controls merely to imitate examples.
+
+Automated scans are partial evidence. [Playwright's accessibility guide](https://playwright.dev/docs/accessibility-testing) demonstrates scanning the current UI state with axe and warns that automation misses WCAG violations. Open the relevant menu, error, modal or other state before scanning; a scan of the initial route does not cover hidden states. Review axe `incomplete` results and exclusions. Confirm the installed engine's supported WCAG 2.2 tags rather than copying a guide's older tag list.
+
+[Lighthouse accessibility scoring](https://developer.chrome.com/docs/lighthouse/accessibility/scoring) omits manual checks from the score. A score of 100, an empty axe violation array, a library's accessibility claim and an APG-based component are not evidence of full WCAG conformance. Combine automation with keyboard checks, zoom/reflow and contrast inspection, plus relevant screen-reader and user evaluation. Report tested routes, states, viewport, tool/version, date, findings and untested scope.
+
+## Design tokens
+
+Use the dated [DTCG Design Tokens Format Module 2025.10](https://www.designtokens.org/TR/2025.10/format/), a **Final Community Group Report, 28 October 2025**, for interchange when the target toolchain supports it. It is a community specification, **not a W3C Standard or Recommendation**. The editor's [draft](https://www.designtokens.org/tr/drafts/format/) inspected on this date is a preview that explicitly says not to implement it; do not treat “latest draft” as production authority.
+
+Practical adoption: keep primitive values and semantic intent distinct; name roles such as action, surface, text and feedback; specify `$value`, resolvable `$type`, aliases and descriptions in the interchange layer; check missing references, cycles, units and theme mappings. These role conventions are this skill's design practice, not claims that DTCG mandates a particular taxonomy. Existing CSS variables or a token JSON file are not automatically DTCG-conformant. Do not claim format conformance without validating the exact exported representation against the pinned specification.
+
+## Performance evidence
+
+The inspected [Core Web Vitals guidance](https://web.dev/articles/vitals) gives good-experience targets of **LCP ≤ 2.5 s, INP ≤ 200 ms and CLS ≤ 0.1**, assessed at the **75th percentile of page loads**, segmented by mobile and desktop. Record the field population, period, route or page grouping and data source. A local trace or Lighthouse run is diagnostic lab evidence; it cannot prove field percentile performance, and a lab interaction proxy does not replace measured INP. With no field data, mark these as targets awaiting field validation and use repeatable lab conditions to find bottlenecks. Set additional task-specific budgets where needed.
+
+## Reporting language
+
+- “Targets WCAG 2.2 A/AA; tested these routes and states; these checks remain” is appropriate for a scoped assessment.
+- “Informed by the public scope of ISO …” is appropriate for the edition checks above.
+- “Certified,” “fully compliant,” “ISO-approved,” “all accessibility checks passed” or an invented clause number requires evidence this skill does not supply.
+
+The compact research record is in [research/standards-research.json](../evals/evidence/research/standards-research.json). Re-fetch the applicable primary source when a claim depends on its current wording.

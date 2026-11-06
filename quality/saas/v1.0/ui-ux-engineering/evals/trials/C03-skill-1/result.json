@@ -1,0 +1,226 @@
+{
+  "caseId": "C03",
+  "arm": "skill",
+  "run": 1,
+  "route": {
+    "mode": "adapt",
+    "scope": "page",
+    "modules": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7",
+      "M8"
+    ],
+    "stack": "HTML/CSS/JavaScript; optional Node server"
+  },
+  "requirementCoverage": [
+    {
+      "id": "C03-R01",
+      "requirement": "Three visual references inspected and applied with separate authority",
+      "status": "PASS",
+      "evidence": "contract.json; evidence/brand.png; evidence/layout.png; evidence/typography.png"
+    },
+    {
+      "id": "C03-R02",
+      "requirement": "One-page admin shell, required sidebar links, active Reservations, heading/description and New reservation action",
+      "status": "PASS",
+      "evidence": "artifact/index.html; evidence/desktop.png"
+    },
+    {
+      "id": "C03-R03",
+      "requirement": "Three supplied workshop rows and right-hand 3 workshops/23 reserved seats summary",
+      "status": "PASS",
+      "evidence": "evidence/browser-checks.json: content, capacity-preserved; evidence/desktop.png"
+    },
+    {
+      "id": "C03-R04",
+      "requirement": "Accessible dialog fields, required validation and local summary addition",
+      "status": "PASS",
+      "evidence": "evidence/browser-checks.json: dialog-open, required-errors, whitespace-validation, local-addition, focus-wrap, escape-return"
+    },
+    {
+      "id": "C03-R05",
+      "requirement": "Compact narrow navigation and summary after list",
+      "status": "PASS",
+      "evidence": "evidence/browser-checks.json: reflow-768, reflow-390, reflow-320; evidence/width-390.png"
+    },
+    {
+      "id": "C03-R06",
+      "requirement": "Runnable dependency-free example with setup instructions",
+      "status": "PASS",
+      "evidence": "artifact/README.md; evidence/server-check.json; verified direct file browser load"
+    }
+  ],
+  "assumptions": [
+    "Navigation links move to same-page sections and Reservations stays active.",
+    "Local summaries last only for the current page session.",
+    "Requirement IDs were supplied without individual descriptions; mapping above partitions the supplied task in order."
+  ],
+  "decisions": [
+    "Keep brand palette, layout grouping and type authority separate; do not use layout grayscale or placeholder copy.",
+    "Use native semantic HTML and system fonts without dependencies.",
+    "Use native dialog with explicit focus-boundary wrapping after observed Chrome behavior.",
+    "Keep capacity data immutable while rendering added reservations in a separate local list.",
+    "Scale H1 to 36px at narrow widths and place summary below list; this is a responsive adaptation rather than a pixel-identical screenshot clone."
+  ],
+  "checks": [
+    {
+      "id": "content",
+      "status": "PASS",
+      "evidence": "Desktop shows heading, three exact workshop rows, 3 workshops and 23 seats; desktop.png"
+    },
+    {
+      "id": "type-palette",
+      "status": "PASS",
+      "evidence": "Computed 44px Georgia h1; brand canvas rgb(247,246,239)."
+    },
+    {
+      "id": "dialog-open",
+      "status": "PASS",
+      "evidence": "Enter opens labeled native modal; workshop receives focus."
+    },
+    {
+      "id": "required-errors",
+      "status": "PASS",
+      "evidence": "Both empty fields show associated errors; focus goes to first invalid field."
+    },
+    {
+      "id": "whitespace-validation",
+      "status": "PASS",
+      "evidence": "Whitespace-only attendee rejected without discarding selected workshop."
+    },
+    {
+      "id": "local-addition",
+      "status": "PASS",
+      "evidence": "Valid form adds exact local summary, closes modal and restores trigger focus."
+    },
+    {
+      "id": "capacity-preserved",
+      "status": "PASS",
+      "evidence": "Supplied capacities and summary figures unchanged after local addition."
+    },
+    {
+      "id": "focus-trap",
+      "status": "PASS",
+      "evidence": "Shift+Tab from select focuses dialog close button."
+    },
+    {
+      "id": "focus-wrap",
+      "status": "PASS",
+      "evidence": "Shift+Tab from first dialog control wraps to final submit control."
+    },
+    {
+      "id": "escape-return",
+      "status": "PASS",
+      "evidence": "Escape closes modal and restores trigger focus."
+    },
+    {
+      "id": "reflow-768",
+      "status": "PASS",
+      "evidence": "{\"overflow\":false,\"summary\":851.171875,\"list\":831.171875,\"nav\":\"static\"}; width-768.png"
+    },
+    {
+      "id": "reflow-390",
+      "status": "PASS",
+      "evidence": "{\"overflow\":false,\"summary\":1018.515625,\"list\":998.515625,\"nav\":\"static\"}; width-390.png"
+    },
+    {
+      "id": "reflow-320",
+      "status": "PASS",
+      "evidence": "{\"overflow\":false,\"summary\":1139.984375,\"list\":1119.984375,\"nav\":\"static\"}; width-320.png"
+    },
+    {
+      "id": "narrow-dialog-fit",
+      "status": "PASS",
+      "evidence": "Dialog fits 320px viewport."
+    },
+    {
+      "id": "navigation",
+      "status": "PASS",
+      "evidence": "Settings links to local workspace section."
+    },
+    {
+      "id": "session-reset",
+      "status": "PASS",
+      "evidence": "Reload clears session additions."
+    },
+    {
+      "id": "runtime-errors",
+      "status": "PASS",
+      "evidence": "[]"
+    },
+    {
+      "id": "text-contrast",
+      "status": "PASS",
+      "evidence": "{\"forestWhite\":11.600460334129028,\"mutedCanvas\":5.6355902369186435,\"forestLime\":9.09682275643391,\"forestClay\":5.431785966341737,\"errorWhite\":7.166256999520899}"
+    },
+    {
+      "id": "optional-loopback-server",
+      "status": "PASS",
+      "evidence": "HTTP 200; FIELDNOTES: http://127.0.0.1:43031"
+    },
+    {
+      "id": "reference-visual-inspection",
+      "status": "PASS",
+      "evidence": "All three source PNGs opened with view_image; declared reference roles used separately."
+    },
+    {
+      "id": "visual-desktop-narrow",
+      "status": "PASS",
+      "evidence": "Viewed desktop.png, dialog-errors.png, width-390.png, width-320.png and narrow-dialog.png. Reference grouping, palette and type maintained; narrow text wraps without clipping and summary follows list."
+    },
+    {
+      "id": "syntax",
+      "status": "PASS",
+      "evidence": "node --check artifact/app.js and artifact/server.mjs completed without diagnostics."
+    },
+    {
+      "id": "automated-accessibility-scanner",
+      "status": "UNVERIFIED",
+      "evidence": "No axe or equivalent scanner executed; DOM, keyboard and contrast checks are separately recorded."
+    },
+    {
+      "id": "assistive-technology",
+      "status": "UNVERIFIED",
+      "evidence": "No screen reader/AT session available or performed."
+    },
+    {
+      "id": "actual-browser-zoom",
+      "status": "UNVERIFIED",
+      "evidence": "320px reflow checked; browser zoom control not exercised."
+    },
+    {
+      "id": "performance",
+      "status": "UNVERIFIED",
+      "evidence": "No profiler, field data or repeated lab timing measurements; no CWV claims."
+    },
+    {
+      "id": "async-races",
+      "status": "NOT_APPLICABLE",
+      "evidence": "No network requests or asynchronous data mutations; local synchronous additions only."
+    },
+    {
+      "id": "helper-cleanup",
+      "status": "PASS",
+      "evidence": "Browser verification and reference rendering exited; optional server child killed and exit awaited; no local server remains."
+    }
+  ],
+  "limitations": [
+    "Screen reader, full accessibility audit, actual browser zoom and performance profiling unperformed.",
+    "No backend or persistence; capacity totals deliberately do not change.",
+    "Optional server is loopback-only; no publishing performed.",
+    "First successful UTC timestamp marks timing start; initial clock attempt failed, so preceding setup overhead is not measured.",
+    "Approximately six-minute / twenty-call targets exceeded while resolving rendering and functional failures; all known failures retained in evidence."
+  ],
+  "startedAt": "2026-11-05T16:02:37.8436961Z",
+  "endedAt": "2026-11-05T16:12:41.625Z",
+  "elapsedSeconds": 603.782,
+  "tokens": null,
+  "cost": null,
+  "resourceUsageNote": "Token and cost accounting unavailable.",
+  "failureEvidence": "evidence/command-failures.json; evidence/browser-checks.failed-select.json; evidence/browser-checks.failed-index.json; evidence/browser-checks.failed-wrap.json"
+}

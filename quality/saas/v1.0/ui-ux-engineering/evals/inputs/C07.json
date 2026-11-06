@@ -1,0 +1,32 @@
+{
+  "caseId": "C07",
+  "task": "Build a compact two-step equipment-pickup reservation flow in native TypeScript and plain CSS, using fixtures/C07/copy.json for the English/German strings and choices. Keep it to one page and local state. Step 1 collects name, email, pickup location and a time slot; all fields are required and the email must be valid. Next validates, displays specific errors and focuses the first invalid field. Step 2 shows the long equipment name and all entered choices, requires the consent checkbox, and has Back and Confirm reservation. Back preserves the entered values. Confirmation shows an accessible success state with the submitted details, without a backend. Provide an English/German language switch on every step; switching language preserves form values and translates current labels, errors, choices and summary. On a valid Next, move keyboard focus to the review heading; on Back move it to the first form control. Native keyboard interactions must work throughout, with a visible focus style and properly associated errors. Use a layout that fits 320px and remains comfortable at 1280px; the long German strings must wrap without clipping, collisions or page overflow, including at 200% browser zoom. Controls should have targets at least 44px high. No animation or decorative imagery is needed. Supply setup instructions, place implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+  "fixtures": [
+    "fixtures/C07/copy.json"
+  ],
+  "requirementIds": [
+    "C07-R01",
+    "C07-R02",
+    "C07-R03",
+    "C07-R04",
+    "C07-R05",
+    "C07-R06",
+    "C07-R07"
+  ],
+  "outputContract": {
+    "artifactDirectory": "trial/artifact/",
+    "resultFile": "trial/result.json",
+    "fields": [
+      "caseId",
+      "arm",
+      "run",
+      "route",
+      "requirementCoverage",
+      "assumptions",
+      "decisions",
+      "checks",
+      "limitations"
+    ],
+    "note": "The orchestrator supplies caseId, arm, run and trial directory. Checks use PASS, FAIL, UNVERIFIED or NOT_APPLICABLE and cite observable evidence. Never invent tool access or executed checks."
+  }
+}

@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#22483c">
+  <title>Find a field guide · Fieldnotes</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ctext y=%2226%22 font-size=%2228%22%3E%E2%9D%A7%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead"><span class="brand-icon" aria-hidden="true">❧</span><span>FIELDNOTES</span><span class="edition">THE GUIDE LIBRARY</span></header>
+    <section class="search-panel" aria-labelledby="page-title">
+      <p class="eyebrow">A LITTLE CURIOSITY GOES A LONG WAY</p>
+      <h1 id="page-title">Find a field guide.</h1>
+      <p class="intro">Get to know the natural world, one discovery at a time.</p>
+      <form id="search-form">
+        <label for="query">What would you like to explore?</label>
+        <div class="search-row"><input id="query" name="query" type="search" placeholder="Try cedar or moss" required autocomplete="off" aria-describedby="search-hint"><button class="primary" type="submit">Search <span aria-hidden="true">↗</span></button></div>
+        <p id="search-hint" class="hint">Search by a plant, place, or natural curiosity.</p>
+      </form>
+    </section>
+    <section class="collection" aria-labelledby="results-heading">
+      <div class="collection-header"><h2 id="results-heading">Your discoveries</h2><span class="collection-label">FIELD LIBRARY / 01</span></div>
+      <p id="status" role="status" aria-live="polite" aria-atomic="true">Ready when you are.</p>
+      <div id="results" aria-busy="false"></div>
+    </section>
+    <footer><span>Made for the observant.</span><span aria-hidden="true">✦</span><span>Take a closer look.</span></footer>
+  </main>
+</body>
+</html>

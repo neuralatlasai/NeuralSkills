@@ -1,0 +1,45 @@
+{
+  "createdAt": "2026-11-05T17:34:45.348Z",
+  "completed": [
+    {
+      "trial": "B01-baseline-2",
+      "upper": 227.665,
+      "tools": 9
+    },
+    {
+      "trial": "B01-skill-2",
+      "upper": 323.251,
+      "tools": 12
+    },
+    {
+      "trial": "B02-skill-2",
+      "end": "2026-11-05T17:33:10.589Z",
+      "upper": 283.267,
+      "tools": 10
+    },
+    {
+      "trial": "B02-baseline-2",
+      "end": "2026-11-05T17:34:21.820Z",
+      "upper": 258.912,
+      "tools": 10
+    }
+  ],
+  "pending": [],
+  "dispatchOrder": [
+    "B01-baseline-2",
+    "B01-skill-2",
+    "B02-skill-2",
+    "B02-baseline-2"
+  ],
+  "B02skillLowerPriorEvent": "B01-baseline-2 end17:28:27.322Z precedes B02skill dispatch",
+  "B02baselineLowerPriorEvent": "B01-skill-2 end17:30:02.908Z precedes B02baseline dispatch",
+  "method": "Both arms share versioned contract, case/fixture/criteria, inherited model/tools/budget; independent contexts. Actual baseline gets no skill; original pilots retained.",
+  "actualImplementationContexts": {
+    "original": 8,
+    "controlCorrection": 4,
+    "total": 12,
+    "scored": 8,
+    "pilots": 4
+  },
+  "status": "AUTHORS_COMPLETED_AWAITING_INDEPENDENT_FINAL_ASSESSMENT"
+}

@@ -1,0 +1,2 @@
+# Runnable broken original
+Node24 native TypeScript + node:sqlite; no install. Import init/reserve/readState from service.ts using node --input-type=module. init creates a new synthetic file (do not reuse an existing database without removing it deliberately). Intentional flaws are read/check/await/unconditional-decrement, global receipt key, no parameter binding of replay semantics, nontransactional mutation and no qty validation. SQL statement values are parameterized already; fixing this does not require string SQL construction.

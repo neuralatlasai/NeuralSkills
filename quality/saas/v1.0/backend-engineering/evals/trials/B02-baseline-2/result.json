@@ -1,0 +1,647 @@
+{
+  "caseId": "B02",
+  "arm": "baseline",
+  "run": 2,
+  "route": "isolated local implementation using Node native SQLite; no backend skill read",
+  "coverageDispositions": [
+    {
+      "area": "L01",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "DNS, discovery, network paths and sockets",
+      "reason": "No network, discovery or sockets in the supplied database-only function.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L02",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "TLS, certificates and transport identity",
+      "reason": "No network transport or certificates.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L03",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Proxies, gateways, ingress, CDN and load balancing",
+      "reason": "No ingress, proxy, CDN or balancing layer.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L04",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "reserve tenant/item predicates",
+      "reason": "Tenant scope is checked in reads, conditional writes and allocations; upstream authentication is outside this fixture.",
+      "evidence": "verification.json: validation-and-tenant-scope; forced-race-2-connection"
+    },
+    {
+      "area": "L05",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "exported reserve API",
+      "reason": "Original async function and status/result object shape retained; no HTTP server requested.",
+      "evidence": "original/store.mjs; store.mjs; after.stdout.json"
+    },
+    {
+      "area": "L06",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "reserve mutation",
+      "reason": "Stock decrement and allocation creation commit together; conflict is read/write safe.",
+      "evidence": "verification.json: forced-race-1-connection; fault-rollback-reopen-retry"
+    },
+    {
+      "area": "L07",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "quantity and error handling",
+      "reason": "Positive safe integer validation, missing item, stale version and insufficient stock outcomes exercised.",
+      "evidence": "verification.json: validation-and-tenant-scope"
+    },
+    {
+      "area": "L08",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "reservation lifecycle",
+      "reason": "Async read hook precedes transaction; synchronous fault hook stays inside transaction.",
+      "evidence": "store.mjs; verification.json: forced-race-1-connection; fault-rollback-reopen-retry"
+    },
+    {
+      "area": "L09",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "Node/native SQLite concurrency",
+      "reason": "Node v24.12.0 and SQLite 3.50.4 verified on Windows x64; no container/capacity claim.",
+      "evidence": "verification.json: runtime; busy-lock-acquisition-retry"
+    },
+    {
+      "area": "L10",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "stock and allocations schema",
+      "reason": "Original tables and seeded tenant rows exercised on fresh real SQLite files; no migration requested.",
+      "evidence": "original/store.mjs; verification.json: forced-race-2-connection"
+    },
+    {
+      "area": "L11",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "parameterized conditional UPDATE RETURNING",
+      "reason": "CAS write scopes tenant/item/version and sufficient quantity; no query-plan tuning needed for supplied tiny tables.",
+      "evidence": "store.mjs; verification.json: forced-race-2-connection"
+    },
+    {
+      "area": "L12",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "SQLite transaction and writer lock",
+      "reason": "BEGIN IMMEDIATE, CAS and rollback enforce consistency; bounded BEGIN busy retry tested.",
+      "evidence": "verification.json: forced-race-2-connection; fault-rollback-reopen-retry; busy-lock-acquisition-retry; busy-exhaustion-no-mutation"
+    },
+    {
+      "area": "L13",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Database privileges and operational administration",
+      "reason": "No production database administration or privilege changes authorized.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L14",
+      "disposition": "INHERITED_VERIFIED",
+      "component": "local file-backed SQLite",
+      "reason": "File storage and clean close/reopen verified; replication, sharding and remote storage outside fixture.",
+      "evidence": "verification.json: forced-race-1-connection; fault-rollback-reopen-retry"
+    },
+    {
+      "area": "L15",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Cache, views and derived state",
+      "reason": "No cache or materialized derived state in the fixture.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L16",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Messaging, event logs, CDC and async effects",
+      "reason": "No messages, outbox, CDC or external asynchronous effects.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L17",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Durable workers, schedules and workflows",
+      "reason": "No durable worker or scheduler in the fixture.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L18",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Files, objects, search and specialized stores",
+      "reason": "No object store, search service or specialized store; SQLite file evidence is covered by L14.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L19",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "External APIs, webhooks, tools and MCP",
+      "reason": "No external API/webhook/tool integration in the reservation path.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L20",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Traffic, capacity, scaling and cost",
+      "reason": "No production traffic, cost or scaling target; local timeout measurements are not capacity evidence.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L21",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "rollback and connection recovery",
+      "reason": "Injected fault rolls back and same connection retries; clean reopen verified. Crash/backup recovery untested and not claimed.",
+      "evidence": "verification.json: fault-rollback-reopen-retry"
+    },
+    {
+      "area": "L22",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "local verification evidence",
+      "reason": "Retained before/after state, runtime, raw stderr and checks; production telemetry/SLOs outside scope.",
+      "evidence": "before.stdout.json; after.stdout.json; verification.json; command-log.json"
+    },
+    {
+      "area": "L23",
+      "disposition": "OUT_OF_SCOPE",
+      "component": "Infrastructure, build and deployment lifecycle",
+      "reason": "No build pipeline, infrastructure or deployment changes requested.",
+      "evidence": "Case B02 task and supplied database-only fixtures; no corresponding service configured."
+    },
+    {
+      "area": "L24",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "component": "input boundary and tenant scoping",
+      "reason": "Built-ins only, parameterized SQL and scoped identifiers; credentials/privacy policies outside local fixture.",
+      "evidence": "store.mjs; verification.json: validation-and-tenant-scope"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "B02-R01",
+      "status": "PASS",
+      "evidence": [
+        "after.stdout.json",
+        "verification.json: forced-race-1-connection; forced-race-2-connection"
+      ]
+    },
+    {
+      "id": "B02-R02",
+      "status": "PASS",
+      "evidence": [
+        "verification.json: fault-rollback-reopen-retry"
+      ]
+    },
+    {
+      "id": "B02-R03",
+      "status": "PASS",
+      "evidence": [
+        "store.mjs",
+        "verification.json: validation-and-tenant-scope"
+      ]
+    },
+    {
+      "id": "B02-R04",
+      "status": "PASS",
+      "evidence": [
+        "probe.mjs",
+        "verification.json: forced-race-1-connection; forced-race-2-connection; fault-rollback-reopen-retry; busy-lock-acquisition-retry"
+      ]
+    },
+    {
+      "id": "B02-R05",
+      "status": "PASS",
+      "evidence": [
+        "README.md",
+        "verification.json: runtime; busy-lock-acquisition-retry; busy-exhaustion-no-mutation"
+      ]
+    },
+    {
+      "id": "B02-R06",
+      "status": "PASS",
+      "evidence": [
+        "../result.json: coverageDispositions and decisions",
+        "command-log.json"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "B02-R01",
+      "mechanism": "SQLite BEGIN IMMEDIATE with scoped conditional UPDATE RETURNING and allocation INSERT before COMMIT.",
+      "limit": "One writer at a time; results verified on one and two connections within a single process.",
+      "failure": "CAS miss returns 409; no stock/allocation mutation.",
+      "verification": "forced-race-1-connection; forced-race-2-connection; original/repaired probe"
+    },
+    {
+      "requirement": "B02-R02",
+      "mechanism": "afterWrite executes synchronously between stock and allocation writes inside the transaction; errors ROLLBACK and rethrow.",
+      "limit": "Synchronous fault hook only, no external effect or reentrant database transaction.",
+      "failure": "Original exception propagates; rollback failure yields AggregateError.",
+      "verification": "fault-rollback-reopen-retry"
+    },
+    {
+      "requirement": "B02-R03",
+      "mechanism": "Validate safe positive quantity, scoped lookup, parameterized CAS version/stock guard.",
+      "limit": "Tenant identity is trusted input; no auth layer; invalid quantity is checked before missing item.",
+      "failure": "400 invalid quantity/tenant/item, 404 missing scoped item, 409 stale/insufficient.",
+      "verification": "validation-and-tenant-scope"
+    },
+    {
+      "requirement": "B02-R04",
+      "mechanism": "Await afterRead before lock; keep write transaction synchronous; preserve exported reserve/openStore API.",
+      "limit": "Connection must be open and transaction-idle; async afterWrite unsupported as in fixture.",
+      "failure": "Read hook rejection propagates before transaction; write hook failure rolls back.",
+      "verification": "forced-race-1-connection; fault-rollback-reopen-retry"
+    },
+    {
+      "requirement": "B02-R05",
+      "mechanism": "Real SQLite files; up to three BEGIN SQLITE_BUSY attempts with 10ms async gaps and configured 200ms busy_timeout.",
+      "limit": "Timeouts do not guarantee wall latency; no OS-process/crash/power-loss or capacity validation.",
+      "failure": "Busy exhaustion returns 409; other SQLite exceptions propagate after rollback if transaction began.",
+      "verification": "runtime; busy-lock-acquisition-retry; busy-exhaustion-no-mutation; README.md"
+    },
+    {
+      "requirement": "B02-R06",
+      "mechanism": "Enumerate L01-L24 using supplied coverage vocabulary separately from test outcomes; retain failed patch and raw evidence.",
+      "limit": "No hidden tests, broader system coverage or exact token/cost counters available.",
+      "failure": "Required evidence absent would remain UNVERIFIED; unrelated infrastructure is explicitly OUT_OF_SCOPE.",
+      "verification": "result schema assertions in finalize.mjs; command-log.json"
+    }
+  ],
+  "checks": [
+    {
+      "id": "original-bug-reproduction",
+      "status": "PASS",
+      "command": "node artifact/original/probe.mjs artifact/before-race.sqlite",
+      "exitCode": 0,
+      "evidence": "before.stdout.json: two 201 responses, two allocations, stock 1/version2; reproduces defect rather than accepting original behavior.",
+      "kind": "regression reproduction"
+    },
+    {
+      "id": "runtime",
+      "status": "PASS",
+      "evidence": {
+        "node": "v24.12.0",
+        "sqlite": "3.50.4",
+        "platform": "win32",
+        "arch": "x64",
+        "journal": {
+          "journal_mode": "delete"
+        },
+        "busyTimeout": {
+          "timeout": 200
+        }
+      },
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "kind": "actual file-backed SQLite verification"
+    },
+    {
+      "id": "forced-race-1-connection",
+      "status": "PASS",
+      "evidence": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-2\\artifact\\verification-rEOrFN\\race-1.sqlite",
+        "arrivals": 2,
+        "results": [
+          {
+            "status": 201,
+            "available": 1,
+            "version": 2
+          },
+          {
+            "status": 409
+          }
+        ],
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        },
+        "reopen": "identical"
+      },
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "kind": "actual file-backed SQLite verification"
+    },
+    {
+      "id": "forced-race-2-connection",
+      "status": "PASS",
+      "evidence": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-2\\artifact\\verification-rEOrFN\\race-2.sqlite",
+        "arrivals": 2,
+        "results": [
+          {
+            "status": 201,
+            "available": 1,
+            "version": 2
+          },
+          {
+            "status": 409
+          }
+        ],
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 1,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 4
+            }
+          ]
+        },
+        "reopen": "identical"
+      },
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "kind": "actual file-backed SQLite verification"
+    },
+    {
+      "id": "fault-rollback-reopen-retry",
+      "status": "PASS",
+      "evidence": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-2\\artifact\\verification-rEOrFN\\fault.sqlite",
+        "injected": "injected afterWrite fault",
+        "insideFault": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 3,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": []
+        },
+        "rolledBack": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 5,
+              "version": 1
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": []
+        },
+        "retry": {
+          "status": 201,
+          "available": 3,
+          "version": 2
+        },
+        "after": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 3,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 2
+            }
+          ]
+        },
+        "reopen": "identical"
+      },
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "kind": "actual file-backed SQLite verification"
+    },
+    {
+      "id": "validation-and-tenant-scope",
+      "status": "PASS",
+      "evidence": {
+        "invalidQuantities": [
+          {
+            "quantity": "0",
+            "status": 400
+          },
+          {
+            "quantity": "-1",
+            "status": 400
+          },
+          {
+            "quantity": "1.5",
+            "status": 400
+          },
+          {
+            "quantity": "9007199254740992",
+            "status": 400
+          },
+          {
+            "quantity": "4",
+            "status": 400
+          },
+          {
+            "quantity": "null",
+            "status": 400
+          },
+          {
+            "quantity": "NaN",
+            "status": 400
+          },
+          {
+            "quantity": "Infinity",
+            "status": 400
+          }
+        ],
+        "staleAndInsufficient": 409,
+        "missing": 404,
+        "south": {
+          "status": 201,
+          "available": 98,
+          "version": 2
+        },
+        "after": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 5,
+              "version": 1
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 98,
+              "version": 2
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "south",
+              "item": "part-7",
+              "quantity": 2
+            }
+          ]
+        }
+      },
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "kind": "actual file-backed SQLite verification"
+    },
+    {
+      "id": "busy-lock-acquisition-retry",
+      "status": "PASS",
+      "evidence": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-2\\artifact\\verification-rEOrFN\\busy.sqlite",
+        "actualBusy": {
+          "code": "ERR_SQLITE_ERROR",
+          "errcode": 5,
+          "message": "database is locked"
+        },
+        "released": true,
+        "result": {
+          "status": 201,
+          "available": 4,
+          "version": 2
+        },
+        "elapsedMs": 340.32399999999996,
+        "state": {
+          "stock": [
+            {
+              "tenant": "north",
+              "item": "part-7",
+              "available": 4,
+              "version": 2
+            },
+            {
+              "tenant": "south",
+              "item": "part-7",
+              "available": 100,
+              "version": 1
+            }
+          ],
+          "allocations": [
+            {
+              "id": 1,
+              "tenant": "north",
+              "item": "part-7",
+              "quantity": 1
+            }
+          ]
+        }
+      },
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "kind": "actual file-backed SQLite verification"
+    },
+    {
+      "id": "busy-exhaustion-no-mutation",
+      "status": "PASS",
+      "evidence": {
+        "file": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-2\\artifact\\verification-rEOrFN\\busy-exhausted.sqlite",
+        "result": {
+          "status": 409
+        },
+        "elapsedMs": 936.3802000000001,
+        "retry": {
+          "status": 201,
+          "available": 4,
+          "version": 2
+        }
+      },
+      "command": "node artifact/verify.mjs",
+      "exitCode": 0,
+      "kind": "actual file-backed SQLite verification"
+    }
+  ],
+  "evidence": [
+    "artifact/original/",
+    "artifact/store.mjs",
+    "artifact/probe.mjs",
+    "artifact/verify.mjs",
+    "artifact/before.stdout.json",
+    "artifact/before.stderr.txt",
+    "artifact/after.stdout.json",
+    "artifact/after.stderr.txt",
+    "artifact/verification.json",
+    "artifact/verify.stdout.json",
+    "artifact/verify.stderr.txt",
+    "artifact/command-log.json",
+    "artifact/README.md",
+    "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-2\\artifact\\verification-rEOrFN"
+  ],
+  "assumptions": [
+    "Supplied afterWrite is synchronous and has no external effects.",
+    "Caller supplies a transaction-idle, open connection and already trusted tenant identity.",
+    "First tool timestamp was not exposed. startUtc/elapsedSeconds are null rather than invented; first observed UTC was 2026-11-05T17:30:43.8004674Z after the third tool. Work completed within 360 seconds; observed lower-bound duration is recorded in limitations."
+  ],
+  "limitations": [
+    "No HTTP service was requested or added.",
+    "No cross-OS-process, crash, power-loss, backup, network-filesystem or load verification.",
+    "No idempotency key for ambiguous caller retries; inherited schema remains unchanged.",
+    "Node native SQLite emitted an experimental-feature warning, preserved in stderr.",
+    "busy_timeout 200ms and 3 BEGIN attempts are not a strict wall-time bound; observed exhaustion about 936ms.",
+    "Observed duration since third-tool timestamp: 218.02 seconds; true elapsed includes two earlier read tools and intervening reasoning."
+  ],
+  "startUtc": null,
+  "endUtc": "2026-11-05T17:34:21.820Z",
+  "elapsedSeconds": null,
+  "actualTokens": null,
+  "tokenAvailability": "Unavailable: no token usage counter exposed to trial agent.",
+  "actualCost": null,
+  "costAvailability": "Unavailable: no monetary usage counter exposed to trial agent.",
+  "toolCalls": 10,
+  "toolCallAvailability": "Exact: 9 nested tools and 1 collaboration send_message; functions.exec wrappers excluded. Includes one failed apply_patch.",
+  "limits": {
+    "wallSeconds": 360,
+    "toolCalls": 20,
+    "breaches": []
+  }
+}

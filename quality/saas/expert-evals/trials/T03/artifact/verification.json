@@ -1,0 +1,35 @@
+[
+  {
+    "run": 1,
+    "start": "2026-11-06T03:17:51.875Z",
+    "end": "2026-11-06T03:17:54.522Z",
+    "elapsedMs": 2642.6006,
+    "exitCode": 0,
+    "stdout": "PASS B1-R1 same-process race\nPASS B1-R1 independent-process race\nPASS B1-R2 duplicate concurrent/restart/conflict/tenant\nPASS B1-R2 durable sold_out receipt\nPASS B1-R3 rollback and lost acknowledgement\nPASS B1-R4 invalid quantities no mutation\nPASS B1-R4 binding and scoped values\nPASS B1-R1 storage constraints\ncontention_ms=1134\nPASS B1-R4 bounded contention and recovery\n{\"node\":\"v24.12.0\",\"sqlite\":\"3.50.4\",\"failures\":0}\n",
+    "stderr": "(node:33704) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:33704) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/quality/saas/expert-evals/trials/T03/artifact/service.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\heman\\package.json.\n"
+  },
+  {
+    "run": 2,
+    "start": "2026-11-06T03:17:54.522Z",
+    "end": "2026-11-06T03:17:57.168Z",
+    "elapsedMs": 2645.7155,
+    "exitCode": 0,
+    "stdout": "PASS B1-R1 same-process race\nPASS B1-R1 independent-process race\nPASS B1-R2 duplicate concurrent/restart/conflict/tenant\nPASS B1-R2 durable sold_out receipt\nPASS B1-R3 rollback and lost acknowledgement\nPASS B1-R4 invalid quantities no mutation\nPASS B1-R4 binding and scoped values\nPASS B1-R1 storage constraints\ncontention_ms=1137\nPASS B1-R4 bounded contention and recovery\n{\"node\":\"v24.12.0\",\"sqlite\":\"3.50.4\",\"failures\":0}\n",
+    "stderr": "(node:12796) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:12796) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/quality/saas/expert-evals/trials/T03/artifact/service.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\heman\\package.json.\n"
+  },
+  {
+    "run": 3,
+    "start": "2026-11-06T03:17:57.168Z",
+    "end": "2026-11-06T03:18:00.117Z",
+    "elapsedMs": 2949.071799999999,
+    "exitCode": 0,
+    "stdout": "PASS B1-R1 same-process race\nPASS B1-R1 independent-process race\nPASS B1-R2 duplicate concurrent/restart/conflict/tenant\nPASS B1-R2 durable sold_out receipt\nPASS B1-R3 rollback and lost acknowledgement\nPASS B1-R4 invalid quantities no mutation\nPASS B1-R4 binding and scoped values\nPASS B1-R1 storage constraints\ncontention_ms=1169\nPASS B1-R4 bounded contention and recovery\n{\"node\":\"v24.12.0\",\"sqlite\":\"3.50.4\",\"failures\":0}\n",
+    "stderr": "(node:12116) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:12116) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/quality/saas/expert-evals/trials/T03/artifact/service.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\heman\\package.json.\n"
+  },
+  {
+    "run": "edges",
+    "exitCode": 0,
+    "stdout": "PASS extra edge checks: sold_out fault boundaries, validation before open, missing SKU, cross-tenant event FK and integrity_check\n",
+    "stderr": "(node:30800) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:30800) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/quality/saas/expert-evals/trials/T03/artifact/service.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\heman\\package.json.\n"
+  }
+]

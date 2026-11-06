@@ -1,0 +1,618 @@
+{
+  "caseId": "B03",
+  "arm": "skill",
+  "run": 1,
+  "route": {
+    "skill": "backend-engineering",
+    "modules": [
+      "B1",
+      "B3",
+      "B4",
+      "B6",
+      "B7 local migration only",
+      "B8"
+    ],
+    "read": "SKILL.md; references/modules.md,data.md,runtime-capacity.md,verification.md,api-domain.md,operations.md; B03.json; responsibilities.json; named fixtures only"
+  },
+  "status": "PASS",
+  "coverageDispositions": [
+    {
+      "id": "L01",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "In-process SQLite has no DNS, discovery or socket path.",
+      "evidence": "artifact/query.mjs"
+    },
+    {
+      "id": "L02",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No transport or TLS boundary exists in this local fixture.",
+      "evidence": "artifact/README.md"
+    },
+    {
+      "id": "L03",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No proxy, ingress or CDN is present.",
+      "evidence": "artifact/README.md"
+    },
+    {
+      "id": "L04",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Parameterized tenant WHERE is retained and checked across every seeded tenant; identity authentication is caller-owned and unverified.",
+      "evidence": "verify.json"
+    },
+    {
+      "id": "L05",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "Exported JavaScript function only; no HTTP/RPC protocol change.",
+      "evidence": "artifact/query.mjs"
+    },
+    {
+      "id": "L06",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Ready list has bounded limit, two-field projection and deterministic total order.",
+      "evidence": "artifact/query.mjs; verify.json"
+    },
+    {
+      "id": "L07",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Integer range validation rejects 13 invalid forms before SQL; projection excludes payload.",
+      "evidence": "verify.json"
+    },
+    {
+      "id": "L08",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Bindings validation precedes prepared parameterized read; no mutation in list lifecycle.",
+      "evidence": "artifact/query.mjs"
+    },
+    {
+      "id": "L09",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "K<=100 bounds JavaScript row materialization; synchronous SQLite remains event-loop blocking; RSS/heap raw deltas are not peak memory.",
+      "evidence": "after.json"
+    },
+    {
+      "id": "L10",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Additive, reproducible partial index leaves complete supplied row data unchanged.",
+      "evidence": "index-apply.json; verify.json"
+    },
+    {
+      "id": "L11",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Predicate/projection/order/LIMIT moved to SQL; both tenant plans show covering index without temp sort.",
+      "evidence": "before.json; after.json"
+    },
+    {
+      "id": "L12",
+      "disposition": "INHERITED_VERIFIED",
+      "reason": "Read-only statement and native local transaction used; test-only tie writes rollback and restore count. No concurrency/isolation claim.",
+      "evidence": "verify.json"
+    },
+    {
+      "id": "L13",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "reason": "SQLite local-file trust applies; OS ACL, file authorization and operational administration were not tested.",
+      "evidence": "artifact/README.md"
+    },
+    {
+      "id": "L14",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Logical allocated page and observed database/WAL size change captured; replication and physical I/O unverified.",
+      "evidence": "index-apply.json"
+    },
+    {
+      "id": "L15",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No application cache or derived view is changed; OS/SQLite cache state is disclosed but uncontrolled.",
+      "evidence": "before.json; after.json"
+    },
+    {
+      "id": "L16",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No messaging, events or asynchronous effects.",
+      "evidence": "artifact/query.mjs"
+    },
+    {
+      "id": "L17",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No worker, scheduler or durable workflow.",
+      "evidence": "artifact/query.mjs"
+    },
+    {
+      "id": "L18",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "All data remains in existing SQLite table; no file/object/search adapter changes.",
+      "evidence": "artifact/seed.mjs"
+    },
+    {
+      "id": "L19",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No external API, webhook or MCP runtime integration.",
+      "evidence": "artifact/query.mjs"
+    },
+    {
+      "id": "L20",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Three comparable samples per tenant, whale skew and explicit read/write/storage cost model; no scaling/capacity claim.",
+      "evidence": "before.json; after.json; result.json"
+    },
+    {
+      "id": "L21",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No backup, DR, service availability or failover requested; seeded local fixture is reproducible.",
+      "evidence": "artifact/reproduce.mjs"
+    },
+    {
+      "id": "L22",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Retain actual plans, raw latency/materialization measurements and initial failures; production telemetry is outside scope.",
+      "evidence": "initial-failures.txt; before.json; after.json"
+    },
+    {
+      "id": "L23",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Additive local migration is idempotent and fresh complete reproduction executed with native runtime only; no deployment.",
+      "evidence": "index-repeat.json; reproduce.json"
+    },
+    {
+      "id": "L24",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Bounded numeric input, parameterized tenant and payload exclusion tested; wider security/privacy lifecycle is outside scope.",
+      "evidence": "verify.json"
+    }
+  ],
+  "requirementsStatus": [
+    {
+      "id": "B03-R01",
+      "status": "PASS",
+      "evidence": "verify.json: 249 oracle comparisons, 13 invalid limits, rolled-back tie test"
+    },
+    {
+      "id": "B03-R02",
+      "status": "PASS",
+      "evidence": "after.json plans and materialized rows/bytes; verify.json plan assertion"
+    },
+    {
+      "id": "B03-R03",
+      "status": "PASS",
+      "evidence": "before.json; after.json; hypothesis.txt; artifact/baseline-query.mjs"
+    },
+    {
+      "id": "B03-R04",
+      "status": "PASS",
+      "evidence": "result.json measurements/costs/limitations; index-apply.json"
+    },
+    {
+      "id": "B03-R05",
+      "status": "PASS",
+      "evidence": "implementation-exits.json; reproduce.json; verify.json"
+    },
+    {
+      "id": "B03-R06",
+      "status": "PASS",
+      "evidence": "coverageDispositions length/uniqueness asserted in report.mjs"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "B03-D01",
+      "requirement": "B03-R01",
+      "mechanism": "Number.isInteger, 1..100 before prepare; tenant parameter; ready literal; created_at DESC,id DESC",
+      "limit": "Local function accepts caller-authorized tenant; no auth subsystem",
+      "failure": "Wrong caller tenant would select wrong scope; bad limit throws RangeError",
+      "verification": "verify.json: 249 oracle comparisons, 13 invalid limits, rolled-back tie test"
+    },
+    {
+      "id": "B03-D02",
+      "requirement": "B03-R02",
+      "mechanism": "SELECT id,created_at with SQL LIMIT and ready-only covering tenant/time/id index",
+      "limit": "K<=100 JS rows; native caches and index comparison work additional",
+      "failure": "Missing index remains correct but can scan/sort; index application failure blocks efficient rollout",
+      "verification": "after.json plans and materialized rows/bytes; verify.json plan assertion"
+    },
+    {
+      "id": "B03-D03",
+      "requirement": "B03-R03",
+      "mechanism": "Unmodified benchmark before edits, same database after migration, three calls per tenant; preserved original query",
+      "limit": "One local before/after microbenchmark; first call then warm repeats; OS cache uncontrolled",
+      "failure": "Cache/order/instrumentation effects prevent universal or statistical speedup conclusions",
+      "verification": "before.json; after.json; hypothesis.txt; artifact/baseline-query.mjs"
+    },
+    {
+      "id": "B03-D04",
+      "requirement": "B03-R04",
+      "mechanism": "Raw measured elapsed/materialized counts and logical page/file sizes separated from variable-based cost model",
+      "limit": "No rows-examined, physical I/O, lock-wait, peak-memory or cold-cache instrumentation",
+      "failure": "Output row counts or JSON bytes could be misread as engine work or disk bytes",
+      "verification": "result.json measurements/costs/limitations; index-apply.json"
+    },
+    {
+      "id": "B03-D05",
+      "requirement": "B03-R05",
+      "mechanism": "Idempotent DDL migration, frozen seed oracle and isolated reproduction runner using Node built-ins",
+      "limit": "Node 24.12.0 / SQLite 3.50.4 tested; no production or power-loss claims",
+      "failure": "Contention/disk/permissions can fail DDL; seed overwrites named fixture table",
+      "verification": "implementation-exits.json; reproduce.json; verify.json"
+    },
+    {
+      "id": "B03-D06",
+      "requirement": "B03-R06",
+      "mechanism": "All 24 responsibility dispositions and requirement-linked five-field decisions",
+      "limit": "Only local read optimization and migration evidenced",
+      "failure": "Broad scope could imply unsupported infrastructure/security guarantees",
+      "verification": "coverageDispositions length/uniqueness asserted in report.mjs"
+    }
+  ],
+  "checks": [
+    {
+      "id": "C01",
+      "command": "Get-Date -AsUTC -Format o",
+      "exitStatus": "PowerShell parameter error (shell ultimately 0)",
+      "status": "FAIL",
+      "kind": "instrumentation",
+      "evidence": "initial-failures.txt",
+      "preserved": true
+    },
+    {
+      "id": "C02",
+      "command": "node seed.mjs parcels.sqlite under ErrorActionPreference=Stop",
+      "exitStatus": 1,
+      "status": "FAIL",
+      "kind": "wrapper/instrumentation",
+      "evidence": "seed.initial.stderr.txt; initial-failures.txt",
+      "preserved": true
+    },
+    {
+      "id": "C03",
+      "command": "node seed.mjs parcels.sqlite; node bench.mjs parcels.sqlite (before edits)",
+      "exitStatus": 0,
+      "status": "PASS",
+      "kind": "actual SQLite setup/baseline",
+      "evidence": "baseline-exits.json; seed.stdout.json; before.json"
+    },
+    {
+      "id": "C04",
+      "command": "node apply-index.mjs parcels.sqlite",
+      "exitStatus": 0,
+      "status": "PASS",
+      "kind": "actual SQLite migration",
+      "evidence": "index-apply.json; implementation-exits.json"
+    },
+    {
+      "id": "C05",
+      "command": "node bench.mjs parcels.sqlite",
+      "exitStatus": 0,
+      "status": "PASS",
+      "kind": "actual SQLite benchmark",
+      "evidence": "after.json; implementation-exits.json"
+    },
+    {
+      "id": "C06",
+      "command": "node verify.mjs parcels.sqlite",
+      "exitStatus": 0,
+      "status": "PASS",
+      "kind": "actual SQLite correctness",
+      "evidence": "verify.json; implementation-exits.json"
+    },
+    {
+      "id": "C07",
+      "command": "node apply-index.mjs parcels.sqlite (repeat)",
+      "exitStatus": 0,
+      "status": "PASS",
+      "kind": "actual SQLite idempotence",
+      "evidence": "index-repeat.json; implementation-exits.json"
+    },
+    {
+      "id": "C08",
+      "command": "node reproduce.mjs",
+      "exitStatus": 0,
+      "status": "PASS",
+      "kind": "fresh end-to-end reproducibility",
+      "evidence": "reproduce.json; artifact/reproduction-Xc59sI/exits.json"
+    },
+    {
+      "id": "C09",
+      "command": "node report.mjs",
+      "exitStatus": 0,
+      "status": "PASS",
+      "kind": "measurement parity and report integrity",
+      "evidence": "result.json; report.mjs"
+    },
+    {
+      "id": "C10",
+      "command": "physical I/O / engine rows examined / cold cache / peak memory",
+      "exitStatus": null,
+      "status": "UNVERIFIED",
+      "kind": "unavailable measurement",
+      "evidence": "No native counters collected; never inferred from materialized output."
+    }
+  ],
+  "measurements": {
+    "whale": {
+      "before": {
+        "elapsedMs": {
+          "median": 391.7255,
+          "min": 295.5562,
+          "max": 439.3316,
+          "samples": [
+            295.5562,
+            391.7255,
+            439.3316
+          ]
+        },
+        "materializedRows": [
+          48000,
+          48000,
+          48000
+        ],
+        "materializedJsonBytes": [
+          16071162,
+          16071162,
+          16071162
+        ],
+        "outputRows": [
+          20,
+          20,
+          20
+        ],
+        "plan": [
+          {
+            "id": 3,
+            "parent": 0,
+            "notused": 174,
+            "detail": "SCAN parcels"
+          },
+          {
+            "id": 15,
+            "parent": 0,
+            "notused": 0,
+            "detail": "USE TEMP B-TREE FOR ORDER BY"
+          }
+        ]
+      },
+      "after": {
+        "elapsedMs": {
+          "median": 0.24799999999999045,
+          "min": 0.1629000000000076,
+          "max": 0.5960000000000036,
+          "samples": [
+            0.5960000000000036,
+            0.24799999999999045,
+            0.1629000000000076
+          ]
+        },
+        "materializedRows": [
+          20,
+          20,
+          20
+        ],
+        "materializedJsonBytes": [
+          641,
+          641,
+          641
+        ],
+        "outputRows": [
+          20,
+          20,
+          20
+        ],
+        "plan": [
+          {
+            "id": 6,
+            "parent": 0,
+            "notused": 59,
+            "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+          }
+        ]
+      }
+    },
+    "tenant-17": {
+      "before": {
+        "elapsedMs": {
+          "median": 36.423499999999876,
+          "min": 35.197200000000066,
+          "max": 42.257699999999886,
+          "samples": [
+            36.423499999999876,
+            42.257699999999886,
+            35.197200000000066
+          ]
+        },
+        "materializedRows": [
+          150,
+          150,
+          150
+        ],
+        "materializedJsonBytes": [
+          50997,
+          50997,
+          50997
+        ],
+        "outputRows": [
+          4,
+          4,
+          4
+        ],
+        "plan": [
+          {
+            "id": 3,
+            "parent": 0,
+            "notused": 174,
+            "detail": "SCAN parcels"
+          },
+          {
+            "id": 15,
+            "parent": 0,
+            "notused": 0,
+            "detail": "USE TEMP B-TREE FOR ORDER BY"
+          }
+        ]
+      },
+      "after": {
+        "elapsedMs": {
+          "median": 0.21989999999999554,
+          "min": 0.18969999999998777,
+          "max": 0.6037000000000035,
+          "samples": [
+            0.21989999999999554,
+            0.6037000000000035,
+            0.18969999999998777
+          ]
+        },
+        "materializedRows": [
+          4,
+          4,
+          4
+        ],
+        "materializedJsonBytes": [
+          129,
+          129,
+          129
+        ],
+        "outputRows": [
+          4,
+          4,
+          4
+        ],
+        "plan": [
+          {
+            "id": 6,
+            "parent": 0,
+            "notused": 59,
+            "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+          }
+        ]
+      }
+    }
+  },
+  "environment": {
+    "runtime": "v24.12.0",
+    "sqlite": "3.50.4",
+    "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+    "memoryBytes": 16934494208,
+    "platform": "Windows PowerShell; local synchronous native SQLite",
+    "cacheCondition": "same process/connection; first call then two warm repeats; OS cache uncontrolled",
+    "workload": {
+      "rows": 60000,
+      "whaleRows": 48000,
+      "otherTenants": 80,
+      "payloadBytes": 256,
+      "readyRows": 1621,
+      "tenantsMeasured": [
+        "whale",
+        "tenant-17"
+      ],
+      "limit": 20,
+      "samplesPerTenantPerPhase": 3,
+      "concurrency": 1,
+      "benchmarkUnmodified": true
+    }
+  },
+  "costs": {
+    "variables": "N=60000 total; M=tenant rows; R=1621 ready rows; K<=100 returned; P=1 DB; C=1 sequential benchmark; Q=0 application queue",
+    "before": "Scan N and sort M tenant rows (comparison sort model O(M log M)); materialize M full records including 256-byte payloads. Each call has one query plus JS filter/slice/projection.",
+    "after": "Covering B-tree seek model O(log R+K) comparisons/entries with tenant-key comparison bytes; no temp sort observed. O(K) JS row storage, serialization O(output bytes). Native page cache/runtime memory is additional; total process peak is unmeasured.",
+    "io": "Plans support index-only access path and avoided payload projection. Logical access model is seek plus leaf entries; physical reads/writes, rows examined, locks and cache hits are unavailable.",
+    "writes": "Partial index maintains only ready rows; ready inserts/deletes, ordering keys and ready-status transitions add B-tree maintenance. No write throughput measured. Index build scans N, sorts keys, allocates pages and takes write lock; busy timeout 5000ms.",
+    "storage": {
+      "before": {
+        "pageCount": 4300,
+        "pageSize": 4096,
+        "freePages": 0,
+        "databaseFileBytes": 17612800,
+        "walFileBytes": 0
+      },
+      "after": {
+        "pageCount": 4310,
+        "pageSize": 4096,
+        "freePages": 0,
+        "databaseFileBytes": 17612800,
+        "walFileBytes": 49472
+      },
+      "elapsedMs": 109.26719999999999,
+      "index": {
+        "name": "parcels_ready_tenant_order",
+        "sql": "CREATE INDEX parcels_ready_tenant_order ON parcels(tenant,created_at DESC,id DESC) WHERE status='ready'"
+      },
+      "note": "10 pages x 4096; includes stats/all allocation changes, not isolated index allocation or physical I/O.",
+      "logicalAllocatedGrowthBytes": 40960
+    },
+    "network": "No network calls, fan-out or retries in query; local SQLite only.",
+    "recovery": "Rebuild cost includes table scan and ready-key sorting; measured one local index build only, no restore/RTO claim."
+  },
+  "assumptions": [
+    "Tenant is authorized by caller before this function; fixture contains no identity provider.",
+    "Single local file and no concurrent writer/load during microbenchmark.",
+    "Required order uses SQLite integer timestamp/id fields exactly as seeded."
+  ],
+  "limitations": [
+    "First UTC request failed because Windows PowerShell lacks -AsUTC. The recorded interval starts at first successful UTC observation after initial reads; total turn elapsed is longer by an unmeasured initial interval. Trial stopped conservatively before 360 seconds.",
+    "Three descriptive samples per tenant are not independent production load trials; no p99, speedup ratio/confidence, SLO or horizontal capacity inferred.",
+    "OS cache uncontrolled; baseline/after use separate benchmark processes over the same database. DDL/ANALYZE warms data/index.",
+    "Elapsed values include benchmark materialized-row JSON encoding and application work, not isolated engine execution. Materialized JSON bytes are not physical I/O or network bytes.",
+    "RSS and heap deltas are raw noisy before/after snapshots, not peak or total memory bounds.",
+    "Engine rows examined, physical I/O, lock wait, cache hit counts, cold-cache behavior, OS ACL security, production load and write-amplification measurements unavailable.",
+    "Native SQLite emits ExperimentalWarning; retained in stderr. No downloads, external mutation, background helper or production deployment."
+  ],
+  "startUtc": "2026-11-05T17:02:21.8859911Z",
+  "endUtc": "2026-11-05T17:07:10.076Z",
+  "elapsedSeconds": 288.191,
+  "timingBoundary": "first successful UTC observation through result generation; initial observation failure preserved",
+  "actualTokens": null,
+  "actualCost": null,
+  "actualToolCount": {
+    "externalCommandOrPatchCalls": 14,
+    "hostCalls": null,
+    "countBoundary": "commands/patch calls through report generation, including failures; collaboration/host orchestration separate and unmetered"
+  },
+  "rawEvidence": [
+    "before.json",
+    "after.json",
+    "verify.json",
+    "index-apply.json",
+    "index-repeat.json",
+    "reproduce.json",
+    "seed.stdout.json",
+    "baseline-exits.json",
+    "implementation-exits.json",
+    "initial-failures.txt"
+  ],
+  "verificationSummary": [
+    {
+      "name": "unchanged full supplied dataset including payload/status/skew",
+      "status": "PASS",
+      "rows": 60000,
+      "whaleRows": 48000,
+      "sha256": "dceb3dd35c917b174cc9e3f01757ffce4fdddb82d5d97f8220f76277d16afd7c"
+    },
+    {
+      "name": "independent seeded oracle: all tenants, missing/injection-shaped tenant, limits 1/20/100 and projection",
+      "status": "PASS",
+      "combinations": 249
+    },
+    {
+      "name": "13 invalid limits rejected before SQL execution",
+      "status": "PASS"
+    },
+    {
+      "name": "same-timestamp descending id, status/tenant exclusion and limit; transient rows rolled back",
+      "status": "PASS"
+    },
+    {
+      "name": "real SQLite integrity and post-rollback cardinality",
+      "status": "PASS"
+    },
+    {
+      "name": "executed production SQL uses covering index without temp sort",
+      "status": "PASS",
+      "plan": [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 59,
+          "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "probe.mjs",
+    "probe-fixed.sqlite"
+  ],
+  "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-skill-2\\artifact",
+  "exitCode": 0
+}

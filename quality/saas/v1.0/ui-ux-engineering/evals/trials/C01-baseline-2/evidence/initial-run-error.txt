@@ -1,0 +1,1 @@
+﻿First browser verification attempt failed before execution: ERR_UNSUPPORTED_ESM_URL_SCHEME. Windows absolute ESM imports require file:/// URLs. Corrected the Playwright import to file:///C:/Users/heman/AppData/Roaming/npm/node_modules/@playwright/cli/node_modules/playwright/index.mjs and reran the same checks. No application checks ran during the failed attempt.

@@ -1,0 +1,12 @@
+{
+  "planVersion":"1.0",
+  "frozenBeforeExecution":true,
+  "scope":"Supplemental original workload fixture; frozen eight evaluation cases and previous lab are unchanged.",
+  "dataset":{"syntheticRecords":1000,"renderedPageSize":50,"source":"deterministic local array; no production data"},
+  "runs":3,
+  "environmentPlan":{"browser":"existing Chrome through existing Playwright","viewport":"1280x900 then390x844 then1280x900","device":"actual OS/architecture/CPU/memory recorded; host load uncontrolled","network":"loopback/no throttling; synthetic180ms or650ms delay","cpu":"no throttling","cache":"new browser context per run; no-store server"},
+  "workload":["Load1000records with50DOM rows","Select first record, change page and return; retain selection","Type Record09 sequentially with15ms key delay; record feedback computation, next animation callback and final operation completion separately","Force A=Record0 slow then B=Record09; finish A after B and retain B","Scroll bounded table in12steps","Resize to390x844 and restore desktop","Slow refresh while preserving selection, input focus and visible stale rows","Fail refresh then retry successfully"],
+  "criteria":{"functional":"all workload assertions pass","rows":"no more than50rendered rows","dom":"no more than2000DOM nodes (pagination structural guard; generous diagnostic cap, not a product budget)","feedback":"per-run median input-event to next animation callback <=100ms; a modest local diagnostic gate allowing6frames at60Hz, not INP or a productionSLO","layout":"no outer horizontal overflow at390px","errors":"zero browser runtime exceptions"},
+  "metrics":["feedbackMutationMedianMs","feedbackAnimationMedianMs","typingOperationMs","scrollWorkloadMs","resizeWorkloadMs","refreshReadyMs","domNodes","heapUsedBytes","layoutCountDelta","recalcStyleCountDelta"],
+  "profileBoundary":"CDP Performance/Memory snapshots are limited observations; no FPS, memory leak, accessibility conformance, field percentile or field Core Web Vitals claim. Preserve failures; do not retune gates after observing results."
+}

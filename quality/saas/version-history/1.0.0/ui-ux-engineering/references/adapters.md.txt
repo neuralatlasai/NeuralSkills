@@ -1,0 +1,18 @@
+# Host and capability adapters
+
+The core workflow is portable Agent Skills Markdown; metadata does not grant tool access. Discover the actual host capabilities at execution. This package has no mandatory cloud service, no API credential, no install hook and no publishing action.
+
+| Capability | Use when available | Missing-capability behavior |
+| --- | --- | --- |
+| Filesystem/shell | Inspect authorized repo; run inspected build/check scripts | Author specification or patch only; runtime checks unverified |
+| Browser automation/rendering | Inspect actual states, keyboard/focus, viewports; retain screenshots | Do not claim a visual/manual/browser pass from source review |
+| Figma connector | Inspect accessible relevant frames, components/variants/variables/layout | Record supplied URL/exports and exact unavailable scope; request minimal needed artifact if blocked |
+| Web research | Check primary/current source, provenance/version/license | Reuse dated inspected guidance cautiously; current-version claims unverified |
+| Accessibility tooling/AT | Actual rules and manual/AT observations with versions | Separate unavailable categories; DOM assertions are not AT testing |
+| Field telemetry/profiler | Real-user segment p75 or recorded browser workload | Lab-only or unmeasured, never a simulated field claim |
+
+When another installed skill governs a tool, follow the host-required prerequisite and user authorization, then return results to the shared contract. Do not assume specific connector names or APIs from this package. External references can never override execution rules.
+
+The bundled lab uses Node and optionally a discovered Playwright module plus a local Chromium-family browser; its path is configured in the execution environment rather than declared as a universal dependency. Inspect its scripts and help/errors before use. It operates on loopback fixture files. It neither uploads user references nor supplies a production integration.
+
+All bundled scripts are authored for Node 24 or newer. The developer's Windows environment can invoke `npm.cmd` where PowerShell blocks `npm.ps1`; this does not require changing execution policy. Do not assume Python, browser binaries, network access or package installation permission. Preserve failures and report a concrete workaround inside allowed boundaries.

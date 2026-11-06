@@ -1,0 +1,62 @@
+{
+  "startedAt": "2026-11-05T16:10:19.203Z",
+  "environment": {
+    "node": "v24.12.0",
+    "renderer": "Chrome headless",
+    "deviceScaleFactor": 1,
+    "network": "file URLs, no network",
+    "fonts": "Georgia and Arial system stacks",
+    "browser": "156.0.8078.80"
+  },
+  "checks": [
+    {
+      "id": "content",
+      "status": "PASS",
+      "evidence": "Desktop shows heading, three exact workshop rows, 3 workshops and 23 seats; desktop.png"
+    },
+    {
+      "id": "type-palette",
+      "status": "PASS",
+      "evidence": "Computed 44px Georgia h1; brand canvas rgb(247,246,239)."
+    },
+    {
+      "id": "dialog-open",
+      "status": "PASS",
+      "evidence": "Enter opens labeled native modal; workshop receives focus."
+    },
+    {
+      "id": "required-errors",
+      "status": "PASS",
+      "evidence": "Both empty fields show associated errors; focus goes to first invalid field."
+    },
+    {
+      "id": "whitespace-validation",
+      "status": "PASS",
+      "evidence": "Whitespace-only attendee rejected without discarding selected workshop."
+    },
+    {
+      "id": "local-addition",
+      "status": "PASS",
+      "evidence": "Valid form adds exact local summary, closes modal and restores trigger focus."
+    },
+    {
+      "id": "capacity-preserved",
+      "status": "PASS",
+      "evidence": "Supplied capacities and summary figures unchanged after local addition."
+    },
+    {
+      "id": "focus-trap",
+      "status": "PASS",
+      "evidence": "Shift+Tab from select focuses dialog close button."
+    },
+    {
+      "id": "focus-wrap",
+      "status": "FAIL",
+      "evidence": "Shift+Tab from first dialog control wraps to final submit control."
+    }
+  ],
+  "errors": [
+    "Error: focus-wrap: Shift+Tab from first dialog control wraps to final submit control.\n    at check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/evals/trials/C03-skill-1/verify.mjs:8:128)\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/ui-ux-engineering/evals/trials/C03-skill-1/verify.mjs:38:1"
+  ],
+  "endedAt": "2026-11-05T16:10:30.159Z"
+}

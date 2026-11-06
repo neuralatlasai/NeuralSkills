@@ -1,0 +1,19 @@
+{
+  "positiveDnsTtlSeconds": 1,
+  "applicationPositiveCacheCapMs": 100,
+  "applicationNegativeCacheMs": 80,
+  "resolverTimeoutMs": 120,
+  "resolverTries": 1,
+  "httpDeadlineMs": 150,
+  "churnRequests": 50,
+  "sequence": [
+    "NXDOMAIN and negative cache",
+    "initial A endpoint",
+    "close endpoint A and change DNS to B",
+    "stale cached address fails",
+    "refresh after100ms discovers B",
+    "DNS timeout",
+    "slow response deadline",
+    "50 fresh TCP connections and cleanup"
+  ]
+}

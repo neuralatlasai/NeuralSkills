@@ -1,0 +1,47 @@
+{
+  "recordedAt": "2026-11-05T15:54:51.802Z",
+  "scope": "Exact final fixture and runner files after final measured lab; no subsequent fixture edits authorised by coordinator.",
+  "reason": "Companion build identity for runs.json conditions.build; the raw measurements are not rewritten.",
+  "files": [
+    {
+      "path": "evals/fixtures/lab/index.html",
+      "bytes": 6714,
+      "sha256": "c97db3ffab6f842e99b9e06cd36c1621713a5cc659407bec6ffcee7a42737fcc"
+    },
+    {
+      "path": "evals/fixtures/lab/styles.css",
+      "bytes": 18595,
+      "sha256": "729d48e1f85dc0628f0ec578198467117fb2b93adc973a1812f4ddb6de5499e3"
+    },
+    {
+      "path": "evals/fixtures/lab/app.ts",
+      "bytes": 8366,
+      "sha256": "db006fe4d9305d44ea5081328f09c2a679df193ba47a8e7070a25229b826a5de"
+    },
+    {
+      "path": "evals/fixtures/lab/state.ts",
+      "bytes": 2733,
+      "sha256": "096910bfc49a8b811958c4ed2522dcda3aa5cc4fafb593d8a0a50ed106267248"
+    },
+    {
+      "path": "evals/fixtures/lab/app.js",
+      "bytes": 8075,
+      "sha256": "06a2215a0792eb99082b17dd8b38e9f13419a4b8411255578962991aedcd89ad"
+    },
+    {
+      "path": "evals/fixtures/lab/state.js",
+      "bytes": 2628,
+      "sha256": "a82f8373ff3ed20c17215b8cf31b1243dfef25b7d85b9cab17f3f5043efb8ba4"
+    },
+    {
+      "path": "scripts/lab.mjs",
+      "bytes": 14535,
+      "sha256": "184dc821890f809d620bbbd0cc932cb05e4cca8dace35e59928df2fc8c8c701c"
+    },
+    {
+      "path": "scripts/build-lab.mjs",
+      "bytes": 3386,
+      "sha256": "c0ed3ceb30c99af678d72e44387e21c5a901a6db1456efd04aa569463ff0856d"
+    }
+  ]
+}

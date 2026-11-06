@@ -1,0 +1,55 @@
+{
+  "status": "PARTIALLY_VALIDATED",
+  "rule": "Required FAIL/UNVERIFIED prevents an unqualified complete claim.",
+  "gates": [
+    {
+      "id": "G1",
+      "name": "Contract established",
+      "status": "PASS",
+      "evidence": "evals/evidence/authoring-contract.json",
+      "scope": "Supported input/output/task scope, exclusions, runtime, acceptance and unavailable capabilities explicit."
+    },
+    {
+      "id": "G2",
+      "name": "Evidence sufficient",
+      "status": "PASS",
+      "evidence": "references/sources.md; references/standards.md; evals/evidence/research/",
+      "scope": "Five inspected source skills and qualifying >10,000-star UI implementation repositories with pinned provenance/adoption limits. Public standards metadata/guidance only; full ISO normative texts and formal conformance unverified."
+    },
+    {
+      "id": "G3",
+      "name": "Architecture coherent",
+      "status": "PASS",
+      "evidence": "SKILL.md; references/modules.md; assets/contracts.schema.json; evals/evidence/review/freeze-check.json",
+      "scope": "Eight conditional module contracts, shared traceability/state boundary, frozen cases/rubric/protocol. All44 frozen files hash-identical."
+    },
+    {
+      "id": "G4",
+      "name": "Package implemented",
+      "status": "PASS",
+      "evidence": "assets/manifest.json; SKILL.md; references/; scripts/",
+      "scope": "Portable instruction core with conditional host adapters and optional local Node>=24 lab tooling. No universal platform/integration guarantee."
+    },
+    {
+      "id": "G5",
+      "name": "Structural checks passed",
+      "status": "PASS",
+      "evidence": "evals/evidence/tooling/commands.json; evals/evidence/heavy/report.json; evals/evidence/review/validator.json",
+      "scope": "Bounded metadata, link, schema and manifest assertions plus every shipped script success/negative path recorded; final validator PASS with 60 static resources. This is not full JSON Schema conformance."
+    },
+    {
+      "id": "G6",
+      "name": "Behavior evaluated",
+      "status": "UNVERIFIED",
+      "evidence": "evals/evidence/review/assessment.json; evals/evidence/review/independent-runtime.json; evals/evidence/review/supplemental/report.json; evals/evidence/review/zoom-completion/report.json",
+      "scope": "18actual trials and12activation prompts, including12comparative trials. C07native200% full German state criterion nowPASS with independent screenshots/metrics and unchangedsource. FourC05genuineReact runtime/preservation/keyboard/reflow checks remainUNVERIFIED due missingdependencies. WrapperID ambiguity/unblindedgrading limitcomparison; no comparative benefit established."
+    },
+    {
+      "id": "G7",
+      "name": "Delivery verified",
+      "status": "PASS",
+      "evidence": "assets/manifest.json; evals/report.md; evals/evidence/review/trial-file-inventory.json",
+      "scope": "Static inventory and reproducible bounded evidence are delivered with remaining limits. Disposable supplemental/chrome-profile runtime cache is explicitly excluded from hash inventories/archive evidence; its deletion was automatically rejected before execution. PASS applies to honest bounded delivery, not full behavioral acceptance. New zoom-completion helper profile directories are also runtime-cache exclusions."
+    }
+  ]
+}

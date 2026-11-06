@@ -1,0 +1,125 @@
+{
+  "research_date_utc": "2026-11-05",
+  "initial_live_clock_utc": "2026-11-05 15:45:06 UTC",
+  "metadata_observed_between_utc": [
+    "2026-11-05 15:47:20 UTC",
+    "2026-11-05 15:47:22 UTC"
+  ],
+  "discovery_url": "https://skills.sh/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+  "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+  "api_url": "https://api.github.com/repos/nextlevelbuilder/ui-ux-pro-max-skill",
+  "stars": 145563,
+  "default_branch": "main",
+  "commit": "b7d5353e0130feb8c5574ef1251f8a1db1873ccb",
+  "commit_date_utc": "2026-11-05T07:07:38Z",
+  "package_version": "2.15.0",
+  "license": "MIT",
+  "license_copyright": "2024 Next Level Builder",
+  "retrieval_method": "Connected GitHub fetch; raw files pinned to commit. Marketplace discovery via web.",
+  "files": [
+    {
+      "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/SKILL.md",
+      "retrieved_characters": 16597,
+      "inspection_scope": "Full skill instructions read.",
+      "short_exact_excerpt": "--- name: ui-ux-pro-max description: \"UI/UX design intelligence for"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/LICENSE",
+      "retrieved_characters": 1075,
+      "inspection_scope": "Root MIT identity/terms read.",
+      "short_exact_excerpt": "MIT License Copyright (c) 2024 Next Level Builder"
+    },
+    {
+      "path": "skill.json",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/skill.json",
+      "retrieved_characters": 943,
+      "inspection_scope": "Version/license metadata read.",
+      "short_exact_excerpt": "{ \"name\": \"ui-ux-pro-max\", \"displayName\": \"UI/UX Pro Max\", \"description\":"
+    },
+    {
+      "path": ".claude/skills/ui-ux-pro-max/scripts/search.py",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/scripts/search.py",
+      "retrieved_characters": 10632,
+      "inspection_scope": "Full CLI source read without execution; query modes, flags, result formatting.",
+      "short_exact_excerpt": "#!/usr/bin/env python3 # -*- coding: utf-8 -*- \"\"\""
+    },
+    {
+      "path": ".claude/skills/ui-ux-pro-max/scripts/core.py",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/scripts/core.py",
+      "retrieved_characters": 43929,
+      "inspection_scope": "Selected CSV_CONFIG, BM25 ranking, domain/stack retrieval and errors read.",
+      "short_exact_excerpt": "#!/usr/bin/env python3 # -*- coding: utf-8 -*- \"\"\""
+    },
+    {
+      "path": ".claude/skills/ui-ux-pro-max/scripts/reasoning_contract.py",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/scripts/reasoning_contract.py",
+      "retrieved_characters": 5824,
+      "inspection_scope": "Selected allowed-condition/action grammar and validation read; no execution.",
+      "short_exact_excerpt": "#!/usr/bin/env python3 \"\"\"Closed, non-executable grammar for design-system decision"
+    },
+    {
+      "path": ".claude/skills/ui-ux-pro-max/scripts/design_system.py",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/scripts/design_system.py",
+      "retrieved_characters": 71319,
+      "inspection_scope": "Selected semantic-color config and persistence create/skip/force contract read; not full generator audit.",
+      "short_exact_excerpt": "#!/usr/bin/env python3 # -*- coding: utf-8 -*- \"\"\""
+    },
+    {
+      "path": ".claude/skills/ui-ux-pro-max/references/quick-reference.md",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/references/quick-reference.md",
+      "retrieved_characters": 24481,
+      "inspection_scope": "Accessibility section inspected; not all categories audited.",
+      "short_exact_excerpt": "# Quick Reference — Full Rule Set (all"
+    },
+    {
+      "path": ".claude/skills/ui-ux-pro-max/data/catalog-summary.json",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/data/catalog-summary.json",
+      "retrieved_characters": 2392,
+      "inspection_scope": "Source-reported metadata inspected, no independent whole-catalog row-count validation.",
+      "short_exact_excerpt": "{ \"schemaVersion\": 1, \"verifiedAt\": \"2026-11-04\", \"counts\": { \"styles\":"
+    },
+    {
+      "path": ".claude/skills/ui-ux-pro-max/data/ux-guidelines.csv",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/data/ux-guidelines.csv",
+      "retrieved_characters": 27516,
+      "inspection_scope": "Header/schema and first two rows read; not full data audit.",
+      "short_exact_excerpt": "No,Category,Issue,Platform,Description,Do,Don't,Code Example Good,Code Example Bad,Severity 1,Navigation,Smooth Scroll,Web,Anchor links"
+    },
+    {
+      "path": ".claude/skills/ui-ux-pro-max/data/ui-reasoning.csv",
+      "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/b7d5353e0130feb8c5574ef1251f8a1db1873ccb/.claude/skills/ui-ux-pro-max/data/ui-reasoning.csv",
+      "retrieved_characters": 77354,
+      "inspection_scope": "Header/schema and SaaS sample rows read; genre choices remain heuristics.",
+      "short_exact_excerpt": "No,UI_Category,Recommended_Pattern,Style_Priority,Color_Mood,Typography_Mood,Key_Effects,Decision_Rules,Anti_Patterns,Severity,Reasoning,Confidence 1,SaaS (General),Hero + Features + CTA,Glassmorphism +"
+    }
+  ],
+  "adopt": [
+    "Use a focused concern with the detected implementation stack.",
+    "Verify returned guidance's domain and fit before applying it; make absent matches explicit."
+  ],
+  "adapt": [
+    "Keep global design choices and explicit page exceptions, preserving established decisions.",
+    "Use structured non-executable rule data as recommendations subject to user intent and primary standards."
+  ],
+  "reject": [
+    "BM25 relevance or genre presets as proof of usability/accessibility.",
+    "Mandatory style regeneration or animation for every page.",
+    "Catalog breadth as a quality ranking, fixed platform dimensions as universal WCAG rules, or upstream commands as local dependencies."
+  ],
+  "catalog_discrepancy": {
+    "skills_sh_summary": "Older aggregate counts (e.g. 50+ styles, 57 font pairings, 10 stacks).",
+    "skills_sh_displayed_skill": "79 searchable styles / 50 active in discovery rendering.",
+    "pinned_skill": "80 searchable styles / 51 active; skill.json version 2.15.0.",
+    "pinned_catalog_summary": "Source-reported 80 searchable / 51 active, verifiedAt 2026-11-04.",
+    "interpretation": "Only source-reported claims were inspected; full independent row-count or guidance-quality audit was not performed. Do not repeat these as independently verified coverage."
+  },
+  "limitations": [
+    "No upstream script or installer was executed; no upstream package installed or vendored.",
+    "Only listed sections and CSV samples inspected. Generator, all rules, dependencies and data licenses were not comprehensively audited.",
+    "MIT repository license does not automatically relicense linked fonts, icons, images or other upstream assets.",
+    "Upstream recommendation engine is not required by the local ui-ux-engineering skill.",
+    "A source path guess src/ui-ux-pro-max/SKILL.md failed; the actual inspected skill is .claude/skills/ui-ux-pro-max/SKILL.md."
+  ]
+}

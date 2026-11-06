@@ -1,0 +1,47 @@
+{
+  "provenance": "Observed execution history. Original per-run raw request logs and result files remain under runs, network-runs and load-runs. This file describes the observed failures; it does not replace raw evidence.",
+  "initialCertificateSetup": {
+    "status": "FAIL",
+    "command": "OpenSSL x509 -req ... -days -1 ...",
+    "observedStderr": "Certificate request self-signature ok\nsubject=CN=localhost\nError: end date before start date",
+    "effect": "The first integrated invocation stopped before any cases executed. The initial integrated.raw.jsonl is consequently empty.",
+    "repair": "Generate the expired test certificate with explicit past -not_before and -not_after timestamps supported by the probed OpenSSL3.5.7."
+  },
+  "firstCompletedIntegratedSuite": {
+    "status": "FAIL",
+    "observed": { "PASS": 12, "FAIL": 1 },
+    "failingCase": "I10",
+    "reason": "Untrusted-CA test supplied undefined, which activated the client helper's default trusted fixture CA. The request correctly succeeded with that trusted CA; the test correctly failed its untrusted-certificate assertion.",
+    "repair": "Supply an empty CA trust list and assert actual TLS verification failure. No TLS validation was disabled."
+  },
+  "firstNetworkSuite": {
+    "status": "FAIL",
+    "reason": "The initial100ms positive application DNS cache expired while the initial HTTP request took188.5272ms under concurrent setup/load. The following request discovered endpointB instead of exercising a stale endpoint, so the stale-endpoint assertion failed.",
+    "repair": "Freeze a500ms positive cache schedule and explicitly refresh the cache before endpoint removal, then assert the refused stale address and refresh after510ms."
+  },
+  "firstLoadSuite": {
+    "status": "PASS",
+    "runs": 18,
+    "intendedArrivals": 822,
+    "generated": 541,
+    "generatorDropped": 281,
+    "conditions": "Other verification and certificate-generation work ran concurrently on the same host. Generator drop counts were retained and the full suite was rerun serially through smoke.mjs."
+  },
+  "independentReviewCycle2": {
+    "status": "FAIL",
+    "affectedPriorBuildHash": "26110b595a6ce1ba8f1730462986fb5bf1f1cddb3f6a134180f405d30ca82a37",
+    "probeSummary": { "PASS": 12, "FAIL": 5, "UNVERIFIED": 1, "NOT_APPLICABLE": 0 },
+    "streamedRaceAttempts": { "FAIL": 3 },
+    "evidence": ["../independent-review/probe-results.json", "../independent-review/race-results.json"],
+    "findings": [
+      "Streamed PATCH could use a stale owner/role snapshot and restore omitted fields from an old row.",
+      "Idempotency replay could disclose a representation after ownership revocation or hard deletion.",
+      "SQLite INTEGER affinity accepted fractional quantity through direct SQL.",
+      "Raw token authorization and cursor trailing components were accepted."
+    ],
+    "repair": "Fresh credential, role, object and field authorization in synchronous BEGIN IMMEDIATE mutation/replay transactions; current-row PATCH merge; current-authorized replay or minimal410 and durable payload redaction after deletion; schema v3 raw-writer integer guards and invalid-data migration refusal; strict Bearer, canonical cursor and safe integer preconditions.",
+    "regressionEvidence": "New integrated I02/I04/I05/I11 supplemental checks preserve all13 original groups and add the concrete independent failures plus credential/role/queue interleavings. Root-level summaries identify the latest completed build; earlier green13-group runs are not evidence that these previously missing cases passed."
+  },
+  "latestCompletedResults": ["integrated-results.json", "network-results.json", "load-results.json", "smoke-results.json"],
+  "policy": "Timestamped attempt directories are preserved. Root-level summaries identify the latest completed suite and do not erase earlier failed attempts."
+}

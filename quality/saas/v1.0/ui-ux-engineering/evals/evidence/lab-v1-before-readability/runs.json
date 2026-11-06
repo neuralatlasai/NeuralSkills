@@ -1,0 +1,34 @@
+{
+  "kind": "lab",
+  "conditions": {
+    "build": "local typed fixture compiled by build-lab.mjs",
+    "tool": "Playwright using installed Chromium-family browser",
+    "browser": "156.0.8078.80",
+    "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "device": "win32 x64; host CPU/memory not controlled",
+    "network": "loopback; no throttling; synthetic in-memory request delay 320ms",
+    "cpu": "no throttling",
+    "viewport": "1440x1050 metrics; 390x844 responsive check",
+    "dataset": "six synthetic requests; mutation case creates seventh temporarily",
+    "cache": "new browser context per run; HTTP Cache-Control no-store",
+    "workload": "navigate to six rendered requests; refresh until six requests announced",
+    "timing": "Node performance clock end-to-end UI readiness, plus browser navigation DCL timing"
+  },
+  "runs": [
+    {
+      "navigateToReadyMs": 712.0015000000003,
+      "domContentLoadedMs": 106.79999999701977,
+      "refreshReadyMs": 587.6778000000004
+    },
+    {
+      "navigateToReadyMs": 977.0628000000015,
+      "domContentLoadedMs": 536.5,
+      "refreshReadyMs": 430.458499999997
+    },
+    {
+      "navigateToReadyMs": 980.7296999999999,
+      "domContentLoadedMs": 599.9000000059605,
+      "refreshReadyMs": 432.03600000000006
+    }
+  ]
+}

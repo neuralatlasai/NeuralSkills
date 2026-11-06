@@ -1,0 +1,47 @@
+[
+  {
+    "command": "Get-Date -AsUTC -Format o",
+    "error": "A parameter cannot be found that matches parameter name 'AsUTC'.",
+    "resolution": "Used [DateTime]::UtcNow.ToString(o); first successful clock 2026-11-05T16:02:37.8436961Z."
+  },
+  {
+    "command": "Get-Content -Raw fixtures/C03/{brand,layout,typography}.svg",
+    "error": "Cannot find path because it does not exist.",
+    "resolution": "Named fixtures resolved under evals/fixtures/C03; all three then read, rendered and visually inspected."
+  },
+  {
+    "command": "node render-refs.mjs (initial import)",
+    "error": "ERR_UNSUPPORTED_ESM_URL_SCHEME: On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'",
+    "resolution": "Changed import to file:/// URL."
+  },
+  {
+    "command": "node render-refs.mjs (file SVG navigation)",
+    "error": "page.screenshot: Timeout 30000ms exceeded. Call log: taking page screenshot; waiting for fonts to load; fonts loaded.",
+    "resolution": "Rendered actual SVG source inline in HTML with same viewport; saved all three PNGs."
+  },
+  {
+    "command": "Get-CimInstance Win32_Process",
+    "error": "Access denied; HRESULT 0x80041003",
+    "resolution": "Did not use process enumeration or kill unrelated processes."
+  },
+  {
+    "command": "python -c import cairosvg",
+    "error": "Program python.exe failed to run: The file cannot be accessed by the system",
+    "resolution": "Used existing Chrome and Playwright instead."
+  },
+  {
+    "command": "node verify.mjs initial",
+    "error": "locator.selectOption: Timeout 30000ms exceeded; did not find some options",
+    "resolution": "Found missing opening option tag for Urban sketching; fixed HTML. Subsequent browser check confirms all four options and successful Urban sketching submission."
+  },
+  {
+    "command": "node verify.mjs index diagnostic",
+    "error": "local-addition FAIL; index 1 selected Botanical inks because Urban sketching was missing",
+    "resolution": "Preserved evidence/browser-checks.failed-index.json; fixed opening option tag and restored label selection."
+  },
+  {
+    "command": "node verify.mjs after option fix",
+    "error": "focus-wrap FAIL: Shift+Tab from first dialog control did not wrap to submit",
+    "resolution": "Added explicit boundary Tab handling; final focus-wrap PASS. Preserved evidence/browser-checks.failed-wrap.json."
+  }
+]

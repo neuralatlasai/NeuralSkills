@@ -1,0 +1,45 @@
+{
+  "claim": "Object authorization and omitted PATCH fields survive concurrent owner revocation during body parsing",
+  "startedAt": "2026-11-05T16:36:26.112Z",
+  "finishedAt": "2026-11-05T16:36:26.679Z",
+  "durationMs": 566.7210000000005,
+  "results": [
+    {
+      "attempt": 1,
+      "transferStatus": 200,
+      "transferOwner": "alice",
+      "transferVersion": 2,
+      "limitedMutationStatus": 200,
+      "finalOwner": "limited",
+      "finalQuantity": 777,
+      "finalVersion": 3,
+      "status": "FAIL"
+    },
+    {
+      "attempt": 2,
+      "transferStatus": 200,
+      "transferOwner": "alice",
+      "transferVersion": 2,
+      "limitedMutationStatus": 200,
+      "finalOwner": "limited",
+      "finalQuantity": 777,
+      "finalVersion": 3,
+      "status": "FAIL"
+    },
+    {
+      "attempt": 3,
+      "transferStatus": 200,
+      "transferOwner": "alice",
+      "transferVersion": 2,
+      "limitedMutationStatus": 200,
+      "finalOwner": "limited",
+      "finalQuantity": 777,
+      "finalVersion": 3,
+      "status": "FAIL"
+    }
+  ],
+  "httpsRequests": 12,
+  "directory": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\independent-review\\race-2026-11-05T16-36-21-182Z",
+  "source": "scripts/service.mjs:165,183-187",
+  "method": "Three independent real HTTPS streamed-body interleavings; client sends If-Match2 before existing version1 is transferred to version2."
+}

@@ -1,0 +1,7 @@
+import {DatabaseSync} from 'node:sqlite';
+export function init(path:string){const d=new DatabaseSync(path);d.exec('CREATE TABLE jobs(id TEXT PRIMARY KEY,payload TEXT,dueAt INTEGER,status TEXT,worker TEXT,token INTEGER,leaseUntil INTEGER,result TEXT)');d.close()}
+export function enqueue(path:string,j:{id:string;payload:string;dueAt:number}){const d=new DatabaseSync(path);try{d.prepare("INSERT INTO jobs VALUES(?,?,?,'pending',NULL,0,NULL,NULL)").run(j.id,j.payload,j.dueAt)}finally{d.close()}}
+export async function claim(path:string,o:{now:number;worker:string;leaseMs:number}){const d=new DatabaseSync(path);try{const row=d.prepare("SELECT * FROM jobs WHERE status='pending' OR (status='processing' AND leaseUntil<=?) ORDER BY dueAt,id LIMIT 1").get(o.now);if(!row||Number(row.dueAt)>o.now)return null;await Promise.resolve();const leaseUntil=o.now+o.leaseMs;const token=Number(row.token)+1;d.prepare("UPDATE jobs SET status='processing',worker=?,token=?,leaseUntil=? WHERE id=?").run(o.worker,token,leaseUntil,row.id);return {id:row.id,worker:o.worker,token,leaseUntil,payload:row.payload}}finally{d.close()}}
+export function complete(path:string,c:{id:string;worker:string;token:number},result:string,o:{now:number}){const d=new DatabaseSync(path);try{return Number(d.prepare("UPDATE jobs SET status='done',result=? WHERE id=?").run(result,c.id).changes)>0}finally{d.close()}}
+export function readJobs(path:string){const d=new DatabaseSync(path);try{return d.prepare('SELECT * FROM jobs ORDER BY id').all()}finally{d.close()}}
+

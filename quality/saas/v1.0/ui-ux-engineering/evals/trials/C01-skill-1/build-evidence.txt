@@ -1,0 +1,3 @@
+Executed node artifact/build.mjs after reading the source. Exit 0.
+Compiled native TypeScript with TypeScript 6.0.3
+Runtime: Node v24.12.0

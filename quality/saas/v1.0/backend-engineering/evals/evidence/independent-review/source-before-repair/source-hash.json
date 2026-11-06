@@ -1,0 +1,19 @@
+{
+  "sha256": "26110b595a6ce1ba8f1730462986fb5bf1f1cddb3f6a134180f405d30ca82a37",
+  "files": [
+    "evals/fixtures/contracts.ts",
+    "evals/fixtures/legacy-repository.mjs",
+    "evals/fixtures/load-workloads.json",
+    "package.json",
+    "scripts/cert-gen.mjs",
+    "scripts/check.mjs",
+    "scripts/client.mjs",
+    "scripts/dns-network.mjs",
+    "scripts/evidence.mjs",
+    "scripts/integrated.mjs",
+    "scripts/load.mjs",
+    "scripts/service.mjs",
+    "scripts/smoke.mjs",
+    "scripts/worker.mjs"
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "createdAt": "2026-11-06T02:49:01.742Z",
+  "version": "1.0.0",
+  "scope": "Immutable instruction/report bytes preserved before the requested expert-depth revision. .txt extensions mark historical evidence, not independently installable skills. Original fixture/raw evidence stays in each package. Baseline agents load these instruction texts, resolving original references through snapshot path map.",
+  "files": [
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "SKILL.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/SKILL.md.txt",
+      "bytes": 10470,
+      "sha256": "9d14e9d5ec00d84513172b08b94c8e2218d235cf2b2145d036846958ea2bc222"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "references/adapters.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/references/adapters.md.txt",
+      "bytes": 2336,
+      "sha256": "ae3c2794b0e7923e78ef4dcd304ccb04d955a118774e92f55be289500a147c60"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "references/coding-standards.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/references/coding-standards.md.txt",
+      "bytes": 2442,
+      "sha256": "1079eeedd679115f125c17f0bf5f13f5a44aebeb163358584ed5f7b54af1993f"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "references/design.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/references/design.md.txt",
+      "bytes": 7724,
+      "sha256": "a8e31eafa0a09d5f9daeb36fa80f31b8a20c2cfc08f79c7928b9daa7ec2259f1"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "references/implementation.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/references/implementation.md.txt",
+      "bytes": 6744,
+      "sha256": "cc85f8868b0853f066eb333819a63330b4f5caf1db0e77244387d5a98ec398ac"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "references/modules.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/references/modules.md.txt",
+      "bytes": 11222,
+      "sha256": "11e700e31bcbf2e8a525588cd299152798ba85d6571d7b43a9472d7e245dcf72"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "references/sources.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/references/sources.md.txt",
+      "bytes": 16175,
+      "sha256": "dd6e10edfcb1477cd54263d98c60b14418e299790b05f7985765c099cc79d89d"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "references/standards.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/references/standards.md.txt",
+      "bytes": 8591,
+      "sha256": "0ae1bd0dc98ba236455098286467854f3ffa96bf39ac67882e27a37e1de1280a"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "references/verification.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/references/verification.md.txt",
+      "bytes": 5824,
+      "sha256": "e7198621bbd2f0ebc44ecb141be2133af99778f52c033dec7699147ea771a50c"
+    },
+    {
+      "package": "ui-ux-engineering",
+      "originalPath": "evals/report.md",
+      "snapshot": "version-history/1.0.0/ui-ux-engineering/evaluation-report.md.txt",
+      "bytes": 15247,
+      "sha256": "a6f69cd09625c4c1f68c18876ce09d1208e0427c7e24d5d1d82bfa43eda1265e"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "SKILL.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/SKILL.md.txt",
+      "bytes": 10973,
+      "sha256": "d3b7a8508c01993918412aa9cf40f8fa842b764c145c3189bf676969d5cdfbbc"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/adapters.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/adapters.md.txt",
+      "bytes": 4590,
+      "sha256": "4f6ed75121ffd43ac92fd73f659679fafe186743c0457899dd230541c7212de7"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/api-domain.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/api-domain.md.txt",
+      "bytes": 8037,
+      "sha256": "87596f90924d7021dc27f96b6493250763204c7018c3ff6f01343558b83f294d"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/async-integrations.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/async-integrations.md.txt",
+      "bytes": 6841,
+      "sha256": "35b7be7f927b567e951f2f210d0aceec8e244a4147176fc86dbca74a08c83aef"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/coding-standards.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/coding-standards.md.txt",
+      "bytes": 2442,
+      "sha256": "1079eeedd679115f125c17f0bf5f13f5a44aebeb163358584ed5f7b54af1993f"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/data.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/data.md.txt",
+      "bytes": 6867,
+      "sha256": "2ea396e3267e470f88d7789625ba1d82099a94345b32b30f642b545dffb52214"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/edge-identity.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/edge-identity.md.txt",
+      "bytes": 7067,
+      "sha256": "f268b49d04646881d32b67ff9d397919a158276b444a0bf9830a039cee9cd24e"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/modules.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/modules.md.txt",
+      "bytes": 5648,
+      "sha256": "1e2f1d22f8b80700c11bed98133d8c87b99cc7731d4a4c649b1493e6b5b384ff"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/operations.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/operations.md.txt",
+      "bytes": 5625,
+      "sha256": "81668bb6befd7ebbde73a8aeeccb9210f9bd10a4948782e6ece614a2502d1a42"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/runtime-capacity.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/runtime-capacity.md.txt",
+      "bytes": 7111,
+      "sha256": "7d08ef32680b02bad298c52682cea7492a9cee25d330c48642a215d8de08c5f2"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/sources.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/sources.md.txt",
+      "bytes": 14600,
+      "sha256": "9029b004ec2195a4fdbbb6c019a87be8d09017aa2f8fa2333853051f54004eab"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "references/verification.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/references/verification.md.txt",
+      "bytes": 7675,
+      "sha256": "fc9502d87fcb2c37b312e77655cec14cff1dbb6bda72602ac2deb6dbee10640b"
+    },
+    {
+      "package": "backend-engineering",
+      "originalPath": "evals/report.md",
+      "snapshot": "version-history/1.0.0/backend-engineering/evaluation-report.md.txt",
+      "bytes": 26548,
+      "sha256": "accc020d1add69d82971925957baf7f631442f5a95a6e1c8f74f23d52311f861"
+    },
+    {
+      "package": "saas",
+      "originalPath": "README.md",
+      "snapshot": "version-history/1.0.0/saas-README.md.txt",
+      "bytes": 7302,
+      "sha256": "d9f2c179428f503375fd1781b28b96c5cf7a2c0401ca1fbc06a7986f115abe1e"
+    }
+  ],
+  "originalArchive": "C:/Users/heman/Desktop/skills/Skills_NeuralWorld/.dist/saas-engineering-skills-2026-11-05.zip",
+  "originalArchiveSha256": "a26f1afb89142bb2ec8a504d80070a29f30abc6998acd922858da01449a8ec6f"
+}

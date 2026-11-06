@@ -1,0 +1,960 @@
+{
+  "runtime": "v24.12.0",
+  "platform": "win32",
+  "arch": "x64",
+  "started": "2026-11-05T17:10:17.089Z",
+  "data": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088",
+  "checks": [
+    {
+      "name": "consistent v1 backup",
+      "status": "PASS",
+      "evidence": {
+        "sourceHash": "337d9471239901d0f219c301d1d2bf79af8c407d5e5175afc591148a8cd4b0f6",
+        "backupHash": "68a9fb7e8fb56e931a75e9317269ef06d8095fb668b8dc71505f8677c643c95c",
+        "schema": 1,
+        "rows": [
+          {
+            "tenant": "north",
+            "id": "c1",
+            "name": "Aster"
+          },
+          {
+            "tenant": "north",
+            "id": "c2",
+            "name": "Birch"
+          },
+          {
+            "tenant": "north",
+            "id": "erased",
+            "name": "Delete requested"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "name": "Cedar"
+          }
+        ]
+      }
+    },
+    {
+      "name": "interruption after first committed batch",
+      "status": "PASS",
+      "evidence": {
+        "version": 1,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "tenant",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "name",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "state",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "rows": [
+          {
+            "tenant": "north",
+            "id": "c1",
+            "name": "Aster"
+          },
+          {
+            "tenant": "north",
+            "id": "c2",
+            "name": "Birch"
+          },
+          {
+            "tenant": "north",
+            "id": "erased",
+            "name": "Delete requested"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "name": "Cedar"
+          }
+        ],
+        "states": [
+          {
+            "tenant": "north",
+            "id": "c1",
+            "state": "active"
+          },
+          {
+            "tenant": "north",
+            "id": "c2",
+            "state": "active"
+          },
+          {
+            "tenant": "north",
+            "id": "erased",
+            "state": null
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "state": null
+          }
+        ],
+        "integrity": "ok"
+      }
+    },
+    {
+      "name": "restart, replay and old SELECT compatibility",
+      "status": "PASS",
+      "evidence": {
+        "first": {
+          "version": 2,
+          "columns": [
+            {
+              "cid": 0,
+              "name": "tenant",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 2
+            },
+            {
+              "cid": 2,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "state",
+              "type": "TEXT",
+              "notnull": 0,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "rows": [
+            {
+              "tenant": "north",
+              "id": "c1",
+              "name": "Aster"
+            },
+            {
+              "tenant": "north",
+              "id": "c2",
+              "name": "Birch"
+            },
+            {
+              "tenant": "north",
+              "id": "erased",
+              "name": "Delete requested"
+            },
+            {
+              "tenant": "south",
+              "id": "c1",
+              "name": "Cedar"
+            }
+          ],
+          "states": [
+            {
+              "tenant": "north",
+              "id": "c1",
+              "state": "active"
+            },
+            {
+              "tenant": "north",
+              "id": "c2",
+              "state": "active"
+            },
+            {
+              "tenant": "north",
+              "id": "erased",
+              "state": "active"
+            },
+            {
+              "tenant": "south",
+              "id": "c1",
+              "state": "active"
+            }
+          ],
+          "integrity": "ok"
+        },
+        "events": [
+          {
+            "batch": 1,
+            "updated": 2,
+            "totalUpdated": 2,
+            "rows": [
+              {
+                "tenant": "north",
+                "id": "c1"
+              },
+              {
+                "tenant": "north",
+                "id": "c2"
+              }
+            ]
+          },
+          {
+            "batch": 1,
+            "updated": 2,
+            "totalUpdated": 2,
+            "rows": [
+              {
+                "tenant": "north",
+                "id": "erased"
+              },
+              {
+                "tenant": "south",
+                "id": "c1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "abrupt process loss after committed hook and clean restart",
+      "status": "PASS",
+      "evidence": {
+        "version": 2,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "tenant",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "name",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "state",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "rows": [
+          {
+            "tenant": "north",
+            "id": "c1",
+            "name": "Aster"
+          },
+          {
+            "tenant": "north",
+            "id": "c2",
+            "name": "Birch"
+          },
+          {
+            "tenant": "north",
+            "id": "erased",
+            "name": "Delete requested"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "name": "Cedar"
+          }
+        ],
+        "states": [
+          {
+            "tenant": "north",
+            "id": "c1",
+            "state": "active"
+          },
+          {
+            "tenant": "north",
+            "id": "c2",
+            "state": "active"
+          },
+          {
+            "tenant": "north",
+            "id": "erased",
+            "state": "active"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "state": "active"
+          }
+        ],
+        "integrity": "ok"
+      }
+    },
+    {
+      "name": "isolated recovery 1",
+      "status": "PASS",
+      "evidence": {
+        "target": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\recovered-1.sqlite",
+        "elapsedMs": 61.96589999999992,
+        "recovered": {
+          "version": 2,
+          "columns": [
+            {
+              "cid": 0,
+              "name": "tenant",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 2
+            },
+            {
+              "cid": 2,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "state",
+              "type": "TEXT",
+              "notnull": 0,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "rows": [
+            {
+              "tenant": "north",
+              "id": "c1",
+              "name": "Aster"
+            },
+            {
+              "tenant": "north",
+              "id": "c2",
+              "name": "Birch"
+            },
+            {
+              "tenant": "south",
+              "id": "c1",
+              "name": "Cedar"
+            }
+          ],
+          "states": [
+            {
+              "tenant": "north",
+              "id": "c1",
+              "state": "active"
+            },
+            {
+              "tenant": "north",
+              "id": "c2",
+              "state": "active"
+            },
+            {
+              "tenant": "south",
+              "id": "c1",
+              "state": "active"
+            }
+          ],
+          "integrity": "ok"
+        },
+        "sourceHash": "337d9471239901d0f219c301d1d2bf79af8c407d5e5175afc591148a8cd4b0f6",
+        "backupHash": "68a9fb7e8fb56e931a75e9317269ef06d8095fb668b8dc71505f8677c643c95c"
+      }
+    },
+    {
+      "name": "isolated recovery 2",
+      "status": "PASS",
+      "evidence": {
+        "target": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\recovered-2.sqlite",
+        "elapsedMs": 57.9074999999998,
+        "recovered": {
+          "version": 2,
+          "columns": [
+            {
+              "cid": 0,
+              "name": "tenant",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 2
+            },
+            {
+              "cid": 2,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "state",
+              "type": "TEXT",
+              "notnull": 0,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "rows": [
+            {
+              "tenant": "north",
+              "id": "c1",
+              "name": "Aster"
+            },
+            {
+              "tenant": "north",
+              "id": "c2",
+              "name": "Birch"
+            },
+            {
+              "tenant": "south",
+              "id": "c1",
+              "name": "Cedar"
+            }
+          ],
+          "states": [
+            {
+              "tenant": "north",
+              "id": "c1",
+              "state": "active"
+            },
+            {
+              "tenant": "north",
+              "id": "c2",
+              "state": "active"
+            },
+            {
+              "tenant": "south",
+              "id": "c1",
+              "state": "active"
+            }
+          ],
+          "integrity": "ok"
+        },
+        "sourceHash": "337d9471239901d0f219c301d1d2bf79af8c407d5e5175afc591148a8cd4b0f6",
+        "backupHash": "68a9fb7e8fb56e931a75e9317269ef06d8095fb668b8dc71505f8677c643c95c"
+      }
+    },
+    {
+      "name": "isolated recovery 3",
+      "status": "PASS",
+      "evidence": {
+        "target": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\recovered-3.sqlite",
+        "elapsedMs": 58.64319999999998,
+        "recovered": {
+          "version": 2,
+          "columns": [
+            {
+              "cid": 0,
+              "name": "tenant",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 2
+            },
+            {
+              "cid": 2,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "state",
+              "type": "TEXT",
+              "notnull": 0,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "rows": [
+            {
+              "tenant": "north",
+              "id": "c1",
+              "name": "Aster"
+            },
+            {
+              "tenant": "north",
+              "id": "c2",
+              "name": "Birch"
+            },
+            {
+              "tenant": "south",
+              "id": "c1",
+              "name": "Cedar"
+            }
+          ],
+          "states": [
+            {
+              "tenant": "north",
+              "id": "c1",
+              "state": "active"
+            },
+            {
+              "tenant": "north",
+              "id": "c2",
+              "state": "active"
+            },
+            {
+              "tenant": "south",
+              "id": "c1",
+              "state": "active"
+            }
+          ],
+          "integrity": "ok"
+        },
+        "sourceHash": "337d9471239901d0f219c301d1d2bf79af8c407d5e5175afc591148a8cd4b0f6",
+        "backupHash": "68a9fb7e8fb56e931a75e9317269ef06d8095fb668b8dc71505f8677c643c95c"
+      }
+    },
+    {
+      "name": "restore command and deletion ledger",
+      "status": "PASS",
+      "evidence": {
+        "version": 2,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "tenant",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "name",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "state",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "rows": [
+          {
+            "tenant": "north",
+            "id": "c1",
+            "name": "Aster"
+          },
+          {
+            "tenant": "north",
+            "id": "c2",
+            "name": "Birch"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "name": "Cedar"
+          }
+        ],
+        "states": [
+          {
+            "tenant": "north",
+            "id": "c1",
+            "state": "active"
+          },
+          {
+            "tenant": "north",
+            "id": "c2",
+            "state": "active"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "state": "active"
+          }
+        ],
+        "integrity": "ok"
+      }
+    },
+    {
+      "name": "tenant scoped deletion",
+      "status": "PASS",
+      "evidence": {
+        "version": 2,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "tenant",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "name",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          },
+          {
+            "cid": 3,
+            "name": "state",
+            "type": "TEXT",
+            "notnull": 0,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "rows": [
+          {
+            "tenant": "north",
+            "id": "c2",
+            "name": "Birch"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "name": "Cedar"
+          }
+        ],
+        "states": [
+          {
+            "tenant": "north",
+            "id": "c2",
+            "state": "active"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "state": "active"
+          }
+        ],
+        "integrity": "ok"
+      }
+    },
+    {
+      "name": "invalid and missing deletion ledger rejected before publication",
+      "status": "PASS",
+      "evidence": "invalid ledgers never publish"
+    },
+    {
+      "name": "existing targets and setup refuse overwrite",
+      "status": "PASS",
+      "evidence": {
+        "sourceHash": "337d9471239901d0f219c301d1d2bf79af8c407d5e5175afc591148a8cd4b0f6",
+        "backupHash": "68a9fb7e8fb56e931a75e9317269ef06d8095fb668b8dc71505f8677c643c95c"
+      }
+    },
+    {
+      "name": "corrupt backup rejected without published destination",
+      "status": "PASS",
+      "evidence": "no target exists"
+    },
+    {
+      "name": "engine snapshot includes committed WAL data",
+      "status": "PASS",
+      "evidence": {
+        "version": 1,
+        "columns": [
+          {
+            "cid": 0,
+            "name": "tenant",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 1
+          },
+          {
+            "cid": 1,
+            "name": "id",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 2
+          },
+          {
+            "cid": 2,
+            "name": "name",
+            "type": "TEXT",
+            "notnull": 1,
+            "dflt_value": null,
+            "pk": 0
+          }
+        ],
+        "rows": [
+          {
+            "tenant": "north",
+            "id": "c1",
+            "name": "Aster"
+          },
+          {
+            "tenant": "north",
+            "id": "c2",
+            "name": "Birch"
+          },
+          {
+            "tenant": "north",
+            "id": "erased",
+            "name": "Delete requested"
+          },
+          {
+            "tenant": "south",
+            "id": "c1",
+            "name": "Cedar"
+          },
+          {
+            "tenant": "south",
+            "id": "wal",
+            "name": "Committed WAL"
+          }
+        ],
+        "states": null,
+        "integrity": "ok"
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "node",
+        "cli.mjs",
+        "setup",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\source-v1.sqlite"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "(node:19820) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "cli.mjs",
+        "backup",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\source-v1.sqlite",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\backup-v1.sqlite"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "(node:20956) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "cli.mjs",
+        "interrupt",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\migrated.sqlite"
+      ],
+      "exit": 1,
+      "stdout": "{\"batch\":1,\"updated\":2,\"totalUpdated\":2,\"rows\":[{\"tenant\":\"north\",\"id\":\"c1\"},{\"tenant\":\"north\",\"id\":\"c2\"}]}\n",
+      "stderr": "(node:22804) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\nfile:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B05-skill-1/artifact/cli.mjs:8\r\n  else if (command === 'migrate' || command === 'interrupt') { db = openStore(source); console.log(JSON.stringify(migrate(db, {afterBatch(event) { console.log(JSON.stringify(event)); if (command === 'interrupt') throw new Error('INTENTIONAL interruption after first committed batch'); }}))); }\r\n                                                                                                                                                                                                                          ^\r\n\r\nError: INTENTIONAL interruption after first committed batch\r\n    at afterBatch (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B05-skill-1/artifact/cli.mjs:8:219)\r\n    at migrate (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B05-skill-1/artifact/store.mjs:29:5)\r\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B05-skill-1/artifact/cli.mjs:8:115\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)\r\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\r\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\r\n\r\nNode.js v24.12.0\r\n"
+    },
+    {
+      "command": [
+        "node",
+        "cli.mjs",
+        "migrate",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\migrated.sqlite"
+      ],
+      "exit": 0,
+      "stdout": "{\"batch\":1,\"updated\":2,\"totalUpdated\":2,\"rows\":[{\"tenant\":\"north\",\"id\":\"erased\"},{\"tenant\":\"south\",\"id\":\"c1\"}]}\n{\"batches\":1,\"updated\":2,\"schema\":2}\n",
+      "stderr": "(node:2492) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "cli.mjs",
+        "migrate",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\migrated.sqlite"
+      ],
+      "exit": 0,
+      "stdout": "{\"batches\":0,\"updated\":0,\"schema\":2}\n",
+      "stderr": "(node:3656) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "--input-type=module",
+        "-e",
+        "import {openStore,migrate} from \"file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B05-skill-1/artifact/store.mjs\"; const db=openStore(process.argv[1]);migrate(db,{afterBatch(){process.exit(23)}});",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\hard-exit.sqlite"
+      ],
+      "exit": 23,
+      "stdout": "",
+      "stderr": "(node:26608) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "cli.mjs",
+        "restore",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\backup-v1.sqlite",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\cli-recovered.sqlite",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\artifact\\deletions.json"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "(node:14852) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "command": [
+        "node",
+        "cli.mjs",
+        "setup",
+        "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\source-v1.sqlite"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "(node:11592) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\nfile:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B05-skill-1/artifact/cli.mjs:7\r\n  if (command === 'setup') { if (existsSync(source)) throw new Error('Setup refuses to reinitialize existing data'); db = openStore(source); seed(db); }\r\n                                                           ^\r\n\r\nError: Setup refuses to reinitialize existing data\r\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B05-skill-1/artifact/cli.mjs:7:60\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)\r\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\r\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\r\n\r\nNode.js v24.12.0\r\n"
+    }
+  ],
+  "recoverySamplesMs": [
+    61.96589999999992,
+    57.9074999999998,
+    58.64319999999998
+  ],
+  "original": {
+    "version": 1,
+    "columns": [
+      {
+        "cid": 0,
+        "name": "tenant",
+        "type": "TEXT",
+        "notnull": 1,
+        "dflt_value": null,
+        "pk": 1
+      },
+      {
+        "cid": 1,
+        "name": "id",
+        "type": "TEXT",
+        "notnull": 1,
+        "dflt_value": null,
+        "pk": 2
+      },
+      {
+        "cid": 2,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 1,
+        "dflt_value": null,
+        "pk": 0
+      }
+    ],
+    "rows": [
+      {
+        "tenant": "north",
+        "id": "c1",
+        "name": "Aster"
+      },
+      {
+        "tenant": "north",
+        "id": "c2",
+        "name": "Birch"
+      },
+      {
+        "tenant": "north",
+        "id": "erased",
+        "name": "Delete requested"
+      },
+      {
+        "tenant": "south",
+        "id": "c1",
+        "name": "Cedar"
+      }
+    ],
+    "states": null,
+    "integrity": "ok"
+  },
+  "status": "PASS",
+  "ended": "2026-11-05T17:10:18.943Z",
+  "recoverySummaryMs": {
+    "min": 57.9074999999998,
+    "median": 58.64319999999998,
+    "max": 61.96589999999992,
+    "samples": 3
+  }
+}

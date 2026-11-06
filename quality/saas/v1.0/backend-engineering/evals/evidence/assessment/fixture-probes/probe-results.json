@@ -1,0 +1,222 @@
+{
+  "startedAt": "2026-11-05T17:16:56.972Z",
+  "finishedAt": "2026-11-05T17:16:59.965Z",
+  "durationMs": 2992.4473,
+  "runtime": "v24.12.0",
+  "runDirectory": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\fixture-probes\\2026-11-05T17-16-56-969Z",
+  "requests": 29,
+  "probes": 18,
+  "summary": {
+    "PASS": 17,
+    "FAIL": 0,
+    "UNVERIFIED": 1,
+    "NOT_APPLICABLE": 0
+  },
+  "results": [
+    {
+      "id": "P01",
+      "claim": "Invalid fixture credentials are rejected",
+      "status": "PASS",
+      "observed": {
+        "status": 401
+      },
+      "source": "scripts/service.mjs:201"
+    },
+    {
+      "id": "P02",
+      "claim": "Bearer authentication rejects a missing authorization scheme",
+      "status": "PASS",
+      "observed": {
+        "status": 401
+      },
+      "source": "scripts/service.mjs:201"
+    },
+    {
+      "id": "P03",
+      "claim": "Tenant isolation on direct resource read",
+      "status": "PASS",
+      "observed": {
+        "status": 404
+      },
+      "source": "scripts/service.mjs:100"
+    },
+    {
+      "id": "P04",
+      "claim": "Nonadmin owner mutation is rejected",
+      "status": "PASS",
+      "observed": {
+        "status": 403
+      },
+      "source": "scripts/service.mjs:67"
+    },
+    {
+      "id": "P05",
+      "claim": "Atomic same-version updates have exactly one winner",
+      "status": "PASS",
+      "observed": {
+        "statuses": [
+          200,
+          409
+        ],
+        "row": {
+          "quantity": 1,
+          "version": 2
+        }
+      },
+      "source": "scripts/service.mjs:186"
+    },
+    {
+      "id": "P06",
+      "claim": "Idempotency replay rechecks current object authorization",
+      "status": "PASS",
+      "observed": {
+        "getStatus": 403,
+        "replayStatus": 403,
+        "currentOwner": "alice"
+      },
+      "source": "scripts/service.mjs:115-118"
+    },
+    {
+      "id": "P07",
+      "claim": "Hard deletion excludes the representation from create replay",
+      "status": "PASS",
+      "observed": {
+        "deleteStatus": 204,
+        "getStatus": 404,
+        "replayStatus": 410,
+        "replayBody": {
+          "type": "urn:fixture:problem:operation-resource-deleted",
+          "title": "Gone",
+          "status": 410,
+          "detail": "The committed operation resource has been deleted",
+          "instance": "/v1/items",
+          "traceId": "f8c54b9a-1172-4d0a-8543-8a4e10dc94fb"
+        },
+        "replayDisclosesFields": false,
+        "persistedItems": 0
+      },
+      "source": "scripts/service.mjs:118,189-192"
+    },
+    {
+      "id": "P08",
+      "claim": "Database enforces the integer quantity domain for alternative writers",
+      "status": "PASS",
+      "observed": {
+        "directSqlAccepted": false,
+        "sqlError": "inventory integer-domain constraint",
+        "httpStatus": 200,
+        "returnedQuantity": 5,
+        "sqliteType": "integer"
+      },
+      "source": "scripts/service.mjs:22"
+    },
+    {
+      "id": "P09",
+      "claim": "Cursor is bound to caller identity",
+      "status": "PASS",
+      "observed": {
+        "status": 400
+      },
+      "source": "scripts/service.mjs:131"
+    },
+    {
+      "id": "P10",
+      "claim": "Cursor signature forgery is rejected",
+      "status": "PASS",
+      "observed": {
+        "status": 400
+      },
+      "source": "scripts/service.mjs:129"
+    },
+    {
+      "id": "P11",
+      "claim": "Cursor parser rejects trailing components",
+      "status": "PASS",
+      "observed": {
+        "status": 400
+      },
+      "source": "scripts/service.mjs:128"
+    },
+    {
+      "id": "P12",
+      "claim": "List page cap is enforced",
+      "status": "PASS",
+      "observed": {
+        "status": 422
+      },
+      "source": "scripts/service.mjs:159"
+    },
+    {
+      "id": "P13",
+      "claim": "Local worker effect deduplicates after effect-before-ack crash",
+      "status": "PASS",
+      "observed": {
+        "crash": "Injected worker crash after durable local effect:493af131-0ae9-4a1a-81b6-eb8590138319",
+        "attempts": 2,
+        "state": "acked",
+        "effects": 1,
+        "method": "Exported worker API; process crash independently UNVERIFIED here"
+      },
+      "source": "scripts/service.mjs:245"
+    },
+    {
+      "id": "P14",
+      "claim": "Deletion policy for committed worker effects",
+      "status": "UNVERIFIED",
+      "observed": {
+        "remainingJob": 0,
+        "remainingEffects": 1,
+        "reason": "No documented retention/deletion rule for the local effect ledger; dependent job cascades but effect persists."
+      },
+      "source": "scripts/service.mjs:25-26"
+    },
+    {
+      "id": "P15",
+      "claim": "Running HTTPS server adopts a newly trusted certificate",
+      "status": "PASS",
+      "observed": {
+        "status": 200,
+        "changed": true
+      },
+      "source": "scripts/service.mjs:237"
+    },
+    {
+      "id": "P16",
+      "claim": "Credential rotation retires the old credential",
+      "status": "PASS",
+      "observed": {
+        "oldStatus": 401,
+        "newStatus": 200
+      },
+      "source": "scripts/service.mjs:238"
+    },
+    {
+      "id": "P17",
+      "claim": "Backup preserves integrity and a pre-backup credential revocation",
+      "status": "PASS",
+      "observed": {
+        "backupMs": 12.305699999999888,
+        "integrity": "ok",
+        "oldCredentialActive": 0
+      },
+      "source": "scripts/service.mjs:239"
+    },
+    {
+      "id": "P18",
+      "claim": "Drain preserves admitted work, rejects new work and closes listeners",
+      "status": "PASS",
+      "observed": {
+        "inflight": 200,
+        "newRequest": 503,
+        "stopMs": 11.345400000000154
+      },
+      "source": "scripts/service.mjs:248-249"
+    }
+  ],
+  "limits": [
+    "All writes stay in independent-review; original source and integrated evidence were not altered.",
+    "Real loopback HTTPS with generated CA verification and real disk-backed SQLite.",
+    "Importing source client avoids duplicating transport, but is a shared harness dependency.",
+    "No production authentication, remote effect, physical disk outage, process termination or power loss was exercised by this probe harness."
+  ]
+}

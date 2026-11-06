@@ -1,0 +1,166 @@
+{
+  "observedAt": "2026-11-05T17:40:05.505Z",
+  "scope": "Read-only package structure, frozen byte hashes, current assessment status and profile-exclusion discovery; no runtime or benchmark claims.",
+  "packages": [
+    {
+      "name": "ui-ux-engineering",
+      "entryLines": 70,
+      "manifestResourceCount": 60,
+      "manifestIssues": [],
+      "frozenFileCount": 44,
+      "frozenChanged": [],
+      "reportSha256": "a6f69cd09625c4c1f68c18876ce09d1208e0427c7e24d5d1d82bfa43eda1265e",
+      "reportLastModified": "2026-11-05T17:33:16.376Z"
+    },
+    {
+      "name": "backend-engineering",
+      "entryLines": 71,
+      "manifestResourceCount": 58,
+      "manifestIssues": [],
+      "frozenFileCount": 57,
+      "frozenChanged": [],
+      "reportSha256": "accc020d1add69d82971925957baf7f631442f5a95a6e1c8f74f23d52311f861",
+      "reportLastModified": "2026-11-05T17:38:34.799Z"
+    }
+  ],
+  "ui": {
+    "trialCount": 18,
+    "canonicalCounts": {
+      "PASS": 123,
+      "UNVERIFIED": 4
+    },
+    "unresolved": [
+      {
+        "trial": "C05-skill-1",
+        "id": "C05-R02",
+        "status": "UNVERIFIED"
+      },
+      {
+        "trial": "C05-skill-1",
+        "id": "C05-R03",
+        "status": "UNVERIFIED"
+      },
+      {
+        "trial": "C05-skill-1",
+        "id": "C05-R04",
+        "status": "UNVERIFIED"
+      },
+      {
+        "trial": "C05-skill-1",
+        "id": "C05-R05",
+        "status": "UNVERIFIED"
+      }
+    ],
+    "c07R05": "PASS"
+  },
+  "backend": {
+    "gates": [
+      {
+        "id": "G01",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G02",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G03",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G04",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G05",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G06",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G07",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G08",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G09",
+        "status": "PASS",
+        "remaining": null
+      },
+      {
+        "id": "G10",
+        "status": "PASS",
+        "remaining": null
+      }
+    ],
+    "comparisonFairness": {
+      "status": "PASS",
+      "issue": "Original pilot coverage-enum input gap repaired through identical user-derived control-v2 and fresh both-arm reruns, without changing frozen criteria/instructions/raw pilots.",
+      "evidence": [
+        "evals/evidence/comparison-control-repair.json",
+        "evals/inputs/control-v2.json",
+        "evals/dispatch/B01-baseline-2.txt",
+        "evals/dispatch/B01-skill-2.txt",
+        "evals/dispatch/B02-baseline-2.txt",
+        "evals/dispatch/B02-skill-2.txt",
+        "evals/evidence/assessment/run2/requirement-assessment.json"
+      ]
+    },
+    "scoredTrialCount": 8,
+    "scoredCriterionCounts": {
+      "PASS": 47,
+      "FAIL": 0,
+      "UNVERIFIED": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "retainedPilotCount": 4,
+    "activationRecomputed": {
+      "truePositive": 6,
+      "trueNegative": 6,
+      "falsePositive": 0,
+      "falseNegative": 0
+    }
+  },
+  "archive": {
+    "supplementalChromeProfileExists": true,
+    "zoomProfileDirectories": [
+      "baseline-profile",
+      "baseline-profile-2",
+      "native200-profile",
+      "native200-profile-2"
+    ],
+    "recommendedRelativeExclusions": [
+      "ui-ux-engineering/evals/evidence/review/supplemental/chrome-profile/**",
+      "ui-ux-engineering/evals/evidence/review/zoom-completion/*profile*/**"
+    ],
+    "action": "Recommendation only. No deletion, moving, process/server actions or archive creation."
+  },
+  "reviewedDocuments": [
+    "ui-ux-engineering/SKILL.md",
+    "ui-ux-engineering/assets/manifest.json",
+    "ui-ux-engineering/references/coding-standards.md",
+    "ui-ux-engineering/references/sources.md",
+    "ui-ux-engineering/references/standards.md",
+    "ui-ux-engineering/evals/report.md",
+    "ui-ux-engineering/evals/evidence/review/zoom-completion/report.md",
+    "backend-engineering/SKILL.md",
+    "backend-engineering/assets/manifest.json",
+    "backend-engineering/references/coding-standards.md",
+    "backend-engineering/references/sources.md",
+    "backend-engineering/evals/report.md"
+  ],
+  "limit": "This final delivery audit rechecks structure, identities and disclosed status; no functional, browser, load or benchmark suite is newly executed."
+}

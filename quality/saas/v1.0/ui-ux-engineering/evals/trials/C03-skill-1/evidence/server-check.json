@@ -1,0 +1,5 @@
+{
+  "id": "optional-loopback-server",
+  "status": "PASS",
+  "evidence": "HTTP 200; FIELDNOTES: http://127.0.0.1:43031"
+}

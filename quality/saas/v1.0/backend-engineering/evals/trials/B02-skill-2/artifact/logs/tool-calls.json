@@ -1,0 +1,62 @@
+[
+  {
+    "number": 1,
+    "tool": "exec_command",
+    "action": "Read only assigned dispatch B02-skill-2.txt.",
+    "exitCode": 0
+  },
+  {
+    "number": 2,
+    "tool": "exec_command",
+    "action": "Read SKILL.md, B02.json and control-v2.json.",
+    "exitCode": 0
+  },
+  {
+    "number": 3,
+    "tool": "exec_command",
+    "action": "Create isolated original/log directories; copy three named raw fixtures; read those originals, data.md and verification.md; node --version and first captured UTC.",
+    "exitCode": 0
+  },
+  {
+    "number": 4,
+    "tool": "exec_command",
+    "action": "Run original node probe.mjs baseline.sqlite; preserve stdout/stderr and exitCode0.",
+    "exitCode": 0
+  },
+  {
+    "number": 5,
+    "tool": "apply_patch",
+    "action": "Add isolated store.mjs and verify.mjs implementation.",
+    "success": true
+  },
+  {
+    "number": 6,
+    "tool": "exec_command",
+    "action": "Copy unchanged probe; run verification and fixed probe through spawnSync with raw stdout/stderr/commands.",
+    "exitCode": 0
+  },
+  {
+    "number": 7,
+    "tool": "apply_patch",
+    "action": "Add original-connection retry and item-isolation test.",
+    "success": true
+  },
+  {
+    "number": 8,
+    "tool": "exec_command",
+    "action": "Copy named B02/control inputs into original; rerun updated verification with separate final logs.",
+    "exitCode": 0
+  },
+  {
+    "number": 9,
+    "tool": "apply_patch",
+    "action": "Write README and finalizer containing coverage, decision and resource audit.",
+    "success": true
+  },
+  {
+    "number": 10,
+    "tool": "exec_command",
+    "action": "Run finalizer and output-contract validation; retain final command stdout/stderr.",
+    "exitCode": 0
+  }
+]

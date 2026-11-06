@@ -1,0 +1,112 @@
+{
+  "startedAt": "2026-11-05T16:10:51.952Z",
+  "environment": {
+    "node": "v24.12.0",
+    "renderer": "Chrome headless",
+    "deviceScaleFactor": 1,
+    "network": "file URLs, no network",
+    "fonts": "Georgia and Arial system stacks",
+    "browser": "156.0.8078.80"
+  },
+  "checks": [
+    {
+      "id": "content",
+      "status": "PASS",
+      "evidence": "Desktop shows heading, three exact workshop rows, 3 workshops and 23 seats; desktop.png"
+    },
+    {
+      "id": "type-palette",
+      "status": "PASS",
+      "evidence": "Computed 44px Georgia h1; brand canvas rgb(247,246,239)."
+    },
+    {
+      "id": "dialog-open",
+      "status": "PASS",
+      "evidence": "Enter opens labeled native modal; workshop receives focus."
+    },
+    {
+      "id": "required-errors",
+      "status": "PASS",
+      "evidence": "Both empty fields show associated errors; focus goes to first invalid field."
+    },
+    {
+      "id": "whitespace-validation",
+      "status": "PASS",
+      "evidence": "Whitespace-only attendee rejected without discarding selected workshop."
+    },
+    {
+      "id": "local-addition",
+      "status": "PASS",
+      "evidence": "Valid form adds exact local summary, closes modal and restores trigger focus."
+    },
+    {
+      "id": "capacity-preserved",
+      "status": "PASS",
+      "evidence": "Supplied capacities and summary figures unchanged after local addition."
+    },
+    {
+      "id": "focus-trap",
+      "status": "PASS",
+      "evidence": "Shift+Tab from select focuses dialog close button."
+    },
+    {
+      "id": "focus-wrap",
+      "status": "PASS",
+      "evidence": "Shift+Tab from first dialog control wraps to final submit control."
+    },
+    {
+      "id": "escape-return",
+      "status": "PASS",
+      "evidence": "Escape closes modal and restores trigger focus."
+    },
+    {
+      "id": "reflow-768",
+      "status": "PASS",
+      "evidence": "{\"overflow\":false,\"summary\":851.171875,\"list\":831.171875,\"nav\":\"static\"}; width-768.png"
+    },
+    {
+      "id": "reflow-390",
+      "status": "PASS",
+      "evidence": "{\"overflow\":false,\"summary\":1018.515625,\"list\":998.515625,\"nav\":\"static\"}; width-390.png"
+    },
+    {
+      "id": "reflow-320",
+      "status": "PASS",
+      "evidence": "{\"overflow\":false,\"summary\":1139.984375,\"list\":1119.984375,\"nav\":\"static\"}; width-320.png"
+    },
+    {
+      "id": "narrow-dialog-fit",
+      "status": "PASS",
+      "evidence": "Dialog fits 320px viewport."
+    },
+    {
+      "id": "navigation",
+      "status": "PASS",
+      "evidence": "Settings links to local workspace section."
+    },
+    {
+      "id": "session-reset",
+      "status": "PASS",
+      "evidence": "Reload clears session additions."
+    },
+    {
+      "id": "runtime-errors",
+      "status": "PASS",
+      "evidence": "[]"
+    },
+    {
+      "id": "text-contrast",
+      "status": "PASS",
+      "evidence": "{\"forestWhite\":11.600460334129028,\"mutedCanvas\":5.6355902369186435,\"forestLime\":9.09682275643391,\"forestClay\":5.431785966341737,\"errorWhite\":7.166256999520899}"
+    }
+  ],
+  "errors": [],
+  "contrast": {
+    "forestWhite": 11.600460334129028,
+    "mutedCanvas": 5.6355902369186435,
+    "forestLime": 9.09682275643391,
+    "forestClay": 5.431785966341737,
+    "errorWhite": 7.166256999520899
+  },
+  "endedAt": "2026-11-05T16:11:00.848Z"
+}

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "model": "open arrivals; bounded generator concurrency; no automatic retries",
+  "repetitions": 3,
+  "generatorConcurrency": 24,
+  "seedItems": 40,
+  "tenantSkew": "80% tenant-a;20% tenant-b",
+  "requestMix": "75% GET one;25% bounded GET list",
+  "cache": "8 insertion-order entries; warm-up3; retained between scenarios within each repetition",
+  "scenarios": [
+    {"name":"normal","arrivals":12,"intervalMs":50,"costMs":0},
+    {"name":"sustained","arrivals":60,"intervalMs":16,"costMs":15},
+    {"name":"burst","arrivals":40,"intervalMs":0,"costMs":20},
+    {"name":"overload","arrivals":90,"intervalMs":6,"costMs":60},
+    {"name":"failure","arrivals":36,"intervalMs":16,"costMs":0,"dependencyDown":true},
+    {"name":"recovery","arrivals":36,"intervalMs":16,"costMs":0}
+  ]
+}

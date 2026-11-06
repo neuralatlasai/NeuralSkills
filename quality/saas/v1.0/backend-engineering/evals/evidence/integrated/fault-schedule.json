@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "scope": "loopback reference fixture only",
+  "cases": [
+    [
+      "I01",
+      "CRUD lifecycle and trace",
+      "POST/read/PATCH/PUT/list cursor/delete; forged forwarding and direct ingress bypass"
+    ],
+    [
+      "I02",
+      "Concurrent duplicate create",
+      "8 simultaneous same-key POST; changed parameters; direct SQLite CHECK failure"
+    ],
+    [
+      "I03",
+      "Competing versions and inventory bounds",
+      "2 simultaneous expected-version=1 decrements; negative outcome denied"
+    ],
+    [
+      "I04",
+      "Lost response after commit and retry",
+      "destroy app socket after committed POST; same-key retry returns committed item"
+    ],
+    [
+      "I05",
+      "Authorization across applicable operations",
+      "cross-tenant GET/PATCH/PUT/DELETE/adjust; object scope; privileged field POST/PATCH/PUT; auth missing"
+    ],
+    [
+      "I06",
+      "Request bytes syntax deadline and cost",
+      "oversized JSON; malformed JSON; slow incomplete body; >=180ms application cost"
+    ],
+    [
+      "I07",
+      "Admission exhaustion and recovery",
+      "20 simultaneous requests at 120ms service cost; active=2 queue=4 age=90ms; reset cost and retry"
+    ],
+    [
+      "I08",
+      "Cache and dependency outage",
+      "cache warm/bypass; cache outage read; simulated database dependency outage fails503 then recovery"
+    ],
+    [
+      "I09",
+      "Worker effect-before-ack replay",
+      "commit SQLite local effect then throw before ack; replay and deduplicate same effect"
+    ],
+    [
+      "I10",
+      "TLS and credential rotation",
+      "untrusted CA/wrong host/expired/malformed cert rejected; live valid cert rotation; revoke old credential"
+    ],
+    [
+      "I11",
+      "Migration compatibility and drain",
+      "real v1 database -> additive v2 migration; legacy/new payloads; admit then drain; post-drain503"
+    ],
+    [
+      "I12",
+      "Actual backup restore and deletion reconciliation",
+      "SQLite online backup -> restore -> compare data/tenant authorization -> reapply deletion ledger"
+    ],
+    [
+      "I13",
+      "Telemetry outage is bounded",
+      "40 sequential requests with sink disabled; bounded16 queue, counted drops; sink recovery"
+    ]
+  ],
+  "faultRules": "No adaptive fault changes inside a case. Each case restores controls in finally. Failed cases remain in raw.jsonl and summary."
+}

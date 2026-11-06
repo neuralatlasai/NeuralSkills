@@ -1,0 +1,91 @@
+{
+  "suiteVersion": "1.0.0",
+  "purpose": "Test activation separately from implementation quality. Classify each prompt before reading the full skill; record ACTIVATE, DO_NOT_ACTIVATE or UNCERTAIN plus one sentence. Do not count these as executed until a fresh classifier actually runs them.",
+  "positive": [
+    {
+      "id": "A-P01",
+      "prompt": "Build a small accessible copy-link button in vanilla TypeScript, including success and failure feedback.",
+      "expected": "ACTIVATE",
+      "reason": "A frontend component implementation with interaction and accessibility."
+    },
+    {
+      "id": "A-P02",
+      "prompt": "Recreate this supplied dashboard screenshot as a responsive web page and check the visual match.",
+      "expected": "ACTIVATE",
+      "reason": "Visual reference to frontend implementation."
+    },
+    {
+      "id": "A-P03",
+      "prompt": "Use the Figma screen for the new preferences form; if access fails, say so and keep working from my text requirements.",
+      "expected": "ACTIVATE",
+      "reason": "UI implementation with design-reference access handling."
+    },
+    {
+      "id": "A-P04",
+      "prompt": "In this existing Svelte app, fix only the mobile filter drawer keyboard behavior and preserve the current CSS tokens.",
+      "expected": "ACTIVATE",
+      "reason": "Targeted frontend work preserving the repository stack and design."
+    },
+    {
+      "id": "A-P05",
+      "prompt": "Implement this search panel so slow and out-of-order requests cannot overwrite the latest result.",
+      "expected": "ACTIVATE",
+      "reason": "Interactive frontend state and runtime behavior."
+    },
+    {
+      "id": "A-P06",
+      "prompt": "Make the checkout step work at 320px with keyboard access, long German labels and clear validation errors.",
+      "expected": "ACTIVATE",
+      "reason": "Responsive, accessible UI flow implementation."
+    }
+  ],
+  "negative": [
+    {
+      "id": "A-N01",
+      "prompt": "Explain the difference between CSS Grid and Flexbox in two paragraphs. Do not write or edit code.",
+      "expected": "DO_NOT_ACTIVATE",
+      "reason": "Conceptual explanation without a UI artifact or implementation task."
+    },
+    {
+      "id": "A-N02",
+      "prompt": "Tune this PostgreSQL query and add an index. Do not modify the frontend.",
+      "expected": "DO_NOT_ACTIVATE",
+      "reason": "Database-only work."
+    },
+    {
+      "id": "A-N03",
+      "prompt": "Write three headline alternatives for this landing page. Return copy only; leave design and code unchanged.",
+      "expected": "DO_NOT_ACTIVATE",
+      "reason": "Copywriting-only request."
+    },
+    {
+      "id": "A-N04",
+      "prompt": "Add a REST endpoint consumed by a dashboard. Return JSON only; do not inspect, create or change any UI.",
+      "expected": "DO_NOT_ACTIVATE",
+      "reason": "Backend-only implementation with an explicit exclusion of UI work."
+    },
+    {
+      "id": "A-N05",
+      "prompt": "Generate a watercolor illustration of a forest for the hero image. Return the image only.",
+      "expected": "DO_NOT_ACTIVATE",
+      "reason": "Image generation without UI implementation."
+    },
+    {
+      "id": "A-N06",
+      "prompt": "Run the existing backend unit tests and report failures. Do not change the UI or inspect visual design.",
+      "expected": "DO_NOT_ACTIVATE",
+      "reason": "Backend verification without frontend work."
+    }
+  ],
+  "scoreContract": {
+    "counts": [
+      "truePositive",
+      "falsePositive",
+      "trueNegative",
+      "falseNegative",
+      "uncertain"
+    ],
+    "rule": "Report exact counts and the twelve classifications; do not infer implementation success or a general quality percentage from activation."
+  }
+}
+

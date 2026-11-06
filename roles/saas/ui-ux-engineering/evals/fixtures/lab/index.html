@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Relay — Work queue</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to work queue</a>
+  <aside class="sidebar" aria-label="Workspace">
+    <a class="brand" href="#main"><span class="brand-icon" aria-hidden="true">r</span>relay<span class="brand-dot">.</span></a>
+    <div class="workspace"><span class="workspace-avatar" aria-hidden="true">M</span><div>Meridian Studio<small>Team workspace</small></div><span aria-hidden="true">⌄</span></div>
+    <nav aria-label="Primary"><a href="#overview"><span aria-hidden="true">◫</span>Overview</a><a class="active" href="#queue" aria-current="page"><span aria-hidden="true">▤</span>Work queue<span class="nav-count">6</span></a><a href="#activity"><span aria-hidden="true">◷</span>Activity</a></nav>
+    <div class="sidebar-note"><span class="note-symbol" aria-hidden="true">↗</span><strong>A little less busywork.</strong><p>One calm place to keep good work moving.</p></div>
+    <div class="profile"><span class="avatar avatar-purple" aria-hidden="true">AL</span><div>Alex Lee<small>Workspace admin</small></div></div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar"><span>Workspace <span aria-hidden="true">/</span> <strong>Work queue</strong></span><span class="environment"><i aria-hidden="true"></i>Local demo</span></header>
+    <main id="main" tabindex="-1">
+      <section class="page-heading"><div><p class="eyebrow">MAKE ROOM FOR WHAT MATTERS</p><h1>Your work, in motion.</h1><p>A clear view of what needs your team’s attention.</p></div><button id="new-request" class="button primary" type="button"><span aria-hidden="true">＋</span>New request</button></section>
+      <section id="overview" class="metrics" aria-label="Queue overview">
+        <article><span class="metric-label">Open requests<span aria-hidden="true">↗</span></span><div><strong id="open-count">06</strong><span class="metric-note">Across your workspace</span></div><div class="mini-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article><span class="metric-label">In progress<span aria-hidden="true">◴</span></span><div><strong id="progress-count">02</strong><span class="metric-note"><span class="green-dot" aria-hidden="true"></span>Good things moving</span></div><div class="progress-track" aria-hidden="true"><i></i></div></article>
+        <article><span class="metric-label">Ready for review<span aria-hidden="true">✓</span></span><div><strong id="review-count">02</strong><span class="metric-note">Your fresh pair of eyes</span></div><p class="metric-footer">A quick review goes a long way.</p></article>
+      </section>
+      <section id="queue" class="queue-panel" aria-labelledby="queue-title">
+        <div class="panel-heading"><div><h2 id="queue-title">Work queue <span id="result-count" class="count-pill">6</span></h2><p>Small steps. Meaningful progress.</p></div><div class="refresh-controls"><span id="stale" class="stale" hidden>Showing previous results</span><button id="refresh" class="button secondary" type="button"><span aria-hidden="true">↻</span>Refresh</button><button id="cancel-load" class="button quiet" type="button" hidden>Stop refresh</button></div></div>
+        <form id="filters" class="filters" role="search" aria-label="Search work queue"><div class="search-field"><span aria-hidden="true">⌕</span><label class="sr-only" for="search">Search requests</label><input id="search" name="search" type="search" placeholder="Search requests…" autocomplete="off"></div><div class="filter-select"><label for="status-filter">Status</label><select id="status-filter" name="status"><option value="all">All statuses</option><option value="In progress">In progress</option><option value="In review">In review</option><option value="Backlog">Backlog</option></select></div><span class="sort-note">Newest first <span aria-hidden="true">↓</span></span></form>
+        <div id="load-status" class="load-status" role="status" aria-live="polite" aria-atomic="true">Loading requests…</div>
+        <div id="error-panel" class="error-panel" hidden><div><strong>We couldn’t update the queue.</strong><p id="error-message"></p></div><button id="retry" class="button secondary" type="button">Try again</button></div>
+        <div class="table-scroll"><table aria-label="Team requests"><thead><tr><th scope="col">Request</th><th scope="col">Status</th><th scope="col">Priority</th><th scope="col">Owner</th><th scope="col">Updated</th></tr></thead><tbody id="rows"></tbody></table></div>
+        <div id="empty-state" class="empty-state" hidden><span aria-hidden="true">⌕</span><h3>No requests found</h3><p>Try another search or choose a different status.</p><button id="clear-filters" class="button secondary" type="button">Clear filters</button></div>
+        <footer class="panel-footer"><span id="visible-count">6 requests</span><span><span class="green-dot" aria-hidden="true"></span>Changes stay in this demo</span></footer>
+      </section>
+      <section id="activity" class="bottom-note" aria-label="Latest activity"><span class="activity-icon" aria-hidden="true">✦</span><p><strong>A bit of momentum.</strong> Your team has everything in one place.</p><span class="bottom-badge">Made for a calmer workday</span></section>
+      <details class="lab-controls"><summary>Demo controls</summary><p>Requests use a local in-memory transport. No account or network service is connected.</p><label><input id="fail-next" type="checkbox">Fail the next request to exercise retry</label></details>
+    </main>
+    <footer class="page-footer">Thoughtful work starts with a little clarity.<span>RELAY / WORKSPACE</span></footer>
+  </div>
+  <dialog id="create-dialog" aria-labelledby="create-title"><form id="create-form"><div class="dialog-heading"><p class="eyebrow">SOMETHING WORTH DOING</p><h2 id="create-title">Create a request</h2><p>Give your next piece of work a clear starting point.</p></div><label for="request-title">Request title</label><input id="request-title" name="title" required maxlength="100" autocomplete="off" placeholder="What needs to happen?"><p id="submit-error" class="submit-error" role="alert" hidden></p><div class="dialog-actions"><button id="cancel-create" class="button secondary" type="button">Cancel</button><button id="submit-request" class="button primary" type="submit">Create request</button></div></form></dialog>
+</body>
+</html>

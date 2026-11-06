@@ -1,0 +1,14 @@
+[
+ {"call":1,"tool":"exec_command","command":"Get-Content dispatch/B01-skill-2.txt","exitCode":0,"stdout":"dispatch instructions read; retained source snapshot"},
+ {"call":2,"tool":"exec_command","command":"Get-Content inputs/B01.json; Get-Content inputs/control-v2.json; Get-Content SKILL.md","exitCode":0,"stdout":"named inputs and frozen skill read; inputs retained artifact/original"},
+ {"call":3,"tool":"exec_command","command":"Get-Content named service and README fixtures, references/api-domain.md,data.md,edge-identity.md,verification.md; node --version; Get-Date -Format o","exitCode":0,"stdout":"fixture and directly linked references read; node v24.12.0; clock2026-11-05T22:55:09.2922864+05:30"},
+ {"call":4,"tool":"exec_command","command":"Create trial artifact/original and evidence; copy named fixture and input originals; read runtime-capacity.md; Get-Date -AsUTC -Format o","exitCode":1,"stderr":"evidence/setup-failure.txt"},
+ {"call":5,"tool":"apply_patch","command":"Add artifact/service.mjs and artifact/verify.mjs","result":"success"},
+ {"call":6,"tool":"exec_command","command":"node artifact/verify.mjs 1 with stdout/stderr and command timing retained","exitCode":0,"stdout":"evidence/run-1.stdout.txt","stderr":"evidence/run-1.stderr.txt"},
+ {"call":7,"tool":"apply_patch","command":"Avoid redundant existence read and add exact-byte-limit verification","result":"success"},
+ {"call":8,"tool":"exec_command","command":"node artifact/verify.mjs 2; node artifact/verify.mjs 3; node artifact/verify.mjs 4 with separate stdout/stderr/timing","exitCode":0,"stdout":"evidence/run-{2,3,4}.stdout.txt","stderr":"evidence/run-{2,3,4}.stderr.txt"},
+ {"call":9,"tool":"apply_patch","command":"Add artifact/faults.mjs and artifact/README.md","result":"success"},
+ {"call":10,"tool":"apply_patch","command":"Add artifact/write-result.mjs","result":"success"},
+ {"call":11,"tool":"exec_command","command":"node artifact/faults.mjs; retain failed setup and tool ledger; node artifact/write-result.mjs","stdout":"evidence/faults.stdout.txt; evidence/result.stdout.txt","stderr":"evidence/faults.stderr.txt; evidence/result.stderr.txt"},
+ {"call":12,"tool":"exec_command","command":"Validate result contract, vocabulary, requirement IDs, sources and retained run exits; save structural validation","stdout":"evidence/structure.stdout.txt","stderr":"evidence/structure.stderr.txt"}
+]

@@ -1,0 +1,10 @@
+﻿import { createRequire } from 'node:module';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const require = createRequire(import.meta.url);
+const ts = require(process.env.TYPESCRIPT_API || 'C:/Users/heman/AppData/Local/Programs/Microsoft VS Code/a717861c07/resources/app/extensions/node_modules/typescript/lib/typescript.js');
+const root = dirname(fileURLToPath(import.meta.url));
+const program = ts.createProgram([resolve(root,'src/app.ts'),resolve(root,'src/fake-api.ts')],{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022,moduleResolution:ts.ModuleResolutionKind.Bundler,strict:true,lib:['lib.es2022.d.ts','lib.dom.d.ts'],outDir:resolve(root,'dist'),noEmitOnError:true});
+const emitted = program.emit();
+const diagnostics = [...ts.getPreEmitDiagnostics(program),...emitted.diagnostics];
+if(diagnostics.length){console.error(ts.formatDiagnosticsWithColorAndContext(diagnostics,{getCanonicalFileName:f=>f,getCurrentDirectory:()=>root,getNewLine:()=> '\n'}));process.exitCode=1;}else console.log(`TypeScript ${ts.version}: strict check and build passed`);

@@ -1,0 +1,149 @@
+{
+  "startedAt": "2026-11-05T16:43:24.681Z",
+  "environment": {
+    "node": "v24.12.0",
+    "playwright": "1.64.0-alpha-1790635538000",
+    "viewport": {
+      "width": 1000,
+      "height": 900
+    },
+    "font": "Georgia/system-ui fallback",
+    "dataset": "unchanged C06 fake API",
+    "network": "loopback; no network throttling",
+    "cpu": "host; no throttling",
+    "browser": "156.0.8078.80"
+  },
+  "checks": [
+    {
+      "id": "initial-semantic-keyboard",
+      "status": "PASS",
+      "evidence": "Native label/name, stable polite atomic status; Tab input→Search with visible focus; initial prompt visible."
+    },
+    {
+      "id": "cedar-enter-pending-result",
+      "status": "PASS",
+      "evidence": "Enter submits cedar; busy and visible pending before 1200ms completion; Search stays enabled; input focus survives; one cedar card."
+    },
+    {
+      "id": "moss-search-button",
+      "status": "PASS",
+      "evidence": "Search button yields two moss cards, long title, habitats and page counts."
+    },
+    {
+      "id": "empty-state",
+      "status": "PASS",
+      "evidence": "No cards; visible outcome plus broader-subject/spelling recovery advice."
+    },
+    {
+      "id": "failure-and-retry-same-query",
+      "status": "PASS",
+      "evidence": {
+        "observation": "Failure clear; Retry keyboard activation creates a new 650ms API attempt for fail despite cedar draft; input focus survives; expected second fail permits further retry.",
+        "before": 1,
+        "after": 2
+      }
+    },
+    {
+      "id": "race-cedar-then-moss",
+      "status": "PASS",
+      "evidence": {
+        "elapsedMs": 1475,
+        "observation": "B moss completes before A cedar; moss title/status/cards remain after late cedar success."
+      }
+    },
+    {
+      "id": "race-fail-then-moss",
+      "status": "PASS",
+      "evidence": {
+        "elapsedMs": 924,
+        "observation": "Late fail rejection cannot overwrite moss or reveal Retry."
+      }
+    },
+    {
+      "id": "320px-reflow-and-long-content",
+      "status": "PASS",
+      "evidence": {
+        "viewport": 320,
+        "controls": [
+          {
+            "width": 258,
+            "height": 48
+          },
+          {
+            "width": 258,
+            "height": 46
+          }
+        ],
+        "observation": "Moss long title, 200-character query, and failure/Retry fit without horizontal overflow."
+      }
+    },
+    {
+      "id": "blank-query-native-validation",
+      "status": "PASS",
+      "evidence": "Native required validation blocks empty input; no API call scheduled."
+    },
+    {
+      "id": "browser-errors",
+      "status": "PASS",
+      "evidence": "No uncaught browser exceptions or server stderr."
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "initial-desktop-focus.png",
+    "pending-desktop.png",
+    "cedar-desktop.png",
+    "empty-desktop.png",
+    "failure-desktop.png",
+    "moss-320.png",
+    "long-query-320.png",
+    "failure-320.png"
+  ],
+  "fixtureCalls": [
+    {
+      "delay": 1200,
+      "at": 591.2999999970198
+    },
+    {
+      "delay": 180,
+      "at": 1993.1000000089407
+    },
+    {
+      "delay": 300,
+      "at": 2267
+    },
+    {
+      "delay": 650,
+      "at": 2732.1000000089407
+    },
+    {
+      "delay": 650,
+      "at": 3584.9000000059605
+    },
+    {
+      "delay": 1200,
+      "at": 4280.20000000298
+    },
+    {
+      "delay": 180,
+      "at": 4420.29999999702
+    },
+    {
+      "delay": 650,
+      "at": 5751.79999999702
+    },
+    {
+      "delay": 180,
+      "at": 5895.600000008941
+    },
+    {
+      "delay": 300,
+      "at": 6783.4000000059605
+    },
+    {
+      "delay": 650,
+      "at": 7193
+    }
+  ],
+  "endedAt": "2026-11-05T16:43:35.183Z"
+}

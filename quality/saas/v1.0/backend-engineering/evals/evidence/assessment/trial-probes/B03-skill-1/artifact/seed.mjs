@@ -1,0 +1,3 @@
+import {DatabaseSync} from 'node:sqlite';
+const file=process.argv[2]??'parcels.sqlite';const db=new DatabaseSync(file);db.exec('PRAGMA journal_mode=WAL;DROP TABLE IF EXISTS parcels;CREATE TABLE parcels(id INTEGER PRIMARY KEY,tenant TEXT NOT NULL,status TEXT NOT NULL,created_at INTEGER NOT NULL,payload TEXT NOT NULL);BEGIN;');
+const insert=db.prepare('INSERT INTO parcels VALUES(?,?,?,?,?)');for(let i=1;i<=60000;i++)insert.run(i,i<=48000?'whale':'tenant-'+(i%80),i%37===0?'ready':'stored',Math.floor(i/4),'x'.repeat(256));db.exec('COMMIT;ANALYZE;');console.log(JSON.stringify({file,rows:60000,whaleRows:48000,otherTenants:80,payloadBytes:256,readyModulo:37}));db.close();

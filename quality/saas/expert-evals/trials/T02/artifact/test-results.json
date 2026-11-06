@@ -1,0 +1,130 @@
+{
+  "at": "2026-11-06T03:17:13.563Z",
+  "node": "v24.12.0",
+  "browser": "Chrome/156.0.8078.80",
+  "transport": "deferred deterministic fixture ignoring abort",
+  "results": [
+    {
+      "name": "baseline causal race and explicit blur",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline searches during composition",
+      "status": "PASS"
+    },
+    {
+      "name": "U1-R1 stale success and failure cannot overwrite latest",
+      "status": "PASS"
+    },
+    {
+      "name": "U1-R1 clear invalidates without another request",
+      "status": "PASS"
+    },
+    {
+      "name": "U1-R1 stale failure after clear and Escape pending",
+      "status": "PASS"
+    },
+    {
+      "name": "U1-R2 composition commits once and retains focus/text",
+      "status": "PASS"
+    },
+    {
+      "name": "U1-R3 keyboard and live ARIA references",
+      "status": "PASS"
+    },
+    {
+      "name": "U1-R4 failure retry recovery and disposal",
+      "status": "PASS"
+    },
+    {
+      "name": "geometry 320",
+      "viewport": 320,
+      "scroll": 320,
+      "input": {
+        "x": 49,
+        "y": 163.875,
+        "width": 222,
+        "height": 45,
+        "top": 163.875,
+        "right": 271,
+        "bottom": 208.875,
+        "left": 49
+      },
+      "option": {
+        "x": 49,
+        "y": 224.875,
+        "width": 222,
+        "height": 399,
+        "top": 224.875,
+        "right": 271,
+        "bottom": 623.875,
+        "left": 49
+      },
+      "outline": "3px"
+    },
+    {
+      "name": "U1-R5 rendered width 320",
+      "status": "PASS"
+    },
+    {
+      "name": "geometry 768",
+      "viewport": 768,
+      "scroll": 768,
+      "input": {
+        "x": 49,
+        "y": 163.875,
+        "width": 490,
+        "height": 45,
+        "top": 163.875,
+        "right": 539,
+        "bottom": 208.875,
+        "left": 49
+      },
+      "option": {
+        "x": 49,
+        "y": 224.875,
+        "width": 490,
+        "height": 189,
+        "top": 224.875,
+        "right": 539,
+        "bottom": 413.875,
+        "left": 49
+      },
+      "outline": "3px"
+    },
+    {
+      "name": "U1-R5 rendered width 768",
+      "status": "PASS"
+    },
+    {
+      "name": "geometry 1280",
+      "viewport": 1280,
+      "scroll": 1280,
+      "input": {
+        "x": 49,
+        "y": 163.875,
+        "width": 490,
+        "height": 45,
+        "top": 163.875,
+        "right": 539,
+        "bottom": 208.875,
+        "left": 49
+      },
+      "option": {
+        "x": 49,
+        "y": 224.875,
+        "width": 490,
+        "height": 189,
+        "top": 224.875,
+        "right": 539,
+        "bottom": 413.875,
+        "left": 49
+      },
+      "outline": "3px"
+    },
+    {
+      "name": "U1-R5 rendered width 1280",
+      "status": "PASS"
+    }
+  ]
+}

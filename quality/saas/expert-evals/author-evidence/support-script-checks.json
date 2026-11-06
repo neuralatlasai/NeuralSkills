@@ -1,0 +1,56 @@
+[
+  {
+    "name": "original-setup",
+    "exit": 0,
+    "expected": 0,
+    "pass": true
+  },
+  {
+    "name": "serve-public",
+    "exit": 0,
+    "expected": 0,
+    "pass": true
+  },
+  {
+    "name": "serve-heldout",
+    "exit": 0,
+    "expected": 0,
+    "pass": true
+  },
+  {
+    "name": "usage-ui",
+    "exit": 2,
+    "expected": 2,
+    "pass": true
+  },
+  {
+    "name": "usage-be",
+    "exit": 2,
+    "expected": 2,
+    "pass": true
+  },
+  {
+    "name": "usage-u2",
+    "exit": 2,
+    "expected": 2,
+    "pass": true
+  },
+  {
+    "name": "usage-b2",
+    "exit": 2,
+    "expected": 2,
+    "pass": true
+  },
+  {
+    "name": "usage-author",
+    "exit": 2,
+    "expected": 2,
+    "pass": true
+  },
+  {
+    "name": "usage-server",
+    "exit": 2,
+    "expected": 2,
+    "pass": true
+  }
+]

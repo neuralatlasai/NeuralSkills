@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact preferences</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main class="preferences">
+      <header>
+        <p class="eyebrow">Contact preferences</p>
+        <h1>Stay in the loop</h1>
+        <p class="intro">Choose which messages you would like to receive.</p>
+      </header>
+      <form id="preferences-form" novalidate>
+        <div class="email-field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-hint email-error">
+          <p id="email-hint" class="hint">Enter the email you would like us to use.</p>
+          <p id="email-error" class="error" hidden></p>
+        </div>
+        <fieldset>
+          <legend>Messages you would like</legend>
+          <label class="choice" for="updates"><input id="updates" name="updates" type="checkbox" checked><span>Email updates</span></label>
+          <label class="choice" for="research"><input id="research" name="research" type="checkbox"><span>Product research</span></label>
+          <label class="choice" for="partners"><input id="partners" name="partners" type="checkbox"><span>Partner offers</span></label>
+        </fieldset>
+        <button type="submit">Save preferences</button>
+        <p class="local-note">Saved only on this page. Reloading clears your preferences.</p>
+        <p id="edit-status" class="edit-status" hidden>You have unsaved changes.</p>
+      </form>
+      <p id="save-status" class="save-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <section id="saved-summary" class="summary" aria-labelledby="summary-title" hidden>
+        <h2 id="summary-title">Saved preferences</h2>
+        <dl><dt>Email address</dt><dd id="saved-email"></dd></dl>
+        <h3>Enabled categories</h3>
+        <ul id="saved-categories"></ul>
+        <p id="no-categories" hidden>No categories selected.</p>
+      </section>
+    </main>
+  </body>
+</html>

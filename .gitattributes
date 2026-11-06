@@ -1,0 +1,6 @@
+# Evaluation inventories record exact bytes, including original line endings.
+.gitattributes -text whitespace=cr-at-eol
+.gitignore -text whitespace=cr-at-eol
+README.md -text whitespace=cr-at-eol
+roles/saas/** -text whitespace=cr-at-eol
+quality/saas/** -text whitespace=cr-at-eol

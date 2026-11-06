@@ -1,0 +1,66 @@
+{
+  "oversell": {
+    "file": "test-8080-0.sqlite",
+    "stock": [
+      {
+        "tenant": "red",
+        "sku": "widget",
+        "qty": -3
+      },
+      {
+        "tenant": "blue",
+        "sku": "widget",
+        "qty": 5
+      }
+    ],
+    "receipts": [
+      {
+        "key": "a",
+        "tenant": "red",
+        "sku": "widget",
+        "qty": 4,
+        "status": "reserved",
+        "reservationId": "red:a"
+      },
+      {
+        "key": "b",
+        "tenant": "red",
+        "sku": "widget",
+        "qty": 4,
+        "status": "reserved",
+        "reservationId": "red:b"
+      }
+    ],
+    "events": [
+      {
+        "id": 1,
+        "tenant": "red",
+        "key": "a",
+        "reservationId": "red:a"
+      },
+      {
+        "id": 2,
+        "tenant": "red",
+        "key": "b",
+        "reservationId": "red:b"
+      }
+    ]
+  },
+  "beforeCommit": {
+    "file": "test-8080-4.sqlite",
+    "stock": [
+      {
+        "tenant": "red",
+        "sku": "widget",
+        "qty": 1
+      },
+      {
+        "tenant": "blue",
+        "sku": "widget",
+        "qty": 5
+      }
+    ],
+    "receipts": [],
+    "events": []
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "runtime": "v24.12.0",
+  "work": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-skill-1\\artifact\\verification-mbYRsr",
+  "sqlite": "3.50.4",
+  "checks": [
+    {
+      "name": "same-connection-1",
+      "status": "PASS",
+      "separateConnections": false,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "two-connections-1",
+      "status": "PASS",
+      "separateConnections": true,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "same-connection-2",
+      "status": "PASS",
+      "separateConnections": false,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "two-connections-2",
+      "status": "PASS",
+      "separateConnections": true,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "same-connection-3",
+      "status": "PASS",
+      "separateConnections": false,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "two-connections-3",
+      "status": "PASS",
+      "separateConnections": true,
+      "afterReadCalls": 2,
+      "results": [
+        {
+          "status": 201,
+          "available": 1,
+          "version": 2
+        },
+        {
+          "status": 409
+        }
+      ],
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      },
+      "reopened": true
+    },
+    {
+      "name": "afterWrite-rollback",
+      "status": "PASS",
+      "faultCalls": 1,
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 5,
+            "version": 1
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": []
+      }
+    },
+    {
+      "name": "retry-after-rollback",
+      "status": "PASS",
+      "result": {
+        "status": 201,
+        "available": 1,
+        "version": 2
+      },
+      "state": {
+        "stock": [
+          {
+            "tenant": "north",
+            "item": "part-7",
+            "available": 1,
+            "version": 2
+          },
+          {
+            "tenant": "south",
+            "item": "part-7",
+            "available": 100,
+            "version": 1
+          }
+        ],
+        "allocations": [
+          {
+            "id": 1,
+            "tenant": "north",
+            "item": "part-7",
+            "quantity": 4
+          }
+        ]
+      }
+    }
+  ],
+  "status": "FAIL",
+  "error": {
+    "message": "Expected values to be strictly equal:\n\n201 !== 409\n",
+    "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n201 !== 409\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B02-skill-1/artifact/verify.mjs:42:10\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+  }
+}

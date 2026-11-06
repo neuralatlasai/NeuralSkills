@@ -1,0 +1,191 @@
+{
+  "caseId": "C06",
+  "arm": "baseline",
+  "run": 2,
+  "route": "native-typescript-css/local-page",
+  "startedAt": "2026-11-05T16:33:36Z",
+  "endedAt": "2026-11-05T16:39:25.057Z",
+  "elapsedSeconds": 349.057,
+  "requirementCoverage": [
+    {
+      "id": "C06-R01",
+      "status": "PASS",
+      "requirement": "Compact native TypeScript/CSS page, unchanged supplied API, no backend/React/UI library",
+      "evidence": "artifact/src/app.ts; artifact/src/fake-api.ts; artifact/styles.css; strict-typescript-build; fixture-unchanged"
+    },
+    {
+      "id": "C06-R02",
+      "status": "PASS",
+      "requirement": "Labeled search form; Search and Enter submit",
+      "evidence": "accessible-label; pending; keyboard-focus"
+    },
+    {
+      "id": "C06-R03",
+      "status": "PASS",
+      "requirement": "Initial prompt and visible pending state",
+      "evidence": "initial; pending; evidence/initial.png; evidence/pending.png"
+    },
+    {
+      "id": "C06-R04",
+      "status": "PASS",
+      "requirement": "Guide cards, useful empty state, clear failure and Retry",
+      "evidence": "cedar; moss; empty; failure; evidence/moss-desktop.png; evidence/empty.png; evidence/failure.png"
+    },
+    {
+      "id": "C06-R05",
+      "status": "PASS",
+      "requirement": "New requests while pending; latest submission guards successes and failures",
+      "evidence": "pending; race-stale-success; race-stale-failure"
+    },
+    {
+      "id": "C06-R06",
+      "status": "PASS",
+      "requirement": "Retry repeats failed query",
+      "evidence": "retry-pending; retry-outcome, including input edited to cedar before retrying fail"
+    },
+    {
+      "id": "C06-R07",
+      "status": "PASS",
+      "requirement": "Accessible loading/outcome semantics, usable focus, 320px fit",
+      "evidence": "live-feedback; keyboard-focus; retry-pending; mobile-fit; visual-review. Screen reader audio UNVERIFIED."
+    },
+    {
+      "id": "C06-R08",
+      "status": "PASS",
+      "requirement": "Requested deterministic checks, setup instructions, result contract",
+      "evidence": "artifact/README.md; verify.mjs; evidence/browser-checks.json; result.json"
+    }
+  ],
+  "assumptions": [
+    "Requirement IDs were supplied without individual definitions; coverage descriptions map them to task clauses in order.",
+    "The named fixture paths resolve beneath evals/, as confirmed by locating and reading only the named fixture files.",
+    "Local preinstalled Node 24, TypeScript API, Playwright, and Chrome may be used without installation."
+  ],
+  "decisions": [
+    "Single monotonic submission counter checked in both fulfillment and rejection prevents stale state changes without cancellation.",
+    "Search remains enabled during requests; each submission clears prior results and announces a fresh pending message.",
+    "Persistent polite status region announces loading and outcomes; cards are outside the live region. Retry restores input focus before hiding its control.",
+    "Retry saves the failed submitted query independently of the editable input.",
+    "System fonts, warm paper palette, green controls, responsive two-card grid; no external asset or font requests."
+  ],
+  "checks": [
+    {
+      "id": "initial",
+      "status": "PASS",
+      "evidence": "Initial prompt visible; evidence/initial.png"
+    },
+    {
+      "id": "accessible-label",
+      "status": "PASS",
+      "evidence": "Searchbox has explicit label; persistent role=status live region present."
+    },
+    {
+      "id": "pending",
+      "status": "PASS",
+      "evidence": "Enter submitted cedar and loading is visible with Search enabled. evidence/pending.png"
+    },
+    {
+      "id": "cedar",
+      "status": "PASS",
+      "evidence": "Cedar returns one guide after pending."
+    },
+    {
+      "id": "moss",
+      "status": "PASS",
+      "evidence": "Moss returns two cards including long title. evidence/moss-desktop.png"
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "evidence": "Useful no-results guidance; evidence/empty.png"
+    },
+    {
+      "id": "failure",
+      "status": "PASS",
+      "evidence": "Failure explains issue and offers Retry; evidence/failure.png"
+    },
+    {
+      "id": "retry-pending",
+      "status": "PASS",
+      "evidence": "Retry submits failed query despite edited input, returns focus to input."
+    },
+    {
+      "id": "retry-outcome",
+      "status": "PASS",
+      "evidence": "Retry creates another request and fails again as fixture specifies."
+    },
+    {
+      "id": "race-stale-success",
+      "status": "PASS",
+      "evidence": "Cedar then moss 100 ms apart: moss remains after stale cedar resolves."
+    },
+    {
+      "id": "race-stale-failure",
+      "status": "PASS",
+      "evidence": "Fail then moss 100 ms apart: late failure ignored; evidence/race-moss.png"
+    },
+    {
+      "id": "mobile-fit",
+      "status": "PASS",
+      "evidence": "320 px viewport geometry: {\"viewport\":320,\"scrollWidth\":320,\"cards\":[{\"width\":280,\"right\":300},{\"width\":280,\"right\":300}]}; evidence/moss-320.png"
+    },
+    {
+      "id": "keyboard-focus",
+      "status": "PASS",
+      "evidence": "Tab moves from input to Search; keyboard Enter already exercised."
+    },
+    {
+      "id": "live-feedback",
+      "status": "PASS",
+      "evidence": "Persistent role=status and aria-live=polite verified in Chrome. Actual screen reader announcement audio UNVERIFIED."
+    },
+    {
+      "id": "runtime",
+      "status": "PASS",
+      "evidence": "Browser errors retained in browser-errors.json."
+    },
+    {
+      "id": "strict-typescript-build",
+      "status": "PASS",
+      "evidence": "node build.mjs completed with Built TypeScript and copied page assets. TypeScript strict=true, noEmitOnError=true."
+    },
+    {
+      "id": "fixture-unchanged",
+      "status": "PASS",
+      "evidence": "SHA256 for supplied evals/fixtures/C06/fake-api.ts and artifact/src/fake-api.ts both BAA8F07B2FFD4CFBFB614F12FA69A53745499C5ED06E056E326AC37A25BD10C3."
+    },
+    {
+      "id": "visual-review",
+      "status": "PASS",
+      "evidence": "Viewed evidence/moss-desktop.png and evidence/moss-320.png: long title wraps within cards, controls and text remain readable, responsive single column at 320px."
+    },
+    {
+      "id": "screen-reader-audio",
+      "status": "UNVERIFIED",
+      "evidence": "Browser DOM live-region semantics checked; no actual screen reader was run."
+    },
+    {
+      "id": "historical-tooling-failures",
+      "status": "FAIL",
+      "evidence": "Recovered fixture lookup, build working-directory, Windows ESM import, and favicon-cleanup working-directory failures retained in evidence-command-errors.txt. Final build/browser checks pass."
+    },
+    {
+      "id": "initial-browser-console",
+      "status": "FAIL",
+      "evidence": "First run favicon 404 retained in evidence/browser-errors-first-run.json. Added data favicon; final evidence/browser-errors.json is empty."
+    },
+    {
+      "id": "helpers-stopped",
+      "status": "PASS",
+      "evidence": "verify.mjs closes Chromium and kills its local Node server in finally. No listener on local port 4186 after verification."
+    }
+  ],
+  "limitations": [
+    "Actual screen reader audio and non-Chrome browsers UNVERIFIED.",
+    "Build import points at the supplied local TypeScript installation; setup README documents changing it on another machine.",
+    "Historical command failures and first-run favicon 404 were corrected and retained as evidence."
+  ],
+  "tokens": null,
+  "cost": null,
+  "usageAvailability": "Token and cost accounting unavailable to this trial agent."
+}

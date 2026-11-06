@@ -1,0 +1,18 @@
+:root { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #202c39; background: #f4f6f8; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 32px 16px; }
+.example { max-width: 410px; margin: 48px auto; padding: 28px; border: 1px solid #dce2e8; border-radius: 14px; background: #fff; box-shadow: 0 6px 24px #1b2d4110; }
+.eyebrow { margin: 0 0 12px; color: #53657a; font-size: 11px; font-weight: 700; letter-spacing: .13em; }
+h1 { margin: 0; font-size: 25px; line-height: 1.25; letter-spacing: -.025em; }
+.intro { margin: 12px 0 24px; color: #566475; font-size: 15px; line-height: 1.6; }
+.invitation-copy { min-width: 0; }
+.invitation-copy__button { display: block; max-width: 100%; min-height: 48px; min-width: 44px; padding: 12px 18px; border: 1px solid #233e56; border-radius: 8px; background: #233e56; color: #fff; font: 600 16px/1.4 system-ui, sans-serif; text-align: center; white-space: normal; overflow-wrap: anywhere; cursor: pointer; }
+.invitation-copy__button:hover { background: #182f43; }
+.invitation-copy__button:active { background: #102538; }
+.invitation-copy__button:focus-visible, .invitation-copy__manual:focus-visible { outline: 3px solid #7253c9; outline-offset: 4px; }
+.invitation-copy__button[aria-disabled="true"] { cursor: wait; background: #485e70; }
+.invitation-copy[data-state="success"] .invitation-copy__button { background: #245540; border-color: #245540; }
+.invitation-copy__status { min-height: 20px; margin: 12px 0 0; color: #526476; font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
+.invitation-copy[data-state="error"] .invitation-copy__status { color: #9c2e2e; }
+.invitation-copy__manual { width: 100%; min-width: 0; min-height: 44px; margin-top: 10px; padding: 10px; border: 1px solid #98a6b6; border-radius: 6px; color: #202c39; background: #fff; font: 14px/1.4 system-ui, sans-serif; }
+@media (max-width: 360px) { .example { padding: 22px; margin-top: 24px; } }

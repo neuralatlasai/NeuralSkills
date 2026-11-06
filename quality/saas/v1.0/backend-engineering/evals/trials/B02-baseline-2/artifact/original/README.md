@@ -1,0 +1,1 @@
+Node 24.12+ built-ins. Copy to trial/artifact; run `node probe.mjs race.sqlite` with a fresh filename. The probe releases two asynchronous callers after both reads and prints actual state. Preserve the hooks; afterWrite throws in a separate fault test and performs no external effect. SQLite must remain real, including file-backed reopen checks.

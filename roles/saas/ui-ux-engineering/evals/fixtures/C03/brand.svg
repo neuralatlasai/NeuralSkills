@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="460" viewBox="0 0 720 460">
+<rect width="720" height="460" fill="#F7F6EF"/>
+<g font-family="Arial, sans-serif">
+<rect x="44" y="44" width="42" height="42" rx="8" fill="#153F3D"/>
+<path d="M55 72V55H76M55 63H71" fill="none" stroke="#D6EE8C" stroke-width="3"/>
+<text x="101" y="74" font-size="25" font-weight="700" letter-spacing="2" fill="#153F3D">FIELDNOTES</text>
+<text x="44" y="139" font-size="16" fill="#153F3D">Brand reference: colors and mark only</text>
+<rect x="44" y="176" width="145" height="160" rx="10" fill="#153F3D"/>
+<rect x="206" y="176" width="145" height="160" rx="10" fill="#D6EE8C"/>
+<rect x="368" y="176" width="145" height="160" rx="10" fill="#E6A36F"/>
+<rect x="530" y="176" width="145" height="160" rx="10" fill="#FFFFFF" stroke="#D8DDD2"/>
+<text x="60" y="366" font-size="14" fill="#153F3D">Forest #153F3D</text>
+<text x="214" y="366" font-size="14" fill="#153F3D">Lime #D6EE8C</text>
+<text x="376" y="366" font-size="14" fill="#153F3D">Clay #E6A36F</text>
+<text x="538" y="366" font-size="14" fill="#153F3D">White #FFFFFF</text>
+<text x="44" y="415" font-size="14" fill="#526663">Canvas #F7F6EF · muted text #526663 · borders #D8DDD2</text>
+</g></svg>
+

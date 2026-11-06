@@ -1,0 +1,124 @@
+﻿{
+    "caseId":  "C01",
+    "arm":  "baseline",
+    "run":  2,
+    "route":  "Native TypeScript and plain CSS, served locally at /; translated-label demo at /?lang=de",
+    "startUtc":  "2026-11-05T16:27:04.0000000+00:00",
+    "endUtc":  "2026-11-05T16:32:38.0029283+00:00",
+    "elapsedSeconds":  334.003,
+    "requirementCoverage":  [
+                                {
+                                    "status":  "PASS",
+                                    "evidence":  "artifact/invitation-copy.ts reusable factory, main.ts exact invitation URL, checked-in ES modules and styles.css; no framework, UI library or icons.",
+                                    "id":  "C01-R01"
+                                },
+                                {
+                                    "status":  "PASS",
+                                    "evidence":  "pending flag and aria-disabled/busy; evidence/browser-checks.json keyboard-and-pending confirms one write despite repeated submissions.",
+                                    "id":  "C01-R02"
+                                },
+                                {
+                                    "status":  "PASS",
+                                    "evidence":  "2000ms success reset timer; real-clipboard-and-timer confirms exact clipboard content and restored original label.",
+                                    "id":  "C01-R03"
+                                },
+                                {
+                                    "status":  "PASS",
+                                    "evidence":  "rejection-and-retry and unavailable-clipboard checks; inline explanation, selectable manual URL and keyboard retry.",
+                                    "id":  "C01-R04"
+                                },
+                                {
+                                    "status":  "PASS",
+                                    "evidence":  "Native button supports Tab/Enter/Space; polite atomic live status; 3px focus outline; measured translated button 242 by 70.78 CSS pixels.",
+                                    "id":  "C01-R05"
+                                },
+                                {
+                                    "status":  "PASS",
+                                    "evidence":  "Corrected 320 by 640 viewport test: exact German label wraps, button scrollWidth equals clientWidth, no document horizontal overflow; evidence/german-320-focus.png.",
+                                    "id":  "C01-R06"
+                                },
+                                {
+                                    "status":  "PASS",
+                                    "evidence":  "Small restrained example; artifact/README.md gives dependency-free Node24 startup and reuse/rebuild instructions; serve.mjs ran during browser checks.",
+                                    "id":  "C01-R07"
+                                }
+                            ],
+    "assumptions":  [
+                        "Requirement IDs were mapped in task order because the input lists IDs without per-ID descriptions.",
+                        "The example is a single invitation control with a small contextual card; the ?lang=de route demonstrates only the requested translated button label.",
+                        "Clipboard access requires localhost or HTTPS plus browser permission. The manual-copy field provides a fallback."
+                    ],
+    "decisions":  [
+                      "Used a native button with a pending guard and aria-disabled to preserve keyboard focus while ignoring duplicate clicks.",
+                      "Kept progress, success and error announcements in one polite atomic live region.",
+                      "Made the long label wrap naturally and used a 48px minimum target height.",
+                      "Exported a factory with per-instance state, unique status IDs, and a destroy method that clears timers and avoids late DOM updates.",
+                      "Supplied compiled JavaScript so the demo runs without installing dependencies."
+                  ],
+    "checks":  [
+                   {
+                       "status":  "PASS",
+                       "evidence":  "evidence/typescript.json: zero diagnostics, emitSkipped=false; compiled using installed TypeScript API.",
+                       "id":  "strict-typescript"
+                   },
+                   {
+                       "id":  "real-clipboard-and-timer",
+                       "status":  "PASS",
+                       "evidence":  "Real Chrome clipboard matched URL; success visible after 1.1s; original label returned within 3.1s."
+                   },
+                   {
+                       "id":  "keyboard-and-pending",
+                       "status":  "PASS",
+                       "evidence":  "Tab + Enter triggered one request; repeated clicks ignored while pending; aria-disabled/aria-busy set and focus preserved."
+                   },
+                   {
+                       "id":  "rejection-and-retry",
+                       "status":  "PASS",
+                       "evidence":  "Rejected clipboard showed inline permission guidance and manual URL; keyboard Space retry succeeded."
+                   },
+                   {
+                       "id":  "small-viewport-long-label-focus",
+                       "status":  "PASS",
+                       "evidence":  "{\"width\":242,\"height\":70.78125,\"scroll\":240,\"client\":240,\"outline\":\"solid\",\"outlineWidth\":\"3px\",\"overflow\":false,\"text\":\"Einladungslink fÃ¼r das Projektteam kopieren\",\"live\":\"polite\"}"
+                   },
+                   {
+                       "id":  "unavailable-clipboard",
+                       "status":  "PASS",
+                       "evidence":  "Unavailable API produced inline browser guidance and manual-copy field; retry button remained enabled."
+                   },
+                   {
+                       "status":  "PASS",
+                       "evidence":  "Viewed evidence/german-320-focus.png, success.png and error.png: readable wrapped label, visible focus ring, restrained single-card treatment and inline error/manual-copy field.",
+                       "id":  "visual-review"
+                   },
+                   {
+                       "status":  "FAIL",
+                       "evidence":  "Initial verifier exited before application checks with ERR_UNSUPPORTED_ESM_URL_SCHEME because of Windows ESM import syntax. Corrected to file:/// import; evidence/initial-run-error.txt retains the failure.",
+                       "id":  "initial-verifier-import"
+                   },
+                   {
+                       "status":  "FAIL",
+                       "evidence":  "First successful run did not set the intended 320px viewport. Original results retained in evidence/browser-checks-initial.json. Corrected page.setViewportSize and reran all checks; see evidence/viewport-check-correction.txt.",
+                       "id":  "initial-viewport-verification"
+                   },
+                   {
+                       "status":  "UNVERIFIED",
+                       "evidence":  "Live status semantics and changing text checked in Chrome DOM; no screen-reader session executed.",
+                       "id":  "screen-reader-output"
+                   },
+                   {
+                       "status":  "UNVERIFIED",
+                       "evidence":  "Only installed Google Chrome was run; Firefox, Safari and physical touch devices were not available in this trial.",
+                       "id":  "cross-browser"
+                   }
+               ],
+    "limitations":  [
+                        "Screen-reader announcement behavior was not tested with assistive software; semantics were inspected.",
+                        "Browser verification was limited to installed Chrome.",
+                        "The translated demonstration changes the button label; all status and error copy remains English.",
+                        "Two verification-tool errors were corrected and retained; final application browser checks all passed."
+                    ],
+    "tokens":  null,
+    "cost":  null,
+    "measurementAvailability":  "Exact token usage and monetary cost were unavailable to the worker."
+}

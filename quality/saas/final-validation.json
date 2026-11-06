@@ -1,0 +1,36 @@
+{
+  "recordedAt": "2026-11-06T03:40:47.327Z",
+  "scope": "Actual package validators and helper tests after cleanup; framework/standards/full-conformance claims remain bounded.",
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "f4cd4b",
+        "wall_time_seconds": 4.7026868,
+        "exit_code": 0,
+        "original_token_count": 441,
+        "output": "{\n  \"status\": \"PASS\",\n  \"validator\": \"bounded supported-keyword assertions; not full JSON Schema conformance\",\n  \"markdownLinks\": 42,\n  \"manifestResources\": 61,\n  \"errors\": []\n}\n{\n  \"status\": \"PASS\",\n  \"checks\": 12,\n  \"results\": [\n    {\n      \"name\": \"validator accepts complete metadata, linked resources, manifest and bounded schema\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"validator rejects broken links and an invalid contract\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"validator rejects resource traversal and overlong metadata\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"actual A-start B-start B-complete A-complete race retains B even when abort is ignored\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"failure retains stale results and retry clears stale/error after recovery\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"empty success and cancellation keep valid lifecycle states\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"initial failure recovers and cancelled first load cannot publish\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"mutation gate rejects duplicates, unlocks after failure, and accepts retry once\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"measurement reports median/range and rejects insufficient, nonnumeric and field claims\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"TypeScript build emits browser JavaScript and rejects missing sources\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"loopback server serves fixture and rejects traversal, malformed paths, mutations and missing resources\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"browser runner gives a clear failure for a missing explicit browser\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "a71e30",
+        "wall_time_seconds": 0.2100483,
+        "exit_code": 0,
+        "original_token_count": 89,
+        "output": "{\n  \"status\": \"PASS\",\n  \"scope\": \"Bounded frontmatter/link/manifest/schema/coverage/decision checks; not full YAML, Markdown or JSON Schema conformance.\",\n  \"links\": 44,\n  \"resources\": 59,\n  \"errors\": []\n}\n{\"status\":\"PASS\",\"checks\":5,\"coverage\":\"Valid context; duplicate layer, unsupported PASS, disconnected decision and unsupported keyword rejected.\"}\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "f95d2d",
+        "wall_time_seconds": 0.5022449,
+        "exit_code": 0,
+        "original_token_count": 510,
+        "output": "# NeuralSkills\r\n\r\n**Practical knowledge, made reusable.**\r\n\r\nNeuralSkills is a repository for reusable AI agent skills: task-specific instructions and practical know-how for carrying out defined work.\r\n\r\nThe focus is on the skills themselves. A skill should make clear what it is useful for, how to apply it, and where its limits lie. Supporting material belongs alongside a skill when it directly helps put that knowledge to work.\r\n\r\nThe aim is to make useful methods easier to share, adapt, and improve, so the knowledge developed for one task can become a starting point for the next.\r\n\r\nContributions should add a clearly defined skill or improve an existing one. The standard is practical usefulness: clear instructions, relevant examples, and capability claims grounded in observed results.\r\n\r\n> **What we learn to do well should help others do it better.**\r\n28:Little's Law relates averages, not p99/unstable backlogs. Use actual pooling topology and starting/terminating processes retaining connections; unknown memory terms stay unknown. Example assumptions: four apps*8 + workers4 + two surge/terminating apps*8 + maintenance2 =54 connections, exceeding allocation40 although steady app demand is32. This is arithmetic, not observed utilization.\n32:One local total deadline owns remaining work. Give queue/connect/dependency/response non-overlapping caps within it; do not double-count a connect interval already inside a client's total timeout. Never forward local monotonic timestamps unchanged across hosts. Cancellation does not prove a sync driver stopped or undo commit. Reject work that cannot remain useful; bound rate/concurrency/queue count/bytes/age/fan-out and tenant/class fairness.\n34:Three nested layers permitting three total attempts each can cause27 leaf attempts; fan-out4 raises that envelope to108. Choose retry owner, identity, total deadline and bounded jitter. A component-p99 sum is not journey p99; concurrent branches follow the critical path. Measure full completion separately from acknowledgement.\n"
+      }
+    }
+  ]
+}

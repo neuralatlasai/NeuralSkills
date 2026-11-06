@@ -1,0 +1,21 @@
+{
+  "sqlite": {
+    "version": "3.50.4"
+  },
+  "order": [
+    {
+      "id": 3,
+      "parent": 0,
+      "notused": 39,
+      "detail": "SEARCH orders USING INDEX sqlite_autoindex_orders_1 (tenant=? AND id=?)"
+    }
+  ],
+  "receipt": [
+    {
+      "id": 3,
+      "parent": 0,
+      "notused": 39,
+      "detail": "SEARCH receipts USING INDEX sqlite_autoindex_receipts_1 (event_id=?)"
+    }
+  ]
+}

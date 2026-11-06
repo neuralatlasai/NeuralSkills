@@ -1,0 +1,47 @@
+﻿{
+    "trial":  "T01",
+    "startUtc":  "2026-11-06T03:13:11Z",
+    "initialPowerShellReadUtc":  "2026-11-06T03:13:22.0564809Z",
+    "endUtc":  "2026-11-06T03:18:56.8563391+00:00",
+    "elapsedSeconds":  345.856,
+    "underlyingToolInvocations":  19,
+    "toolLimit":  20,
+    "timeLimitSeconds":  360,
+    "tokens":  null,
+    "cost":  null,
+    "serverPort":  4191,
+    "stoppedOwnServerProcessIds":  [
+
+                                   ],
+    "commands":  [
+                     "clock current UTC",
+                     "Get-Content dispatch/T01.txt",
+                     "PowerShell UTC plus historical SKILL/map/wrapper/contract/task reads",
+                     "historical references and artifact/shared server reads",
+                     "node module discovery and host executable discovery",
+                     "node serve-fixture.mjs \u003cown artifact\u003e 4191",
+                     "apply_patch add browser-tests.mjs",
+                     "node browser-tests.mjs \u003e baseline-results.json; Get-Content baseline-results.json",
+                     "apply_patch FAIL duplicate app.ts operations",
+                     "apply_patch Update File app.ts styles.css index.html demo.ts",
+                     "node browser-tests.mjs \u003e final-results.json; Get-Content; UTC",
+                     "view_image narrow.png",
+                     "apply_patch supplemental browser checks",
+                     "node browser-tests.mjs \u003e final-results.json; Get-Content; UTC",
+                     "view_image desktop.png",
+                     "PowerShell write handoff.md and README.md",
+                     "PowerShell stop own server and write run-log.json",
+                     "write_stdin session 1979 Ctrl-C stopped own server; process exit 1",
+                     "PowerShell correct UTC offset arithmetic and preserve cleanup failure"
+                 ],
+    "failures":  [
+                     "baseline five checks FAIL, retained in baseline-results.json",
+                     "discovery shell exit 1; Puppeteer available and installed Edge launch subsequently succeeded",
+                     "apply_patch duplicate target failed before any mutation",
+                     "CIM process inspection Access denied; server subsequently stopped using its own exec session Ctrl-C",
+                     "Initial elapsed calculation used DateTime local conversion and was negative; corrected with DateTimeOffset UTC parsing"
+                 ],
+    "verification":  "Final nine browser checks PASS; original first five failures retained",
+    "firstToolTimingDeviation":  "First UTC used clock and dispatch read; exact requested PowerShell capture occurred with initial instruction reads",
+    "serverCleanup":  "Stopped own server through exec session 1979 Ctrl-C; exit 1 observed; retained experimental stripTypeScriptTypes warning"
+}

@@ -1,0 +1,70 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #2f2542;
+  background: #f7f5fa;
+  font-synthesis: none;
+  --canvas: #f7f5fa;
+  --surface: #ffffff;
+  --brand: #6a458d;
+  --brand-dark: #432957;
+  --brand-soft: #eee5f4;
+  --text: #2f2542;
+  --muted: #766d80;
+  --border: #e6e0ec;
+  --radius: 18px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--brand); outline-offset: 4px; }
+.shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: 100vh; }
+.sidebar { background: #f0eaf5; padding: 36px 24px; display: flex; flex-direction: column; }
+.brand { font-size: 34px; font-weight: 700; letter-spacing: -1px; padding: 0 12px; }
+.brand span { font-size: 14px; color: var(--brand); margin-left: 3px; }
+nav { display: grid; gap: 8px; margin-top: 48px; }
+nav a { padding: 14px 16px; border-radius: 10px; font-size: 14px; color: #655871; }
+nav .active { background: var(--brand-dark); color: white; font-weight: 700; }
+.sidebar-note { margin-top: auto; font-size: 12px; line-height: 1.7; color: var(--muted); padding: 30px 12px 0; }
+main { padding: 50px 5vw 28px; max-width: 1200px; width: 100%; }
+.page-heading { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin-bottom: 32px; }
+.eyebrow { font-size: 10px; letter-spacing: 1.8px; color: var(--brand); font-weight: 700; }
+h1 { font-family: Georgia, serif; font-size: 42px; font-weight: 400; margin: 12px 0; }
+.muted { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.period { font-size: 13px; color: var(--muted); padding: 12px 17px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface); white-space: nowrap; }
+.summary { display: grid; grid-template-columns: 1fr 1fr; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; gap: 24px; margin-bottom: 32px; }
+.summary p { margin: 0 0 10px; }
+.summary strong { display: block; font-size: 34px; letter-spacing: -1px; }
+.summary-note { display: block; margin-top: 9px; color: var(--muted); font-size: 12px; }
+.summary-accent { border-radius: 12px; padding: 24px; background: var(--brand-soft); align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+.summary-accent p { font-family: Georgia, serif; font-size: 23px; color: var(--brand-dark); }
+.summary-accent span { color: #6f5b7e; font-size: 12px; line-height: 1.6; }
+.invoice-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0 28px; }
+.panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+h2 { font-family: Georgia, serif; font-size: 23px; font-weight: 400; margin: 0; }
+.count { color: var(--muted); font-size: 12px; }
+.invoice-row { display: flex; justify-content: space-between; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.invoice-row:last-child { border-bottom: 0; }
+.invoice-id { color: var(--brand); font-size: 10px; letter-spacing: 1px; font-weight: 700; }
+h3 { margin: 9px 0 5px; font-size: 16px; font-weight: 700; }
+.invoice-identity .muted { font-size: 12px; margin: 0; }
+.invoice-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.invoice-meta strong { font-size: 17px; }
+.status { padding: 5px 10px; border-radius: 12px; background: #f0edf5; color: #756085; font-size: 10px; }
+.footer-note { font-size: 11px; color: var(--muted); margin-top: 20px; }
+@media (max-width: 720px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { padding: 18px 20px; flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { font-size: 28px; padding: 0; }
+  nav { display: flex; gap: 3px; margin: 0; }
+  nav a { padding: 12px 9px; font-size: 12px; }
+  .sidebar-note { display: none; }
+  main { padding: 28px 20px; }
+  .page-heading { gap: 12px; }
+  h1 { font-size: 36px; }
+  .period { padding: 10px; font-size: 11px; }
+  .summary { grid-template-columns: 1fr; padding: 22px; gap: 22px; }
+  .summary-accent { padding: 20px; }
+  .invoice-panel { padding: 0 20px; }
+}
+

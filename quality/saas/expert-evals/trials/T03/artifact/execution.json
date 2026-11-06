@@ -1,0 +1,14 @@
+﻿{
+    "trial":  "T03",
+    "startUtc":  "2026-11-06T03:15:40Z",
+    "endUtc":  "2026-11-06T03:19:17.5835446Z",
+    "elapsedSeconds":  217.58354459999998,
+    "underlyingToolInvocations":  10,
+    "clockCalls":  1,
+    "execCommandCalls":  8,
+    "parentStatusMessages":  1,
+    "tokens":  null,
+    "cost":  null,
+    "requiredChecks":  "PASS",
+    "proceduralDeviation":  "Initial UTC used clock tool; literal DateTime capture occurred on second invocation."
+}

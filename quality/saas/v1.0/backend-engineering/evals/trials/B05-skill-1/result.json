@@ -1,0 +1,488 @@
+{
+  "caseId": "B05",
+  "arm": "skill",
+  "run": 1,
+  "status": "PASS",
+  "route": {
+    "skill": "backend-engineering/SKILL.md",
+    "activeModules": [
+      "B1",
+      "B3",
+      "B4",
+      "B6",
+      "B7",
+      "B8"
+    ],
+    "referencesRead": [
+      "data.md",
+      "operations.md",
+      "verification.md",
+      "coding-standards.md",
+      "runtime-capacity.md",
+      "modules.md"
+    ],
+    "rawInputs": [
+      "heldout/B05/store.mjs",
+      "heldout/B05/deletions.json",
+      "heldout/B05/README.md"
+    ],
+    "prohibitedDefinitionsRead": false
+  },
+  "environment": {
+    "node": "v24.12.0",
+    "sqlite": "3.50.4",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "requirements": [
+    {
+      "id": "B05-R01",
+      "meaning": "Additive migration preserves old reads and non-deleted data with correct final schema.",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification.json: interruption, old SELECT compatibility, recovery row/schema snapshots"
+      ]
+    },
+    {
+      "id": "B05-R02",
+      "meaning": "At most two updated rows per batch; interruption is durable, resumable, repeat-safe and schema1 until complete.",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification.json: batch events, first interruption snapshot, abrupt exit23 and replay checks"
+      ]
+    },
+    {
+      "id": "B05-R03",
+      "meaning": "Consistent v1 snapshot, isolated restoration and immutable source/backup with current deletions before publication.",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification.json: consistent backup, WAL snapshot, isolated recoveries, SHA256 and deletion checks"
+      ]
+    },
+    {
+      "id": "B05-R04",
+      "meaning": "Actual interruption/restart, tenant/data/schema/deletion verification and local measured recovery.",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification.json: all checks and three raw recovery samples; README commands/limits"
+      ]
+    },
+    {
+      "id": "B05-R05",
+      "meaning": "Proportionate 24-area coverage and explicit five-field decisions.",
+      "status": "PASS",
+      "evidence": [
+        "evidence/verification.json: result.json coverageDispositions and decisions"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D01",
+      "requirement": "B05-R01",
+      "mechanism": "Add nullable state column; preserve tenant/id/name and PK; set schema2 only after no NULL remains.",
+      "limit": "Existing old SELECT contract; old concurrent writes/new state workflows not supported.",
+      "failure": "Premature version or destructive rewrite loses compatibility/data.",
+      "verification": "Real SQLite before/during/after snapshots and unchanged old projections."
+    },
+    {
+      "id": "D02",
+      "requirement": "B05-R02",
+      "mechanism": "BEGIN IMMEDIATE, SELECT LIMIT 2, tenant/id conditional updates; afterBatch after COMMIT.",
+      "limit": "Two updated rows per transaction; scan/lock walltime not bounded; busy timeout1000ms, no retries.",
+      "failure": "Hook/process exits after commit leave partial backfill; rerun resumes using state NULL.",
+      "verification": "Throw after first batch, actual process.exit23, schema1 and two pending rows then restart/replay."
+    },
+    {
+      "id": "D03",
+      "requirement": "B05-R03",
+      "mechanism": "Read-only SQLite VACUUM INTO snapshot and fresh destination refusal.",
+      "limit": "Pristine v1 source, filesystem storage/headroom and trusted single operator; full snapshot cost O(B).",
+      "failure": "File copying a live WAL source omits committed data or overwrites original.",
+      "verification": "Open WAL source committed-row snapshot check; source/backup SHA256 before/after restore."
+    },
+    {
+      "id": "D04",
+      "requirement": "B05-R03",
+      "mechanism": "Private staging copy; tenant/id journal DELETE transaction, migrate, integrity/deletion check, close then rename and return.",
+      "limit": "Authoritative journal supplied, at most10000 bounded keys; no adversarial paths/concurrent publishers; no traffic service.",
+      "failure": "Stale/missing deletion input resurrects deleted data or target exposed too early.",
+      "verification": "Required ledger validation, exact expected recovered rows, tenant collision, corrupt/overwrite negative checks."
+    },
+    {
+      "id": "D05",
+      "requirement": "B05-R04",
+      "mechanism": "Three timed independent target restores through validation and hash verification.",
+      "limit": "Four source rows, three surviving rows, local Windows runtime, uncontrolled cache; no RPO/RTO commitment.",
+      "failure": "Misinterpreting local timings as production recovery SLA or claiming untested rollback.",
+      "verification": "Raw recoverySamplesMs and median/min/max; actual files retained."
+    },
+    {
+      "id": "D06",
+      "requirement": "B05-R05",
+      "mechanism": "Requirement/evidence mapping and all24 explicit task dispositions.",
+      "limit": "Only supplied local SQLite path; no deployment/security certification or uninspected source claims.",
+      "failure": "Unrelated technologies marked verified or missing relevant evidence hidden.",
+      "verification": "Result structural audit and links to actual executed checks."
+    }
+  ],
+  "coverageDispositions": [
+    {
+      "id": "L01",
+      "name": "DNS, discovery, network paths and sockets",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "Local file-backed SQLite uses no network or discovery.",
+      "evidence": [
+        "artifact/store.mjs"
+      ]
+    },
+    {
+      "id": "L02",
+      "name": "TLS, certificates and transport identity",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No transport or TLS boundary exists in this local maintenance task.",
+      "evidence": [
+        "artifact/README.md"
+      ]
+    },
+    {
+      "id": "L03",
+      "name": "Proxies, gateways, ingress, CDN and load balancing",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No ingress, gateway or deployed service.",
+      "evidence": [
+        "artifact/README.md"
+      ]
+    },
+    {
+      "id": "L04",
+      "name": "Authentication, authorization and tenant identity",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Composite tenant/id preserved; deletion includes both keys. Application authentication is outside scope, not verified.",
+      "evidence": [
+        "evidence/verification.json checks tenant scoped deletion"
+      ]
+    },
+    {
+      "id": "L05",
+      "name": "API styles, HTTP versions, RPC and streams",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "Requested interfaces are local functions and CLI, with no HTTP/RPC/stream contract.",
+      "evidence": [
+        "artifact/cli.mjs"
+      ]
+    },
+    {
+      "id": "L06",
+      "name": "CRUD, upsert and bulk semantics",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Conditional backfill and tenant-scoped deletion; bulk updates limited to two rows per batch.",
+      "evidence": [
+        "evidence/verification.json restart/replay checks"
+      ]
+    },
+    {
+      "id": "L07",
+      "name": "Validation, parsing, serialization and errors",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Deletion keys/count validation, missing journal and corrupt database rejection; errors propagate. Trusted CLI file size is not bounded.",
+      "evidence": [
+        "evidence/verification.json invalid ledger/corrupt backup checks"
+      ]
+    },
+    {
+      "id": "L08",
+      "name": "Domain architecture and request lifecycle",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Explicit expansion/backfill/completion and staged restoration lifecycle; only ready target returned.",
+      "evidence": [
+        "artifact/store.mjs"
+      ]
+    },
+    {
+      "id": "L09",
+      "name": "Runtime, memory, concurrency, OS and containers",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Native synchronous SQLite; connections close; abrupt process loss and restart exercised. General memory/OS pressure outside requested scope.",
+      "evidence": [
+        "evidence/verification.json abrupt process loss check"
+      ]
+    },
+    {
+      "id": "L10",
+      "name": "Database modeling and DDL",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Additive state column, preserved primary key and schema2 only after backfill.",
+      "evidence": [
+        "evidence/verification.json interruption/restart state snapshots"
+      ]
+    },
+    {
+      "id": "L11",
+      "name": "DML/DQL, ORM, indexes and query plans",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Parameterized tenant/id mutation, old SELECT preserved. No query-speed optimization or universal plan claim.",
+      "evidence": [
+        "evidence/verification.json old SELECT compatibility check"
+      ]
+    },
+    {
+      "id": "L12",
+      "name": "Transactions, isolation, locks and consistency",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "BEGIN IMMEDIATE expansion/batches/completion; committed hook interruption is resumable.",
+      "evidence": [
+        "evidence/verification.json interruption and abrupt exit checks"
+      ]
+    },
+    {
+      "id": "L13",
+      "name": "Database privileges and operational administration",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Backup/restore source opened read-only, destinations must be new. OS authorization trusted; SQLite SQL GRANT/RLS unavailable.",
+      "evidence": [
+        "evidence/verification.json overwrite refusal and source hashes"
+      ]
+    },
+    {
+      "id": "L14",
+      "name": "Storage, replication, partitioning, sharding and hashes",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Actual SQLite files, consistent snapshot includes WAL; SHA256 used only for integrity comparison. No replication/sharding.",
+      "evidence": [
+        "evidence/verification.json engine snapshot includes committed WAL data"
+      ]
+    },
+    {
+      "id": "L15",
+      "name": "Cache, views and derived state",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No cache, derived view or external projection in the supplied fixture.",
+      "evidence": [
+        "artifact/store.mjs"
+      ]
+    },
+    {
+      "id": "L16",
+      "name": "Messaging, event logs, CDC and async effects",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No messaging, CDC or remote effect. Deletion journal is an explicit local input.",
+      "evidence": [
+        "artifact/deletions.json"
+      ]
+    },
+    {
+      "id": "L17",
+      "name": "Durable workers, schedules and workflows",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "Migration is synchronous explicit operator invocation; no worker/lease/scheduler introduced.",
+      "evidence": [
+        "artifact/cli.mjs"
+      ]
+    },
+    {
+      "id": "L18",
+      "name": "Files, objects, search and specialized stores",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Separate snapshot, private staging and recovered SQLite files; target not published before reconciliation.",
+      "evidence": [
+        "evidence/verification.json isolated recovery checks"
+      ]
+    },
+    {
+      "id": "L19",
+      "name": "External APIs, webhooks, tools and MCP",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No external API, webhook or downloaded dependency.",
+      "evidence": [
+        "artifact/store.mjs imports"
+      ]
+    },
+    {
+      "id": "L20",
+      "name": "Traffic, capacity, scaling and cost",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "At most two rows per batch, ledger cap, three measured local restores; cost/scan limits documented without production capacity claims.",
+      "evidence": [
+        "evidence/verification.json recoverySamplesMs; artifact/README.md"
+      ]
+    },
+    {
+      "id": "L21",
+      "name": "Reliability, backups and recovery",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Actual isolated v1 backup and v2 restoration; original/backup remain hash-identical; corruption refused.",
+      "evidence": [
+        "evidence/verification.json isolated recovery 1/2/3; corrupt backup checks"
+      ]
+    },
+    {
+      "id": "L22",
+      "name": "Observability, objectives and audit",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Retained command stdout/stderr, row/schema snapshots, hashes and raw recovery timing; no deployed telemetry/SLO claim.",
+      "evidence": [
+        "evidence/verification.json"
+      ]
+    },
+    {
+      "id": "L23",
+      "name": "Infrastructure, build and deployment lifecycle",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Reproducible local setup/interruption/restart/backup/restore; compatible expansion and repeat execution verified. No live rollout.",
+      "evidence": [
+        "evidence/verification.json commands; artifact/README.md"
+      ]
+    },
+    {
+      "id": "L24",
+      "name": "Security, privacy, supply chain and lifecycle",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Post-backup deletion policy reconciled before returning target and tenant scope checked; trusted file/ledger authority explicit.",
+      "evidence": [
+        "evidence/verification.json tenant/deletion checks; artifact/README.md"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "command": "node --check artifact/store.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "No syntax diagnostics",
+      "kind": "syntax"
+    },
+    {
+      "command": "node --check artifact/cli.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "No syntax diagnostics",
+      "kind": "syntax"
+    },
+    {
+      "command": "node --check artifact/verify.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "No syntax diagnostics",
+      "kind": "syntax"
+    },
+    {
+      "command": "node --check artifact/finalize.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "No syntax diagnostics",
+      "kind": "syntax"
+    },
+    {
+      "command": "node artifact/verify.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "evidence/verification.json",
+      "kind": "real-SQLite integration/fault/recovery"
+    },
+    {
+      "command": "node cli.mjs setup C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\source-v1.sqlite",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "evidence/verification.json commands (stdout/stderr retained)",
+      "kind": "CLI integration"
+    },
+    {
+      "command": "node cli.mjs backup C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\source-v1.sqlite C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\backup-v1.sqlite",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "evidence/verification.json commands (stdout/stderr retained)",
+      "kind": "CLI integration"
+    },
+    {
+      "command": "node cli.mjs interrupt C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\migrated.sqlite",
+      "exit": 1,
+      "status": "PASS",
+      "evidence": "evidence/verification.json commands (stdout/stderr retained)",
+      "kind": "expected-negative/process-interruption"
+    },
+    {
+      "command": "node cli.mjs migrate C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\migrated.sqlite",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "evidence/verification.json commands (stdout/stderr retained)",
+      "kind": "CLI integration"
+    },
+    {
+      "command": "node cli.mjs migrate C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\migrated.sqlite",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "evidence/verification.json commands (stdout/stderr retained)",
+      "kind": "CLI integration"
+    },
+    {
+      "command": "node --input-type=module -e import {openStore,migrate} from \"file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/backend-engineering/evals/trials/B05-skill-1/artifact/store.mjs\"; const db=openStore(process.argv[1]);migrate(db,{afterBatch(){process.exit(23)}}); C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\hard-exit.sqlite",
+      "exit": 23,
+      "status": "PASS",
+      "evidence": "evidence/verification.json commands (stdout/stderr retained)",
+      "kind": "expected-negative/process-interruption"
+    },
+    {
+      "command": "node cli.mjs restore C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\backup-v1.sqlite C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\cli-recovered.sqlite C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\artifact\\deletions.json",
+      "exit": 0,
+      "status": "PASS",
+      "evidence": "evidence/verification.json commands (stdout/stderr retained)",
+      "kind": "CLI integration"
+    },
+    {
+      "command": "node cli.mjs setup C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B05-skill-1\\evidence\\run-1793898617088\\source-v1.sqlite",
+      "exit": 1,
+      "status": "PASS",
+      "evidence": "evidence/verification.json commands (stdout/stderr retained)",
+      "kind": "expected-negative/process-interruption"
+    }
+  ],
+  "recovery": {
+    "rawSamplesMs": [
+      61.96589999999992,
+      57.9074999999998,
+      58.64319999999998
+    ],
+    "summaryMs": {
+      "min": 57.9074999999998,
+      "median": 58.64319999999998,
+      "max": 61.96589999999992,
+      "samples": 3
+    },
+    "boundary": "Snapshot/deletion/migration/publish/reopen/full data-schema-deletion-integrity checks and source/backup hashes.",
+    "productionRpoRto": "UNVERIFIED; local measurements are not a promise."
+  },
+  "assumptionsAndLimits": [
+    "Trusted local operator owns paths and supplies complete/current deletion ledger.",
+    "Only SQLite v1 fixture and requested old SELECT contract; no live deployment/traffic switch.",
+    "Synchronous maintenance, <=2 updates/batch, 1000ms busy timeout; large datasets/disk pressure/power loss/concurrent writers not tested.",
+    "Three four-row local recovery trials; uncontrolled disk/OS cache.",
+    "SHA256 proves observed source/backup file content unchanged, not backup authenticity.",
+    "No production rollback, encryption, user authentication, ASVS/ISO certification, vulnerability scan or remote RPO/RTO claim."
+  ],
+  "failuresPreserved": [
+    {
+      "kind": "tool-edit",
+      "status": "recovered",
+      "evidence": "Initial apply_patch rejected delete+add of same store.mjs path: multiple operations target. No filesystem change occurred; corrected to Update File."
+    },
+    {
+      "kind": "expected faults",
+      "evidence": "evidence/verification.json commands retains intentional hook exception exit1, abrupt process exit23 and setup-refusal exit1; invalid/corrupt input assertions retained."
+    }
+  ],
+  "time": {
+    "startUtc": "2026-11-05T17:07:43.5751504Z",
+    "endUtc": "2026-11-05T17:12:02.914Z",
+    "elapsedSeconds": 259.339,
+    "capSeconds": 360
+  },
+  "actualTokens": null,
+  "cost": null,
+  "knownCallCount": {
+    "externalToolInvocationsThroughFinalize": 11,
+    "functionsExec": 9,
+    "collaborationMessages": 2,
+    "note": "Includes initial rejected patch. Nested node child processes are recorded commands, not external tool calls. No background helpers."
+  }
+}

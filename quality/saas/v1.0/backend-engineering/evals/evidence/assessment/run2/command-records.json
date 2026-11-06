@@ -1,0 +1,31 @@
+{
+  "provenance": "Final assessor actual tool execution receipts; source copies and evaluator results retained separately.",
+  "commands": [
+    {
+      "command": "node evals/evidence/assessment/run2/evaluate-b01.mjs",
+      "toolChunk": "9540ed",
+      "actualExitCode": 0,
+      "result": "b01-results.json",
+      "stderrObservation": "Node experimental SQLite warning emitted; execution and all independent assertions completed.",
+      "writes": "assessment/run2 only; raw trials untouched"
+    },
+    {
+      "command": "node evals/evidence/assessment/run2/evaluate-b02-skill.mjs",
+      "toolChunk": "454f6d",
+      "wrapperExitCode": 0,
+      "individualNodeExitCode": null,
+      "reason": "Combined PowerShell command also read source/README; individual node exit was not separately captured. All independent assertion results completed and passed.",
+      "result": "b02-skill-results.json",
+      "stderrObservation": "Node experimental SQLite warning emitted."
+    },
+    {
+      "command": "node evals/evidence/assessment/run2/evaluate-b02-baseline.mjs; node evals/evidence/assessment/run2/grade.mjs",
+      "toolChunk": "878f53",
+      "wrapperExitCode": 0,
+      "individualNodeExitCode": null,
+      "reason": "Combined PowerShell command also read source/README; individual node exits were not separately captured. All independent assertion results and criterion aggregation completed.",
+      "result": "b02-baseline-results.json; requirement-assessment.json",
+      "stderrObservation": "Node experimental SQLite warning emitted."
+    }
+  ]
+}

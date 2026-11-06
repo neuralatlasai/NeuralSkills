@@ -1,0 +1,38 @@
+[
+  {
+    "trial": "T04",
+    "command": "node grading/verify-backend.mjs BE-B1 trials/T04/artifact results/T04",
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "cc6b2c",
+      "wall_time_seconds": 0.0000473,
+      "exit_code": 0,
+      "original_token_count": 762,
+      "output": "(node:8204) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n{\"caseId\":\"BE-B1\",\"node\":\"v24.12.0\",\"time\":\"2026-11-06T03:24:29.689Z\",\"checks\":[{\"id\":\"B1-control-single-reservation\",\"kind\":\"control\",\"status\":\"PASS\",\"evidence\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":3}],\"receipts\":[{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"one\",\"sku\":\"widget\",\"qty\":2,\"status\":\"reserved\",\"reservationId\":\"4f32dc51-510f-4bad-86a7-d8c7f0a88475\"}],\"events\":[{\"id\":1,\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"one\",\"reservationId\":\"4f32dc51-510f-4bad-86a7-d8c7f0a88475\"}]}},{\"id\":\"B1-R1-contended-stock\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"results\":[{\"status\":\"reserved\",\"reservationId\":\"a8b9921b-9780-4cb6-ae43-bd1c0604a813\"},{\"status\":\"sold_out\"}],\"st\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":1}],\"receipts\":[{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"a\",\"sku\":\"widget\",\"qty\":4,\"status\":\"reserved\",\"reservationId\":\"a8b9921b-9780-4cb6-ae43-bd1c0604a813\"},{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"b\",\"sku\":\"widget\",\"qty\":4,\"status\":\"sold_out\",\"reservationId\":null}],\"events\":[{\"id\":1,\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"a\",\"reservationId\":\"a8b9921b-9780-4cb6-ae43-bd1c0604a813\"}]}}},{\"id\":\"B1-R2-concurrent-replay\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"r\":[{\"status\":\"reserved\",\"reservationId\":\"49b5a7fa-e7f9-4736-abb7-da167be73112\"},{\"status\":\"reserved\",\"reservationId\":\"49b5a7fa-e7f9-4736-abb7-da167be73112\"}],\"st\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":3}],\"receipts\":[{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"same\",\"sku\":\"widget\",\"qty\":2,\"status\":\"reserved\",\"reservationId\":\"49b5a7fa-e7f9-4736-abb7-da167be73112\"}],\"events\":[{\"id\":1,\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"same\",\"reservationId\":\"49b5a7fa-e7f9-4736-abb7-da167be73112\"}]}}},{\"id\":\"B1-R2-parameter-binding\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"B1-R2-tenant-scope\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"B1-R3-before-commit-rollback\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":5}],\"receipts\":[],\"events\":[]}},{\"id\":\"B1-R3-lost-ack-restart-replay\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"r\":{\"status\":\"reserved\",\"reservationId\":\"23178830-0f6c-42e5-b73e-127bacaf4c27\"},\"state\":{\"stock\":[{\"tenant\":\"blue\",\"sku\":\"widget\",\"qty\":5},{\"tenant\":\"red\",\"sku\":\"widget\",\"qty\":3}],\"receipts\":[{\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"lost\",\"sku\":\"widget\",\"qty\":2,\"status\":\"reserved\",\"reservationId\":\"23178830-0f6c-42e5-b73e-127bacaf4c27\"}],\"events\":[{\"id\":1,\"tenant\":\"red\",\"operation\":\"reserve\",\"key\":\"lost\",\"reservationId\":\"23178830-0f6c-42e5-b73e-127bacaf4c27\"}]}}},{\"id\":\"B1-R4-invalid-quantity\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true}],\"errors\":[],\"pass\":true}\n"
+    }
+  },
+  {
+    "trial": "T05",
+    "command": "node hidden-grading/verify-ui-u2.mjs trials/T05/artifact results/T05",
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "b0dbda",
+      "wall_time_seconds": 5.5010231,
+      "exit_code": 0,
+      "original_token_count": 219,
+      "output": "(node:10160) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n{\"caseId\":\"UI-U2\",\"node\":\"v24.12.0\",\"time\":\"2026-11-06T03:24:36.071Z\",\"checks\":[{\"id\":\"U2-control-mount\",\"kind\":\"control\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U2-R1-modal-focus-background\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U2-R2-cancel-escape-cleanup\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U2-R2-save-reopen-once\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"U2-R3-narrow-reflow-internal-scroll\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"rect\":{\"x\":16,\"y\":16,\"width\":288,\"height\":448,\"top\":16,\"right\":304,\"bottom\":464,\"left\":16},\"client\":284,\"scroll\":284,\"height\":444,\"scrollHeight\":947,\"doc\":320}}],\"errors\":[],\"pass\":true}\n"
+    }
+  },
+  {
+    "trial": "T06",
+    "command": "node hidden-grading/verify-be-b2.mjs trials/T06/artifact results/T06",
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "1699b8",
+      "wall_time_seconds": 1.3412166,
+      "exit_code": 0,
+      "original_token_count": 418,
+      "output": "(node:12944) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/quality/saas/expert-evals/trials/T06/artifact/service.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\heman\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:12944) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n{\"caseId\":\"BE-B2\",\"node\":\"v24.12.0\",\"time\":\"2026-11-06T03:24:32.604Z\",\"checks\":[{\"id\":\"B2-control-sequential\",\"kind\":\"control\",\"status\":\"PASS\",\"evidence\":[{\"id\":\"job\",\"payload\":\"synthetic\",\"dueAt\":10,\"status\":\"done\",\"worker\":\"a\",\"token\":1,\"leaseUntil\":20,\"result\":\"ok\"}]},{\"id\":\"B2-R1-concurrent-claim\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":[{\"id\":\"job\",\"worker\":\"a\",\"token\":1,\"leaseUntil\":20,\"payload\":\"synthetic\"},null]},{\"id\":\"B2-R1-due-order\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"B2-R2-fence-stale-completion\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":[{\"id\":\"job\",\"payload\":\"synthetic\",\"dueAt\":10,\"status\":\"done\",\"worker\":\"b\",\"token\":2,\"leaseUntil\":25,\"result\":\"fresh\"}]},{\"id\":\"B2-R2-expired-current-owner\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true},{\"id\":\"B2-R3-restart-ownership\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":{\"current\":null,\"reclaimed\":{\"id\":\"job\",\"worker\":\"b\",\"token\":2,\"leaseUntil\":20,\"payload\":\"synthetic\"}}},{\"id\":\"B2-R3-invalid-lease\",\"kind\":\"required\",\"status\":\"PASS\",\"evidence\":true}],\"errors\":[],\"pass\":true}\n"
+    }
+  }
+]

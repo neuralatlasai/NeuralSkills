@@ -1,0 +1,98 @@
+{
+  "convention": "Nested tools and collaboration calls counted, functions.exec wrappers excluded. No model/token/cost counters exposed.",
+  "calls": [
+    {
+      "number": 1,
+      "tool": "exec_command",
+      "command": "Get-Content -LiteralPath <package>/evals/dispatch/B02-baseline-2.txt",
+      "exitCode": 0,
+      "stdout": "Dispatch instructions read; exact named case/control/fixture and trial paths supplied.",
+      "stderr": ""
+    },
+    {
+      "number": 2,
+      "tool": "exec_command",
+      "command": "Get-Content -LiteralPath <package>/evals/inputs/B02.json; Get-Content -LiteralPath <package>/evals/inputs/control-v2.json",
+      "exitCode": 0,
+      "stdout": "Inputs preserved byte-for-byte under original/B02.json and original/control-v2.json.",
+      "stderr": ""
+    },
+    {
+      "number": 3,
+      "tool": "exec_command",
+      "command": "Create trial/artifact/original; Copy-Item named fixtures and input/control; Get-Content original/store.mjs, original/probe.mjs, original/README.md; node --version; UTC timestamp",
+      "exitCode": 0,
+      "stdout": "Original fixture contents are preserved; node v24.12.0; first directly observed UTC 2026-11-05T17:30:43.8004674Z.",
+      "stderr": ""
+    },
+    {
+      "number": 4,
+      "tool": "exec_command",
+      "command": "Copy original store/probe to artifact; node artifact/original/probe.mjs artifact/before-race.sqlite",
+      "exitCode": 0,
+      "stdout": "before.stdout.json",
+      "stderr": "before.stderr.txt"
+    },
+    {
+      "number": 5,
+      "tool": "apply_patch",
+      "command": "Attempt delete/add replacement of store.mjs plus verify.mjs",
+      "exitCode": null,
+      "stdout": "",
+      "stderr": "apply_patch verification failed: invalid patch: multiple operations target C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\trials\\B02-baseline-2\\artifact\\store.mjs",
+      "outcome": "FAIL; no changes applied"
+    },
+    {
+      "number": 6,
+      "tool": "apply_patch",
+      "command": "Update store.mjs and add verify.mjs using retained final sources",
+      "exitCode": null,
+      "stdout": "{}",
+      "stderr": "",
+      "outcome": "PASS"
+    },
+    {
+      "number": 7,
+      "tool": "exec_command",
+      "command": "node artifact/probe.mjs artifact/after-race.sqlite > artifact/after.stdout.json 2> artifact/after.stderr.txt; node artifact/verify.mjs > artifact/verify.stdout.json 2> artifact/verify.stderr.txt",
+      "exitCode": 0,
+      "childExitCodes": {
+        "probe": 0,
+        "verify": 0
+      },
+      "stdout": [
+        "after.stdout.json",
+        "verify.stdout.json"
+      ],
+      "stderr": [
+        "after.stderr.txt",
+        "verify.stderr.txt"
+      ]
+    },
+    {
+      "number": 8,
+      "tool": "collaboration.send_message",
+      "command": "Notify parent of actual passing results and preserved failed patch.",
+      "exitCode": null,
+      "stdout": "Message delivered",
+      "stderr": ""
+    },
+    {
+      "number": 9,
+      "tool": "apply_patch",
+      "command": "Add artifact/README.md and artifact/finalize.mjs",
+      "exitCode": null,
+      "stdout": "{}",
+      "stderr": "",
+      "outcome": "PASS"
+    },
+    {
+      "number": 10,
+      "tool": "exec_command",
+      "command": "node artifact/finalize.mjs > artifact/finalize.stdout.txt 2> artifact/finalize.stderr.txt; read resulting stdout/stderr",
+      "exitCode": 0,
+      "stdout": "finalize.stdout.txt",
+      "stderr": "finalize.stderr.txt"
+    }
+  ]
+}

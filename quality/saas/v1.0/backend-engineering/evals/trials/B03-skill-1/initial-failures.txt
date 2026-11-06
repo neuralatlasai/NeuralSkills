@@ -1,0 +1,1 @@
+Attempt 1: Get-Date -AsUTC unsupported by installed Windows PowerShell. Attempt 2: initial seed wrapper used ErrorActionPreference Stop; native SQLite ExperimentalWarning was raised as PowerShell NativeCommandError before baseline. Preserve original seed.stderr.txt; rerun seed with Continue to capture native exit code explicitly. No query edits before baseline.

@@ -1,0 +1,43 @@
+{
+  "suiteVersion": "1.0.0",
+  "access": "evaluator-only after freeze",
+  "notAnExecutionResult": true,
+  "common": [
+    "Independently check all task meanings. Inspect scoped diff and execute available commands. Required missing observation remains UNVERIFIED; self-reported PASS alone is insufficient.",
+    "Check all 24 coverage areas, evidence for inherited claims and reasons for out-of-scope. Do not require unrelated infrastructure implementations.",
+    "Inspect recommendation chains and real operating limits; additional mechanisms and verbosity earn no credit. Preserve initial/final hashes and all failures."
+  ],
+  "cases": {
+    "B01": [
+      "GET north t1 never exposes south title or tenant field. Reader PATCH403/no mutation, missing token401; forged x-tenant cannot redirect identity.",
+      "PATCH title only preserves note; note:null clears note; title:null/empty/121 characters fails400. Unknown/privileged fields fail; boolean/string/zero version invalid.",
+      "Two concurrent HTTP patches using version1 yield one200 and one409. Reopen file shows version2 and only winning allowed values. Missing tenant object404. BadJSON 400, text/plain415,2049-byte body413 without partial change."
+    ],
+    "B02": [
+      "Use two DatabaseSync connections on one file with shared afterRead Promise barrier. Same tenant/item/quantity4/version1: one201, one409, stock1/version2 and one allocation4 after reopen.",
+      "afterWrite throws after stock change: both stock/allocation roll back and subsequent valid reservation succeeds. Hooks remain invoked. South stock unchanged. Probe missing item, insufficient stock, fractional/zero/negative quantities.",
+      "Fail defenses consisting only of process-memory mutex, removed/suppressed hook, artificially serial diagnostic callers or unconditional stale-read write."
+    ],
+    "B03": [
+      "Retain60000 rows,80%whale and payload distribution. Before output predates edits, after uses equivalent data/benchmark, actual exported SQL plan and three samples per tenant.",
+      "Compare independent SQL expected rows for tenant/statusready ordered created_at DESC,id DESC LIMIT20. Probe tied sort values, tenant-17, and invalid limits0,101,1.5,'20'. Projection onlyid/created_at.",
+      "Observe materialized rows<=limit and no payload reads. Actual plan should support tenant/status/order efficiently; no mandatory index name. Detect benchmark weakening or reconstructed baseline. RSS delta is not peak memory, output rows are not rows examined, three samples are notp99."
+    ],
+    "B04": [
+      "Enqueue idJ/accountnorth/amount7 twice yields declared accepted/replay and onejob; conflicting sameid amount8/account rejects without mutation.",
+      "Retained child-process --crash-after-effect exits 73; restart sameDB and repeat restart yield exactlynorth balance7 and done once. No reset/deletion of balances or jobs is allowed.",
+      "Unknown account/fractional/zero/negative amount cannot produce phantomdone or partialeffect; following validjob works. Check bounded policy and honest singleworker/localDB guarantee without externalexactlyonce claims."
+    ],
+    "B05": [
+      "Initialize realv1 file and consistentbackup, migratecopy. Existing SELECT tenant,id,name remains compatible; finalstateactive/version2; all preserved tenant/id/name values unchanged.",
+      "Hook interrupt after first completed2-row batch, inspect nonfinalversion then reopen/restart; allrows eventually initialized and version2. Repeat migration safe. Reject drop/recreate or unbounded backfill disguised as batches.",
+      "Restorebackup to different target and applyjournal before serving. north erased absent, southc1 retained, otherrows match; source/backup hashes unchanged by restore. Record actual recoverytime, schema/data/retention verification and measured limitations."
+    ],
+    "B06": [
+      "Sign rawbody with whitespace/reorderedkeys per contract and accept. SameparsedJSON but changedrawbytes with oldsignature rejects. Malformedhex/length rejects safely; timestamps>300 seconds old/future cannot mutate.",
+      "Validate allowedfields, nonemptyIDs<=80,typeorder.shipped, exact8192byte limit;8193byte rejects boundedly. MalformedJSON/unknownfields/type reject. Signedsoutho2 cannot mutate south; no tenant trust from body/header.",
+      "Validnorth event commits once; exact replay afterrestart keeps single effect/receipt. Sameeventid changedbody/order conflicts. Inject precommit failure via database constraint/trigger or supported fault hook: neither receipt nor effect commits, store remains usable. Ack occurs after durable commit.",
+      "Absent MCP runtime remains explicitly unsupported/unverified; missing adapter/runtime is distinguished, no invented toolcall/test and no livecarrier interaction."
+    ]
+  }
+}

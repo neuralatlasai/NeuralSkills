@@ -1,0 +1,58 @@
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { resolve, join } from 'node:path';
+import { createHash } from 'node:crypto';
+import { DatabaseSync } from 'node:sqlite';
+import { generateCerts } from '../../../scripts/cert-gen.mjs';
+import { startFixture } from '../../../scripts/service.mjs';
+import { request } from '../../../scripts/client.mjs';
+
+const dir=resolve(process.argv[2]||'evals/evidence/independent-review');
+mkdirSync(dir,{recursive:true});
+const runDir=join(dir,new Date().toISOString().replace(/[:.]/g,'-'));mkdirSync(runDir,{recursive:true});
+const startedAt=new Date().toISOString();const start=performance.now();
+const certs=generateCerts(join(runDir,'certs'));const f=await startFixture({directory:join(runDir,'service'),certs});f.certs=certs;
+const results=[];let count=0;let requests=0;
+const req=async(path,options)=>{requests++;return request(f,path,options);};
+const check=(id,claim,passed,observed,source)=>results.push({id,claim,status:passed?'PASS':'FAIL',observed,source});
+const create=async(name,token='fixture-token-a')=>{const key=`review-${++count}`;const body={name,quantity:5};const response=await req('/v1/items',{method:'POST',token,body,headers:{'idempotency-key':key}});if(response.status!==201)throw new Error(`Create failed:${response.status}`);return {item:response.body,key,body,token};};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+try {
+  let r=await req('/health',{token:'invalid'});check('P01','Invalid fixture credentials are rejected',r.status===401,{status:r.status},'scripts/service.mjs:201');
+  r=await req('/health',{headers:{authorization:'fixture-token-a'}});check('P02','Bearer authentication rejects a missing authorization scheme',r.status===401,{status:r.status},'scripts/service.mjs:201');
+  const a=await create('normal');const path=`/v1/items/${a.item.id}`;
+  r=await req(path,{token:'fixture-token-b'});check('P03','Tenant isolation on direct resource read',r.status===404,{status:r.status},'scripts/service.mjs:100');
+  r=await req(path,{method:'PATCH',body:{owner:'admin'},headers:{'if-match':'1'}});check('P04','Nonadmin owner mutation is rejected',r.status===403,{status:r.status},'scripts/service.mjs:67');
+  const race=await Promise.all([1,2].map(quantity=>req(path,{method:'PATCH',body:{quantity},headers:{'if-match':'1'}})));
+  check('P05','Atomic same-version updates have exactly one winner',race.map(x=>x.status).sort().join(',')==='200,409',{statuses:race.map(x=>x.status),row:f.db.prepare('SELECT quantity,version FROM items WHERE tenant=? AND id=?').get('tenant-a',a.item.id)},'scripts/service.mjs:186');
+  const limited=await create('limited-secret','fixture-token-limited');const lp=`/v1/items/${limited.item.id}`;
+  r=await req(lp,{method:'PATCH',token:'fixture-token-admin',body:{owner:'alice'},headers:{'if-match':'1'}});if(r.status!==200)throw new Error('Admin owner transfer failed');
+  const denied=await req(lp,{token:limited.token});const replay=await req('/v1/items',{method:'POST',token:limited.token,body:limited.body,headers:{'idempotency-key':limited.key}});
+  check('P06','Idempotency replay rechecks current object authorization',denied.status===403&&replay.status===403,{getStatus:denied.status,replayStatus:replay.status,replayed:replay.headers['idempotency-replayed'],returnedOwner:replay.body.owner,currentOwner:f.db.prepare('SELECT owner FROM items WHERE tenant=? AND id=?').get('tenant-a',limited.item.id).owner},'scripts/service.mjs:115-118');
+  const gone=await create('deleted-data');const gp=`/v1/items/${gone.item.id}`;
+  const del=await req(gp,{method:'DELETE',headers:{'if-match':'1'}});const missing=await req(gp);const deletedReplay=await req('/v1/items',{method:'POST',body:gone.body,headers:{'idempotency-key':gone.key}});
+  const persistedItems=f.db.prepare('SELECT count(*) n FROM items WHERE tenant=? AND id=?').get('tenant-a',gone.item.id).n;
+  const replayDisclosesFields=deletedReplay.body&&typeof deletedReplay.body==='object'&&['name','quantity','owner','description'].some(field=>Object.hasOwn(deletedReplay.body,field));
+  check('P07','Hard deletion excludes the representation from create replay',del.status===204&&missing.status===404&&!replayDisclosesFields&&persistedItems===0,{deleteStatus:del.status,getStatus:missing.status,replayStatus:deletedReplay.status,replayBody:deletedReplay.body,replayDisclosesFields,persistedItems},'scripts/service.mjs:118,189-192');
+  const qty=await create('fractional');let accepted=false;let sqlError;
+  try{f.db.prepare('UPDATE items SET quantity=? WHERE tenant=? AND id=?').run(1.5,'tenant-a',qty.item.id);accepted=true;}catch(e){sqlError=e.message;}
+  r=await req(`/v1/items/${qty.item.id}`);check('P08','Database enforces the integer quantity domain for alternative writers',!accepted,{directSqlAccepted:accepted,sqlError,httpStatus:r.status,returnedQuantity:r.body.quantity,sqliteType:f.db.prepare('SELECT typeof(quantity) t FROM items WHERE id=?').get(qty.item.id).t},'scripts/service.mjs:22');
+  const page=await req('/v1/items?limit=1');const cursor=page.body.nextCursor;
+  r=await req(`/v1/items?cursor=${encodeURIComponent(cursor)}`,{token:'fixture-token-admin'});check('P09','Cursor is bound to caller identity',r.status===400,{status:r.status},'scripts/service.mjs:131');
+  const [text,sig]=cursor.split('.');r=await req(`/v1/items?cursor=${encodeURIComponent(`${text}.${sig[0]==='a'?'b':'a'}${sig.slice(1)}`)}`);check('P10','Cursor signature forgery is rejected',r.status===400,{status:r.status},'scripts/service.mjs:129');
+  r=await req(`/v1/items?cursor=${encodeURIComponent(`${cursor}.unexpected`)}`);check('P11','Cursor parser rejects trailing components',r.status===400,{status:r.status},'scripts/service.mjs:128');
+  r=await req('/v1/items?limit=11');check('P12','List page cap is enforced',r.status===422,{status:r.status},'scripts/service.mjs:159');
+  const worker=await create('worker');f.db.prepare('UPDATE jobs SET state=? WHERE item_id<>?').run('acked',worker.item.id);
+  let crash;try{await f.runWorker({crashAfterEffect:true});}catch(e){crash=e.message;}await f.runWorker();
+  const job=f.db.prepare('SELECT * FROM jobs WHERE item_id=?').get(worker.item.id);const effectCount=f.db.prepare('SELECT count(*) n FROM effects WHERE job_id=?').get(job.id).n;
+  check('P13','Local worker effect deduplicates after effect-before-ack crash',!!crash&&job.attempts===2&&job.state==='acked'&&effectCount===1,{crash,attempts:job.attempts,state:job.state,effects:effectCount,method:'Exported worker API; process crash independently UNVERIFIED here'},'scripts/service.mjs:245');
+  await req(`/v1/items/${worker.item.id}`,{method:'DELETE',headers:{'if-match':'1'}});
+  results.push({id:'P14',claim:'Deletion policy for committed worker effects',status:'UNVERIFIED',observed:{remainingJob:f.db.prepare('SELECT count(*) n FROM jobs WHERE id=?').get(job.id).n,remainingEffects:f.db.prepare('SELECT count(*) n FROM effects WHERE job_id=?').get(job.id).n,reason:'No documented retention/deletion rule for the local effect ledger; dependent job cascades but effect persists.'},source:'scripts/service.mjs:25-26'});
+  const oldFingerprint=f.certificateFingerprint();f.rotateCertificate(certs.rotated);r=await req('/health');check('P15','Running HTTPS server adopts a newly trusted certificate',r.status===200&&r.peerFingerprint!==oldFingerprint,{status:r.status,changed:r.peerFingerprint!==oldFingerprint},'scripts/service.mjs:237');
+  f.rotateCredential('fixture-token-a','review-rotated');const oldAuth=await req('/health');const newAuth=await req('/health',{token:'review-rotated'});check('P16','Credential rotation retires the old credential',oldAuth.status===401&&newAuth.status===200,{oldStatus:oldAuth.status,newStatus:newAuth.status},'scripts/service.mjs:238');
+  const backupPath=join(runDir,'backup.sqlite');const backupStart=performance.now();await f.backup(backupPath);const backupMs=performance.now()-backupStart;const backup=new DatabaseSync(backupPath);const integrity=backup.prepare('PRAGMA integrity_check').get().integrity_check;const inactive=backup.prepare('SELECT active FROM credentials WHERE token_hash=?').get(createHash('sha256').update('fixture-token-a').digest('hex')).active;backup.close();
+  check('P17','Backup preserves integrity and a pre-backup credential revocation',integrity==='ok'&&inactive===0,{backupMs,integrity,oldCredentialActive:inactive},'scripts/service.mjs:239');
+  f.controls.costMs=120;const inflight=req('/v1/items',{token:'review-rotated'});await sleep(30);f.beginDrain();const drainDenied=await req('/health',{token:'review-rotated'});const drainingResponse=await inflight;const stopStart=performance.now();await f.stop();const stopMs=performance.now()-stopStart;
+  check('P18','Drain preserves admitted work, rejects new work and closes listeners',drainingResponse.status===200&&drainDenied.status===503,{inflight:drainingResponse.status,newRequest:drainDenied.status,stopMs},'scripts/service.mjs:248-249');
+} catch(e){results.push({id:'HARNESS',status:'FAIL',reason:e.stack});try{await f.stop();}catch{}}
+const output={startedAt,finishedAt:new Date().toISOString(),durationMs:performance.now()-start,runtime:process.version,runDirectory:runDir,requests,probes:results.length,summary:Object.fromEntries(['PASS','FAIL','UNVERIFIED','NOT_APPLICABLE'].map(s=>[s,results.filter(r=>r.status===s).length])),results,limits:['All writes stay in independent-review; original source and integrated evidence were not altered.','Real loopback HTTPS with generated CA verification and real disk-backed SQLite.','Importing source client avoids duplicating transport, but is a shared harness dependency.','No production authentication, remote effect, physical disk outage, process termination or power loss was exercised by this probe harness.']};
+writeFileSync(join(runDir,'probe-results.json'),JSON.stringify(output,null,2));writeFileSync(join(dir,'probe-results.json'),JSON.stringify(output,null,2));console.log(JSON.stringify(output,null,2));

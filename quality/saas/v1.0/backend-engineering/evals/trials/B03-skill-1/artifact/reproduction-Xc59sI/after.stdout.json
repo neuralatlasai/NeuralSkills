@@ -1,0 +1,411 @@
+{
+  "runtime": "v24.12.0",
+  "sqlite": "3.50.4",
+  "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+  "memory": 16934494208,
+  "cacheCondition": "same process/connection; first call then two warm repeats; OS cache uncontrolled",
+  "plans": {
+    "whale": [
+      {
+        "id": 6,
+        "parent": 0,
+        "notused": 59,
+        "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+      }
+    ],
+    "tenant-17": [
+      {
+        "id": 6,
+        "parent": 0,
+        "notused": 59,
+        "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+      }
+    ]
+  },
+  "samples": [
+    {
+      "tenant": "whale",
+      "run": 1,
+      "elapsedMs": 0.3124000000000109,
+      "rssDelta": 20480,
+      "heapDelta": 18176,
+      "result": [
+        {
+          "id": 47989,
+          "created_at": 11997
+        },
+        {
+          "id": 47952,
+          "created_at": 11988
+        },
+        {
+          "id": 47915,
+          "created_at": 11978
+        },
+        {
+          "id": 47878,
+          "created_at": 11969
+        },
+        {
+          "id": 47841,
+          "created_at": 11960
+        },
+        {
+          "id": 47804,
+          "created_at": 11951
+        },
+        {
+          "id": 47767,
+          "created_at": 11941
+        },
+        {
+          "id": 47730,
+          "created_at": 11932
+        },
+        {
+          "id": 47693,
+          "created_at": 11923
+        },
+        {
+          "id": 47656,
+          "created_at": 11914
+        },
+        {
+          "id": 47619,
+          "created_at": 11904
+        },
+        {
+          "id": 47582,
+          "created_at": 11895
+        },
+        {
+          "id": 47545,
+          "created_at": 11886
+        },
+        {
+          "id": 47508,
+          "created_at": 11877
+        },
+        {
+          "id": 47471,
+          "created_at": 11867
+        },
+        {
+          "id": 47434,
+          "created_at": 11858
+        },
+        {
+          "id": 47397,
+          "created_at": 11849
+        },
+        {
+          "id": 47360,
+          "created_at": 11840
+        },
+        {
+          "id": 47323,
+          "created_at": 11830
+        },
+        {
+          "id": 47286,
+          "created_at": 11821
+        }
+      ],
+      "statements": [
+        {
+          "sql": "SELECT id,created_at FROM parcels WHERE tenant=? AND status='ready' ORDER BY created_at DESC,id DESC LIMIT ?",
+          "rowsMaterialized": 20,
+          "outputBytes": 641
+        }
+      ]
+    },
+    {
+      "tenant": "whale",
+      "run": 2,
+      "elapsedMs": 0.07929999999998927,
+      "rssDelta": 65536,
+      "heapDelta": 8872,
+      "result": [
+        {
+          "id": 47989,
+          "created_at": 11997
+        },
+        {
+          "id": 47952,
+          "created_at": 11988
+        },
+        {
+          "id": 47915,
+          "created_at": 11978
+        },
+        {
+          "id": 47878,
+          "created_at": 11969
+        },
+        {
+          "id": 47841,
+          "created_at": 11960
+        },
+        {
+          "id": 47804,
+          "created_at": 11951
+        },
+        {
+          "id": 47767,
+          "created_at": 11941
+        },
+        {
+          "id": 47730,
+          "created_at": 11932
+        },
+        {
+          "id": 47693,
+          "created_at": 11923
+        },
+        {
+          "id": 47656,
+          "created_at": 11914
+        },
+        {
+          "id": 47619,
+          "created_at": 11904
+        },
+        {
+          "id": 47582,
+          "created_at": 11895
+        },
+        {
+          "id": 47545,
+          "created_at": 11886
+        },
+        {
+          "id": 47508,
+          "created_at": 11877
+        },
+        {
+          "id": 47471,
+          "created_at": 11867
+        },
+        {
+          "id": 47434,
+          "created_at": 11858
+        },
+        {
+          "id": 47397,
+          "created_at": 11849
+        },
+        {
+          "id": 47360,
+          "created_at": 11840
+        },
+        {
+          "id": 47323,
+          "created_at": 11830
+        },
+        {
+          "id": 47286,
+          "created_at": 11821
+        }
+      ],
+      "statements": [
+        {
+          "sql": "SELECT id,created_at FROM parcels WHERE tenant=? AND status='ready' ORDER BY created_at DESC,id DESC LIMIT ?",
+          "rowsMaterialized": 20,
+          "outputBytes": 641
+        }
+      ]
+    },
+    {
+      "tenant": "whale",
+      "run": 3,
+      "elapsedMs": 0.08360000000000412,
+      "rssDelta": 65536,
+      "heapDelta": 8920,
+      "result": [
+        {
+          "id": 47989,
+          "created_at": 11997
+        },
+        {
+          "id": 47952,
+          "created_at": 11988
+        },
+        {
+          "id": 47915,
+          "created_at": 11978
+        },
+        {
+          "id": 47878,
+          "created_at": 11969
+        },
+        {
+          "id": 47841,
+          "created_at": 11960
+        },
+        {
+          "id": 47804,
+          "created_at": 11951
+        },
+        {
+          "id": 47767,
+          "created_at": 11941
+        },
+        {
+          "id": 47730,
+          "created_at": 11932
+        },
+        {
+          "id": 47693,
+          "created_at": 11923
+        },
+        {
+          "id": 47656,
+          "created_at": 11914
+        },
+        {
+          "id": 47619,
+          "created_at": 11904
+        },
+        {
+          "id": 47582,
+          "created_at": 11895
+        },
+        {
+          "id": 47545,
+          "created_at": 11886
+        },
+        {
+          "id": 47508,
+          "created_at": 11877
+        },
+        {
+          "id": 47471,
+          "created_at": 11867
+        },
+        {
+          "id": 47434,
+          "created_at": 11858
+        },
+        {
+          "id": 47397,
+          "created_at": 11849
+        },
+        {
+          "id": 47360,
+          "created_at": 11840
+        },
+        {
+          "id": 47323,
+          "created_at": 11830
+        },
+        {
+          "id": 47286,
+          "created_at": 11821
+        }
+      ],
+      "statements": [
+        {
+          "sql": "SELECT id,created_at FROM parcels WHERE tenant=? AND status='ready' ORDER BY created_at DESC,id DESC LIMIT ?",
+          "rowsMaterialized": 20,
+          "outputBytes": 641
+        }
+      ]
+    },
+    {
+      "tenant": "tenant-17",
+      "run": 1,
+      "elapsedMs": 0.07450000000000045,
+      "rssDelta": 0,
+      "heapDelta": 3240,
+      "result": [
+        {
+          "id": 58497,
+          "created_at": 14624
+        },
+        {
+          "id": 55537,
+          "created_at": 13884
+        },
+        {
+          "id": 52577,
+          "created_at": 13144
+        },
+        {
+          "id": 49617,
+          "created_at": 12404
+        }
+      ],
+      "statements": [
+        {
+          "sql": "SELECT id,created_at FROM parcels WHERE tenant=? AND status='ready' ORDER BY created_at DESC,id DESC LIMIT ?",
+          "rowsMaterialized": 4,
+          "outputBytes": 129
+        }
+      ]
+    },
+    {
+      "tenant": "tenant-17",
+      "run": 2,
+      "elapsedMs": 0.31340000000000146,
+      "rssDelta": 65536,
+      "heapDelta": 621624,
+      "result": [
+        {
+          "id": 58497,
+          "created_at": 14624
+        },
+        {
+          "id": 55537,
+          "created_at": 13884
+        },
+        {
+          "id": 52577,
+          "created_at": 13144
+        },
+        {
+          "id": 49617,
+          "created_at": 12404
+        }
+      ],
+      "statements": [
+        {
+          "sql": "SELECT id,created_at FROM parcels WHERE tenant=? AND status='ready' ORDER BY created_at DESC,id DESC LIMIT ?",
+          "rowsMaterialized": 4,
+          "outputBytes": 129
+        }
+      ]
+    },
+    {
+      "tenant": "tenant-17",
+      "run": 3,
+      "elapsedMs": 0.24139999999999873,
+      "rssDelta": 4096,
+      "heapDelta": -606784,
+      "result": [
+        {
+          "id": 58497,
+          "created_at": 14624
+        },
+        {
+          "id": 55537,
+          "created_at": 13884
+        },
+        {
+          "id": 52577,
+          "created_at": 13144
+        },
+        {
+          "id": 49617,
+          "created_at": 12404
+        }
+      ],
+      "statements": [
+        {
+          "sql": "SELECT id,created_at FROM parcels WHERE tenant=? AND status='ready' ORDER BY created_at DESC,id DESC LIMIT ?",
+          "rowsMaterialized": 4,
+          "outputBytes": 129
+        }
+      ]
+    }
+  ]
+}

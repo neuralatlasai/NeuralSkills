@@ -1,0 +1,93 @@
+# UI/UX engineering skill — bounded final evaluation
+
+The package is implemented and partially validated. Full behavioral acceptance remains **UNVERIFIED**. The 18 fresh implementation trials exist, but required checks in C05 and C07 are not established. No overall quality rating, broad superiority, production performance or formal standards-conformance claim is made.
+
+The canonical [per-trial assessment](evidence/review/assessment.json) contains every frozen objective requirement, its status, actual evidence paths, observed visual dimensions, start/end timestamps, elapsed time, artifact digest and limitations. The [raw-file inventory](evidence/review/trial-file-inventory.json) retains individual SHA-256 hashes; [supporting evidence hashes](evidence/review/evidence-file-inventory.json) index original labs, tooling and research. Raw agents’ result files were not corrected or replaced.
+
+Evaluation method and limits
+
+There are 18 actual implementation observations: C01 and C06 each have 3 baseline and 3 skill runs (12 comparative), and C02/C03/C04/C05/C07/C08 each have 1 skill-only run (6). C07/C08 are the 2 held-out cases. No planned trial is missing. Comparative implementation contexts were fresh with no history fork and inherited identical model configuration; the exact model identifier, actual tokens and monetary cost are not exposed. Tokens/cost remain null. The [freeze check](evidence/review/freeze-check.json) independently recomputes all 44 frozen hashes: all remain unchanged. The separately added [coding note](../references/coding-standards.md) clarifies the existing IEEE basis; it does not alter the frozen instruction core or establish ISO/IEEE conformance. Held-out cases informed this final grading only, with no instruction tuning.
+
+A separate evaluator reviewed raw evidence and artifacts, compared reference/render images, checked source constraints and authored independent runtime spot checks. Arm blinding was infeasible because paths and task context exposed arm identity. The corrected [independent runtime run](evidence/review/independent-runtime.json) passes 43 scoped assertions across all 12 comparative artifacts plus exact C03 375px reflow: clipboard payload/duplicate guard/rejection/retry/reset, both C06 race sequences, page overflow and runtime exceptions. Initial harness selector/root errors remain retained and diagnosed. Original self-PASS alone was not accepted as proof: statuses use the concrete logs/assertions/source or explicitly unavailable runtime. Implementation wrappers supplied requirement IDs without their frozen meanings; several agents assigned different meanings, especially C07/C08. This is an evaluation-wrapper limitation. The assessment remaps actual task evidence to canonical frozen requirements instead of trusting raw ID labels. It does not silently rewrite the raw results.
+
+Objective results
+
+P/F/U/N mean PASS/FAIL/UNVERIFIED/NOT_APPLICABLE for canonical required checks. A case is not established as passing while any required check is FAIL or UNVERIFIED.
+
+| Trial | P/F/U/N | Elapsed seconds |
+| --- | --- | ---: |
+| C01-baseline-1 | 7/0/0/0 | 357.120 |
+| C01-baseline-2 | 7/0/0/0 | 334.003 |
+| C01-baseline-3 | 7/0/0/0 | 246.980 |
+| C01-skill-1 | 7/0/0/0 | 335.589 |
+| C01-skill-2 | 7/0/0/0 | 251.580 |
+| C01-skill-3 | 7/0/0/0 | 272.230 |
+| C02-skill-1 | 6/0/0/0 | 347.480 |
+| C03-skill-1 | 6/0/0/0 | 603.782 |
+| C04-skill-1 | 5/0/0/0 | 442.062 |
+| C05-skill-1 | 2/0/4/0 | 296.888 |
+| C06-baseline-1 | 8/0/0/0 | 374.144 |
+| C06-baseline-2 | 8/0/0/0 | 349.057 |
+| C06-baseline-3 | 8/0/0/0 | 321.000 |
+| C06-skill-1 | 8/0/0/0 | 391.225 |
+| C06-skill-2 | 8/0/0/0 | 247.023 |
+| C06-skill-3 | 8/0/0/0 | 222.664 |
+| C07-skill-1 | 6/0/1/0 | 335.000 |
+| C08-skill-1 | 7/0/0/0 | 324.768 |
+
+Total canonical objective checks: 122 PASS, 0 FAIL, 5 UNVERIFIED, 0 NOT_APPLICABLE. Initial failed commands and repaired defects remain separate historical evidence; this table reports the final required behaviors and does not erase those failures.
+
+For each of the 3 paired run numbers, C01 baseline/skill each establish 7/7 required checks and C06 baseline/skill each establish 8/8 using the retained executed evidence and static constraints. This yields 90/90 observed comparative objective checks across 12 trials, with no observed final required failures or unverified checks in those two cases. These small, unblinded observations do **not** establish an improvement from enabling the skill. Differences in self-report labeling are not scored as behavioral improvement.
+
+C05 is source-only: React/TypeScript/Vite/package scripts and all invoice/brand tokens are preserved in a localized diff, and existing typecheck/build commands were attempted (both exit 1). Missing React/Vite dependencies prevented a genuine render, runtime disclosure test, keyboard/focus test or 375px layout check. Canonical R02–R05 stay UNVERIFIED; source parsing/transpilation is not runtime or full typechecking. C07 canonical R05 stays UNVERIFIED after supplemental actual native Chrome 200% verification: observed German entry/review/actions wrap readably and measured page overflow is absent, but long-German error/success rendering and the full middle-summary scroll sequence were not captured after user-input interruption. The probe checks element bounds, so its empty wide[] does not establish internal text clipping or collisions in unviewed content. Prior 320px/1280px evidence remains valid; native zoom itself is now observed. The six skill-only observations, including these cases, have no baseline and cannot establish comparative benefit.
+
+Timing and resources
+
+| Case/arm | n | Median seconds | Range seconds |
+| --- | ---: | ---: | ---: |
+| C01-baseline | 3 | 334.003 | 246.980–357.120 |
+| C01-skill | 3 | 272.230 | 251.580–335.589 |
+| C06-baseline | 3 | 349.057 | 321.000–374.144 |
+| C06-skill | 3 | 247.023 | 222.664–391.225 |
+
+Every trial’s actual recorded start/end and elapsed value is in the assessment. These elapsed values include shared-host/tool latency and differing setup/repair work; the roughly 6-minute/20-call target was not a strict execution cap. C03 took 603.782s; C04 took 442.062s. C01 skill1 explicitly excludes initial intake/failed clock time and includes about 2 minutes waiting for a pending patch. C06 baseline3 records elapsed 321s while its timestamp interval is 321.135s. Tool scheduling, concurrent host load and partially self-recorded timing boundaries prevent a controlled speed comparison. Do not infer time/token/cost savings.
+
+Actual visual review
+
+Only the frozen 0/1/2 dimensions are used; there is no aggregate score. The per-trial assessment lists every image actually viewed. C01 narrow German renders have legible wrapping, clear action hierarchy and consistent spacing in both arms. C06 narrow moss renders are readable and grouped coherently; baseline2 visibly contains garbled decorative glyphs in the wordmark, Search, Retry and footer, retained as a visual defect (hierarchy 1). No functional failure is inferred from those glyphs. Other viewed hierarchy/spacing dimensions receive 2 at their listed states only. Applicable state dimensions remain UNVERIFIED because the evaluator did not independently inspect the full state-render sequence.
+
+C02 reference.png, 1280x900 desktop and 375px mobile were directly compared: layout 2, typography 1, color 2, detail 1. The composition/content are preserved; hero type is slightly narrower/lighter and the orbital ellipse/right-edge treatment differs. C03’s 3 role-reference renders were viewed with desktop/narrow output: brand 2, layout 2, typography 2, spacing 2; palette/wordmark, grouping and serif/sans division remain separate. C04’s invalid/saved render, C07’s German review render and C08’s reference/current desktop/mobile errors were viewed. C05 has no genuine runtime render, so preservation/spacing/states remain UNVERIFIED. Ratings cover observed images, not unviewed viewports or user-study outcomes.
+
+Activation and local labs
+
+The independently recomputed [activation record](evidence/review/activation-recheck.json) matches all 12 frozen labels: 6 true positives, 6 true negatives, 0 false positives, 0 false negatives, 0 uncertain. This is one fresh description-only classifier run. The file-write timestamps do not measure whole-model classification time; the result cannot establish general routing accuracy.
+
+The [tooling transcript](evidence/tooling/commands.json) records 12 substantive Node tests and 8 browser checks, with success and meaningful negative CLI paths. The [standard lab](evidence/lab/report.json) reports 8 actual browser assertions, 13 selected computed contrast pairs and 3 runs. Its final measurement summary is retained; initial small-label/readability renders remain in lab-v1-before-readability. This is selected DOM/keyboard/state/contrast coverage in Chrome 156, not complete WCAG or screen-reader coverage.
+
+The [supplemental heavy workload](evidence/heavy/report.json) and its predeclared plan use 1000 deterministic synthetic records, 50 rendered rows/page and 3 fresh browser contexts at 1280x900→390x844→1280x900, loopback/no CPU/network throttling. Search/pagination/selection, out-of-order responses, refresh preservation, fail/retry and bounded scroll/resize workloads have actual assertions. Median next-animation-callback feedback is 25.700ms (range 19.200–26.900), typing operation 760.820ms (724.076–768.912), refresh 875.306ms (871.160–875.727), live-document nodes 725 each run. These are local diagnostics with automation overhead; a callback is not painted output or INP. The initial DOM-counter harness failure and [instrumentation correction](evidence/heavy/correction.json) are retained. The correction changes measurement from total CDP nodes, including detached/uncollected nodes, to live-document nodes; raw CDP totals around 13,861–13,864 and heap 4.20–4.41MB remain diagnostics. This does not prove leak freedom, total-CDP-node budget compliance, FPS or field p75 performance.
+
+Construction gates
+
+| Gate | Status | Scope/evidence |
+| --- | --- | --- |
+| G1 Contract established | PASS | Supported input/output/task scope, exclusions, runtime, acceptance and unavailable capabilities explicit. |
+| G2 Evidence sufficient | PASS | Five inspected source skills and qualifying >10,000-star UI implementation repositories with pinned provenance/adoption limits. Public standards metadata/guidance only; full ISO normative texts and formal conformance unverified. |
+| G3 Architecture coherent | PASS | Eight conditional module contracts, shared traceability/state boundary, frozen cases/rubric/protocol. All 44 frozen files hash-identical. |
+| G4 Package implemented | PASS | Portable instruction core with conditional host adapters and optional local Node >=24 lab tooling. No universal platform/integration guarantee. |
+| G5 Structural checks passed | PASS | Bounded metadata/link/schema/manifest assertions and every shipped script success/negative paths recorded. Final validator PASS: 60 static resources, resolving links and bounded contract assertions. Not a full JSON Schema engine. |
+| G6 Behavior evaluated | UNVERIFIED | 18 actual trials and 12 activation prompts exist, including all 12 comparative trials. Complete required acceptance is not established: C05 React runtime/preservation/reflow checks and C07 complete long-German readability/no-clipping coverage at demonstrated native 200% remains partial. IDs were supplied without meanings and evaluator was unblinded; comparative benefit not established. |
+| G7 Delivery verified | PASS | Static inventory and reproducible per-trial objective/visual/timing/hash records delivered with explicit remaining gaps. PASS applies to bounded honest delivery, not complete behavioral acceptance. |
+
+The [gate record](evidence/review/gates.json) links evidence. Required UNVERIFIED at G6 prevents an unqualified complete claim. G7 verifies delivery of this bounded evidence package; it does not convert missing behaviors into passes.
+
+Retained defects and unperformed checks
+
+The [initial structural failure](evidence/initial-structure.json) documents missing files during construction; later structural checks pass. Trial directories retain early path/clock/PowerShell failures, browser harness failures, C03’s missing option and focus-wrap repairs, C07’s German zoom-surrogate overflow repair, and C08’s light-border/favIcon errors and repairs. The evaluator observed the unrepaired C06 baseline2 glyph defect. The independent runtime harness preserves its initial selector/root mistakes in independent-runtime-initial.json and diagnoses them in runtime-harness-correction.json; the corrected run uses stable button locators and each built artifact root. Those harness failures are not artifact failures.
+
+The [supplemental verification record](evidence/review/supplemental/report.json) adds evidence to the same unchanged C05/C07 artifacts, not new trials. The evaluator viewed the [native Chrome 200% proof](evidence/review/supplemental/native-200-0.jpg), German form options, review heading/equipment and consent/actions. The screenshot is a 1280x720 native capture; the read-only DOM probe records 582x283 zoomed CSS pixels, outer1164x655, DPR3.30000019, CSS zoom1 and visualViewport.scale1. All nine captured German metric states have matching page scroll/client width and no elements outside viewport width. This establishes actual native zoom and the captured content only. Unobserved states remain explicit limits, so the canonical totals remain122 PASS/0 FAIL/5 UNVERIFIED and G6 remains UNVERIFIED. C05 repeated npm.cmd typecheck/build attempts both exit1; Chrome package/CDN requests returned ERR_NETWORK_ACCESS_DENIED and web metadata was inaccessible. There is no genuine React runtime result. Evidence and unperformed checks remain distinct, consistent with the IEEE-related coding note; no formal conformance claim follows.
+
+The declared authoring cycle budget is three. This independent audit did not reconstruct a reliable numbered substantive revision-cycle count from timestamps, so no exact cycle-count compliance claim is made.
+
+No user study, full accessibility scanner, screen-reader/AT session, complete German state/scroll journey at native 200% zoom, multi-engine/device validation, production integration, real-user field p75/CWV, FPS guarantee or long-duration memory-leak study was performed. C04 has deliberately no real Figma reference and no Figma fidelity proof. C05 dependency installation/runtime remains unavailable. No global installation, public upload or production change was part of this assessment.
+
+The disposable local helper profile at evals/evidence/review/supplemental/chrome-profile/ is a runtime cache, excluded from trial/evidence hash inventories and archive evidence. Automatic approval review rejected deletion of that profile before execution because sandbox_approval is false. The profile remains local; no deletion or approval escalation was retried.

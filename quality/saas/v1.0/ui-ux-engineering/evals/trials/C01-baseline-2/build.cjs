@@ -1,0 +1,12 @@
+﻿const fs = require('node:fs');
+const path = require('node:path');
+const ts = require('C:/Users/heman/AppData/Local/Programs/Microsoft VS Code/a717861c07/resources/app/extensions/node_modules/typescript/lib/typescript.js');
+const root = path.join(__dirname, 'artifact');
+const program = ts.createProgram(['invitation-copy.ts', 'main.ts'].map(f => path.join(root, f)), {strict:true,target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022,lib:['lib.es2022.d.ts','lib.dom.d.ts'],noEmitOnError:true});
+const diagnostics = ts.getPreEmitDiagnostics(program);
+const emit = program.emit();
+const result = {diagnostics:diagnostics.map(d => ts.flattenDiagnosticMessageText(d.messageText, '\n')),emitSkipped:emit.emitSkipped};
+fs.mkdirSync(path.join(__dirname, 'evidence'), {recursive:true});
+fs.writeFileSync(path.join(__dirname, 'evidence', 'typescript.json'), JSON.stringify(result,null,2));
+console.log(JSON.stringify(result));
+if (diagnostics.length || emit.emitSkipped) process.exitCode = 1;

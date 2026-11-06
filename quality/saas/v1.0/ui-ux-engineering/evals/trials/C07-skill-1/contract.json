@@ -1,0 +1,201 @@
+﻿{
+    "schemaVersion":  "1.0",
+    "objective":  "Compact bilingual equipment pickup reservation with accessible validation and local confirmation",
+    "scope":  "flow",
+    "output":  "implementation",
+    "mode":  "adapt",
+    "context":  {
+                    "audience":  "Equipment borrowers",
+                    "task":  "Enter pickup details, review, consent and confirm",
+                    "device":  "Browser keyboard and pointer, 320â€“1280 CSS px",
+                    "locale":  "en/de supplied fixture"
+                },
+    "references":  [
+                       {
+                           "id":  "COPY",
+                           "location":  "../../fixtures/C07/copy.json",
+                           "role":  "Authoritative text and choices",
+                           "inspection":  "inspected",
+                           "limitations":  "No layout or brand supplied"
+                       }
+                   ],
+    "constraints":  {
+                        "stack":  "Native TypeScript, semantic HTML, plain CSS, Node24; no dependencies installed",
+                        "accessibility":  "WCAG A/AA target; this bounded assessment is not conformance",
+                        "performance":  "Small local synchronous state; field performance unavailable",
+                        "visualAcceptance":  "Calm one-column hierarchy, legible wrapping, 44px controls, no horizontal overflow at target widths; no imagery or motion"
+                    },
+    "uncertainty":  [
+                        {
+                            "id":  "U1",
+                            "kind":  "assumption",
+                            "statement":  "Reload resets local data; confirmation is simulation",
+                            "consequence":  "No backend, persistence or email claim"
+                        }
+                    ],
+    "requirements":  [
+                         {
+                             "id":  "C07-R01",
+                             "source":  {
+                                            "kind":  "supplied",
+                                            "reference":  "C07 task: native TypeScript/CSS one-page local flow"
+                                        },
+                             "decision":  "Single DOM entry and typed local state",
+                             "artifact":  "artifact/app.ts",
+                             "verification":  {
+                                                  "method":  "Strict compile and browser flow",
+                                                  "evidence":  [
+                                                                   "browser-evidence.json",
+                                                                   "stress-evidence.json",
+                                                                   "build-evidence.json"
+                                                               ]
+                                              },
+                             "status":  "PASS"
+                         },
+                         {
+                             "id":  "C07-R02",
+                             "source":  {
+                                            "kind":  "supplied",
+                                            "reference":  "C07 task: required fields and valid email"
+                                        },
+                             "decision":  "On Next associate all specific errors, focus first invalid",
+                             "artifact":  "artifact/app.ts",
+                             "verification":  {
+                                                  "method":  "Empty and invalid email Next",
+                                                  "evidence":  [
+                                                                   "browser-evidence.json",
+                                                                   "stress-evidence.json",
+                                                                   "build-evidence.json"
+                                                               ]
+                                              },
+                             "status":  "PASS"
+                         },
+                         {
+                             "id":  "C07-R03",
+                             "source":  {
+                                            "kind":  "supplied",
+                                            "reference":  "C07 task: review, consent, Back, confirmation"
+                                        },
+                             "decision":  "Review all values and equipment, preserve values on Back, require consent",
+                             "artifact":  "artifact/app.ts",
+                             "verification":  {
+                                                  "method":  "Complete and recover journey",
+                                                  "evidence":  [
+                                                                   "browser-evidence.json",
+                                                                   "stress-evidence.json",
+                                                                   "build-evidence.json"
+                                                               ]
+                                              },
+                             "status":  "PASS"
+                         },
+                         {
+                             "id":  "C07-R04",
+                             "source":  {
+                                            "kind":  "supplied",
+                                            "reference":  "C07 task: bilingual switch throughout"
+                                        },
+                             "decision":  "Use fixture keys and locale-independent choice IDs",
+                             "artifact":  "artifact/app.ts",
+                             "verification":  {
+                                                  "method":  "Translate errors, review and success without data loss",
+                                                  "evidence":  [
+                                                                   "browser-evidence.json",
+                                                                   "stress-evidence.json",
+                                                                   "build-evidence.json"
+                                                               ]
+                                              },
+                             "status":  "PASS"
+                         },
+                         {
+                             "id":  "C07-R05",
+                             "source":  {
+                                            "kind":  "supplied",
+                                            "reference":  "C07 task: keyboard and focus"
+                                        },
+                             "decision":  "Native controls, review heading and Back focus contracts, visible outline",
+                             "artifact":  "artifact/style.css",
+                             "verification":  {
+                                                  "method":  "Keyboard and focus assertions",
+                                                  "evidence":  [
+                                                                   "browser-evidence.json",
+                                                                   "stress-evidence.json",
+                                                                   "build-evidence.json"
+                                                               ]
+                                              },
+                             "status":  "PASS"
+                         },
+                         {
+                             "id":  "C07-R06",
+                             "source":  {
+                                            "kind":  "supplied",
+                                            "reference":  "C07 task: 320/1280 layout, German, 200% zoom and 44px"
+                                        },
+                             "decision":  "Radio labels wrap, logical CSS and fluid single column",
+                             "artifact":  "artifact/style.css",
+                             "verification":  {
+                                                  "method":  "Screenshots, overflow, target bounds and zoom stress",
+                                                  "evidence":  [
+                                                                   "browser-evidence.json",
+                                                                   "stress-evidence.json",
+                                                                   "build-evidence.json"
+                                                               ]
+                                              },
+                             "status":  "UNVERIFIED"
+                         },
+                         {
+                             "id":  "C07-R07",
+                             "source":  {
+                                            "kind":  "supplied",
+                                            "reference":  "C07 task: setup and result contract"
+                                        },
+                             "decision":  "Deliver source, generated JS, setup README and honest result evidence",
+                             "artifact":  "artifact/README.md",
+                             "verification":  {
+                                                  "method":  "Files and executed build/browser run",
+                                                  "evidence":  [
+                                                                   "browser-evidence.json",
+                                                                   "stress-evidence.json",
+                                                                   "build-evidence.json"
+                                                               ]
+                                              },
+                             "status":  "PASS"
+                         }
+                     ],
+    "tokens":  {
+                   "authority":  "artifact/style.css :root",
+                   "roles":  "action, danger, focus, border, muted, background and text"
+               },
+    "components":  [
+                       {
+                           "id":  "reservation",
+                           "semantics":  "Native text/email, radio fieldsets, checkbox and buttons",
+                           "inputs":  [
+                                          "fixture copy",
+                                          "local entries",
+                                          "locale"
+                                      ],
+                           "outputs":  [
+                                           "local confirmed details"
+                                       ],
+                           "states":  [
+                                          "entry",
+                                          "validation error",
+                                          "review",
+                                          "consent error",
+                                          "success"
+                                      ],
+                           "keyboard":  "Native Tab, Enter, Space and radio arrows",
+                           "focus":  "Invalid first field; review heading on Next; name on Back; success heading on confirmation; language select on locale change",
+                           "recovery":  "Retain values through errors, Back and locale changes"
+                       }
+                   ],
+    "stateOwnership":  {
+                           "local":  "app.ts state only",
+                           "server":  "None",
+                           "URL":  "Single page",
+                           "persisted":  "None"
+                       },
+    "measurements":  [
+
+                     ]
+}

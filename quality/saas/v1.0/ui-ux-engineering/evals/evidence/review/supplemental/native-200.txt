@@ -1,0 +1,92 @@
+Window: "Reserve equipment - Google Chrome", App: chrome.exe.
+	0 window Reserve equipment - Google Chrome Secondary Actions: Raise
+		1 pane (disabled)
+		2 region Reserve equipment - Google Chrome - Hemanth
+			3 region
+				4 region
+					5 region
+						6 button Minimize ID: view_1
+						192 button Restore ID: view_3
+						8 button Close ID: view_4
+					9 region
+						10 region
+							11 tool bar ID: view_1000
+								12 button Back ID: view_1001
+								13 button (disabled) Forward ID: view_1002
+								14 button Reload ID: view_1003
+								15 group
+									16 button View site information ID: view_1011
+									17 edit (settable, string) Address and search bar Description: Ask Google or type a URL Value: 127.0.0.1:4398 ID: view_1012
+									18 region
+										178 button Zoom: 200%
+										151 button Bookmark this tab
+								20 region
+									21 button Extensions ID: view_1006
+								22 region
+								23 region
+									24 button Downloads
+								25 button Hemanth ID: view_1018
+								26 button Chrome ID: view_1007
+						37 region
+							38 region
+								39 region
+								152 document Reserve equipment Value: http://127.0.0.1:4398/ ID: RootWebArea
+									153 main ID: app
+										154 section header
+											155 text Language
+											156 combo box (settable, string) Language Value: English ID: language
+											157 heading Reserve equipment
+											158 text Choose where and when to collect your equipment.
+										159 text 1 / 2
+										160 heading Pickup details
+										161 text Full name
+										162 edit (settable, string) Full name ID: name
+										163 text Email address
+										164 edit (settable, string) Email address ID: email
+										165 group Pickup location
+											166 text Pickup location
+											167 radio button (selectable, settable, string) North studio — main entrance ID: location-0
+											168 text North studio — main entrance
+											169 radio button (selectable, settable, string) East workshop — reception ID: location-1
+											170 text East workshop — reception
+										171 group Pickup time
+											172 text Pickup time
+											173 radio button (selectable, settable, string) Morning, 09:00–11:00 ID: slot-0
+											174 text Morning, 09:00–11:00
+											175 radio button (selectable, settable, string) Afternoon, 14:00–16:00 ID: slot-1
+											176 text Afternoon, 14:00–16:00
+										177 button Review reservation
+							66 region
+						67 region
+							68 region
+								69 button Tab search
+							70 region ID: view_21
+								71 tab
+									72 tab item (selectable) Reserve equipment ID: view_20
+										73 button Close
+								74 region
+							75 button New Tab
+							76 region
+							77 region
+								78 button Open Gemini in Chrome
+								79 region
+						80 region
+			232 pane
+				233 pane (disabled)
+				234 alert Zoom: 200%
+					235 region
+						236 region
+							237 region
+							238 region
+								239 region
+									240 alert Zoom: 200%
+									241 button Make Text Smaller
+									242 button Make Text Larger
+									243 button Reset
+								244 region
+
+Selected text: ```
+127.0.0.1:4398
+```
+
+Note: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too).

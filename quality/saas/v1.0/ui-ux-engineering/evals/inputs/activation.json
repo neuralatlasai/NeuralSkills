@@ -1,0 +1,54 @@
+{
+  "name": "ui-ux-engineering",
+  "description": "Design, implement, reproduce, or improve user interfaces from briefs, screenshots, Figma, URLs, brand assets, or repositories. Use for interactive components, pages, SaaS flows, applications, and design systems, including responsive behavior and verification. Exclude backend-only changes, unrelated writing, and incidental mentions of UI.",
+  "prompts": [
+    {
+      "id": "A-P01",
+      "prompt": "Build a small accessible copy-link button in vanilla TypeScript, including success and failure feedback."
+    },
+    {
+      "id": "A-P02",
+      "prompt": "Recreate this supplied dashboard screenshot as a responsive web page and check the visual match."
+    },
+    {
+      "id": "A-P03",
+      "prompt": "Use the Figma screen for the new preferences form; if access fails, say so and keep working from my text requirements."
+    },
+    {
+      "id": "A-P04",
+      "prompt": "In this existing Svelte app, fix only the mobile filter drawer keyboard behavior and preserve the current CSS tokens."
+    },
+    {
+      "id": "A-P05",
+      "prompt": "Implement this search panel so slow and out-of-order requests cannot overwrite the latest result."
+    },
+    {
+      "id": "A-P06",
+      "prompt": "Make the checkout step work at 320px with keyboard access, long German labels and clear validation errors."
+    },
+    {
+      "id": "A-N01",
+      "prompt": "Explain the difference between CSS Grid and Flexbox in two paragraphs. Do not write or edit code."
+    },
+    {
+      "id": "A-N02",
+      "prompt": "Tune this PostgreSQL query and add an index. Do not modify the frontend."
+    },
+    {
+      "id": "A-N03",
+      "prompt": "Write three headline alternatives for this landing page. Return copy only; leave design and code unchanged."
+    },
+    {
+      "id": "A-N04",
+      "prompt": "Add a REST endpoint consumed by a dashboard. Return JSON only; do not inspect, create or change any UI."
+    },
+    {
+      "id": "A-N05",
+      "prompt": "Generate a watercolor illustration of a forest for the hero image. Return the image only."
+    },
+    {
+      "id": "A-N06",
+      "prompt": "Run the existing backend unit tests and report failures. Do not change the UI or inspect visual design."
+    }
+  ]
+}

@@ -1,0 +1,485 @@
+{
+  "started": "2026-11-05T17:17:50.813Z",
+  "runtime": "v24.12.0",
+  "sqlite": "3.50.4",
+  "blinding": "Broken: evaluator saw directory arm names and implementation/result records; objective HTTP/SQLite assertions used.",
+  "method": "New evaluator-authored probes in isolated source copies; original trial verification additionally replayed for B04-B06 with attribution. No original database or evidence writes.",
+  "trials": [
+    {
+      "id": "B01-baseline-1",
+      "checks": [
+        {
+          "name": "HTTP contract denial, validation, tenant, JSON media and body limits",
+          "status": "PASS"
+        },
+        {
+          "name": "HTTP concurrent CAS, absence/null semantics and close/reopen persistence",
+          "status": "PASS",
+          "observation": {
+            "race": [
+              200,
+              409
+            ],
+            "persisted": {
+              "id": "t1",
+              "title": "Win A",
+              "note": null,
+              "version": 3
+            }
+          }
+        }
+      ],
+      "commands": [],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 24,
+        "validDispositions": false,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "service.mjs",
+            "sha256": "d4ed71796a3b8b8c15683cdc806563f394ae0f8161c891163ce9ab43a53a8c6b"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "ff650a7199de00f38a1b64f659c69b80bfe06b87ab628e87bfeda5c5efd037bd"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 2,
+        "FAIL": 0
+      }
+    },
+    {
+      "id": "B01-skill-1",
+      "checks": [
+        {
+          "name": "HTTP contract denial, validation, tenant, JSON media and body limits",
+          "status": "PASS"
+        },
+        {
+          "name": "HTTP concurrent CAS, absence/null semantics and close/reopen persistence",
+          "status": "PASS",
+          "observation": {
+            "race": [
+              200,
+              409
+            ],
+            "persisted": {
+              "id": "t1",
+              "title": "Win A",
+              "note": null,
+              "version": 3
+            }
+          }
+        }
+      ],
+      "commands": [],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 24,
+        "validDispositions": true,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "run-verification.mjs",
+            "sha256": "e1c9051206aefc7cb2ecc93dd6565f9583e5c444205d51d58c2bf67f48ac5bf4"
+          },
+          {
+            "name": "service.mjs",
+            "sha256": "4ba925b22f9d616e05c9bd3ce164e466983a06fa54053d504ac2083f4c86fff6"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "02141b21fa9a24d0c7757316ae96257e0011439d169e108e96513504182e43f4"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 2,
+        "FAIL": 0
+      }
+    },
+    {
+      "id": "B02-baseline-1",
+      "checks": [
+        {
+          "name": "two SQLite connections, real shared barrier CAS race and reopen",
+          "status": "PASS",
+          "observation": {
+            "outcomes": [
+              {
+                "status": 201,
+                "available": 1,
+                "version": 2
+              },
+              {
+                "status": 409
+              }
+            ],
+            "arrivals": 2
+          }
+        },
+        {
+          "name": "fault hook rollback, usable retry, invalid and absent preconditions",
+          "status": "PASS"
+        }
+      ],
+      "commands": [],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 24,
+        "validDispositions": false,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "finish.mjs",
+            "sha256": "b3d904dc1d0d182c46e7cf8115ae481101f41fd9120a588f1035db6134c317d6"
+          },
+          {
+            "name": "probe.mjs",
+            "sha256": "81b22c0f76658745e10601f14e3cdad5e408605868275bc4000d7192978a9559"
+          },
+          {
+            "name": "store.mjs",
+            "sha256": "0029b821341ec958f062a4c5b4b67d67ce7377427332467983311038fae7a0ab"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "ba71e873b64d43ebe359062425d0ebfbe67fd4ec57fcf6016d9d75c2d8dbab11"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 2,
+        "FAIL": 0
+      }
+    },
+    {
+      "id": "B02-skill-1",
+      "checks": [
+        {
+          "name": "two SQLite connections, real shared barrier CAS race and reopen",
+          "status": "PASS",
+          "observation": {
+            "outcomes": [
+              {
+                "status": 201,
+                "available": 1,
+                "version": 2
+              },
+              {
+                "status": 409
+              }
+            ],
+            "arrivals": 2
+          }
+        },
+        {
+          "name": "fault hook rollback, usable retry, invalid and absent preconditions",
+          "status": "PASS"
+        }
+      ],
+      "commands": [],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 24,
+        "validDispositions": true,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "probe.mjs",
+            "sha256": "81b22c0f76658745e10601f14e3cdad5e408605868275bc4000d7192978a9559"
+          },
+          {
+            "name": "store.mjs",
+            "sha256": "ac4a99fd28e2db86e0fdc8656441d6bef6dcda08665236aa59ace41c26b22e88"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "f15857b5fea00d55df4cc6f4bf75f416a1e7ca3534e1383ff0e9641058648b2e"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 2,
+        "FAIL": 0
+      }
+    },
+    {
+      "id": "B03-skill-1",
+      "checks": [
+        {
+          "name": "independent SQL oracle, cardinality, invalid limits, tenant, ties and plan",
+          "status": "PASS",
+          "observation": {
+            "plan": [
+              {
+                "id": 6,
+                "parent": 0,
+                "notused": 59,
+                "detail": "SEARCH parcels USING COVERING INDEX parcels_ready_tenant_order (tenant=?)"
+              }
+            ]
+          }
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "seed.mjs",
+            "evaluator.sqlite"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B03-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B03-skill-1/command-0.stdout.txt",
+          "stderrFile": "B03-skill-1/command-0.stderr.txt"
+        },
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "apply-index.mjs",
+            "evaluator.sqlite"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B03-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B03-skill-1/command-1.stdout.txt",
+          "stderrFile": "B03-skill-1/command-1.stderr.txt"
+        }
+      ],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 1,
+        "validDispositions": true,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "apply-index.mjs",
+            "sha256": "0a49ad13bb4c8c0a025c5534312566616449b0067b88dcdb3d37d9e45cbf6035"
+          },
+          {
+            "name": "baseline-query.mjs",
+            "sha256": "8acb597ce925e3cf4eefe26dd64625111fd9215eba6f5a0b8f1d8e1dc110f505"
+          },
+          {
+            "name": "bench.mjs",
+            "sha256": "954b412b59e7bd5b861f87cd12f076d005c906d78e01b4b3dcc1bf39c8d87086"
+          },
+          {
+            "name": "query.mjs",
+            "sha256": "82a2b9e1b7390829a5625c47a1b4f84cd3c1e5a12df2b0c740729b542f2c1568"
+          },
+          {
+            "name": "reproduce.mjs",
+            "sha256": "5def4fba15a43099b3bb4b061a58428e16ac17893fa9e1d4e29e48f12a28c0d0"
+          },
+          {
+            "name": "seed.mjs",
+            "sha256": "6d6f6f38534a0ae00b6d99d36437050724f80c97e06e51eadcdbe268328ad02c"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "ed242d588d99a69f582e99ea52f6fc2dc3166710e0df7666dc34c3b5d1bc708d"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 1,
+        "FAIL": 0
+      }
+    },
+    {
+      "id": "B04-skill-1",
+      "checks": [
+        {
+          "name": "independent durable identity, actual crash73 and repeated restart",
+          "status": "PASS",
+          "observation": {
+            "crashStatus": 73
+          }
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "worker.mjs",
+            "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact\\evaluator.sqlite"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B04-skill-1/command-0.stdout.txt",
+          "stderrFile": "B04-skill-1/command-0.stderr.txt"
+        },
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "worker.mjs",
+            "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact\\evaluator.sqlite"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B04-skill-1/command-1.stdout.txt",
+          "stderrFile": "B04-skill-1/command-1.stderr.txt"
+        },
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "verify.mjs"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B04-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B04-skill-1/command-2.stdout.txt",
+          "stderrFile": "B04-skill-1/command-2.stderr.txt"
+        }
+      ],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 1,
+        "validDispositions": true,
+        "decisionsCount": 5,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "verify.mjs",
+            "sha256": "f2684444495da48b5af7727a5a1dcd069e94b752a0f336fb0a6935c1c9f1748a"
+          },
+          {
+            "name": "worker.mjs",
+            "sha256": "37aaa51f3d35ded3b329e494088ae3405c879162e3366b61754dc6f7b5fad8e4"
+          },
+          {
+            "name": "write-result.mjs",
+            "sha256": "6276d002ec2631ae3881b478fc0ba56e1f6a11b419b419da17cd22413394d876"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 1,
+        "FAIL": 0
+      }
+    },
+    {
+      "id": "B05-skill-1",
+      "checks": [
+        {
+          "name": "independent bounded interrupted migration and isolated deletion-aware recovery",
+          "status": "PASS",
+          "observation": {
+            "elapsedMs": 41.599599999999555,
+            "boundary": "One local sample, no RTO guarantee"
+          }
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "verify.mjs"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B05-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B05-skill-1/command-0.stdout.txt",
+          "stderrFile": "B05-skill-1/command-0.stderr.txt"
+        }
+      ],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 1,
+        "validDispositions": true,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "cli.mjs",
+            "sha256": "eb60cdf16f6779485466e3bcee780a30333b5f99c0a61f785909c6d272c543db"
+          },
+          {
+            "name": "finalize.mjs",
+            "sha256": "bddb7fe0a6438dff44dcb61db791ab1f4b02243124af4be42fd199c585ceae6f"
+          },
+          {
+            "name": "store.mjs",
+            "sha256": "29e012c9c7e4eae131b7f8bc4c791f3e8c59703a33a27674ba4d88f817d7cb29"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "018164ce459a9eeef15964317c0f19ade05de39b69ad322794326cda161aaa6b"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 1,
+        "FAIL": 0
+      }
+    },
+    {
+      "id": "B06-skill-1",
+      "checks": [
+        {
+          "name": "independent raw HMAC, deny mutation, atomic precommit rollback, restart replay",
+          "status": "PASS"
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "verify.mjs"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B06-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B06-skill-1/command-0.stdout.txt",
+          "stderrFile": "B06-skill-1/command-0.stderr.txt"
+        },
+        {
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "verify-extra.mjs"
+          ],
+          "cwd": "C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\backend-engineering\\evals\\evidence\\assessment\\trial-probes\\B06-skill-1\\artifact",
+          "exitCode": 0,
+          "stdoutFile": "B06-skill-1/command-1.stdout.txt",
+          "stderrFile": "B06-skill-1/command-1.stderr.txt"
+        }
+      ],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 1,
+        "validDispositions": true,
+        "decisionsCount": 5,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "service.mjs",
+            "sha256": "46e19d591557eb39832fccff9a2e9c5bf79d5df9691749e41fff4d485f856777"
+          },
+          {
+            "name": "service.original.mjs",
+            "sha256": "d2f89655c29b5cea959cc1f1ba8af00ddda47a572fc4a3d704dd73f92507886f"
+          },
+          {
+            "name": "verify-extra.mjs",
+            "sha256": "fd279e3d6bde6056149ec205a315b6af66692c0efda24340cac09ddc3cfc03ea"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "a4368de3c7ef0f4638a2af63a0e57c5eb2f9e4cfe909c2130eb1eec8a269c9e3"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 1,
+        "FAIL": 0
+      }
+    }
+  ],
+  "ended": "2026-11-05T17:18:09.643Z"
+}

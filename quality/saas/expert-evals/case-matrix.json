@@ -1,0 +1,12 @@
+{
+  "public": [
+    {"id":"UI-U1","skill":"ui-ux-engineering","task":"public/UI-U1/task.md","fixture":"public/UI-U1/fixture","versions":["1.0.0","1.1.0"],"check":"grading/verify-ui.mjs","kind":"native TypeScript/CSS interaction diagnostic and fix"},
+    {"id":"BE-B1","skill":"backend-engineering","task":"public/BE-B1/task.md","fixture":"public/BE-B1/fixture","versions":["1.0.0","1.1.0"],"check":"grading/verify-backend.mjs","kind":"real SQLite concurrency and local durable effect defect"}
+  ],
+  "heldout": [
+    {"id":"UI-U2","skill":"ui-ux-engineering","task":"holdout/UI-U2/task.md","fixture":"holdout/UI-U2/fixture","versions":["1.1.0"],"check":"hidden-grading/verify-ui-u2.mjs"},
+    {"id":"BE-B2","skill":"backend-engineering","task":"holdout/BE-B2/task.md","fixture":"holdout/BE-B2/fixture","versions":["1.1.0"],"check":"hidden-grading/verify-be-b2.mjs"}
+  ],
+  "perContext":{"seconds":360,"underlyingToolCalls":20,"freshContext":true,"delegation":false,"install":false},
+  "exposure":"Heldout task/fixture/grading remain sealed until skill freeze. This public matrix intentionally omits their semantics."
+}

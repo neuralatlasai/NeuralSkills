@@ -1,0 +1,512 @@
+{
+  "caseId": "B06",
+  "arm": "skill",
+  "run": 1,
+  "status": "PASS",
+  "route": {
+    "skill": "SKILL.md",
+    "modules": [
+      "B1 intake/contracts",
+      "B2 edge/identity",
+      "B3 API/domain",
+      "B4 data",
+      "B5 async/integration",
+      "B6 runtime/capacity",
+      "B7 operations",
+      "B8 verification"
+    ],
+    "references": [
+      "references/edge-identity.md",
+      "references/api-domain.md",
+      "references/data.md",
+      "references/async-integrations.md",
+      "references/runtime-capacity.md",
+      "references/operations.md",
+      "references/verification.md",
+      "references/coding-standards.md",
+      "references/modules.md"
+    ]
+  },
+  "requirements": [
+    {
+      "id": "B06-R01",
+      "meaning": "Signature verifies exact raw contract within bounded timestamp window without malformed-input bypass.",
+      "status": "PASS",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "before-restart.json",
+        "after-restart.json",
+        "query-plans.json"
+      ],
+      "decisions": [
+        "D01"
+      ]
+    },
+    {
+      "id": "B06-R02",
+      "meaning": "Payload/body validation, tenant authorization and safe responses bound denial/failure paths.",
+      "status": "PASS",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "before-restart.json",
+        "after-restart.json",
+        "query-plans.json"
+      ],
+      "decisions": [
+        "D02"
+      ]
+    },
+    {
+      "id": "B06-R03",
+      "meaning": "Durable event identity binds parameters; local mutation/receipt is atomic before acknowledgement.",
+      "status": "PASS",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "before-restart.json",
+        "after-restart.json",
+        "query-plans.json"
+      ],
+      "decisions": [
+        "D03"
+      ]
+    },
+    {
+      "id": "B06-R04",
+      "meaning": "Duplicate/restart/conflicting deliveries and injected precommit fault have defined durable outcomes.",
+      "status": "PASS",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "before-restart.json",
+        "after-restart.json",
+        "query-plans.json"
+      ],
+      "decisions": [
+        "D03"
+      ]
+    },
+    {
+      "id": "B06-R05",
+      "meaning": "Real HTTP/file-backed evidence is retained and absent MCP runtime is truthfully unsupported.",
+      "status": "PASS",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "before-restart.json",
+        "after-restart.json",
+        "query-plans.json"
+      ],
+      "decisions": [
+        "D04"
+      ]
+    },
+    {
+      "id": "B06-R06",
+      "meaning": "All 24 coverage dispositions and requirement/mechanism/limit/failure/verification chains are proportionate and truthful.",
+      "status": "PASS",
+      "evidence": [
+        "result.json",
+        "artifact/README.md"
+      ],
+      "decisions": [
+        "D05"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D01",
+      "requirement": [
+        "B06-R01"
+      ],
+      "mechanism": "HMAC SHA256(timestamp ASCII + dot + raw Buffer), fixed-length hex validation and timingSafeEqual; strict unique timestamp/header and +/-300 second freshness.",
+      "limit": "8192-byte body; 300 seconds inclusive skew; canonical <=10-digit Unix seconds; one authentication header each.",
+      "failure": "Tampered, invalid, stale/future or malformed authentication returns 401 before storage.",
+      "verification": "verification.json signature/freshness/malformed cases; extra-verification.json inclusive boundaries and duplicate timestamp."
+    },
+    {
+      "id": "D02",
+      "requirement": [
+        "B06-R02"
+      ],
+      "mechanism": "Bound body accumulation, reject unsupported compression, fatal UTF-8 decode, allowlisted three-field schema and tenant=north SQL lookup/update.",
+      "limit": "ID lengths 1..80 UTF-16 units and nonblank; body8192; active16, sockets32; body5s; safe bounded JSON errors.",
+      "failure": "400 invalid,404 unauthorized/absent,408 timeout,413 oversize,415 media/encoding,503 overload; denied paths leave state unchanged.",
+      "verification": "verification.json denial snapshots and slow request; extra-verification.json overload/recovery."
+    },
+    {
+      "id": "D03",
+      "requirement": [
+        "B06-R03",
+        "B06-R04"
+      ],
+      "mechanism": "BEGIN IMMEDIATE; reauthorize order; unique receipt with raw BLOB equality; conditional state transition; insert receipt and effect then COMMIT before ACK.",
+      "limit": "One file-backed SQLite, one fixed north integration; receipts retained for DB lifetime, storage grows with distinct event bytes; synchronous busy_timeout1000ms.",
+      "failure": "Different bytes for same ID409; identical bytes200 replay; precommit errors rollback503; lost ACK leaves caller outcome uncertain and identical replay reconciles.",
+      "verification": "verification.json persisted exact BLOB, denied conflict, rollback/retry, child restart; extra-verification.json three first-delivery races with one effect each."
+    },
+    {
+      "id": "D04",
+      "requirement": [
+        "B06-R05"
+      ],
+      "mechanism": "Native Node HTTP/SQLite integration and child-process restart verification; explicitly report absent MCP adapter/runtime.",
+      "limit": "Node24.12.0, SQLite3.50.4, synthetic loopback only; no MCP SDK/revision/conformance, live provider, TLS or deployment.",
+      "failure": "MCP calls are unsupported; transport/session/discovery/schema/auth/cancellation/output/audit adapter work remains.",
+      "verification": "child-output.json; query-plans.json; artifact/README.md explicit supported surface and missing MCP work."
+    },
+    {
+      "id": "D05",
+      "requirement": [
+        "B06-R06"
+      ],
+      "mechanism": "All L01-L24 have one proportional disposition with reason/evidence; requirement trace, reproducible commands, retained raw outcomes and scoped limits.",
+      "limit": "One heldout run, no production statistical or formal standards conformance claim; token/cost unavailable.",
+      "failure": "Outside-scope components never treated as verified; relevant OS privileges remain unverified.",
+      "verification": "result.json coverage count and decision/requirement mappings; 46 passing integration assertions."
+    }
+  ],
+  "coverageDispositions": [
+    {
+      "id": "L01",
+      "name": "DNS, discovery, network paths and sockets",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Real 127.0.0.1 TCP HTTP sockets; bounded connections, body timeout and helper cleanup. DNS/discovery beyond literal loopback are outside this fixture.",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "artifact/service.mjs"
+      ]
+    },
+    {
+      "id": "L02",
+      "name": "TLS, certificates and transport identity",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "Contract explicitly selects isolated cleartext loopback; no real certificates, TLS termination or production transport identity.",
+      "evidence": [
+        "artifact/README.md"
+      ]
+    },
+    {
+      "id": "L03",
+      "name": "Proxies, gateways, ingress, CDN and load balancing",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No proxy, ingress gateway, CDN or load balancer exists in this direct local HTTP integration.",
+      "evidence": [
+        "artifact/service.mjs"
+      ]
+    },
+    {
+      "id": "L04",
+      "name": "Authentication, authorization and tenant identity",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "HMAC-authenticated fixed north identity; current authorization precedes replay, and SQL object lookup/update includes tenant.",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "artifact/service.mjs"
+      ]
+    },
+    {
+      "id": "L05",
+      "name": "API styles, HTTP versions, RPC and streams",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Explicit HTTP/1.1 webhook route and bounded JSON errors; MCP absent and documented unsupported.",
+      "evidence": [
+        "artifact/README.md",
+        "verification.json"
+      ]
+    },
+    {
+      "id": "L06",
+      "name": "CRUD, upsert and bulk semantics",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Only created-to-shipped conditional update and receipt create/replay contract; other CRUD/bulk routes absent.",
+      "evidence": [
+        "artifact/service.mjs",
+        "verification.json"
+      ]
+    },
+    {
+      "id": "L07",
+      "name": "Validation, parsing, serialization and errors",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Exact raw-byte signature, finite body limit, UTF-8/schema/header validation and safe response projection.",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json"
+      ]
+    },
+    {
+      "id": "L08",
+      "name": "Domain architecture and request lifecycle",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Single request handler owns authentication, parsing, tenant lookup, local transaction and postcommit ACK.",
+      "evidence": [
+        "artifact/service.mjs",
+        "verification.json"
+      ]
+    },
+    {
+      "id": "L09",
+      "name": "Runtime, memory, concurrency, OS and containers",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "16 active bodies, 32 connections, finite bytes/timers, synchronous database limitation documented; overload cleanup tested.",
+      "evidence": [
+        "extra-verification.json",
+        "artifact/README.md"
+      ]
+    },
+    {
+      "id": "L10",
+      "name": "Database modeling and DDL",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Orders tenant-inclusive primary key and receipts unique event primary key; durable raw payload BLOB.",
+      "evidence": [
+        "artifact/service.mjs",
+        "query-plans.json"
+      ]
+    },
+    {
+      "id": "L11",
+      "name": "DML/DQL, ORM, indexes and query plans",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Parameterized statements and scoped SQL; observed primary-key index query plans. No optimization or representative production-cardinality claim.",
+      "evidence": [
+        "query-plans.json",
+        "artifact/service.mjs"
+      ]
+    },
+    {
+      "id": "L12",
+      "name": "Transactions, isolation, locks and consistency",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "BEGIN IMMEDIATE receipt/effect transaction, conditional update, rollback injection and three simultaneous-first-delivery checks.",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json"
+      ]
+    },
+    {
+      "id": "L13",
+      "name": "Database privileges and operational administration",
+      "disposition": "RELEVANT_UNVERIFIED",
+      "reason": "SQLite file/OS owner can bypass application policy. No SQL GRANT/RLS; filesystem privilege isolation and disk administration were not exercised.",
+      "evidence": [
+        "artifact/README.md"
+      ]
+    },
+    {
+      "id": "L14",
+      "name": "Storage, replication, partitioning, sharding and hashes",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Single file-backed SQLite and keyed HMAC-SHA256; exact bytes bind replay without relying on digest equality. Replication/sharding not requested.",
+      "evidence": [
+        "artifact/service.mjs",
+        "after-restart.json"
+      ]
+    },
+    {
+      "id": "L15",
+      "name": "Cache, views and derived state",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No cache, materialized view or separate derived store is involved.",
+      "evidence": [
+        "artifact/service.mjs"
+      ]
+    },
+    {
+      "id": "L16",
+      "name": "Messaging, event logs, CDC and async effects",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Transactional inbox receipts bind event identity before ACK; no external broker, publication or global exactly-once claim.",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json"
+      ]
+    },
+    {
+      "id": "L17",
+      "name": "Durable workers, schedules and workflows",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "Processing is synchronous and completes locally before ACK; no durable worker or schedule is requested.",
+      "evidence": [
+        "artifact/README.md"
+      ]
+    },
+    {
+      "id": "L18",
+      "name": "Files, objects, search and specialized stores",
+      "disposition": "OUT_OF_SCOPE",
+      "reason": "No upload/object/search/specialized-store integration; SQLite database files are covered under L10/L14.",
+      "evidence": [
+        "artifact/service.mjs"
+      ]
+    },
+    {
+      "id": "L19",
+      "name": "External APIs, webhooks, tools and MCP",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Synthetic carrier webhook adapter implemented; MCP runtime explicitly unsupported, missing adapter work listed. No live carrier requests.",
+      "evidence": [
+        "artifact/README.md",
+        "verification.json"
+      ]
+    },
+    {
+      "id": "L20",
+      "name": "Traffic, capacity, scaling and cost",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Per-request bytes and active-admission limits tested for rejection and recovery; local closed concurrency only, no throughput/SLO/cost claim.",
+      "evidence": [
+        "extra-verification.json",
+        "artifact/README.md"
+      ]
+    },
+    {
+      "id": "L21",
+      "name": "Reliability, backups and recovery",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Injected precommit rollback and real process restart replay/integrity verified; backup/power-loss recovery remains unperformed and unclaimed.",
+      "evidence": [
+        "verification.json",
+        "before-restart.json",
+        "after-restart.json"
+      ]
+    },
+    {
+      "id": "L22",
+      "name": "Observability, objectives and audit",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Durable receipt identity and verification-only transition audit evidence; bounded safe errors. Production telemetry/export queues not part of request.",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "artifact/README.md"
+      ]
+    },
+    {
+      "id": "L23",
+      "name": "Infrastructure, build and deployment lifecycle",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Native Node24.12.0 built-ins, syntax checks, loopback CLI startup, actual child restart/shutdown. No installs/deployments; vulnerability scan/provenance not performed.",
+      "evidence": [
+        "child-output.json",
+        "verification-run1.log",
+        "artifact/service.mjs"
+      ]
+    },
+    {
+      "id": "L24",
+      "name": "Security, privacy, supply chain and lifecycle",
+      "disposition": "IMPLEMENTED_OR_CHANGED",
+      "reason": "Malformed authentication, raw tampering, tenant/field denial, finite parsing, safe errors and explicit retention/trust boundary. Rotation/privacy deletion not exercised.",
+      "evidence": [
+        "verification.json",
+        "extra-verification.json",
+        "artifact/README.md"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "command": "Get-Content heldout/B06/{README.md,service.mjs}",
+      "exit": 1,
+      "status": "FAIL",
+      "kind": "inspection",
+      "evidence": "Initial fixture lookup used skill-root path and found no file; corrected to evals/heldout/B06 on next call. No prohibited data read."
+    },
+    {
+      "command": "node --version",
+      "exit": 0,
+      "status": "PASS",
+      "kind": "environment",
+      "evidence": "v24.12.0"
+    },
+    {
+      "command": "node --check evals/trials/B06-skill-1/artifact/service.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "kind": "syntax",
+      "evidence": "Executed before integration; no syntax diagnostics."
+    },
+    {
+      "command": "node --check evals/trials/B06-skill-1/artifact/verify.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "kind": "syntax",
+      "evidence": "Executed before integration; no syntax diagnostics."
+    },
+    {
+      "command": "node evals/trials/B06-skill-1/artifact/verify.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "kind": "real-http-sqlite-integration",
+      "evidence": "verification-run1.log and verification.json;39 PASS,0 FAIL; native SQLite experimental warning preserved."
+    },
+    {
+      "command": "node --check evals/trials/B06-skill-1/artifact/verify-extra.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "kind": "syntax",
+      "evidence": "Executed before extra integration; no syntax diagnostics."
+    },
+    {
+      "command": "node evals/trials/B06-skill-1/artifact/verify-extra.mjs",
+      "exit": 0,
+      "status": "PASS",
+      "kind": "real-http-sqlite-concurrency-and-admission",
+      "evidence": "extra-run1.log and extra-verification.json;7 PASS,0 FAIL."
+    },
+    {
+      "command": "SELECT sqlite_version(); EXPLAIN QUERY PLAN scoped order/receipt lookup",
+      "exit": 0,
+      "status": "PASS",
+      "kind": "real-database",
+      "evidence": "query-plans.json SQLite3.50.4; observed primary-key indexed SEARCH plans."
+    }
+  ],
+  "assumptions": [
+    "Signing key is disposable and known only within this isolated test boundary; no secret rotation requirement supplied.",
+    "The single fixed authenticated integration maps to north; no caller tenant assertion is authority.",
+    "Receipts persist indefinitely; no deletion/retention migration requested.",
+    "Timestamp signing value is canonical Unix seconds; replay re-signs unchanged body with fresh timestamp.",
+    "The current fixture has no live preexisting database requiring a production migration."
+  ],
+  "limits": [
+    "No production TLS, DNS, proxy, backup restore, crash/power-loss durability, replicated scale, disk quota or OS privilege verification.",
+    "MCP UNSUPPORTED: no runtime, SDK/revision negotiation, transport/session/discovery/schema/auth/cancellation/output/audit adapter.",
+    "Bounded local tests and three duplicate-race repetitions establish no throughput/p99 or production guarantee.",
+    "Application retry advice is documented only; this HTTP receiver makes no outbound calls or internal retries.",
+    "Native SQLite experimental warning is retained; JavaScript syntax checked, not statically typechecked.",
+    "Default verification scripts require a fresh copied trial directory to preserve previous state and raw evidence."
+  ],
+  "start": "2026-11-05T17:09:20.5851202Z",
+  "end": "2026-11-05T17:14:18.136Z",
+  "elapsedSeconds": 297.551,
+  "actualTokens": null,
+  "cost": null,
+  "knownCallCount": 11,
+  "callCountBasis": "11 external exec_command/write_stdin calls through result write, including this command; collaboration messages excluded.",
+  "artifacts": [
+    "artifact/service.mjs",
+    "artifact/service.original.mjs",
+    "artifact/README.fixture.md",
+    "artifact/README.md",
+    "artifact/verify.mjs",
+    "artifact/verify-extra.mjs",
+    "verification.json",
+    "extra-verification.json",
+    "before-restart.json",
+    "after-restart.json",
+    "query-plans.json",
+    "state.sqlite",
+    "concurrency.sqlite",
+    "child-output.json",
+    "verification-run1.log",
+    "extra-run1.log"
+  ]
+}

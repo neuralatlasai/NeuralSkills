@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-06T03:17:59.286Z",
+  "cause": "Dispatch referred to protocol host paths while forbidding protocol read. Both public UI trials received the same capability-only addendum after T02 asked; no mechanism/acceptance hint or budget extension.",
+  "paths": {
+    "playwright": "C:/Users/heman/AppData/Roaming/npm/node_modules/@playwright/cli/node_modules/playwright",
+    "chrome": "C:/Program Files/Google/Chrome/Application/chrome.exe"
+  },
+  "isolation": "Separate headless browser and free/ephemeral loopback port; shared helper accepts0.",
+  "deliveredTo": [
+    "T01",
+    "T02"
+  ],
+  "claims": "Retain failed discovery/launch evidence. Resource/timing comparisons are descriptive and not an efficiency claim."
+}

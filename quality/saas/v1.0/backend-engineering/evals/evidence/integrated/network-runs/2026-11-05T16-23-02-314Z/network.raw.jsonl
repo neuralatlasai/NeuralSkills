@@ -1,0 +1,3 @@
+{"kind":"dns-failure","resolutionFailure":"ENOTFOUND","queries":2,"recordedAt":"2026-11-05T16:23:02.621Z"}
+{"kind":"initial-endpoint","status":200,"body":"A","peer":"127.0.0.1","latencyMs":188.5272,"recordedAt":"2026-11-05T16:23:02.820Z"}
+{"kind":"stale-endpoint","status":200,"body":"B","peer":"127.0.0.2","latencyMs":22.213799999999992,"recordedAt":"2026-11-05T16:23:02.856Z"}

@@ -1,0 +1,120 @@
+{
+  "started": "2026-11-05T17:32:03.492Z",
+  "runtime": "v24.12.0",
+  "sqlite": "3.50.4",
+  "blinding": "Broken: evaluator saw directory arm names and implementation/result records; objective HTTP/SQLite assertions used.",
+  "method": "New evaluator-authored probes in isolated source copies; original trial verification additionally replayed for B04-B06 with attribution. No original database or evidence writes.",
+  "trials": [
+    {
+      "id": "B01-baseline-2",
+      "checks": [
+        {
+          "name": "HTTP contract denial, validation, tenant, JSON media and body limits",
+          "status": "PASS"
+        },
+        {
+          "name": "HTTP concurrent CAS, absence/null semantics and close/reopen persistence",
+          "status": "PASS",
+          "observation": {
+            "race": [
+              200,
+              409
+            ],
+            "persisted": {
+              "id": "t1",
+              "title": "Win A",
+              "note": null,
+              "version": 3
+            }
+          }
+        }
+      ],
+      "commands": [],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 24,
+        "validDispositions": true,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "finalize.mjs",
+            "sha256": "9a2d64fc082c56b96e0db514a2a9c76cd130a68f40e08b9e57c64c23746990a6"
+          },
+          {
+            "name": "service.mjs",
+            "sha256": "6d49505edcc95603b2a691c35ec4584743fc9ce0a486cf37e98611c00aeb193d"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "197e61dba3829b24b4e87371b366267e4cf1b21d9befe2fee7f17e1329ee10ff"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 2,
+        "FAIL": 0
+      }
+    },
+    {
+      "id": "B01-skill-2",
+      "checks": [
+        {
+          "name": "HTTP contract denial, validation, tenant, JSON media and body limits",
+          "status": "PASS"
+        },
+        {
+          "name": "HTTP concurrent CAS, absence/null semantics and close/reopen persistence",
+          "status": "PASS",
+          "observation": {
+            "race": [
+              200,
+              409
+            ],
+            "persisted": {
+              "id": "t1",
+              "title": "Win A",
+              "note": null,
+              "version": 3
+            }
+          }
+        }
+      ],
+      "commands": [],
+      "static": {
+        "coverageCount": 24,
+        "uniqueCoverage": 24,
+        "validDispositions": true,
+        "decisionsCount": 6,
+        "decisionsHaveFiveFields": true,
+        "sourceHashes": [
+          {
+            "name": "faults.mjs",
+            "sha256": "30e48258e72c7bfe03fa3ce31e100b1bfbb952a9f7c7f9d2741fe6e439da68cf"
+          },
+          {
+            "name": "service.mjs",
+            "sha256": "110e7d5d747bb83b705818ba081da4f8c415cbca65c322b01ca47355022e81c1"
+          },
+          {
+            "name": "validate-result.mjs",
+            "sha256": "ef037f05bb4ed8fb9fe8515c2a80ac3b0c21703b67479a408d0f291d54e8f2cd"
+          },
+          {
+            "name": "verify.mjs",
+            "sha256": "5370448afdc76900229c5e302d6f71b36b0bc06959a888563d1908ead64b952c"
+          },
+          {
+            "name": "write-result.mjs",
+            "sha256": "bad3f567ec320733f21169fec4e92affcc530c30de98fc30fd152d37ef30a4db"
+          }
+        ]
+      },
+      "summary": {
+        "PASS": 2,
+        "FAIL": 0
+      }
+    }
+  ],
+  "ended": "2026-11-05T17:32:03.756Z"
+}

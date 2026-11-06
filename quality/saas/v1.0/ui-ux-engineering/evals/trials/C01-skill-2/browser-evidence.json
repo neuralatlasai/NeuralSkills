@@ -1,0 +1,81 @@
+{
+  "browser": "156.0.8078.80",
+  "node": "v24.12.0",
+  "viewport": {
+    "desktop": [
+      800,
+      600
+    ],
+    "narrow": [
+      320,
+      640
+    ],
+    "reflow": [
+      160,
+      640
+    ]
+  },
+  "font": "system-ui",
+  "headless": true,
+  "checks": [
+    {
+      "id": "actual-clipboard-keyboard",
+      "status": "PASS",
+      "evidence": {
+        "payload": "https://example.test/invite/team-river",
+        "keyboard": "Tab and Enter",
+        "resetElapsedMs": 2472,
+        "focus": {
+          "style": "solid",
+          "width": "3px"
+        }
+      }
+    },
+    {
+      "id": "pending-duplicate-space-and-recovery",
+      "status": "PASS",
+      "evidence": {
+        "callsDuringPending": 1,
+        "callsAfterRetry": 3,
+        "focusPreserved": true,
+        "error": "Useful inline error and selectable fallback; retry succeeded"
+      }
+    },
+    {
+      "id": "missing-clipboard",
+      "status": "PASS",
+      "evidence": "Unavailable navigator.clipboard produces inline error and re-enabled retry"
+    },
+    {
+      "id": "narrow-translated-target-and-status",
+      "status": "PASS",
+      "evidence": {
+        "width": 280,
+        "height": 69.5,
+        "clientWidth": 278,
+        "scrollWidth": 278,
+        "pageWidth": 320,
+        "text": "Einladungslink für das Projektteam kopieren",
+        "live": "polite"
+      }
+    },
+    {
+      "id": "contrast",
+      "status": "PASS",
+      "evidence": {
+        "button": 9.188381028728124,
+        "hover": 11.8945934207683,
+        "text": 13.794147817560637,
+        "status": 6.268415232687052,
+        "error": 7.08501798624569,
+        "focus": 5.1649708922821835
+      }
+    },
+    {
+      "id": "browser-errors",
+      "status": "PASS",
+      "evidence": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,106 @@
+{
+  "source": {
+    "sha256": "a96c548de3b2618581179d66647bd587606b1c64f2a4fdc63b3c87091411d132",
+    "files": [
+      "evals/fixtures/contracts.ts",
+      "evals/fixtures/legacy-repository.mjs",
+      "evals/fixtures/load-workloads.json",
+      "package.json",
+      "scripts/cert-gen.mjs",
+      "scripts/check.mjs",
+      "scripts/client.mjs",
+      "scripts/dns-network.mjs",
+      "scripts/evidence.mjs",
+      "scripts/integrated.mjs",
+      "scripts/load.mjs",
+      "scripts/service.mjs",
+      "scripts/smoke.mjs",
+      "scripts/validate-package.mjs",
+      "scripts/worker.mjs"
+    ]
+  },
+  "conditions": {
+    "version": 1,
+    "model": "open arrivals; bounded generator concurrency; no automatic retries",
+    "repetitions": 3,
+    "generatorConcurrency": 24,
+    "seedItems": 40,
+    "tenantSkew": "80% tenant-a;20% tenant-b",
+    "requestMix": "75% GET one;25% bounded GET list",
+    "cache": "8 insertion-order entries; warm-up3; retained between scenarios within each repetition",
+    "scenarios": [
+      {
+        "name": "normal",
+        "arrivals": 12,
+        "intervalMs": 50,
+        "costMs": 0
+      },
+      {
+        "name": "sustained",
+        "arrivals": 60,
+        "intervalMs": 16,
+        "costMs": 15
+      },
+      {
+        "name": "burst",
+        "arrivals": 40,
+        "intervalMs": 0,
+        "costMs": 20
+      },
+      {
+        "name": "overload",
+        "arrivals": 90,
+        "intervalMs": 6,
+        "costMs": 60
+      },
+      {
+        "name": "failure",
+        "arrivals": 36,
+        "intervalMs": 16,
+        "costMs": 0,
+        "dependencyDown": true
+      },
+      {
+        "name": "recovery",
+        "arrivals": 36,
+        "intervalMs": 16,
+        "costMs": 0
+      }
+    ]
+  },
+  "machine": {
+    "runtime": "v24.12.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "osRelease": "10.0.28120",
+    "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+    "cpuLogicalCount": 8,
+    "totalMemoryBytes": 16934494208,
+    "network": "127.0.0.1 TCP and native TLS only",
+    "runtimeDependencies": "Node built-ins; node:sqlite is experimental in this runtime"
+  },
+  "totals": {
+    "intendedArrivals": 822,
+    "generated": 582,
+    "admitted": 474,
+    "useful": 366,
+    "timeouts": 0,
+    "rejected": 108,
+    "failed": 108,
+    "retries": 0,
+    "generatorDropped": 240
+  },
+  "processRssBytes": {
+    "min": 69382144,
+    "max": 109346816,
+    "meaning": "Combined server+generator process maximum RSS observations; not isolated term coefficients"
+  },
+  "sampleRuns": 18,
+  "limitations": [
+    "Loopback experiment, single process SQLite sync connection and co-resident generator; no production or multi-replica capacity inference.",
+    "All generated response latency samples include rejections, dependency failures and client timeouts. Dropped demand has no response latency and is separately counted.",
+    "Generator creates fresh TLS connections (agent:false); TLS CPU and local runtime are part of measurements. No automatic retries.",
+    "SQLite query rows examined, physical I/O, lock wait, OS FD/NAT exhaustion and cold filesystem cache are UNVERIFIED.",
+    "No optimization speedup claim; these are bounded workload observations only."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "createdAt": "2026-11-06T03:36:07.394Z",
+  "scope": "Post-evaluation packaging metadata only. Original source freezes retained, not rewritten.",
+  "amendments": [
+    {
+      "file": "roles/saas/ui-ux-engineering/assets/manifest.json",
+      "beforeSha256": "863f8b2554a9211ef37d051a2f3940bf6e41755c737df3b54a6176ea2464b998",
+      "afterSha256": "061b8f6b323df419380b347704c2eb9074af1ab57c32e540a005d12f45871939",
+      "removedField": "note",
+      "removedValue": "All static resources; generated evidence/trials and task-only inputs are excluded and separately indexed in evals/evidence/review/trial-file-inventory.json.",
+      "resourcesUnchanged": true,
+      "reason": "Removed redundant historical-output note whose role-local path became stale after layout cleanup. This does not change routing, operating procedures, fixtures, criteria or task inputs; rerun affected metadata/link validation."
+    },
+    {
+      "file": "roles/saas/backend-engineering/assets/manifest.json",
+      "beforeSha256": "17f2bdc973260282a95356e6f278ee08ef5b3a3c72786e811fbeb0a8db59d646",
+      "afterSha256": "0041925c7d420c37060dd2fe8f3a43ebef70710c1fd08a4aa69bdad2b618ddb4",
+      "removedField": "note",
+      "removedValue": "Static resources; generated evidence/trials/inputs have final evidence inventories.",
+      "resourcesUnchanged": true,
+      "reason": "Removed redundant historical-output note whose role-local path became stale after layout cleanup. This does not change routing, operating procedures, fixtures, criteria or task inputs; rerun affected metadata/link validation."
+    }
+  ]
+}

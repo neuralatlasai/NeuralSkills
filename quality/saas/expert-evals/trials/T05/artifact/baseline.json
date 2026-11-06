@@ -1,0 +1,29 @@
+{
+  "focus": "displayName",
+  "panel": {
+    "x": 41,
+    "y": 224.875,
+    "width": 600,
+    "height": 887.8125,
+    "top": 224.875,
+    "right": 641,
+    "bottom": 1112.6875,
+    "left": 41
+  },
+  "card": {
+    "x": 20,
+    "y": 203.875,
+    "width": 280,
+    "height": 200,
+    "top": 203.875,
+    "right": 300,
+    "bottom": 403.875,
+    "left": 20
+  },
+  "overflow": "hidden",
+  "semantic": "DIV",
+  "afterEscape": {
+    "overflow": "hidden",
+    "hidden": true
+  }
+}

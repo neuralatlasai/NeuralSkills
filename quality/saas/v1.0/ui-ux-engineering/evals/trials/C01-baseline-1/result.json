@@ -1,0 +1,150 @@
+{
+    "caseId":  "C01",
+    "arm":  "baseline",
+    "run":  1,
+    "route":  "artifact/index.html",
+    "requirementCoverage":  [
+                                {
+                                    "id":  "C01-R01",
+                                    "status":  "PASS",
+                                    "evidence":  "artifact/invitation-copy.ts and .css: reusable native custom element, exact English label and required invitation URL; real clipboard check passed."
+                                },
+                                {
+                                    "id":  "C01-R02",
+                                    "status":  "PASS",
+                                    "evidence":  "keyboard-target-pending: disabled button plus internal guard produced exactly one clipboard request despite a dispatched duplicate click."
+                                },
+                                {
+                                    "id":  "C01-R03",
+                                    "status":  "PASS",
+                                    "evidence":  "success-reset: Link copied label and status restored to original after measured 2056ms."
+                                },
+                                {
+                                    "id":  "C01-R04",
+                                    "status":  "PASS",
+                                    "evidence":  "reject-retry-enter and unavailable-and-translation: useful inline alert, enabled retry, and successful next request."
+                                },
+                                {
+                                    "id":  "C01-R05",
+                                    "status":  "PASS",
+                                    "evidence":  "Space and Enter activate native button; status/alert roles and aria-busy observed; 3px focus outline; default target 322 by 48.5 CSS px. Focus restoration fixed after initial run."
+                                },
+                                {
+                                    "id":  "C01-R06",
+                                    "status":  "PASS",
+                                    "evidence":  "unavailable-and-translation and german-320.png: German label fits with wrapping, button 242 by 71 CSS px, document width 320, no clipped scroll content."
+                                },
+                                {
+                                    "id":  "C01-R07",
+                                    "status":  "PASS",
+                                    "evidence":  "artifact/index.html runs directly from file with bundled generated JS. README.md gives reuse and rebuild instructions. Default and narrow screenshots visually reviewed."
+                                }
+                            ],
+    "assumptions":  [
+                        "Requirement IDs are mapped in task-sentence order because descriptions for each individual ID were not supplied.",
+                        "The translated resting-label check does not require localization of all status/error copy.",
+                        "Modern browser with custom elements support; clipboard availability remains browser-controlled."
+                    ],
+    "decisions":  [
+                      "Use a small native custom element with scoped plain CSS class names and no dependencies, icons, or framework.",
+                      "Ship compiled JavaScript so opening index.html is sufficient and no network service is needed.",
+                      "Disable the native button during pending requests and restore keyboard focus if disabling moved it to the document.",
+                      "Keep persistent live-region elements and clear inline errors on retry."
+                  ],
+    "checks":  [
+                   {
+                       "id":  "typescript-build",
+                       "status":  "PASS",
+                       "evidence":  "evidence/build.stdout.txt: strict TypeScript check and generated JavaScript passed. Initial TypeScript 6 module=None deprecation preserved in evidence/build.first-attempt.stdout.txt; changed output module setting to ES2020."
+                   },
+                   {
+                       "id":  "keyboard-target-pending",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "focus":  {
+                                                      "outline":  "rgb(28, 103, 136) solid 3px",
+                                                      "width":  322,
+                                                      "height":  48.5
+                                                  },
+                                        "pending":  {
+                                                        "calls":  [
+                                                                      "https://example.test/invite/team-river"
+                                                                  ],
+                                                        "disabled":  true,
+                                                        "busy":  "true",
+                                                        "status":  "Copying invitation link…"
+                                                    }
+                                    }
+                   },
+                   {
+                       "id":  "success-reset",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "resetMs":  2056,
+                                        "statusRole":  "status",
+                                        "copied":  "https://example.test/invite/team-river"
+                                    }
+                   },
+                   {
+                       "id":  "reject-retry-enter",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "callsAfterRetry":  3,
+                                        "errorCleared":  ""
+                                    }
+                   },
+                   {
+                       "id":  "unavailable-and-translation",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "width":  242,
+                                        "height":  71,
+                                        "scrollWidth":  240,
+                                        "clientWidth":  240,
+                                        "scrollHeight":  69,
+                                        "clientHeight":  69,
+                                        "pageWidth":  320,
+                                        "viewport":  320
+                                    }
+                   },
+                   {
+                       "id":  "browser-errors",
+                       "status":  "PASS",
+                       "evidence":  [
+
+                                    ]
+                   },
+                   {
+                       "id":  "native-clipboard",
+                       "status":  "PASS",
+                       "evidence":  {
+                                        "label":  "Link copied",
+                                        "error":  "",
+                                        "clipboard":  "https://example.test/invite/team-river"
+                                    }
+                   },
+                   {
+                       "id":  "visual-review",
+                       "status":  "PASS",
+                       "evidence":  "Inspected evidence/default.png and evidence/german-320.png: restrained card/button styling, legible wrapped German text, and visible focus ring."
+                   },
+                   {
+                       "id":  "screen-reader",
+                       "status":  "UNVERIFIED",
+                       "evidence":  "Browser DOM verifies status and alert roles and aria-busy. No screen reader session was run."
+                   }
+               ],
+    "limitations":  [
+                        "Screen reader announcements were not tested with assistive technology; DOM semantics were checked.",
+                        "Browser verification used installed headless Chrome only; no cross-browser or mobile-device run.",
+                        "Native clipboard check used browser-granted clipboard permissions; denied and missing APIs were tested with controlled mocks.",
+                        "Configuration attributes should be set before attaching the custom element; dynamic label attribute changes do not immediately update the resting button.",
+                        "Initial failed build and failed keyboard run are retained under evidence; final rerun passed.",
+                        "No token or cost telemetry was exposed. No package installs or network services were used."
+                    ],
+    "startUTC":  "2026-11-05T15:49:10Z",
+    "endUTC":  "2026-11-05T15:55:07.119Z",
+    "elapsedSeconds":  357.12,
+    "actualTokens":  null,
+    "cost":  null
+}

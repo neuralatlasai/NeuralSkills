@@ -1,0 +1,31 @@
+{
+  "kind": "Source comparison and syntax only; no React runtime, typecheck, visual or accessibility result",
+  "typescriptApiVersion": "6.0.3",
+  "changedFiles": [
+    "src/App.tsx",
+    "src/styles.css"
+  ],
+  "checks": [
+    {
+      "id": "only-requested-source-files-changed",
+      "pass": true
+    },
+    {
+      "id": "all-supplied-invoice-data-identical",
+      "pass": true
+    },
+    {
+      "id": "css-variables-identical",
+      "pass": true
+    },
+    {
+      "id": "focus-style-preserved",
+      "pass": true
+    },
+    {
+      "id": "tsx-parse-transpile",
+      "pass": true,
+      "diagnostics": []
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "retention": "Evaluator-only incidents; original trials and frozen package sources were not changed.",
+  "incidents": [
+    {
+      "command": "node evals/evidence/assessment/trial-probes/evaluate.mjs",
+      "exitCode": 1,
+      "stdout": "",
+      "stderrExcerpt": "Error: ENOENT: no such file or directory, scandir 'C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\evals\\trials\\B01-baseline-1\\artifact'",
+      "cause": "Evaluator computed package root one level too high.",
+      "repair": "Only own evaluate.mjs changed from five ancestor levels to four. Subsequent isolated probes completed."
+    },
+    {
+      "command": "node --input-type=module -e <initial evaluator B03 JSON read>",
+      "exitCode": 1,
+      "stderrExcerpt": "SyntaxError: Unexpected token '\ufffd' ... is not valid JSON",
+      "cause": "Original B03 raw before/after JSON is UTF16LE with BOM; evaluator initially decoded UTF8.",
+      "repair": "Own assessment reader detects BOM and decodes correctly. Raw evidence remains byte-for-byte unchanged."
+    },
+    {
+      "command": "node evals/evidence/assessment/trial-probes/evaluate.mjs > evals/evidence/assessment/trial-probes/evaluator.stdout.txt 2> evals/evidence/assessment/trial-probes/evaluator.stderr.txt",
+      "exitCode": 1,
+      "stdoutFile": "evaluator.stdout.txt",
+      "stderrFile": "evaluator.stderr.txt",
+      "result": "Evaluator reached final results.json with twelve PASS assertions and no FAIL assertions. All recorded subprocess command exits are zero. Top-level PowerShell pipeline exit remains1, and stderr shows NativeCommandError wrapping Node experimental SQLite warning; causal interpretation not asserted as proven."
+    },
+    {
+      "scope": "Initial evaluate.mjs static uniqueCoverage count",
+      "result": "B03-B06 use id field rather than area. Initial static counter returned1 by counting undefined. requirement-assessment.json correctly normalizes id/area and finds24 unique IDs for every trial. This correction changes no trial data or dynamic observation."
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Initial PowerShell Get-Date -AsUTC failed: A parameter cannot be found that matches parameter name AsUTC. First successful UTC timestamp obtained using [DateTime]::UtcNow.ToString(o): 2026-11-05T15:55:55.4062857Z. Reported elapsed excludes the initial intake read and failed clock command. apply_patch then remained pending for approximately two minutes. No failures removed.

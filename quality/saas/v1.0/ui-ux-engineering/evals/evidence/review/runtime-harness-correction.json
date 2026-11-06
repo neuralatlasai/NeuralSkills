@@ -1,0 +1,9 @@
+{
+  "initial": "independent-runtime-initial.json",
+  "diagnosis": [
+    "C01 selector incorrectly required the resting accessible name after Enter correctly changed it to Copying; rerun uses stable unnamed button locator.",
+    "C03 was inadvertently selected by character class [136] and treated as a search case; removed from repeated checks; its separate375px layout check passes.",
+    "C06 baseline2 starter index expects its server to serve dist as root. Generic harness initially served source root and missed app.js; corrected to dist."
+  ],
+  "rawTrialsUnchanged": true
+}

@@ -1,0 +1,30 @@
+{
+  "caseId": "C01",
+  "task": "Build one small reusable invitation-copy button in native TypeScript and plain CSS, without React, a UI library, icons, or a full marketing page. The button label is “Copy invitation link” and it copies https://example.test/invite/team-river. While a copy is pending it must prevent duplicate submissions. On success show “Link copied” for about two seconds, then restore the original label. If the clipboard is unavailable or rejects, show a useful inline error and allow retry. Make it work with a keyboard, expose its changing status to assistive technology, show a clear focus indicator, and keep a target of at least 44 by 44 CSS pixels. It must fit a 320px viewport and tolerate the translated label “Einladungslink für das Projektteam kopieren” without clipping. Keep the visual treatment restrained and polished. Supply a runnable local example and concise setup instructions. Put the implementation in the supplied trial/artifact directory and write trial/result.json using the supplied output contract.",
+  "fixtures": [],
+  "requirementIds": [
+    "C01-R01",
+    "C01-R02",
+    "C01-R03",
+    "C01-R04",
+    "C01-R05",
+    "C01-R06",
+    "C01-R07"
+  ],
+  "outputContract": {
+    "artifactDirectory": "trial/artifact/",
+    "resultFile": "trial/result.json",
+    "fields": [
+      "caseId",
+      "arm",
+      "run",
+      "route",
+      "requirementCoverage",
+      "assumptions",
+      "decisions",
+      "checks",
+      "limitations"
+    ],
+    "note": "The orchestrator supplies caseId, arm, run and trial directory. Checks use PASS, FAIL, UNVERIFIED or NOT_APPLICABLE and cite observable evidence. Never invent tool access or executed checks."
+  }
+}

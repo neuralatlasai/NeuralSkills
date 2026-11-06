@@ -1,0 +1,267 @@
+{
+  "createdAt": "2026-11-06T03:12:58.746Z",
+  "version": "1.1.0",
+  "scope": "UI instructions/assets/scripts/reusablefixtures frozen before UI implementation. Output reports excluded. Backend freezes separately before backend trials; holdouts remain sealed until both freezes.",
+  "files": [
+    {
+      "file": "roles/saas/ui-ux-engineering/assets/contract.template.json",
+      "bytes": 1883,
+      "sha256": "34827af8e2ed33cc5dd6c6f9f05c1be20887adff48e37e56854a6c943a101aea"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/assets/contracts.schema.json",
+      "bytes": 5025,
+      "sha256": "a04e82cda47278bcd3fba117bda32b80e3cc1b21dd45461ad940d362681d03f3"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/assets/manifest.json",
+      "bytes": 7949,
+      "sha256": "863f8b2554a9211ef37d051a2f3940bf6e41755c737df3b54a6176ea2464b998"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C02/README.md",
+      "bytes": 554,
+      "sha256": "25a39e49fdf731ee29c6755827d6b8729d4b0e04b4746e3b78386d64ba495466"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C02/reference.png",
+      "bytes": 63846,
+      "sha256": "f6bb1ec0ce1b6e7a93120fd97ce838ebc3345b29f959117aa678bd9dfc141718"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C02/reference.svg",
+      "bytes": 4609,
+      "sha256": "6fd199f619ec67f1148abb1d4d04023e3242fe53f23d72de469ff7d3d79b52e6"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C03/brand.svg",
+      "bytes": 1241,
+      "sha256": "4acc1164d5a7f2faa99dd7afe74b2e1bec4a13be4bc0911e485e0a7a4a211406"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C03/layout.svg",
+      "bytes": 2076,
+      "sha256": "f8181fa04e28a252ca4415743239d72b285e4f1f9cfc0c6a061b8d163c05552a"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C03/typography.svg",
+      "bytes": 1412,
+      "sha256": "921e845f9821e2a54eb809f5f6fe67988e6ddf21ddc9ead88be0f86188d1703b"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C04/brief.md",
+      "bytes": 791,
+      "sha256": "21808c40345d4cb887bf0bf9c4c81bbcc7bdb37aa69fe82afcf08e36ed95554d"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C04/figma-access.json",
+      "bytes": 317,
+      "sha256": "d93fe7451a442439951d06a5d70601d7cb00f3d7d85fea9364037b3c866d8642"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/index.html",
+      "bytes": 267,
+      "sha256": "b822a8305b084c22e41e280820d334ad88a88f01d2fbc5c6db27fcf445977d5c"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/package.json",
+      "bytes": 495,
+      "sha256": "10f369cbcfe50f9b04b596580b188fbdbe8b19c5bb659fcb4cbe3335c3e9ad49"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/README.md",
+      "bytes": 568,
+      "sha256": "c49ee7004b3a9827b04c572094cfe28170ceb70f9289c5c9a24446e03d7ae32a"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/src/App.tsx",
+      "bytes": 2841,
+      "sha256": "b6c5401c5ef7393bbaef821816dce2b8f670e19638d40c3926aced181720d19c"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/src/main.tsx",
+      "bytes": 230,
+      "sha256": "484dec2869f86a979f9569ab897855787addbcf37318655a6043f8531b00495c"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/src/styles.css",
+      "bytes": 4306,
+      "sha256": "e71a187b2e6553c89aade70a3f9d0d138ec7c078fef82f2e5e1a613e8df3d8fd"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/tsconfig.json",
+      "bytes": 523,
+      "sha256": "b97fb1ea80421bf0133e2afdb05484e49804f534f0edf4ff7b6e71c866cdcc40"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C05/repo/vite.config.ts",
+      "bytes": 134,
+      "sha256": "21eba04627b77d915e075859f6a8c53c2a8c575135286fb4c795fbde4d54cb54"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C06/fake-api.ts",
+      "bytes": 1257,
+      "sha256": "baa8f07b2ffd4cfbfb614f12fa69a53745499c5ed06e056e326ac37a25bd10c3"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C06/README.md",
+      "bytes": 737,
+      "sha256": "6dd4c2d86a56c318fbe9fe05609642405859b4376f1d761ec60750f676560567"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C07/copy.json",
+      "bytes": 3246,
+      "sha256": "68fbfb9e4facf941a9b24eecbaa0a8aea6de7e760989184c15d9c9cd56ca1919"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C08/imported-notes.md",
+      "bytes": 940,
+      "sha256": "c0581bbdea22144626dc1103770e36f729c7b9e49d1b2e9845681a4a11a3a5f1"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/C08/reference.svg",
+      "bytes": 1587,
+      "sha256": "6f54bf5078be1e3ac5eaae180badab1666e931dcc6ce02a3b20632da6a58fa56"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/app.js",
+      "bytes": 4352,
+      "sha256": "3b064cd08feba6d4dd769c054227e9548ab3d21ed478adc97f7073ca0a5ff657"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/app.ts",
+      "bytes": 4416,
+      "sha256": "a270ac35dde5812ce1cd64e2ca47a7f70fe71971fb49fb4812a1b777dae97558"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/index.html",
+      "bytes": 2044,
+      "sha256": "1b239ac7070e819aee5a698bf7bec68916870fd97ca5c180d1a075fef5aae2cf"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/plan.json",
+      "bytes": 2080,
+      "sha256": "13cb7b08dd86d6355c04e31a4515ec5eea5cbc84211864834f9b85eef6a2b0a2"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/README.md",
+      "bytes": 2040,
+      "sha256": "6e4d4ed148918269d4855d14ba86b92e3591d9f46a113f5a80416b79be4dcac7"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/heavy/styles.css",
+      "bytes": 3037,
+      "sha256": "e264755289c3f4062b9205bd62c4d7bf88f7a125cef6dae7f98bbec9cdc5d438"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/app.js",
+      "bytes": 8075,
+      "sha256": "06a2215a0792eb99082b17dd8b38e9f13419a4b8411255578962991aedcd89ad"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/app.ts",
+      "bytes": 8366,
+      "sha256": "db006fe4d9305d44ea5081328f09c2a679df193ba47a8e7070a25229b826a5de"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/index.html",
+      "bytes": 6714,
+      "sha256": "c97db3ffab6f842e99b9e06cd36c1621713a5cc659407bec6ffcee7a42737fcc"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/README.md",
+      "bytes": 3797,
+      "sha256": "fa6b9475ea4042f8d7f8eef6eece1d5c6a62bbe495f37f5eef528ec6e479c095"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/state.js",
+      "bytes": 2628,
+      "sha256": "a82f8373ff3ed20c17215b8cf31b1243dfef25b7d85b9cab17f3f5043efb8ba4"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/state.ts",
+      "bytes": 2733,
+      "sha256": "096910bfc49a8b811958c4ed2522dcda3aa5cc4fafb593d8a0a50ed106267248"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/evals/fixtures/lab/styles.css",
+      "bytes": 18595,
+      "sha256": "729d48e1f85dc0628f0ec578198467117fb2b93adc973a1812f4ddb6de5499e3"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/references/adapters.md",
+      "bytes": 1190,
+      "sha256": "a910f34cc5fe94a999ee062b0eb7fefe15d67aad0b2e51888e17ffb0a45ece7f"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/references/design.md",
+      "bytes": 8561,
+      "sha256": "c062c0c756eae5c4557c579af7b202136d0455b6893c2e26cefb79c02282e013"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/references/implementation.md",
+      "bytes": 9124,
+      "sha256": "37524a9f33ae7ebec9cd69c85de4bde42aaf4b79a8a4a839f9b32f77e86011b2"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/references/modules.md",
+      "bytes": 6618,
+      "sha256": "f8b10f3051ea0a746aa48448ffc6c5a7a4752dc3a93acbd9305c87dcace0e17b"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/references/sources.md",
+      "bytes": 16265,
+      "sha256": "510f5da3cfce27381f9ec8c310c075b57e85fe8361d7b128a54786baffb2c252"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/references/standards.md",
+      "bytes": 3790,
+      "sha256": "eb39bedaf363f88bb9eabf617c9d170735e99a8a49e168d829653875270a09d4"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/references/verification.md",
+      "bytes": 3357,
+      "sha256": "987ee84aa6609c9044c5c71c050ecd55b1213fa20a089140753d1b05e5af406c"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/scripts/build-lab.mjs",
+      "bytes": 3386,
+      "sha256": "c0ed3ceb30c99af678d72e44387e21c5a901a6db1456efd04aa569463ff0856d"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/scripts/heavy-lab.mjs",
+      "bytes": 10987,
+      "sha256": "6f9416136d36b9fce85c21947dd78b70c95c1c4d7532784a4c4bd6e2227eed49"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/scripts/lab.mjs",
+      "bytes": 14535,
+      "sha256": "184dc821890f809d620bbbd0cc932cb05e4cca8dace35e59928df2fc8c8c701c"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/scripts/measure.mjs",
+      "bytes": 2876,
+      "sha256": "82257a3808e82be4df8a018d891fa65fd5ab140316ee3f983efdef3b61565d87"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/scripts/serve.mjs",
+      "bytes": 3055,
+      "sha256": "82050261e6110c3fce779ff3cc434f67de582761f5ec4ca49f9c3ea6efe6c37b"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/scripts/test-tools.mjs",
+      "bytes": 11070,
+      "sha256": "f8111d7fb161473339d92832ad0d30dd5a963c5eceda16af23824c945e2396fc"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/scripts/validate.mjs",
+      "bytes": 9002,
+      "sha256": "438e50a97dd16f49ab31b1d1270acd47ef08d6566e15625acf8b355b984b5139"
+    },
+    {
+      "file": "roles/saas/ui-ux-engineering/SKILL.md",
+      "bytes": 7992,
+      "sha256": "952b0bc5a8fdfe680c4a66694092ae154324f992e077babb062ac00a864e2712"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "utc": "2026-11-06T03:22:14.204Z",
+  "browser": "156.0.8078.80",
+  "results": [
+    {
+      "name": "U2-R1 semantic named modal and initial focus",
+      "status": "PASS"
+    },
+    {
+      "name": "U2-R1 Tab containment",
+      "status": "PASS",
+      "details": [
+        "cancel",
+        "save",
+        "",
+        "panel",
+        "displayName",
+        "cancel",
+        "save",
+        "",
+        "panel",
+        "displayName",
+        "cancel",
+        "save"
+      ]
+    },
+    {
+      "name": "U2-R1 Shift+Tab containment",
+      "status": "PASS",
+      "details": [
+        "cancel",
+        "displayName",
+        "panel",
+        "",
+        "save",
+        "cancel",
+        "displayName",
+        "panel",
+        "save",
+        "cancel",
+        "displayName",
+        "panel"
+      ]
+    },
+    {
+      "name": "U2-R1 real pointer and keyboard background blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "U2-R2 first Save once, closes, focus and scroll restored",
+      "status": "PASS"
+    },
+    {
+      "name": "U2-R2 Cancel and Escape discard and recover focus/scroll",
+      "status": "PASS"
+    },
+    {
+      "name": "U2-R2 second save cycle has one effect",
+      "status": "PASS"
+    },
+    {
+      "name": "U2-R3 keyboard reaches internally scrolled actions",
+      "status": "PASS",
+      "details": {
+        "scrollTop": 503,
+        "save": {
+          "x": 112.734375,
+          "y": 392.8125,
+          "width": 116.203125,
+          "height": 45,
+          "top": 392.8125,
+          "right": 228.9375,
+          "bottom": 437.8125,
+          "left": 112.734375
+        },
+        "bodyY": 0
+      }
+    },
+    {
+      "name": "U2-R3 viewport 320x480",
+      "status": "PASS",
+      "details": {
+        "rect": {
+          "x": 16,
+          "y": 16,
+          "width": 288,
+          "height": 448,
+          "top": 16,
+          "right": 304,
+          "bottom": 464,
+          "left": 16
+        },
+        "viewport": {
+          "w": 320,
+          "h": 480
+        },
+        "doc": {
+          "width": 320,
+          "client": 320
+        },
+        "dialog": {
+          "scroll": 284,
+          "client": 284,
+          "scrollHeight": 947,
+          "clientHeight": 444
+        },
+        "long": {
+          "height": 84,
+          "lineHeight": "normal"
+        },
+        "modal": true,
+        "outline": "solid"
+      }
+    },
+    {
+      "name": "U2-R3 viewport 768x640",
+      "status": "PASS",
+      "details": {
+        "rect": {
+          "x": 84,
+          "y": 16,
+          "width": 600,
+          "height": 608,
+          "top": 16,
+          "right": 684,
+          "bottom": 624,
+          "left": 84
+        },
+        "viewport": {
+          "w": 768,
+          "h": 640
+        },
+        "doc": {
+          "width": 768,
+          "client": 768
+        },
+        "dialog": {
+          "scroll": 596,
+          "client": 596,
+          "scrollHeight": 905,
+          "clientHeight": 604
+        },
+        "long": {
+          "height": 42,
+          "lineHeight": "normal"
+        },
+        "modal": true,
+        "outline": "solid"
+      }
+    },
+    {
+      "name": "U2-R3 viewport 1280x800",
+      "status": "PASS",
+      "details": {
+        "rect": {
+          "x": 340,
+          "y": 16,
+          "width": 600,
+          "height": 768,
+          "top": 16,
+          "right": 940,
+          "bottom": 784,
+          "left": 340
+        },
+        "viewport": {
+          "w": 1280,
+          "h": 800
+        },
+        "doc": {
+          "width": 1280,
+          "client": 1280
+        },
+        "dialog": {
+          "scroll": 596,
+          "client": 596,
+          "scrollHeight": 905,
+          "clientHeight": 764
+        },
+        "long": {
+          "height": 42,
+          "lineHeight": "normal"
+        },
+        "modal": true,
+        "outline": "solid"
+      }
+    },
+    {
+      "name": "U2-R2 actual page scroll after closing",
+      "status": "PASS",
+      "details": 200
+    },
+    {
+      "name": "U2-R2 dispose removes listeners, restores prior style, remount saves once",
+      "status": "PASS"
+    },
+    {
+      "name": "runtime errors absent",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "serverWarnings": "(node:29868) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+}

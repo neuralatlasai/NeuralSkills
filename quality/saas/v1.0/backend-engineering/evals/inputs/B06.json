@@ -1,0 +1,35 @@
+{
+  "caseId": "B06",
+  "task": "Harden carrier webhook as runnable local HTTP+SQLite integration using README contract. Verify exact raw signed bytes and timestamp freshness; reject malformed/unknown payloads and bound request-body work. Valid north-scoped order.shipped may transition only north orders. Persist event identity and its local effect atomically before acknowledgement. Identical event bytes replay successfully without a second effect; conflicting id reuse rejects. Invalid signature, stale/future timestamp, unknown type, wrong-tenant order, oversized body and precommit failure cannot mutate state. Keep safe responses and document error/retry/retention limits. Verify real loopback HTTP and file-backed SQLite including restart. Operations asks whether these can run as MCP tools: state actual support and missing runtime/adapter work; do not invent or implement MCP server. Do not contact live carrier. Use native Node 24.12+ SQLite/built-ins, no downloads/live deployment. Put implementation and verification in trial/artifact and write trial/result.json; classify all L01-L24 proportionally.",
+  "requirements": [
+    {
+      "id": "B06-R01",
+      "meaning": "Signature verifies exact raw contract within bounded timestamp window without malformed-input bypass."
+    },
+    {
+      "id": "B06-R02",
+      "meaning": "Payload/body validation, tenant authorization and safe responses bound denial/failure paths."
+    },
+    {
+      "id": "B06-R03",
+      "meaning": "Durable event identity binds parameters; local mutation/receipt is atomic before acknowledgement."
+    },
+    {
+      "id": "B06-R04",
+      "meaning": "Duplicate/restart/conflicting deliveries and injected precommit fault have defined durable outcomes."
+    },
+    {
+      "id": "B06-R05",
+      "meaning": "Real HTTP/file-backed evidence is retained and absent MCP runtime is truthfully unsupported."
+    },
+    {
+      "id": "B06-R06",
+      "meaning": "All 24 coverage dispositions and requirement/mechanism/limit/failure/verification chains are proportionate and truthful."
+    }
+  ],
+  "fixtures": [
+    "heldout/B06/service.mjs",
+    "heldout/B06/README.md"
+  ],
+  "outputContract": "Common task wrapper; trial/artifact and trial/result.json"
+}

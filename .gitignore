@@ -147,3 +147,9 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Generated SaaS evaluation output stays outside the role source catalog.
+/roles/saas/*/evals/evidence/
+/roles/saas/*/evals/trials/
+/quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/supplemental/chrome-profile/
+/quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/zoom-completion/*profile*/

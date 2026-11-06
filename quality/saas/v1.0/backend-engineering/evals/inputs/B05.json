@@ -1,0 +1,32 @@
+{
+  "caseId": "B05",
+  "task": "Deliver safe v1-to-v2 SQLite migration adding customers.state=active for existing rows and preserving old SELECT tenant,id,name reads during expansion. Preserve every non-deleted tenant/id/name. Work in batches of at most2 rows; retain afterBatch interruption hook. Interruption after first batch must permit clean restart without reinitializing data or prematurely advertising schema2. Repeat execution is safe. Create consistent v1 backup, migrate isolated copy, recover to a different file from backup while applying deletions.json before recovered data is served. Source and backup remain untouched by restore. Measure recovery walltime and verify tenant/data/schema/deletion integrity. Distinguish local measurements from RPO/RTO promises. Supply setup/interruption/restart/backup/restore commands. Use native Node 24.12+ SQLite/built-ins, no downloads/live deployment. Put implementation and verification in trial/artifact and write trial/result.json; classify all L01-L24 proportionally.",
+  "requirements": [
+    {
+      "id": "B05-R01",
+      "meaning": "Additive migration preserves old reads and non-deleted data with correct final schema."
+    },
+    {
+      "id": "B05-R02",
+      "meaning": "Backfill is bounded to2 rows/batch; interruption recovers and replay is safe without premature completion."
+    },
+    {
+      "id": "B05-R03",
+      "meaning": "Consistent backup restores in isolation, source/backup unchanged and deletion policy reconciled before serving."
+    },
+    {
+      "id": "B05-R04",
+      "meaning": "Actual interruption/restart and measured restore evidence validate tenant/data/deletion integrity and limits."
+    },
+    {
+      "id": "B05-R05",
+      "meaning": "All 24 coverage dispositions and recommendation decision chains are proportionate and truthful."
+    }
+  ],
+  "fixtures": [
+    "heldout/B05/store.mjs",
+    "heldout/B05/deletions.json",
+    "heldout/B05/README.md"
+  ],
+  "outputContract": "Common task wrapper; trial/artifact and trial/result.json"
+}

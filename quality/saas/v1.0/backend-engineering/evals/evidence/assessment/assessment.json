@@ -1,0 +1,353 @@
+{
+  "assessedAt": "2026-11-05T17:38:38.341Z",
+  "method": "Independent final assessor read canonical requirements, actual source/references, historical/current evidence; reran existing reviewer harnesses in assessment output and delegated new case probes in isolated copies.",
+  "blinding": "Broken: arm-labelled directories and raw agent outputs visible.",
+  "source": {
+    "sha256": "a96c548de3b2618581179d66647bd587606b1c64f2a4fdc63b3c87091411d132",
+    "files": [
+      "evals/fixtures/contracts.ts",
+      "evals/fixtures/legacy-repository.mjs",
+      "evals/fixtures/load-workloads.json",
+      "package.json",
+      "scripts/cert-gen.mjs",
+      "scripts/check.mjs",
+      "scripts/client.mjs",
+      "scripts/dns-network.mjs",
+      "scripts/evidence.mjs",
+      "scripts/integrated.mjs",
+      "scripts/load.mjs",
+      "scripts/service.mjs",
+      "scripts/smoke.mjs",
+      "scripts/validate-package.mjs",
+      "scripts/worker.mjs"
+    ]
+  },
+  "freeze": {
+    "files": 57,
+    "status": "PASS",
+    "mismatches": []
+  },
+  "fixtureProbes": {
+    "requests": 29,
+    "summary": {
+      "PASS": 17,
+      "FAIL": 0,
+      "UNVERIFIED": 1,
+      "NOT_APPLICABLE": 0
+    },
+    "evidence": "fixture-probes/probe-results.json"
+  },
+  "streamedAuthorization": {
+    "status": "PASS",
+    "requests": 12,
+    "criterion": "Owner transfer completes at v2, delayed limited mutation403, final owner alice quantity5 version2.",
+    "rawStatusPolicy": "The reviewer diagnostic has FAIL-or-UNVERIFIED-only classification; independent exact postconditions are evaluated separately without raw rewriting.",
+    "assertions": [
+      {
+        "attempt": 1,
+        "status": "PASS",
+        "raw": {
+          "attempt": 1,
+          "transferStatus": 200,
+          "transferOwner": "alice",
+          "transferVersion": 2,
+          "limitedMutationStatus": 403,
+          "finalOwner": "alice",
+          "finalQuantity": 5,
+          "finalVersion": 2,
+          "status": "UNVERIFIED"
+        }
+      },
+      {
+        "attempt": 2,
+        "status": "PASS",
+        "raw": {
+          "attempt": 2,
+          "transferStatus": 200,
+          "transferOwner": "alice",
+          "transferVersion": 2,
+          "limitedMutationStatus": 403,
+          "finalOwner": "alice",
+          "finalQuantity": 5,
+          "finalVersion": 2,
+          "status": "UNVERIFIED"
+        }
+      },
+      {
+        "attempt": 3,
+        "status": "PASS",
+        "raw": {
+          "attempt": 3,
+          "transferStatus": 200,
+          "transferOwner": "alice",
+          "transferVersion": 2,
+          "limitedMutationStatus": 403,
+          "finalOwner": "alice",
+          "finalQuantity": 5,
+          "finalVersion": 2,
+          "status": "UNVERIFIED"
+        }
+      }
+    ]
+  },
+  "fixtureRetention": {
+    "status": "PASS",
+    "boundary": "Explicit minimal-ID fixture-lifetime retention policy, observed retained identifier and cascaded job deletion. No automatic production retention or compliance implementation claim.",
+    "rawDiagnosticStatus": "UNVERIFIED",
+    "evidence": [
+      "evals/fixtures/README.md",
+      "evals/evidence/assessment/fixture-probes/probe-results.json"
+    ]
+  },
+  "trialEvidence": {
+    "pilotsAndSkillOnly": "trial-probes/requirement-assessment.json",
+    "scoredComparisons": "run2/requirement-assessment.json",
+    "scoredCriteria": {
+      "PASS": 47,
+      "FAIL": 0,
+      "UNVERIFIED": 0
+    },
+    "implementationTrialsRetained": 12,
+    "scored": 8,
+    "pilots": 4,
+    "comparisonLimit": "One run per arm per case after input correction; no observed required-functionality advantage, statistical confidence or efficiency conclusion."
+  },
+  "comparisonFairness": {
+    "status": "PASS",
+    "issue": "Original pilot coverage-enum input gap repaired through identical user-derived control-v2 and fresh both-arm reruns, without changing frozen criteria/instructions/raw pilots.",
+    "evidence": [
+      "evals/evidence/comparison-control-repair.json",
+      "evals/inputs/control-v2.json",
+      "evals/dispatch/B01-baseline-2.txt",
+      "evals/dispatch/B01-skill-2.txt",
+      "evals/dispatch/B02-baseline-2.txt",
+      "evals/dispatch/B02-skill-2.txt",
+      "evals/evidence/assessment/run2/requirement-assessment.json"
+    ]
+  },
+  "gates": [
+    {
+      "id": "G01",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G02",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G03",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G04",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G05",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G06",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G07",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G08",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G09",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    },
+    {
+      "id": "G10",
+      "status": "PASS",
+      "evidence": "evals/report.md",
+      "remaining": null
+    }
+  ],
+  "independentRerunCommands": [
+    {
+      "command": "node evals/evidence/independent-review/probes.mjs evals/evidence/assessment/fixture-probes",
+      "outcome": "Completed raw results; Node experimental SQLite warning retained. Individual exit not captured by original combined wrapper.",
+      "stdout": "fixture-probes.stdout.txt",
+      "stderr": "fixture-probes.stderr.txt"
+    },
+    {
+      "command": "node evals/evidence/independent-review/race-probe.mjs evals/evidence/assessment/fixture-probes",
+      "outcome": "Completed raw three-attempt results; Node experimental SQLite warning retained. Individual exit not captured by original combined wrapper.",
+      "stdout": "fixture-race.stdout.txt",
+      "stderr": "fixture-race.stderr.txt"
+    },
+    {
+      "command": "node scripts/validate-package.mjs",
+      "outcome": {
+        "status": "PASS",
+        "scope": "Bounded frontmatter/link/manifest/schema/coverage/decision checks; not full YAML, Markdown or JSON Schema conformance.",
+        "links": 31,
+        "resources": 58,
+        "errors": []
+      },
+      "stdout": "validation.stdout.txt"
+    },
+    {
+      "command": "node scripts/validate-package.mjs --self-test",
+      "outcome": {
+        "status": "PASS",
+        "checks": 5,
+        "coverage": "Valid context; duplicate layer, unsupported PASS, disconnected decision and unsupported keyword rejected."
+      },
+      "stdout": "validation-self-test.stdout.txt"
+    }
+  ],
+  "unperformed": [
+    "Fresh full integrated/load/network/smoke suites were inspected, not rerun by final assessor; existing reviewer fault/race harnesses were rerun.",
+    "No live carrier, MCP, production infrastructure, installation, global trust changes or new exploratory security testing.",
+    "No normative ISO/IEEE clause assessment, production SLO/capacity, CPU-heavy starvation/long soak, forced signals, disk/FD/NAT/power loss, multi-node failover or automatic retention proof."
+  ],
+  "activation": {
+    "status": "PASS",
+    "actualContexts": 12,
+    "confusion": {
+      "truePositive": 6,
+      "trueNegative": 6,
+      "falsePositive": 0,
+      "falseNegative": 0,
+      "uncertain": 0
+    },
+    "checks": [
+      {
+        "id": "A01",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A02",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A03",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A04",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A05",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "A06",
+        "promptMatches": true,
+        "actual": true,
+        "expected": true,
+        "tools": 0
+      },
+      {
+        "id": "N01",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N02",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N03",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N04",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N05",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      },
+      {
+        "id": "N06",
+        "promptMatches": true,
+        "actual": false,
+        "expected": false,
+        "tools": 0
+      }
+    ],
+    "source": "evals/evidence/activation-results.json",
+    "limit": "One selection per prompt; no population accuracy/statistical-confidence inference."
+  },
+  "resources": {
+    "evidence": "coordinator-evidence-summary.json",
+    "rawResultHashesMatch": true,
+    "exactModelTokensCost": "Unavailable/null; no invented telemetry.",
+    "unknowns": "Original convention-matched nested tool totals and exact whole-trial timing remain qualified/unverified observations. Run2 bounds are conditional on stable host UTC, not exact duration."
+  },
+  "structuralRepair": {
+    "status": "PASS",
+    "originalSnapshots": 6,
+    "companions": 23,
+    "snapshotsIntact": true,
+    "companionHashes": true,
+    "scope": "Post-trial link context only; original flat snapshot and raw result bytes retained. Added pointer Markdown does not imply the agent read those sources.",
+    "evidence": "evals/evidence/snapshot-context-repair.json"
+  },
+  "finalValidation": {
+    "status": "PASS",
+    "evidence": "final-validation.json"
+  },
+  "deliveryInventory": {
+    "path": "evals/evidence/delivery-inventory.json",
+    "scope": "Every current package file with purpose, bytes and SHA256; only inventory self-reference excluded.",
+    "verificationCommand": "node evals/evidence/assessment/verify-delivery-inventory.mjs",
+    "finalization": "Coordinator refreshes inventory after final report/assessment bytes are stable; final assessor then executes this read-only verifier before completion. Parent delivery evidence retains the final observed receipt and archive identity."
+  }
+}

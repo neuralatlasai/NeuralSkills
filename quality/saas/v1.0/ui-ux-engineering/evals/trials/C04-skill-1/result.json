@@ -1,0 +1,370 @@
+{
+  "caseId": "C04",
+  "arm": "skill",
+  "run": 1,
+  "startUTC": "2026-11-05T16:03:33.000Z",
+  "endUTC": "2026-11-05T16:10:55.062Z",
+  "elapsedSeconds": 442.062,
+  "timingNote": "Start is the first actual UTC clock observation during intake; end is final result generation.",
+  "route": {
+    "mode": "adapt",
+    "scope": "one small native TypeScript/CSS page",
+    "activeModules": [
+      "M1",
+      "M2 (unavailable reference)",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M8",
+      "M7 (static runtime only)"
+    ],
+    "rationale": "Text fallback explicitly authorized; keep native semantics, no framework/backend/network or fabricated Figma access."
+  },
+  "requirementCoverage": [
+    {
+      "id": "C04-R01",
+      "status": "PASS",
+      "requirement": "Handle unavailable simulated Figma honestly and continue from brief",
+      "evidence": [
+        "artifact/README.md",
+        "evidence/brief-and-plan.json"
+      ],
+      "limitation": "Figma fidelity UNVERIFIED"
+    },
+    {
+      "id": "C04-R02",
+      "status": "PASS",
+      "requirement": "Small form with requested labels, defaults, palette; native TypeScript/CSS",
+      "evidence": [
+        "artifact/index.html",
+        "artifact/styles.css",
+        "artifact/app.ts",
+        "evidence/desktop-initial.png",
+        "evidence/browser-results.json#defaults"
+      ]
+    },
+    {
+      "id": "C04-R03",
+      "status": "PASS",
+      "requirement": "Require valid nonblank email and allow recovery",
+      "evidence": [
+        "evidence/browser-results.json#blank-email",
+        "evidence/browser-results.json#invalid-email",
+        "evidence/narrow-invalid.png"
+      ]
+    },
+    {
+      "id": "C04-R04",
+      "status": "PASS",
+      "requirement": "Keyboard toggles and local save confirmation with stable saved summary",
+      "evidence": [
+        "evidence/browser-results.json#keyboard-save",
+        "evidence/browser-results.json#saved-snapshot",
+        "evidence/browser-results.json#invalid-resave",
+        "evidence/browser-results.json#resave-empty",
+        "evidence/desktop-saved.png"
+      ]
+    },
+    {
+      "id": "C04-R05",
+      "status": "PASS",
+      "requirement": "Runnable example, setup instructions and design/Figma handoff",
+      "evidence": [
+        "artifact/README.md",
+        "artifact/app.js",
+        "artifact/scripts/serve.mjs",
+        "evidence/browser-results.json"
+      ]
+    }
+  ],
+  "assumptions": [
+    "System UI font and 32rem maximum width; a stacked form with comfortable spacing implements the fallback brief.",
+    "Local saving means an in-memory snapshot only; reload clears state, as disclosed in the interface and README.",
+    "Saving with no enabled categories is allowed; show No categories selected.",
+    "Use native HTML email syntax validation; do not imply deliverability or mailbox verification."
+  ],
+  "decisions": [
+    "Off-white canvas, charcoal text, dark-blue actions/focus; semantic CSS tokens define color roles.",
+    "Use native email/checkbox/button controls with labels, fieldset/legend, associated inline errors and polite save status.",
+    "A typed saved snapshot updates only after valid submit; editing and failed resaves preserve prior summary.",
+    "Use no external dependencies or fonts; included generated JavaScript runs with the Node loopback server.",
+    "Check actual behavior with headless Chrome keyboard events and render desktop/narrow evidence; do not claim Figma fidelity or full accessibility conformance."
+  ],
+  "checks": [
+    {
+      "id": "strict-typescript-build",
+      "status": "PASS",
+      "evidence": "evidence/tool-history.txt; TypeScript 6.0.3 strict check and emit passed after TS5107 correction"
+    },
+    {
+      "id": "defaults",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "3 named native checkboxes; only Email updates checked; summary hidden"
+      }
+    },
+    {
+      "id": "blank-email",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Blank submit displays associated error and focuses email"
+      }
+    },
+    {
+      "id": "invalid-email",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Invalid address rejected; no saved summary"
+      }
+    },
+    {
+      "id": "keyboard-focus",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Tab from email focuses Email updates with focus-visible"
+      }
+    },
+    {
+      "id": "keyboard-order",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Email > Email updates > Product research > Partner offers > Save"
+      }
+    },
+    {
+      "id": "keyboard-save",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Space toggles saved by Enter; visible email and two categories"
+      }
+    },
+    {
+      "id": "saved-snapshot",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Draft edits preserve saved snapshot and reveal unsaved message"
+      }
+    },
+    {
+      "id": "invalid-resave",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Invalid save preserves successful snapshot"
+      }
+    },
+    {
+      "id": "resave-empty",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Valid save replaces snapshot; zero categories stated explicitly"
+      }
+    },
+    {
+      "id": "reflow-375",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "375px: no horizontal document overflow"
+      }
+    },
+    {
+      "id": "reflow-320",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "320px: no horizontal document overflow"
+      }
+    },
+    {
+      "id": "reflow-640",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "640px: no horizontal document overflow"
+      }
+    },
+    {
+      "id": "semantics-targets",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": {
+          "lang": "en",
+          "emailLabel": "Email address",
+          "required": true,
+          "group": "Messages you would like",
+          "status": "status",
+          "choices": [
+            "Email updates",
+            "Product research",
+            "Partner offers"
+          ],
+          "targetHeights": [
+            48.375,
+            48,
+            48,
+            48,
+            51.59375
+          ]
+        }
+      }
+    },
+    {
+      "id": "contrast",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": [
+          {
+            "name": "body",
+            "fg": "#262a2d",
+            "bg": "#f7f4ed",
+            "minimum": 4.5,
+            "ratio": 13.17126889237704
+          },
+          {
+            "name": "muted",
+            "fg": "#565e65",
+            "bg": "#f7f4ed",
+            "minimum": 4.5,
+            "ratio": 6.00310183676724
+          },
+          {
+            "name": "input",
+            "fg": "#262a2d",
+            "bg": "#fffdf8",
+            "minimum": 4.5,
+            "ratio": 14.23195985308819
+          },
+          {
+            "name": "button",
+            "fg": "#ffffff",
+            "bg": "#173d68",
+            "minimum": 4.5,
+            "ratio": 11.030429546625085
+          },
+          {
+            "name": "button-hover",
+            "fg": "#ffffff",
+            "bg": "#102e50",
+            "minimum": 4.5,
+            "ratio": 13.737456476385445
+          },
+          {
+            "name": "error",
+            "fg": "#a12d27",
+            "bg": "#f7f4ed",
+            "minimum": 4.5,
+            "ratio": 6.547112065250322
+          },
+          {
+            "name": "focus",
+            "fg": "#173d68",
+            "bg": "#f7f4ed",
+            "minimum": 3,
+            "ratio": 10.041887574345456
+          },
+          {
+            "name": "border",
+            "fg": "#737b81",
+            "bg": "#fffdf8",
+            "minimum": 3,
+            "ratio": 4.233849547700577
+          }
+        ]
+      }
+    },
+    {
+      "id": "local-only-reload",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": "Reload resets in-memory state and defaults"
+      }
+    },
+    {
+      "id": "runtime",
+      "status": "PASS",
+      "evidence": {
+        "report": "evidence/browser-results.json",
+        "observation": {
+          "errors": [],
+          "requests": [
+            "http://127.0.0.1:44104/",
+            "http://127.0.0.1:44104/styles.css",
+            "http://127.0.0.1:44104/app.js",
+            "http://127.0.0.1:44104/",
+            "http://127.0.0.1:44104/styles.css",
+            "http://127.0.0.1:44104/app.js"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rendered-visual-review",
+      "status": "PASS",
+      "evidence": "evidence/desktop-saved.png, evidence/narrow-invalid.png, evidence/reflow-320.png inspected; single task hierarchy, consistent spacing, clear focus and readable validation/saved summary"
+    },
+    {
+      "id": "figma-fidelity",
+      "status": "UNVERIFIED",
+      "evidence": "evals/fixtures/C04/figma-access.json explicitly simulated unavailable; no actual file or connector lookup; artifact/README.md discloses text fallback"
+    },
+    {
+      "id": "automated-accessibility-scanner",
+      "status": "UNVERIFIED",
+      "evidence": "No scanner executed; native semantics and limited DOM/contrast/keyboard browser checks are recorded separately"
+    },
+    {
+      "id": "assistive-technology",
+      "status": "UNVERIFIED",
+      "evidence": "No screen-reader/browser pair tested"
+    },
+    {
+      "id": "manual-browser-zoom",
+      "status": "UNVERIFIED",
+      "evidence": "Viewport reflow tested at 320/375/640px; browser zoom itself not operated"
+    },
+    {
+      "id": "field-performance",
+      "status": "UNVERIFIED",
+      "evidence": "No real-user visits or field telemetry; no CWV/performance claim"
+    },
+    {
+      "id": "backend",
+      "status": "NOT_APPLICABLE",
+      "evidence": "Requested local-only save; in-memory state, no backend requests or storage"
+    },
+    {
+      "id": "helper-cleanup",
+      "status": "PASS",
+      "evidence": "evidence/browser-results.json serverStopped=true; browser closed in verification finally block"
+    }
+  ],
+  "limitations": [
+    "No real Figma file exists in this simulation; visual fidelity cannot be verified. README lists dimensions/type/colors/states/responsive comparisons needed later.",
+    "Browser-driven checks and visual review are limited to the supplied Chrome on this host; no screen reader, full scanner or manual zoom test.",
+    "No backend, storage, production integration or field performance measurements; saved values reset on reload.",
+    "Initial tool/build failures and their corrections are retained in evidence/tool-history.txt; sandbox rejection was resolved using scoped apply_patch.",
+    "No independent reviewer was available because agent concurrency was full."
+  ],
+  "tokens": null,
+  "cost": null,
+  "resourceUsage": "Token and monetary cost information unavailable",
+  "evidence": {
+    "rawBrowser": "evidence/browser-results.json",
+    "reproduce": "node evidence/verify.mjs from trial directory; host-specific existing Playwright path is in that inspected script",
+    "artifactHashes": "evidence/artifact-sha256.json",
+    "toolHistory": "evidence/tool-history.txt"
+  }
+}

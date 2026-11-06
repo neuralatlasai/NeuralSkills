@@ -1,0 +1,185 @@
+{
+  "createdAt": "2026-11-05T17:35:59.529Z",
+  "reason": "The recursively scanned retained flat source snapshots have relative links from their original package context;24 missingtargets caused validatorfailure. Added contextual companions instead of changing validator threshold, frozen sources or original captured bytes.",
+  "scope": "Post-trial evidence link-context repair only. Does not imply the task agent read added companions.",
+  "originalSnapshots": [
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references_api-domain.md",
+      "before": "87596f90924d7021dc27f96b6493250763204c7018c3ff6f01343558b83f294d",
+      "after": "87596f90924d7021dc27f96b6493250763204c7018c3ff6f01343558b83f294d",
+      "unchanged": true
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references_data.md",
+      "before": "2ea396e3267e470f88d7789625ba1d82099a94345b32b30f642b545dffb52214",
+      "after": "2ea396e3267e470f88d7789625ba1d82099a94345b32b30f642b545dffb52214",
+      "unchanged": true
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references_edge-identity.md",
+      "before": "f268b49d04646881d32b67ff9d397919a158276b444a0bf9830a039cee9cd24e",
+      "after": "f268b49d04646881d32b67ff9d397919a158276b444a0bf9830a039cee9cd24e",
+      "unchanged": true
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references_runtime-capacity.md",
+      "before": "7d08ef32680b02bad298c52682cea7492a9cee25d330c48642a215d8de08c5f2",
+      "after": "7d08ef32680b02bad298c52682cea7492a9cee25d330c48642a215d8de08c5f2",
+      "unchanged": true
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references_verification.md",
+      "before": "fc9502d87fcb2c37b312e77655cec14cff1dbb6bda72602ac2deb6dbee10640b",
+      "after": "fc9502d87fcb2c37b312e77655cec14cff1dbb6bda72602ac2deb6dbee10640b",
+      "unchanged": true
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/SKILL.md",
+      "before": "d3b7a8508c01993918412aa9cf40f8fa842b764c145c3189bf676969d5cdfbbc",
+      "after": "d3b7a8508c01993918412aa9cf40f8fa842b764c145c3189bf676969d5cdfbbc",
+      "unchanged": true
+    }
+  ],
+  "added": [
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/adapters.md",
+      "canonical": "references/adapters.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "fda174520246d513c733eb23589944ca8550bd356897bd306ee37e51cab1599a"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/assets/gates.json",
+      "canonical": "assets/gates.json",
+      "kind": "byte-identical canonical resource copy",
+      "sha256": "cfe5b9b7ce1507f7918e03afaae32f77f794078179557345ddf07b5dc1039227"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/evals/protocol.md",
+      "canonical": "evals/protocol.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "1dfb0e5d745a84160c2fcb992bc31fdcf9aa023e9206713c329b88f5001f9e4f"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/evals/cases.json",
+      "canonical": "evals/cases.json",
+      "kind": "byte-identical canonical resource copy",
+      "sha256": "4c4698eee81a02eac185f9d8c644c72e03770afc4a64bc0c61e25ea68eb58e0a"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/assets/task.template.json",
+      "canonical": "assets/task.template.json",
+      "kind": "byte-identical canonical resource copy",
+      "sha256": "8a25b2e343a05e656be268ff3ad3a4beef30867e85af11a5d6639eea7f2dc590"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/assets/task.schema.json",
+      "canonical": "assets/task.schema.json",
+      "kind": "byte-identical canonical resource copy",
+      "sha256": "31f8b8a8db413d375ef13a5ea250d03089ad7f3181c66131d06c91856352b519"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/assets/coverage-index.json",
+      "canonical": "assets/coverage-index.json",
+      "kind": "byte-identical canonical resource copy",
+      "sha256": "460cfb0f59dda03ff00079428d5a305b1a9176224b31c748b668291804c14af7"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/modules.md",
+      "canonical": "references/modules.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "4a6f4a9bf0f451d04b873e8aca96579334a3d9cf32162a97e03286d668adcd4e"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/edge-identity.md",
+      "canonical": "references/edge-identity.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "70547f248a68834aec18b2d0908adfa1ca6e265a07c1f7198370c6d574c9814a"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/api-domain.md",
+      "canonical": "references/api-domain.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "026b5dedecfe0d7925efef428c6c6215863eb24cadb8ba3b84b29a73fe1d23c3"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/data.md",
+      "canonical": "references/data.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "8b02398b08905e2b177fd3c4d57d04ed16ea1a4e7578f9ff42bfa13b0d241c88"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/async-integrations.md",
+      "canonical": "references/async-integrations.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "0e58139179e8f7d47a62287629671d3b69138f0f019ca04edc6a90a472ea7ce1"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/runtime-capacity.md",
+      "canonical": "references/runtime-capacity.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "4ab1b96a66031372157384bd8819a0d1e54483559d73ddba8e92544da11298c9"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/operations.md",
+      "canonical": "references/operations.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "b79ba3bf3e4a126beb3db90983a967701297df326e2daaaa91aa463f4b69d1d2"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/verification.md",
+      "canonical": "references/verification.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "adba809ac78a707c5fa56df9c097671e03bb8b106368107422f378987f39b792"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/sources.md",
+      "canonical": "references/sources.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "5ec9d32f4a3a4ec6c0b46221533b46acacab66aa4326d6b40b00863374210901"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/coding-standards.md",
+      "canonical": "references/coding-standards.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "07fc5a4646447dafbea32a45a4f254020a0c0056e2eb503906cc720667bf4e37"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/evals/protocol.md",
+      "canonical": "evals/protocol.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "e82c74558497a76057d3e688890e3797111bbd302285cc37f45a761d661ed587"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/evals/cases.json",
+      "canonical": "evals/cases.json",
+      "kind": "byte-identical canonical resource copy",
+      "sha256": "4c4698eee81a02eac185f9d8c644c72e03770afc4a64bc0c61e25ea68eb58e0a"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/evals/report.md",
+      "canonical": "evals/report.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "04ef2297bf183ff8390fb8170c8f75394ee5caf6cc478e604a3b57331a23b82e"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/references/adapters.md",
+      "canonical": "references/adapters.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "870b14008f111c3ef45edb17952f0d89fa0afbb4827313bd8c4096784125f586"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/assets/manifest.json",
+      "canonical": "assets/manifest.json",
+      "kind": "byte-identical canonical resource copy",
+      "sha256": "bf5977bc80e190d909381e098643df225d7be429572fdd866fb6043328556dcd"
+    },
+    {
+      "path": "evals/trials/B01-skill-2/evidence/inspected-sources/meet.md",
+      "canonical": "meet.md",
+      "kind": "explicit post-trial pointer",
+      "sha256": "0a24df080d304e7d05d3b49fa8ad11872516e62759b75ab7923ca715fe43a305"
+    }
+  ],
+  "rawResultUnchangedSha256": "d955a30fe6f2f5948485ada368b2271706839fbe45d548d01f9229ec14fc5ade",
+  "status": "CONTEXT_REPAIRED_PENDING_VALIDATOR"
+}

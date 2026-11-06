@@ -1,0 +1,5 @@
+Apply the selected supplied skill to the supplied task. Work only in your writable artifact copy. You have 360 seconds and at most 20 underlying tool invocations, same installed tools as the comparison context, no delegation and no package installations. Read the selected skill and only references needed for this task. Preserve exported behavior and fixture contracts described by the task. Use the smallest effective correction. Implement and verify; advice alone is incomplete.
+
+Do not inspect other trials, evaluation checkers, hidden cases, prior solutions or the other skill version. You may add meaningful local tests. No production systems, accounts, dependency/framework changes or publication are authorized. State unavailable tool results honestly. A browser or SQLite engine cannot be replaced by a fake and then reported as real-engine verification.
+
+Deliver the artifact and `handoff.md` following `output-contract.md`. The task supplies all acceptance vocabulary identically for both versions. No new skill-specific schema or coverage enumeration is required.

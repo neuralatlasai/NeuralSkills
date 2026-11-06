@@ -1,0 +1,152 @@
+{
+  "time": "2026-11-05T17:16:28.328Z",
+  "files": [
+    {
+      "path": "C05-build.log",
+      "bytes": 1030,
+      "sha256": "f4aef714040a5f31216f0358340a7665e2e50260fcc69a74a5427eac2ed7393b"
+    },
+    {
+      "path": "C05-command-exits.json",
+      "bytes": 53,
+      "sha256": "60e79afdb7527f09a0d10f3de74fcdbf1a73ab585fe008a4462e3e67e8e1999f"
+    },
+    {
+      "path": "C05-typecheck.log",
+      "bytes": 990,
+      "sha256": "973308cfced3e26eef1289cd151240d0d233cf5de5ccbec6567b294327d21a89"
+    },
+    {
+      "path": "cleanup-limitation.json",
+      "bytes": 639,
+      "sha256": "dd0e051694b8596bf0f578fc140e1b27e3035c364a066c818fc9e3565778f624"
+    },
+    {
+      "path": "hash-harness-correction.json",
+      "bytes": 572,
+      "sha256": "47419e74501dd357b7d13ddcdc1732df338ec0c404e79010276b2eb758557fb9"
+    },
+    {
+      "path": "helper.json",
+      "bytes": 232,
+      "sha256": "4eb492df9063ee4ae1e73d684f306afce3fb0b6d519a9b9663d0445f4ae46e1a"
+    },
+    {
+      "path": "inventory.cjs",
+      "bytes": 1175,
+      "sha256": "a96307a074415f819d560aacbfe8d34ed21d6c172fd631cc93fbee48a5cc35a1"
+    },
+    {
+      "path": "make-report.cjs",
+      "bytes": 10635,
+      "sha256": "ae65af8b64e62018522633bacb799fca9d476743475b2681d8071b5783c04892"
+    },
+    {
+      "path": "native-100.txt",
+      "bytes": 3543,
+      "sha256": "99a57c437d90467dce717a918e3563493623e51e1d12221103493dabc72ba017"
+    },
+    {
+      "path": "native-200-0.jpg",
+      "bytes": 61366,
+      "sha256": "a32cbf5d0f1bbf14e366ae8e3f56963cdd9257927f02061eda0dcac50011c011"
+    },
+    {
+      "path": "native-200-1.jpg",
+      "bytes": 4205,
+      "sha256": "71b82a109958761b5f8ae3472dd80fe11a854f5173f94dcf79da2e323377c585"
+    },
+    {
+      "path": "native-200-de-consent-0.jpg",
+      "bytes": 86006,
+      "sha256": "3a23dd1af217bdabc3674f667c61afd512ed9d35fb48341f91b06db4011f3324"
+    },
+    {
+      "path": "native-200-de-form-0.jpg",
+      "bytes": 92409,
+      "sha256": "af8edc9e5e682e971305c860d40cf8e0ced599b654f1ace4ba5d9cb92a753a2a"
+    },
+    {
+      "path": "native-200-de-form.txt",
+      "bytes": 3746,
+      "sha256": "ed77e5f30a1b4618cf7ce59238f64c14f6148356c178b67b5164723609680a6a"
+    },
+    {
+      "path": "native-200-de-review-0.jpg",
+      "bytes": 100085,
+      "sha256": "fa05a96959d9e2a9b91eec903fd41c753011a3cfc5b7698dc27df0a6bfbaabd9"
+    },
+    {
+      "path": "native-200-de-review.txt",
+      "bytes": 3680,
+      "sha256": "380c2ef45cb50f5ef605acff808a9004962eb2c41cb29870b4131fabf3432b7e"
+    },
+    {
+      "path": "native-200.txt",
+      "bytes": 3419,
+      "sha256": "18629a638529931a128b18144103cabd93ded0177baae05b2ceff94399c9dbab"
+    },
+    {
+      "path": "native-metrics.jsonl",
+      "bytes": 16475,
+      "sha256": "2e39e71cfc41faa1ef877e678f7f675bdbaa059c5dc28ef90e8f5096af11d995"
+    },
+    {
+      "path": "native-server.cjs",
+      "bytes": 1901,
+      "sha256": "dd22f93735dcb8db4d304896fcef1bbe1bdc8d04e926317d9c54a7f2833eaeb6"
+    },
+    {
+      "path": "network-probes.json",
+      "bytes": 1027,
+      "sha256": "dafd68fc62b196f0318c8496b65dbb5af1a9c7d1bbf20792d6327043469fb2de"
+    },
+    {
+      "path": "network.cjs",
+      "bytes": 946,
+      "sha256": "b08127f2823b60ffe4012f4271b32c05b3112496d956d4d26b644989983a86fd"
+    },
+    {
+      "path": "report.json",
+      "bytes": 14844,
+      "sha256": "6123b6128e1cd29bf29b85522611363059e6f9079a7d02e9eea908e1dda2920d"
+    },
+    {
+      "path": "report.md",
+      "bytes": 2158,
+      "sha256": "adbcd312405738697bf41183a922fade8fa21a23d06a6446340a749c0f1b3412"
+    },
+    {
+      "path": "start.cjs",
+      "bytes": 1469,
+      "sha256": "2604ace56946439a32c4ef61464983c3e63e9941217d091ec04eff7a0d00087e"
+    }
+  ],
+  "rawResultHashes": [
+    {
+      "path": "evals/trials/C05-skill-1/result.json",
+      "sha256": "b3a62a7157d0390ba37f3a5e139555ed166d249fe6180c263937cfc6de54b2de"
+    },
+    {
+      "path": "evals/trials/C07-skill-1/result.json",
+      "sha256": "2868bf562fee53313b0e433720cdcda5b5f4da20d6a0a07c50fc610fee15a26f"
+    }
+  ],
+  "helperPorts": [
+    {
+      "port": 4397,
+      "listening": false,
+      "error": "ECONNREFUSED"
+    },
+    {
+      "port": 4398,
+      "listening": false,
+      "error": "ECONNREFUSED"
+    },
+    {
+      "port": 9437,
+      "listening": false,
+      "error": "ECONNREFUSED"
+    }
+  ]
+}

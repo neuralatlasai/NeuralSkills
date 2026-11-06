@@ -1,0 +1,173 @@
+{
+  "checks": [
+    {
+      "id": "initial",
+      "status": "PASS",
+      "evidence": "Ready when you are.",
+      "at": "2026-11-05T16:51:21.447Z"
+    },
+    {
+      "id": "pending",
+      "status": "PASS",
+      "evidence": "Searching for “cedar”…",
+      "at": "2026-11-05T16:51:21.606Z"
+    },
+    {
+      "id": "pending-search-enabled",
+      "status": "PASS",
+      "evidence": "Input and Search enabled while cedar pending.",
+      "at": "2026-11-05T16:51:21.615Z"
+    },
+    {
+      "id": "cedar",
+      "status": "PASS",
+      "evidence": {
+        "status": "1 guide found for “cedar”.",
+        "cards": [
+          "FIELD GUIDE / 01Cedar trails and their seasonal wildlifeForest112 pages"
+        ]
+      },
+      "at": "2026-11-05T16:51:23.110Z"
+    },
+    {
+      "id": "focus-after-enter",
+      "status": "PASS",
+      "evidence": "Input retains focus after Enter and result arrival.",
+      "at": "2026-11-05T16:51:23.126Z"
+    },
+    {
+      "id": "moss",
+      "status": "PASS",
+      "evidence": {
+        "status": "2 guides found for “moss”.",
+        "cards": [
+          "FIELD GUIDE / 01Mosses of the rain-soaked northern woodlandWoodland84 pages",
+          "FIELD GUIDE / 02Pocket guide to urban mossUrban46 pages"
+        ]
+      },
+      "at": "2026-11-05T16:51:23.363Z"
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "evidence": "❧No guides found this time.Try a broader term or a different plant or place. Your search was “empty”.",
+      "at": "2026-11-05T16:51:23.762Z"
+    },
+    {
+      "id": "failure",
+      "status": "PASS",
+      "evidence": "!We couldn’t load your guides.The field guide service is temporarily unavailable.Retry",
+      "at": "2026-11-05T16:51:24.629Z"
+    },
+    {
+      "id": "retry-keyboard-reachable",
+      "status": "PASS",
+      "evidence": "Tab from input to Search, then Retry.",
+      "at": "2026-11-05T16:51:24.712Z"
+    },
+    {
+      "id": "retry-same-query",
+      "status": "PASS",
+      "evidence": {
+        "status": "Searching for “fail”…",
+        "input": "fail"
+      },
+      "at": "2026-11-05T16:51:24.724Z"
+    },
+    {
+      "id": "retry-focus",
+      "status": "PASS",
+      "evidence": "Retry moves focus to search input before removing itself.",
+      "at": "2026-11-05T16:51:24.736Z"
+    },
+    {
+      "id": "retry-new-attempt",
+      "status": "PASS",
+      "evidence": "Retry showed pending and subsequently failed again through real fixture.",
+      "at": "2026-11-05T16:51:25.572Z"
+    },
+    {
+      "id": "stale-success",
+      "status": "PASS",
+      "evidence": {
+        "elapsedMs": 1478,
+        "status": "2 guides found for “moss”."
+      },
+      "at": "2026-11-05T16:51:27.055Z"
+    },
+    {
+      "id": "stale-failure",
+      "status": "PASS",
+      "evidence": {
+        "elapsedMs": 928,
+        "status": "2 guides found for “moss”."
+      },
+      "at": "2026-11-05T16:51:27.986Z"
+    },
+    {
+      "id": "mobile-320",
+      "status": "PASS",
+      "evidence": {
+        "viewport": 320,
+        "body": 320,
+        "document": 320,
+        "cards": [
+          {
+            "left": 20,
+            "right": 300
+          },
+          {
+            "left": 20,
+            "right": 300
+          }
+        ],
+        "input": {
+          "x": 20,
+          "y": 339.1875,
+          "width": 179.109375,
+          "height": 48,
+          "top": 339.1875,
+          "right": 199.109375,
+          "bottom": 387.1875,
+          "left": 20
+        }
+      },
+      "at": "2026-11-05T16:51:28.089Z"
+    },
+    {
+      "id": "mobile-failure-320",
+      "status": "PASS",
+      "evidence": "Failure and Retry stay within 320px viewport.",
+      "at": "2026-11-05T16:51:28.999Z"
+    },
+    {
+      "id": "accessible-markup",
+      "status": "PASS",
+      "evidence": {
+        "label": "query",
+        "inputId": "query",
+        "role": "status",
+        "live": "polite",
+        "atomic": "true",
+        "busy": "false"
+      },
+      "at": "2026-11-05T16:51:29.001Z"
+    },
+    {
+      "id": "fixture-unchanged",
+      "status": "PASS",
+      "evidence": {
+        "sha256": "baa8f07b2ffd4cfbfb614f12fa69a53745499c5ed06e056e326ac37a25bd10c3"
+      },
+      "at": "2026-11-05T16:51:29.005Z"
+    }
+  ],
+  "errors": [
+    {
+      "type": "runner",
+      "message": "locator.click: Error: strict mode violation: getByRole('button', { name: 'Search' }) resolved to 2 elements:\n    1) <button type=\"submit\" class=\"primary\">…</button> aka getByRole('button', { name: 'Search', exact: true })\n    2) <button type=\"button\" class=\"retry\" aria-label=\"Retry search for fail\">Retry</button> aka getByRole('button', { name: 'Retry search for fail' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Search' })\u001b[22m\n",
+      "stack": "locator.click: Error: strict mode violation: getByRole('button', { name: 'Search' }) resolved to 2 elements:\n    1) <button type=\"submit\" class=\"primary\">…</button> aka getByRole('button', { name: 'Search', exact: true })\n    2) <button type=\"button\" class=\"retry\" aria-label=\"Retry search for fail\">Retry</button> aka getByRole('button', { name: 'Retry search for fail' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Search' })\u001b[22m\n\n    at C:\\Users\\heman\\Desktop\\skills\\Skills_NeuralWorld\\NeuralSkills\\roles\\saas\\ui-ux-engineering\\evals\\trials\\C06-baseline-3\\check.cjs:87:64"
+    }
+  ],
+  "finishedAt": "2026-11-05T16:51:29.031Z"
+}

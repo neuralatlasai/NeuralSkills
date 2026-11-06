@@ -1,0 +1,76 @@
+{
+  "method": "Independent byte/source preservation check; no React execution or full typecheck.",
+  "checks": [
+    {
+      "path": "README.md",
+      "identical": true
+    },
+    {
+      "path": "index.html",
+      "identical": true
+    },
+    {
+      "path": "package.json",
+      "identical": true
+    },
+    {
+      "path": "src/main.tsx",
+      "identical": true
+    },
+    {
+      "path": "tsconfig.json",
+      "identical": true
+    },
+    {
+      "path": "vite.config.ts",
+      "identical": true
+    },
+    {
+      "path": "src/styles.css",
+      "originalRulesPreservedAsPrefix": false
+    },
+    {
+      "id": "brand-token-declarations-identical",
+      "identical": true,
+      "tokens": [
+        [
+          "--canvas",
+          "#f7f5fa"
+        ],
+        [
+          "--surface",
+          "#ffffff"
+        ],
+        [
+          "--brand",
+          "#6a458d"
+        ],
+        [
+          "--brand-dark",
+          "#432957"
+        ],
+        [
+          "--brand-soft",
+          "#eee5f4"
+        ],
+        [
+          "--text",
+          "#2f2542"
+        ],
+        [
+          "--muted",
+          "#766d80"
+        ],
+        [
+          "--border",
+          "#e6e0ec"
+        ],
+        [
+          "--radius",
+          "18px"
+        ]
+      ]
+    }
+  ],
+  "cssDiffObservation": "Original CSS is not a literal prefix: invoice-row changes flex to grid to place disclosure across both columns, and disclosure-only rules are inserted. Existing brand variable declarations are unchanged. This does not establish runtime preservation."
+}

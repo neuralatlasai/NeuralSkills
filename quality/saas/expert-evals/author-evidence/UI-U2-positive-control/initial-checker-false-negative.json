@@ -1,0 +1,55 @@
+{
+  "caseId": "UI-U2",
+  "node": "v24.12.0",
+  "time": "2026-11-06T03:00:11.406Z",
+  "checks": [
+    {
+      "id": "U2-control-mount",
+      "kind": "control",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "id": "U2-R1-modal-focus-background",
+      "kind": "required",
+      "status": "FAIL",
+      "evidence": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-ui-u2.mjs:6:379\n    at async check (file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/grading/browser.mjs:4:103)\n    at async file:///C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/roles/saas/expert-evals/hidden-grading/verify-ui-u2.mjs:6:1"
+    },
+    {
+      "id": "U2-R2-cancel-escape-cleanup",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "id": "U2-R2-save-reopen-once",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": true
+    },
+    {
+      "id": "U2-R3-narrow-reflow-internal-scroll",
+      "kind": "required",
+      "status": "PASS",
+      "evidence": {
+        "rect": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 456,
+          "top": 12,
+          "right": 301,
+          "bottom": 468,
+          "left": 19
+        },
+        "client": 278,
+        "scroll": 278,
+        "height": 452,
+        "scrollHeight": 947,
+        "doc": 320
+      }
+    }
+  ],
+  "errors": [],
+  "pass": false
+}

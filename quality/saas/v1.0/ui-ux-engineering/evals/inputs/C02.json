@@ -1,0 +1,33 @@
+{
+  "caseId": "C02",
+  "task": "Reproduce the supplied synthetic screenshot as a responsive frontend page. Inspect fixtures/C02/reference.png visually before implementation; reference.svg is retained only as source provenance. Match its desktop composition, spacing, typography, colors and simple decorative shapes at 1280×900. Keep all visible content from the reference. The top navigation anchors should move to the corresponding section, and “Create workspace” should open an accessible small dialog with a workspace-name field, Cancel and Create; Create shows a local success message, with no backend. At 375px, adapt the layout so navigation, headings and cards remain readable and usable. Use local CSS/HTML shapes for the artwork; no external image service is needed. Supply a runnable local example and setup instructions. Put the implementation in trial/artifact and write trial/result.json using the supplied output contract.",
+  "fixtures": [
+    "fixtures/C02/reference.png",
+    "fixtures/C02/reference.svg",
+    "fixtures/C02/README.md"
+  ],
+  "requirementIds": [
+    "C02-R01",
+    "C02-R02",
+    "C02-R03",
+    "C02-R04",
+    "C02-R05",
+    "C02-R06"
+  ],
+  "outputContract": {
+    "artifactDirectory": "trial/artifact/",
+    "resultFile": "trial/result.json",
+    "fields": [
+      "caseId",
+      "arm",
+      "run",
+      "route",
+      "requirementCoverage",
+      "assumptions",
+      "decisions",
+      "checks",
+      "limitations"
+    ],
+    "note": "The orchestrator supplies caseId, arm, run and trial directory. Checks use PASS, FAIL, UNVERIFIED or NOT_APPLICABLE and cite observable evidence. Never invent tool access or executed checks."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "observedAt": "2026-11-05T16:45:45.667Z",
+  "purpose": "Actual success, self-test, expected failure and valid contract branches",
+  "results": [
+    {
+      "command": "node scripts/validate-package.mjs",
+      "chunk_id": "d4e5bb",
+      "wall_time_seconds": 1.2229065000000001,
+      "exit_code": 0,
+      "original_token_count": 52,
+      "output": "{\n  \"status\": \"PASS\",\n  \"scope\": \"Bounded frontmatter/link/manifest/schema/coverage/decision checks; not full YAML, Markdown or JSON Schema conformance.\",\n  \"links\": 31,\n  \"resources\": 58,\n  \"errors\": []\n}\n"
+    },
+    {
+      "command": "node scripts/validate-package.mjs --self-test",
+      "chunk_id": "a3078f",
+      "wall_time_seconds": 0.9881625,
+      "exit_code": 0,
+      "original_token_count": 37,
+      "output": "{\"status\":\"PASS\",\"checks\":5,\"coverage\":\"Valid context; duplicate layer, unsupported PASS, disconnected decision and unsupported keyword rejected.\"}\n"
+    },
+    {
+      "command": "node scripts/validate-package.mjs --root missing",
+      "chunk_id": "22d912",
+      "wall_time_seconds": 0.9814703,
+      "exit_code": 1,
+      "original_token_count": 320,
+      "output": "{\n  \"status\": \"FAIL\",\n  \"scope\": \"Bounded frontmatter/link/manifest/schema/coverage/decision checks; not full YAML, Markdown or JSON Schema conformance.\",\n  \"links\": 0,\n  \"resources\": 0,\n  \"errors\": [\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\missing\\\\SKILL.md'\",\n    \"ENOENT: no such file or directory, scandir 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\missing'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\missing\\\\assets\\\\manifest.json'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\missing\\\\assets\\\\task.template.json'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\missing\\\\assets\\\\coverage-index.json'\",\n    \"ENOENT: no such file or directory, open 'C:\\\\Users\\\\heman\\\\Desktop\\\\skills\\\\Skills_NeuralWorld\\\\NeuralSkills\\\\roles\\\\saas\\\\backend-engineering\\\\missing\\\\assets\\\\gates.json'\"\n  ]\n}\n"
+    },
+    {
+      "command": "node scripts/validate-package.mjs --contract assets/task.template.json",
+      "chunk_id": "220de7",
+      "wall_time_seconds": 0.5420224,
+      "exit_code": 0,
+      "original_token_count": 14,
+      "output": "{\"status\":\"PASS\",\"scope\":\"Bounded contract assertions\"}\n"
+    }
+  ]
+}
