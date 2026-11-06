@@ -1,0 +1,29 @@
+{
+  "mapping": [
+    {
+      "sample": "sample-a",
+      "trial": "D02-base",
+      "file": "decision.json",
+      "sha256": "7f40b183630d53938b283be23da84a23abed5fea8e7e0da72dc20f36ba82a4af"
+    },
+    {
+      "sample": "sample-b",
+      "trial": "D01-skill",
+      "file": "runtime.json",
+      "sha256": "edb108fcf3b537daaf6931cdd28303695567eeddb39077e58e74f7b3bd6ae74c"
+    },
+    {
+      "sample": "sample-c",
+      "trial": "D02-skill",
+      "file": "decision.json",
+      "sha256": "dd90fd50c0ce32b505a1a428c3c87f2e0b6edc373a40a83cf48df8c2c71ac663"
+    },
+    {
+      "sample": "sample-d",
+      "trial": "D01-base",
+      "file": "runtime.json",
+      "sha256": "a4c543b00bbf4d1e54fb033aa1a7a8fa8179d883eed6885138bae4581c2692eb"
+    }
+  ],
+  "reason": "Blind artifact review; condition labels withheld from evaluator."
+}

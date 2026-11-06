@@ -1,0 +1,147 @@
+{
+  "createdAt": "2026-11-06T09:31:31.201Z",
+  "checks": [
+    {
+      "name": "package",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "quality/saas/validate-saas.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"Bounded flat-package metadata/link/anchor/manifest/coverage/context assertions; not formal standards or full YAML/schema conformance\",\n  \"entryWords\": 307,\n  \"resources\": 18,\n  \"links\": 54,\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "error": null,
+      "expectedExit": 0
+    },
+    {
+      "name": "checker-D01-success",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "quality/saas/devops-1.3/check.mjs",
+        "D01",
+        "quality/saas/devops-1.3/controls/D01-pass"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"case\": \"D01\",\n  \"status\": \"PASS\",\n  \"checks\": [\n    {\n      \"name\": \"Invocation\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Artifact parses\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Kinds and target\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Failure capacity\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Rollout capacity\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Connection envelope\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Probe semantics\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Startup and drain windows\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Resource bounds\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Privilege bounds\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Eviction capacity and selectors\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Image preserved\",\n      \"status\": \"PASS\"\n    }\n  ],\n  \"scope\": \"Bounded artifact invariants; not API admission, live infrastructure or qualitative correctness\"\n}\n",
+      "stderr": "",
+      "error": null,
+      "expectedExit": 0
+    },
+    {
+      "name": "checker-D01-reject-unsafe",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "quality/saas/devops-1.3/check.mjs",
+        "D01",
+        "quality/saas/devops-1.3/cases/D01"
+      ],
+      "exitCode": 1,
+      "stdout": "{\n  \"case\": \"D01\",\n  \"status\": \"FAIL\",\n  \"checks\": [\n    {\n      \"name\": \"Invocation\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Artifact parses\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Kinds and target\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Failure capacity\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Rollout capacity\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Connection envelope\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Probe semantics\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Startup and drain windows\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Resource bounds\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Privilege bounds\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Eviction capacity and selectors\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Image preserved\",\n      \"status\": \"PASS\"\n    }\n  ],\n  \"scope\": \"Bounded artifact invariants; not API admission, live infrastructure or qualitative correctness\"\n}\n",
+      "stderr": "",
+      "error": null,
+      "expectedExit": 1
+    },
+    {
+      "name": "checker-D02-success",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "quality/saas/devops-1.3/check.mjs",
+        "D02",
+        "quality/saas/devops-1.3/controls/D02-pass"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"case\": \"D02\",\n  \"status\": \"PASS\",\n  \"checks\": [\n    {\n      \"name\": \"Invocation\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Artifact parses\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Input counts preserved\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Connection arithmetic\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Admission independent\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"KV authority rejected\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Recovery claims bounded\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Decision evidence complete\",\n      \"status\": \"PASS\"\n    }\n  ],\n  \"scope\": \"Bounded artifact invariants; not API admission, live infrastructure or qualitative correctness\"\n}\n",
+      "stderr": "",
+      "error": null,
+      "expectedExit": 0
+    },
+    {
+      "name": "checker-D02-reject-unsafe",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "quality/saas/devops-1.3/check.mjs",
+        "D02",
+        "quality/saas/devops-1.3/controls/D02-fail"
+      ],
+      "exitCode": 1,
+      "stdout": "{\n  \"case\": \"D02\",\n  \"status\": \"FAIL\",\n  \"checks\": [\n    {\n      \"name\": \"Invocation\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Artifact parses\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Input counts preserved\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Connection arithmetic\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Admission independent\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"KV authority rejected\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    },\n    {\n      \"name\": \"Recovery claims bounded\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Decision evidence complete\",\n      \"status\": \"PASS\"\n    }\n  ],\n  \"scope\": \"Bounded artifact invariants; not API admission, live infrastructure or qualitative correctness\"\n}\n",
+      "stderr": "",
+      "error": null,
+      "expectedExit": 1
+    },
+    {
+      "name": "checker-reject-invocation",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "quality/saas/devops-1.3/check.mjs",
+        "INVALID",
+        "quality/saas/devops-1.3/controls/D02-pass"
+      ],
+      "exitCode": 1,
+      "stdout": "{\n  \"case\": \"INVALID\",\n  \"status\": \"FAIL\",\n  \"checks\": [\n    {\n      \"name\": \"Invocation\",\n      \"status\": \"FAIL\",\n      \"reason\": \"Invariant not satisfied\"\n    }\n  ],\n  \"scope\": \"Bounded artifact invariants; not API admission, live infrastructure or qualitative correctness\"\n}\n",
+      "stderr": "",
+      "error": null,
+      "expectedExit": 1
+    },
+    {
+      "name": "compose-render",
+      "command": [
+        "docker.exe",
+        "compose",
+        "-f",
+        "quality/saas/devops-1.3/compose.yaml",
+        "config",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"name\": \"devops-authoring-fixture\",\n  \"networks\": {\n    \"default\": {\n      \"name\": \"devops-authoring-fixture_default\",\n      \"ipam\": {}\n    }\n  },\n  \"services\": {\n    \"orders\": {\n      \"cap_drop\": [\n        \"ALL\"\n      ],\n      \"cpus\": 1,\n      \"command\": null,\n      \"entrypoint\": null,\n      \"environment\": {\n        \"DB_POOL_MAX\": \"4\"\n      },\n      \"image\": \"ghcr.io/example/fixture@sha256:1111111111111111111111111111111111111111111111111111111111111111\",\n      \"logging\": {\n        \"driver\": \"json-file\",\n        \"options\": {\n          \"max-file\": \"2\",\n          \"max-size\": \"10m\"\n        }\n      },\n      \"mem_limit\": \"268435456\",\n      \"networks\": {\n        \"default\": null\n      },\n      \"pids_limit\": 64,\n      \"read_only\": true,\n      \"security_opt\": [\n        \"no-new-privileges:true\"\n      ],\n      \"stop_grace_period\": \"30s\",\n      \"user\": \"10001:10001\"\n    }\n  }\n}",
+      "stderr": "",
+      "error": null,
+      "expectedExit": 0
+    },
+    {
+      "name": "kustomize-render",
+      "command": [
+        "kubectl.exe",
+        "kustomize",
+        "quality/saas/devops-1.3/controls/D01-pass"
+      ],
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "error: must build at directory: not a valid directory: evalsymlink failure on 'quality/saas/devops-1.3/controls/D01-pass' : Access is denied.\n",
+      "error": null,
+      "expectedExit": 0
+    },
+    {
+      "name": "docker-engine",
+      "command": [
+        "docker.exe",
+        "version",
+        "--format",
+        "{{json .}}"
+      ],
+      "exitCode": 1,
+      "stdout": "{\"Client\":{\"Version\":\"29.9.2\",\"ApiVersion\":\"1.56\",\"DefaultAPIVersion\":\"1.56\",\"GitCommit\":\"a82e528\",\"GoVersion\":\"go1.26.10\",\"Os\":\"windows\",\"Arch\":\"amd64\",\"BuildTime\":\"Tue Oct 20 19:44:07 2026\",\"Context\":\"default\"},\"Server\":null}\n",
+      "stderr": "failed to connect to the docker API at npipe:////./pipe/docker_engine; check if the path is correct and if the daemon is running: open //./pipe/docker_engine: The system cannot find the file specified.\n",
+      "error": null,
+      "expectedExit": 1
+    },
+    {
+      "name": "kubectl-client",
+      "command": [
+        "kubectl.exe",
+        "version",
+        "--client=true",
+        "--output=json"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"clientVersion\": {\n    \"major\": \"1\",\n    \"minor\": \"36\",\n    \"gitVersion\": \"v1.36.1\",\n    \"gitCommit\": \"756939600b9a7180fc2df6550a4585b638875e67\",\n    \"gitTreeState\": \"clean\",\n    \"buildDate\": \"2026-05-12T09:54:35Z\",\n    \"goVersion\": \"go1.26.2\",\n    \"compiler\": \"gc\",\n    \"platform\": \"windows/amd64\"\n  },\n  \"kustomizeVersion\": \"v5.8.1\"\n}\n",
+      "stderr": "",
+      "error": null,
+      "expectedExit": 0
+    }
+  ],
+  "aggregationFailure": "First ad-hoc runner asserted before retaining kustomize error; rerun captures all raw output unchanged.",
+  "limit": "Synthetic controls and offline rendering; no container execution, API admission or workload result."
+}

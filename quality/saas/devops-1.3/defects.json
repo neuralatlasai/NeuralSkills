@@ -1,0 +1,31 @@
+{
+  "records": [
+    {
+      "id": "AUTHOR-01",
+      "observation": "Initial structural check failed because source-register.md#devops-extension had been linked before that section was written.",
+      "action": "Completed the source register before freezing source and evaluation criteria.",
+      "result": "PASS on subsequent package validation. No criteria changed."
+    },
+    {
+      "id": "HOST-01",
+      "observation": "kubectl kustomize failed with evalsymlink failure: Access is denied, using both relative and absolute paths within the authorized workspace.",
+      "absoluteCommand": "kubectl.exe kustomize C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/quality/saas/devops-1.3/controls/D01-pass",
+      "absoluteExitCode": 1,
+      "absoluteStderr": "error: must build at directory: not a valid directory: evalsymlink failure on 'C:/Users/heman/Desktop/skills/Skills_NeuralWorld/NeuralSkills/quality/saas/devops-1.3/controls/D01-pass' : Access is denied.",
+      "action": "Retained raw relative-path output in validation-controls-initial.json and stopped renderer attempts. No permission changes or cluster calls.",
+      "result": "UNVERIFIED rendering/API admission; independent JSON and invariant checks remain separate."
+    },
+    {
+      "id": "HARNESS-01",
+      "observation": "The first ad-hoc validation runner asserted on the render exit code before saving the full receipt.",
+      "action": "Reran unchanged checks with unconditional raw-output capture in validation-controls-initial.json.",
+      "result": "Failure retained; no acceptance weakened."
+    },
+    {
+      "id": "EVAL-01",
+      "observation": "The fixed D02 checker requires four status enum values and boolean hardBoundary, but the case does not declare those types. Baseline fails the status enum; enabled fails hardBoundary because it uses an explanatory string. Both original failures remain in their receipts.",
+      "action": "Cycle 2 adds D02-v2 with explicit field types for both fresh conditions, retaining original task/checker/trials. Instruction source and checker thresholds remain unchanged; freeze-v2.json records the new task contract.",
+      "result": "Interpret initial failures as underspecified format requirements, not demonstrated functional defects or skill advantage. Report cycle-2 observations separately."
+    }
+  ]
+}

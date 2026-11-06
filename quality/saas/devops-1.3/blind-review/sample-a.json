@@ -1,0 +1,94 @@
+﻿{
+  "capacity": {
+    "activeMax": 6,
+    "surge": 2,
+    "terminating": 1,
+    "poolPerProcess": 3,
+    "workers": 4,
+    "maintenance": 2,
+    "allocated": 40,
+    "totalConnections": 33
+  },
+  "admission": {
+    "hardBoundary": true,
+    "mechanism": "Selected design requirement, not deployed or proven: all physical DB sessions are owned by one fenced, single-active database-facing admission gateway. Its global class budgets are API 27, workers 4, maintenance 2, total 33. Fixed server pools never open beyond their budgets; excess demand queues with bounded deadlines or fails closed. Network policy and DB credentials prohibit direct connections. Standby promotion requires fencing and verified closure of old sessions before opening replacements. Cloud Run scaling is only an operational setting; extra processes cannot expand the gateway pools. Product-specific enforcement must pass acceptance tests."
+  },
+  "state": {
+    "kvAuthoritativeForImmediateRevocation": false,
+    "kvAuthoritativeForInventory": false,
+    "authority": "Proposed transactional relational database with one writable primary, strong primary reads, serializable transactions, and durable commit acknowledgements. Authorization, revocation epochs, inventory, and idempotency records live here. KV is only an optional non-security display cache. No stale cache can grant access or authorize an inventory mutation.",
+    "writeOwnership": "Only the authenticated authority service can mutate authoritative tables; edge Workers, Cloud Run handlers, jobs, and administrators use its audited commands. Revoke and protected mutations serialize on the relevant principal/grant record; inventory conditional updates and idempotency records commit in the same transaction. All rows required for one atomic inventory operation share the transaction. Cross-database or cross-shard transactions are outside this initial design."
+  },
+  "recovery": {
+    "targetRtoSeconds": 900,
+    "targetRpoSeconds": 60,
+    "measuredRtoSeconds": null,
+    "measuredRpoSeconds": null
+  },
+  "checks": [
+    {
+      "requirement": "Retain all capacity inputs and fit the DB allocation",
+      "mechanism": "(6 + 2 + 1) * 3 + 4 + 2 = 33; floor((40 - 4 - 2) / 9) = 3",
+      "limit": "33 <= 40, leaving 7 unused connections; pool 4 would require 42 and fails",
+      "failure": "Dropping rollout or terminating processes, counting instances instead of processes, or omitting workers/maintenance undercounts demand",
+      "verification": "Local JSON arithmetic and inequality validation only; runtime counts must still be observed",
+      "status": "arithmetic_verified_only"
+    },
+    {
+      "requirement": "Hard DB admission independent of deployment scaling",
+      "mechanism": "One active session-owning gateway with fixed global budgets 27/4/2, no connection bypass, and fenced standby",
+      "limit": "33 physical workload sessions across all revisions, regions, gateways and termination states; the spare 7 are not permission to expand",
+      "failure": "Per-proxy limits multiply when proxies scale; expired leases can leave old sessions alive; unfenced failover creates two session owners",
+      "verification": "In an authorized test environment exceed nine API processes, reconnect during a rollout, crash the gateway, partition its control plane, and attempt bypass. Observe DB-side session counts and prove no replacement sessions open before old sessions are fenced/closed",
+      "status": "planned_unverified"
+    },
+    {
+      "requirement": "Immediate access revocation",
+      "mechanism": "Every protected operation validates current grant and token epoch at the authoritative primary. Revocation and protected operations serialize on the same grant lock through protected commit/response authorization. Acknowledge revocation only after commit and drainage/cancellation of prior protected work; terminate or reauthorize streams",
+      "limit": "After successful revocation acknowledgement no newly authorized operation or protected commit may use the revoked grant. Previously delivered bytes cannot be recalled. Authority failure denies access",
+      "failure": "JWT signature checks alone, KV positive caches, replica reads, or checking authorization before a separately committed mutation allow stale access",
+      "verification": "Race revocation against reads, writes, queued work and streams from several locations; use old tokens after acknowledgement; cut the authority link; assert denied results and no post-revocation protected commit",
+      "status": "planned_unverified"
+    },
+    {
+      "requirement": "Atomic inventory changes and retry safety",
+      "mechanism": "One serializable DB transaction checks authoritative authorization, performs guarded stock updates, and records a unique idempotency key plus result. Lock rows in a stable order; retry serialization conflicts with bounded backoff",
+      "limit": "Stock never falls below zero; all rows of a multi-item change commit together; one logical request changes stock at most once",
+      "failure": "KV read-modify-write loses updates; partial multi-item writes and retries after lost acknowledgements can oversell or duplicate decrements",
+      "verification": "Race requests for the final unit; race revocation with reservation; inject failure between row updates and after commit before response; replay idempotency keys and verify stock and returned results",
+      "status": "planned_unverified"
+    },
+    {
+      "requirement": "One authority and complete enforcement path",
+      "mechanism": "Cloudflare forwards to authenticated Cloud Run origin; origin independently enforces authoritative authorization. Only authority-service DB credentials can mutate tables; jobs and emergency operations follow the same transaction rules",
+      "limit": "No origin URL, worker route, maintenance command, restore process or admin script may bypass authorization, inventory invariants or session admission",
+      "failure": "A public origin or a privileged script becomes an alternate authority; serialized KV writes still leave stale KV reads",
+      "verification": "Attempt direct-origin requests and edge-header spoofing, audit identities/routes/DB permissions, and inject stale KV values while confirming they cannot grant access or mutate stock",
+      "status": "planned_unverified"
+    },
+    {
+      "requirement": "Recovery within targets with honest measurement",
+      "mechanism": "Select encrypted backups plus continuous transaction-log archiving or a recoverable replica in another failure domain; monitor durable recovery position and run isolated restore drills",
+      "limit": "RTO target 900 seconds; RPO target 60 seconds; neither is measured. Provider features and configured retention remain unverified",
+      "failure": "Successful backup jobs do not prove restoreability; unobserved log gaps and a slow restore violate targets",
+      "verification": "Write timestamped sequence-numbered canaries, record outage time and latest acknowledged commit, recover, measure until validated authenticated service resumes, and compare last recovered contiguous commit to failure time. Include detection, credentials, fencing, validation and routing in RTO",
+      "status": "planned_unverified"
+    },
+    {
+      "requirement": "Use latest credentials during recovery",
+      "mechanism": "Recover application data separately from the live credential authority; retrieve approved current secret versions using recovery identity, refresh cached credentials, validate TLS and token issuer/key/epoch configuration, and reject retired credentials",
+      "limit": "Do not restore obsolete credentials or token trust from a data backup; inability to establish current credential state keeps service closed",
+      "failure": "A valid old backup can resurrect a revoked DB password, signing key, service identity or user grant",
+      "verification": "Rotate DB/origin/signing credentials after the backup, restore it, prove current credentials succeed and old ones fail, and record version identifiers without exposing secret values",
+      "status": "planned_unverified"
+    },
+    {
+      "requirement": "Lag-aware safe state promotion without resurrecting revocations",
+      "mechanism": "Fence old writer and old gateway, verify candidate timeline and contiguous durable log position against a trusted acknowledged-write watermark, replay logs, validate stock/idempotency invariants, reconcile all acknowledged revocations from a synchronously durable security journal in an independent failure domain, then promote one writer and switch authenticated traffic",
+      "limit": "Candidate data loss must be <=60 seconds. Security revocations require zero lost acknowledged revocations despite the general RPO; missing security evidence or uncertain fencing blocks promotion for serving",
+      "failure": "Promoting a lagging replica, split brain, missing log segments, or stale authorization state can violate inventory consistency and restore revoked access",
+      "verification": "Inject replica/archive lag, stale credentials, lost security-journal access, old-primary network return and incomplete replay. Prove unsafe candidates cannot serve; prove only one writer and gateway remain active and all latest revocations are enforced",
+      "status": "planned_unverified"
+    }
+  ]
+}

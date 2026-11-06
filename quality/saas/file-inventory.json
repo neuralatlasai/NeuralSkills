@@ -1,8 +1,7 @@
 {
-  "createdAt": "2026-11-06T05:34:50.775Z",
-  "skillVersion": "1.2.0",
-  "scope": "One flat active skill and retained version-attributed evidence. Self-index and five local browser profiles excluded.",
-  "archivedPriorFilesVerified": 121,
+  "createdAt": "2026-11-06T09:45:31.875Z",
+  "skillVersion": "1.3.0",
+  "scope": "One flat active skill plus retained version-attributed evidence; self-index and five local browser profiles excluded.",
   "excluded": [
     "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/supplemental/chrome-profile/",
     "quality/saas/v1.0/ui-ux-engineering/evals/evidence/review/zoom-completion/baseline-profile/",
@@ -26,14 +25,14 @@
     },
     {
       "path": "README.md",
-      "bytes": 407,
-      "sha256": "25ecc914712be02a11136254ec4594795715e7972e8001cd2e42b1a2a5abfb3a",
+      "bytes": 403,
+      "sha256": "57bcc7a2eeaac38eedce772a2d8657d8bc8fb66870c2c613facd03c58e7c99db",
       "purpose": "Repository navigation or byte-preserving publication rules"
     },
     {
       "path": "quality/saas/README.md",
-      "bytes": 1176,
-      "sha256": "945a60b386def51838b35d260ec1cb0010511b28a88ab3ca8a15ec62f1581ea0",
+      "bytes": 1261,
+      "sha256": "23a571aaba5e744049cfa86f137bbc17d59e7c51a692c2162fcb512eb0a2fb74",
       "purpose": "Version-attributed authoring evidence or evaluation resource"
     },
     {
@@ -130,6 +129,294 @@
       "path": "quality/saas/delivery-evidence/package-inventory.json",
       "bytes": 461661,
       "sha256": "95292b81c6473d16639d726bea2c0e2ea6af785be4651f1b6b7cafe0e0dd352c",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/blind-review-map.json",
+      "bytes": 830,
+      "sha256": "c164992b6ff0170e7f6137b840dcb2d7b304cdf53ac70aecbe79894b8cdb02f0",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/blind-review/findings.json",
+      "bytes": 20348,
+      "sha256": "728351a3f8cbf7d146225af735987939bfd6b7452f8cdae72d4bce5289e7741c",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/blind-review/sample-a.json",
+      "bytes": 9377,
+      "sha256": "7f40b183630d53938b283be23da84a23abed5fea8e7e0da72dc20f36ba82a4af",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/blind-review/sample-b.json",
+      "bytes": 16845,
+      "sha256": "edb108fcf3b537daaf6931cdd28303695567eeddb39077e58e74f7b3bd6ae74c",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/blind-review/sample-c.json",
+      "bytes": 10337,
+      "sha256": "dd90fd50c0ce32b505a1a428c3c87f2e0b6edc373a40a83cf48df8c2c71ac663",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/blind-review/sample-d.json",
+      "bytes": 15279,
+      "sha256": "a4c543b00bbf4d1e54fb033aa1a7a8fa8179d883eed6885138bae4581c2692eb",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/cases/D01/runtime.json",
+      "bytes": 2881,
+      "sha256": "0d343480330e355269c31587374fc1854c3f8c16819f6907ecd671a04918f17f",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/cases/D01/task.md",
+      "bytes": 1811,
+      "sha256": "4ab2f6a40a3d88176799a85fa830798a2abd1033e6577cecac22d869d35c8bd6",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/cases/D02-v2/task.md",
+      "bytes": 2504,
+      "sha256": "fcdc3663ab3372187db11bef74330d40ca7112f80aee70104ac91db4b3d307d7",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/cases/D02/task.md",
+      "bytes": 1852,
+      "sha256": "e0bfeea5ea0a55a8806163ef7f62903cbe19064890a193d06450f64d661ab599",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/cases/D03/task.md",
+      "bytes": 1062,
+      "sha256": "7e1e76336ffc1b959b986ed814bcd59b4a1664c65eb8b9a1b75d01f9d32cce57",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/check.mjs",
+      "bytes": 4675,
+      "sha256": "a901581b12e40faa4205930e7a3a5c28413ea90752309ab54c38e0a6c297dfb9",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/compose.yaml",
+      "bytes": 487,
+      "sha256": "221019969d6b6044ab847f612ef637e8362e3a12c285a9d6c7ce06c39309e435",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/content-review.json",
+      "bytes": 678,
+      "sha256": "14371befbe62c018336a14f8296ece4a7e739a3396bbfb3d885d556ecbfc0fb4",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/controls/D01-pass/kustomization.yaml",
+      "bytes": 90,
+      "sha256": "02f0e3bbb6d2392a9c6b2258fb285c0962cb2a845bcf50937fca6c30665230d7",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/controls/D01-pass/runtime.json",
+      "bytes": 3791,
+      "sha256": "175abb98627bd626d0296cda15ac24952768d15f96ef8dec856cc40e4ff54d13",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/controls/D02-fail/decision.json",
+      "bytes": 1730,
+      "sha256": "0793ec1b9e6c73006a8b733c43d62df6c51f258d3a86654ca95f621249775bdd",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/controls/D02-pass/decision.json",
+      "bytes": 1730,
+      "sha256": "6b9eb4f77e061a3478a017ba47c080e1099fadecc2f091f7a9f6591d2addd1b5",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/defects.json",
+      "bytes": 2357,
+      "sha256": "4cdb1ada778b346a956bf8fa088ee62dfafdf2dbf6b24d62d555f5205b5bd707",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/freeze-v2.json",
+      "bytes": 3080,
+      "sha256": "371a752a48ac88ca1bfee8d4a34824b397de2f1e8060b2483fa43b3aa790222f",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/freeze.json",
+      "bytes": 3670,
+      "sha256": "44e79b8a0e232a8bc64e68b2e73c925de527a89fff30d4c43df57f4758e4647e",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/heldout-review.json",
+      "bytes": 1159,
+      "sha256": "c0ddf769708a8f8733ae589235339270f3d5e18268ba714636b86ccebda1c003",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/host-capabilities-initial.json",
+      "bytes": 2439,
+      "sha256": "5cfc79731c658dafb4940117dd97eecf217eb9b9e56b5d0b896c3a668bd9c077",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/presentation-normalization.json",
+      "bytes": 36049,
+      "sha256": "609c2c5aa1e571e43d14a0727576a65e2f092f30844010c269fd1c3c897f873d",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/protocol.md",
+      "bytes": 2013,
+      "sha256": "ef1ba891066284f504cee3f4f352533656e8f9aa8ade063fb312a8fc5eeba26f",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/report.md",
+      "bytes": 6705,
+      "sha256": "51b88724f83be44f5e25637c63310cd6e3710af54765a281ffe539d67296eb44",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/results.json",
+      "bytes": 2260,
+      "sha256": "64f55915dcee669c9dbe109faf603952b101824f2da2b3516e45f6298c6eebdf",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D01-base/independent-check.json",
+      "bytes": 1363,
+      "sha256": "ea28bdf3a48705c7f9187bf1be95cdf8d76cd46b091c989f76b3b64964194813",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D01-base/report.md",
+      "bytes": 4592,
+      "sha256": "dcc1b8ccc4606b8038917e332ca57f6bcc930fe13b8f300a8ee0185b0e4e7622",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D01-base/runtime.json",
+      "bytes": 15279,
+      "sha256": "a4c543b00bbf4d1e54fb033aa1a7a8fa8179d883eed6885138bae4581c2692eb",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D01-skill/independent-check.json",
+      "bytes": 1365,
+      "sha256": "3423589e4226e7c71c374a1685cbf3679fbffa8f364d43efebda5c831068ac87",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D01-skill/report.md",
+      "bytes": 5309,
+      "sha256": "57270b320c88c4b7dd4be3ef5f42e2bfb1e6b752c89605244d3aa3d50c78a1a8",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D01-skill/runtime.json",
+      "bytes": 16845,
+      "sha256": "edb108fcf3b537daaf6931cdd28303695567eeddb39077e58e74f7b3bd6ae74c",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-base/decision.json",
+      "bytes": 9377,
+      "sha256": "7f40b183630d53938b283be23da84a23abed5fea8e7e0da72dc20f36ba82a4af",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-base/independent-check.json",
+      "bytes": 1097,
+      "sha256": "da7aa7160f41f7a4039b94fadafceda2d3cb6adf73875cc3f6aa653901f85ba0",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-base/report.md",
+      "bytes": 9967,
+      "sha256": "e2aec9caa3f4b2b3148ff7c1d96c4bdf4977f49972635c9798fc0aea4d0402a8",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-skill/decision.json",
+      "bytes": 10337,
+      "sha256": "dd90fd50c0ce32b505a1a428c3c87f2e0b6edc373a40a83cf48df8c2c71ac663",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-skill/independent-check.json",
+      "bytes": 1099,
+      "sha256": "f3ddd9a2b18b6c38c883a98c9213f8fb9c63e03573d78b80db425cada09c803b",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-skill/report.md",
+      "bytes": 9213,
+      "sha256": "53e4e46b763aa1b8f8f8e0a684b5c7acfc5b0bfed1425b93d14377f184295bee",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-v2-base/decision.json",
+      "bytes": 8525,
+      "sha256": "517b2b53492064898cfef2463be6b08a93855f84b7c03ab0b8f1db265ccce2dd",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-v2-base/independent-check.json",
+      "bytes": 1055,
+      "sha256": "21396c3108eb0d18fb040a51994e3f2b04290cffbb7a5e26a7dff68a77fdda8e",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-v2-base/report.md",
+      "bytes": 5056,
+      "sha256": "4513c04dae6a0e6b50fe413c148c9ce674d7d0cb9d66ea6cac1573ca9f2ae69e",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-v2-skill/decision.json",
+      "bytes": 9630,
+      "sha256": "30e1861c7e67f5cf2343200429930221093ae0bcd31cd90637f4c4f87bc8142d",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-v2-skill/independent-check.json",
+      "bytes": 1057,
+      "sha256": "ef63e0df750335623cc172cb9669c1fb7bf136728c1c8e6f7205ac977a7d2edd",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D02-v2-skill/report.md",
+      "bytes": 5045,
+      "sha256": "c2e42f32b7576eecc75d4be61db0f3646d94c594e48eb30116f1eb5a6640480f",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/D03-heldout/recovery.md",
+      "bytes": 20673,
+      "sha256": "c3de747ef2670d8381c6627e273ea209f83e780c754ecc0ad98209aa359780ee",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/trials/activation/result.json",
+      "bytes": 3283,
+      "sha256": "d27cd1175a2f8a68011143f060194d69d839e6fa75159bb4dbfb47b712712ad8",
+      "purpose": "Version-attributed authoring evidence or evaluation resource"
+    },
+    {
+      "path": "quality/saas/devops-1.3/validation-controls-initial.json",
+      "bytes": 10690,
+      "sha256": "cf0d61acdb8df4cb722fd2fa5becfe60a14a2db12a0ae645f65430794e2a9f4a",
       "purpose": "Version-attributed authoring evidence or evaluation resource"
     },
     {
@@ -12032,8 +12319,8 @@
     },
     {
       "path": "roles/saas/SKILL.md",
-      "bytes": 2486,
-      "sha256": "5c84fcbc7444fef0c7ed51b722566ecbf375fdca1da82a28768a4a8b5f001058",
+      "bytes": 2563,
+      "sha256": "6f65e3a4310756c9a46e9189149e2af74eeadf323a9efd6db82c2e4cf5f826b9",
       "purpose": "Active flat skill resource"
     },
     {
@@ -12079,6 +12366,24 @@
       "purpose": "Active flat skill resource"
     },
     {
+      "path": "roles/saas/devops-compute.md",
+      "bytes": 5384,
+      "sha256": "eda7983fb0d1f5a4d845392131390912b22f8d7003bcaef362f50e9dbdc4d229",
+      "purpose": "Active flat skill resource"
+    },
+    {
+      "path": "roles/saas/devops-platforms.md",
+      "bytes": 4686,
+      "sha256": "0f6f0f5ef25763a13a3929247da2232a3d8be9cef04d9f27eddabda0571735de",
+      "purpose": "Active flat skill resource"
+    },
+    {
+      "path": "roles/saas/devops.md",
+      "bytes": 5580,
+      "sha256": "b3cff595c9591b55518e3b02c74f6eba83f9d3d672579f3fe25862346033623d",
+      "purpose": "Active flat skill resource"
+    },
+    {
       "path": "roles/saas/frontend-design.md",
       "bytes": 7790,
       "sha256": "f5c7abc285f0d071ec94cbea8587a0b6c0e2145c70ce3c78c35e048459b54515",
@@ -12092,14 +12397,14 @@
     },
     {
       "path": "roles/saas/manifest.json",
-      "bytes": 1963,
-      "sha256": "7b34f6aa3c6ec0ed840071a3c310bd129912b1fb457b033eec69108966425502",
+      "bytes": 2415,
+      "sha256": "6ba9cc4bad2adb995530fc6932cc2625954142e372eaa082a7ebb9c9a660d52b",
       "purpose": "Active flat skill resource"
     },
     {
       "path": "roles/saas/source-register.md",
-      "bytes": 18421,
-      "sha256": "7e5461587234cc8ba7ad07a1f11376ed85158deb8deb4220a73f4634a8026357",
+      "bytes": 25181,
+      "sha256": "857ee0c9aed526f3118462e0214912a556b9a0152783ec1f66d22364ef30a56d",
       "purpose": "Active flat skill resource"
     },
     {

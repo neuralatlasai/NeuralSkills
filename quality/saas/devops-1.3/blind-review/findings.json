@@ -1,0 +1,287 @@
+{
+  "reviewScope": {
+    "taskSources": [
+      "cases/D01/task.md",
+      "cases/D02/task.md"
+    ],
+    "reviewedArtifacts": [
+      "blind-review/sample-a.json",
+      "blind-review/sample-b.json",
+      "blind-review/sample-c.json",
+      "blind-review/sample-d.json"
+    ],
+    "statusMeaning": {
+      "PASS": "The supplied artifact satisfies the statically reviewable design requirement. This does not establish a deployed or measured outcome.",
+      "FAIL": "The supplied artifact contains a demonstrated contradiction of a required engineering invariant.",
+      "UNVERIFIED": "The requirement depends on unavailable baseline evidence, selected implementation details, or runtime observation."
+    },
+    "method": "Read only the two raw tasks and four permitted anonymous artifacts. Parsed each artifact with the local JSON parser and independently recomputed the capacity arithmetic. No deployments, account access, external checkers, runtime tests, skill instructions, trial records, maps, or other quality reports were used.",
+    "deliverableBoundary": "Only the anonymous machine-readable artifacts were supplied for review. Companion report.md content, original D01 runtime.json, and original output filenames were not inspected. Their presence, preservation, and completeness cannot be inferred from this review."
+  },
+  "samples": [
+    {
+      "sample": "sample-a.json",
+      "task": "D02",
+      "status": "PASS",
+      "operatingAcceptance": "UNVERIFIED",
+      "criticalDefects": [],
+      "findings": [
+        {
+          "location": "$.capacity",
+          "status": "PASS",
+          "reasoning": "Preserves activeMax=6, surge=2, terminating=1, workers=4, maintenance=2, allocated=40. poolPerProcess=3 is positive; (6+2+1)*3+4+2=33 <=40. A pool of 4 would require 42."
+        },
+        {
+          "location": "$.admission; $.checks[1]",
+          "status": "PASS",
+          "reasoning": "Explicitly rejects Cloud Run scaling as the connection admission boundary. A proposed single active, fenced session-owning gateway with global API/worker/maintenance budgets 27/4/2 can bound physical workload sessions independently of client process count. It specifies no direct-connection bypass, bounded queue/deadline behavior, and closure/fencing of old sessions before failover replacements."
+        },
+        {
+          "location": "$.state; $.checks[2]; $.checks[4]",
+          "status": "PASS",
+          "reasoning": "KV is non-authoritative for both immediate revocation and inventory. The primary authority checks current grants and epochs; authorization and protected operations serialize with revocation, and acknowledgement waits for prior work to drain or cancel. The plan covers streams, stale tokens, direct-origin bypass, and fail-closed behavior."
+        },
+        {
+          "location": "$.state.writeOwnership; $.checks[3]",
+          "status": "PASS",
+          "reasoning": "Uses one serializable transaction for authorization, guarded stock updates, and idempotency result. Requires all rows of a multi-item operation to share the transaction, deterministic locking, and bounded conflict retries. Verification includes final-unit contention, partial-write crashes, and replay after a lost response."
+        },
+        {
+          "location": "$.recovery; $.checks[5]; $.checks[6]; $.checks[7]",
+          "status": "PASS",
+          "reasoning": "RTO/RPO targets remain 900/60 seconds and both measured fields are null. The proposed recovery path includes current credentials, recoverable log positions, old-writer and gateway fencing, invariant validation, and safe promotion. It separately requires all acknowledged security revocations to survive recovery and blocks service if evidence is missing."
+        },
+        {
+          "location": "$.checks[*].status; $.checks[*].verification",
+          "status": "PASS",
+          "reasoning": "Distinguishes arithmetic-only validation from planned, unverified runtime checks. The arithmetic is independently reproducible. The artifact does not report a completed deployment or measured recovery success."
+        }
+      ],
+      "limitations": [
+        {
+          "location": "$.admission.mechanism; $.checks[1]",
+          "status": "UNVERIFIED",
+          "reasoning": "No gateway product, enforcement configuration, credential/network policy, failover implementation, or DB-side session trace is supplied. Aggregate caps must include reconnects, old sessions and every bypass identity; the specified acceptance tests remain necessary."
+        },
+        {
+          "location": "$.checks[7].mechanism",
+          "status": "UNVERIFIED",
+          "reasoning": "The independently durable security journal must be ordered before revocation acknowledgement and must reliably distinguish missing evidence from an empty journal. The artifact states the required synchronous durability and fail-closed outcome but does not provide the journal write/acknowledgement protocol."
+        },
+        {
+          "location": "$.state.authority; $.checks[2]; $.checks[3]; $.recovery",
+          "status": "UNVERIFIED",
+          "reasoning": "Database transaction semantics, operation/stream implementation, current-secret retrieval, backup restoreability, durable lag, RTO and RPO require implementation and authorized tests. A static proposal cannot prove them."
+        },
+        {
+          "location": "$.admission.hardBoundary",
+          "status": "PASS",
+          "reasoning": "The task specifies field names but no value types for hardBoundary. A boolean accompanied by the detailed mechanism is not an output-format defect."
+        }
+      ]
+    },
+    {
+      "sample": "sample-b.json",
+      "task": "D01",
+      "status": "PASS",
+      "operatingAcceptance": "UNVERIFIED",
+      "criticalDefects": [],
+      "findings": [
+        {
+          "location": "$.kind; $.items[0].spec.replicas; $.items[1].spec; $.items[2].spec",
+          "status": "PASS",
+          "reasoning": "Provides a Kubernetes List containing the orders Deployment, matching HPA, and matching PDB. Initial/minimum replicas=3; after one replica loss, two healthy replicas provide 100 useful requests/s against demand 90. PDB minAvailable=2 permits one voluntary eviction from three healthy replicas while retaining that modeled capacity. HPA maximum=6."
+        },
+        {
+          "location": "$.items[0].spec.strategy; $.items[0].spec.template.spec.containers[0].env",
+          "status": "PASS",
+          "reasoning": "RollingUpdate maxSurge=1 and maxUnavailable=0 preserve configured rollout availability. The stated peak envelope is six maximum replicas plus one surge plus one terminating replica: 8*DB_POOL_MAX(4)+4 workers+2 maintenance=38 <=40."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.containers[0].ports; $.items[0].spec.template.spec.containers[0].livenessProbe; $.items[0].spec.template.spec.containers[0].readinessProbe; $.items[0].spec.template.spec.containers[0].startupProbe",
+          "status": "PASS",
+          "reasoning": "Uses port 8080 and the declared /live, /ready, /started endpoints. Startup allowance is 30*5=150 seconds, exceeding the 120-second initialization requirement. Startup gating prevents liveness/readiness execution during initialization; liveness uses the local-failure endpoint rather than the dependency-sensitive readiness endpoint."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.terminationGracePeriodSeconds",
+          "status": "PASS",
+          "reasoning": "Configured grace is 25 seconds, matching the declared 20-second drain plus five seconds of propagation allowance. Actual signal handling, endpoint removal, and request completion are not demonstrated."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.containers[0].resources",
+          "status": "PASS",
+          "reasoning": "CPU request 250m and memory request 96Mi meet the minima. Memory limit 192Mi is within 128Mi to 256Mi. Ephemeral storage has a 64Mi request and 128Mi limit; the /tmp emptyDir additionally has a 64Mi size limit."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.securityContext; $.items[0].spec.template.spec.automountServiceAccountToken; $.items[0].spec.template.spec.containers[0].securityContext",
+          "status": "PASS",
+          "reasoning": "Sets non-root UID/GID, RuntimeDefault seccomp, read-only root filesystem, no privilege escalation, dropped ALL Linux capabilities, and disabled service-account token automount. A bounded writable /tmp volume has an fsGroup."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.topologySpreadConstraints; $.items[0].spec.minReadySeconds; $.items[0].spec.progressDeadlineSeconds",
+          "status": "PASS",
+          "reasoning": "Expresses a hostname-spread preference and adds readiness dwell and rollout progress detection. ScheduleAnyway is a preference rather than a placement guarantee; the raw task does not require surviving a node failure."
+        }
+      ],
+      "limitations": [
+        {
+          "location": "$.items[0].spec.template.spec.containers[0].image",
+          "status": "UNVERIFIED",
+          "reasoning": "The artifact declares a fixed image digest, but the original runtime.json is outside this review. Preservation against that original and actual image availability cannot be established."
+        },
+        {
+          "location": "$.items[0].spec.template.spec; $.items[1]; $.items[2]",
+          "status": "UNVERIFIED",
+          "reasoning": "Only JSON parsing and arithmetic were performed. Kubernetes API/schema acceptance, schedulable resources, actual topology, metrics availability, HPA operation, endpoint semantics, load capacity, drain behavior, DB pool enforcement and eviction/rollout outcomes are untested. A PDB does not prevent involuntary failure."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.topologySpreadConstraints[0].whenUnsatisfiable",
+          "status": "UNVERIFIED",
+          "reasoning": "ScheduleAnyway may co-locate replicas when the scheduler cannot or does not satisfy the preference. This limits node-failure protection but does not contradict the requested single-replica-loss arithmetic."
+        },
+        {
+          "location": "Companion report.md and original filename",
+          "status": "UNVERIFIED",
+          "reasoning": "These were not part of the permitted anonymous artifacts. The manifest makes no runtime-success claims; whether its companion report accurately distinguishes configured controls from tested outcomes cannot be reviewed."
+        }
+      ]
+    },
+    {
+      "sample": "sample-c.json",
+      "task": "D02",
+      "status": "PASS",
+      "operatingAcceptance": "UNVERIFIED",
+      "criticalDefects": [],
+      "findings": [
+        {
+          "location": "$.capacity; $.checks[0]",
+          "status": "PASS",
+          "reasoning": "Retains all mandated capacity counts and allocation. (6+2+1)*3+4+2=33 <=40, and poolPerProcess=3 is the largest uniform positive integer satisfying the supplied envelope."
+        },
+        {
+          "location": "$.admission; $.checks[1]",
+          "status": "PASS",
+          "reasoning": "Rejects the Cloud Run instance maximum as a hard DB cap. Proposes an aggregate, non-bypassable database-native or shared-broker limit across replicas, restarts and failover, with bounded admission waits and rejection. The separate hard ceilings 34 API/worker sessions plus 6 reserved maintenance sessions total 40."
+        },
+        {
+          "location": "$.admission.mechanism; $.checks[1].limit",
+          "status": "PASS",
+          "reasoning": "The modeled required workload remains 27 API+4 worker+2 maintenance=33. The larger admission ceilings reserve spare allocation rather than lowering the required process counts or increasing allocation 40. Six reserved maintenance slots are not asserted to be six required normal maintenance connections."
+        },
+        {
+          "location": "$.state; $.checks[2]; $.checks[5]",
+          "status": "PASS",
+          "reasoning": "KV is explicitly non-authoritative. A primary database authority, conflicting authorization/revocation locks, acknowledgement barrier, fail-closed authority loss, current operation credentials/versions, and tests for edge/origin/worker bypass address immediate revocation. It recognizes that streams and queued work require exact implementation."
+        },
+        {
+          "location": "$.state.writeOwnership; $.checks[3]",
+          "status": "PASS",
+          "reasoning": "Places guarded tenant-aware inventory decrement, reservation and tenant-scoped idempotency in one transaction. Covers deterministic multi-item locking, rollback after partial execution, duplicate retries after lost acknowledgements and external-effect outbox requirements."
+        },
+        {
+          "location": "$.recovery; $.checks[4]",
+          "status": "PASS",
+          "reasoning": "Keeps targets 900/60 and measured values null. Recovery includes current credentials, durable position/lag evidence, old-writer fencing including reused connections, exclusive writer epoch, invariant validation and traffic admission only after safe promotion. Acknowledged revocations require preservation or a durable fail-closed reauthentication barrier; general RPO is not treated as permission to restore access."
+        },
+        {
+          "location": "$.checks[*].status; $.checks[*].verification",
+          "status": "PASS",
+          "reasoning": "The capacity check is marked PASS and is independently reproducible; all operating checks are UNVERIFIED. The artifact reports no deployment or recovery measurement."
+        }
+      ],
+      "limitations": [
+        {
+          "location": "$.admission.mechanism; $.checks[1]",
+          "status": "UNVERIFIED",
+          "reasoning": "The exact engine, native cap or broker, role privileges, global enforcement and failover semantics remain unselected. Generic database role limits and per-proxy caps cannot be assumed to implement the stated aggregate invariant. DB-side counts, bypass attempts and failure tests must establish it."
+        },
+        {
+          "location": "$.admission.mechanism; $.capacity",
+          "status": "UNVERIFIED",
+          "reasoning": "Normal modeled total 33 and hard admission ceiling 40 are distinct. The final implementation must map the 34/6 budgets to actual identities and pool ownership without multiplying limits or unintentionally preventing the required four workers and two maintenance sessions."
+        },
+        {
+          "location": "$.checks[2]; $.checks[3]; $.checks[4]",
+          "status": "UNVERIFIED",
+          "reasoning": "Authorization locking, stream cancellation, transaction isolation, durable revocation barriers, current credential retrieval, lag, restore time and safe promotion are proposed requirements and tests, not observed mechanisms or outcomes."
+        },
+        {
+          "location": "$.checks[0].verification",
+          "status": "UNVERIFIED",
+          "reasoning": "The historical claim that local arithmetic assertions were executed cannot be proven from the static artifact alone. The review independently reproduced the claimed arithmetic; there is no conflicting runtime claim."
+        },
+        {
+          "location": "$.admission.hardBoundary",
+          "status": "PASS",
+          "reasoning": "The task supplies no explicit type for hardBoundary. Its descriptive string states the boundary and is not a demonstrated format violation."
+        }
+      ]
+    },
+    {
+      "sample": "sample-d.json",
+      "task": "D01",
+      "status": "PASS",
+      "operatingAcceptance": "UNVERIFIED",
+      "criticalDefects": [],
+      "findings": [
+        {
+          "location": "$.kind; $.items[0].spec.replicas; $.items[1].spec; $.items[2].spec",
+          "status": "PASS",
+          "reasoning": "Provides a Kubernetes List with Deployment, HPA and matching PDB. Initial/minimum replicas=3; two replicas after one loss have modeled capacity 100 requests/s >=90. PDB minAvailable=2 permits a voluntary single-replica eviction from three healthy replicas. HPA maxReplicas=6."
+        },
+        {
+          "location": "$.items[0].spec.strategy; $.items[0].spec.template.spec.containers[0].env",
+          "status": "PASS",
+          "reasoning": "RollingUpdate maxSurge=1 and maxUnavailable=0 match the rollout requirement. Peak modeled DB use is (6+1+1)*4+4+2=38 <=40, including the stipulated terminating replica."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.containers[0].ports; $.items[0].spec.template.spec.containers[0].livenessProbe; $.items[0].spec.template.spec.containers[0].readinessProbe; $.items[0].spec.template.spec.containers[0].startupProbe",
+          "status": "PASS",
+          "reasoning": "Uses port 8080 and /live, /ready, /started as declared. Startup allowance 30*5=150 seconds exceeds 120 seconds and gates liveness/readiness during initialization. The local liveness endpoint separates dependency outages from restart decisions."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.terminationGracePeriodSeconds",
+          "status": "PASS",
+          "reasoning": "Configured grace 25 seconds accounts for the declared 20-second drain and five additional propagation seconds. No observed shutdown or traffic result is implied."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.containers[0].resources",
+          "status": "PASS",
+          "reasoning": "Requests 250m CPU and 96Mi memory; memory limit 192Mi is within the required range. Ephemeral storage has a 16Mi request and finite 64Mi limit."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.securityContext; $.items[0].spec.template.spec.automountServiceAccountToken; $.items[0].spec.template.spec.containers[0].securityContext",
+          "status": "PASS",
+          "reasoning": "Sets non-root UID/GID, RuntimeDefault seccomp, read-only root filesystem, no privilege escalation, dropped ALL capabilities and disabled service-account token automount. The raw task does not require a writable /tmp volume; its absence is not an established defect for an image stated to support a read-only root filesystem."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.topologySpreadConstraints",
+          "status": "PASS",
+          "reasoning": "Configures hostname topology spread with maxSkew=1 and DoNotSchedule. This provides a stricter placement control where eligible domains exist, subject to actual node resources and scheduler behavior."
+        }
+      ],
+      "limitations": [
+        {
+          "location": "$.items[0].spec.template.spec.containers[0].image",
+          "status": "UNVERIFIED",
+          "reasoning": "The original runtime.json was not available within review scope. The declared digest can be observed, but baseline preservation and image availability cannot be established."
+        },
+        {
+          "location": "$.items[0].spec.template.spec.topologySpreadConstraints",
+          "status": "UNVERIFIED",
+          "reasoning": "Hard topology spreading can leave pods Pending when eligible domains or resources cannot meet the constraint. The multiple-node assumption does not prove scheduling feasibility; an authorized placement/rollout test is still needed."
+        },
+        {
+          "location": "$.items[0]; $.items[1]; $.items[2]",
+          "status": "UNVERIFIED",
+          "reasoning": "JSON parsing and capacity arithmetic do not prove Kubernetes schema/API acceptance, actual app health/probe semantics, fixture throughput, pool enforcement, metrics/HPA operation, eviction behavior, propagation, drain completion or rollout recovery. A PDB only controls supported voluntary disruptions."
+        },
+        {
+          "location": "Companion report.md and original filename",
+          "status": "UNVERIFIED",
+          "reasoning": "These are outside the supplied anonymous artifacts. No manifest field claims successful tests; truthful treatment in the companion report cannot be assessed. Missing review evidence is not classified as an engineering defect."
+        }
+      ]
+    }
+  ]
+}

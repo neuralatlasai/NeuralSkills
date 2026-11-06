@@ -1,0 +1,78 @@
+{
+  "capacity": {
+    "activeMax": 6,
+    "surge": 2,
+    "terminating": 1,
+    "poolPerProcess": 3,
+    "workers": 4,
+    "maintenance": 2,
+    "allocated": 40,
+    "totalConnections": 33
+  },
+  "admission": {
+    "hardBoundary": "Database-side enforced aggregate connection admission for this workload, independent of Cloud Run instance count",
+    "mechanism": "Proposed: one non-bypassable database session admission boundary with 34 total application/worker server sessions plus a separately reserved 6 maintenance sessions, aggregate maximum 40. API clients have per-process pool limit 3; workers retain their full 4 connection allowance. Use a supported database-native per-workload cap or a shared session broker whose aggregate cap survives replica/restart/failover; all app and worker identities must be unable to connect around it. Keep maintenance use at the supplied 2 in the normal envelope; the extra 4 allocation slots are headroom, not assumed usable process capacity. Reject excess admission or queue with explicit finite count and timeout. Database engine/version and exact enforcement configuration must be selected and tested before acceptance. Cloud Run maximum is an operating target only."
+  },
+  "state": {
+    "kvAuthoritativeForImmediateRevocation": false,
+    "kvAuthoritativeForInventory": false,
+    "authority": "Proposed regional transactional relational database primary, with strongly consistent primary authorization reads and atomic inventory transactions. PostgreSQL is a candidate, not an installed or verified engine. KV may hold non-authoritative display/configuration caches only; a cached allow never grants access and cached stock never commits inventory.",
+    "writeOwnership": "Exactly one writable primary generation. Every API, admin, import and worker mutation uses the same database constraints and transaction path. Authorization state and inventory changes share the transaction authority. Lock the relevant session/principal authorization row for the operation; revocation takes the conflicting lock, sets revoked/version and acknowledges only after earlier protected effects have committed or been canceled. Requests ordered after revocation commit fail closed. Guard inventory decrement by tenant, positive quantity and available >= requested quantity; commit decrement, reservation and tenant-scoped unique idempotency record together. Multi-item operations use one transaction with deterministic lock order. Before promotion, fence the old primary and all writers through enforceable credentials/network/storage authority, then advance the writer epoch. Never infer exclusive write ownership from routing or DNS."
+  },
+  "recovery": {
+    "targetRtoSeconds": 900,
+    "targetRpoSeconds": 60,
+    "measuredRtoSeconds": null,
+    "measuredRpoSeconds": null
+  },
+  "checks": [
+    {
+      "requirement": "R1: Preserve every supplied capacity count within allocation 40",
+      "mechanism": "(6 + 2 + 1) * 3 + 4 + 2 = 33; 7 connections of allocation headroom. The largest uniform integer pool that fits this envelope is floor((40 - 4 - 2) / 9) = 3.",
+      "limit": "Arithmetic covers the declared nine processes only; hidden pools, extra runtime processes, exporters and failover sessions must be accounted for. poolPerProcess 4 would require 42 and fails.",
+      "failure": "A steady-state-only calculation or treating Cloud Run maximum as a guaranteed cap undercounts rollout/cold start/termination and transient overshoot.",
+      "verification": "Executed local JSON arithmetic assertions; no DB sessions or workload were created.",
+      "status": "PASS"
+    },
+    {
+      "requirement": "R2: Independently bound actual database admission",
+      "mechanism": "Database-native or non-bypassable shared broker aggregate cap, proposed API/worker 34 plus reserved maintenance 6, never exceeding workload allocation 40; bounded acquisition queue/deadline and overload rejection.",
+      "limit": "34 is the aggregate API/worker server-session ceiling, not 34 per broker or replica. Maintenance use remains 2 in the modeled normal envelope. Native role caps, privileged bypass and failover behavior depend on the chosen engine.",
+      "failure": "Extra processes, multiple broker replicas, retired revisions, leak, reconnect storm or direct connections evade a per-process or per-instance cap.",
+      "verification": "Before acceptance, burst with 6 serving + 2 startup + 1 terminating processes, worker 4 and maintenance 2; deliberately exceed process envelope and 40 attempts; observe authoritative DB session counts <=40, bounded rejection/queue age, successful maintenance access, cleanup after cancel/crash and unchanged aggregate limit through broker/DB failover. Try direct bypass with every app/worker identity.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "requirement": "R3: Immediate revocation despite edge staleness",
+      "mechanism": "Every protected action performs a current primary authority check under the same lock/transaction ordering as revocation. Revocation commit is the linearization barrier; acknowledge only after prior protected work drains or is canceled. Fail closed when authority is unreachable. Never authorize solely with KV, token expiry, cached positive decisions or asynchronous invalidation.",
+      "limit": "Current credentials and principal/session version must be checked at the operation boundary. Previously delivered data cannot be retracted. The contract must define streams, queued work and already-running actions; retaining authorization across requests is prohibited.",
+      "failure": "Stale KV allow, cached absence of revocation, direct-origin bypass, retained long-lived sessions or a lagging recovery replica re-grant access.",
+      "verification": "Warm allowed and missing KV entries in multiple locations; revoke and issue fresh protected requests concurrently and immediately after acknowledged commit. Require zero later-authorized actions. Race revocation against inventory commit, queued jobs and streaming sends; prove the acknowledgement barrier drains/cancels earlier work and no subsequent protected effect occurs. Partition authority and verify deny. Exact application transaction/stream implementation is required before acceptance.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "requirement": "R4: Atomic inventory and replay-safe effects",
+      "mechanism": "Primary database guarded decrement and related reservation/idempotency record in one transaction, trusted tenant identity, supported constraints and deterministic locking; retry an aborted transaction with the same operation identity.",
+      "limit": "Multi-row invariants require actual engine isolation and shared locking; external payment/shipping effects need a transactional outbox and consumer idempotency, not an assumed cross-service transaction.",
+      "failure": "Concurrent stale reads oversell; crash causes decrement without reservation; lost commit acknowledgement followed by a new operation identity duplicates the effect.",
+      "verification": "Real-engine independent-connection test: stock 5, simultaneous orders 4 and 4 yields one reservation and stock 1. Inject failure after decrement before reservation and require rollback of both. Drop acknowledgement after commit, replay the same identity and require exactly one effect. Exercise multi-item rollback, cross-tenant denial and worker/import bypass attempts.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "requirement": "R5: Recovery targets RTO <=900 seconds and RPO <=60 seconds without stale authorization or split brain",
+      "mechanism": "Proposed warm standby/recovery region with independently retrievable image digest, config, keys and current credentials; durable backups/PITR plus selected database replication. Monitor commit-position lag and backup recoverability. Fence old primary, verify eligible durable state, acquire exclusive writer epoch, restore authority, then route and validate useful operations; deliberate failback repeats fencing.",
+      "limit": "Targets are not measurements. RPO 60 is not permission to resurrect acknowledged revocations. Promotion must retain all acknowledged revocations or remain fail closed/re-authenticate all previous sessions using an independently durable revocation barrier/new epoch. If lag or fencing is unknown, stop promotion; missing RTO is safer than unsafe writes.",
+      "failure": "Standby lacks latest secret/key/config, lag exceeds 60, stale policy re-grants access, inaccessible backups, duplicate writers, stale clients or cached routes reach the old primary.",
+      "verification": "Authorized isolated drill: timestamp failure onset and acknowledged commit IDs; prove latest credentials work and retired credentials fail in both serving/recovery paths, restore backups and replay logs, measure durable commit-position/time lag, fence old writers including reused connections, promote only safe state, test revocation and inventory invariants, then admit traffic. Measure RTO from failure onset to validated useful service and RPO from acknowledged commits absent after recovery. Require <=900 and <=60 respectively plus zero resurrected revocations; repeat under peak load and log abort/failback outcomes.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "requirement": "R6: Cloudflare-to-Cloud-Run trust cannot bypass authority",
+      "mechanism": "Verify a supported authenticated origin invocation design with least-privilege service identity; validate issuer/audience/expiry/tenant server-side, authenticate administrative revocation separately and require the primary authorization check for every route and writer.",
+      "limit": "Actual region, identity provider, Cloud Run ingress/IAM settings, service identity issuance/rotation, quotas, latency, backup permissions and database capabilities remain unknown.",
+      "failure": "Public origin, spoofed headers, stale credentials, wrong audience or privileged admin path bypasses checks.",
+      "verification": "Before acceptance, attempt direct origin access, spoofed edge headers, wrong tenant/audience, expired/retired credentials and revoked sessions from edge/origin/worker paths; verify denials and redact audit logs. No account or origin access was attempted here.",
+      "status": "UNVERIFIED"
+    }
+  ]
+}

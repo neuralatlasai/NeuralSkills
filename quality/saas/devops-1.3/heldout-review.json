@@ -1,0 +1,13 @@
+{
+  "reviewer": "Coordinating agent against frozen D03 input; not independent user research",
+  "artifact": "trials/D03-heldout/recovery.md",
+  "status": "PASS",
+  "scope": "Proposed recovery contract, not working scheduler/solver implementation",
+  "observations": [
+    "Retains existing Slurm/Apptainer; requeue invokes explicit compatible checkpoint restart rather than assuming process continuation.",
+    "120 seconds notice minus supplied 70+20 seconds leaves 30 seconds for other overhead; overhead/real scale remain unverified and no RTO is invented.",
+    "Attempt/run identity, complete checkpoints, output watermark and fenced/no-replace publication address partial writes, duplicate attempts and lost acknowledgements.",
+    "Failure schedule separates node loss, warning, checkpoint, publication, queue/restart and quota; GPU/MPI/driver/fabric compatibility requires actual multi-node evidence."
+  ],
+  "limitations": "Artifact is a detailed plan. No Slurm wrapper, solver integration, filesystem atomicity, runtime checkpoint, failover, performance or recovery measurement is demonstrated. Held-out output was not used to tune instructions."
+}

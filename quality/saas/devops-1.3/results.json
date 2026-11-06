@@ -1,0 +1,95 @@
+{
+  "createdAt": "2026-11-06T09:41:55.410Z",
+  "skillVersion": "1.3.0",
+  "packageCheck": {
+    "exitCode": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"Bounded flat-package metadata/link/anchor/manifest/coverage/context assertions; not formal standards or full YAML/schema conformance\",\n  \"entryWords\": 307,\n  \"resources\": 18,\n  \"links\": 54,\n  \"errors\": []\n}\n",
+    "stderr": ""
+  },
+  "freezeChecks": [
+    {
+      "record": "freeze.json",
+      "files": 24,
+      "changed": []
+    },
+    {
+      "record": "freeze-v2.json",
+      "files": 20,
+      "changed": []
+    }
+  ],
+  "trials": [
+    {
+      "trial": "D01-base",
+      "status": "PASS",
+      "pass": 12,
+      "fail": [],
+      "total": 12
+    },
+    {
+      "trial": "D01-skill",
+      "status": "PASS",
+      "pass": 12,
+      "fail": [],
+      "total": 12
+    },
+    {
+      "trial": "D02-base",
+      "status": "FAIL",
+      "pass": 7,
+      "fail": [
+        {
+          "name": "Decision evidence complete",
+          "status": "FAIL",
+          "reason": "Invariant not satisfied"
+        }
+      ],
+      "total": 8
+    },
+    {
+      "trial": "D02-skill",
+      "status": "FAIL",
+      "pass": 7,
+      "fail": [
+        {
+          "name": "Admission independent",
+          "status": "FAIL",
+          "reason": "Invariant not satisfied"
+        }
+      ],
+      "total": 8
+    },
+    {
+      "trial": "D02-v2-base",
+      "status": "PASS",
+      "pass": 8,
+      "fail": [],
+      "total": 8
+    },
+    {
+      "trial": "D02-v2-skill",
+      "status": "PASS",
+      "pass": 8,
+      "fail": [],
+      "total": 8
+    }
+  ],
+  "resourceObservations": {
+    "method": "Agent-reported underlying call counts, not independently instrumented token accounting",
+    "calls": {
+      "D01-base": 4,
+      "D01-skill": 6,
+      "D02-base": 4,
+      "D02-skill": 6,
+      "D02-v2-base": 5,
+      "D02-v2-skill": 6,
+      "D03-heldout": 6
+    },
+    "exactModel": null,
+    "tokens": null,
+    "cost": null,
+    "totalWallTime": null,
+    "limit": "Reported partial intervals and local assertion duration are not comparable end-to-end times."
+  },
+  "limit": "Static artifacts, planning and routing only; live container/cluster/provider/HPC behavior unverified."
+}

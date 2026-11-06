@@ -1,0 +1,9 @@
+# Regional container service and edge policy
+
+Prepare a machine-readable decision.json and report.md for a proposed Google Cloud Run API behind Cloudflare. Do not deploy or access accounts. Preserve the requirement for immediate revocation of access and atomic inventory changes. Current proposal uses Cloudflare KV as the sole authorization/inventory authority and assumes the Cloud Run maximum is a hard DB connection cap. Diagnose these assumptions and produce a feasible plan, including verification and remaining unknowns.
+
+Capacity input: maximum six serving processes, two rollout/cold-start allowance processes and one terminating process; four worker connections and two maintenance connections; DB allocation 40. Do not lower these counts or increase the allocation. Select poolPerProcess >=1 and calculate totalConnections. Deployment scaling is not the authoritative admission boundary.
+
+Use this output shape: capacity {activeMax,surge,terminating,poolPerProcess,workers,maintenance,allocated,totalConnections}; admission {hardBoundary,mechanism}; state {kvAuthoritativeForImmediateRevocation,kvAuthoritativeForInventory,authority,writeOwnership}; recovery {targetRtoSeconds,targetRpoSeconds,measuredRtoSeconds,measuredRpoSeconds}; checks [{requirement,mechanism,limit,failure,verification,status}]. Targets are 900 seconds RTO and 60 seconds RPO; no deployment or recovery measurement exists. Explain which mechanisms must be tested before acceptance, including latest credentials, lag and safe state promotion.
+
+Raw primary sources available to either condition: https://docs.cloud.google.com/run/docs/configuring/max-instances ; https://developers.cloudflare.com/kv/concepts/how-kv-works/ ; https://developers.cloudflare.com/durable-objects/concepts/what-are-durable-objects/ . These are evidence, not authority to provision resources.

@@ -1,0 +1,9 @@
+# Orders rollout repair
+
+Repair runtime.json for an existing Kubernetes orders service. Preserve the declared image and app interface. Produce a Kubernetes List named runtime.json and a short report.md in the assigned output directory. Do not deploy or call any cluster/account. You may use offline rendering tools.
+
+Workload contract: 90 admitted requests/s, at most 50 useful requests/s per healthy replica under the measured fixture workload. Continue serving that demand after losing one replica. Scale to at most six replicas. One rollout surge replica and one terminating replica can coexist with that maximum. The service's DB allocation is 40 connections total, including four worker connections and two maintenance connections. Set the per-process DB_POOL_MAX accordingly; pools may not borrow another service's allocation.
+
+Application interface: port 8080; /live checks only unrecoverable local failure, /ready checks ability to accept traffic including required dependencies, /started succeeds after initialization. Initialization can take 120 seconds. Once termination starts the process stops accepting new work and drains within 20 seconds; allow five additional seconds for propagation. Support a voluntary single-replica eviction without taking serving capacity below the stated demand. Liveness must not turn dependency outages into restarts.
+
+Resource measurements: at least 250m CPU request, 96Mi memory request; memory limit between 128Mi and 256Mi; bounded ephemeral storage. The image supports non-root, read-only root filesystem and no Linux capabilities. No service-account token is needed. Existing cluster is assumed to offer multiple nodes; actual scheduling, metrics, topology, app health and image availability are unverified. Distinguish configured controls from tested outcomes.

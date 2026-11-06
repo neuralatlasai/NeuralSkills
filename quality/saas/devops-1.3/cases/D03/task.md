@@ -1,0 +1,5 @@
+# Held-out HPC recovery task
+
+A site runs Slurm with Apptainer and a multi-node GPU/MPI solver. Work takes eight hours; the solver accepts an explicit restart checkpoint and writes output manifests. The site can preempt a job with a 120-second signal notice. A measured checkpoint needs 70 seconds plus up to 20 seconds filesystem flush. The current proposal enables requeue, assumes the solver resumes automatically and publishes outputs by appending directly to a shared final file. CUDA/MPI versions, interconnect, quota and target cluster access have not been supplied.
+
+Produce recovery.md with a concrete restart/publication contract, operating bounds, failure schedule and evidence needed to accept this change. Include treatment of partial output, termination during checkpoint/output publication, duplicate execution and queue/restart time. Preserve the site's platform unless a workload-based reason justifies replacing it. Do not run a scheduler, deploy infrastructure or invent a speedup/recovery measurement. Use the assigned output directory only.

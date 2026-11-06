@@ -1,0 +1,87 @@
+{
+  "createdAt": "2026-11-06T09:37:57.558Z",
+  "cycle": 2,
+  "reason": "Clarify previously underspecified output types for both conditions; instruction source and checker thresholds unchanged. Original trials retained.",
+  "files": [
+    {
+      "path": "quality/saas/devops-1.3/cases/D02-v2/task.md",
+      "sha256": "fcdc3663ab3372187db11bef74330d40ca7112f80aee70104ac91db4b3d307d7"
+    },
+    {
+      "path": "quality/saas/devops-1.3/check.mjs",
+      "sha256": "a901581b12e40faa4205930e7a3a5c28413ea90752309ab54c38e0a6c297dfb9"
+    },
+    {
+      "path": "roles/saas/backend-api.md",
+      "sha256": "f4c6480387d68f10d40d706780a253fa62bec30cd0a1a5c036a6f07524968037"
+    },
+    {
+      "path": "roles/saas/backend-async.md",
+      "sha256": "d4ac5fdb06049e35cf30c82934909a9fee0bb9cb4f521d75f5f992225b86a333"
+    },
+    {
+      "path": "roles/saas/backend-coverage.json",
+      "sha256": "77e41a38e9bf44b1c61fc92497fcf35bcef19a40203d5384234edf0fb928cca4"
+    },
+    {
+      "path": "roles/saas/backend-data.md",
+      "sha256": "9fc3b529c922f2236b223c375d42094ca3b83207f04180eeb2915215c6a4ce7c"
+    },
+    {
+      "path": "roles/saas/backend-edge.md",
+      "sha256": "3129fad6f2f6480d74e51467a359720caa2955e5f7f5e3f720a3227aa4a1c96e"
+    },
+    {
+      "path": "roles/saas/backend-operations.md",
+      "sha256": "6368fa14ab57bcca92073b74c03583b4d660d13fe72589b77a7359476ceb3456"
+    },
+    {
+      "path": "roles/saas/backend-runtime.md",
+      "sha256": "f8f57984cd11601edab69e936da6b7ec4c4bfa21a4eb99acacd32552ad502b5f"
+    },
+    {
+      "path": "roles/saas/devops-compute.md",
+      "sha256": "eda7983fb0d1f5a4d845392131390912b22f8d7003bcaef362f50e9dbdc4d229"
+    },
+    {
+      "path": "roles/saas/devops-platforms.md",
+      "sha256": "0f6f0f5ef25763a13a3929247da2232a3d8be9cef04d9f27eddabda0571735de"
+    },
+    {
+      "path": "roles/saas/devops.md",
+      "sha256": "b3cff595c9591b55518e3b02c74f6eba83f9d3d672579f3fe25862346033623d"
+    },
+    {
+      "path": "roles/saas/frontend-design.md",
+      "sha256": "f5c7abc285f0d071ec94cbea8587a0b6c0e2145c70ce3c78c35e048459b54515"
+    },
+    {
+      "path": "roles/saas/frontend-implementation.md",
+      "sha256": "39b25a5920bfffd91ed6215d0f154558fb87c0433375df7123b29f4f74f4d870"
+    },
+    {
+      "path": "roles/saas/manifest.json",
+      "sha256": "6ba9cc4bad2adb995530fc6932cc2625954142e372eaa082a7ebb9c9a660d52b"
+    },
+    {
+      "path": "roles/saas/SKILL.md",
+      "sha256": "6f65e3a4310756c9a46e9189149e2af74eeadf323a9efd6db82c2e4cf5f826b9"
+    },
+    {
+      "path": "roles/saas/source-register.md",
+      "sha256": "857ee0c9aed526f3118462e0214912a556b9a0152783ec1f66d22364ef30a56d"
+    },
+    {
+      "path": "roles/saas/standards.md",
+      "sha256": "cbee29bd5cabbce047bb502081c1e5e872adbe4ecc20d46972f50ab3e59f9936"
+    },
+    {
+      "path": "roles/saas/verification.md",
+      "sha256": "9ec8040cea65250e04fdd9c653a3c30d6c36b95a88c9ef1fbb4f76ee418fcba4"
+    },
+    {
+      "path": "roles/saas/workflow.md",
+      "sha256": "d2a4b4b6ddb3e6bcdb98a9152da69436de35d069ec4cee0b16011524e467fe12"
+    }
+  ]
+}

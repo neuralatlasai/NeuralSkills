@@ -1,8 +1,8 @@
 ---
 name: saas
-description: Build, improve, diagnose or review frontend interfaces and backend systems from briefs, designs, repositories and runtime evidence. Route to only the relevant UI, API, data or operations procedure. Exclude unrelated writing and concept explanations without engineering work.
+description: Build, improve, diagnose or review frontend interfaces, backend systems and DevOps from briefs, repositories and runtime evidence. Route to only the relevant UI, API, data or infrastructure procedure. Exclude unrelated writing and concept explanations without engineering work.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # SaaS engineering
@@ -18,6 +18,7 @@ Load one relevant procedure, not this whole folder. Preserve the project's stack
 | Schema, queries, transactions | [Backend data](backend-data.md) |
 | Cache, jobs, integrations | [Backend async](backend-async.md) |
 | Runtime/capacity or operational recovery | [Runtime](backend-runtime.md) or [operations](backend-operations.md) |
+| Infrastructure, delivery, cloud, containers/HPC | [DevOps](devops.md) |
 
 For full-stack work read the necessary boundary sections and keep one interface/state contract. Expand reading only for a named dependency or uncertainty.
 

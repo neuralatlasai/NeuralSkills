@@ -1,0 +1,100 @@
+{
+  "method": "One fresh description-only context,12 prompts; not12independent contexts",
+  "toolsUsed": 0,
+  "samples": [
+    {
+      "id": "A1",
+      "prompt": "Repair an existing AWS ECS rollout that drops accepted requests.",
+      "decision": "ACTIVATE",
+      "reason": "Repairs a production infrastructure rollout failure.",
+      "expected": "ACTIVATE"
+    },
+    {
+      "id": "A2",
+      "prompt": "Make our Azure AKS manifests scale within the DB connection budget.",
+      "decision": "ACTIVATE",
+      "reason": "Changes deployment scaling within a database resource constraint.",
+      "expected": "ACTIVATE"
+    },
+    {
+      "id": "A3",
+      "prompt": "Review Cloud Run region failover and state authority.",
+      "decision": "ACTIVATE",
+      "reason": "Reviews infrastructure failover and state ownership.",
+      "expected": "ACTIVATE"
+    },
+    {
+      "id": "A4",
+      "prompt": "Fix stale Cloudflare Workers authorization after revocation.",
+      "decision": "ACTIVATE",
+      "reason": "Fixes authorization behavior in a deployed backend runtime.",
+      "expected": "ACTIVATE"
+    },
+    {
+      "id": "A5",
+      "prompt": "Define reliable restart/checkpoint behavior for our Slurm GPU job.",
+      "decision": "ACTIVATE",
+      "reason": "Defines operational reliability behavior for a GPU workload.",
+      "expected": "ACTIVATE"
+    },
+    {
+      "id": "A6",
+      "prompt": "Add a bounded Docker Compose deployment for this local service.",
+      "decision": "ACTIVATE",
+      "reason": "Adds deployment configuration for an existing service.",
+      "expected": "ACTIVATE"
+    },
+    {
+      "id": "N1",
+      "prompt": "Write a poem about clouds.",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Creative writing without engineering work.",
+      "expected": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "N2",
+      "prompt": "Translate 'Docker container' into Spanish.",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Translation without engineering work.",
+      "expected": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "N3",
+      "prompt": "Explain what an availability zone means to a beginner, without engineering changes.",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Explicitly requests a concept explanation without engineering changes.",
+      "expected": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "N4",
+      "prompt": "Alphabetize this list of server names.",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Simple text sorting without engineering work.",
+      "expected": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "N5",
+      "prompt": "Correct the grammar in this Kubernetes conference invitation.",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Grammar editing unrelated to engineering changes.",
+      "expected": "DO_NOT_ACTIVATE"
+    },
+    {
+      "id": "N6",
+      "prompt": "Draft a thank-you message to our DevOps speaker.",
+      "decision": "DO_NOT_ACTIVATE",
+      "reason": "Message drafting without engineering work.",
+      "expected": "DO_NOT_ACTIVATE"
+    }
+  ],
+  "confusion": {
+    "TP": 6,
+    "TN": 6,
+    "FP": 0,
+    "FN": 0
+  },
+  "exactModel": null,
+  "tokens": null,
+  "cost": null,
+  "limit": "Single activation sample; no general accuracy or quality-score claim."
+}

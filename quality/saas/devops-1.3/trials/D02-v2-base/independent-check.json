@@ -1,0 +1,7 @@
+{
+  "trial": "D02-v2-base",
+  "command": "node quality/saas/devops-1.3/check.mjs D02 quality/saas/devops-1.3/trials/D02-v2-base",
+  "exitCode": 0,
+  "stdout": "{\n  \"case\": \"D02\",\n  \"status\": \"PASS\",\n  \"checks\": [\n    {\n      \"name\": \"Invocation\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Artifact parses\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Input counts preserved\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Connection arithmetic\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Admission independent\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"KV authority rejected\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Recovery claims bounded\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Decision evidence complete\",\n      \"status\": \"PASS\"\n    }\n  ],\n  \"scope\": \"Bounded artifact invariants; not API admission, live infrastructure or qualitative correctness\"\n}\n",
+  "stderr": ""
+}

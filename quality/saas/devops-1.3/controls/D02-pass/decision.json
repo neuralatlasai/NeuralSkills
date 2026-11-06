@@ -1,0 +1,54 @@
+{
+  "capacity": {
+    "activeMax": 6,
+    "surge": 2,
+    "terminating": 1,
+    "poolPerProcess": 3,
+    "workers": 4,
+    "maintenance": 2,
+    "allocated": 40,
+    "totalConnections": 33
+  },
+  "admission": {
+    "hardBoundary": true,
+    "mechanism": "Enforce a server-side connection ceiling at the actual shared pool gateway with reserved non-application slots."
+  },
+  "state": {
+    "kvAuthoritativeForImmediateRevocation": false,
+    "kvAuthoritativeForInventory": false,
+    "authority": "Authoritative transactional store for inventory and current authorization, not edge KV.",
+    "writeOwnership": "Single fenced writer or transactional compare-and-swap ownership before accepting mutations."
+  },
+  "recovery": {
+    "targetRtoSeconds": 900,
+    "targetRpoSeconds": 60,
+    "measuredRtoSeconds": null,
+    "measuredRpoSeconds": null
+  },
+  "checks": [
+    {
+      "requirement": "admission",
+      "mechanism": "Synthetic validator success control only",
+      "limit": "Declared task budget",
+      "failure": "Controlled invalid-state injection",
+      "verification": "Actual target probe required",
+      "status": "UNVERIFIED"
+    },
+    {
+      "requirement": "authority",
+      "mechanism": "Synthetic validator success control only",
+      "limit": "Declared task budget",
+      "failure": "Controlled invalid-state injection",
+      "verification": "Actual target probe required",
+      "status": "UNVERIFIED"
+    },
+    {
+      "requirement": "recovery",
+      "mechanism": "Synthetic validator success control only",
+      "limit": "Declared task budget",
+      "failure": "Controlled invalid-state injection",
+      "verification": "Actual target probe required",
+      "status": "UNVERIFIED"
+    }
+  ]
+}

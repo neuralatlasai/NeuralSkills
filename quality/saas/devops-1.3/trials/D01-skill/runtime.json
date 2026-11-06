@@ -1,0 +1,184 @@
+﻿{
+    "apiVersion":  "v1",
+    "kind":  "List",
+    "items":  [
+                  {
+                      "apiVersion":  "apps/v1",
+                      "kind":  "Deployment",
+                      "metadata":  {
+                                       "name":  "orders"
+                                   },
+                      "spec":  {
+                                   "replicas":  3,
+                                   "selector":  {
+                                                    "matchLabels":  {
+                                                                        "app":  "orders"
+                                                                    }
+                                                },
+                                   "strategy":  {
+                                                    "type":  "RollingUpdate",
+                                                    "rollingUpdate":  {
+                                                                          "maxSurge":  1,
+                                                                          "maxUnavailable":  0
+                                                                      }
+                                                },
+                                   "template":  {
+                                                    "metadata":  {
+                                                                     "labels":  {
+                                                                                    "app":  "orders"
+                                                                                }
+                                                                 },
+                                                    "spec":  {
+                                                                 "terminationGracePeriodSeconds":  25,
+                                                                 "containers":  [
+                                                                                    {
+                                                                                        "name":  "orders",
+                                                                                        "image":  "ghcr.io/example/fixture@sha256:1111111111111111111111111111111111111111111111111111111111111111",
+                                                                                        "ports":  [
+                                                                                                      {
+                                                                                                          "containerPort":  8080
+                                                                                                      }
+                                                                                                  ],
+                                                                                        "env":  [
+                                                                                                    {
+                                                                                                        "name":  "DB_POOL_MAX",
+                                                                                                        "value":  "4"
+                                                                                                    }
+                                                                                                ],
+                                                                                        "resources":  {
+                                                                                                          "requests":  {
+                                                                                                                           "cpu":  "250m",
+                                                                                                                           "memory":  "96Mi",
+                                                                                                                           "ephemeral-storage":  "64Mi"
+                                                                                                                       },
+                                                                                                          "limits":  {
+                                                                                                                         "cpu":  "1",
+                                                                                                                         "memory":  "192Mi",
+                                                                                                                         "ephemeral-storage":  "128Mi"
+                                                                                                                     }
+                                                                                                      },
+                                                                                        "livenessProbe":  {
+                                                                                                              "periodSeconds":  10,
+                                                                                                              "failureThreshold":  3,
+                                                                                                              "timeoutSeconds":  2,
+                                                                                                              "httpGet":  {
+                                                                                                                              "path":  "/live",
+                                                                                                                              "port":  8080
+                                                                                                                          }
+                                                                                                          },
+                                                                                        "readinessProbe":  {
+                                                                                                               "periodSeconds":  2,
+                                                                                                               "failureThreshold":  2,
+                                                                                                               "timeoutSeconds":  2,
+                                                                                                               "httpGet":  {
+                                                                                                                               "path":  "/ready",
+                                                                                                                               "port":  8080
+                                                                                                                           }
+                                                                                                           },
+                                                                                        "securityContext":  {
+                                                                                                                "allowPrivilegeEscalation":  false,
+                                                                                                                "readOnlyRootFilesystem":  true,
+                                                                                                                "capabilities":  {
+                                                                                                                                     "drop":  [
+                                                                                                                                                  "ALL"
+                                                                                                                                              ]
+                                                                                                                                 }
+                                                                                                            },
+                                                                                        "startupProbe":  {
+                                                                                                             "periodSeconds":  5,
+                                                                                                             "failureThreshold":  30,
+                                                                                                             "timeoutSeconds":  2,
+                                                                                                             "httpGet":  {
+                                                                                                                             "path":  "/started",
+                                                                                                                             "port":  8080
+                                                                                                                         }
+                                                                                                         },
+                                                                                        "volumeMounts":  [
+                                                                                                             {
+                                                                                                                 "mountPath":  "/tmp",
+                                                                                                                 "name":  "tmp"
+                                                                                                             }
+                                                                                                         ]
+                                                                                    }
+                                                                                ],
+                                                                 "automountServiceAccountToken":  false,
+                                                                 "securityContext":  {
+                                                                                         "runAsNonRoot":  true,
+                                                                                         "runAsUser":  10001,
+                                                                                         "runAsGroup":  10001,
+                                                                                         "fsGroup":  10001,
+                                                                                         "seccompProfile":  {
+                                                                                                                "type":  "RuntimeDefault"
+                                                                                                            }
+                                                                                     },
+                                                                 "topologySpreadConstraints":  [
+                                                                                                   {
+                                                                                                       "topologyKey":  "kubernetes.io/hostname",
+                                                                                                       "labelSelector":  {
+                                                                                                                             "matchLabels":  {
+                                                                                                                                                 "app":  "orders"
+                                                                                                                                             }
+                                                                                                                         },
+                                                                                                       "whenUnsatisfiable":  "ScheduleAnyway",
+                                                                                                       "maxSkew":  1
+                                                                                                   }
+                                                                                               ],
+                                                                 "volumes":  [
+                                                                                 {
+                                                                                     "emptyDir":  {
+                                                                                                      "sizeLimit":  "64Mi"
+                                                                                                  },
+                                                                                     "name":  "tmp"
+                                                                                 }
+                                                                             ]
+                                                             }
+                                                },
+                                   "minReadySeconds":  5,
+                                   "progressDeadlineSeconds":  300
+                               }
+                  },
+                  {
+                      "apiVersion":  "autoscaling/v2",
+                      "kind":  "HorizontalPodAutoscaler",
+                      "metadata":  {
+                                       "name":  "orders"
+                                   },
+                      "spec":  {
+                                   "scaleTargetRef":  {
+                                                          "apiVersion":  "apps/v1",
+                                                          "kind":  "Deployment",
+                                                          "name":  "orders"
+                                                      },
+                                   "minReplicas":  3,
+                                   "maxReplicas":  6,
+                                   "metrics":  [
+                                                   {
+                                                       "type":  "Resource",
+                                                       "resource":  {
+                                                                        "name":  "cpu",
+                                                                        "target":  {
+                                                                                       "type":  "Utilization",
+                                                                                       "averageUtilization":  70
+                                                                                   }
+                                                                    }
+                                                   }
+                                               ]
+                               }
+                  },
+                  {
+                      "apiVersion":  "policy/v1",
+                      "kind":  "PodDisruptionBudget",
+                      "metadata":  {
+                                       "name":  "orders"
+                                   },
+                      "spec":  {
+                                   "minAvailable":  2,
+                                   "selector":  {
+                                                    "matchLabels":  {
+                                                                        "app":  "orders"
+                                                                    }
+                                                }
+                               }
+                  }
+              ]
+}
